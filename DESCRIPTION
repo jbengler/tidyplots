@@ -28,5 +28,5 @@ Imports:
 Depends: 
     R (>= 2.10)
 LazyData: true
-URL: https://github.com/jbengler/tidyplots
+URL: https://github.com/jbengler/tidyplots, https://jbengler.github.io/tidyplots/
 BugReports: https://github.com/jbengler/tidyplots/issues
