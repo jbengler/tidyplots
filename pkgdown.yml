@@ -1,0 +1,10 @@
+pandoc: 2.19.2
+pkgdown: 2.0.7
+pkgdown_sha: ~
+articles:
+  tidyplots: tidyplots.html
+last_built: 2023-09-07T20:32Z
+urls:
+  reference: https://jbengler.github.io/tidyplots/reference
+  article: https://jbengler.github.io/tidyplots/articles
+
