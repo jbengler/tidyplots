@@ -33,12 +33,24 @@ devtools::install_github("jbengler/tidyplots")
 
 This is a basic example which shows you how to solve a common problem:
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  results = FALSE,
+  fig.align = "center",
+  fig.dim = c(3, 2),
+  dpi = 300,
+  out.width = "80%"
+)
+```
+
 ```{r example}
 library(tidyplots)
 
 df_demo %>% 
-  tidy_plot(x = category, y = value, color = category) %>% 
-  add_mean() %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter()
 

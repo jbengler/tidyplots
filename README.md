@@ -33,11 +33,12 @@ This is a basic example which shows you how to solve a common problem:
 library(tidyplots)
 
 df_demo %>% 
-  tidy_plot(x = category, y = value, color = category) %>% 
-  add_mean() %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter()
 #> ✔ modify_size: width = 30 mm, height = 25 mm
+#> ✔ modify_y_axis: done
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" width="80%" style="display: block; margin: auto;" />
