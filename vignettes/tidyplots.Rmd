@@ -1,0 +1,358 @@
+---
+title: "Get started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{tidy_plot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  results = FALSE,
+  fig.align = "center",
+  fig.dim = c(3, 2),
+  dpi = 300,
+  out.width = "80%"
+)
+```
+
+```{r setup}
+library(tidyplots)
+```
+
+```{r}
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter(rasterize = TRUE)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, color = group, fill = group) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(bar_width = 0.04) %>% 
+  add_mean_point()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_range() %>% 
+  add_mean_point()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_range() %>% 
+  add_mean()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_box()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_violin() %>% 
+  add_jitter()
+
+my_labels <-
+  c("O" = "Olga",
+    "D" = "Dieter",
+    "E" = "Emilie",
+    "M" = "Martin")
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_violin() %>% 
+  add_jitter() %>% 
+  modify_labels(category, labels = my_labels)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_violin() %>% 
+  add_jitter() %>% 
+  modify_labels(category, labels = my_labels) %>% 
+  style_rotate_labels()
+
+my_colors <-
+  c("Dieter" = "#B0B1B3",
+    "Emilie" = "#F18823",
+    "Martin" = "#E23130",
+    "Olga" = "#1D5D83")
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_violin() %>% 
+  add_jitter() %>% 
+  modify_labels(category, labels = my_labels) %>% 
+  modify_colors(my_colors) %>% 
+  style_rotate_labels()
+
+# modify_order
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  modify_order(category, reverse = TRUE)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  modify_order(category, sort_by = value)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  modify_order(category, levels = c("E", "M", "O", "D"))
+
+# modify_size
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  modify_size(width = 70)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  modify_size(width = 70, height = 40)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  modify_size(width = NA, height = NA)
+
+# line plots
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = group3, group = NA) %>% 
+  add_line()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = group3, group = NA) %>% 
+  add_line() %>% 
+  add_mean_point()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = group3, group = NA) %>% 
+  add_line() %>% 
+  add_mean_point() %>% 
+  add_error()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = group3, group = NA) %>% 
+  add_line() %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = group3, fill = group3, group = NA) %>% 
+  add_ribbon() %>% 
+  add_line() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = group3, fill = group3, group = NA) %>% 
+  add_curve() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, color = group, group = group) %>% 
+  add_line() %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, color = group, group = group) %>% 
+  add_line(dodge_width = 0) %>% 
+  add_mean(dodge_width = 0) %>% 
+  add_error(dodge_width = 0) %>% 
+  add_jitter(dodge_width = 0)
+
+# barstack
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, fill = group) %>% 
+  add_barstack_absolute()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, fill = group) %>% 
+  add_barstack_relative()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, fill = group) %>% 
+  add_barstack_relative(reverse = TRUE)
+
+# pie and donut
+
+df_demo %>% 
+  tidy_plot(x = NA, y = value, fill = group) %>% 
+  add_pie()
+
+df_demo %>% 
+  tidy_plot(x = NA, y = value, fill = group) %>% 
+  add_donut()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, fill = group) %>% 
+  add_donut()
+
+# demo subset_data
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_scatter()
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_scatter(subset_data = . %>% dplyr::filter(category == "M"))
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_scatter(subset_data = . %>% dplyr::slice_max(value, n = 1, by = category) )
+
+# modify_description
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  modify_description(title = "New title")
+
+## plot_split
+# tidy_plot
+
+data_exprs %>% 
+  tidy_plot(x = condition, y = expression, color = sample_type, fill = sample_type) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  # add_stats(y_expand_bottom = 0.05) %>% 
+  plot_split(by = external_gene_name, ncol = 4, nrow = 4)
+
+data_exprs %>% 
+  tidy_plot(x = condition, y = expression, color = sample_type, fill = sample_type) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  plot_split(by = external_gene_name, ncol = 4, nrow = 4, widths = 10, heights = 10)
+
+data_exprs %>% 
+  tidy_plot(x = condition, y = expression, color = sample_type, fill = sample_type) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  plot_split(by = external_gene_name, ncol = 4, nrow = 4, widths = NA, heights = NA)
+
+# plot_save
+
+data_exprs %>% 
+  tidy_plot(x = condition, y = expression, color = sample_type, fill = sample_type) %>% 
+  add_mean() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  plot_split(by = external_gene_name, ncol = 4, nrow = 4) %>%
+  plot_save(filename = "test_multipage.pdf")
+
+## plots
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category) %>% 
+  add_mean() %>% 
+  plot_save(filename = "test1.pdf") %>%
+  add_error() %>% 
+  plot_save(filename = "test2.pdf") %>% 
+  add_jitter() %>% 
+  plot_save(filename = "test3.pdf")
+
+# add stats
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter() %>%
+  add_stats(ref.group = 1)
+
+df_demo %>% 
+  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter() %>%
+  add_stats_value(ref.group = 1)
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, color = group, fill = group) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter() %>%
+  add_stats()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, color = group, fill = group) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_jitter() %>%
+  add_stats_value()
+
+```
+
