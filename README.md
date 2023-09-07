@@ -42,3 +42,7 @@ df_demo %>%
 ```
 
 <img src="man/figures/README-example-1.png" width="80%" style="display: block; margin: auto;" />
+
+## Learn more
+
+<https://jbengler.github.io/tidyplots/>

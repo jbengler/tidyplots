@@ -55,3 +55,7 @@ df_demo %>%
   add_jitter()
 
 ```
+
+## Learn more
+
+https://jbengler.github.io/tidyplots/
