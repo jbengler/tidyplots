@@ -365,7 +365,7 @@
 <span><span class="co">#&gt; Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,</span></span>
 <span><span class="co">#&gt; : neighborhood radius 2.015</span></span>
 <span><span class="co">#&gt; Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,</span></span>
-<span><span class="co">#&gt; : reciprocal condition number 6.2054e-17</span></span>
+<span><span class="co">#&gt; : reciprocal condition number 1.1218e-16</span></span>
 <span><span class="co">#&gt; Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,</span></span>
 <span><span class="co">#&gt; : There are other near singularities as well. 4.0602</span></span>
 <span><span class="co">#&gt; Warning in predLoess(object$y, object$x, newx = if (is.null(newdata)) object$x</span></span>
@@ -379,7 +379,7 @@
 <span><span class="co">#&gt; Warning in predLoess(object$y, object$x, newx = if (is.null(newdata)) object$x</span></span>
 <span><span class="co">#&gt; else if (is.data.frame(newdata))</span></span>
 <span><span class="co">#&gt; as.matrix(model.frame(delete.response(terms(object)), : reciprocal condition</span></span>
-<span><span class="co">#&gt; number 6.2054e-17</span></span>
+<span><span class="co">#&gt; number 1.1218e-16</span></span>
 <span><span class="co">#&gt; Warning in predLoess(object$y, object$x, newx = if (is.null(newdata)) object$x</span></span>
 <span><span class="co">#&gt; else if (is.data.frame(newdata))</span></span>
 <span><span class="co">#&gt; as.matrix(model.frame(delete.response(terms(object)), : There are other near</span></span>
@@ -497,7 +497,7 @@
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-2-40.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="co">## plot_split</span></span>
+<span><span class="co">## split_plot</span></span>
 <span><span class="co"># tidy_plot</span></span>
 <span></span>
 <span><span class="va">data_exprs</span> <span class="op">%&gt;%</span> </span>
@@ -506,7 +506,7 @@
 <span>  <span class="fu">add_error</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="co"># add_stats(y_expand_bottom = 0.05) %&gt;% </span></span>
-<span>  <span class="fu"><a href="../reference/plot_split.html">plot_split</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = 30 mm, <span style="color: #0000BB;">height</span> = 25 mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = NA mm, <span style="color: #0000BB;">height</span> = NA mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> split_plot: <span style="color: #0000BB;">widths</span> = 30 mm, <span style="color: #0000BB;">heights</span> = 25 mm</span></span>
@@ -519,7 +519,7 @@
 <span>  <span class="fu">add_mean</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_error</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="../reference/plot_split.html">plot_split</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span>, widths <span class="op">=</span> <span class="fl">10</span>, heights <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span>, widths <span class="op">=</span> <span class="fl">10</span>, heights <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = 30 mm, <span style="color: #0000BB;">height</span> = 25 mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = NA mm, <span style="color: #0000BB;">height</span> = NA mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> split_plot: <span style="color: #0000BB;">widths</span> = 10 mm, <span style="color: #0000BB;">heights</span> = 10 mm</span></span>
@@ -532,7 +532,7 @@
 <span>  <span class="fu">add_mean</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_error</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="../reference/plot_split.html">plot_split</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span>, widths <span class="op">=</span> <span class="cn">NA</span>, heights <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span>, widths <span class="op">=</span> <span class="cn">NA</span>, heights <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = 30 mm, <span style="color: #0000BB;">height</span> = 25 mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = NA mm, <span style="color: #0000BB;">height</span> = NA mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> split_plot: <span style="color: #0000BB;">widths</span> = NA mm, <span style="color: #0000BB;">heights</span> = NA mm</span></span>
@@ -540,15 +540,15 @@
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-2-47.png" width="80%" style="display: block; margin: auto;"><img src="tidyplots_files/figure-html/unnamed-chunk-2-48.png" width="80%" style="display: block; margin: auto;"><img src="tidyplots_files/figure-html/unnamed-chunk-2-49.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="co"># plot_save</span></span>
+<span><span class="co"># save_plot</span></span>
 <span></span>
 <span><span class="va">data_exprs</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">tidy_plot</span><span class="op">(</span>x <span class="op">=</span> <span class="va">condition</span>, y <span class="op">=</span> <span class="va">expression</span>, color <span class="op">=</span> <span class="va">sample_type</span>, fill <span class="op">=</span> <span class="va">sample_type</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_mean</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_error</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="../reference/plot_split.html">plot_split</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>  <span class="fu"><a href="../reference/plot_save.html">plot_save</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test_multipage.pdf"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test_multipage.pdf"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = 30 mm, <span style="color: #0000BB;">height</span> = 25 mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = NA mm, <span style="color: #0000BB;">height</span> = NA mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> split_plot: <span style="color: #0000BB;">widths</span> = 30 mm, <span style="color: #0000BB;">heights</span> = 25 mm</span></span>
@@ -564,11 +564,11 @@
 <span><span class="va">df_demo</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">tidy_plot</span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_mean</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="../reference/plot_save.html">plot_save</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test1.pdf"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test1.pdf"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">add_error</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="../reference/plot_save.html">plot_save</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test2.pdf"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test2.pdf"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_jitter</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu"><a href="../reference/plot_save.html">plot_save</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test3.pdf"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span>filename <span class="op">=</span> <span class="st">"test3.pdf"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> modify_size: <span style="color: #0000BB;">width</span> = 30 mm, <span style="color: #0000BB;">height</span> = 25 mm</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> save_plot: <span style="color: #0000BB;">device width</span> was inferred from plot dimensions</span></span>
 <span><span class="co">#&gt; <span style="color: #00BB00;">✔</span> save_plot: <span style="color: #0000BB;">device height</span> was inferred from plot dimensions</span></span>
