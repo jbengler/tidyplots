@@ -13,7 +13,7 @@ add_geom <- function(gg, geom, parent_function = "", rasterize = FALSE, rasteriz
 
   if (rasterize) {
     cli::cli_alert_success("{parent_function}: {.pkg rasterized} at {rasterize_dpi} dpi")
-    gg + ggrastr::rasterise(geom, dpi = rasterize_dpi)
+    gg + ggrastr::rasterise(geom, dpi = rasterize_dpi, dev = "ragg")
   } else {
     gg + geom
   }
