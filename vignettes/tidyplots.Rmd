@@ -278,7 +278,7 @@ df_demo %>%
   add_jitter() %>% 
   modify_description(title = "New title")
 
-## plot_split
+## split_plot
 # tidy_plot
 
 data_exprs %>% 
@@ -287,42 +287,42 @@ data_exprs %>%
   add_error() %>% 
   add_jitter() %>% 
   # add_stats(y_expand_bottom = 0.05) %>% 
-  plot_split(by = external_gene_name, ncol = 4, nrow = 4)
+  split_plot(by = external_gene_name, ncol = 4, nrow = 4)
 
 data_exprs %>% 
   tidy_plot(x = condition, y = expression, color = sample_type, fill = sample_type) %>% 
   add_mean() %>% 
   add_error() %>% 
   add_jitter() %>% 
-  plot_split(by = external_gene_name, ncol = 4, nrow = 4, widths = 10, heights = 10)
+  split_plot(by = external_gene_name, ncol = 4, nrow = 4, widths = 10, heights = 10)
 
 data_exprs %>% 
   tidy_plot(x = condition, y = expression, color = sample_type, fill = sample_type) %>% 
   add_mean() %>% 
   add_error() %>% 
   add_jitter() %>% 
-  plot_split(by = external_gene_name, ncol = 4, nrow = 4, widths = NA, heights = NA)
+  split_plot(by = external_gene_name, ncol = 4, nrow = 4, widths = NA, heights = NA)
 
-# plot_save
+# save_plot
 
 data_exprs %>% 
   tidy_plot(x = condition, y = expression, color = sample_type, fill = sample_type) %>% 
   add_mean() %>% 
   add_error() %>% 
   add_jitter() %>% 
-  plot_split(by = external_gene_name, ncol = 4, nrow = 4) %>%
-  plot_save(filename = "test_multipage.pdf")
+  split_plot(by = external_gene_name, ncol = 4, nrow = 4) %>%
+  save_plot(filename = "test_multipage.pdf")
 
 ## plots
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category) %>% 
   add_mean() %>% 
-  plot_save(filename = "test1.pdf") %>%
+  save_plot(filename = "test1.pdf") %>%
   add_error() %>% 
-  plot_save(filename = "test2.pdf") %>% 
+  save_plot(filename = "test2.pdf") %>% 
   add_jitter() %>% 
-  plot_save(filename = "test3.pdf")
+  save_plot(filename = "test3.pdf")
 
 # add stats
 

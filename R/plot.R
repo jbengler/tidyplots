@@ -191,7 +191,7 @@ multipage_plots <- function(gg,
 #' @inheritParams patchwork::wrap_plots
 #'
 #' @export
-plot_split <- function(gg,
+split_plot <- function(gg,
                        by,
                        ncol = NULL,
                        nrow = NULL,
@@ -254,7 +254,7 @@ plot_split <- function(gg,
 #' @inheritParams ggplot2::ggsave
 #'
 #' @export
-plot_save <- function(gg = last_plot(), filename, device = NULL, path = NULL, scale = 1,
+save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, scale = 1,
                            width = NA, height = NA, units = c("mm", "cm", "in"), dpi = 300, limitsize = TRUE,
                            return_input = TRUE, multiple_files = FALSE, bg = "transparent", ...) {
   if (!is.ggplot(gg) && !all(purrr::map_lgl(gg, is.ggplot)))
