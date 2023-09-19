@@ -10,13 +10,12 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 The goal of `tidyplots` is make to it ridiculously simple to create
-scientific plots by gradually adding, changing and adjusting plot
+ready-to-use scientific plots by gradually adding and modifying plot
 components. It follows a similar logic as `ggplot2`, but uses the pipe
 `%>%` instead of `+`, which allows for more flexible and powerful
 workflows. Moreover, `tidyplots` is making the most common scientific
 plotting routines more accessible, by proving a clean and minimalist
-interface. Finally, you can always `add()` ggplot code, to handle those
-cases where you need full control.
+interface. Finally, it is fully compatible with ggplot code.
 
 ## Installation
 
@@ -40,8 +39,6 @@ df_demo %>%
   add_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter()
-#> ✔ modify_size: width = 30 mm, height = 25 mm
-#> ✔ modify_y_axis: done
 ```
 
 <img src="man/figures/README-example-1.png" width="80%" style="display: block; margin: auto;" />

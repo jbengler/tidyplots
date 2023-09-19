@@ -8,8 +8,14 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  results = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.dim = c(3, 2),
+  dpi = 300,
+  out.width = "80%",
+  fig.path = "man/figures/README-"
 )
 ```
 
@@ -19,7 +25,7 @@ knitr::opts_chunk$set(
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-The goal of `tidyplots` is make to it ridiculously simple to create scientific plots by gradually adding, changing and adjusting plot components. It follows a similar logic as `ggplot2`, but uses the pipe `%>%` instead of `+`, which allows for more flexible and powerful workflows. Moreover, `tidyplots` is making the most common scientific plotting routines more accessible, by proving a clean and minimalist interface. Finally, you can always `add()` ggplot code, to handle those cases where you need full control.
+The goal of `tidyplots` is make to it ridiculously simple to create ready-to-use scientific plots by gradually adding and modifying plot components. It follows a similar logic as `ggplot2`, but uses the pipe `%>%` instead of `+`, which allows for more flexible and powerful workflows. Moreover, `tidyplots` is making the most common scientific plotting routines more accessible, by proving a clean and minimalist interface. Finally, it is fully compatible with ggplot code.
 
 ## Installation
 
@@ -33,18 +39,6 @@ devtools::install_github("jbengler/tidyplots")
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  results = FALSE,
-  fig.align = "center",
-  fig.dim = c(3, 2),
-  dpi = 300,
-  out.width = "80%"
-)
-```
 
 ```{r example}
 library(tidyplots)

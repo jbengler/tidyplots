@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{split_plot}
 \alias{split_plot}
-\title{multipage_facets}
+\title{split_plot}
 \usage{
 split_plot(
   gg,
@@ -51,5 +51,5 @@ be specified as a text string or by concatenating calls to \code{\link[patchwork
 See the examples for further information on use.}
 }
 \description{
-multipage_facets
+split_plot
 }

@@ -17,6 +17,7 @@ Imports:
     ggpubr,
     ggrastr,
     glue,
+    Hmisc,
     patchwork,
     purrr,
     ragg,
@@ -30,3 +31,7 @@ Depends:
 LazyData: true
 URL: https://github.com/jbengler/tidyplots, https://jbengler.github.io/tidyplots/
 BugReports: https://github.com/jbengler/tidyplots/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

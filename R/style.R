@@ -16,40 +16,6 @@ theme_ggplot2 <- function(gg) {
 style_white_bg <- function(gg) {
   gg +
     theme(
-      plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
-      plot.background = element_rect(fill = NA, colour = NA),
-      legend.background = element_rect(fill = NA, colour = NA),
-      legend.key = element_rect(fill = NA, colour = NA),
-      strip.background = element_rect(fill = NA, colour = NA),
-      panel.background = element_rect(fill = NA, colour = NA),
-      panel.border = element_rect(fill = NA, colour = "black", size = 0.5),
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      axis.ticks = element_line(colour = "black", size = 0.25)
-    )
-}
-
-#' @export
-style_white_bg <- function(gg) {
-  gg +
-    theme(
-      plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
-      plot.background = element_rect(fill = NA, colour = NA),
-      legend.background = element_rect(fill = NA, colour = NA),
-      legend.key = element_rect(fill = NA, colour = NA),
-      strip.background = element_rect(fill = NA, colour = NA),
-      panel.background = element_rect(fill = NA, colour = NA),
-      panel.border = element_rect(fill = NA, colour = "black", size = 0.5),
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      axis.ticks = element_line(colour = "black", size = 0.25)
-    )
-}
-
-#' @export
-style_white_bg <- function(gg) {
-  gg +
-    theme(
     plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
     plot.background = element_rect(fill = NA, colour = NA),
     legend.background = element_rect(fill = NA, colour = NA),
@@ -74,7 +40,8 @@ style_font_size <- function(gg, fs = 7) {
     axis.title = element_text(size = fs, colour = "black"),
     legend.title = element_text(size = fs, colour = "black"),
     legend.text = element_text(size = fs, colour = "black"),
-    strip.text = element_text(size = fs, colour = "black")
+    strip.text = element_text(size = fs, colour = "black"),
+    legend.key.size = unit(4, "mm")
   )
 }
 
@@ -118,6 +85,18 @@ style_rotate_labels <- function(gg, angle = 45) {
   gg +
     theme(
     axis.text.x = element_text(angle = angle, hjust = 1)
+  )
+}
+
+#' @export
+style_void <- function(gg) {
+  gg +
+    ggplot2::theme_void() +
+    theme(
+    plot.title = element_text(size = 7, colour = "black", hjust = 0.5, vjust = 0.5),
+    legend.title = element_text(size = 7, colour = "black"),
+    legend.text = element_text(size = 7, colour = "black"),
+    legend.key.size = unit(4, "mm")
   )
 }
 

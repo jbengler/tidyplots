@@ -1,45 +1,5 @@
 #' @importFrom ggplot2 ggplot aes is.ggplot ggtitle
 
-extract_mapping <- function(gg) {
-  get_var <- function(inp) {
-    purrr::map_chr(inp, function(x) {
-      if (is.null(gg$mapping[[x]])) return("!!NULL")
-      if (is.na(rlang::quo_name(gg$mapping[[x]]))) return("!!NA")
-      return(rlang::quo_name(gg$mapping[[x]]))
-    })
-  }
-  get_scale_type <- function(inp) {
-    purrr::map_chr(inp, function(x) {
-      if(x == "!!NULL") return("!!NULL")
-      if(x == "!!NA") return("!!NA")
-      return(gg$data %>% dplyr::pull(x) %>% ggplot2::scale_type())
-    })
-  }
-  dplyr::tibble(mapping = c("x", "y", "colour", "fill", "group")) %>%
-    dplyr::mutate(
-      var = get_var(mapping),
-      scale = get_scale_type(var)
-      )
-}
-
-is_discrete <- function(gg, scale) {
-  item <-
-    extract_mapping(gg) %>%
-    dplyr::select(mapping, scale) %>%
-    tibble::deframe() %>%
-    .[scale]
-  if (item == "discrete") return(TRUE) else return(FALSE)
-}
-
-is_continuous <- function(gg, scale) {
-  item <-
-    extract_mapping(gg) %>%
-    dplyr::select(mapping, scale) %>%
-    tibble::deframe() %>%
-    .[scale]
-  if (item == "continuous") return(TRUE) else return(FALSE)
-}
-
 #' @export
 tidy_plot <- function(data, ...) {
   gg <- ggplot(data = data, mapping = aes(...))
@@ -64,57 +24,10 @@ tidy_plot <- function(data, ...) {
 }
 
 #' @export
-plot_view <- function(gg, ...) {
+view_plot <- function(gg, ...) {
   print(gg, ...)
   return(gg)
 }
-
-burst_filename <- function(filename, n) {
-  digits <- ceiling(log10(n+1))
-  paste0(tools::file_path_sans_ext(filename), "_", sprintf(paste0("%0",digits,"d"), 1:n), ".", tools::file_ext(filename))
-}
-
-check_input <- function(input) {
-  if (any(class(input) == "patchwork")) return("pw")
-  else if (any(class(input) == "gg")) return("gg")
-  else if (class(input) == "list") {
-    if (any(unlist(purrr::map(input, class)) == "patchwork")) {
-      return("pw_list")
-    } else if (any(unlist(purrr::map(input, class)) == "gg")) {
-        return("gg_list")
-      }
-    }
-  else return("none")
-}
-
-# p1 <-
-#   df_demo %>%
-#   tidy_plot(category, value, color = category) %>%
-#   add_bar()
-#
-# p2 <-
-#   df_demo %>%
-#   tidy_plot(category, value, color = category) %>%
-#   add_mean()
-#
-# pw <- p1 + p2
-#
-# unlist(purrr::map(gg_list, class))
-#
-# gg_list <- list(p1, p2)
-# pw_list <- list(pw, pw)
-#
-# check_input(p1)
-# check_input(p2)
-# check_input(pw)
-# check_input(gg_list)
-# check_input(pw_list)
-
-
-
-# Known limitations:
-# 1. Plots that have been sized by egg::setpanel_size() loose their gtable information
-# 2. patchwork::plot_annotation() titles are not counting towards the dimensions
 
 get_layout_size <- function(gg, units = c("mm", "cm", "in")) {
   if (is.ggplot(gg)) gg <- list(gg)
@@ -150,13 +63,6 @@ get_layout_size <- function(gg, units = c("mm", "cm", "in")) {
     )
 }
 
-#' multipage_plots
-#' @param gg A `ggplot` or list of `ggplot`s
-#'
-#' @param ncol,nrow The number of columns and rows per page.
-#' @inheritParams patchwork::wrap_plots
-#'
-#' @export
 multipage_plots <- function(gg,
                             ncol = NULL,
                             nrow = NULL,
@@ -183,7 +89,8 @@ multipage_plots <- function(gg,
   unname(pages)
 }
 
-#' multipage_facets
+
+#' split_plot
 #' @param gg A `ggplot`
 #'
 #' @param by Variable that should be used for faceting.
@@ -224,7 +131,11 @@ split_plot <- function(gg,
   cli::cli_alert_success("split_plot: {.pkg widths} = {widths} {my_unit}, {.pkg heights} = {heights} {my_unit}")
   if (!is.na(widths)) widths <- unit(widths, my_unit)
   if (!is.na(heights)) heights <- unit(heights, my_unit)
-  multipage_plots(plots, ncol = ncol, nrow = nrow, widths = widths, heights = heights, my_unit = my_unit, guides = guides, byrow = byrow, tag_level = tag_level, design = design)
+  out <- multipage_plots(plots, ncol = ncol, nrow = nrow, widths = widths, heights = heights, my_unit = my_unit, guides = guides, byrow = byrow, tag_level = tag_level, design = design)
+  if (length(out) == 1)
+    return(out[[1]])
+  else
+    return(out)
 }
 
 #' Save multipage layout to file
@@ -286,12 +197,12 @@ save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, sc
   if (is.na(width)) width <- dimensions[["width"]] * 1.1
   if (is.na(height)) height <- dimensions[["height"]] * 1.1
 
-  cli::cli_alert_success("save_plot: {.pkg device width} {width_defined_by}")
-  cli::cli_alert_success("save_plot: {.pkg device height} {height_defined_by}")
+  cli::cli_alert_success("save_plot: {.pkg page width} {width_defined_by}")
+  cli::cli_alert_success("save_plot: {.pkg page height} {height_defined_by}")
 
   if (!is.na(width) && !is.na(height))
-    cli::cli_alert_success("save_plot: saving {.pkg {round(width)} x {round(height)}} mm image to {.pkg {filename}}")
-
+    cli::cli_alert_success("save_plot: saving {.pkg {length(gg)} pages} with {.pkg {round(width)} x {round(height)}} mm to {.pkg {filename}}")
+glue::glue()
   if (multiple_files) {
     filenames <- burst_filename(filename, length(gg))
     purrr::map2(gg, filenames,

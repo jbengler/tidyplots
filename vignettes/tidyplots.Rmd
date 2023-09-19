@@ -12,6 +12,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   results = FALSE,
+  message = FALSE,
+  warning = FALSE,
   fig.align = "center",
   fig.dim = c(3, 2),
   dpi = 300,
@@ -79,6 +81,7 @@ df_demo %>%
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
   add_violin() %>% 
+  # add_box(box_width = 0.3, show_whiskers = FALSE) %>% 
   add_jitter()
 
 my_labels <-
@@ -238,15 +241,11 @@ df_demo %>%
 # pie and donut
 
 df_demo %>% 
-  tidy_plot(x = NA, y = value, fill = group) %>% 
+  tidy_plot(y = value, fill = group) %>% 
   add_pie()
 
 df_demo %>% 
-  tidy_plot(x = NA, y = value, fill = group) %>% 
-  add_donut()
-
-df_demo %>% 
-  tidy_plot(x = group2, y = value, fill = group) %>% 
+  tidy_plot(y = value, fill = group) %>% 
   add_donut()
 
 # demo subset_data

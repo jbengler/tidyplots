@@ -1,0 +1,94 @@
+---
+title: "Visualizing Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Visualizing-data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+# knitr::opts_chunk$set(
+#   collapse = TRUE,
+#   comment = "#>"
+# )
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  results = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.dim = c(5.2, 4),
+  dpi = 300,
+  out.width = "80%"
+)
+
+# data_energy_hours <- 
+#   read_csv("data/energy_total_hour.csv") %>% 
+#   pivot_longer(-Date, names_to = "energy_source", values_to = "power_in_gw") %>%
+#   filter(energy_source != "Load")
+# 
+# data_energy_years <- 
+#   read_csv("data/energy_total_year.csv") %>% 
+#   pivot_longer(-Year, names_to = "energy_source", values_to = "power_in_gw")
+
+```
+
+```{r setup}
+library(tidyverse)
+library(tidyplots)
+```
+# Amounts
+
+# Distributions
+
+# Proportions
+
+```{r}
+data_energy_years %>% 
+  tidy_plot(Year, power_in_gw, fill = energy_source) %>% 
+  add_barstack_absolute(bar_width = 0.8) %>% 
+  modify_size(80, 60)
+data_energy_years %>% 
+  tidy_plot(Year, power_in_gw, fill = energy_source) %>% 
+  add_barstack_relative() %>% 
+  modify_size(80, 60)
+data_energy_years %>% 
+  filter(Year > 2019) %>% 
+  mutate(Year = factor(Year)) %>% 
+  mutate(Year = fct_drop(Year)) %>% 
+  tidy_plot(y = power_in_gw, fill = energy_source) %>% 
+  add_pie() %>% 
+  split_plot(by = Year)
+data_energy_years %>% 
+  filter(Year > 2019) %>% 
+  mutate(Year = factor(Year)) %>% 
+  mutate(Year = fct_drop(Year)) %>% 
+  tidy_plot(y = power_in_gw, fill = energy_source) %>% 
+  add_donut() %>% 
+  split_plot(by = Year)
+data_energy_hours %>% 
+  tidy_plot(Date, power_in_gw, color = energy_source) %>% 
+  add_line() %>% 
+  modify_size(80, 60)
+data_energy_hours %>% 
+  tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  add_area(alpha = 0.3) %>% 
+  modify_size(80, 60)
+data_energy_hours %>% 
+  tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  add_areastack_absolute(alpha = 0.3) %>% 
+  modify_size(80, 60)
+data_energy_hours %>% 
+  tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  add_areastack_relative(alpha = 0.3) %>% 
+  modify_size(80, 60)
+```
+
+
+# Uncertainty
+
+# x--y relationships
+
+

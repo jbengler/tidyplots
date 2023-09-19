@@ -30,31 +30,58 @@ modify_colors <- function(gg, colors, fill_alpha = 0.3) {
 }
 
 #' @export
-modify_x_axis <- function(gg, breaks = waiver(), labels = scales::label_number(scale_cut = scales::cut_short_scale()), expand = expansion(mult = c(0.05, 0.05)), transformation = "identity", position = "left") {
-  if (is_discrete(gg, "x")) {
-    cli::cli_alert_warning("modify_x_axis: {.pkg x axis} was not changes because it is {.pkg not continuous}.")
-    cli::cli_alert_warning("Use {.pkg modify_labels()} and {.pkg modify_order()} to change discrete axis.")
-    gg
-  } else {
-    cli::cli_alert_success("modify_x_axis: {.pkg done}")
+modify_x_axis <- function(gg, breaks = waiver(), labels = waiver(), expand_bottom = 0.05, expand_top = 0.05, expand = expansion(mult = c(expand_bottom, expand_top)), transformation = "identity", position = "bottom", ...) {
+  if (is_datetime(gg, "x")) {
+    cli::cli_alert_success("modify_x_axis: {.pkg datetime}")
     suppressMessages(
-      gg + scale_x_continuous(breaks = breaks, labels = labels, expand = expand, trans = transformation, position = position)
+      gg <- gg + scale_x_datetime(breaks = breaks, labels = labels, expand = expand, position = position, ...)
     )
+    return(gg)
   }
+  if (is_date(gg, "x")) {
+    cli::cli_alert_success("modify_x_axis: {.pkg date}")
+    suppressMessages(
+      gg <- gg + scale_x_date(breaks = breaks, labels = labels, expand = expand, position = position, ...)
+    )
+    return(gg)
+  }
+  if (is_time(gg, "x")) {
+    cli::cli_alert_success("modify_x_axis: {.pkg time}")
+    suppressMessages(
+      gg <- gg + scale_x_time(breaks = breaks, labels = labels, expand = expand, position = position, ...)
+    )
+    return(gg)
+  }
+  if (is_continuous(gg, "x")) {
+    if (is_waiver(labels))
+      labels <- scales::label_number(scale_cut = scales::cut_short_scale())
+    cli::cli_alert_success("modify_x_axis: {.pkg continuous}")
+    suppressMessages(
+      gg <- gg + scale_x_continuous(breaks = breaks, labels = labels, expand = expand, trans = transformation, position = position, ...)
+    )
+    return(gg)
+  }
+  # catch the rest
+  cli::cli_alert_warning("modify_x_axis: {.pkg x axis} was not changes because it is {.pkg not continuous}.")
+  cli::cli_alert_warning("Use {.pkg modify_labels()} and {.pkg modify_order()} to change discrete axis.")
+  return(gg)
 }
 
 #' @export
-modify_y_axis <- function(gg, breaks = waiver(), labels = scales::label_number(scale_cut = scales::cut_short_scale()), expand = expansion(mult = c(0.05, 0.05)), transformation = "identity", position = "left") {
-  if (is_discrete(gg, "y")) {
-    cli::cli_alert_warning("modify_y_axis: {.pkg y axis} was not changes because it is {.pkg not continuous}.")
-    cli::cli_alert_warning("Use {.pkg modify_labels()} and {.pkg modify_order()} to change discrete axis.")
-    gg
-  } else {
-    cli::cli_alert_success("modify_y_axis: {.pkg done}")
+modify_y_axis <- function(gg, breaks = waiver(), labels = waiver(), expand_bottom = 0.05, expand_top = 0.05, expand = expansion(mult = c(expand_bottom, expand_top)), transformation = "identity", position = "left", ...) {
+  if (is_continuous(gg, "y")) {
+    if (is_waiver(labels))
+      labels <- scales::label_number(scale_cut = scales::cut_short_scale())
+    cli::cli_alert_success("modify_y_axis: {.pkg continuous}")
     suppressMessages(
-      gg + scale_y_continuous(breaks = breaks, labels = labels, expand = expand, trans = transformation, position = position)
+      gg <- gg + scale_y_continuous(breaks = breaks, labels = labels, expand = expand, trans = transformation, position = position, ...)
     )
+    return(gg)
   }
+  # catch the rest
+  cli::cli_alert_warning("modify_y_axis: {.pkg y axis} was not changes because it is {.pkg not continuous}.")
+  cli::cli_alert_warning("Use {.pkg modify_labels()} and {.pkg modify_order()} to change discrete axis.")
+  return(gg)
 }
 
 #' @export
