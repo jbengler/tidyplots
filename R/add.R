@@ -280,8 +280,8 @@ add_value <- function(gg, fun = mean, dodge_width = 0.8, fontsize = 7, size = fo
 }
 
 #' @export
-add_label <- function(gg, var, subset_data = . %>% all_data(), fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, ...) {
-  gg + ggrepel::geom_text_repel(data = subset_data, aes(label = {{var}}), size = size, ...)
+add_label <- function(gg, var, subset_data = . %>% all_data(), fontsize = 7, size = fontsize/ggplot2::.pt, segment.size = 0.2, box.padding = 0.2, ...) {
+  gg + ggrepel::geom_text_repel(data = subset_data, aes(label = {{var}}), size = size, segment.size = segment.size, box.padding = box.padding, ...)
 }
 
 # TODO: add_histogram()

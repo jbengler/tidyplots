@@ -141,11 +141,11 @@ energy_week %>%
 
 ```{r}
 mtcars %>%
-  as_tibble(rownames = "name") %>% 
+  tibble::as_tibble(rownames = "name") %>% 
   tidy_plot(mpg, disp) %>% 
   add_scatter() %>% 
-  add_scatter(subset_data = . %>% dplyr::filter(disp > 370), color = "red") %>% 
-  add_label(subset_data = . %>% dplyr::filter(disp > 370), var = name) %>% 
+  add_scatter(subset_data = . %>% dplyr::filter(disp > 350), color = "red") %>% 
+  add_label(subset_data = . %>% dplyr::filter(disp > 350), var = name) %>% 
   adjust_size(70, 70)
 
 ```

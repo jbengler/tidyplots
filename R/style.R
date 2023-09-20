@@ -13,6 +13,45 @@ theme_ggplot2 <- function(gg) {
 }
 
 #' @export
+theme_minimal_xy <- function(gg) {
+  gg <- gg + ggplot2::theme_minimal()
+  gg %>% adjust_fontsize() +
+    theme(
+      axis.line.x = element_line(colour = "grey", size = 0.15),
+      panel.grid.major.x = element_line(colour = "grey", size = 0.15),
+      panel.grid.minor.x = element_blank(),
+      panel.grid.major.y = element_line(colour = "grey", size = 0.15),
+      panel.grid.minor.y = element_blank()
+    )
+}
+
+#' @export
+theme_minimal_y <- function(gg) {
+  gg <- gg + ggplot2::theme_minimal()
+  gg %>% adjust_fontsize() +
+    theme(
+      axis.line.x = element_line(colour = "grey", size = 0.15),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank(),
+      panel.grid.major.y = element_line(colour = "grey", size = 0.15),
+      panel.grid.minor.y = element_blank()
+    )
+}
+
+#' @export
+theme_minimal_x <- function(gg) {
+  gg <- gg + ggplot2::theme_minimal()
+  gg %>% adjust_fontsize() +
+    theme(
+      axis.line.y = element_line(colour = "grey", size = 0.15),
+      panel.grid.major.x = element_line(colour = "grey", size = 0.15),
+      panel.grid.minor.x = element_blank(),
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor.y = element_blank()
+    )
+}
+
+#' @export
 style_white_bg <- function(gg) {
   gg +
     theme(
@@ -99,24 +138,3 @@ style_void <- function(gg) {
     legend.key.size = unit(4, "mm")
   )
 }
-
-#' @export
-style_minimal <- function(gg) {
-  gg +
-    theme(
-    plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
-    plot.background = element_rect(fill = NA, colour = NA),
-    legend.background = element_rect(fill = NA, colour = NA),
-    legend.key = element_rect(fill = NA, colour = NA),
-    panel.background = element_rect(fill = NA, colour = NA),
-    panel.border = element_rect(fill = NA, colour = NA),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-    axis.ticks = element_blank(),
-    panel.grid.major.y = element_line(colour = "grey", size = 0.25)
-  )
-}
-
-# TODO follow recommendations for creating themes
-# https://ggplot2.tidyverse.org/articles/ggplot2-in-packages.html
-
