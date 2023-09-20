@@ -10,7 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 The goal of `tidyplots` is make to it ridiculously simple to create
-ready-to-use scientific plots by gradually adding and modifying plot
+ready-to-use scientific plots by gradually adding and adjusting plot
 components. It follows a similar logic as `ggplot2`, but uses the pipe
 `%>%` instead of `+`, which allows for more flexible and powerful
 workflows. Moreover, `tidyplots` is making the most common scientific

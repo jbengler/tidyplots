@@ -17,10 +17,15 @@ tidy_plot <- function(data, ...) {
     gg <- gg + my_scale_fill_c()
 
   gg <- gg %>%
-    theme_default() %>%
-    modify_size()
+    theme_tidyplot() %>%
+    adjust_size()
 
   return(gg)
+}
+
+#' @export
+flip_plot <- function(gg, ...) {
+  gg + ggplot2::coord_flip(...)
 }
 
 #' @export
@@ -117,7 +122,7 @@ split_plot <- function(gg,
   # free plot dimensions
   gg <-
     gg %>%
-    modify_size(width = NA, height = NA)
+    adjust_size(width = NA, height = NA)
 
   df <-
     gg$data %>%
@@ -319,7 +324,7 @@ plot_dev <- function(device, filename = NULL, dpi = 300, call = caller_env()) {
       call_args$units <- 'in'
     }
     dev <- function(...) {
-      args <- modify_list(list(...), call_args)
+      args <- adjust_list(list(...), call_args)
       inject(device(!!!args))
     }
     return(dev)

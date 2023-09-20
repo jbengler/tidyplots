@@ -1,3 +1,30 @@
+#' @importFrom dplyr %>%
+
+#' @export
+`%>%` <- dplyr::`%>%`
+
+#' @export
+add <- .Primitive("+")
+
+#' @export
+all_data <- function(x) { x }
+
+#' @export
+format_number <- function(x, n_decimals) {
+  trimws(format(round(x, n_decimals), nsmall = n_decimals, scientific = FALSE))
+}
+
+parent_function <- function(x){
+  deparse(sys.call(-2)) %>%
+    stringr::str_extract(pattern = "^[A-Z_a-z]*")
+}
+
+#' @export
+format_p <- function(p, n_decimals = 4) {
+  ifelse(p >= 10^-n_decimals,
+         format_number(p, n_decimals),
+         glue::glue("< {format_number(10^-n_decimals, n_decimals)}"))
+}
 
 check_input <- function(input) {
   if (any(class(input) == "patchwork")) return("pw")

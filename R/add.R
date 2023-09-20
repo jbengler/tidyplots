@@ -1,16 +1,4 @@
-#' @importFrom dplyr %>%
 #' @importFrom ggplot2 position_fill position_stack position_dodge position_jitterdodge position_jitter
-
-#' @export
-`%>%` <- dplyr::`%>%`
-
-#' @export
-add <- .Primitive("+")
-
-parent_function <- function(x){
-  deparse(sys.call(-2)) %>%
-    stringr::str_extract(pattern = "^[A-Z_a-z]*")
-}
 
 add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300) {
   pf <- parent_function()
@@ -27,7 +15,7 @@ add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300) {
 # for x = continuous, y = continuous, use add_scatter()
 
 #' @export
-add_scatter <- function(gg, subset_data = . %>% dplyr::filter(), point_size = 0.5, point_shape = 19, rasterize = FALSE, rasterize_dpi = 300, ...) {
+add_scatter <- function(gg, subset_data = . %>% all_data(), point_size = 0.5, point_shape = 19, rasterize = FALSE, rasterize_dpi = 300, ...) {
   add_geom(gg, ggplot2::geom_point(data = subset_data, size = point_size, shape = point_shape, ...),
            rasterize = rasterize, rasterize_dpi = rasterize_dpi)
 }
@@ -43,7 +31,7 @@ add_jitter <- function(gg, dodge_width = 0.8, jitter_width = 0.1, jitter_height 
           rasterize = rasterize, rasterize_dpi = rasterize_dpi)
 }
 
-# dispersion
+# uncertainty
 
 #' @export
 add_sem <- function(gg, dodge_width = 0.8, width = 0.4, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
@@ -68,7 +56,7 @@ add_ci <- function(gg, dodge_width = 0.8, width = 0.4, linewidth = 0.25, positio
 #' @export
 add_error <- add_sem
 
-# dispersion ribbons
+# ribbons
 
 #' @export
 add_ribbon_sem <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
@@ -107,7 +95,7 @@ add_mean_point <- function(gg, dodge_width = 0.8, size = 2, position = position_
 
 #' @export
 add_mean_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, position = position_dodge(width = dodge_width), ...) {
-  gg <- gg %>% modify_y_axis(expand = expansion(mult = c(0, 0.05)))
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(0, 0.05)))
   suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
   gg + ggplot2::stat_summary(fun = mean, geom = "bar", color = NA, width = bar_width, position = position, ...)
 }
@@ -126,7 +114,7 @@ add_median_point <- function(gg, dodge_width = 0.8, size = 2, position = positio
 
 #' @export
 add_median_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, position = position_dodge(width = dodge_width), ...) {
-  gg <- gg %>% modify_y_axis(expand = expansion(mult = c(0, 0.05)))
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(0, 0.05)))
   suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
   gg + ggplot2::stat_summary(fun = median, geom = "bar", color = NA, width = bar_width, position = position, ...)
 }
@@ -171,38 +159,38 @@ add_curve <- function(gg, method = "loess", linewidth = 0.25, alpha = 0.3, ...) 
 #' @export
 add_barstack_relative <- function(gg, bar_width = 0.6, reverse = FALSE, ...) {
   gg %>%
-    modify_y_axis(expand = expansion(mult = c(0, 0.05))) +
+    adjust_y_axis(expand = expansion(mult = c(0, 0))) +
     ggplot2::geom_col(position = position_fill(reverse = reverse), width = bar_width, ...)
 }
 
 #' @export
 add_barstack_absolute <- function(gg, bar_width = 0.6, reverse = FALSE, ...) {
   gg %>%
-    modify_y_axis(expand = expansion(mult = c(0, 0))) +
+    adjust_y_axis(expand = expansion(mult = c(0, 0))) +
     ggplot2::geom_col(position = position_stack(reverse = reverse), width = bar_width, ...)
 }
 
 #' @export
 add_area <- function(gg, reverse = FALSE, ...) {
   gg %>%
-    modify_y_axis(expand = expansion(mult = c(0, 0))) %>%
-    modify_x_axis(expand = expansion(mult = c(0, 0))) +
+    adjust_y_axis(expand = expansion(mult = c(0, 0))) %>%
+    adjust_x_axis(expand = expansion(mult = c(0, 0))) +
     ggplot2::geom_area(position = position_identity(), ...)
 }
 
 #' @export
 add_areastack_absolute <- function(gg, reverse = FALSE, ...) {
   gg %>%
-    modify_y_axis(expand = expansion(mult = c(0, 0)))%>%
-    modify_x_axis(expand = expansion(mult = c(0, 0))) +
+    adjust_y_axis(expand = expansion(mult = c(0, 0)))%>%
+    adjust_x_axis(expand = expansion(mult = c(0, 0))) +
     ggplot2::geom_area(position = position_stack(reverse = reverse), ...)
 }
 
 #' @export
 add_areastack_relative <- function(gg, reverse = FALSE, ...) {
   gg %>%
-    modify_y_axis(expand = expansion(mult = c(0, 0)))%>%
-    modify_x_axis(expand = expansion(mult = c(0, 0))) +
+    adjust_y_axis(expand = expansion(mult = c(0, 0)))%>%
+    adjust_x_axis(expand = expansion(mult = c(0, 0))) +
     ggplot2::geom_area(position = position_fill(reverse = reverse), ...)
 }
 
@@ -225,19 +213,6 @@ add_pie <- function(gg, bar_width = 1, reverse = FALSE, ...) {
     ggplot2::guides()
 }
 
-# stats helpers
-
-set_decimals <- function(x, n_decimals) {
-  trimws(format(round(x, n_decimals), nsmall = n_decimals, scientific = FALSE))
-}
-
-#' @export
-format_p <- function(p, n_decimals = 4) {
-  ifelse(p >= 10^-n_decimals,
-         set_decimals(p, n_decimals),
-         glue::glue("< {set_decimals(10^-n_decimals, n_decimals)}"))
-}
-
 # add stats
 
 #' @export
@@ -258,10 +233,10 @@ add_stats <- function(gg,
   cli::cli_alert_success("add_stats: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
 
   gg <- gg  %>%
-    modify_y_axis(expand = expansion(mult = c(y_expand_bottom, y_expand_top)))
+    adjust_y_axis(expand = expansion(mult = c(y_expand_bottom, y_expand_top)))
 
   if(include_info)
-    gg <- gg  %>% modify_description(caption = glue::glue("method = {method}
+    gg <- gg  %>% adjust_description(caption = glue::glue("method = {method}
                                             label = {label}
                                             p.adjust.method = {p.adjust.method}
                                             hide.ns = {hide.ns}
@@ -298,15 +273,21 @@ add_stats_value <- function(gg,
             ...)
 }
 
-# TODO: add_label(): ggrepel?
+#' @export
+add_value <- function(gg, fun = mean, dodge_width = 0.8, fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, expand_bottom = 0, expand_top = 0.15, position = position_dodge(width = dodge_width), ...) {
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(expand_bottom, expand_top)))
+  gg + ggplot2::stat_summary(aes(label = format_number(ggplot2::after_stat(y), 1)), fun = fun, geom = "text", vjust = vjust, size = size, position = position, ...)
+}
 
-# experimental!
-# my_bar_label <- function(fun = mean, dodge_width = 0.8, size = 7/.pt, vjust = -0.5, position = position_dodge(width = dodge_width), ...) {
-#   gg %>% add(stat_summary(aes(label = after_stat(y)), fun = fun, geom = "text", vjust = vjust, size = size, position = position, ...))
-# }
+#' @export
+add_label <- function(gg, var, subset_data = . %>% all_data(), fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, ...) {
+  gg + ggrepel::geom_text_repel(data = subset_data, aes(label = {{var}}), size = size, ...)
+}
 
-# TODO: add_label_bar()
-# TODO: add_label_scatter()
+# TODO: add_histogram()
+# TODO: add_density()
+
+# TODO: add_label()
 
 # TODO: include 'rasterize', where useful:
 # scatter, jitter, bar, ...
@@ -317,7 +298,7 @@ add_stats_value <- function(gg,
 
 # TODO: group and group2 confusing. User data_exprs instead?
 
-# TODO: modify_labels -> reorder by order in "labels"
+# TODO: adjust_labels -> reorder by order in "labels"
 
 # TODO: change display size, everything x2?
 

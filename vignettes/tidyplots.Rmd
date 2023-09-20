@@ -41,7 +41,8 @@ df_demo %>%
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
-  add_bar()
+  add_bar() %>% 
+  add_value()
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
@@ -58,6 +59,11 @@ df_demo %>%
   add_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter()
+
+df_demo %>% 
+  tidy_plot(x = group2, y = value, color = group, fill = group) %>% 
+  add_bar(alpha = 0.3) %>% 
+  add_value()
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
@@ -94,13 +100,13 @@ df_demo %>%
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
   add_violin() %>% 
   add_jitter() %>% 
-  modify_labels(category, labels = my_labels)
+  adjust_labels(category, labels = my_labels)
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
   add_violin() %>% 
   add_jitter() %>% 
-  modify_labels(category, labels = my_labels) %>% 
+  adjust_labels(category, labels = my_labels) %>% 
   style_rotate_labels()
 
 my_colors <-
@@ -113,11 +119,11 @@ df_demo %>%
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
   add_violin() %>% 
   add_jitter() %>% 
-  modify_labels(category, labels = my_labels) %>% 
-  modify_colors(my_colors, fill_alpha = 0.3) %>% 
+  adjust_labels(category, labels = my_labels) %>% 
+  adjust_colors(my_colors, fill_alpha = 0.3) %>% 
   style_rotate_labels()
 
-# modify_order
+# adjust_order
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
@@ -130,23 +136,23 @@ df_demo %>%
   add_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter() %>% 
-  modify_order(category, reverse = TRUE)
+  adjust_order(category, reverse = TRUE)
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
   add_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter() %>% 
-  modify_order(category, sort_by = value)
+  adjust_order(category, sort_by = value)
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category, fill = category) %>% 
   add_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter() %>% 
-  modify_order(category, levels = c("E", "M", "O", "D"))
+  adjust_order(category, levels = c("E", "M", "O", "D"))
 
-# modify_size
+# adjust_size
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category) %>% 
@@ -159,21 +165,21 @@ df_demo %>%
   add_mean() %>% 
   add_error() %>% 
   add_jitter() %>% 
-  modify_size(width = 70)
+  adjust_size(width = 70)
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category) %>% 
   add_mean() %>% 
   add_error() %>% 
   add_jitter() %>% 
-  modify_size(width = 70, height = 40)
+  adjust_size(width = 70, height = 40)
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category) %>% 
   add_mean() %>% 
   add_error() %>% 
   add_jitter() %>% 
-  modify_size(width = NA, height = NA)
+  adjust_size(width = NA, height = NA)
 
 # line plots
 
@@ -268,14 +274,14 @@ df_demo %>%
   add_error() %>% 
   add_scatter(subset_data = . %>% dplyr::slice_max(value, n = 1, by = category) )
 
-# modify_description
+# adjust_description
 
 df_demo %>% 
   tidy_plot(x = category, y = value, color = category) %>% 
   add_mean() %>% 
   add_error() %>% 
   add_jitter() %>% 
-  modify_description(title = "New title")
+  adjust_description(title = "New title")
 
 ## split_plot
 # tidy_plot

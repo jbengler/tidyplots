@@ -1,10 +1,10 @@
 #' @importFrom ggplot2 theme element_rect element_blank element_text element_line unit
 
 #' @export
-theme_default <- function(gg) {
+theme_tidyplot <- function(gg) {
   gg %>%
     style_just_xy() %>%
-    style_font_size()
+    adjust_fontsize()
 }
 
 #' @export
@@ -30,7 +30,7 @@ style_white_bg <- function(gg) {
 }
 
 #' @export
-style_font_size <- function(gg, fs = 7) {
+adjust_fontsize <- function(gg, fs = 7) {
   gg +
     theme(
     plot.title = element_text(size = fs, colour = "black", hjust = 0.5, vjust = 0.5),
