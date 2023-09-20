@@ -2,8 +2,9 @@ pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
+  Visualizing-data: Visualizing-data.html
   tidyplots: tidyplots.html
-last_built: 2023-09-08T16:30Z
+last_built: 2023-09-20T10:46Z
 urls:
   reference: https://jbengler.github.io/tidyplots/reference
   article: https://jbengler.github.io/tidyplots/articles

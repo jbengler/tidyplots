@@ -10,6 +10,9 @@
     <loc>https://jbengler.github.io/tidyplots/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/articles/Visualizing-data.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/articles/index.html</loc>
   </url>
   <url>
@@ -29,9 +32,6 @@
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/multipage_plots.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/save_plot.html</loc>

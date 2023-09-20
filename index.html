@@ -41,6 +41,12 @@
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/Visualizing-data.html">Visualizing Data</a>
+  </div>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
@@ -68,7 +74,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of <code>tidyplots</code> is make to it ridiculously simple to create scientific plots by gradually adding, changing and adjusting plot components. It follows a similar logic as <code>ggplot2</code>, but uses the pipe <code>%&gt;%</code> instead of <code>+</code>, which allows for more flexible and powerful workflows. Moreover, <code>tidyplots</code> is making the most common scientific plotting routines more accessible, by proving a clean and minimalist interface. Finally, you can always <code>add()</code> ggplot code, to handle those cases where you need full control.</p>
+<p>The goal of <code>tidyplots</code> is make to it ridiculously simple to create ready-to-use scientific plots by gradually adding and modifying plot components. It follows a similar logic as <code>ggplot2</code>, but uses the pipe <code>%&gt;%</code> instead of <code>+</code>, which allows for more flexible and powerful workflows. Moreover, <code>tidyplots</code> is making the most common scientific plotting routines more accessible, by proving a clean and minimalist interface. Finally, it is fully compatible with ggplot code.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -88,9 +94,7 @@
 <span>  <span class="fu">tidy_plot</span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span>, y <span class="op">=</span> <span class="va">value</span>, color <span class="op">=</span> <span class="va">category</span>, fill <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_bar</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_error</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">add_jitter</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ✔ modify_size: width = 30 mm, height = 25 mm</span></span>
-<span><span class="co">#&gt; ✔ modify_y_axis: done</span></span></code></pre></div>
+<span>  <span class="fu">add_jitter</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
