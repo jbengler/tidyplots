@@ -114,7 +114,7 @@ df_demo %>%
   add_violin() %>% 
   add_jitter() %>% 
   modify_labels(category, labels = my_labels) %>% 
-  modify_colors(my_colors) %>% 
+  modify_colors(my_colors, fill_alpha = 0.3) %>% 
   style_rotate_labels()
 
 # modify_order

@@ -15,14 +15,14 @@ modify_size <- function(gg, width = 30, height = 25, my_unit = "mm") {
 }
 
 #' @export
-modify_colors <- function(gg, colors, fill_alpha = 0.3) {
+modify_colors <- function(gg, colors, fill_alpha = 1) {
   out <- gg
   if (!missing(colors)) {
     suppressMessages(
       out <-
         out +
-        scale_fill_manual(values = apply_alpha(colors, alpha = fill_alpha)) +
-        scale_color_manual(values = colors)
+        scale_fill_manual(values = apply_alpha(colors, alpha = fill_alpha), drop = FALSE) +
+        scale_color_manual(values = colors, drop = FALSE)
     )
     cli::cli_alert_success("modify_colors: applied custom {.pkg colors}")
   }

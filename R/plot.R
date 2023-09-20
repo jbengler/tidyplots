@@ -5,10 +5,10 @@ tidy_plot <- function(data, ...) {
   gg <- ggplot(data = data, mapping = aes(...))
 
   if (is_discrete(gg, "colour"))
-    gg <- gg + my_scale_color_d()
+    gg <- gg + my_scale_color_d(drop = FALSE)
 
   if (is_discrete(gg, "fill"))
-    gg <- gg + my_scale_fill_d()
+    gg <- gg + my_scale_fill_d(drop = FALSE)
 
   if (is_continuous(gg, "colour"))
     gg <- gg + my_scale_color_c()

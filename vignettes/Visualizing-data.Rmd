@@ -24,15 +24,6 @@ knitr::opts_chunk$set(
   out.width = "80%"
 )
 
-# data_energy_hours <- 
-#   read_csv("data/energy_total_hour.csv") %>% 
-#   pivot_longer(-Date, names_to = "energy_source", values_to = "power_in_gw") %>%
-#   filter(energy_source != "Load")
-# 
-# data_energy_years <- 
-#   read_csv("data/energy_total_year.csv") %>% 
-#   pivot_longer(-Year, names_to = "energy_source", values_to = "power_in_gw")
-
 ```
 
 ```{r setup}
@@ -46,42 +37,99 @@ library(tidyplots)
 # Proportions
 
 ```{r}
-data_energy_years %>% 
+energy %>% 
   tidy_plot(Year, power_in_gw, fill = energy_source) %>% 
   add_barstack_absolute(bar_width = 0.8) %>% 
   modify_size(80, 60)
-data_energy_years %>% 
+
+energy %>% 
   tidy_plot(Year, power_in_gw, fill = energy_source) %>% 
   add_barstack_relative() %>% 
   modify_size(80, 60)
-data_energy_years %>% 
-  filter(Year > 2019) %>% 
-  mutate(Year = factor(Year)) %>% 
-  mutate(Year = fct_drop(Year)) %>% 
+
+energy %>% 
+  filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
   tidy_plot(y = power_in_gw, fill = energy_source) %>% 
   add_pie() %>% 
   split_plot(by = Year)
-data_energy_years %>% 
-  filter(Year > 2019) %>% 
-  mutate(Year = factor(Year)) %>% 
-  mutate(Year = fct_drop(Year)) %>% 
+
+energy %>% 
+  filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
   tidy_plot(y = power_in_gw, fill = energy_source) %>% 
   add_donut() %>% 
   split_plot(by = Year)
-data_energy_hours %>% 
+
+energy_week %>% 
   tidy_plot(Date, power_in_gw, color = energy_source) %>% 
   add_line() %>% 
   modify_size(80, 60)
-data_energy_hours %>% 
+
+energy_week %>% 
   tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
   add_area(alpha = 0.3) %>% 
   modify_size(80, 60)
-data_energy_hours %>% 
+
+energy_week %>% 
   tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
   add_areastack_absolute(alpha = 0.3) %>% 
   modify_size(80, 60)
-data_energy_hours %>% 
+
+energy_week %>% 
   tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  add_areastack_relative(alpha = 0.3) %>% 
+  modify_size(80, 60)
+
+###
+
+energy %>% 
+  tidy_plot(Year, power_in_gw, fill = energy_type) %>% 
+  add_barstack_absolute(bar_width = 0.8) %>% 
+  modify_size(80, 60)
+
+energy %>% 
+  tidy_plot(Year, power_in_gw, fill = energy_type) %>% 
+  add_barstack_relative() %>% 
+  modify_size(80, 60)
+
+my_colors <- c("Fossil" = "grey",
+               "Nuclear" = "#F6C54D",
+               "Renewable" = "#4FAE62",
+               "Other" = "#C02D45")
+
+energy %>% 
+  filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
+  tidy_plot(y = power_in_gw, fill = energy_type) %>% 
+  add_pie() %>% 
+  modify_colors(colors = my_colors) %>% 
+  split_plot(by = Year)
+
+energy %>% 
+  filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
+  tidy_plot(y = power_in_gw, fill = energy_type) %>% 
+  add_donut()  %>% 
+  modify_colors(colors = my_colors) %>%  
+  split_plot(by = Year)
+
+energy_week %>% 
+  tidy_plot(Date, power_in_gw, color = energy_type) %>% 
+  add_line() %>% 
+  modify_size(80, 60)
+
+energy_week %>% 
+  summarise(power_in_gw = sum(power_in_gw), .by = c(Date, energy_type)) %>% 
+  tidy_plot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
+  add_area(alpha = 0.3) %>% 
+  modify_size(80, 60)
+
+energy_week %>% 
+  summarise(power_in_gw = sum(power_in_gw), .by = c(Date, energy_type)) %>% 
+  tidy_plot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
+  add_areastack_absolute(alpha = 0.3) %>% 
+  modify_size(80, 60)
+
+energy_week %>%
+  summarise(power_in_gw = sum(power_in_gw), .by = c(Date, energy_type)) %>% 
+  tidy_plot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
   add_areastack_relative(alpha = 0.3) %>% 
   modify_size(80, 60)
 ```

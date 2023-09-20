@@ -108,7 +108,7 @@ add_mean_point <- function(gg, dodge_width = 0.8, size = 2, position = position_
 #' @export
 add_mean_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, position = position_dodge(width = dodge_width), ...) {
   gg <- gg %>% modify_y_axis(expand = expansion(mult = c(0, 0.05)))
-  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha))
+  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
   gg + ggplot2::stat_summary(fun = mean, geom = "bar", color = NA, width = bar_width, position = position, ...)
 }
 
@@ -127,7 +127,7 @@ add_median_point <- function(gg, dodge_width = 0.8, size = 2, position = positio
 #' @export
 add_median_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, position = position_dodge(width = dodge_width), ...) {
   gg <- gg %>% modify_y_axis(expand = expansion(mult = c(0, 0.05)))
-  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha))
+  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
   gg + ggplot2::stat_summary(fun = median, geom = "bar", color = NA, width = bar_width, position = position, ...)
 }
 
@@ -138,7 +138,7 @@ add_bar <- add_mean_bar
 
 #' @export
 add_box <- function(gg, dodge_width = 0.8, alpha = 0.3, show_whiskers = TRUE, show_outliers = FALSE, box_width = 0.6, whiskers_width = 0.5, outlier.size = 0.5, coef = 1.5, outlier.shape = 19, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
-  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha))
+  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
   if (show_whiskers == FALSE) {
     coef = 0
     whiskers_width = box_width
@@ -154,7 +154,7 @@ add_box <- function(gg, dodge_width = 0.8, alpha = 0.3, show_whiskers = TRUE, sh
 
 #' @export
 add_violin <- function(gg, dodge_width = 0.8, alpha = 0.3, draw_quantiles = NULL, trim = FALSE, linewidth = 0.25, scale = "width", position = position_dodge(width = dodge_width), ...) {
-  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha))
+  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
   gg + ggplot2::geom_violin(draw_quantiles = draw_quantiles, trim = trim, linewidth = linewidth, scale = scale, position = position, ...)
 }
 
