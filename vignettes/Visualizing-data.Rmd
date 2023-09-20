@@ -27,7 +27,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-install.packages("tidyverse")
 library(tidyverse)
 library(tidyplots)
 ```

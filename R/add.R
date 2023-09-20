@@ -305,8 +305,8 @@ add_stats_value <- function(gg,
 #   gg %>% add(stat_summary(aes(label = after_stat(y)), fun = fun, geom = "text", vjust = vjust, size = size, position = position, ...))
 # }
 
-# bar_label also for stackedbars?
-# my_bar_label(fun = sum, dodge_width = 0, position = position_stack(vjust = 0.5), vjust = NA, color = "white", expansion_top = .05) +
+# TODO: add_label_bar()
+# TODO: add_label_scatter()
 
 # TODO: include 'rasterize', where useful:
 # scatter, jitter, bar, ...
@@ -322,7 +322,6 @@ add_stats_value <- function(gg,
 # TODO: change display size, everything x2?
 
 # TODO: add easteregg: add_funkyness()
-
 
 # TODO: Re-think "position" for grouped / non-grouped data
 
