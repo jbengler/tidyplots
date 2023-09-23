@@ -34,60 +34,96 @@ library(tidyplots)
 
 # Distributions
 
+```{r}
+energy %>% 
+  tidyplot(x = power_in_gw) %>% 
+  add_histogram()
+
+energy %>% 
+  tidyplot(x = power_in_gw) %>% 
+  add_density_curve()
+
+energy %>% 
+  tidyplot(x = power_in_gw) %>% 
+  add_density_curve() %>% 
+  add_density_histogram()
+
+# multiple distributions
+
+energy %>% 
+  tidyplot(x = energy_type, y = power_in_gw, color = energy_type, fill = energy_type) %>% 
+  add_violin() %>% 
+  style_rotate_labels()
+
+energy %>% 
+  tidyplot(x = energy_type, y = power_in_gw, color = energy_type, fill = energy_type) %>% 
+  add_jitter(jitter_width = 0.8, alpha = 0.3) %>% 
+  style_rotate_labels()
+
+energy %>% 
+  tidyplot(x = energy_type, y = power_in_gw, color = energy_type, fill = energy_type) %>% 
+  add_violin() %>% 
+  add_jitter(jitter_width = 0.8, alpha = 0.3) %>% 
+  style_rotate_labels()
+
+```
+
+
 # Proportions
 
 ```{r}
 energy %>% 
-  tidy_plot(Year, power_in_gw, fill = energy_source) %>% 
+  tidyplot(Year, power_in_gw, fill = energy_source) %>% 
   add_barstack_absolute(bar_width = 0.8) %>% 
   adjust_size(80, 60)
 
 energy %>% 
-  tidy_plot(Year, power_in_gw, fill = energy_source) %>% 
+  tidyplot(Year, power_in_gw, fill = energy_source) %>% 
   add_barstack_relative() %>% 
   adjust_size(80, 60)
 
 energy %>% 
   filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidy_plot(y = power_in_gw, fill = energy_source) %>% 
+  tidyplot(y = power_in_gw, fill = energy_source) %>% 
   add_pie() %>% 
   split_plot(by = Year)
 
 energy %>% 
   filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidy_plot(y = power_in_gw, fill = energy_source) %>% 
+  tidyplot(y = power_in_gw, fill = energy_source) %>% 
   add_donut() %>% 
   split_plot(by = Year)
 
 energy_week %>% 
-  tidy_plot(Date, power_in_gw, color = energy_source) %>% 
+  tidyplot(Date, power_in_gw, color = energy_source) %>% 
   add_line() %>% 
-  adjust_size(80, 60)
+  adjust_size(80, 60) %>% 
+  adjust_expansion(all = 0)
 
 energy_week %>% 
-  tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  tidyplot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
   add_area(alpha = 0.3) %>% 
   adjust_size(80, 60)
 
 energy_week %>% 
-  tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  tidyplot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
   add_areastack_absolute(alpha = 0.3) %>% 
   adjust_size(80, 60)
 
 energy_week %>% 
-  tidy_plot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  tidyplot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
   add_areastack_relative(alpha = 0.3) %>% 
   adjust_size(80, 60)
 
 ###
 
 energy %>% 
-  tidy_plot(Year, power_in_gw, fill = energy_type) %>% 
-  add_barstack_absolute(bar_width = 0.8) %>% 
+  tidyplot(Year, power_in_gw, fill = energy_type) %>% 
+  add_barstack_absolute() %>% 
   adjust_size(80, 60)
 
 energy %>% 
-  tidy_plot(Year, power_in_gw, fill = energy_type) %>% 
+  tidyplot(Year, power_in_gw, fill = energy_type) %>% 
   add_barstack_relative() %>% 
   adjust_size(80, 60)
 
@@ -98,40 +134,51 @@ my_colors <- c("Fossil" = "grey",
 
 energy %>% 
   filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidy_plot(y = power_in_gw, fill = energy_type) %>% 
+  tidyplot(y = power_in_gw, fill = energy_type) %>% 
   add_pie() %>% 
   adjust_colors(colors = my_colors) %>% 
   split_plot(by = Year)
 
 energy %>% 
   filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidy_plot(y = power_in_gw, fill = energy_type) %>% 
+  tidyplot(y = power_in_gw, fill = energy_type) %>% 
   add_donut()  %>% 
   adjust_colors(colors = my_colors) %>%  
   split_plot(by = Year)
 
+energy %>% 
+  filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
+  filter(energy_type != "Other") %>% 
+  mutate(Year = factor(Year)) %>% 
+  tidyplot(x = Year, y = power_in_gw, fill = energy_type, color) %>% 
+  add_sum_bar() %>%
+  adjust_colors(colors = my_colors) %>% 
+  adjust_size(50)
+
 energy_week %>% 
-  tidy_plot(Date, power_in_gw, color = energy_type) %>% 
+  tidyplot(Date, power_in_gw, color = energy_type) %>% 
   add_line() %>% 
-  adjust_size(80, 60)
+  adjust_size(80, 60) %>% 
+  adjust_expansion(all = 0)
 
 energy_week %>% 
   summarise(power_in_gw = sum(power_in_gw), .by = c(Date, energy_type)) %>% 
-  tidy_plot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
+  tidyplot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
   add_area(alpha = 0.3) %>% 
   adjust_size(80, 60)
 
 energy_week %>% 
   summarise(power_in_gw = sum(power_in_gw), .by = c(Date, energy_type)) %>% 
-  tidy_plot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
+  tidyplot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
   add_areastack_absolute(alpha = 0.3) %>% 
   adjust_size(80, 60)
 
 energy_week %>%
   summarise(power_in_gw = sum(power_in_gw), .by = c(Date, energy_type)) %>% 
-  tidy_plot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
+  tidyplot(Date, power_in_gw, fill = energy_type, color = energy_type) %>% 
   add_areastack_relative(alpha = 0.3) %>% 
   adjust_size(80, 60)
+
 ```
 
 
@@ -142,11 +189,23 @@ energy_week %>%
 ```{r}
 mtcars %>%
   tibble::as_tibble(rownames = "name") %>% 
-  tidy_plot(mpg, disp) %>% 
+  tidyplot(mpg, disp) %>% 
   add_scatter() %>% 
   add_scatter(subset_data = . %>% dplyr::filter(disp > 350), color = "red") %>% 
   add_label(subset_data = . %>% dplyr::filter(disp > 350), var = name) %>% 
+  add_reference_lines(x = c(20, 30), y = c(200, 350)) %>% 
   adjust_size(70, 70)
+
+energy_week %>% 
+  tidyplot(Date, power_in_gw, color = energy_source) %>% 
+  add_line() %>% 
+  adjust_size(80, 60) %>% 
+  adjust_expansion(all = 0)
+
+energy_week %>% 
+  tidyplot(Date, power_in_gw, fill = energy_source, color = energy_source) %>% 
+  add_area(alpha = 0.3) %>% 
+  adjust_size(80, 60)
 
 ```
 

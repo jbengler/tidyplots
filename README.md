@@ -35,8 +35,8 @@ This is a basic example which shows you how to solve a common problem:
 library(tidyplots)
 
 df_demo %>% 
-  tidy_plot(x = category, y = value, color = category, fill = category) %>% 
-  add_bar(alpha = 0.3) %>% 
+  tidyplot(x = category, y = value, color = category, fill = category) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter()
 ```

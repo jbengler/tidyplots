@@ -1,3 +1,3 @@
-# tidy_plot (development version)
+# tidyplot (development version)
 
 * Initial CRAN submission.

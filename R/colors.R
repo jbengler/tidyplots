@@ -10,34 +10,35 @@ apply_alpha <- function(colors, alpha, background_color = "#FFFFFF") {
   })
 }
 
+
 # do not @export
-my_pal <- function(palette = "metro_ui", reverse = FALSE, alpha = 1, ...) {
-  pal <- my_pals[[palette]]
+my_pal <- function(palette, reverse = FALSE, alpha = 1, ...) {
+  pal <- palette
   if (reverse) pal <- rev(pal)
   pal <- apply_alpha(pal, alpha = alpha)
   colorRampPalette(pal, ...)
 }
 
 #' @export
-my_scale_color_c <- function(palette = "blue_pink_yellow", reverse = FALSE, ...) {
+my_scale_color_c <- function(palette = my_pals[["blue_pink_yellow"]], reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, reverse = reverse)
   scale_color_gradientn(colours = pal(256), ...)
 }
 
 #' @export
-my_scale_color_d <- function(palette = "metro_ui", alpha = 1, reverse = FALSE, ...) {
+my_scale_color_d <- function(palette = my_pals[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
   discrete_scale("colour", paste0("my_", palette), palette = pal, ...)
 }
 
 #' @export
-my_scale_fill_c <- function(palette = "blue_pink_yellow", reverse = FALSE, ...) {
+my_scale_fill_c <- function(palette = my_pals[["blue_pink_yellow"]], reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, reverse = reverse)
   scale_fill_gradientn(colours = pal(256), ...)
 }
 
 #' @export
-my_scale_fill_d <- function(palette = "metro_ui", alpha = 1, reverse = FALSE, ...) {
+my_scale_fill_d <- function(palette = my_pals[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
   discrete_scale("fill", paste0("my_", palette), palette = pal, ...)
 }

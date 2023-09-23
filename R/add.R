@@ -59,37 +59,34 @@ add_error <- add_sem
 # ribbons
 
 #' @export
-add_ribbon_sem <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
+add_sem_ribbon <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
   gg + ggplot2::stat_summary(fun.data = ggplot2::mean_se, geom = "ribbon", alpha = alpha, color = color, ...)
 }
 
 #' @export
-add_ribbon_range <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
+add_range_ribbon <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
   gg + ggplot2::stat_summary(fun.min = min, fun.max = max, geom = "ribbon", alpha = alpha, color = color, ...)
 }
 
 #' @export
-add_ribbon_sd <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
+add_sd_ribbon <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
   gg + ggplot2::stat_summary(fun.data = ggplot2::mean_sdl, geom = "ribbon", alpha = alpha, color = color, ...)
 }
 
 #' @export
-add_ribbon_ci <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
+add_ci_ribbon <- function(gg, dodge_width = 0.8, alpha = 0.3, color = NA, ...) {
   gg + ggplot2::stat_summary(fun.data = ggplot2::mean_cl_boot, geom = "ribbon", alpha = alpha, color = color, ...)
 }
-
-#' @export
-add_ribbon <- add_ribbon_sem
 
 # central tendency: mean
 
 #' @export
-add_mean <- function(gg, dodge_width = 0.8, width = 0.6, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
+add_mean_dash <- function(gg, dodge_width = 0.8, width = 0.6, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
   gg + ggplot2::stat_summary(fun.min = mean, fun.max = mean, geom = "errorbar", linewidth = linewidth, width = width, position = position, ...)
 }
 
 #' @export
-add_mean_point <- function(gg, dodge_width = 0.8, size = 2, position = position_dodge(width = dodge_width), ...) {
+add_mean_dot <- function(gg, dodge_width = 0.8, size = 2, position = position_dodge(width = dodge_width), ...) {
   gg + ggplot2::stat_summary(fun = mean, geom = "point", size = size, position = position, ...)
 }
 
@@ -100,15 +97,24 @@ add_mean_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, posi
   gg + ggplot2::stat_summary(fun = mean, geom = "bar", color = NA, width = bar_width, position = position, ...)
 }
 
+#' @export
+add_mean_value <- function(gg, dodge_width = 0.8, fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, expand_bottom = 0, expand_top = 0.15, position = position_dodge(width = dodge_width), ...) {
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(expand_bottom, expand_top)))
+  gg + ggplot2::stat_summary(aes(label = format_number(ggplot2::after_stat(y), 1)), fun = mean, geom = "text", vjust = vjust, size = size, position = position, ...)
+}
+
+#' @export
+add_mean <- add_mean_dash
+
 # central tendency: median
 
 #' @export
-add_median <- function(gg, dodge_width = 0.8, width = 0.6, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
+add_median_dash <- function(gg, dodge_width = 0.8, width = 0.6, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
   gg + ggplot2::stat_summary(fun.min = median, fun.max = median, geom = "errorbar", linewidth = linewidth, width = width, position = position, ...)
 }
 
 #' @export
-add_median_point <- function(gg, dodge_width = 0.8, size = 2, position = position_dodge(width = dodge_width), ...) {
+add_median_dot <- function(gg, dodge_width = 0.8, size = 2, position = position_dodge(width = dodge_width), ...) {
   gg + ggplot2::stat_summary(fun = median, geom = "point", size = size, position = position, ...)
 }
 
@@ -120,7 +126,69 @@ add_median_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, po
 }
 
 #' @export
-add_bar <- add_mean_bar
+add_median_value <- function(gg, dodge_width = 0.8, fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, expand_bottom = 0, expand_top = 0.15, position = position_dodge(width = dodge_width), ...) {
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(expand_bottom, expand_top)))
+  gg + ggplot2::stat_summary(aes(label = format_number(ggplot2::after_stat(y), 1)), fun = median, geom = "text", vjust = vjust, size = size, position = position, ...)
+}
+
+#' @export
+add_median <- add_median_dash
+
+# sum
+
+#' @export
+add_sum_dash <- function(gg, dodge_width = 0.8, width = 0.6, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
+  gg + ggplot2::stat_summary(fun.min = sum, fun.max = sum, geom = "errorbar", linewidth = linewidth, width = width, position = position, ...)
+}
+
+#' @export
+add_sum_dot <- function(gg, dodge_width = 0.8, size = 2, position = position_dodge(width = dodge_width), ...) {
+  gg + ggplot2::stat_summary(fun = sum, geom = "point", size = size, position = position, ...)
+}
+
+#' @export
+add_sum_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, position = position_dodge(width = dodge_width), ...) {
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(0, 0.05)))
+  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
+  gg + ggplot2::stat_summary(fun = sum, geom = "bar", color = NA, width = bar_width, position = position, ...)
+}
+
+#' @export
+add_sum_value <- function(gg, dodge_width = 0.8, fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, expand_bottom = 0, expand_top = 0.15, position = position_dodge(width = dodge_width), ...) {
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(expand_bottom, expand_top)))
+  gg + ggplot2::stat_summary(aes(label = format_number(ggplot2::after_stat(y), 1)), fun = sum, geom = "text", vjust = vjust, size = size, position = position, ...)
+}
+
+#' @export
+add_sum <- add_sum_dash
+
+# count
+
+#' @export
+add_count_dash <- function(gg, dodge_width = 0.8, width = 0.6, linewidth = 0.25, position = position_dodge(width = dodge_width), ...) {
+  gg + ggplot2::stat_summary(fun.min = length, fun.max = length, geom = "errorbar", linewidth = linewidth, width = width, position = position, ...)
+}
+
+#' @export
+add_count_dot <- function(gg, dodge_width = 0.8, size = 2, position = position_dodge(width = dodge_width), ...) {
+  gg + ggplot2::stat_summary(fun = length, geom = "point", size = size, position = position, ...)
+}
+
+#' @export
+add_count_bar <- function(gg, dodge_width = 0.8, alpha = 1, bar_width = 0.6, position = position_dodge(width = dodge_width), ...) {
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(0, 0.05)))
+  suppressMessages(gg <- gg + my_scale_fill_d(alpha = alpha, drop = FALSE))
+  gg + ggplot2::stat_summary(fun = length, geom = "bar", color = NA, width = bar_width, position = position, ...)
+}
+
+#' @export
+add_count_value <- function(gg, dodge_width = 0.8, fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, expand_bottom = 0, expand_top = 0.15, position = position_dodge(width = dodge_width), ...) {
+  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(expand_bottom, expand_top)))
+  gg + ggplot2::stat_summary(aes(label = format_number(ggplot2::after_stat(y), 1)), fun = length, geom = "text", vjust = vjust, size = size, position = position, ...)
+}
+
+#' @export
+add_count <- add_count_dash
 
 # others
 
@@ -133,7 +201,7 @@ add_box <- function(gg, dodge_width = 0.8, alpha = 0.3, show_whiskers = TRUE, sh
   }
   if (show_outliers == FALSE) outlier.shape = NA
   gg +
-    ggplot2::stat_boxplot(geom ='errorbar', width = whiskers_width, linewidth = linewidth, coef = coef) +
+    ggplot2::stat_boxplot(geom ='errorbar', width = whiskers_width, position = position, linewidth = linewidth, coef = coef) +
     ggplot2::geom_boxplot(outlier.shape = outlier.shape, outlier.size = outlier.size, width = box_width, position = position, linewidth = linewidth, coef = coef, ...)
 }
 
@@ -213,6 +281,33 @@ add_pie <- function(gg, bar_width = 1, reverse = FALSE, ...) {
     ggplot2::guides()
 }
 
+#' @export
+add_histogram <- function(gg, binwidth = NULL, bins = NULL, ...) {
+  gg + ggplot2::geom_histogram(binwidth = binwidth, bins = bins, ...)
+}
+
+#' @export
+add_density_curve <- function(gg, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, ...) {
+  gg + ggplot2::geom_density(bw = bw, adjust = adjust, kernel = kernel, n = n, ...)
+}
+
+#' @export
+add_density_histogram <- function(gg, binwidth = NULL, bins = NULL, ...) {
+  gg + ggplot2::geom_histogram(aes(y=..density..), binwidth = binwidth, bins = bins, ...)
+}
+
+#' @export
+add_reference_lines <- function(gg, x = NULL, y = NULL, linetype = "dashed", linewidth = 0.25, ...) {
+  out <- gg
+  if(!is.null(x)) {
+    out <- out + ggplot2::geom_vline(xintercept = x, linetype = linetype, linewidth = linewidth, ...)
+  }
+  if(!is.null(y)) {
+    out <- out + ggplot2::geom_hline(yintercept = y, linetype = linetype, linewidth = linewidth, ...)
+  }
+  out
+}
+
 # add stats
 
 #' @export
@@ -274,37 +369,6 @@ add_stats_value <- function(gg,
 }
 
 #' @export
-add_value <- function(gg, fun = mean, dodge_width = 0.8, fontsize = 7, size = fontsize/ggplot2::.pt, vjust = -0.5, expand_bottom = 0, expand_top = 0.15, position = position_dodge(width = dodge_width), ...) {
-  gg <- gg %>% adjust_y_axis(expand = expansion(mult = c(expand_bottom, expand_top)))
-  gg + ggplot2::stat_summary(aes(label = format_number(ggplot2::after_stat(y), 1)), fun = fun, geom = "text", vjust = vjust, size = size, position = position, ...)
-}
-
-#' @export
 add_label <- function(gg, var, subset_data = . %>% all_data(), fontsize = 7, size = fontsize/ggplot2::.pt, segment.size = 0.2, box.padding = 0.2, ...) {
   gg + ggrepel::geom_text_repel(data = subset_data, aes(label = {{var}}), size = size, segment.size = segment.size, box.padding = box.padding, ...)
 }
-
-# TODO: add_histogram()
-# TODO: add_density()
-
-# TODO: add_label()
-
-# TODO: include 'rasterize', where useful:
-# scatter, jitter, bar, ...
-
-# TODO: include 'subset', where useful:
-
-# TODO: paired data? replicates with connecting line
-
-# TODO: group and group2 confusing. User data_exprs instead?
-
-# TODO: adjust_labels -> reorder by order in "labels"
-
-# TODO: change display size, everything x2?
-
-# TODO: add easteregg: add_funkyness()
-
-# TODO: Re-think "position" for grouped / non-grouped data
-
-
-

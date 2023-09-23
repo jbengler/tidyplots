@@ -52,23 +52,6 @@ theme_minimal_x <- function(gg) {
 }
 
 #' @export
-style_white_bg <- function(gg) {
-  gg +
-    theme(
-    plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
-    plot.background = element_rect(fill = NA, colour = NA),
-    legend.background = element_rect(fill = NA, colour = NA),
-    legend.key = element_rect(fill = NA, colour = NA),
-    strip.background = element_rect(fill = NA, colour = NA),
-    panel.background = element_rect(fill = NA, colour = NA),
-    panel.border = element_rect(fill = NA, colour = "black", size = 0.5),
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-    axis.ticks = element_line(colour = "black", size = 0.25)
-  )
-}
-
-#' @export
 adjust_fontsize <- function(gg, fs = 7) {
   gg +
     theme(
@@ -81,25 +64,6 @@ adjust_fontsize <- function(gg, fs = 7) {
     legend.text = element_text(size = fs, colour = "black"),
     strip.text = element_text(size = fs, colour = "black"),
     legend.key.size = unit(4, "mm")
-  )
-}
-
-#' @export
-style_just_xy <- function(gg) {
-  gg %>%
-    style_white_bg() +
-    theme(
-      panel.border = element_blank(),
-      axis.line = element_line(size = 0.25, colour = "black"),
-      axis.ticks = element_line(size = 0.25, colour = "black")
-    )
-}
-
-#' @export
-style_no_axis <- function(gg) {
-  gg +
-    theme(
-    panel.border = element_blank()
   )
 }
 
@@ -127,7 +91,8 @@ style_rotate_labels <- function(gg, angle = 45) {
   )
 }
 
-#' @export
+# non-exported helpers
+
 style_void <- function(gg) {
   gg +
     ggplot2::theme_void() +
@@ -137,4 +102,37 @@ style_void <- function(gg) {
     legend.text = element_text(size = 7, colour = "black"),
     legend.key.size = unit(4, "mm")
   )
+}
+
+style_just_xy <- function(gg) {
+  gg %>%
+    style_white_bg() +
+    theme(
+      panel.border = element_blank(),
+      axis.line = element_line(size = 0.25, colour = "black"),
+      axis.ticks = element_line(size = 0.25, colour = "black")
+    )
+}
+
+style_white_bg <- function(gg) {
+  gg +
+    theme(
+      plot.margin = unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
+      plot.background = element_rect(fill = NA, colour = NA),
+      legend.background = element_rect(fill = NA, colour = NA),
+      legend.key = element_rect(fill = NA, colour = NA),
+      strip.background = element_rect(fill = NA, colour = NA),
+      panel.background = element_rect(fill = NA, colour = NA),
+      panel.border = element_rect(fill = NA, colour = "black", size = 0.5),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      axis.ticks = element_line(colour = "black", size = 0.25)
+    )
+}
+
+style_no_axis <- function(gg) {
+  gg +
+    theme(
+      panel.border = element_blank()
+    )
 }

@@ -41,12 +41,12 @@ check_input <- function(input) {
 
 # p1 <-
 #   df_demo %>%
-#   tidy_plot(category, value, color = category) %>%
+#   tidyplot(category, value, color = category) %>%
 #   add_bar()
 #
 # p2 <-
 #   df_demo %>%
-#   tidy_plot(category, value, color = category) %>%
+#   tidyplot(category, value, color = category) %>%
 #   add_mean()
 #
 # pw <- p1 + p2

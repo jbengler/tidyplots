@@ -25,7 +25,29 @@ adjust_colors <- function(gg, colors, fill_alpha = 1) {
 }
 
 #' @export
-adjust_x_axis <- function(gg, breaks = waiver(), labels = waiver(), expand_bottom = 0.05, expand_top = 0.05, expand = expansion(mult = c(expand_bottom, expand_top)), transformation = "identity", position = "bottom", ...) {
+adjust_color_palette <- function(gg, colors, fill_alpha = 1) {
+  out <- gg
+  if (!missing(colors)) {
+    suppressMessages({
+    if (is_discrete(gg, "colour"))
+      out <- out + my_scale_color_d(palette = colors, drop = FALSE)
+
+    if (is_discrete(gg, "fill"))
+      out <- out + my_scale_fill_d(palette = apply_alpha(colors, alpha = fill_alpha), drop = FALSE)
+
+    if (is_continuous(gg, "colour"))
+      out <- out + my_scale_color_c(palette = colors)
+
+    if (is_continuous(gg, "fill"))
+      out <- out + my_scale_fill_c(palette = apply_alpha(colors, alpha = fill_alpha))
+})
+    cli::cli_alert_success("adjust_color_palette: applied custom {.pkg colors}")
+  }
+  return(out)
+}
+
+#' @export
+adjust_x_axis <- function(gg, breaks = waiver(), labels = waiver(), expand_left = 0.05, expand_right = 0.05, expand = expansion(mult = c(expand_left, expand_right)), transformation = "identity", position = "bottom", ...) {
   if (is_datetime(gg, "x")) {
     cli::cli_alert_success("adjust_x_axis: {.pkg datetime}")
     suppressMessages(
@@ -77,6 +99,15 @@ adjust_y_axis <- function(gg, breaks = waiver(), labels = waiver(), expand_botto
   cli::cli_alert_warning("adjust_y_axis: {.pkg y axis} was not changes because it is {.pkg not continuous}.")
   cli::cli_alert_warning("Use {.pkg adjust_labels()} and {.pkg adjust_order()} to change discrete axis.")
   return(gg)
+}
+
+#' @export
+adjust_expansion <- function(gg, bottom = 0.05, top = 0.05, left = 0.05, right = 0.05, all = NULL) {
+  if (!is.null(all))
+    bottom <- top <- left <- right <- all
+  gg %>%
+    adjust_x_axis(expand_left = left, expand_right = right) %>%
+    adjust_y_axis(expand_bottom = bottom, expand_top = top)
 }
 
 #' @export

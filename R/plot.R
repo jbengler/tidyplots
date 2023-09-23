@@ -1,7 +1,7 @@
 #' @importFrom ggplot2 ggplot aes is.ggplot ggtitle
 
 #' @export
-tidy_plot <- function(data, ...) {
+tidyplot <- function(data, ...) {
   gg <- ggplot(data = data, mapping = aes(...))
 
   if (is_discrete(gg, "colour"))
