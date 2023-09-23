@@ -95,7 +95,7 @@ multipage_plots <- function(gg,
 }
 
 
-#' split_plot
+#' Split plot into subplots
 #' @param gg A `ggplot`
 #'
 #' @param by Variable that should be used for faceting.
@@ -143,7 +143,7 @@ split_plot <- function(gg,
     return(out)
 }
 
-#' Save multipage layout to file
+#' Save plot to file
 #'
 #' This function takes a `ggplot` or list of `ggplot`s and writes them to a (multipage) file. See below for details.
 #'

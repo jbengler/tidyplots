@@ -15,7 +15,7 @@ components. It follows a similar logic as `ggplot2`, but uses the pipe
 `%>%` instead of `+`, which allows for more flexible and powerful
 workflows. Moreover, `tidyplots` is making the most common scientific
 plotting routines more accessible, by proving a clean and minimalist
-interface. Finally, it is fully compatible with ggplot code.
+interface.
 
 ## Installation
 

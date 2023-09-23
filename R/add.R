@@ -1,5 +1,6 @@
 #' @importFrom ggplot2 position_fill position_stack position_dodge position_jitterdodge position_jitter
 
+
 add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300) {
   pf <- parent_function()
   if (check_input(gg) == "none") stop(glue::glue("{pf}: Please provide a ggplot or list of ggplots as input to 'gg'"))
@@ -11,6 +12,13 @@ add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300) {
     gg + geom
   }
 }
+
+#' Add `ggplot2` code
+#'
+#' @param . `ggplot2` code to be added
+#'
+#' @export
+add <- .Primitive("+")
 
 # for x = continuous, y = continuous, use add_scatter()
 

@@ -2,3 +2,30 @@ url: https://jbengler.github.io/tidyplots/
 template:
   bootstrap: 5
 
+reference:
+- title: Add
+  desc: Adding plot components
+- contents:
+  - starts_with("add_")
+  - add
+- title: Adjust
+  desc: Adjusting plot components
+  contents:
+  - starts_with("adjust")
+- title: Style
+  desc: Styling the plot
+  contents:
+  - starts_with("style")
+- title: Plot
+  desc: Doing something with the plot
+  contents:
+  - starts_with("tidyplot")
+  - ends_with("plot")
+- title: Data
+  desc: Some example data
+  contents:
+  - starts_with("data")
+- title: Helpers
+  desc: Useful helpers
+  contents:
+  - starts_with("format")

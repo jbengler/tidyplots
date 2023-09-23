@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{save_plot}
 \alias{save_plot}
-\title{Save multipage layout to file}
+\title{Save plot to file}
 \usage{
 save_plot(
   gg = last_plot(),

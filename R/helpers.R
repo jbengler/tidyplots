@@ -4,9 +4,6 @@
 `%>%` <- dplyr::`%>%`
 
 #' @export
-add <- .Primitive("+")
-
-#' @export
 all_data <- function(x) { x }
 
 #' @export

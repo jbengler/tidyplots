@@ -1,7 +1,7 @@
 
-# TODO: Structure pkgdown reference into add, adjust, theme, data, style, helpers, ...
-
 # TODO: add_stats: think about multiple comparison correction
+
+# TODO: roxygen documentation
 
 # TODO: include 'rasterize', where useful:
 # scatter, jitter, bar, violin, ...
