@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Visualizing-data: Visualizing-data.html
   tidyplots: tidyplots.html
-last_built: 2023-09-20T20:40Z
+last_built: 2023-09-23T09:30Z
 urls:
   reference: https://jbengler.github.io/tidyplots/reference
   article: https://jbengler.github.io/tidyplots/articles
