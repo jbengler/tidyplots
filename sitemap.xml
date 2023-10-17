@@ -31,15 +31,111 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/data_exprs.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_areastack_absolute.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_barstack_relative.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_box.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_count_bar.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_density_curve.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_heatmap.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_histogram.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_line.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_mean_bar.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_median_bar.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_pie.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_reference_lines.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_scatter.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_sem.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_sem_ribbon.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_stats_pvalue.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_sum_bar.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_text.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_title.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_violin.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_flip.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_fontsize.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_size.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/all_data.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/format_number.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/gene_expression.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/remove_legend.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/remove_padding.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/remove_x_axis.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/remove_y_axis.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/render_plot.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/save_plot.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/split_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/theme_tidyplot.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/tidyplot.html</loc>
   </url>
 </urlset>

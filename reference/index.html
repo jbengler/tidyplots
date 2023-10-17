@@ -52,10 +52,314 @@
       <img src="" class="logo" alt=""><h1>Function reference</h1>
     </div>
 
-    <div class="section level2">
+    <div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p>To create a plot, you typically <code>%&gt;%</code> your data into the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function. You then add components to the plot, adjust the plot, eventually split the plot into subplots and export it to file. It works best if you stick to this order: <code>create</code>, <code>add</code>, <code>adjust</code>, <code>split</code>.</p>
+
+      
+    </div><div class="section level2">
+      <h2 id="create">Create<a class="anchor" aria-label="anchor" href="#create"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="tidyplot.html">tidyplot()</a></code> 
+        </dt>
+        <dd>Create a new plot</dd>
+      </dl></div><div class="section level2">
       <h2 id="add">Add<a class="anchor" aria-label="anchor" href="#add"></a></h2>
       
-      <p class="section-desc"></p><p>Adding plot components</p>
+      <p class="section-desc"></p><p>Add components like data points, lines, bars or statistics to the plot.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Data points &amp; amounts</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_scatter.html">add_scatter()</a></code> <code><a href="add_scatter.html">add_jitter()</a></code> 
+        </dt>
+        <dd>Add data points</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_heatmap.html">add_heatmap()</a></code> 
+        </dt>
+        <dd>Add heatmap</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_count_bar.html">add_count_bar()</a></code> <code><a href="add_count_bar.html">add_count_dash()</a></code> <code><a href="add_count_bar.html">add_count_dot()</a></code> <code><a href="add_count_bar.html">add_count_value()</a></code> 
+        </dt>
+        <dd>Add count</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_sum_bar.html">add_sum_bar()</a></code> <code><a href="add_sum_bar.html">add_sum_dash()</a></code> <code><a href="add_sum_bar.html">add_sum_dot()</a></code> <code><a href="add_sum_bar.html">add_sum_value()</a></code> 
+        </dt>
+        <dd>Add sum</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Central tendency</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_mean_bar.html">add_mean_bar()</a></code> <code><a href="add_mean_bar.html">add_mean_dash()</a></code> <code><a href="add_mean_bar.html">add_mean_dot()</a></code> <code><a href="add_mean_bar.html">add_mean_value()</a></code> 
+        </dt>
+        <dd>Add mean</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_median_bar.html">add_median_bar()</a></code> <code><a href="add_median_bar.html">add_median_dash()</a></code> <code><a href="add_median_bar.html">add_median_dot()</a></code> <code><a href="add_median_bar.html">add_median_value()</a></code> 
+        </dt>
+        <dd>Add median</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_line.html">add_line()</a></code> <code><a href="add_line.html">add_area()</a></code> <code><a href="add_line.html">add_curve()</a></code> 
+        </dt>
+        <dd>Add line</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Dispersion &amp; uncertainty</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_box.html">add_box()</a></code> 
+        </dt>
+        <dd>Add boxplot</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_violin.html">add_violin()</a></code> 
+        </dt>
+        <dd>Add violin plot</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_sem.html">add_sem()</a></code> <code><a href="add_sem.html">add_range()</a></code> <code><a href="add_sem.html">add_sd()</a></code> <code><a href="add_sem.html">add_ci()</a></code> <code><a href="add_sem.html">add_error()</a></code> 
+        </dt>
+        <dd>Add error bar</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_sem_ribbon.html">add_sem_ribbon()</a></code> <code><a href="add_sem_ribbon.html">add_range_ribbon()</a></code> <code><a href="add_sem_ribbon.html">add_sd_ribbon()</a></code> <code><a href="add_sem_ribbon.html">add_ci_ribbon()</a></code> 
+        </dt>
+        <dd>Add ribbon</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Statistical comparison</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_stats_pvalue.html">add_stats_pvalue()</a></code> <code><a href="add_stats_pvalue.html">add_stats_asterisks()</a></code> 
+        </dt>
+        <dd>Add statistics</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Distribution</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_histogram.html">add_histogram()</a></code> <code><a href="add_histogram.html">add_density_histogram()</a></code> 
+        </dt>
+        <dd>Add histogram</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_density_curve.html">add_density_curve()</a></code> 
+        </dt>
+        <dd>Add density curve</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Proportion</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_areastack_absolute.html">add_areastack_absolute()</a></code> <code><a href="add_areastack_absolute.html">add_areastack_relative()</a></code> 
+        </dt>
+        <dd>Add area stack</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_barstack_relative.html">add_barstack_relative()</a></code> <code><a href="add_barstack_relative.html">add_barstack_absolute()</a></code> 
+        </dt>
+        <dd>Add bar stack</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_pie.html">add_pie()</a></code> <code><a href="add_pie.html">add_donut()</a></code> 
+        </dt>
+        <dd>Add pie chart</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Annotation</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_title.html">add_title()</a></code> <code><a href="add_title.html">add_caption()</a></code> 
+        </dt>
+        <dd>Add plot title or caption</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_text.html">add_text()</a></code> 
+        </dt>
+        <dd>Add text labels</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_reference_lines.html">add_reference_lines()</a></code> 
+        </dt>
+        <dd>Add reference lines</dd>
+      </dl></div><div class="section level2">
+      <h2 id="adjust">Adjust<a class="anchor" aria-label="anchor" href="#adjust"></a></h2>
+      
+      <p class="section-desc"></p><p>Adjust plot properties like labels, colors, axes and size.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="adjust_flip.html">adjust_flip()</a></code> 
+        </dt>
+        <dd>Flip plot</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjust_fontsize.html">adjust_fontsize()</a></code> 
+        </dt>
+        <dd>Adjust fontsize</dd>
+      </dl><dl><dt>
+          
+          <code><a href="adjust_size.html">adjust_size()</a></code> 
+        </dt>
+        <dd>Adjust plot size</dd>
+      </dl></div><div class="section level2">
+      <h2 id="split">Split<a class="anchor" aria-label="anchor" href="#split"></a></h2>
+      
+      <p class="section-desc"></p><p>Split the plot into a multi plot layout, eventually across multiple pages.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="split_plot.html">split_plot()</a></code> 
+        </dt>
+        <dd>Split plot into subplots</dd>
+      </dl></div><div class="section level2">
+      <h2 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a></h2>
+      
+      <p class="section-desc"></p><p>Output the finished plot or intermediate stages on the screen or to a file.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="render_plot.html">render_plot()</a></code> 
+        </dt>
+        <dd>Render plot</dd>
+      </dl><dl><dt>
+          
+          <code><a href="save_plot.html">save_plot()</a></code> 
+        </dt>
+        <dd>Save plot to file</dd>
+      </dl></div><div class="section level2">
+      <h2 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a></h2>
+      
+      <p class="section-desc"></p><p>Style the plot to your liking with carefully crafted themes.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="theme_tidyplot.html">theme_tidyplot()</a></code> <code><a href="theme_tidyplot.html">theme_ggplot2()</a></code> <code><a href="theme_tidyplot.html">theme_minimal_xy()</a></code> <code><a href="theme_tidyplot.html">theme_minimal_y()</a></code> <code><a href="theme_tidyplot.html">theme_minimal_x()</a></code> 
+        </dt>
+        <dd>Themes</dd>
+      </dl><dl><dt>
+          
+          <code><a href="remove_legend.html">remove_legend()</a></code> <code><a href="remove_legend.html">remove_legend_title()</a></code> 
+        </dt>
+        <dd>Remove legend or legend title</dd>
+      </dl><dl><dt>
+          
+          <code><a href="remove_padding.html">remove_padding()</a></code> 
+        </dt>
+        <dd>Remove padding</dd>
+      </dl><dl><dt>
+          
+          <code><a href="remove_x_axis.html">remove_x_axis()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_line()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_ticks()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_labels()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_title()</a></code> 
+        </dt>
+        <dd>Remove <code>x</code> axis or parts of it</dd>
+      </dl><dl><dt>
+          
+          <code><a href="remove_y_axis.html">remove_y_axis()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_line()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_ticks()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_labels()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_title()</a></code> 
+        </dt>
+        <dd>Remove <code>y</code> axis or parts of it</dd>
+      </dl></div><div class="section level2">
+      <h2 id="helpers">Helpers<a class="anchor" aria-label="anchor" href="#helpers"></a></h2>
+      
+      
 
       
     </div><div id="" class="section level2">
@@ -68,55 +372,20 @@
           <code><a href="add.html">add()</a></code> 
         </dt>
         <dd>Add <code>ggplot2</code> code</dd>
-      </dl></div><div class="section level2">
-      <h2 id="adjust">Adjust<a class="anchor" aria-label="anchor" href="#adjust"></a></h2>
-      
-      <p class="section-desc"></p><p>Adjusting plot components</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      
-    </div><div class="section level2">
-      <h2 id="style">Style<a class="anchor" aria-label="anchor" href="#style"></a></h2>
-      
-      <p class="section-desc"></p><p>Styling the plot</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      
-    </div><div class="section level2">
-      <h2 id="plot">Plot<a class="anchor" aria-label="anchor" href="#plot"></a></h2>
-      
-      <p class="section-desc"></p><p>Doing something with the plot</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="save_plot.html">save_plot()</a></code> 
-        </dt>
-        <dd>Save plot to file</dd>
       </dl><dl><dt>
           
-          <code><a href="split_plot.html">split_plot()</a></code> 
+          <code><a href="format_number.html">format_number()</a></code> <code><a href="format_number.html">format_p_value()</a></code> 
         </dt>
-        <dd>Split plot into subplots</dd>
+        <dd>Format numbers and p values</dd>
+      </dl><dl><dt>
+          
+          <code><a href="all_data.html">all_data()</a></code> 
+        </dt>
+        <dd>Give back all data</dd>
       </dl></div><div class="section level2">
       <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a></h2>
       
-      <p class="section-desc"></p><p>Some example data</p>
+      
 
       
     </div><div id="" class="section level2">
@@ -126,22 +395,10 @@
 
       <dl><dt>
           
-          <code><a href="data_exprs.html">data_exprs</a></code> 
+          <code><a href="gene_expression.html">gene_expression</a></code> 
         </dt>
         <dd>Expression data from RNA-Seq study.</dd>
-      </dl></div><div class="section level2">
-      <h2 id="helpers">Helpers<a class="anchor" aria-label="anchor" href="#helpers"></a></h2>
-      
-      <p class="section-desc"></p><p>Useful helpers</p>
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      
-    </div>
+      </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
