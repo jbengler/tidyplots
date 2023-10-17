@@ -1,71 +1,59 @@
-#' @importFrom ggplot2 ggplot aes is.ggplot ggtitle
 
+#' Create a new plot
+#' @param data bla
+#' @param ... bla
+#' @param width bla
+#' @param height bla
+#' @param dodge_width bla
+#'
 #' @export
-tidyplot <- function(data, ...) {
-  gg <- ggplot(data = data, mapping = aes(...))
+tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
+  mapping <- ggplot2::aes(...)
+  single_color_plot <- FALSE
 
-  if (is_discrete(gg, "colour"))
-    gg <- gg + my_scale_color_d(drop = FALSE)
+  # in absence of `colour` and `fill`, add .single_color column to data
+  if(!"colour" %in% names(mapping) && !"fill" %in% names(mapping)) {
+    data$.single_color <- TRUE
+    mapping$colour <- ggplot2::aes(colour = .single_color)[[1]]
+    single_color_plot <- TRUE
+  }
 
-  if (is_discrete(gg, "fill"))
-    gg <- gg + my_scale_fill_d(drop = FALSE)
+  # align `colour` and `fill` aesthetic
+  if("colour" %in% names(mapping) && !"fill" %in% names(mapping)) mapping$fill <- mapping$colour
+  if("fill" %in% names(mapping) && !"colour" %in% names(mapping)) mapping$colour <- mapping$fill
 
-  if (is_continuous(gg, "colour"))
-    gg <- gg + my_scale_color_c()
+  gg <- ggplot2::ggplot(data = data, mapping = mapping)
 
-  if (is_continuous(gg, "fill"))
-    gg <- gg + my_scale_fill_c()
+  gg$tidyplot$mapping <- extract_mapping(gg)
+
+  gg$tidyplot$padding_x <- c(0.05, 0.05)
+  gg$tidyplot$padding_y <- c(0.05, 0.05)
+
+  gg$tidyplot$limits_x <- c(NA, NA)
+  gg$tidyplot$limits_y <- c(NA, NA)
+
+  gg$tidyplot$dodge_width <- dodge_width
 
   gg <- gg %>%
     theme_tidyplot() %>%
-    adjust_size()
+    adjust_x_axis() %>%
+    adjust_y_axis() %>%
+    adjust_colors() %>%
+    adjust_size(width = width, height = height)
 
-  return(gg)
+  if (single_color_plot)
+    gg <- gg %>% remove_legend()
+
+  gg
 }
 
+#' Render plot
+#' @param gg bla
+#' @param ... bla
 #' @export
-flip_plot <- function(gg, ...) {
-  gg + ggplot2::coord_flip(...)
-}
-
-#' @export
-view_plot <- function(gg, ...) {
+render_plot <- function(gg, ...) {
   print(gg, ...)
   return(gg)
-}
-
-get_layout_size <- function(gg, units = c("mm", "cm", "in")) {
-  if (is.ggplot(gg)) gg <- list(gg)
-  units <- match.arg(units)
-
-  pages <-
-    purrr::map(gg, function(x) {
-      if (!is.ggplot(x)) stop("Please provide a ggplot or list of ggplots as input to 'gg'")
-      gtab <- patchwork::patchworkGrob(x)
-
-      width <- NA
-      height <- NA
-      if (all(as.character(gtab$widths) != "1null"))
-        width <- grid::convertWidth(sum(gtab$widths) + unit(1, "mm"), unitTo = units, valueOnly = TRUE)
-      if (all(as.character(gtab$heights) != "1null"))
-        height <- grid::convertHeight(sum(gtab$heights) + unit(1, "mm"), unitTo = units, valueOnly = TRUE)
-
-      dplyr::tibble(width = width, height = height)
-    }) %>%
-    dplyr::bind_rows()
-
-  overall_width<- NA
-  overall_height <- NA
-  if (all(!is.na(pages$width)))
-    overall_width <- max(pages$width, na.rm = TRUE)
-  if (all(!is.na(pages$height)))
-    overall_height <- max(pages$height, na.rm = TRUE)
-
-  list(
-    units = units,
-    pages = pages,
-    max = c(width = overall_width, height = overall_height)
-    )
 }
 
 multipage_plots <- function(gg,
@@ -78,9 +66,9 @@ multipage_plots <- function(gg,
                             tag_level = NULL,
                             design = NULL,
                             my_unit ="mm") {
-  if (!is.ggplot(gg) && !all(purrr::map_lgl(gg, is.ggplot)))
+  if (!ggplot2::is.ggplot(gg) && !all(purrr::map_lgl(gg, ggplot2::is.ggplot)))
     stop("argument 'gg' should be ggplot or list off ggplots")
-  if (is.ggplot(gg)) gg <- list(gg)
+  if (ggplot2::is.ggplot(gg)) gg <- list(gg)
 
   if (is.numeric(ncol) & is.numeric(nrow)) {
     plots_per_page <- nrow * ncol
@@ -97,11 +85,9 @@ multipage_plots <- function(gg,
 
 #' Split plot into subplots
 #' @param gg A `ggplot`
-#'
 #' @param by Variable that should be used for faceting.
 #' @param ncol,nrow The number of columns and rows per page.
 #' @inheritParams patchwork::wrap_plots
-#'
 #' @export
 split_plot <- function(gg,
                        by,
@@ -114,7 +100,7 @@ split_plot <- function(gg,
                        tag_level = NULL,
                        design = NULL,
                        my_unit = "mm") {
-  if (!is.ggplot(gg))
+  if (!ggplot2::is.ggplot(gg))
     stop("argument 'gg' should be a single ggplot")
   if(missing(by))
     stop("argument 'by' missing without default")
@@ -131,11 +117,11 @@ split_plot <- function(gg,
   plots <-
     purrr::map2(df$data, df %>% dplyr::pull({{by}}),
          function(data, facet_title) {
-           gg %+% data + ggtitle(facet_title)
+           gg %+% data + ggplot2::ggtitle(facet_title)
          })
   cli::cli_alert_success("split_plot: {.pkg widths} = {widths} {my_unit}, {.pkg heights} = {heights} {my_unit}")
-  if (!is.na(widths)) widths <- unit(widths, my_unit)
-  if (!is.na(heights)) heights <- unit(heights, my_unit)
+  if (!is.na(widths)) widths <- ggplot2::unit(widths, my_unit)
+  if (!is.na(heights)) heights <- ggplot2::unit(heights, my_unit)
   out <- multipage_plots(plots, ncol = ncol, nrow = nrow, widths = widths, heights = heights, my_unit = my_unit, guides = guides, byrow = byrow, tag_level = tag_level, design = design)
   if (length(out) == 1)
     return(out[[1]])
@@ -173,12 +159,12 @@ split_plot <- function(gg,
 save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, scale = 1,
                            width = NA, height = NA, units = c("mm", "cm", "in"), dpi = 300, limitsize = TRUE,
                            return_input = TRUE, multiple_files = FALSE, bg = "transparent", ...) {
-  if (!is.ggplot(gg) && !all(purrr::map_lgl(gg, is.ggplot)))
+  if (!ggplot2::is.ggplot(gg) && !all(purrr::map_lgl(gg, ggplot2::is.ggplot)))
     stop("argument 'gg' should be ggplot or list off ggplots")
 
   input <- gg
 
-  if (is.ggplot(gg)) {
+  if (ggplot2::is.ggplot(gg)) {
     gg <- list(gg)
   }
 
@@ -219,12 +205,6 @@ glue::glue()
 
   } else {
 
-    # this code is from ggplot2::ggsave()
-    # TODO: get around using unexported ::: ggplot2 functions
-    # like so? https://groups.google.com/g/ggplot2/c/l6Im1jpNavI?pli=1
-    # https://github.com/tidyverse/ggplot2/issues/5093
-    # https://github.com/thomasp85/patchwork/issues/127
-
     if (length(filename) != 1) {
       if (length(filename) == 0) {
         cli::cli_abort("{.arg filename} cannot be empty.")
@@ -255,135 +235,5 @@ glue::glue()
     invisible(filename)
 
     if (return_input) return(input)
-  }
-}
-
-# this function is from ggplot2
-plot_dim <- function(dim = c(NA, NA), scale = 1, units = "in",
-                     limitsize = TRUE, dpi = 300, call = caller_env()) {
-  units <- rlang::arg_match0(units, c("in", "cm", "mm", "px"))
-  to_inches <- function(x) x / c(`in` = 1, cm = 2.54, mm = 2.54 * 10, px = dpi)[units]
-  from_inches <- function(x) x * c(`in` = 1, cm = 2.54, mm = 2.54 * 10, px = dpi)[units]
-
-  dim <- to_inches(dim) * scale
-
-  if (any(is.na(dim))) {
-    if (length(grDevices::dev.list()) == 0) {
-      default_dim <- c(7, 7)
-    } else {
-      default_dim <- grDevices::dev.size() * scale
-    }
-    dim[is.na(dim)] <- default_dim[is.na(dim)]
-    dim_f <- prettyNum(from_inches(dim), digits = 3)
-
-    cli::cli_inform("Saving {dim_f[1]} x {dim_f[2]} {units} image")
-  }
-
-  if (limitsize && any(dim >= 50)) {
-    units <- switch(
-      units,
-      "in" = "inches",
-      "cm" = "centimeters",
-      "mm" = "millimeters",
-      "px" = "pixels"
-    )
-    msg <- paste0(
-      "Dimensions exceed 50 inches ({.arg height} and {.arg width} are ",
-      "specified in {.emph {units}}"
-    )
-    if (units == "pixels") {
-      msg <- paste0(msg, ").")
-    } else {
-      msg <- paste0(msg, " not pixels).")
-    }
-    cli::cli_abort(c(
-      msg,
-      "i" = "If you're sure you want a plot that big, use {.code limitsize = FALSE}.
-    "), call = call)
-  }
-
-  dim
-}
-
-# this function is from ggplot2
-plot_dev <- function(device, filename = NULL, dpi = 300, call = caller_env()) {
-  force(filename)
-  force(dpi)
-
-  if (is.function(device)) {
-    args <- formals(device)
-    call_args <- list()
-    if ("file" %in% names(args)) {
-      call_args$file <- filename
-      call_args["filename"] <- list(NULL)
-    }
-    if ("res" %in% names(args)) {
-      call_args$res <- dpi
-    }
-    if ("units" %in% names(args)) {
-      call_args$units <- 'in'
-    }
-    dev <- function(...) {
-      args <- adjust_list(list(...), call_args)
-      inject(device(!!!args))
-    }
-    return(dev)
-  }
-
-  eps <- function(filename, ...) {
-    grDevices::postscript(file = filename, ..., onefile = FALSE, horizontal = FALSE,
-                          paper = "special")
-  }
-  if (requireNamespace('ragg', quietly = TRUE)) {
-    png_dev <- absorb_grdevice_args(ragg::agg_png)
-    jpeg_dev <- absorb_grdevice_args(ragg::agg_jpeg)
-    tiff_dev <- absorb_grdevice_args(ragg::agg_tiff)
-  } else {
-    png_dev <- grDevices::png
-    jpeg_dev <- grDevices::jpeg
-    tiff_dev <- grDevices::tiff
-  }
-  devices <- list(
-    eps =  eps,
-    ps =   eps,
-    tex =  function(filename, ...) grDevices::pictex(file = filename, ...),
-    pdf =  function(filename, ..., version = "1.4") grDevices::pdf(file = filename, ..., version = version),
-    svg =  function(filename, ...) svglite::svglite(file = filename, ...),
-    # win.metafile() doesn't have `bg` arg so we need to absorb it before passing `...`
-    emf =  function(..., bg = NULL) grDevices::win.metafile(...),
-    wmf =  function(..., bg = NULL) grDevices::win.metafile(...),
-    png =  function(...) png_dev(..., res = dpi, units = "in"),
-    jpg =  function(...) jpeg_dev(..., res = dpi, units = "in"),
-    jpeg = function(...) jpeg_dev(..., res = dpi, units = "in"),
-    bmp =  function(...) grDevices::bmp(..., res = dpi, units = "in"),
-    tiff = function(...) tiff_dev(..., res = dpi, units = "in"),
-    tif  = function(...) tiff_dev(..., res = dpi, units = "in")
-  )
-
-  if (is.null(device)) {
-    device <- tolower(tools::file_ext(filename))
-    if (identical(device, "")) {
-      cli::cli_abort("{.arg filename} has no file extension and {.arg device} is {.val NULL}.", call = call)
-    }
-  }
-
-  if (!is.character(device) || length(device) != 1) {
-    stop_input_type(device, "a string, function", allow_null = TRUE, call = call)
-  }
-
-  dev <- devices[[device]]
-  if (is.null(dev)) {
-    cli::cli_abort("Unknown graphics device {.val {device}}", call = call)
-  }
-  dev
-}
-
-# this function is from ggplot2
-absorb_grdevice_args <- function(f) {
-  function(..., type, antialias) {
-    if (!missing(type) || !missing(antialias)) {
-      cli::cli_warn("Using ragg device as default. Ignoring {.arg type} and {.arg antialias} arguments")
-    }
-    f(...)
   }
 }

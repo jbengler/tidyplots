@@ -4,7 +4,7 @@ library(tidyverse)
 
 energy_week <-
   read_csv("data-raw/energy_total_hour.csv") %>%
-  pivot_longer(-Date, names_to = "energy_source", values_to = "power_in_gw") %>%
+  pivot_longer(-Date, names_to = "energy_source", values_to = "power_in_mw") %>%
   filter(energy_source != "Load") %>%
   mutate(energy_type = case_when(
     str_detect(energy_source, "Geo|Hydro|Wind|Bio|Solar") ~ "Renewable",

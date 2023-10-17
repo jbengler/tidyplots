@@ -6,9 +6,12 @@
 \usage{
 add()
 }
-\arguments{
-\item{.}{\code{ggplot2} code to be added}
-}
 \description{
 Add \code{ggplot2} code
+}
+\examples{
+df_demo \%>\%
+  tidyplot(x = category, y = value, color = category) \%>\%
+  add(ggplot2::geom_point())
+
 }

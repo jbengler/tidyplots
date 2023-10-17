@@ -17,14 +17,14 @@
 #'   \item{direction}{Direction of regulation. Either `up` or `down`. }
 #' }
 #' @source
-#' `data_exprs` represents just a small subset of the data aquired in the study.
+#' `gene_expression` represents just a small subset of the data aquired in the study.
 #'
 #' More details about the study can be found here
 #' * Nature Neuroscience, [Bassoon proteinopathy drives neurodegeneration in multiple sclerosis](https://www.nature.com/articles/s41593-019-0385-4)
 #'
 #' The complete raw data can be downloaded here
 #' * Gene Expression Omnibus, study accession [GSE104899](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104899)
-"data_exprs"
+"gene_expression"
 
 #' @export
 df_demo <-

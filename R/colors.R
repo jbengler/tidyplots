@@ -1,4 +1,3 @@
-#' @importFrom ggplot2 discrete_scale scale_color_gradientn scale_fill_gradientn
 
 # apply alpha and convert to solid hex code
 apply_alpha <- function(colors, alpha, background_color = "#FFFFFF") {
@@ -20,25 +19,25 @@ my_pal <- function(palette, reverse = FALSE, alpha = 1, ...) {
 }
 
 #' @export
-my_scale_color_c <- function(palette = my_pals[["blue_pink_yellow"]], reverse = FALSE, ...) {
-  pal <- my_pal(palette = palette, reverse = reverse)
-  scale_color_gradientn(colours = pal(256), ...)
+my_scale_color_c <- function(palette = my_pals[["blue_pink_yellow"]], alpha = 1, reverse = FALSE, ...) {
+  pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
+  ggplot2::scale_color_gradientn(colours = pal(256), ...)
 }
 
 #' @export
 my_scale_color_d <- function(palette = my_pals[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
-  discrete_scale("colour", paste0("my_", palette), palette = pal, ...)
+  ggplot2::discrete_scale("colour", paste0("my_", palette), palette = pal, ...)
 }
 
 #' @export
-my_scale_fill_c <- function(palette = my_pals[["blue_pink_yellow"]], reverse = FALSE, ...) {
-  pal <- my_pal(palette = palette, reverse = reverse)
-  scale_fill_gradientn(colours = pal(256), ...)
+my_scale_fill_c <- function(palette = my_pals[["blue_pink_yellow"]], alpha = 1, reverse = FALSE, ...) {
+  pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
+  ggplot2::scale_fill_gradientn(colours = pal(256), ...)
 }
 
 #' @export
 my_scale_fill_d <- function(palette = my_pals[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
-  discrete_scale("fill", paste0("my_", palette), palette = pal, ...)
+  ggplot2::discrete_scale("fill", paste0("my_", palette), palette = pal, ...)
 }
