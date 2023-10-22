@@ -84,32 +84,27 @@ parent_function <- function(){
 }
 
 check_input <- function(input) {
-  if (any(class(input) == "patchwork")) return("pw")
-  else if (any(class(input) == "gg")) return("gg")
-  else if (class(input) == "list") {
-    if (any(unlist(purrr::map(input, class)) == "patchwork")) {
+  if (any(inherits(input, "patchwork"))) return("pw")
+  else if (any(inherits(input, "gg"))) return("gg")
+  else if (inherits(input, "list")) {
+    if (any(unlist(purrr::map(input, inherits, "patchwork")))) {
       return("pw_list")
-    } else if (any(unlist(purrr::map(input, class)) == "gg")) {
+    } else if (any(unlist(purrr::map(input, inherits, "gg")))) {
       return("gg_list")
     }
   }
   else return("none")
 }
 
+# library(ggplot2)
+#
 # p1 <-
-#   df_demo %>%
-#   tidyplot(category, value, color = category) %>%
-#   add_bar()
+#   study %>%
+#   ggplot(aes(treatment, score, color = treatment)) +
+#   geom_point()
 #
-# p2 <-
-#   df_demo %>%
-#   tidyplot(category, value, color = category) %>%
-#   add_mean()
-#
+# p2 <- p1
 # pw <- p1 + p2
-#
-# unlist(purrr::map(gg_list, class))
-#
 # gg_list <- list(p1, p2)
 # pw_list <- list(pw, pw)
 #

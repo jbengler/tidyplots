@@ -1,6 +1,22 @@
 
 library(tidyverse)
 
+# ff with if condition
+
+ff <- function(fun, alert = FALSE) {
+  function(x = c(0.5, 5, 10), y = NULL, z = NA) {
+    if(alert) message("alert = TRUE")
+    fun(x)
+  }
+}
+
+f_mean_silent <- ff(fun = mean, alert = FALSE)
+f_mean_loud <- ff(fun = mean, alert = TRUE)
+f_mean_silent()
+f_mean_silent(c(5,200))
+f_mean_loud()
+f_mean_loud(c(5,200))
+
 # function factories
 # mean, median, sum, count(=length?), (min, max)
 

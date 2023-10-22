@@ -65,7 +65,8 @@ add_jitter <- function(gg, subset_data = all_data(), dodge_width = NULL,
            rasterize = rasterize, rasterize_dpi = rasterize_dpi)
 }
 
-# function factories
+
+## Error bar function factory
 ff_errorbar <- function(fun.data) {
   function(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...) {
     dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
@@ -74,76 +75,6 @@ ff_errorbar <- function(fun.data) {
                                linewidth = linewidth, width = width, position = position, ...)
   }
 }
-
-ff_ribbon <- function(fun.data) {
-  function(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...) {
-    mapping <- ggplot2::aes()
-    mapping$group <- gg$mapping$colour
-    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width)
-    gg + ggplot2::stat_summary(mapping = mapping, fun.data = fun.data, geom = "ribbon",
-                               alpha = alpha, color = color, position = position, ...)
-  }
-}
-
-ff_bar <- function(fun) {
-  function(gg, dodge_width = NULL, width = 0.6, alpha = 1, ...) {
-    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width)
-    gg <- gg %>%
-      adjust_y_axis(padding_bottom = 0) %>%
-      adjust_colors(fill_alpha = alpha)
-    gg + ggplot2::stat_summary(fun = fun, geom = "bar", color = NA, width = width,
-                               position = position, ...)
-  }
-}
-
-ff_dash <- function(fun) {
-  function(gg, dodge_width = NULL, width = 0.6, linewidth = 0.25, ...) {
-    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width)
-    gg + ggplot2::stat_summary(fun.min = fun, fun.max = fun, geom = "errorbar",
-                               linewidth = linewidth, width = width, position = position, ...)
-  }
-}
-
-ff_dot <- function(fun) {
-  function(gg, dodge_width = NULL, size = 2, ...) {
-    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width)
-    gg + ggplot2::stat_summary(fun = fun, geom = "point", size = size, position = position, ...)
-  }
-}
-
-ff_value <- function(fun) {
-  function(gg, dodge_width = NULL, accuracy = 0.1, scale_cut = NULL, fontsize = 7,
-           vjust = -0.5, padding_top = 0.15, ...) {
-    size <- fontsize/ggplot2::.pt
-    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width)
-    gg <- gg %>% adjust_y_axis(padding_top = padding_top)
-    gg + ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(y), accuracy = accuracy, scale_cut = scale_cut)),
-                               fun = fun, geom = "text", vjust = vjust, size = size, position = position, ...)
-  }
-}
-
-ff_line <- function(fun) {
-  function(gg, group, dodge_width = NULL, linewidth = 0.25, ...) {
-    mapping <- NULL
-    if (is_missing(gg, "group")) {
-      mapping <- ggplot2::aes()
-      mapping$group <- gg$mapping$colour
-    }
-    if (!missing(group)) {
-      mapping <- ggplot2::aes(group = {{group}})
-    }
-    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width)
-    gg + ggplot2::stat_summary(mapping = mapping, fun = fun, geom = "line",
-                               linewidth = linewidth, position = position, ...)
-  }
-}
-
 #' Add error bar
 #'
 #' @param gg bla
@@ -161,9 +92,20 @@ add_range <- ff_errorbar(fun.data = min_max)
 add_sd <- ff_errorbar(fun.data = ggplot2::mean_sdl)
 #' @rdname add_error
 #' @export
-add_ci <- ff_errorbar(fun.data = ggplot2::mean_cl_boot)
+add_ci95 <- ff_errorbar(fun.data = ggplot2::mean_cl_boot)
 
 
+## Ribbon function factory
+ff_ribbon <- function(fun.data) {
+  function(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...) {
+    mapping <- ggplot2::aes()
+    mapping$group <- gg$mapping$colour
+    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+    position <- ggplot2::position_dodge(width = dodge_width)
+    gg + ggplot2::stat_summary(mapping = mapping, fun.data = fun.data, geom = "ribbon",
+                               alpha = alpha, color = color, position = position, ...)
+  }
+}
 #' Add ribbon
 #'
 #' @param gg bla
@@ -181,7 +123,94 @@ add_range_ribbon <- ff_ribbon(fun.data = min_max)
 add_sd_ribbon <- ff_ribbon(fun.data = ggplot2::mean_sdl)
 #' @rdname add_error_ribbon
 #' @export
-add_ci_ribbon <- ff_ribbon(fun.data = ggplot2::mean_cl_boot)
+add_ci95_ribbon <- ff_ribbon(fun.data = ggplot2::mean_cl_boot)
+
+
+## Bar function factory
+ff_bar <- function(fun, count = FALSE) {
+  function(gg, dodge_width = NULL, width = 0.6, alpha = 1, ...) {
+    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+    position <- ggplot2::position_dodge(width = dodge_width)
+    gg <- gg %>% adjust_colors(fill_alpha = alpha)
+    if (count) {
+      gg %>%
+        adjust_y_axis(padding_bottom = 0, force_y_continuous = TRUE) +
+        ggplot2::stat_count(geom = "bar", color = NA, width = width, position = position, ...)
+    } else {
+      gg %>%
+        adjust_y_axis(padding_bottom = 0) +
+        ggplot2::stat_summary(fun = fun, geom = "bar", color = NA, width = width,
+                              position = position, ...)
+    }
+  }
+}
+## Dash function factory
+ff_dash <- function(fun, count = FALSE) {
+  function(gg, dodge_width = NULL, width = 0.6, linewidth = 0.25, ...) {
+    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+    position <- ggplot2::position_dodge(width = dodge_width)
+    if (count) {
+      gg + ggplot2::geom_errorbar(
+        ggplot2::aes(ymin = ggplot2::after_stat(count), ymax = ggplot2::after_stat(count)),
+        stat = "count", linewidth = linewidth, width = width, position = position, ...)
+    } else {
+      gg + ggplot2::stat_summary(fun.min = fun, fun.max = fun, geom = "errorbar",
+                                 linewidth = linewidth, width = width, position = position, ...)
+    }
+  }
+}
+## Dot function factory
+ff_dot <- function(fun, count = FALSE) {
+  function(gg, dodge_width = NULL, size = 2, ...) {
+    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+    position <- ggplot2::position_dodge(width = dodge_width)
+    if (count) {
+      gg + ggplot2::stat_count(geom = "point", size = size, position = position, ...)
+    } else {
+      gg + ggplot2::stat_summary(fun = fun, geom = "point", size = size, position = position, ...)
+    }
+  }
+}
+## Value function factory
+ff_value <- function(fun, count = FALSE) {
+  function(gg, dodge_width = NULL, accuracy = 0.1, scale_cut = NULL, fontsize = 7,
+           vjust = -0.5, padding_top = 0.15, ...) {
+    size <- fontsize/ggplot2::.pt
+    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+    position <- ggplot2::position_dodge(width = dodge_width)
+    if (count) {
+      gg %>% adjust_y_axis(padding_top = padding_top, force_y_continuous = TRUE) +
+        ggplot2::stat_count(ggplot2::aes(label = format_number(ggplot2::after_stat(count), accuracy = accuracy, scale_cut = scale_cut)),
+                            geom = "text", vjust = vjust, size = size, position = position, ...)
+    } else {
+      gg %>% adjust_y_axis(padding_top = padding_top) +
+        ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(y), accuracy = accuracy, scale_cut = scale_cut)),
+                              fun = fun, geom = "text", vjust = vjust, size = size, position = position, ...)
+    }
+  }
+}
+## Line function factory
+ff_line <- function(fun, count = FALSE) {
+  function(gg, group, dodge_width = NULL, linewidth = 0.25, ...) {
+    mapping <- NULL
+    if (is_missing(gg, "group")) {
+      mapping <- ggplot2::aes()
+      mapping$group <- gg$mapping$colour
+    }
+    if (!missing(group)) {
+      mapping <- ggplot2::aes(group = {{group}})
+    }
+    dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+    position <- ggplot2::position_dodge(width = dodge_width)
+    if (count) {
+      gg + ggplot2::stat_count(mapping = mapping, geom = "line",
+                               linewidth = linewidth, position = position, ...)
+    } else {
+      gg + ggplot2::stat_summary(mapping = mapping, fun = fun, geom = "line",
+                                 linewidth = linewidth, position = position, ...)
+    }
+  }
+}
 
 
 #' Add mean
@@ -294,57 +323,19 @@ add_sum_line <- ff_line(fun = sum)
 #' @param ... bla
 #'
 #' @export
-add_count_bar <- function(gg, dodge_width = NULL, alpha = 1, width = 0.6, ...) {
-  dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-  position <- ggplot2::position_dodge(width = dodge_width)
-  gg <- gg %>%
-    adjust_y_axis(padding_bottom = 0, force = TRUE) %>%
-    adjust_colors(fill_alpha = alpha)
-  gg + ggplot2::stat_count(geom = "bar", color = NA, width = width, position = position, ...)
-}
+add_count_bar <- ff_bar(count = TRUE)
 #' @rdname add_count_bar
 #' @export
-add_count_dash <- function(gg, dodge_width = NULL, width = 0.6, linewidth = 0.25, ...) {
-  dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-  position <- ggplot2::position_dodge(width = dodge_width)
-  gg + ggplot2::geom_errorbar(
-    ggplot2::aes(ymin = ggplot2::after_stat(count), ymax = ggplot2::after_stat(count)),
-    stat = "count", linewidth = linewidth, width = width, position = position, ...)
-}
+add_count_dash <- ff_dash(count = TRUE)
 #' @rdname add_count_bar
 #' @export
-add_count_dot <- function(gg, dodge_width = NULL, size = 2, ...) {
-  dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-  position <- ggplot2::position_dodge(width = dodge_width)
-  gg + ggplot2::stat_count(geom = "point", size = size, position = position, ...)
-}
+add_count_dot <- ff_dot(count = TRUE)
 #' @rdname add_count_bar
 #' @export
-add_count_value <- function(gg, accuracy = 0.1, scale_cut = NULL, dodge_width = NULL, fontsize = 7,
-                            vjust = -0.5, padding_top = 0.15, ...) {
-  size <- fontsize/ggplot2::.pt
-  dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-  position <- ggplot2::position_dodge(width = dodge_width)
-  gg <- gg %>% adjust_y_axis(padding_top = padding_top, force = TRUE)
-  gg + ggplot2::stat_count(ggplot2::aes(label = format_number(ggplot2::after_stat(count), accuracy = accuracy, scale_cut = scale_cut)),
-                           geom = "text", vjust = vjust, size = size, position = position, ...)
-}
+add_count_value <- ff_value(count = TRUE)
 #' @rdname add_count_bar
 #' @export
-add_count_line <- function(gg, group, dodge_width = NULL, linewidth = 0.25, ...) {
-  mapping <- NULL
-  if (is_missing(gg, "group")) {
-    mapping <- ggplot2::aes()
-    mapping$group <- gg$mapping$colour
-  }
-  if (!missing(group)) {
-    mapping <- ggplot2::aes(group = {{group}})
-  }
-  dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
-  position <- ggplot2::position_dodge(width = dodge_width)
-  gg + ggplot2::stat_count(mapping = mapping, geom = "line",
-                           linewidth = linewidth, position = position, ...)
-}
+add_count_line <- ff_line(count = TRUE)
 
 
 #' Add boxplot

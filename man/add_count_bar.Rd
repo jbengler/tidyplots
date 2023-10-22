@@ -8,7 +8,7 @@
 \alias{add_count_line}
 \title{Add count}
 \usage{
-add_count_bar(gg, dodge_width = NULL, alpha = 1, width = 0.6, ...)
+add_count_bar(gg, dodge_width = NULL, width = 0.6, alpha = 1, ...)
 
 add_count_dash(gg, dodge_width = NULL, width = 0.6, linewidth = 0.25, ...)
 
@@ -16,9 +16,9 @@ add_count_dot(gg, dodge_width = NULL, size = 2, ...)
 
 add_count_value(
   gg,
+  dodge_width = NULL,
   accuracy = 0.1,
   scale_cut = NULL,
-  dodge_width = NULL,
   fontsize = 7,
   vjust = -0.5,
   padding_top = 0.15,
@@ -32,9 +32,9 @@ add_count_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
 
 \item{dodge_width}{bla}
 
-\item{alpha}{bla}
-
 \item{width}{bla}
+
+\item{alpha}{bla}
 
 \item{...}{bla}
 

@@ -255,17 +255,17 @@ energy_week %>%
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_ci(conf.int = 0.95)
+  add_ci95(conf.int = 0.95)
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_ci_ribbon(conf.int = 0.95) %>% 
+  add_ci95_ribbon(conf.int = 0.95) %>% 
   add_line() %>% 
   add_jitter()
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_ci_ribbon(conf.int = 0.95) %>% 
+  add_ci95_ribbon(conf.int = 0.95) %>% 
   add_line() %>% 
   add_jitter() %>% 
   adjust_colors("orange")

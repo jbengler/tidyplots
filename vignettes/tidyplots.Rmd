@@ -71,52 +71,6 @@ study %>%
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
-  add_error() %>%
-  add_sd() %>% 
-  add_range() %>% 
-  add_ci()
-
-study %>%
-  tidyplot(treatment, score) %>%
-  add_error_ribbon() %>%
-  add_sd_ribbon() %>% 
-  add_range_ribbon() %>% 
-  add_ci_ribbon()
-
-study %>%
-  tidyplot(treatment, score) %>%
-  add_mean_bar(alpha = 0.3) %>% 
-  add_mean_dash() %>% 
-  add_mean_dot() %>% 
-  add_mean_value() %>% 
-  add_mean_line()
-
-study %>%
-  tidyplot(treatment, score) %>%
-  add_median_bar(alpha = 0.3) %>% 
-  add_median_dash() %>% 
-  add_median_dot() %>% 
-  add_median_value() %>% 
-  add_median_line()
-
-study %>%
-  tidyplot(treatment, score) %>%
-  add_sum_bar(alpha = 0.3) %>% 
-  add_sum_dash() %>% 
-  add_sum_dot() %>% 
-  add_sum_value() %>% 
-  add_sum_line()
-
-study %>%
-  tidyplot(treatment) %>%
-  add_count_bar(alpha = 0.3) %>% 
-  add_count_dash() %>% 
-  add_count_dot() %>% 
-  add_count_value() %>% 
-  add_count_line()
-
-study %>%
-  tidyplot(treatment, score, color = treatment) %>%
   add_range() %>% 
   add_scatter()
 
@@ -468,7 +422,7 @@ study %>%
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_ci_ribbon() %>% 
+  add_ci95_ribbon() %>% 
   add_mean_line() %>% 
   add_jitter()
 

@@ -4,7 +4,7 @@
 \alias{add_error}
 \alias{add_range}
 \alias{add_sd}
-\alias{add_ci}
+\alias{add_ci95}
 \title{Add error bar}
 \usage{
 add_error(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
@@ -13,7 +13,7 @@ add_range(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
 
 add_sd(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
 
-add_ci(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
+add_ci95(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
 }
 \arguments{
 \item{gg}{bla}

@@ -1,7 +1,12 @@
 
+# check whether mean, median, sum, count are NA-safe
+# looks okay
+
 # de_analysis data set for volcano plots
 
 # text_labels for pie, donut and barstack?
+
+# rename adjust_labels() to adjust_variable() ?
 
 # add_line_cummulative()
 # add_area_cummulative()

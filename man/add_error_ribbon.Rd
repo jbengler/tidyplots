@@ -4,7 +4,7 @@
 \alias{add_error_ribbon}
 \alias{add_range_ribbon}
 \alias{add_sd_ribbon}
-\alias{add_ci_ribbon}
+\alias{add_ci95_ribbon}
 \title{Add ribbon}
 \usage{
 add_error_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
@@ -13,7 +13,7 @@ add_range_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 
 add_sd_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 
-add_ci_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_ci95_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 }
 \arguments{
 \item{gg}{bla}
