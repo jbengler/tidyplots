@@ -1,4 +1,10 @@
 
+# re-think add_area() and add_line()
+
+# re-think "alpha" and "fill_alpha"
+
+# make "pie", "barstack" and "areastack" into function factories
+
 # check whether mean, median, sum, count are NA-safe
 # looks okay
 

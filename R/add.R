@@ -482,7 +482,6 @@ add_donut <- function(gg, bar_width = 1, reverse = FALSE, ...) {
     gg <- gg + ggplot2::geom_col(ggplot2::aes(x = NA), position = ggplot2::position_fill(reverse = reverse),
                                  width = bar_width, color = NA, ...)
   }
-
   suppressMessages(
     gg +
       ggplot2::scale_x_discrete(limits = function(x) c("", "", x)) +
