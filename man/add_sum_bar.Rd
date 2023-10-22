@@ -5,9 +5,10 @@
 \alias{add_sum_dash}
 \alias{add_sum_dot}
 \alias{add_sum_value}
+\alias{add_sum_line}
 \title{Add sum}
 \usage{
-add_sum_bar(gg, dodge_width = NULL, alpha = 1, width = 0.6, ...)
+add_sum_bar(gg, dodge_width = NULL, width = 0.6, alpha = 1, ...)
 
 add_sum_dash(gg, dodge_width = NULL, width = 0.6, linewidth = 0.25, ...)
 
@@ -15,22 +16,25 @@ add_sum_dot(gg, dodge_width = NULL, size = 2, ...)
 
 add_sum_value(
   gg,
-  accuracy = 0.1,
   dodge_width = NULL,
+  accuracy = 0.1,
+  scale_cut = NULL,
   fontsize = 7,
   vjust = -0.5,
   padding_top = 0.15,
   ...
 )
+
+add_sum_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
 }
 \arguments{
 \item{gg}{bla}
 
 \item{dodge_width}{bla}
 
-\item{alpha}{description}
-
 \item{width}{bla}
+
+\item{alpha}{description}
 
 \item{...}{description}
 
@@ -40,11 +44,15 @@ add_sum_value(
 
 \item{accuracy}{description}
 
+\item{scale_cut}{bla}
+
 \item{fontsize}{description}
 
 \item{vjust}{description}
 
 \item{padding_top}{description}
+
+\item{group}{bla}
 }
 \description{
 Add sum

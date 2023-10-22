@@ -4,7 +4,7 @@
 \alias{adjust_size}
 \title{Adjust plot size}
 \usage{
-adjust_size(gg, width = 50, height = 50, my_unit = "mm")
+adjust_size(gg, width = 50, height = 50, unit = "mm")
 }
 \arguments{
 \item{gg}{bla}
@@ -13,7 +13,7 @@ adjust_size(gg, width = 50, height = 50, my_unit = "mm")
 
 \item{height}{bla}
 
-\item{my_unit}{bla}
+\item{unit}{bla}
 }
 \description{
 Adjust plot size

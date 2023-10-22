@@ -109,6 +109,66 @@ energy %>%
   add_donut() %>% 
   split_plot(by = Year)
 
+# pie and donut
+
+animals %>% 
+  tidyplot(y = weight, color = family) %>% 
+  add_pie()
+
+animals %>% 
+  tidyplot(y = weight, color = family) %>% 
+  add_donut()
+
+animals %>% 
+  tidyplot(color = family) %>% 
+  add_pie()
+
+animals %>% 
+  tidyplot(color = family) %>% 
+  add_donut()
+
+# add_barstack_absolute
+
+animals %>% 
+  tidyplot(color = family) %>% 
+  add_barstack_absolute()
+
+animals %>% 
+  tidyplot(x = diet, color = family) %>% 
+  add_barstack_absolute()
+
+## with y supplied
+
+animals %>% 
+  tidyplot(y = speed, color = family) %>% 
+  add_barstack_absolute()
+
+animals %>% 
+  tidyplot(x = diet, y = speed, color = family) %>% 
+  add_barstack_absolute()
+
+# add_barstack_absolute
+
+animals %>% 
+  tidyplot(color = family) %>% 
+  add_barstack_relative()
+
+animals %>% 
+  tidyplot(x = diet, color = family) %>% 
+  add_barstack_relative()
+
+## with y supplied
+
+animals %>% 
+  tidyplot(y = speed, color = family) %>% 
+  add_barstack_relative()
+
+animals %>% 
+  tidyplot(x = diet, y = speed, color = family) %>% 
+  add_barstack_relative()
+
+# curves
+
 energy_week %>% 
   tidyplot(Date, power_in_mw, color = energy_source) %>% 
   add_line() %>% 
@@ -165,7 +225,7 @@ energy %>%
 
 energy_week %>% 
   tidyplot(Date, power_in_mw, color = energy_type) %>% 
-  add_line() %>%
+  add_sum_line() %>%
   remove_padding()
 
 energy_week %>% 
@@ -192,20 +252,19 @@ energy_week %>%
 # Uncertainty
 
 ```{r}
-df_demo %>% 
-  tidyplot(x = category, y = value, color = category) %>% 
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
   add_ci(conf.int = 0.95)
 
-df_demo %>% 
-  tidyplot(x = category, y = value) %>% 
+study %>% 
+  tidyplot(x = treatment, y = score) %>% 
   add_ci_ribbon(conf.int = 0.95) %>% 
   add_line() %>% 
   add_jitter()
 
-
-df_demo %>% 
-  tidyplot(x = category, y = value) %>% 
+study %>% 
+  tidyplot(x = treatment, y = score) %>% 
   add_ci_ribbon(conf.int = 0.95) %>% 
   add_line() %>% 
   add_jitter() %>% 
@@ -217,13 +276,6 @@ df_demo %>%
 # x--y relationships
 
 ```{r}
-mtcars %>%
-  tibble::as_tibble(rownames = "name") %>% 
-  tidyplot(mpg, disp) %>% 
-  add_scatter() %>% 
-  add_scatter(subset_data = . %>% dplyr::filter(disp > 350), color = "red") %>% 
-  add_text(subset_data = . %>% dplyr::filter(disp > 350), var = name, color = "black") %>% 
-  add_reference_lines(x = c(20, 30), y = c(200, 350))
 
 energy_week %>% 
   tidyplot(Date, power_in_mw, color = energy_source) %>% 

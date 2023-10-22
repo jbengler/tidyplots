@@ -18,26 +18,22 @@ my_pal <- function(palette, reverse = FALSE, alpha = 1, ...) {
   colorRampPalette(pal, ...)
 }
 
-#' @export
-my_scale_color_c <- function(palette = my_pals[["blue_pink_yellow"]], alpha = 1, reverse = FALSE, ...) {
+my_scale_color_c <- function(palette = color_palettes[["blue_pink_yellow"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
   ggplot2::scale_color_gradientn(colours = pal(256), ...)
 }
 
-#' @export
-my_scale_color_d <- function(palette = my_pals[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
+my_scale_color_d <- function(palette = color_palettes[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
   ggplot2::discrete_scale("colour", paste0("my_", palette), palette = pal, ...)
 }
 
-#' @export
-my_scale_fill_c <- function(palette = my_pals[["blue_pink_yellow"]], alpha = 1, reverse = FALSE, ...) {
+my_scale_fill_c <- function(palette = color_palettes[["blue_pink_yellow"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
   ggplot2::scale_fill_gradientn(colours = pal(256), ...)
 }
 
-#' @export
-my_scale_fill_d <- function(palette = my_pals[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
+my_scale_fill_d <- function(palette = color_palettes[["metro_ui"]], alpha = 1, reverse = FALSE, ...) {
   pal <- my_pal(palette = palette, alpha = alpha, reverse = reverse)
   ggplot2::discrete_scale("fill", paste0("my_", palette), palette = pal, ...)
 }

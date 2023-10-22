@@ -12,8 +12,6 @@ remove_legend_title <- function(gg) {
   gg + ggplot2::theme(legend.title = ggplot2::element_blank())
 }
 
-# x axis
-
 #' Remove `x` axis or parts of it
 #' @param gg bla
 #' @export
@@ -49,7 +47,6 @@ remove_x_axis_title <- function(gg) {
   gg + ggplot2::theme(axis.title.x = ggplot2::element_blank())
 }
 
-# y axis
 
 #' Remove `y` axis or parts of it
 #' @param gg bla

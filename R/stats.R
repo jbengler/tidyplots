@@ -49,7 +49,6 @@ add_stats_pvalue <- function(gg,
                        symnum.args = symnum.args,
                        ...)
 }
-
 #' @rdname add_stats_pvalue
 #' @export
 add_stats_asterisks <- function(gg,

@@ -1,11 +1,11 @@
 
+
 #' Create a new plot
 #' @param data bla
 #' @param ... bla
 #' @param width bla
 #' @param height bla
 #' @param dodge_width bla
-#'
 #' @export
 tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   mapping <- ggplot2::aes(...)
@@ -65,7 +65,7 @@ multipage_plots <- function(gg,
                             guides = "collect",
                             tag_level = NULL,
                             design = NULL,
-                            my_unit ="mm") {
+                            unit ="mm") {
   if (!ggplot2::is.ggplot(gg) && !all(purrr::map_lgl(gg, ggplot2::is.ggplot)))
     stop("argument 'gg' should be ggplot or list off ggplots")
   if (ggplot2::is.ggplot(gg)) gg <- list(gg)
@@ -87,6 +87,7 @@ multipage_plots <- function(gg,
 #' @param gg A `ggplot`
 #' @param by Variable that should be used for faceting.
 #' @param ncol,nrow The number of columns and rows per page.
+#' @param unit Unit of length. Defaults to "mm".
 #' @inheritParams patchwork::wrap_plots
 #' @export
 split_plot <- function(gg,
@@ -99,7 +100,7 @@ split_plot <- function(gg,
                        guides = "collect",
                        tag_level = NULL,
                        design = NULL,
-                       my_unit = "mm") {
+                       unit = "mm") {
   if (!ggplot2::is.ggplot(gg))
     stop("argument 'gg' should be a single ggplot")
   if(missing(by))
@@ -119,10 +120,10 @@ split_plot <- function(gg,
          function(data, facet_title) {
            gg %+% data + ggplot2::ggtitle(facet_title)
          })
-  cli::cli_alert_success("split_plot: {.pkg widths} = {widths} {my_unit}, {.pkg heights} = {heights} {my_unit}")
-  if (!is.na(widths)) widths <- ggplot2::unit(widths, my_unit)
-  if (!is.na(heights)) heights <- ggplot2::unit(heights, my_unit)
-  out <- multipage_plots(plots, ncol = ncol, nrow = nrow, widths = widths, heights = heights, my_unit = my_unit, guides = guides, byrow = byrow, tag_level = tag_level, design = design)
+  cli::cli_alert_success("split_plot: {.pkg widths} = {widths} {unit}, {.pkg heights} = {heights} {unit}")
+  if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
+  if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
+  out <- multipage_plots(plots, ncol = ncol, nrow = nrow, widths = widths, heights = heights, unit = unit, guides = guides, byrow = byrow, tag_level = tag_level, design = design)
   if (length(out) == 1)
     return(out[[1]])
   else
@@ -193,7 +194,7 @@ save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, sc
 
   if (!is.na(width) && !is.na(height))
     cli::cli_alert_success("save_plot: saving {.pkg {length(gg)} pages} with {.pkg {round(width)} x {round(height)}} mm to {.pkg {filename}}")
-glue::glue()
+
   if (multiple_files) {
     filenames <- burst_filename(filename, length(gg))
     purrr::map2(gg, filenames,

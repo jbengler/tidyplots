@@ -5,18 +5,18 @@ template:
 reference:
 - title:
   desc: >
-    To create a plot, you typically `%>%` your data into the `tidyplot()` function. You then add components to the plot, adjust the plot, eventually split the plot into subplots and export it to file. It works best if you stick to this order: `create`, `add`, `adjust`, `split`.
+    To create a plot, you start with the `tidyplot()` function. Then you call `add_funs()`, `adjust_funs()`, `theme_funs()` and `remove_funs()`, preferably in that order. `split_plot()` must be last in this sequence and can only be followed by `save_plot()`.
 - title: Create
 - contents:
   - tidyplot
 - title: Add
-  desc: >
-    Add components like data points, lines, bars or statistics to the plot.
+  desc: Add plot components to represent data points, central tendency measures, dispersion and more.
 - subtitle:
   desc: >
     **Data points & amounts**
 - contents:
   - starts_with("add_scatter")
+  - starts_with("add_line")
   - starts_with("add_heatmap")
   - starts_with("add_count")
   - starts_with("add_sum")
@@ -26,14 +26,14 @@ reference:
 - contents:
   - starts_with("add_mean")
   - starts_with("add_median")
-  - starts_with("add_line")
+  - starts_with("add_curve")
 - subtitle:
   desc: >
     **Dispersion & uncertainty**
 - contents:
   - starts_with("add_box")
   - starts_with("add_violin")
-  - starts_with("add_sem")
+  - starts_with("add_error")
 - subtitle:
   desc: >
     **Statistical comparison**
@@ -60,29 +60,41 @@ reference:
   - starts_with("add_text")
   - starts_with("add_reference")
 - title: Adjust
-  desc: Adjust plot properties like labels, colors, axes and size.
+  desc: Adjust plot component and properties.
 - contents:
-  - starts_with("adjust_")
+  - starts_with("adjust_x_axis")
+  - starts_with("adjust_labels")
+  - starts_with("adjust_colors")
+  - starts_with("adjust_size")
+  - starts_with("adjust_fontsize")
+  - starts_with("adjust_legend")
+  - starts_with("adjust_flip")
+  - starts_with("adjust_annotation")
+- title: Themes
+  desc: Style the plot to your liking.
+- contents:
+  - starts_with("theme")
+  - starts_with("remove")
 - title: Split
   desc: Split the plot into a multi plot layout, eventually across multiple pages.
 - contents:
   - split_plot
 - title: Output
-  desc: Output the finished plot or intermediate stages on the screen or to a file.
+  desc: Output the final plot or intermediate stages to the screen or to a file.
 - contents:
   - render_plot
   - save_plot
-- title: Themes
-  desc: Style the plot to your liking with carefully crafted themes.
-- contents:
-  - starts_with("theme")
-  - starts_with("remove")
 - title: Helpers
 - contents:
   - add
   - starts_with("format")
   - all_data
+  - starts_with("color_palettes")
 - title: Data
 - contents:
-  - starts_with("data")
+  - starts_with("energy")
+  - starts_with("animals")
+  - starts_with("spendings")
+  - starts_with("distributions")
+  - starts_with("study")
   - gene_expression

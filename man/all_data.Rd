@@ -2,10 +2,10 @@
 % Please edit documentation in R/helpers.R
 \name{all_data}
 \alias{all_data}
-\title{Give back all data}
+\title{Use all data}
 \usage{
 all_data()
 }
 \description{
-Give back all data
+Use all data
 }

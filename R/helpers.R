@@ -3,34 +3,53 @@
 `%||%` <- rlang::`%||%`
 is_waiver <- function(x) inherits(x, "waiver")
 
+#' The pipe
+#' @param lhs A value.
+#' @param rhs A function call.
 #' @keywords internal
 #' @export
 `%>%` <- dplyr::`%>%`
 
-#' Give back all data
+#' Use all data
 #' @export
 all_data <- function(){
   function(x) { x }
 }
 
 #' Format numbers and p values
+#' @param x bla
 #' @param ... bla
 #' @inheritParams scales::number
 #' @inheritDotParams scales::number scale style_positive style_negative
 #' @export
-format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = scales::cut_short_scale(), ...) {
+format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = NULL, ...) {
   scales::number(x = x, accuracy = accuracy, big.mark = big.mark, scale_cut = scale_cut, ...)
 }
 
 #' @rdname format_number
 #' @export
-format_p_value <- function(p, accuracy = 0.0001) {
-  ifelse(p >= accuracy,
-         format_number(p, accuracy),
+format_p_value <- function(x, accuracy = 0.0001) {
+  ifelse(x >= accuracy,
+         format_number(x, accuracy),
          glue::glue("< { format_number(accuracy, accuracy) }"))
 }
 
 # internal helpers
+
+min_max <- function (x) {
+  x <- stats::na.omit(x)
+  data.frame(ymin = min(x), ymax = max(x))
+}
+
+check_pipeline <- function(gg) {
+  pf <- parent_function()
+  # add, adjust, theme, remove, split, render, save
+  # add before adjust -> warn
+  # adjust_levels before adjust_colors -> warn
+  # nothing after split_plot, except save_plot and render_plot -> error
+
+  # unexpected behavior: adjust_levels(new_names) + adjust_colors(new_colors = named_vector)
+}
 
 tidyplot_parser <- function(text) {
   # detect expressions by a leading and trailing "$"
@@ -59,7 +78,7 @@ tidyplot_parse_labels <- function() {
   }
 }
 
-parent_function <- function(x){
+parent_function <- function(){
   deparse(sys.call(-2)) %>%
     stringr::str_extract(pattern = "^[A-Z_a-z]*")
 }
@@ -125,13 +144,11 @@ extract_mapping <- function(gg) {
 }
 
 get_scale_type <- function(gg, aesthetic) {
-  # m <- extract_mapping(gg)
   m <- gg$tidyplot$mapping
   m$scale_type[m$aesthetic == aesthetic]
 }
 
 get_variable <- function(gg, aesthetic) {
-  # m <- extract_mapping(gg)
   m <- gg$tidyplot$mapping
   m$variable[m$aesthetic == aesthetic]
 }
@@ -141,7 +158,8 @@ is_continuous <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "con
 is_date <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "date" }
 is_time <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "time" }
 is_datetime <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "datetime" }
-was_not_provided <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "!!MISSING" }
+is_missing <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "!!MISSING" }
+is_na <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "!!NA" }
 
 burst_filename <- function(filename, n) {
   digits <- ceiling(log10(n+1))

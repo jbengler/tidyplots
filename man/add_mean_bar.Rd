@@ -5,6 +5,7 @@
 \alias{add_mean_dash}
 \alias{add_mean_dot}
 \alias{add_mean_value}
+\alias{add_mean_line}
 \title{Add mean}
 \usage{
 add_mean_bar(gg, dodge_width = NULL, width = 0.6, alpha = 1, ...)
@@ -17,11 +18,14 @@ add_mean_value(
   gg,
   dodge_width = NULL,
   accuracy = 0.1,
+  scale_cut = NULL,
   fontsize = 7,
   vjust = -0.5,
   padding_top = 0.15,
   ...
 )
+
+add_mean_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
 }
 \arguments{
 \item{gg}{bla}
@@ -40,11 +44,15 @@ add_mean_value(
 
 \item{accuracy}{description}
 
+\item{scale_cut}{bla}
+
 \item{fontsize}{description}
 
 \item{vjust}{description}
 
 \item{padding_top}{description}
+
+\item{group}{bla}
 }
 \description{
 Add mean

@@ -4,10 +4,12 @@
 \alias{add_heatmap}
 \title{Add heatmap}
 \usage{
-add_heatmap(gg, ...)
+add_heatmap(gg, scale = "none", ...)
 }
 \arguments{
 \item{gg}{bla}
+
+\item{scale}{bla}
 
 \item{...}{bla}
 }

@@ -2,16 +2,16 @@
 % Please edit documentation in R/add.R
 \name{add}
 \alias{add}
-\title{Add \code{ggplot2} code}
+\title{Add \code{ggplot2} code to your tidyplot}
 \usage{
 add()
 }
 \description{
-Add \code{ggplot2} code
+Add \code{ggplot2} code to your tidyplot
 }
 \examples{
-df_demo \%>\%
-  tidyplot(x = category, y = value, color = category) \%>\%
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add(ggplot2::geom_point())
 
 }

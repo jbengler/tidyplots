@@ -16,15 +16,15 @@ Imports:
     ggplot2,
     ggpubr,
     ggrastr,
+    ggrepel,
     glue,
-    Hmisc,
     patchwork,
     purrr,
     ragg,
     rlang,
     scales,
+    stringr,
     svglite,
-    tibble,
     tidyr
 Depends: 
     R (>= 2.10)

@@ -15,7 +15,7 @@ split_plot(
   guides = "collect",
   tag_level = NULL,
   design = NULL,
-  my_unit = "mm"
+  unit = "mm"
 )
 }
 \arguments{
@@ -49,6 +49,8 @@ auto-tagging should behave. See \code{\link[patchwork:plot_annotation]{plot_anno
 \item{design}{Specification of the location of areas in the layout. Can either
 be specified as a text string or by concatenating calls to \code{\link[patchwork:area]{area()}} together.
 See the examples for further information on use.}
+
+\item{unit}{Unit of length. Defaults to "mm".}
 }
 \description{
 Split plot into subplots

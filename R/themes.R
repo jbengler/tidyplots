@@ -8,14 +8,12 @@ theme_tidyplot <- function(gg, fontsize = 7) {
     style_just_xy() %>%
     adjust_fontsize(fontsize)
 }
-
 #' @rdname theme_tidyplot
 #' @export
 theme_ggplot2 <- function(gg, fontsize = 7) {
   gg <- gg + ggplot2::theme_gray()
   gg %>% adjust_fontsize(fontsize)
 }
-
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_xy <- function(gg, fontsize = 7) {
@@ -29,7 +27,6 @@ theme_minimal_xy <- function(gg, fontsize = 7) {
       panel.grid.minor.y = ggplot2::element_blank()
     )
 }
-
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_y <- function(gg, fontsize = 7) {
@@ -43,7 +40,6 @@ theme_minimal_y <- function(gg, fontsize = 7) {
       panel.grid.minor.y = ggplot2::element_blank()
     )
 }
-
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_x <- function(gg, fontsize = 7) {

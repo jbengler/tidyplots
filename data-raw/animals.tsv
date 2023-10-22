@@ -1,0 +1,61 @@
+animal	weight_min	weight_max	speed_min	speed_max	size_min	size_max	habitat	activity	family	color	number_of_legs	body_temperature	diet
+Honeybee	9e-5	1.2e-4	0.5399999999999999	0.72	1	1.5	Gardens, meadows, hives	Diurnal	Insect	Yellow/Black	6	Cold-blooded	Herbivore
+Monarch Butterfly	2.5e-4	4.5e-4	0.18	0.43199999999999994	8	10	Gardens, fields, forests	Diurnal	Insect	Orange/Black	6	Cold-blooded	Herbivore
+Dragonfly	1e-4	2e-4	0.72	2.0879999999999996	4.5	10	Wetlands, near water	Diurnal	Insect	Various	6	Cold-blooded	Carnivore
+Firefly	1e-5	2e-5	0.010799999999999999	0.043199999999999995	0.5	2.5	Grasslands, forests, wetlands	Nocturnal	Insect	Light Brown	6	Cold-blooded	Carnivore
+Praying Mantis	5e-4	0.003	0.072	0.144	4	17	Gardens, forests	Diurnal	Insect	Green/Brown	6	Cold-blooded	Carnivore
+Mosquito	2e-6	2.5e-6	0.036	0.05399999999999999	0.2	1	Wetlands, near water	Nocturnal	Insect	Brown	6	Cold-blooded	Carnivore
+Ant	1e-6	5e-6	0.0010799999999999998	0.0021599999999999996	0.2	4	Various, colonies	Diurnal	Insect	Various	6	Cold-blooded	Carnivore
+Ladybug	2e-6	1e-5	0.018	0.05399999999999999	0.5	0.8	Gardens, fields, vegetation	Diurnal	Insect	Red/Black	6	Cold-blooded	Carnivore
+Grasshopper	5e-5	2e-4	0.288	0.576	2	7.5	Grasslands, meadows	Diurnal	Insect	Various	6	Cold-blooded	Herbivore
+Butterfly	2e-4	4e-4	0.10799999999999998	0.43199999999999994	2.5	9	Gardens, meadows, forests	Diurnal	Insect	Various	6	Cold-blooded	Herbivore
+Cicada	4e-4	8e-4	0.036	0.21599999999999997	2	13	Trees, shrubs	Diurnal	Insect	Various	6	Cold-blooded	Herbivore
+Beetle	5e-7	1.5e-5	0.036	0.288	0.1	8	Various, diverse habitats	Diurnal/Nocturnal	Insect	Various	6	Cold-blooded	Herbivore
+Hammerhead Shark	170	450	19	25	90	150	Oceans	Diurnal/Nocturnal	Fish	Gray	0	Cold-blooded	Carnivore
+Swordfish	90	650	97	112	140	365	Oceans	Diurnal/Nocturnal	Fish	Gray	0	Cold-blooded	Carnivore
+Seahorse	1	35	0.001	0.02	2	35	Oceans, coral reefs	Diurnal	Fish	Various	0	Cold-blooded	Carnivore
+Clownfish	0.004	0.018	10	12	5	11	Coral reefs	Diurnal	Fish	Orange/White	0	Cold-blooded	Carnivore
+Catfish	1	150	2	75	7	90	Freshwater rivers, lakes	Nocturnal/Diurnal	Fish	Brown/Gray	0	Cold-blooded	Carnivore
+Salmon	2	7	40	50	60	80	Freshwater rivers, oceans	Diurnal	Fish	Pink/Gray	0	Cold-blooded	Carnivore
+Angelfish	0.02	0.3	25	40	12	15	Coral reefs	Diurnal	Fish	Various	0	Cold-blooded	Carnivore
+Clown Triggerfish	0.9	1.4	8	13	23	30	Coral reefs	Diurnal	Fish	Various	0	Cold-blooded	Carnivore
+Lionfish	0.25	1	30	40	28	38	Coral reefs, rocky areas	Diurnal	Fish	Red/White	0	Cold-blooded	Carnivore
+Barracuda	1	45	40	74	60	190	Oceans	Diurnal	Fish	Silver/Gray	0	Cold-blooded	Carnivore
+Moray Eel	0.1	30	4	21	30	400	Coral reefs, caves	Nocturnal/Diurnal	Fish	Brown/Gray	0	Cold-blooded	Carnivore
+Electric Eel	20	20.5	0.1	0.3	100	200	Freshwater rivers, swamps	Nocturnal/Diurnal	Fish	Gray	0	Cold-blooded	Carnivore
+Ostrich	100	160	70	75	210	290	Grasslands, deserts	Diurnal	Bird	Brown/Gray	2	Warm-blooded	Herbivore
+Flamingo	2	4	56	60	100	150	Wetlands, coastal areas	Diurnal	Bird	Pink/White	2	Warm-blooded	Carnivore
+Penguin	1	40	2	9	35	115	Polar regions, islands	Diurnal	Bird	Black/White	2	Warm-blooded	Carnivore
+Peregrine Falcon	0.5	1	240	290	36	48	Various, cliffs and open areas	Diurnal	Bird	Brown/Black/White	2	Warm-blooded	Carnivore
+Blue Jay	0.07	0.12	32	40	28	34	Forests, urban areas	Diurnal	Bird	Blue/White	2	Warm-blooded	Carnivore
+Northern Cardinal	0.02	0.04	40	50	21	23	Woodlands, gardens	Diurnal	Bird	Red/Gray	2	Warm-blooded	Carnivore
+Kingfisher	0.03	0.17	40	50	10	18	Rivers, wetlands	Diurnal	Bird	Blue/White	2	Warm-blooded	Carnivore
+Hornbill	1	4	40	60	30	160	Rainforests, woodlands	Diurnal	Bird	Black/White	2	Warm-blooded	Carnivore
+Bald Eagle	3	6	56	80	70	96	Forests, coastal areas	Diurnal	Bird	Brown/White	2	Warm-blooded	Carnivore
+Hummingbird	0.002	0.02	40	80	7	13	Various, often near flowers	Diurnal	Bird	Various	2	Warm-blooded	Herbivore
+Owl	0.04	4.6	40	80	20	70	Various, forests and open areas	Nocturnal	Bird	Various	2	Warm-blooded	Carnivore
+Falcon	0.4	1.5	48	60	30	60	Various, open areas	Diurnal	Bird	Various	2	Warm-blooded	Carnivore
+Komodo Dragon	70	100	20	25	70	90	Islands, savannahs	Diurnal	Reptile	Gray	4	Cold-blooded	Carnivore
+Anaconda	30	70	16	32	90	150	Swamps, rainforests	Nocturnal/Diurnal	Reptile	Green/Brown	0	Cold-blooded	Carnivore
+Iguana	4	6	35	40	30	60	Forests, deserts	Diurnal	Reptile	Green	4	Cold-blooded	Herbivore
+Chameleon	85	140	0.8	24	7	68	Rainforests, deserts	Nocturnal/Diurnal	Reptile	Various	4	Cold-blooded	Carnivore
+Tortoise	85	417	0.2	1.5	10	150	Grasslands, deserts	Diurnal	Reptile	Brown/Green	4	Cold-blooded	Herbivore
+Crocodile	225	500	16	32	100	500	Rivers, swamps	Nocturnal/Diurnal	Reptile	Gray/Green	4	Cold-blooded	Carnivore
+Gila Monster	350	700	40	48	26	36	Deserts	Nocturnal/Diurnal	Reptile	Pink/Black	4	Cold-blooded	Carnivore
+Bearded Dragon	0.2	0.5	24	40	15	24	Deserts, woodlands	Diurnal	Reptile	Brown	4	Cold-blooded	Carnivore
+Green Sea Turtle	110	190	35	40	60	120	Oceans, coastlines	Diurnal	Reptile	Green/Brown	4	Cold-blooded	Herbivore
+Alligator	150	450	32	48	270	480	Swamps, rivers	Nocturnal/Diurnal	Reptile	Gray/Green	4	Cold-blooded	Carnivore
+Monitor Lizard	0.2	3.5	32	40	20	300	Various habitats	Diurnal	Reptile	Various	4	Cold-blooded	Carnivore
+Rattlesnake	0.5	4.5	5	15	30	180	Deserts, grasslands	Nocturnal/Diurnal	Reptile	Various	0	Cold-blooded	Carnivore
+Lion	190	250	50	80	160	190	Savannas, Grasslands	Diurnal	Mammal	Yellow/Brown	4	Warm-blooded	Carnivore
+Tiger	90	310	49	65	90	110	Grasslands, Forests	Nocturnal/Diurnal	Mammal	Orange/Black	4	Warm-blooded	Carnivore
+Giraffe	800	1200	56	60	420	550	Savannahs, Woodlands	Diurnal	Mammal	Yellow/Spots	4	Warm-blooded	Herbivore
+Elephant	2000	6000	25	40	240	400	Forests, Grasslands	Diurnal	Mammal	Gray	4	Warm-blooded	Herbivore
+Cheetah	46	59	100	120	70	90	Grasslands, Savannahs	Diurnal	Mammal	Yellow/Spots	4	Warm-blooded	Carnivore
+Gorilla	135	195	20	25	150	175	Rainforests	Diurnal	Mammal	Black/Brown	2	Warm-blooded	Herbivore
+Polar Bear	400	600	40	45	120	160	Arctic, Sea Ice	Diurnal	Mammal	White	4	Warm-blooded	Carnivore
+Dolphin	150	200	60	64	150	200	Oceans	Diurnal	Mammal	Gray	0	Warm-blooded	Carnivore
+Sloth	4	6	0.24	0.27	55	70	Rainforests	Nocturnal/Diurnal	Mammal	Gray/Brown	4	Warm-blooded	Herbivore
+Kangaroo	20	90	56	60	100	180	Grasslands, Woodlands	Diurnal	Mammal	Gray/Red	2	Warm-blooded	Herbivore
+Rhinoceros	1000	2300	45	56	150	180	Grasslands, Savannahs	Diurnal	Mammal	Gray	4	Warm-blooded	Herbivore
+African Buffalo	500	900	50	60	120	160	Savannahs, Woodlands	Diurnal	Mammal	Brown/Gray	4	Warm-blooded	Herbivore

@@ -5,6 +5,7 @@
 \alias{add_count_dash}
 \alias{add_count_dot}
 \alias{add_count_value}
+\alias{add_count_line}
 \title{Add count}
 \usage{
 add_count_bar(gg, dodge_width = NULL, alpha = 1, width = 0.6, ...)
@@ -16,35 +17,42 @@ add_count_dot(gg, dodge_width = NULL, size = 2, ...)
 add_count_value(
   gg,
   accuracy = 0.1,
+  scale_cut = NULL,
   dodge_width = NULL,
   fontsize = 7,
   vjust = -0.5,
   padding_top = 0.15,
   ...
 )
+
+add_count_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
 }
 \arguments{
 \item{gg}{bla}
 
 \item{dodge_width}{bla}
 
-\item{alpha}{description}
+\item{alpha}{bla}
 
 \item{width}{bla}
 
-\item{...}{description}
+\item{...}{bla}
 
 \item{linewidth}{bla}
 
-\item{size}{description}
+\item{size}{bla}
 
-\item{accuracy}{description}
+\item{accuracy}{bla}
 
-\item{fontsize}{description}
+\item{scale_cut}{bla}
 
-\item{vjust}{description}
+\item{fontsize}{bla}
 
-\item{padding_top}{description}
+\item{vjust}{bla}
+
+\item{padding_top}{bla}
+
+\item{group}{bla}
 }
 \description{
 Add count

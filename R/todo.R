@@ -1,26 +1,19 @@
 
-# add z-scores (row, col) to add_heatmap()
+# de_analysis data set for volcano plots
 
-# general question: is there a use for facets?
+# text_labels for pie, donut and barstack?
 
-# add tidyplot scelleton to Getting started and function reference
-# data %>%
-#   tidyplot() %>%
-#   add_*() %>%
-#   add_*() %>%
-#   adjust_*() %>%
-#   adjust_*() %>%
-#   split_plot() %>%
+# add_line_cummulative()
+# add_area_cummulative()
+# add_areastack_cummulative()
+# add_barstack_cummulative()
+# OR write helpers to summarize data: cumsum, zscore, normalization, ... ?
+# OR out of scope for this package...
 
-# make automatic theme_minimal(), which decides whether to use _x _y or _xy
-
-# solve new_names plus new_colors problem
+# work on check_pipeline()
+# enforce "sequence of funs", with warnings and errors
 
 # make color schemes accessible
-
-# TODO: paired data? replicates with connecting line with group
-
-# review df_demo to be more meaningful. group and group2 confusing.
 
 # make hex sticker
 
@@ -30,6 +23,8 @@
 # sciplot
 # jjplot
 # broplot
+
+# new_package: tidymaps: add_rivers(), add_streets(), add_borders(), add_landmarks(), ...
 
 # TODO: include 'rasterize', where useful:
 # [x] scatter, [x] jitter, [ ] bar, [ ] tile, ...

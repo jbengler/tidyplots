@@ -35,8 +35,8 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(tidyplots)
 
-df_demo %>% 
-  tidyplot(x = category, y = value, color = category) %>% 
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter()

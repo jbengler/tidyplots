@@ -1,95 +1,20 @@
 
-#' Flip plot
+#' Adjust axes
 #' @param gg bla
+#' @param title bla
+#' @param breaks bla
+#' @param labels bla
+#' @param limits bla
+#' @param padding_left bla
+#' @param padding_right bla
+#' @param padding_bottom bla
+#' @param padding_top bla
+#' @param rotate_labels bla
+#' @param transformation bla
+#' @param cut_short_scale bla
+#' @param position bla
+#' @param force_y_continuous bla
 #' @param ... bla
-#' @export
-adjust_flip <- function(gg, ...) {
-  gg + ggplot2::coord_flip(...)
-}
-
-#' Adjust plot size
-#' @param gg bla
-#' @param width bla
-#' @param height bla
-#' @param my_unit bla
-#' @export
-adjust_size <- function(gg, width = 50, height = 50, my_unit = "mm") {
-  cli::cli_alert_success("adjust_size: {.pkg width} = {width} {my_unit}, {.pkg height} = {height} {my_unit}")
-  if (!is.na(width)) width <- ggplot2::unit(width, my_unit)
-  if (!is.na(height)) height <- ggplot2::unit(height, my_unit)
-  gg + patchwork::plot_layout(widths = width, heights = height)
-}
-
-#' Adjust fontsize
-#' @param gg bla
-#' @param fontsize bla
-#' @export
-adjust_fontsize <- function(gg, fontsize = 7) {
-  gg +
-    ggplot2::theme(
-      plot.title = ggplot2::element_text(size = fontsize, colour = "black", hjust = 0.5, vjust = 0.5),
-      plot.subtitle = ggplot2::element_text(size = fontsize, colour = "black", hjust = 0.5, vjust = 0.5),
-      text = ggplot2::element_text(size = fontsize, colour = "black"),
-      axis.text = ggplot2::element_text(size = fontsize, colour = "black"),
-      axis.title = ggplot2::element_text(size = fontsize, colour = "black"),
-      legend.title = ggplot2::element_text(size = fontsize, colour = "black"),
-      legend.text = ggplot2::element_text(size = fontsize, colour = "black"),
-      strip.text = ggplot2::element_text(size = fontsize, colour = "black"),
-      legend.key.size = ggplot2::unit(4, "mm")
-    )
-}
-
-#' @export
-adjust_colors <- function(gg, new_colors, fill_alpha = 1, as_palette = FALSE,
-                          labels = tidyplot_parse_labels()) {
-  out <- gg
-  # as individual colors
-  if (!missing(new_colors) && as_palette == FALSE) {
-    out$tidyplot$new_colors <- new_colors
-    suppressMessages(
-      out <-
-        out +
-        ggplot2::scale_fill_manual(values = apply_alpha(new_colors, alpha = fill_alpha), drop = FALSE, labels = labels) +
-        ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels)
-    )
-    cli::cli_alert_success("adjust_colors: applied {.pkg new_colors}")
-  }
-  # as color palette
-  if (!missing(new_colors) && as_palette == TRUE) {
-    suppressMessages({
-      if (is_discrete(gg, "colour"))
-        out <- out + my_scale_color_d(palette = new_colors, drop = FALSE, labels = labels)
-
-      if (is_discrete(gg, "fill"))
-        out <- out + my_scale_fill_d(palette = new_colors, alpha = fill_alpha, drop = FALSE, labels = labels)
-
-      if (is_continuous(gg, "colour"))
-        out <- out + my_scale_color_c(palette = new_colors, labels = labels)
-
-      if (is_continuous(gg, "fill"))
-        out <- out + my_scale_fill_c(palette = new_colors, alpha = fill_alpha, labels = labels)
-    })
-    cli::cli_alert_success("adjust_colors: applied {.pkg new color palette}")
-  }
-  if (missing(new_colors)) {
-    suppressMessages({
-      if (is_discrete(gg, "colour"))
-        out <- out + my_scale_color_d(drop = FALSE, labels = labels)
-
-      if (is_discrete(gg, "fill"))
-        out <- out + my_scale_fill_d(alpha = fill_alpha, drop = FALSE, labels = labels)
-
-      if (is_continuous(gg, "colour"))
-        out <- out + my_scale_color_c(labels = labels)
-
-      if (is_continuous(gg, "fill"))
-        out <- out + my_scale_fill_c(alpha = fill_alpha, labels = labels)
-    })
-    cli::cli_alert_success("adjust_colors: applied tidyplots {.pkg default colors}")
-  }
-  return(out)
-}
-
 #' @export
 adjust_x_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waiver(),
                           labels = ggplot2::waiver(), limits = NULL, padding_left = NULL,
@@ -171,7 +96,7 @@ adjust_x_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   cli::cli_alert_warning("adjust_x_axis: {.pkg x axis} was not changed.")
   return(gg)
 }
-
+#' @rdname adjust_x_axis
 #' @export
 adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waiver(),
                           labels = ggplot2::waiver(), limits = NULL, padding_bottom = NULL,
@@ -235,7 +160,7 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
     cli::cli_alert_success("adjust_y_axis: {.pkg discrete}")
     suppressMessages(
       gg <- gg + ggplot2::scale_y_discrete(name = title, breaks = breaks, labels = labels, expand = ggplot2::waiver(), position = position, ...)
-      )
+    )
     return(gg)
   }
   # catch the rest
@@ -243,15 +168,14 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   return(gg)
 }
 
-#' @export
-adjust_legend <- function(gg, title = ggplot2::waiver(), position = "right") {
-  # parse title
-  if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
-  gg +
-    ggplot2::labs(colour = title, fill = title) +
-    ggplot2::theme(legend.position = position)
-}
 
+#' Adjust labels
+#' @param gg bla
+#' @param var bla
+#' @param new_names bla
+#' @param new_order bla
+#' @param sort_by bla
+#' @param reverse bla
 #' @export
 adjust_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALSE) {
   out <- NULL
@@ -293,7 +217,136 @@ adjust_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALS
   if(is.null(out)) {
     cli::cli_alert_warning("adjust_labels: {.pkg nothing was changed}.")
     cli::cli_alert_warning("Please provide {.pkg var} together with {.pkg new_names}, {.pkg new_order}, {.pkg sort_by} or {.pkg reverse = TRUE}.")
-  } else {
-    return(gg)
   }
+  return(gg)
+}
+
+
+#' Adjust colors
+#' @param gg bla
+#' @param new_colors bla
+#' @param fill_alpha bla
+#' @param as_palette bla
+#' @param labels bla
+#' @param ... bla
+#' @export
+adjust_colors <- function(gg, new_colors, fill_alpha = 1, as_palette = FALSE,
+                          labels = tidyplot_parse_labels(), ...) {
+  out <- gg
+  # as individual colors
+  if (!missing(new_colors) && as_palette == FALSE) {
+    out$tidyplot$new_colors <- new_colors
+    suppressMessages(
+      out <-
+        out +
+        ggplot2::scale_fill_manual(values = apply_alpha(new_colors, alpha = fill_alpha), drop = FALSE, labels = labels, ...) +
+        ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...)
+    )
+    cli::cli_alert_success("adjust_colors: applied {.pkg new_colors}")
+  }
+  # as color palette
+  if (!missing(new_colors) && as_palette == TRUE) {
+    suppressMessages({
+      if (is_discrete(gg, "colour"))
+        out <- out + my_scale_color_d(palette = new_colors, drop = FALSE, labels = labels, ...)
+
+      if (is_discrete(gg, "fill"))
+        out <- out + my_scale_fill_d(palette = new_colors, alpha = fill_alpha, drop = FALSE, labels = labels, ...)
+
+      if (is_continuous(gg, "colour"))
+        out <- out + my_scale_color_c(palette = new_colors, labels = labels, ...)
+
+      if (is_continuous(gg, "fill"))
+        out <- out + my_scale_fill_c(palette = new_colors, alpha = fill_alpha, labels = labels, ...)
+    })
+    cli::cli_alert_success("adjust_colors: applied {.pkg new color palette}")
+  }
+  if (missing(new_colors)) {
+    suppressMessages({
+      if (is_discrete(gg, "colour"))
+        out <- out + my_scale_color_d(drop = FALSE, labels = labels, ...)
+
+      if (is_discrete(gg, "fill"))
+        out <- out + my_scale_fill_d(alpha = fill_alpha, drop = FALSE, labels = labels, ...)
+
+      if (is_continuous(gg, "colour"))
+        out <- out + my_scale_color_c(labels = labels, ...)
+
+      if (is_continuous(gg, "fill"))
+        out <- out + my_scale_fill_c(alpha = fill_alpha, labels = labels, ...)
+    })
+    cli::cli_alert_success("adjust_colors: applied tidyplots {.pkg default colors}")
+  }
+  return(out)
+}
+
+#' Adjust plot size
+#' @param gg bla
+#' @param width bla
+#' @param height bla
+#' @param unit bla
+#' @export
+adjust_size <- function(gg, width = 50, height = 50, unit = "mm") {
+  cli::cli_alert_success("adjust_size: {.pkg width} = {width} {unit}, {.pkg height} = {height} {unit}")
+  if (!is.na(width)) width <- ggplot2::unit(width, unit)
+  if (!is.na(height)) height <- ggplot2::unit(height, unit)
+  gg + patchwork::plot_layout(widths = width, heights = height)
+}
+
+
+#' Adjust fontsize
+#' @param gg bla
+#' @param fontsize bla
+#' @export
+adjust_fontsize <- function(gg, fontsize = 7) {
+  gg +
+    ggplot2::theme(
+      plot.title = ggplot2::element_text(size = fontsize, colour = "black", hjust = 0.5, vjust = 0.5),
+      plot.subtitle = ggplot2::element_text(size = fontsize, colour = "black", hjust = 0.5, vjust = 0.5),
+      text = ggplot2::element_text(size = fontsize, colour = "black"),
+      axis.text = ggplot2::element_text(size = fontsize, colour = "black"),
+      axis.title = ggplot2::element_text(size = fontsize, colour = "black"),
+      legend.title = ggplot2::element_text(size = fontsize, colour = "black"),
+      legend.text = ggplot2::element_text(size = fontsize, colour = "black"),
+      strip.text = ggplot2::element_text(size = fontsize, colour = "black"),
+      legend.key.size = ggplot2::unit(4, "mm")
+    )
+}
+
+#' Adjust legend
+#' @param gg bla
+#' @param title bla
+#' @param position bla
+#' @export
+adjust_legend <- function(gg, title = ggplot2::waiver(), position = "right") {
+  # parse title
+  if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
+  gg +
+    ggplot2::labs(colour = title, fill = title) +
+    ggplot2::theme(legend.position = position)
+}
+
+#' Flip plot
+#' @param gg bla
+#' @param ... bla
+#' @export
+adjust_flip <- function(gg, ...) {
+  gg + ggplot2::coord_flip(...)
+}
+
+#' Adjust annotation
+#' @param gg bla
+#' @param title bla
+#' @param x_axis_title bla
+#' @param y_axis_title bla
+#' @param legend_title bla
+#' @param caption bla
+#' @param ... bla
+#' @export
+adjust_annotation <- function(gg, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
+                              y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),
+                              caption = ggplot2::waiver(), ...) {
+  colour <- fill <- legend_title
+  gg + ggplot2::labs(x = x_axis_title, y = y_axis_title, colour = colour, fill = fill,
+                     title = title, caption = caption, ...)
 }
