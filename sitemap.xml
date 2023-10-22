@@ -43,7 +43,16 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_count_bar.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_curve.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_density_curve.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_error.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_error_ribbon.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_heatmap.html</loc>
@@ -70,12 +79,6 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_scatter.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_sem.html</loc>
-  </url>
-  <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_sem_ribbon.html</loc>
-  </url>
-  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_stats_pvalue.html</loc>
   </url>
   <url>
@@ -91,22 +94,55 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_violin.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_annotation.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_colors.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_flip.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_fontsize.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_labels.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_legend.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_size.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_x_axis.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/all_data.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/animals.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/color_palettes.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/distributions.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/energy.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/energy_week.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/format_number.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/gene_expression.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/grapes-greater-than-grapes.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/index.html</loc>
@@ -130,7 +166,13 @@
     <loc>https://jbengler.github.io/tidyplots/reference/save_plot.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/spendings.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/split_plot.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/study.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/theme_tidyplot.html</loc>
