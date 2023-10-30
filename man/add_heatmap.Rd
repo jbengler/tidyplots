@@ -4,7 +4,7 @@
 \alias{add_heatmap}
 \title{Add heatmap}
 \usage{
-add_heatmap(gg, scale = "none", ...)
+add_heatmap(gg, scale = c("none", "row", "column"), ...)
 }
 \arguments{
 \item{gg}{bla}

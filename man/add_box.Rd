@@ -7,7 +7,7 @@
 add_box(
   gg,
   dodge_width = NULL,
-  alpha = 0.3,
+  saturation = 0.3,
   show_whiskers = TRUE,
   show_outliers = FALSE,
   box_width = 0.6,
@@ -16,6 +16,7 @@ add_box(
   coef = 1.5,
   outlier.shape = 19,
   linewidth = 0.25,
+  preserve = "total",
   ...
 )
 }
@@ -24,7 +25,7 @@ add_box(
 
 \item{dodge_width}{bla}
 
-\item{alpha}{bla}
+\item{saturation}{bla}
 
 \item{show_whiskers}{bla}
 
@@ -41,6 +42,8 @@ add_box(
 \item{outlier.shape}{bla}
 
 \item{linewidth}{bla}
+
+\item{preserve}{bla}
 
 \item{...}{bla}
 }

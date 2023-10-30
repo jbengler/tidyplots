@@ -10,11 +10,56 @@ is_waiver <- function(x) inherits(x, "waiver")
 #' @export
 `%>%` <- dplyr::`%>%`
 
-#' Use all data
+
+#' Subset data
 #' @export
-all_data <- function(){
+all_rows <- function(){
   function(x) { x }
 }
+#' @rdname all_rows
+#' @inheritParams dplyr::filter
+#' @export
+filter_rows <- function(..., .by = NULL){
+  . %>% dplyr::filter(..., .by = {{.by}}, .preserve = FALSE)
+}
+#' @rdname all_rows
+#' @param n The number of rows to select. If not are supplied, `n = 1` will be
+#'   used. If `n` is greater than the number of rows in the group,
+#'   the result will be silently truncated to the group size.
+#'
+#'   A negative value of `n` will be subtracted from the group
+#'   size. For example, `n = -2` with a group of 5 rows will select 5 - 2 = 3
+#'   rows.
+#' @param na_rm Should missing values in `order_by` be removed from the result?
+#'   If `FALSE`, `NA` values are sorted to the end (like in [arrange()]), so
+#'   they will only be included if there are insufficient non-missing values to
+#'   reach `n`.
+#' @inheritParams dplyr::slice_max
+#' @export
+max_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE){
+  . %>% dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties,
+                         na_rm = na_rm)
+}
+#' @rdname all_rows
+#' @inheritParams dplyr::slice_min
+#' @export
+min_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE){
+  . %>% dplyr::slice_min(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties,
+                         na_rm = na_rm)
+}
+#' @rdname all_rows
+#' @inheritParams dplyr::slice_head
+#' @export
+first_rows <- function(n, by = NULL){
+  . %>% dplyr::slice_head(n = n, by = {{by}})
+}
+#' @rdname all_rows
+#' @inheritParams dplyr::slice_tail
+#' @export
+last_rows <- function(n, by = NULL){
+  . %>% dplyr::slice_tail(n = n, by = {{by}})
+}
+
 
 #' Format numbers and p values
 #' @param x bla

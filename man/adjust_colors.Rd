@@ -7,7 +7,7 @@
 adjust_colors(
   gg,
   new_colors,
-  fill_alpha = 1,
+  saturation = 1,
   as_palette = FALSE,
   labels = tidyplot_parse_labels(),
   ...
@@ -18,7 +18,7 @@ adjust_colors(
 
 \item{new_colors}{bla}
 
-\item{fill_alpha}{bla}
+\item{saturation}{bla}
 
 \item{as_palette}{bla}
 

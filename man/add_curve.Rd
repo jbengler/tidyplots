@@ -10,6 +10,7 @@ add_curve(
   method = "loess",
   linewidth = 0.25,
   alpha = 0.3,
+  preserve = "total",
   ...
 )
 }
@@ -23,6 +24,8 @@ add_curve(
 \item{linewidth}{bla}
 
 \item{alpha}{bla}
+
+\item{preserve}{bla}
 
 \item{...}{bla}
 }

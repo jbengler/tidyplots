@@ -5,14 +5,16 @@
 \alias{add_areastack_relative}
 \title{Add area stack}
 \usage{
-add_areastack_absolute(gg, linewidth = 0.25, reverse = FALSE, ...)
+add_areastack_absolute(gg, linewidth = 0.25, alpha = 0.3, reverse = FALSE, ...)
 
-add_areastack_relative(gg, linewidth = 0.25, reverse = FALSE, ...)
+add_areastack_relative(gg, linewidth = 0.25, alpha = 0.3, reverse = FALSE, ...)
 }
 \arguments{
 \item{gg}{bla}
 
 \item{linewidth}{bla}
+
+\item{alpha}{bla}
 
 \item{reverse}{bla}
 

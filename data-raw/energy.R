@@ -14,6 +14,7 @@ energy <-
   mutate(
     energy_source = factor(energy_source),
     energy_type = factor(energy_type)
-    )
+    ) %>%
+  tidyr::replace_na(list(power_in_gw = 0))
 
 usethis::use_data(energy, overwrite = TRUE)

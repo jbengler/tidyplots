@@ -6,13 +6,28 @@
 \alias{add_mean_dot}
 \alias{add_mean_value}
 \alias{add_mean_line}
+\alias{add_mean_area}
 \title{Add mean}
 \usage{
-add_mean_bar(gg, dodge_width = NULL, width = 0.6, alpha = 1, ...)
+add_mean_bar(
+  gg,
+  dodge_width = NULL,
+  width = 0.6,
+  saturation = 1,
+  preserve = "total",
+  ...
+)
 
-add_mean_dash(gg, dodge_width = NULL, width = 0.6, linewidth = 0.25, ...)
+add_mean_dash(
+  gg,
+  dodge_width = NULL,
+  width = 0.6,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 
-add_mean_dot(gg, dodge_width = NULL, size = 2, ...)
+add_mean_dot(gg, dodge_width = NULL, size = 2, preserve = "total", ...)
 
 add_mean_value(
   gg,
@@ -22,10 +37,27 @@ add_mean_value(
   fontsize = 7,
   vjust = -0.5,
   padding_top = 0.15,
+  preserve = "total",
   ...
 )
 
-add_mean_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
+add_mean_line(
+  gg,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
+
+add_mean_area(
+  gg,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 }
 \arguments{
 \item{gg}{bla}
@@ -34,7 +66,9 @@ add_mean_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
 
 \item{width}{bla}
 
-\item{alpha}{description}
+\item{saturation}{description}
+
+\item{preserve}{bla}
 
 \item{...}{description}
 

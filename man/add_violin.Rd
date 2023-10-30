@@ -7,7 +7,7 @@
 add_violin(
   gg,
   dodge_width = NULL,
-  alpha = 0.3,
+  saturation = 0.3,
   draw_quantiles = NULL,
   trim = FALSE,
   linewidth = 0.25,
@@ -20,7 +20,7 @@ add_violin(
 
 \item{dodge_width}{bla}
 
-\item{alpha}{bla}
+\item{saturation}{bla}
 
 \item{draw_quantiles}{bla}
 

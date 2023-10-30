@@ -5,9 +5,16 @@
 \alias{add_area}
 \title{Add line}
 \usage{
-add_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
+add_line(
+  gg,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 
-add_area(gg, linewidth = 0.25, ...)
+add_area(gg, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...)
 }
 \arguments{
 \item{gg}{bla}
@@ -17,6 +24,8 @@ add_area(gg, linewidth = 0.25, ...)
 \item{dodge_width}{bla}
 
 \item{linewidth}{bla}
+
+\item{preserve}{bla}
 
 \item{...}{bla}
 }

@@ -7,13 +7,41 @@
 \alias{add_ci95}
 \title{Add error bar}
 \usage{
-add_error(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
+add_error(
+  gg,
+  dodge_width = NULL,
+  width = 0.4,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 
-add_range(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
+add_range(
+  gg,
+  dodge_width = NULL,
+  width = 0.4,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 
-add_sd(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
+add_sd(
+  gg,
+  dodge_width = NULL,
+  width = 0.4,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 
-add_ci95(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
+add_ci95(
+  gg,
+  dodge_width = NULL,
+  width = 0.4,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 }
 \arguments{
 \item{gg}{bla}
@@ -23,6 +51,8 @@ add_ci95(gg, dodge_width = NULL, width = 0.4, linewidth = 0.25, ...)
 \item{width}{bla}
 
 \item{linewidth}{bla}
+
+\item{preserve}{bla}
 
 \item{...}{bla}
 }

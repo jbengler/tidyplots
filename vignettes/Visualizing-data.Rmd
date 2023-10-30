@@ -157,7 +157,17 @@ animals %>%
   tidyplot(x = diet, color = family) %>% 
   add_barstack_relative()
 
+animals %>% 
+  tidyplot(x = diet, color = family) %>% 
+  add_barstack_absolute(alpha = 0.3) %>% 
+  add_areastack_absolute()
+
 ## with y supplied
+
+animals %>% 
+  tidyplot(x = diet, y = speed, color = family) %>% 
+  add_barstack_absolute(alpha = 0.3) %>% 
+  add_areastack_absolute()
 
 animals %>% 
   tidyplot(y = speed, color = family) %>% 
@@ -180,11 +190,11 @@ energy_week %>%
 
 energy_week %>% 
   tidyplot(Date, power_in_mw, color = energy_source) %>% 
-  add_areastack_absolute(alpha = 0.3)
+  add_areastack_absolute()
 
 energy_week %>% 
   tidyplot(Date, power_in_mw, color = energy_source) %>% 
-  add_areastack_relative(alpha = 0.3)
+  add_areastack_relative()
 
 ###
 
@@ -217,15 +227,30 @@ energy %>%
 
 energy %>% 
   dplyr::filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
-  dplyr::summarize(power_in_gw = sum(power_in_gw, na.rm = TRUE), .by = c(energy_type, Year)) %>% 
   tidyplot(x = Year, y = power_in_gw, color = energy_type) %>% 
-  add_line(dodge_width = 0) %>%
-  add_mean_dot(dodge_width = 0) %>% 
+  add_sum_line(dodge_width = 0) %>%
+  add_sum_dot(dodge_width = 0) %>% 
+  adjust_colors(new_colors = new_colors)
+
+energy %>% 
+  tidyplot(x = Year, y = power_in_gw, color = energy_type) %>% 
+  add_areastack_absolute() %>% 
+  adjust_colors(new_colors = new_colors)
+
+energy %>% 
+  tidyplot(x = Year, y = power_in_gw, color = energy_source) %>% 
+  add_areastack_absolute()
+
+energy %>% 
+  dplyr::filter(Year %in% c(2005, 2010, 2015, 2020)) %>% 
+  tidyplot(x = Year, y = power_in_gw, color = energy_type) %>% 
+  add_areastack_relative() %>% 
   adjust_colors(new_colors = new_colors)
 
 energy_week %>% 
   tidyplot(Date, power_in_mw, color = energy_type) %>% 
   add_sum_line() %>%
+  adjust_colors(new_colors = new_colors) %>% 
   remove_padding()
 
 energy_week %>% 
@@ -235,15 +260,13 @@ energy_week %>%
   adjust_colors(new_colors = new_colors)
 
 energy_week %>% 
-  dplyr::summarise(power_in_mw = sum(power_in_mw), .by = c(Date, energy_type)) %>% 
   tidyplot(Date, power_in_mw, color = energy_type) %>% 
-  add_areastack_absolute(alpha = 0.3) %>% 
+  add_areastack_absolute() %>% 
   adjust_colors(new_colors = new_colors)
 
 energy_week %>%
-  dplyr::summarise(power_in_mw = sum(power_in_mw), .by = c(Date, energy_type)) %>% 
   tidyplot(Date, power_in_mw, color = energy_type) %>% 
-  add_areastack_relative(alpha = 0.3) %>% 
+  add_areastack_relative() %>% 
   adjust_colors(new_colors = new_colors)
 
 ```
@@ -255,18 +278,18 @@ energy_week %>%
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_ci95(conf.int = 0.95)
+  add_ci95()
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_ci95_ribbon(conf.int = 0.95) %>% 
-  add_line() %>% 
+  add_ci95_ribbon() %>% 
+  add_mean_line() %>% 
   add_jitter()
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_ci95_ribbon(conf.int = 0.95) %>% 
-  add_line() %>% 
+  add_ci95_ribbon() %>% 
+  add_mean_line() %>% 
   add_jitter() %>% 
   adjust_colors("orange")
 
@@ -285,6 +308,10 @@ energy_week %>%
 energy_week %>% 
   tidyplot(Date, power_in_mw, color = energy_source) %>% 
   add_area(alpha = 0.3)
+
+energy_week %>% 
+  tidyplot(Date, power_in_mw, color = energy_source) %>% 
+  add_points()
 
 ```
 

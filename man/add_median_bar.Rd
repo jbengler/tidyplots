@@ -6,13 +6,28 @@
 \alias{add_median_dot}
 \alias{add_median_value}
 \alias{add_median_line}
+\alias{add_median_area}
 \title{Add median}
 \usage{
-add_median_bar(gg, dodge_width = NULL, width = 0.6, alpha = 1, ...)
+add_median_bar(
+  gg,
+  dodge_width = NULL,
+  width = 0.6,
+  saturation = 1,
+  preserve = "total",
+  ...
+)
 
-add_median_dash(gg, dodge_width = NULL, width = 0.6, linewidth = 0.25, ...)
+add_median_dash(
+  gg,
+  dodge_width = NULL,
+  width = 0.6,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 
-add_median_dot(gg, dodge_width = NULL, size = 2, ...)
+add_median_dot(gg, dodge_width = NULL, size = 2, preserve = "total", ...)
 
 add_median_value(
   gg,
@@ -22,10 +37,27 @@ add_median_value(
   fontsize = 7,
   vjust = -0.5,
   padding_top = 0.15,
+  preserve = "total",
   ...
 )
 
-add_median_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
+add_median_line(
+  gg,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
+
+add_median_area(
+  gg,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 }
 \arguments{
 \item{gg}{bla}
@@ -34,7 +66,9 @@ add_median_line(gg, group, dodge_width = NULL, linewidth = 0.25, ...)
 
 \item{width}{bla}
 
-\item{alpha}{description}
+\item{saturation}{description}
+
+\item{preserve}{bla}
 
 \item{...}{description}
 

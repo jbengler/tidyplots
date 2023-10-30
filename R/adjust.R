@@ -225,12 +225,12 @@ adjust_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALS
 #' Adjust colors
 #' @param gg bla
 #' @param new_colors bla
-#' @param fill_alpha bla
+#' @param saturation bla
 #' @param as_palette bla
 #' @param labels bla
 #' @param ... bla
 #' @export
-adjust_colors <- function(gg, new_colors, fill_alpha = 1, as_palette = FALSE,
+adjust_colors <- function(gg, new_colors, saturation = 1, as_palette = FALSE,
                           labels = tidyplot_parse_labels(), ...) {
   out <- gg
   # as individual colors
@@ -239,7 +239,7 @@ adjust_colors <- function(gg, new_colors, fill_alpha = 1, as_palette = FALSE,
     suppressMessages(
       out <-
         out +
-        ggplot2::scale_fill_manual(values = apply_alpha(new_colors, alpha = fill_alpha), drop = FALSE, labels = labels, ...) +
+        ggplot2::scale_fill_manual(values = apply_saturation(new_colors, saturation = saturation), drop = FALSE, labels = labels, ...) +
         ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...)
     )
     cli::cli_alert_success("adjust_colors: applied {.pkg new_colors}")
@@ -251,13 +251,13 @@ adjust_colors <- function(gg, new_colors, fill_alpha = 1, as_palette = FALSE,
         out <- out + my_scale_color_d(palette = new_colors, drop = FALSE, labels = labels, ...)
 
       if (is_discrete(gg, "fill"))
-        out <- out + my_scale_fill_d(palette = new_colors, alpha = fill_alpha, drop = FALSE, labels = labels, ...)
+        out <- out + my_scale_fill_d(palette = new_colors, saturation = saturation, drop = FALSE, labels = labels, ...)
 
       if (is_continuous(gg, "colour"))
         out <- out + my_scale_color_c(palette = new_colors, labels = labels, ...)
 
       if (is_continuous(gg, "fill"))
-        out <- out + my_scale_fill_c(palette = new_colors, alpha = fill_alpha, labels = labels, ...)
+        out <- out + my_scale_fill_c(palette = new_colors, saturation = saturation, labels = labels, ...)
     })
     cli::cli_alert_success("adjust_colors: applied {.pkg new color palette}")
   }
@@ -267,13 +267,13 @@ adjust_colors <- function(gg, new_colors, fill_alpha = 1, as_palette = FALSE,
         out <- out + my_scale_color_d(drop = FALSE, labels = labels, ...)
 
       if (is_discrete(gg, "fill"))
-        out <- out + my_scale_fill_d(alpha = fill_alpha, drop = FALSE, labels = labels, ...)
+        out <- out + my_scale_fill_d(saturation = saturation, drop = FALSE, labels = labels, ...)
 
       if (is_continuous(gg, "colour"))
         out <- out + my_scale_color_c(labels = labels, ...)
 
       if (is_continuous(gg, "fill"))
-        out <- out + my_scale_fill_c(alpha = fill_alpha, labels = labels, ...)
+        out <- out + my_scale_fill_c(saturation = saturation, labels = labels, ...)
     })
     cli::cli_alert_success("adjust_colors: applied tidyplots {.pkg default colors}")
   }

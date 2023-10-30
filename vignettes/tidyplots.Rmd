@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 
 - `tidyplots` allows to split plots into subplots by a variable of choice, similar to `ggplot2::facet_wrap()`. However, `split_plot()` provides a more consistent look and allows to distribute subplots across multiple pages.
 
-- `color` and `fill` are always mapped to the same variable. However, you can still do one of the following: (1) reduce the  opacity of fill using the `alpha` or `fill_alpha` arguments, (2) set `color` or `fill` to a constant hex color within an `add_` function, or (3) set `color` or `fill` to `NA` within an `add_` function to to prevent it from being displayed.
+- `color` and `fill` are always mapped to the same variable. However, you can still do one of the following: (1) reduce the  opacity of fill using the `alpha` or `saturation` arguments, (2) set `color` or `fill` to a constant hex color within an `add_` function, or (3) set `color` or `fill` to `NA` within an `add_` function to to prevent it from being displayed.
 
 # Workflow
 
@@ -60,7 +60,7 @@ animals %>%
   tidyplot(family, size, color = family) %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
-  add_jitter() %>% 
+  add_points() %>% 
   adjust_labels(family, sort_by = size)
 
 study %>%
@@ -72,20 +72,20 @@ study %>%
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add_range() %>% 
-  add_scatter()
+  add_points()
 
 study %>%
   tidyplot(treatment, score) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_scatter() %>%
-  add_line()
+  add_points() %>%
+  add_mean_line()
 
 study %>%
   tidyplot(treatment, score) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_scatter() %>%
+  add_points() %>%
   add_line(group = participant, dodge_width = 0)
 
 study %>%
@@ -110,6 +110,12 @@ p2 <-
   add_jitter()
 p2
 
+study %>%
+  tidyplot(x = treatment, y = score, color = treatment) %>%
+  add_mean_bar(alpha = 0.3) %>%
+  add_error() %>%
+  add_jitter(style = "confetti")
+
 # testing adjust_colors() adjust_labels() split_plot() interference
 # "split" always after "adjust"
 # "adjust_color()" always after "adjust_labels()"
@@ -128,13 +134,13 @@ new_names <-
     "C" = "Regime C",
     "D" = "Regime D")
 
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_labels(treatment, new_order = c("C")) %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3) %>% adjust_labels(treatment, new_order = c("C"))
+p2 %>% adjust_colors(new_colors)
+p2 %>% adjust_labels(treatment, new_order = c("C")) %>% adjust_colors(new_colors)
+p2 %>% adjust_colors(new_colors) %>% adjust_labels(treatment, new_order = c("C"))
 
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_labels(treatment, new_names = new_names) %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3) %>% adjust_labels(treatment, new_names = new_names)
+p2 %>% adjust_colors(new_colors)
+p2 %>% adjust_labels(treatment, new_names = new_names) %>% adjust_colors(new_colors)
+p2 %>% adjust_colors(new_colors) %>% adjust_labels(treatment, new_names = new_names)
 
 # providing more colors, not a problem. Providing less colors -> Error
 new_colors <-
@@ -143,13 +149,13 @@ new_colors <-
     "#E23130",
     "#1D5D83")
 
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_labels(treatment, new_order = c("C")) %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3) %>% adjust_labels(treatment, new_order = c("C"))
+p2 %>% adjust_colors(new_colors)
+p2 %>% adjust_labels(treatment, new_order = c("C")) %>% adjust_colors(new_colors)
+p2 %>% adjust_colors(new_colors) %>% adjust_labels(treatment, new_order = c("C"))
 
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_labels(treatment, new_names = new_names) %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3) %>% adjust_labels(treatment, new_names = new_names)
+p2 %>% adjust_colors(new_colors)
+p2 %>% adjust_labels(treatment, new_names = new_names) %>% adjust_colors(new_colors)
+p2 %>% adjust_colors(new_colors) %>% adjust_labels(treatment, new_names = new_names)
 
 # during split plot, single subplots might only have NA for certain categories
 # this has been fixed apparently by using drop = FALSE in 
@@ -161,17 +167,15 @@ p1 %>%
 
 # x--y plots
 
-big_animals <- . %>% dplyr::filter(size > 300)
 
 p3 <- 
   animals %>% 
-  tidyplot(x = weight, y = size) %>% 
-  add_scatter() %>% 
-  add_scatter(subset_data = big_animals, color = "red") %>% 
-  add_text(subset_data = big_animals, var = animal, color = "black")
+  tidyplot(x = weight, y = size, color = number_of_legs) %>% 
+  add_points(style = "confetti") %>% 
+  add_points(style = "confetti", data = filter_rows(size > 300), color = "red") %>% 
+  add_text(data = max_rows(weight, n = 3), var = animal, color = "black")
   
 p3
-
 p3 %>% add_reference_lines(x = c(4000), y = c(200, 350))
 
 # labels of out of bounds animals still appear
@@ -246,17 +250,17 @@ new_colors <-
     "C" = "#E23130",
     "D" = "#1D5D83")
 
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3)
-p2 %>% adjust_colors(new_colors, fill_alpha = 0.3, as_palette = TRUE)
+p2 %>% adjust_colors(new_colors)
+p2 %>% adjust_colors(new_colors, as_palette = TRUE)
 
 # new_colors AND new_names
 
 p2 %>%
   adjust_labels(treatment, new_names = new_names) %>% 
-  adjust_colors(new_colors, fill_alpha = 0.3)
+  adjust_colors(new_colors, saturation = 0.3)
 
 p2 %>% 
-  adjust_colors(new_colors, fill_alpha = 0.3) %>% 
+  adjust_colors(new_colors, saturation = 0.3) %>% 
   adjust_labels(treatment, new_names = new_names)
 
 # add_heatmap()
@@ -319,7 +323,7 @@ study %>%
   add_mean_value()
 
 study %>% 
-  tidyplot(x = group, y = score, color = dose, dodge_width = 0.2) %>% 
+  tidyplot(x = group, y = score, color = dose, dodge_width = 0.6) %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_mean_dash() %>% 
   add_mean_value()
@@ -381,8 +385,15 @@ p1 %>% adjust_size(width = NA, height = NA)
 # line plots
 
 study %>% 
+  tidyplot(x = group, y = score, group = participant, color = dose) %>% 
+  add_line() %>% 
+  add_area(alpha = 0.1)
+
+# summary lines
+
+study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_line()
+  add_mean_line()
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
@@ -391,7 +402,7 @@ study %>%
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_line() %>% 
+  add_mean_line() %>% 
   add_mean_dot() %>% 
   add_error()
 
@@ -472,13 +483,13 @@ study %>%
   add_line(group = participant) %>% 
   add_mean_dash() %>% 
   add_error() %>% 
-  add_scatter()
+  add_points()
 
 study %>%
   tidyplot(treatment, score, color = group) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_scatter() %>%
+  add_points() %>%
   add_line(group = participant, dodge_width = 0) %>%
   adjust_labels(treatment, sort_by = dose)
 
@@ -511,7 +522,7 @@ animals %>%
 # spendings
 
 spendings %>% 
-  tidyplot(y = amount, color = category) %>% 
+  tidyplot(color = category) %>% 
   add_donut()
 
 spendings %>% 
@@ -530,7 +541,7 @@ spendings %>%
 
 spendings %>% 
   tidyplot(x = date, y = amount, color = category) %>% 
-  add_sum_bar()
+  add_sum_bar(preserve = "single")
 
 spendings %>% 
   tidyplot(x = date, y = amount, color = category) %>% 
@@ -540,13 +551,14 @@ spendings %>%
 spendings %>% 
   dplyr::mutate(cum_amount = cumsum(amount)) %>% 
   tidyplot(x = date, y = cum_amount) %>% 
-  add_line(fun = max, linewidth = 0.75)
+  add_line() %>% 
+  add_points()
 
 spendings %>% 
   dplyr::mutate(cum_amount = cumsum(amount)) %>% 
   tidyplot(x = date, y = cum_amount) %>% 
   add_area(alpha = 0.3) %>% 
-  add_line(fun = max, linewidth = 0.75)
+  add_points()
 
 spendings %>% 
   dplyr::mutate(cum_amount = cumsum(amount), .by = category) %>% 
@@ -565,25 +577,25 @@ spendings %>%
   tidyplot(x = date, y = cum_amount, color = category, dodge_width = 0) %>% 
   add_areastack_absolute(alpha = 0.3)
 
-# demo subset_data
+# subset data
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
   add_error() %>% 
-  add_scatter()
+  add_points()
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
   add_error() %>% 
-  add_scatter(subset_data = function(x) dplyr::filter(x, treatment == "C"))
+  add_points(data = filter_rows(treatment == "C"))
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
   add_error() %>% 
-  add_scatter(subset_data = function(x) dplyr::slice_max(x, score, n = 1, by = treatment))
+  add_points(data = max_rows(score, n = 1, by = treatment))
 
 # adjust_description
 
@@ -633,12 +645,6 @@ animals %>%
   tidyplot(x = family, y = weight) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_mean_value(vjust = 0.4, hjust = -0.2, padding_top = 0.3) %>%
-  adjust_flip()
-
-animals %>%
-  tidyplot(x = family, y = weight) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_mean_value(angle = -90, vjust = -0.5, hjust = 0.5) %>%
   adjust_flip()
 
 animals %>%

@@ -7,7 +7,7 @@
 add_text(
   gg,
   var,
-  subset_data = all_data(),
+  data = all_rows(),
   fontsize = 7,
   segment.size = 0.2,
   box.padding = 0.2,
@@ -19,7 +19,7 @@ add_text(
 
 \item{var}{bla}
 
-\item{subset_data}{bla}
+\item{data}{bla}
 
 \item{fontsize}{bla}
 
