@@ -37,7 +37,7 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_areastack_absolute.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_barstack_relative.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_barstack_absolute.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_box.html</loc>
@@ -76,10 +76,10 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_pie.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_reference_lines.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_points.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_scatter.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_reference_lines.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_stats_pvalue.html</loc>
@@ -121,7 +121,7 @@
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_x_axis.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/all_data.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/all_rows.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/animals.html</loc>

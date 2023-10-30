@@ -124,14 +124,14 @@
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy_type</span>, y <span class="op">=</span> <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_scatter.html">add_jitter</a></span><span class="op">(</span>jitter_width <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_points.html">add_jitter</a></span><span class="op">(</span>jitter_width <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-2-5.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy_type</span>, y <span class="op">=</span> <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_violin.html">add_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_scatter.html">add_jitter</a></span><span class="op">(</span>jitter_width <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_points.html">add_jitter</a></span><span class="op">(</span>jitter_width <span class="op">=</span> <span class="fl">0.8</span>, alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-2-6.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
@@ -154,7 +154,7 @@
 <span><span class="va">p4</span> <span class="op">&lt;-</span> </span>
 <span>  <span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">p4</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-1.png" width="1500" style="display: block; margin: auto;"></p>
@@ -170,13 +170,13 @@
 <span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-4.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-5.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -226,13 +226,13 @@
 <span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-12.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">diet</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-13.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -240,13 +240,13 @@
 <span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">speed</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-14.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">diet</span>, y <span class="op">=</span> <span class="va">speed</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-15.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -254,29 +254,43 @@
 <span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-16.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">diet</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-17.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">diet</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-18.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">## with y supplied</span></span>
 <span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">diet</span>, y <span class="op">=</span> <span class="va">speed</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-19.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">speed</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-18.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-20.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">diet</span>, y <span class="op">=</span> <span class="va">speed</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-19.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-21.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># curves</span></span>
 <span></span>
@@ -284,40 +298,40 @@
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_line.html">add_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/remove_padding.html">remove_padding</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-20.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_line.html">add_area</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-21.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-22.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_line.html">add_area</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-23.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-24.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-25.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co">###</span></span>
 <span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-24.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-26.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Year</span>, <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_relative.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-25.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-27.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">new_colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Fossil"</span> <span class="op">=</span> <span class="st">"grey"</span>,</span>
 <span>               <span class="st">"Nuclear"</span> <span class="op">=</span> <span class="st">"#F6C54D"</span>,</span>
@@ -330,8 +344,8 @@
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_pie</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">Year</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-26.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-28.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -339,94 +353,119 @@
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span>  </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">Year</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-27.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-29.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarize</a></span><span class="op">(</span>power_in_gw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">power_in_gw</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">energy_type</span>, <span class="va">Year</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, y <span class="op">=</span> <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_line.html">add_line</a></span><span class="op">(</span>dodge_width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dot</a></span><span class="op">(</span>dodge_width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_line</a></span><span class="op">(</span>dodge_width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_dot</a></span><span class="op">(</span>dodge_width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-28.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-30.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, y <span class="op">=</span> <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-31.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, y <span class="op">=</span> <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-32.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">Year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Year</span>, y <span class="op">=</span> <span class="va">power_in_gw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-33.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/remove_padding.html">remove_padding</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-29.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-34.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>power_in_mw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">power_in_mw</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">energy_type</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_line.html">add_area</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-30.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-35.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>power_in_mw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">power_in_mw</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">energy_type</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-31.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-36.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>power_in_mw <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">power_in_mw</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">energy_type</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">new_colors</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-32.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-37.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="uncertainty">Uncertainty<a class="anchor" aria-label="anchor" href="#uncertainty"></a>
 </h2>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_error.html">add_ci95</a></span><span class="op">(</span>conf.int <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_error.html">add_ci95</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-4-1.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_error_ribbon.html">add_ci95_ribbon</a></span><span class="op">(</span>conf.int <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_line.html">add_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_scatter.html">add_jitter</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_error_ribbon.html">add_ci95_ribbon</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_points.html">add_jitter</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-4-2.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_error_ribbon.html">add_ci95_ribbon</a></span><span class="op">(</span>conf.int <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_line.html">add_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_scatter.html">add_jitter</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_error_ribbon.html">add_ci95_ribbon</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_points.html">add_jitter</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="st">"orange"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-4-3.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="xy-relationships">x–y relationships<a class="anchor" aria-label="anchor" href="#xy-relationships"></a>
 </h2>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_line.html">add_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/remove_padding.html">remove_padding</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-5-1.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_line.html">add_area</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-5-2.png" width="1500" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span></span>
+<span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">power_in_mw</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_points.html">add_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-5-3.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
