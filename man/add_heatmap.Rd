@@ -4,12 +4,23 @@
 \alias{add_heatmap}
 \title{Add heatmap}
 \usage{
-add_heatmap(gg, scale = c("none", "row", "column"), ...)
+add_heatmap(
+  gg,
+  scale = c("none", "row", "column"),
+  rotate_labels = 90,
+  rasterize = FALSE,
+  rasterize_dpi = 300,
+  ...
+)
 }
 \arguments{
 \item{gg}{bla}
 
 \item{scale}{bla}
+
+\item{rasterize}{bla}
+
+\item{rasterize_dpi}{bla}
 
 \item{...}{bla}
 }

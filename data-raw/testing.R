@@ -50,7 +50,7 @@ mapping <- ggplot2::aes(color = dose, fill = ggplot2::after_scale(apply_saturati
 
 ##
 # try to use after_scale to get lighter bars
-# not really possible.
+# not possible for bars with color = NA
 
 library(tidyverse)
 # this works
@@ -104,11 +104,16 @@ study %>%
   add_points()
 
 study %>%
-  tidyplot(group, score, color = dose) %>%
-  add_areastack_absolute(alpha = 0.1) %>%
+  tidyplot(group, score, color = dose, group = participant, dodge_width = 0) %>%
+  add_area(alpha = 0.1) %>%
   add_points()
 
+study %>%
+  tidyplot(group, score, color = dose) %>%
+  add_areastack_absolute(alpha = 0.1)
+
 # stat_count and stat_sum are ignoring categories with no data
+# this is fixed
 
 vars <- c("number_of_legs", "family")
 

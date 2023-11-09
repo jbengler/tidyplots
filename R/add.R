@@ -465,7 +465,6 @@ add_violin <- function(gg, dodge_width = NULL, saturation = 0.3, draw_quantiles 
 #' @param group bla
 #' @param dodge_width bla
 #' @param linewidth bla
-#' @param preserve bla
 #' @param ... bla
 #' @export
 add_line <- function(gg, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
@@ -680,9 +679,12 @@ add_density_curve <- function(gg, bw = "nrd0", adjust = 1, kernel = "gaussian", 
 #' Add heatmap
 #' @param gg bla
 #' @param scale bla
+#' @param rasterize bla
+#' @param rasterize_dpi bla
 #' @param ... bla
 #' @export
-add_heatmap <- function(gg, scale = c("none", "row", "column"), ...) {
+add_heatmap <- function(gg, scale = c("none", "row", "column"), rotate_labels = 90,
+                        rasterize = FALSE, rasterize_dpi = 300, ...) {
   mapping <- NULL
   scale <- match.arg(scale)
 
@@ -703,16 +705,16 @@ add_heatmap <- function(gg, scale = c("none", "row", "column"), ...) {
 
   gg <-
     gg %>%
-    adjust_x_axis(rotate_labels = 90) %>%
+    adjust_x_axis(rotate_labels = rotate_labels) %>%
     remove_x_axis_line() %>%
     remove_y_axis_line() +
-    ggplot2::coord_cartesian(expand = FALSE) +
-    ggplot2::geom_raster(mapping = mapping, ...)
+    ggplot2::coord_cartesian(expand = FALSE)
 
   if (scale %in% c("row", "column"))
     gg <- gg %>% adjust_colors(c("blue", "white", "red"), as_palette = TRUE)
 
-  gg
+  add_geom(gg, ggplot2::geom_raster(mapping = mapping, ...),
+           rasterize = rasterize, rasterize_dpi = rasterize_dpi)
 }
 
 #' Add plot title or caption

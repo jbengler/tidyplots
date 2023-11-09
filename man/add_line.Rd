@@ -25,8 +25,6 @@ add_area(gg, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...)
 
 \item{linewidth}{bla}
 
-\item{preserve}{bla}
-
 \item{...}{bla}
 }
 \description{

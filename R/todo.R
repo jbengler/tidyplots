@@ -1,10 +1,4 @@
 
-# "rasterize" option for add_heatmap()
-
-# re-think add_area() and add_line()
-
-# rename adjust_labels() to adjust_variable() ?
-
 # data set "de_analysis" for volcano plots
 
 # work on check_pipeline()
@@ -13,6 +7,8 @@
 # make color schemes accessible
 
 # make hex sticker
+
+# rename adjust_labels() to adjust_variable() ? Not sure.
 
 # add easteregg: add_funkyness()
 

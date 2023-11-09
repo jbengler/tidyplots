@@ -278,6 +278,12 @@ gene_expression %>%
 
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
+  add_heatmap(scale = "row", rasterize = TRUE, rasterize_dpi = 20) %>% 
+  adjust_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  adjust_size(height = 90)
+
+gene_expression %>% 
+  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "column") %>% 
   adjust_size(height = 90)
 
@@ -479,8 +485,8 @@ study %>%
 # solution: bring them to different x axis labels
 
 study %>% 
-  tidyplot(x = treatment, y = score, color = group, dodge_width = 0) %>% 
-  add_line(group = participant) %>% 
+  tidyplot(x = treatment, y = score, color = group) %>% 
+  add_line(group = participant, dodge_width = 0, color = "grey") %>% 
   add_mean_dash() %>% 
   add_error() %>% 
   add_points()
@@ -490,7 +496,7 @@ study %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
   add_points() %>%
-  add_line(group = participant, dodge_width = 0) %>%
+  add_line(group = participant, dodge_width = 0, color = "grey") %>%
   adjust_labels(treatment, sort_by = dose)
 
 # proportions
