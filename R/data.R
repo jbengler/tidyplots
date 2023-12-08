@@ -6,6 +6,18 @@
 #' * Gene Expression Omnibus, study accession [GSE104899](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104899)
 "gene_expression"
 
+#' RNA-Seq differential expression data
+#' @format A data frame with 800 rows and 9 variables.
+#' @source
+#' `tidyplots` package
+"gene_statistics"
+
+#' Disease course data
+#' @format A data frame with 800 rows and 9 variables.
+#' @source
+#' `tidyplots` package
+"disease_course"
+
 #' Energy data
 #' @format A data frame with 242 rows and 4 variables.
 #' @source

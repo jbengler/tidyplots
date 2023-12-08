@@ -18,6 +18,8 @@ add_heatmap(
 
 \item{scale}{bla}
 
+\item{rotate_labels}{bla}
+
 \item{rasterize}{bla}
 
 \item{rasterize_dpi}{bla}

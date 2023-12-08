@@ -1,5 +1,11 @@
 
+# heatmap have no color legend
+
+# adjust_padding(tlbr)
+
 # data set "de_analysis" for volcano plots
+
+# data set "disease_course" for plotting
 
 # work on check_pipeline()
 # enforce "sequence of funs", with warnings and errors
@@ -15,7 +21,8 @@
 ## BEYOND SCOPE:
 ## ------------------------------------------------
 
-# text_labels for pie, donut and barstack?
+# text_labels for pie, donut and barstack? It is complicated!
+# https://r-charts.com/part-whole/pie-chart-labels-outside-ggplot2/
 
 # ggridges::geom_density_ridges()
 

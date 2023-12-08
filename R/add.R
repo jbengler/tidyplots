@@ -108,8 +108,7 @@ add_jitter <- function(gg, style = c("point", "circle", "confetti"), data = all_
   add_points(gg = gg, data = data, dodge_width = dodge_width,
              jitter_width = jitter_width, jitter_height = jitter_height,
              size = size, shape = shape, style = style,
-             preserve = preserve,
-             rasterize = rasterize, rasterize_dpi = rasterize_dpi, ...)
+             preserve = preserve, rasterize = rasterize, rasterize_dpi = rasterize_dpi, ...)
 }
 
 
@@ -465,6 +464,7 @@ add_violin <- function(gg, dodge_width = NULL, saturation = 0.3, draw_quantiles 
 #' @param group bla
 #' @param dodge_width bla
 #' @param linewidth bla
+#' @param preserve bla
 #' @param ... bla
 #' @export
 add_line <- function(gg, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
@@ -680,6 +680,7 @@ add_density_curve <- function(gg, bw = "nrd0", adjust = 1, kernel = "gaussian", 
 #' @param gg bla
 #' @param scale bla
 #' @param rasterize bla
+#' @param rotate_labels bla
 #' @param rasterize_dpi bla
 #' @param ... bla
 #' @export

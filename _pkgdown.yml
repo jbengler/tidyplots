@@ -98,3 +98,5 @@ reference:
   - starts_with("distributions")
   - starts_with("study")
   - gene_expression
+  - gene_statistics
+  - disease_course
