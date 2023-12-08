@@ -1,12 +1,4 @@
 
-# heatmap have no color legend
-
-# adjust_padding(tlbr)
-
-# data set "de_analysis" for volcano plots
-
-# data set "disease_course" for plotting
-
 # work on check_pipeline()
 # enforce "sequence of funs", with warnings and errors
 

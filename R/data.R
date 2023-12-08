@@ -12,11 +12,11 @@
 #' `tidyplots` package
 "gene_statistics"
 
-#' Disease course data
+#' Time course data
 #' @format A data frame with 800 rows and 9 variables.
 #' @source
 #' `tidyplots` package
-"disease_course"
+"time_course"
 
 #' Energy data
 #' @format A data frame with 242 rows and 4 variables.

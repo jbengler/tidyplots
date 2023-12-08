@@ -326,6 +326,20 @@ adjust_legend <- function(gg, title = ggplot2::waiver(), position = "right") {
     ggplot2::theme(legend.position = position)
 }
 
+#' Adjust padding
+#' @param gg bla
+#' @param top bla
+#' @param right bla
+#' @param bottom bla
+#' @param left bla
+#' @param force_y_continuous bla
+#' @export
+adjust_padding <- function(gg, top = NULL, right = NULL, bottom = NULL, left = NULL, force_y_continuous = FALSE) {
+  gg %>%
+    adjust_x_axis(padding_left = left, padding_right = right) %>%
+    adjust_y_axis(padding_bottom = bottom, padding_top = top, force_y_continuous = force_y_continuous)
+}
+
 #' Flip plot
 #' @param gg bla
 #' @param ... bla

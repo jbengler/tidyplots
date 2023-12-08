@@ -68,6 +68,7 @@ reference:
   - starts_with("adjust_size")
   - starts_with("adjust_fontsize")
   - starts_with("adjust_legend")
+  - starts_with("adjust_padding")
   - starts_with("adjust_flip")
   - starts_with("adjust_annotation")
 - title: Themes
@@ -99,4 +100,4 @@ reference:
   - starts_with("study")
   - gene_expression
   - gene_statistics
-  - disease_course
+  - time_course
