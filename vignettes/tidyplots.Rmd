@@ -270,17 +270,17 @@ gene_expression %>%
   add_heatmap() %>% 
   adjust_size(height = 90)
 
-# gene_expression %>% 
-#   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-#   add_heatmap(scale = "row") %>% 
-#   adjust_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
-#   adjust_size(height = 90)
-# 
-# gene_expression %>% 
-#   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-#   add_heatmap(scale = "row", rasterize = TRUE, rasterize_dpi = 20) %>% 
-#   adjust_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
-#   adjust_size(height = 90)
+gene_expression %>% 
+  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
+  add_heatmap(scale = "row") %>% 
+  adjust_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  adjust_size(height = 90)
+
+gene_expression %>% 
+  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
+  add_heatmap(scale = "row", rasterize = TRUE, rasterize_dpi = 20) %>% 
+  adjust_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  adjust_size(height = 90)
 
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
@@ -554,34 +554,34 @@ spendings %>%
   add_sum_dot() %>% 
   add_sum_value(accuracy = 1, vjust = -1.2)
 
-# spendings %>% 
-#   dplyr::mutate(cum_amount = cumsum(amount)) %>% 
-#   tidyplot(x = date, y = cum_amount) %>% 
-#   add_line() %>% 
-#   add_points()
-# 
-# spendings %>% 
-#   dplyr::mutate(cum_amount = cumsum(amount)) %>% 
-#   tidyplot(x = date, y = cum_amount) %>% 
-#   add_area(alpha = 0.3) %>% 
-#   add_points()
-# 
-# spendings %>% 
-#   dplyr::mutate(cum_amount = cumsum(amount), .by = category) %>% 
-#   tidyplot(x = date, y = cum_amount, color = category, dodge_width = 0) %>% 
-#   add_area(alpha = 0.3)
+spendings %>% 
+  dplyr::mutate(cum_amount = cumsum(amount)) %>% 
+  tidyplot(x = date, y = cum_amount) %>% 
+  add_line() %>% 
+  add_points()
 
-# spendings %>% 
-#   tidyr::complete(date, category, fill = list(title = NA, amount = 0)) %>% 
-#   dplyr::mutate(cum_amount = cumsum(amount), .by = category) %>% 
-#   tidyplot(x = date, y = cum_amount, color = category, dodge_width = 0) %>% 
-#   add_area(alpha = 0.3)
+spendings %>% 
+  dplyr::mutate(cum_amount = cumsum(amount)) %>% 
+  tidyplot(x = date, y = cum_amount) %>% 
+  add_area(alpha = 0.3) %>% 
+  add_points()
 
-# spendings %>% 
-#   tidyr::complete(date, category, fill = list(title = NA, amount = 0)) %>% 
-#   dplyr::mutate(cum_amount = cumsum(amount), .by = category) %>% 
-#   tidyplot(x = date, y = cum_amount, color = category, dodge_width = 0) %>% 
-#   add_areastack_absolute(alpha = 0.3)
+spendings %>% 
+  dplyr::mutate(cum_amount = cumsum(amount), .by = category) %>% 
+  tidyplot(x = date, y = cum_amount, color = category, dodge_width = 0) %>% 
+  add_area(alpha = 0.3)
+
+spendings %>% 
+  tidyr::complete(date, category, fill = list(title = NA, amount = 0)) %>% 
+  dplyr::mutate(cum_amount = cumsum(amount), .by = category) %>% 
+  tidyplot(x = date, y = cum_amount, color = category, dodge_width = 0) %>% 
+  add_area(alpha = 0.3)
+
+spendings %>% 
+  tidyr::complete(date, category, fill = list(title = NA, amount = 0)) %>% 
+  dplyr::mutate(cum_amount = cumsum(amount), .by = category) %>% 
+  tidyplot(x = date, y = cum_amount, color = category, dodge_width = 0) %>% 
+  add_areastack_absolute(alpha = 0.3)
 
 # subset data
 
