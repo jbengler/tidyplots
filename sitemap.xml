@@ -115,6 +115,9 @@
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_legend.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_padding.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_size.html</loc>
   </url>
   <url>
@@ -130,6 +133,9 @@
     <loc>https://jbengler.github.io/tidyplots/reference/color_palettes.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/dinosaurs.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/distributions.html</loc>
   </url>
   <url>
@@ -139,10 +145,16 @@
     <loc>https://jbengler.github.io/tidyplots/reference/energy_week.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/eu_countries.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/format_number.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/gene_expression.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/gene_statistics.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/grapes-greater-than-grapes.html</loc>
@@ -182,5 +194,8 @@
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/tidyplot.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/time_course.html</loc>
   </url>
 </urlset>
