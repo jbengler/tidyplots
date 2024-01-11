@@ -54,6 +54,18 @@
 #' `tidyplots` package
 "distributions"
 
+#' Dinosaurs data
+#' @format A data frame with 800 rows and 9 variables.
+#' @source
+#' `dinosaurs` package
+"dinosaurs"
+
+#' EU countries data
+#' @format A data frame with 800 rows and 9 variables.
+#' @source
+#' `eu_countries` package
+"eu_countries"
+
 #' Color palettes
 #' @format A list of 18 color palettes.
 #' @source

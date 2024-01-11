@@ -4,10 +4,14 @@
 \alias{render_plot}
 \title{Render plot}
 \usage{
-render_plot(gg, ...)
+render_plot(gg, data = all_rows(), title = ggplot2::waiver(), ...)
 }
 \arguments{
 \item{gg}{bla}
+
+\item{data}{bla}
+
+\item{title}{bla}
 
 \item{...}{bla}
 }

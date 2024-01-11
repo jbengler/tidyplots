@@ -1,0 +1,28 @@
+country,country_code,area,population,gdp,date_of_admission,capital
+Austria,AT,83871,8.9,416,1995-01-01,Vienna
+Belgium,BE,30528,11.5,514,1957-03-25,Brussels
+Bulgaria,BG,110879,6.9,65,2007-01-01,Sofia
+Croatia,HR,56594,4,60,2013-07-01,Zagreb
+Cyprus,CY,9251,1.2,24,2004-05-01,Nicosia
+Czech Republic,CZ,78867,10.7,242,2004-05-01,Prague
+Denmark,DK,42494,5.8,366,1973-01-01,Copenhagen
+Estonia,EE,45227,1.3,31,2004-05-01,Tallinn
+Finland,FI,338424,5.5,251,1995-01-01,Helsinki
+France,FR,551695,67,2778,1957-03-25,Paris
+Germany,DE,357022,83,4395,1957-03-25,Berlin
+Greece,GR,131957,10.4,190,1981-01-01,Athens
+Hungary,HU,93028,9.6,160,2004-05-01,Budapest
+Ireland,IE,70273,4.9,385,1973-01-01,Dublin
+Italy,IT,301340,60.4,1806,1957-03-25,Rome
+Latvia,LV,64589,1.9,33,2004-05-01,Riga
+Lithuania,LT,65300,2.8,53,2004-05-01,Vilnius
+Luxembourg,LU,2586,0.6,63,1957-03-25,Luxembourg City
+Malta,MT,316,0.5,13,2004-05-01,Valletta
+Netherlands,NL,41543,17.5,913,1957-03-25,Amsterdam
+Poland,PL,312696,38,586,2004-05-01,Warsaw
+Portugal,PT,92212,10.3,204,1986-01-01,Lisbon
+Romania,RO,238397,19.0,244,2007-01-01,Bucharest
+Slovakia,SK,49035,5.4,97,2004-05-01,Bratislava
+Slovenia,SI,20273,2.1,52,2004-05-01,Ljubljana
+Spain,ES,505992,47,1392,1986-01-01,Madrid
+Sweden,SE,450295,10.4,540,1995-01-01,Stockholm

@@ -47,14 +47,28 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   gg
 }
 
+# gg <-
+#   study %>%
+#   tidyplot(treatment, score, color = group) %>%
+#   add_median_dash() %>%
+#   add_points()
+
 #' Render plot
 #' @param gg bla
+#' @param data bla
+#' @param title bla
 #' @param ... bla
 #' @export
-render_plot <- function(gg, ...) {
+render_plot <- function(gg, data = all_rows(), title = ggplot2::waiver(), ...) {
+  input <- gg
+  if (inherits(data, "function")) gg <- gg %+% (gg$data %>% data()) + ggplot2::ggtitle(title)
+  if (inherits(data, "data.frame")) gg <- gg %+% data + ggplot2::ggtitle(title)
   print(gg, ...)
-  return(gg)
+  return(input)
 }
+
+# gg %>% render_plot(data = filter_rows(sex == "female"), title = "bla")
+# gg %>% render_plot(data = study %>% dplyr::slice_sample(n = 4), title = "bla")
 
 multipage_plots <- function(gg,
                             ncol = NULL,

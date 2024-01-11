@@ -71,7 +71,8 @@ adjust_x_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   }
   if (is_continuous(gg, "x")) {
     if (is_waiver(labels) && cut_short_scale)
-      labels <- scales::label_number(scale_cut = scales::cut_short_scale())
+      # labels <- scales::label_number(scale_cut = scales::cut_short_scale())
+      labels = ggplot2::waiver()
     cli::cli_alert_success("adjust_x_axis: {.pkg continuous}")
     suppressMessages(
       if (is_continuous(gg, "y"))
@@ -142,7 +143,8 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   }
   if (is_continuous(gg, "y") || force_y_continuous) {
     if (is_waiver(labels) && cut_short_scale)
-      labels <- scales::label_number(scale_cut = scales::cut_short_scale())
+      # labels <- scales::label_number(scale_cut = scales::cut_short_scale())
+      labels = ggplot2::waiver()
     cli::cli_alert_success("adjust_y_axis: {.pkg continuous}")
     suppressMessages(
       if (is_continuous(gg, "x"))
@@ -168,6 +170,9 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   return(gg)
 }
 
+# spendings %>%
+#   tidyplot(y = amount, color = category) %>%
+#   add_barstack_absolute()
 
 #' Adjust labels
 #' @param gg bla

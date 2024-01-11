@@ -1,0 +1,32 @@
+dinosaur	size	weight	speed	habitat	family	color	number_of_legs	body_temperature	diet	time_lived
+Tyrannosaurus rex	12192	4082	32.19	Terrestrial	Tyrannosauridae	Brown/Green	2	Warm-blooded	Carnivore	Late Cretaceous
+Triceratops	9144	5443	24.14	Terrestrial	Ceratopsidae	Brown/Grey	4	Warm-blooded	Herbivore	Late Cretaceous
+Velociraptor	182.88	45.36	64.37	Terrestrial	Dromaeosauridae	Brown	2	Warm-blooded	Carnivore	Late Cretaceous
+Stegosaurus	9144	4989	8.05	Terrestrial	Stegosauridae	Brown/Grey	4	Warm-blooded	Herbivore	Late Jurassic
+Ankylosaurus	6096	1814.37	8.05	Terrestrial	Ankylosauridae	Grey/Brown	4	Warm-blooded	Herbivore	Late Cretaceous
+Pteranodon	4876.8	22.68	64.37	Aerial	Pteranodontidae	Various	2	Warm-blooded	Piscivore	Late Cretaceous
+Parasaurolophus	9144	2267.96	40.23	Terrestrial	Hadrosauridae	Brown/Green	2	Warm-blooded	Herbivore	Late Cretaceous
+Allosaurus	8534.4	2267.96	40.23	Terrestrial	Allosauridae	Brown	2	Warm-blooded	Carnivore	Late Jurassic
+Diplodocus	26772	9071.85	16.09	Terrestrial	Diplodocidae	Grey	4	Warm-blooded	Herbivore	Late Jurassic
+Iguanodon	10058.4	1814.37	32.19	Terrestrial	Iguanodontidae	Grey/Green	4	Warm-blooded	Herbivore	Early Cretaceous
+Archaeopteryx	45.72	0.453592	16.09	Aerial	Avialae	Brown	2	Warm-blooded	Omnivore	Late Jurassic
+Microraptor	99.06	2.994	48.28	Aerial	Dromaeosauridae	Black	2	Warm-blooded	Carnivore	Late Cretaceous
+Compsognathus	99.06	2.994	40.23	Terrestrial	Compsognathidae	Brown	2	Warm-blooded	Carnivore	Late Jurassic
+Gallimimus	4876.8	226.796	67.59	Terrestrial	Ornithomimidae	Brown/White	2	Warm-blooded	Omnivore	Late Cretaceous
+Apatosaurus	22860	18143.7	8.05	Terrestrial	Sauropod	Grey	4	Warm-blooded	Herbivore	Late Jurassic
+Dimetrodon	3505.92	249.476	32.19	Terrestrial	Sphenacodontidae	Red/Brown	4	Cold-blooded	Carnivore	Permian
+Carnotaurus	9144	1814.37	40.23	Terrestrial	Abelisauridae	Brown/Red	2	Warm-blooded	Carnivore	Late Cretaceous
+Oviraptor	200.66	34.926	40.23	Terrestrial	Oviraptoridae	Grey/Green	2	Warm-blooded	Omnivore	Late Cretaceous
+Stegoceras	200.66	99.7903	32.19	Terrestrial	Pachycephalosaur	Brown	2	Warm-blooded	Herbivore	Late Cretaceous
+Corythosaurus	9144	1995.81	40.23	Terrestrial	Hadrosauridae	Grey/Green	2	Warm-blooded	Herbivore	Late Cretaceous
+Deinonychus	3352.8	72.5748	48.28	Terrestrial	Dromaeosauridae	Brown	2	Warm-blooded	Carnivore	Early Cretaceous
+Maiasaura	9144	1814.37	24.14	Terrestrial	Hadrosauridae	Brown/Grey	4	Warm-blooded	Herbivore	Late Cretaceous
+Dilophosaurus	7010.4	498.952	32.19	Terrestrial	Dilophosauridae	Green	2	Warm-blooded	Carnivore	Late Jurassic
+Coelophysis	4267.2	27.2155	40.23	Terrestrial	Coelophysidae	Brown	2	Warm-blooded	Carnivore	Late Triassic
+Plateosaurus	6096	1814.37	24.14	Terrestrial	Plateosauridae	Grey	4	Warm-blooded	Herbivore	Late Triassic
+Brontosaurus	21588	36287.4	5.63	Terrestrial	Sauropod	Grey	4	Warm-blooded	Herbivore	Late Jurassic
+Brachiosaurus	25908	39916	24.14	Terrestrial	Sauropod	Grey	4	Warm-blooded	Herbivore	Late Jurassic
+Omnivoreasaurus	10000	10000	20	Terrestrial	Omnivoridae	Mixed	4	Warm-blooded	Omnivore	Paleozoic
+Dunkleosteus	480	1000	35	Aquatic	Placodermi	Grey	4	Cold-blooded	Carnivore	Devonian
+Protoceratops	190.5	272	25	Terrestrial	Protoceratopsidae	Grey/Brown	4	Warm-blooded	Herbivore	Late Cretaceous
+Plesiosaurus	4267.2	227.307	13	Aquatic	Plesiosauridae	Blue	4	Cold-blooded	Carnivore	Jurassic

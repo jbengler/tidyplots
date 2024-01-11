@@ -65,12 +65,6 @@ animals %>%
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_error() %>%
-  add_jitter()
-
-study %>%
-  tidyplot(treatment, score, color = treatment) %>%
   add_range() %>% 
   add_points()
 
@@ -184,7 +178,7 @@ p3 %>%
   adjust_x_axis(limits = c(0, 1000))
 
 energy_week %>%
-  tidyplot(Date, power_in_mw, color = energy_type) %>%
+  tidyplot(date, power, color = energy_type) %>%
   add_mean_line() %>%
   adjust_y_axis(limits = c(1000, 5000)) %>% 
   remove_padding()
@@ -536,18 +530,10 @@ spendings %>%
   add_barstack_absolute()
 
 spendings %>% 
-  tidyplot(y = amount, color = category) %>% 
-  add_barstack_relative()
-
-spendings %>% 
   tidyplot(x = category, y = amount, color = category) %>% 
   add_sum_bar() %>% 
   add_sum_value(accuracy = 1) %>% 
   adjust_x_axis(rotate_labels = TRUE)
-
-spendings %>% 
-  tidyplot(x = date, y = amount, color = category) %>% 
-  add_sum_bar(preserve = "single")
 
 spendings %>% 
   tidyplot(x = date, y = amount, color = category) %>% 

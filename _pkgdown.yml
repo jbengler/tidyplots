@@ -93,11 +93,12 @@ reference:
   - starts_with("color_palettes")
 - title: Data
 - contents:
-  - starts_with("energy")
   - starts_with("animals")
-  - starts_with("spendings")
+  - starts_with("dinosaurs")
   - starts_with("distributions")
+  - starts_with("energy")
+  - starts_with("eu_countries")
+  - starts_with("gene")
+  - starts_with("spendings")
   - starts_with("study")
-  - gene_expression
-  - gene_statistics
-  - time_course
+  - starts_with("time")
