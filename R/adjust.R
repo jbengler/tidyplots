@@ -71,8 +71,7 @@ adjust_x_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   }
   if (is_continuous(gg, "x")) {
     if (is_waiver(labels) && cut_short_scale)
-      # labels <- scales::label_number(scale_cut = scales::cut_short_scale())
-      labels = ggplot2::waiver()
+      labels <- scales::label_number(scale_cut = scales::cut_short_scale())
     cli::cli_alert_success("adjust_x_axis: {.pkg continuous}")
     suppressMessages(
       if (is_continuous(gg, "y"))
@@ -102,7 +101,7 @@ adjust_x_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
 adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waiver(),
                           labels = ggplot2::waiver(), limits = NULL, padding_bottom = NULL,
                           padding_top = NULL, transformation = "identity", position = "left",
-                          cut_short_scale = TRUE, force_y_continuous = FALSE, ...) {
+                          cut_short_scale = FALSE, force_y_continuous = FALSE, ...) {
 
   # parse title
   if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
@@ -143,8 +142,7 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   }
   if (is_continuous(gg, "y") || force_y_continuous) {
     if (is_waiver(labels) && cut_short_scale)
-      # labels <- scales::label_number(scale_cut = scales::cut_short_scale())
-      labels = ggplot2::waiver()
+      labels <- scales::label_number(scale_cut = scales::cut_short_scale())
     cli::cli_alert_success("adjust_y_axis: {.pkg continuous}")
     suppressMessages(
       if (is_continuous(gg, "x"))

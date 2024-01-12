@@ -1,14 +1,10 @@
 
-# with fixed scales 1.3.1: re-activate cut_short_scale()
+# When bug in cut_short_scale() is fixed (expected in scales 1.3.1), change default: adjust_y_axis(cut_short_scale = TRUE)
 
 # work on check_pipeline()
 # enforce "sequence of funs", with warnings and errors
 
-# what happens when tidyplot functinos are applied to a ggplot that is was generated with tidyplot()
-
-# data set "dinosaurs"
-
-# data set "EU or world countiries"
+# what happens when tidyplot functions are applied to a ggplot that is was NOT generated with tidyplot()
 
 # make color schemes accessible
 
