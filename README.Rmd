@@ -35,21 +35,9 @@ pak::pak("jbengler/tidyplots")
 
 ## Usage
 
-This is a basic example which shows you how to create a simple plot.
+Here are some examples of what you can do with 3--5 lines of code.
 
-```{r, eval=FALSE}
-library(tidyplots)
-
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_error() %>% 
-  add_jitter() %>% 
-  save_plot("my_plot.pdf")
-
-```
-
-```{r, echo=FALSE}
+```{r}
 library(tidyplots)
 
 study %>% 
@@ -57,6 +45,55 @@ study %>%
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_jitter()
+
+```
+
+```{r}
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute()
+
+```
+
+```{r}
+energy %>% 
+  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
+  tidyplot(y = power, color = energy_source) %>% 
+  add_donut() %>% 
+  split_plot(by = year)
+
+```
+
+```{r}
+energy_week %>% 
+  tidyplot(date, power, color = energy_source) %>% 
+  add_areastack_absolute()
+
+```
+
+```{r}
+study %>% 
+  tidyplot(x = group, y = score, color = dose) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
+  add_mean_dash() %>% 
+  add_mean_value()
+
+```
+
+```{r}
+time_course %>%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+  add_mean_line() %>%
+  add_mean_dot() %>%
+  add_error_ribbon()
+
+```
+
+```{r, fig.height=3}
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
+  add_box() %>% 
+  add_stats_pvalue(ref.group = 1)
 
 ```
 
