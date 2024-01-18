@@ -1,36 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# tidyplots
+# tidyplots <a href="https://jbengler.github.io/tidyplots/"><img src="man/figures/logo.svg" align="right" height="139" alt="tidyplots website" /></a>
 
 <!-- badges: start -->
-
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-## Overview
-
-tidyplots is an opinionated plotting package that makes to it
-ridiculously simple to create ready-to-use plots for scientific papers.
-It works by gradually adding and adjusting plot components and provides
-full control over composition, style, and absolute sizes. tidyplots is
-powered by the pipe `%>%` and provides a clean and minimalist interface
-for commonly used scientific plotting routines.
+tidyplots streamlines the creation of publication-ready plots for
+scientific papers, making it incredibly easy to incorporate and refine
+plot elements. It allows precise control over composition, style, and
+absolute sizes, while its utilization of the pipe `%>%` simplifies the
+construction of powerful plotting pipelines.
 
 ## Installation
 
-You can install the development version of `tidyplots` from
-[GitHub](https://github.com/) with:
-
 ``` r
-# install.packages("devtools")
-devtools::install_github("jbengler/tidyplots")
+# install.packages("pak")
+pak::pak("jbengler/tidyplots")
 ```
 
-## Example
+## Usage
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to create a simple plot.
 
 ``` r
 library(tidyplots)
@@ -39,11 +30,12 @@ study %>%
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
-  add_jitter()
+  add_jitter() %>% 
+  save_plot("my_plot.pdf")
 ```
 
-<img src="man/figures/README-example-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
-## Learn more
+## Documentation
 
 <https://jbengler.github.io/tidyplots/>

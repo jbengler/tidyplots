@@ -30,7 +30,7 @@ adjust_y_axis(
   padding_top = NULL,
   transformation = "identity",
   position = "left",
-  cut_short_scale = TRUE,
+  cut_short_scale = FALSE,
   force_y_continuous = FALSE,
   ...
 )
