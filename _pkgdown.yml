@@ -2,6 +2,10 @@ url: https://jbengler.github.io/tidyplots/
 template:
   bootstrap: 5
 
+authors:
+  Jan Broder Engler:
+    href: https://github.com/jbengler
+
 reference:
 - title:
   desc: >

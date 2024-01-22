@@ -21,7 +21,9 @@ pak::pak("jbengler/tidyplots")
 
 ## Usage
 
-Here are some examples of what you can do with 3–5 lines of code.
+Here are some examples of what you can do with just a few key strokes.
+The full documentation can be found
+[here](https://jbengler.github.io/tidyplots/).
 
 ``` r
 library(tidyplots)
@@ -62,6 +64,14 @@ energy_week %>%
 <img src="man/figures/README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 ``` r
+energy_week %>% 
+  tidyplot(date, power, color = energy_source) %>% 
+  add_areastack_relative()
+```
+
+<img src="man/figures/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+
+``` r
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
   add_mean_bar(alpha = 0.3) %>% 
@@ -69,7 +79,7 @@ study %>%
   add_mean_value()
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
 ``` r
 time_course %>%
@@ -79,7 +89,7 @@ time_course %>%
   add_error_ribbon()
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 ``` r
 study %>% 
@@ -88,8 +98,25 @@ study %>%
   add_stats_pvalue(ref.group = 1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
 
-## Documentation
+``` r
+gene_expression %>% 
+  dplyr::filter(external_gene_name %in% c("Apol6", "Col5a3", "Vgf", "Bsn")) %>% 
+  tidyplot(x = condition, y = expression, color = sample_type) %>% 
+  add_mean_dash() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  add_stats_pvalue(include_info = FALSE) %>% 
+  adjust_x_axis(title = "") %>% 
+  split_plot(by = external_gene_name)
+```
 
-<https://jbengler.github.io/tidyplots/>
+<img src="man/figures/README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+
+## Acknowledgements
+
+tidyplots relies on a number of fantastic packages that do all the heavy
+lifting behind the scenes. These include cli, dplyr, forcats, ggplot2,
+ggpubr, ggrastr, ggrepel, glue, Hmisc, patchwork, purrr, ragg, rlang,
+scales, stringr, svglite and tidyr.
