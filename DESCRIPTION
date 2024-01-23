@@ -8,7 +8,7 @@ Description: The goal of `tidyplots` is make to it ridiculously simple to create
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Imports: 
     cli,
     dplyr,
