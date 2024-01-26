@@ -53,22 +53,22 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 #   add_median_dash() %>%
 #   add_points()
 
-#' Render plot
+#' Show plot
 #' @param gg bla
 #' @param data bla
 #' @param title bla
 #' @param ... bla
 #' @export
-render_plot <- function(gg, data = all_rows(), title = ggplot2::waiver(), ...) {
+show_plot <- function(gg, data = all_rows(), title = ggplot2::waiver(), ...) {
   input <- gg
   if (inherits(data, "function")) gg <- gg %+% (gg$data %>% data()) + ggplot2::ggtitle(title)
   if (inherits(data, "data.frame")) gg <- gg %+% data + ggplot2::ggtitle(title)
   print(gg, ...)
-  return(input)
+  invisible(input)
 }
 
-# gg %>% render_plot(data = filter_rows(sex == "female"), title = "bla")
-# gg %>% render_plot(data = study %>% dplyr::slice_sample(n = 4), title = "bla")
+# gg %>% show_plot(data = filter_rows(sex == "female"), title = "bla")
+# gg %>% show_plot(data = study %>% dplyr::slice_sample(n = 4), title = "bla")
 
 multipage_plots <- function(gg,
                             ncol = NULL,
@@ -165,15 +165,13 @@ split_plot <- function(gg,
 #' try to infer the dimensions from the incoming `ggplot` object. If the incoming `ggplot` object has no absolute
 #' dimensions, system default device dimensions are used.
 #' @param units Unit dimensions. Defaults to "mm".
-#' @param return_input Return the input ggplot or plotlist is after saving.
-#' This enables the use within `dplyr` pipes.
 #' @param multiple_files Save pages as individal files.
 #' @inheritParams ggplot2::ggsave
 #'
 #' @export
 save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, scale = 1,
                            width = NA, height = NA, units = c("mm", "cm", "in"), dpi = 300, limitsize = TRUE,
-                           return_input = TRUE, multiple_files = FALSE, bg = "transparent", ...) {
+                           multiple_files = FALSE, bg = "transparent", ...) {
   if (!ggplot2::is.ggplot(gg) && !all(purrr::map_lgl(gg, ggplot2::is.ggplot)))
     stop("argument 'gg' should be ggplot or list off ggplots")
 
@@ -216,7 +214,6 @@ save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, sc
            ggplot2::ggsave(plot = x, filename = y, device = device, path = path, scale = scale,
                            width = width, height = height, units = units, dpi = dpi, limitsize = limitsize, ...)
          })
-    if(return_input) return(input)
 
   } else {
 
@@ -246,9 +243,6 @@ save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, sc
       if (old_dev > 1) grDevices::dev.set(old_dev) # restore old device unless null device
     }))
     purrr::map(gg, ~grid::grid.draw(.x))
-
-    invisible(filename)
-
-    if (return_input) return(input)
   }
+  invisible(input)
 }

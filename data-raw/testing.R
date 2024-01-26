@@ -267,8 +267,8 @@ gene_expression %>%
   tidyplot(x = sample, y = external_gene_name, color = row_zscore) %>%
   add_heatmap() %>%
   adjust_x_axis(rotate_labels = 90) %>%
-  adjust_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
-  adjust_labels(direction, sort_by = dplyr::desc(direction)) %>%
+  adjust_variable(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  adjust_variable(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red"), as_palette = TRUE) %>%
   adjust_size(height = 90)
 
@@ -279,8 +279,8 @@ h1 <-
   tidyplot(x = replicate, y = external_gene_name, color = row_zscore) %>%
   add_heatmap() %>%
   adjust_x_axis(rotate_labels = 90) %>%
-  adjust_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
-  adjust_labels(direction, sort_by = dplyr::desc(direction)) %>%
+  adjust_variable(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  adjust_variable(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red"), as_palette = TRUE) %>%
   adjust_size(height = 90)
 

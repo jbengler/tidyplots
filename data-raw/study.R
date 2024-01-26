@@ -43,6 +43,6 @@ study %>%
   add_error() %>%
   add_points() %>%
   add_line(group = participant, dodge_width = 0) %>%
-  adjust_labels(treatment, sort_by = dose)
+  adjust_variable(treatment, sort_by = dose)
 
 usethis::use_data(study, overwrite = TRUE)

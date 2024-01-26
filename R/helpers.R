@@ -91,7 +91,7 @@ check_pipeline <- function(gg) {
   # add, adjust, theme, remove, split, render, save
   # add before adjust -> warn
   # adjust_levels before adjust_colors -> warn
-  # nothing after split_plot, except save_plot and render_plot -> error
+  # nothing after split_plot, except save_plot and show_plot -> error
 
   # unexpected behavior: adjust_levels(new_names) + adjust_colors(new_colors = named_vector)
 }

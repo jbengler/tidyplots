@@ -15,7 +15,6 @@ save_plot(
   units = c("mm", "cm", "in"),
   dpi = 300,
   limitsize = TRUE,
-  return_input = TRUE,
   multiple_files = FALSE,
   bg = "transparent",
   ...
@@ -48,9 +47,6 @@ dimensions, system default device dimensions are used.}
 \item{limitsize}{When \code{TRUE} (the default), \code{ggsave()} will not
 save images larger than 50x50 inches, to prevent the common error of
 specifying dimensions in pixels.}
-
-\item{return_input}{Return the input ggplot or plotlist is after saving.
-This enables the use within \code{dplyr} pipes.}
 
 \item{multiple_files}{Save pages as individal files.}
 

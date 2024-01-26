@@ -1,11 +1,6 @@
 
-# adjust_annotation() -> adjust_labels()
-# adjust_labels() -> adjust_variable()
-
-# save_plot(show_plot = TRUE)
-# render_plot() -> show_plot()
-# show_plot and save_plot return invisible
 # add_points, add_points_jitter (x or y), add_points_beaswarm
+
 # eliminate EAE (make it disease) or animal experiments all together
 
 # work on check_pipeline()
@@ -26,7 +21,7 @@
 
 # allow options, e.g. with something like tp_options <- list()
 
-# rename adjust_labels() to adjust_variable() ? Not sure.
+# rename adjust_variable() to adjust_variable() ? Not sure.
 
 # add easteregg: add_funkyness()
 

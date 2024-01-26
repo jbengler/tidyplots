@@ -4,20 +4,30 @@
 \alias{adjust_labels}
 \title{Adjust labels}
 \usage{
-adjust_labels(gg, var, new_names, new_order, sort_by, reverse = FALSE)
+adjust_labels(
+  gg,
+  title = ggplot2::waiver(),
+  x_axis_title = ggplot2::waiver(),
+  y_axis_title = ggplot2::waiver(),
+  legend_title = ggplot2::waiver(),
+  caption = ggplot2::waiver(),
+  ...
+)
 }
 \arguments{
 \item{gg}{bla}
 
-\item{var}{bla}
+\item{title}{bla}
 
-\item{new_names}{bla}
+\item{x_axis_title}{bla}
 
-\item{new_order}{bla}
+\item{y_axis_title}{bla}
 
-\item{sort_by}{bla}
+\item{legend_title}{bla}
 
-\item{reverse}{bla}
+\item{caption}{bla}
+
+\item{...}{bla}
 }
 \description{
 Adjust labels

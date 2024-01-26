@@ -125,9 +125,9 @@ gene_expression %>%
   add_jitter() %>% 
   add_stats_pvalue(include_info = FALSE) %>% 
   remove_x_axis_title() %>% 
-  render_plot(data = filter_rows(external_gene_name == "Apol6"), title = "Apol6") %>% 
-  render_plot(data = filter_rows(external_gene_name == "Bsn"), title = "Bsn") %>% 
-  render_plot(data = filter_rows(external_gene_name == "Vgf"), title = "Vgf") %>% 
+  show_plot(data = filter_rows(external_gene_name == "Apol6"), title = "Apol6") %>% 
+  show_plot(data = filter_rows(external_gene_name == "Bsn"), title = "Bsn") %>% 
+  show_plot(data = filter_rows(external_gene_name == "Vgf"), title = "Vgf") %>% 
   pipe_end()
 ```
 

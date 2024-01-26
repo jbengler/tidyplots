@@ -67,14 +67,14 @@ reference:
   desc: Adjust plot component and properties.
 - contents:
   - starts_with("adjust_x_axis")
-  - starts_with("adjust_labels")
+  - starts_with("adjust_variable")
   - starts_with("adjust_colors")
   - starts_with("adjust_size")
   - starts_with("adjust_fontsize")
   - starts_with("adjust_legend")
   - starts_with("adjust_padding")
   - starts_with("adjust_flip")
-  - starts_with("adjust_annotation")
+  - starts_with("adjust_labels")
 - title: Themes
   desc: Choose and modify a theme.
 - contents:
@@ -87,7 +87,7 @@ reference:
 - title: Output
   desc: Output the final plot or intermediate stages to the screen or to a file.
 - contents:
-  - render_plot
+  - show_plot
   - save_plot
 - title: Helpers
 - contents:

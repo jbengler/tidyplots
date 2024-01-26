@@ -13,7 +13,7 @@
 #   tidyplot(family, size, color = family) %>%
 #   add_mean_bar(alpha = 0.3) %>%
 #   add_error() %>%
-#   adjust_labels(family, sort_by = size)
+#   adjust_variable(family, sort_by = size)
 #
 # # default random jitter
 # p + ggplot2::geom_point(size = 1)

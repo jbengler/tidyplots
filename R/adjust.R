@@ -172,7 +172,7 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
 #   tidyplot(y = amount, color = category) %>%
 #   add_barstack_absolute()
 
-#' Adjust labels
+#' Adjust variable
 #' @param gg bla
 #' @param var bla
 #' @param new_names bla
@@ -180,7 +180,7 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
 #' @param sort_by bla
 #' @param reverse bla
 #' @export
-adjust_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALSE) {
+adjust_variable <- function(gg, var, new_names, new_order, sort_by, reverse = FALSE) {
   out <- NULL
 
   # rename
@@ -189,7 +189,7 @@ adjust_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALS
     new_names <- setNames(names(new_names), new_names)
     out <-
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_recode({{var}}, !!!new_names))
-    cli::cli_alert_success("adjust_labels: applied {.pkg new_names}")
+    cli::cli_alert_success("adjust_variable: applied {.pkg new_names}")
     gg <- gg %+% out
     new_order <- names(new_names)
   }
@@ -199,26 +199,26 @@ adjust_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALS
     out <-
       # gg$data %>% dplyr::mutate({{var}} := factor({{var}}, levels = new_order))
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_relevel({{var}}, new_order))
-    cli::cli_alert_success("adjust_labels: reorderd by {.pkg new_order}")
+    cli::cli_alert_success("adjust_variable: reorderd by {.pkg new_order}")
     gg <- gg %+% out
   }
 
   if (!missing(sort_by) && !missing(var)) {
     out <-
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_reorder({{var}}, {{sort_by}}))
-    cli::cli_alert_success("adjust_labels: reorderd by variable {.pkg sort_by}")
+    cli::cli_alert_success("adjust_variable: reorderd by variable {.pkg sort_by}")
     return(gg %+% out)
   }
 
   if (reverse && !missing(var)) {
     out <-
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_rev({{var}}))
-    cli::cli_alert_success("adjust_labels: {.pkg reversed} order of labels")
+    cli::cli_alert_success("adjust_variable: {.pkg reversed} order of labels")
     return(gg %+% out)
   }
 
   if(is.null(out)) {
-    cli::cli_alert_warning("adjust_labels: {.pkg nothing was changed}.")
+    cli::cli_alert_warning("adjust_variable: {.pkg nothing was changed}.")
     cli::cli_alert_warning("Please provide {.pkg var} together with {.pkg new_names}, {.pkg new_order}, {.pkg sort_by} or {.pkg reverse = TRUE}.")
   }
   return(gg)
@@ -351,7 +351,7 @@ adjust_flip <- function(gg, ...) {
   gg + ggplot2::coord_flip(...)
 }
 
-#' Adjust annotation
+#' Adjust labels
 #' @param gg bla
 #' @param title bla
 #' @param x_axis_title bla
@@ -360,7 +360,7 @@ adjust_flip <- function(gg, ...) {
 #' @param caption bla
 #' @param ... bla
 #' @export
-adjust_annotation <- function(gg, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
+adjust_labels <- function(gg, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
                               y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),
                               caption = ggplot2::waiver(), ...) {
   colour <- fill <- legend_title
