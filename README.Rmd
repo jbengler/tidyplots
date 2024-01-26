@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-tidyplots streamlines the creation of publication-ready plots for scientific papers, making it incredibly easy to incorporate and refine plot elements. It allows precise control over composition, style, and absolute sizes, while its utilization of the pipe `%>%` simplifies the construction of powerful plotting pipelines.
+tidyplots streamlines the creation of publication-ready plots for scientific papers, making it incredibly easy to add and refine plot elements. It allows precise control over composition, style, and absolute sizes, while its utilization of the pipe `%>%` simplifies the construction of advanced plotting pipelines.
 
 ## Installation
 
@@ -112,11 +112,28 @@ gene_expression %>%
   add_error() %>% 
   add_jitter() %>% 
   add_stats_pvalue(include_info = FALSE) %>% 
-  adjust_x_axis(title = "") %>% 
+  remove_x_axis_title() %>% 
   split_plot(by = external_gene_name)
 
 ```
 
+```{r}
+
+pipe_end <- function(gg) { invisible(gg) }
+
+gene_expression %>% 
+  tidyplot(x = condition, y = expression, color = sample_type) %>% 
+  add_mean_dash() %>% 
+  add_error() %>% 
+  add_jitter() %>% 
+  add_stats_pvalue(include_info = FALSE) %>% 
+  remove_x_axis_title() %>% 
+  render_plot(data = filter_rows(external_gene_name == "Apol6"), title = "Apol6") %>% 
+  render_plot(data = filter_rows(external_gene_name == "Bsn"), title = "Bsn") %>% 
+  render_plot(data = filter_rows(external_gene_name == "Vgf"), title = "Vgf") %>% 
+  pipe_end()
+
+```
 
 ## Acknowledgements
 

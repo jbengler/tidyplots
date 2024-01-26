@@ -5,6 +5,9 @@
 
 # also: Does ggbeeswarm work with ggrepel?
 
+# library(tidyverse)
+# library(tidyplots)
+#
 # p <-
 #   animals %>%
 #   tidyplot(family, size, color = family) %>%

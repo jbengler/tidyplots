@@ -1,4 +1,13 @@
 
+# adjust_annotation() -> adjust_labels()
+# adjust_labels() -> adjust_variable()
+
+# save_plot(show_plot = TRUE)
+# render_plot() -> show_plot()
+# show_plot and save_plot return invisible
+# add_points, add_points_jitter (x or y), add_points_beaswarm
+# eliminate EAE (make it disease) or animal experiments all together
+
 # work on check_pipeline()
 # enforce "sequence of funs", with warnings and errors
 # tidyplot, add, adjust, split
