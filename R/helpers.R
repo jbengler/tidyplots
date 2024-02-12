@@ -81,10 +81,21 @@ format_p_value <- function(x, accuracy = 0.0001) {
 
 # internal helpers
 
-min_max <- function (x) {
+min_max <- function(x) {
   x <- stats::na.omit(x)
   data.frame(ymin = min(x), ymax = max(x))
 }
+
+mean_sdl <- function(x) {
+  dplyr::rename(data.frame(as.list(Hmisc::smean.sdl(x))),
+                y = Mean, ymin = Lower, ymax = Upper)
+}
+
+mean_cl_boot <- function(x) {
+  dplyr::rename(data.frame(as.list(Hmisc::smean.cl.boot(x))),
+                y = Mean, ymin = Lower, ymax = Upper)
+}
+
 
 check_pipeline <- function(gg) {
   pf <- parent_function()
@@ -123,8 +134,8 @@ tidyplot_parse_labels <- function() {
   }
 }
 
-parent_function <- function(){
-  deparse(sys.call(-2)) %>%
+parent_function <- function(level = 0){
+  deparse(sys.call(-2 + level)) %>%
     stringr::str_extract(pattern = "^[A-Z_a-z]*")
 }
 

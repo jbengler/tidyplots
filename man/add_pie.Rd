@@ -3,7 +3,7 @@
 \name{add_pie}
 \alias{add_pie}
 \alias{add_donut}
-\title{Add pie chart}
+\title{Add pie or donut chart}
 \usage{
 add_pie(gg, bar_width = 1, reverse = FALSE, ...)
 
@@ -19,5 +19,5 @@ add_donut(gg, bar_width = 1, reverse = FALSE, ...)
 \item{...}{bla}
 }
 \description{
-Add pie chart
+Add pie or donut chart
 }

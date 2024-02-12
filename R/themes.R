@@ -6,19 +6,19 @@
 theme_tidyplot <- function(gg, fontsize = 7) {
   gg %>%
     style_just_xy() %>%
-    adjust_fontsize(fontsize)
+    adjust_font(fontsize)
 }
 #' @rdname theme_tidyplot
 #' @export
 theme_ggplot2 <- function(gg, fontsize = 7) {
   gg <- gg + ggplot2::theme_gray()
-  gg %>% adjust_fontsize(fontsize)
+  gg %>% adjust_font(fontsize)
 }
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_xy <- function(gg, fontsize = 7) {
   gg <- gg + ggplot2::theme_minimal()
-  gg %>% adjust_fontsize(fontsize) +
+  gg %>% adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.x = ggplot2::element_line(colour = "grey", size = 0.15),
       panel.grid.major.x = ggplot2::element_line(colour = "grey", size = 0.15),
@@ -31,7 +31,7 @@ theme_minimal_xy <- function(gg, fontsize = 7) {
 #' @export
 theme_minimal_y <- function(gg, fontsize = 7) {
   gg <- gg + ggplot2::theme_minimal()
-  gg %>% adjust_fontsize(fontsize) +
+  gg %>% adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.x = ggplot2::element_line(colour = "grey", size = 0.15),
       panel.grid.major.x = ggplot2::element_blank(),
@@ -44,7 +44,7 @@ theme_minimal_y <- function(gg, fontsize = 7) {
 #' @export
 theme_minimal_x <- function(gg, fontsize = 7) {
   gg <- gg + ggplot2::theme_minimal()
-  gg %>% adjust_fontsize(fontsize) +
+  gg %>% adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.y = ggplot2::element_line(colour = "grey", size = 0.15),
       panel.grid.major.x = ggplot2::element_line(colour = "grey", size = 0.15),

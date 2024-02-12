@@ -5,7 +5,7 @@
 \alias{time_course}
 \title{Time course data}
 \format{
-A data frame with 800 rows and 9 variables.
+A data frame with.
 }
 \source{
 \code{tidyplots} package
@@ -15,5 +15,8 @@ time_course
 }
 \description{
 Time course data
+}
+\examples{
+dplyr::glimpse(time_course)
 }
 \keyword{datasets}

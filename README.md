@@ -32,7 +32,7 @@ study %>%
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
-  add_jitter()
+  add_data_points_beeswarm()
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
@@ -94,7 +94,7 @@ time_course %>%
 ``` r
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_box() %>% 
+  add_boxplot() %>% 
   add_stats_pvalue(ref.group = 1)
 ```
 
@@ -106,8 +106,8 @@ gene_expression %>%
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
   add_error() %>% 
-  add_jitter() %>% 
-  add_stats_pvalue(include_info = FALSE) %>% 
+  add_data_points_beeswarm() %>% 
+  add_stats_asterisks(include_info = FALSE) %>% 
   remove_x_axis_title() %>% 
   split_plot(by = external_gene_name)
 ```
@@ -115,20 +115,16 @@ gene_expression %>%
 <img src="man/figures/README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 ``` r
-
-pipe_end <- function(gg) { invisible(gg) }
-
-gene_expression %>% 
-  tidyplot(x = condition, y = expression, color = sample_type) %>% 
-  add_mean_dash() %>% 
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
-  add_jitter() %>% 
-  add_stats_pvalue(include_info = FALSE) %>% 
-  remove_x_axis_title() %>% 
-  show_plot(data = filter_rows(external_gene_name == "Apol6"), title = "Apol6") %>% 
-  show_plot(data = filter_rows(external_gene_name == "Bsn"), title = "Bsn") %>% 
-  show_plot(data = filter_rows(external_gene_name == "Vgf"), title = "Vgf") %>% 
-  pipe_end()
+  add_data_points_beeswarm() %>% 
+  show_plot(title = "Plot version A") %>% 
+  adjust_rotate_plot() %>% 
+  show_plot(title = "Plot version B") %>% 
+  adjust_font(family = "mono", fontsize = 10, face = "bold") %>% 
+  show_plot(title = "Plot version C")
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-2.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-3.png" style="display: block; margin: auto;" />

@@ -5,7 +5,7 @@
 \alias{gene_statistics}
 \title{RNA-Seq differential expression data}
 \format{
-A data frame with 800 rows and 9 variables.
+A data frame.
 }
 \source{
 \code{tidyplots} package
@@ -15,5 +15,8 @@ gene_statistics
 }
 \description{
 RNA-Seq differential expression data
+}
+\examples{
+dplyr::glimpse(gene_statistics)
 }
 \keyword{datasets}

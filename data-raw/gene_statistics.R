@@ -15,16 +15,16 @@ usethis::use_data(gene_statistics, overwrite = TRUE)
 
 gene_statistics %>%
   tidyplot(log2_foldchange, neg_log10_padj) %>%
-  add_points(data = filter_rows(!is_cand), color = "grey80") %>%
-  add_points(data = filter_rows(is_cand & direction == "up"), color = "red", alpha = 0.2) %>%
-  add_points(data = filter_rows(is_cand & direction == "down"), color = "blue",  alpha = 0.2) %>%
+  add_data_points(data = filter_rows(!is_cand), color = "grey80") %>%
+  add_data_points(data = filter_rows(is_cand & direction == "up"), color = "red", alpha = 0.2) %>%
+  add_data_points(data = filter_rows(is_cand & direction == "down"), color = "blue",  alpha = 0.2) %>%
   add_reference_lines(x = c(1, -1), y = -log10(0.05)) %>%
-  add_text(data = function(x) x %>%
+  add_text_labels(data = function(x) x %>%
              dplyr::filter(is_cand) %>%
              slice_max(neg_log10_padj, n = 5, by = direction),
            var = external_gene_name, color = "black", box.padding = 0.3, max.overlaps = Inf, min.segment.length = 0)
 
 gene_statistics %>%
   tidyplot(log2_foldchange, neg_log10_padj, color = stat) %>%
-  add_points()
+  add_data_points()
 

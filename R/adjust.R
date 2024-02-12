@@ -168,11 +168,8 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
   return(gg)
 }
 
-# spendings %>%
-#   tidyplot(y = amount, color = category) %>%
-#   add_barstack_absolute()
 
-#' Adjust variable
+#' Adjust data labels
 #' @param gg bla
 #' @param var bla
 #' @param new_names bla
@@ -180,7 +177,7 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
 #' @param sort_by bla
 #' @param reverse bla
 #' @export
-adjust_variable <- function(gg, var, new_names, new_order, sort_by, reverse = FALSE) {
+adjust_data_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALSE) {
   out <- NULL
 
   # rename
@@ -189,7 +186,7 @@ adjust_variable <- function(gg, var, new_names, new_order, sort_by, reverse = FA
     new_names <- setNames(names(new_names), new_names)
     out <-
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_recode({{var}}, !!!new_names))
-    cli::cli_alert_success("adjust_variable: applied {.pkg new_names}")
+    cli::cli_alert_success("adjust_data_labels: applied {.pkg new_names}")
     gg <- gg %+% out
     new_order <- names(new_names)
   }
@@ -199,26 +196,26 @@ adjust_variable <- function(gg, var, new_names, new_order, sort_by, reverse = FA
     out <-
       # gg$data %>% dplyr::mutate({{var}} := factor({{var}}, levels = new_order))
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_relevel({{var}}, new_order))
-    cli::cli_alert_success("adjust_variable: reorderd by {.pkg new_order}")
+    cli::cli_alert_success("adjust_data_labels: reorderd by {.pkg new_order}")
     gg <- gg %+% out
   }
 
   if (!missing(sort_by) && !missing(var)) {
     out <-
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_reorder({{var}}, {{sort_by}}))
-    cli::cli_alert_success("adjust_variable: reorderd by variable {.pkg sort_by}")
+    cli::cli_alert_success("adjust_data_labels: reorderd by variable {.pkg sort_by}")
     return(gg %+% out)
   }
 
   if (reverse && !missing(var)) {
     out <-
       gg$data %>% dplyr::mutate({{var}} := forcats::fct_rev({{var}}))
-    cli::cli_alert_success("adjust_variable: {.pkg reversed} order of labels")
+    cli::cli_alert_success("adjust_data_labels: {.pkg reversed} order of labels")
     return(gg %+% out)
   }
 
   if(is.null(out)) {
-    cli::cli_alert_warning("adjust_variable: {.pkg nothing was changed}.")
+    cli::cli_alert_warning("adjust_data_labels: {.pkg nothing was changed}.")
     cli::cli_alert_warning("Please provide {.pkg var} together with {.pkg new_names}, {.pkg new_order}, {.pkg sort_by} or {.pkg reverse = TRUE}.")
   }
   return(gg)
@@ -289,32 +286,35 @@ adjust_colors <- function(gg, new_colors, saturation = 1, as_palette = FALSE,
 #' @param height bla
 #' @param unit bla
 #' @export
-adjust_size <- function(gg, width = 50, height = 50, unit = "mm") {
-  cli::cli_alert_success("adjust_size: {.pkg width} = {width} {unit}, {.pkg height} = {height} {unit}")
+adjust_plot_size <- function(gg, width = 50, height = 50, unit = "mm") {
+  cli::cli_alert_success("adjust_plot_size: {.pkg width} = {width} {unit}, {.pkg height} = {height} {unit}")
   if (!is.na(width)) width <- ggplot2::unit(width, unit)
   if (!is.na(height)) height <- ggplot2::unit(height, unit)
   gg + patchwork::plot_layout(widths = width, heights = height)
 }
 
 
-#' Adjust fontsize
+#' Adjust font
 #' @param gg bla
 #' @param fontsize bla
+#' @param color bla
+#' @inheritParams ggplot2::element_text
 #' @export
-adjust_fontsize <- function(gg, fontsize = 7) {
+adjust_font <- function(gg, fontsize = 7, family = NULL, face = NULL, color = "black") {
   gg +
     ggplot2::theme(
-      plot.title = ggplot2::element_text(size = fontsize, colour = "black", hjust = 0.5, vjust = 0.5),
-      plot.subtitle = ggplot2::element_text(size = fontsize, colour = "black", hjust = 0.5, vjust = 0.5),
-      text = ggplot2::element_text(size = fontsize, colour = "black"),
-      axis.text = ggplot2::element_text(size = fontsize, colour = "black"),
-      axis.title = ggplot2::element_text(size = fontsize, colour = "black"),
-      legend.title = ggplot2::element_text(size = fontsize, colour = "black"),
-      legend.text = ggplot2::element_text(size = fontsize, colour = "black"),
-      strip.text = ggplot2::element_text(size = fontsize, colour = "black"),
+      plot.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, hjust = 0.5, vjust = 0.5),
+      plot.subtitle = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, hjust = 0.5, vjust = 0.5),
+      text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
+      axis.text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
+      axis.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
+      legend.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
+      legend.text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
+      strip.text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
       legend.key.size = ggplot2::unit(4, "mm")
     )
 }
+
 
 #' Adjust legend
 #' @param gg bla
@@ -328,6 +328,7 @@ adjust_legend <- function(gg, title = ggplot2::waiver(), position = "right") {
     ggplot2::labs(colour = title, fill = title) +
     ggplot2::theme(legend.position = position)
 }
+
 
 #' Adjust padding
 #' @param gg bla
@@ -343,15 +344,16 @@ adjust_padding <- function(gg, top = NULL, right = NULL, bottom = NULL, left = N
     adjust_y_axis(padding_bottom = bottom, padding_top = top, force_y_continuous = force_y_continuous)
 }
 
-#' Flip plot
+
+#' Rotate plot by 90 degrees
 #' @param gg bla
 #' @param ... bla
 #' @export
-adjust_flip <- function(gg, ...) {
+adjust_rotate_plot <- function(gg, ...) {
   gg + ggplot2::coord_flip(...)
 }
 
-#' Adjust labels
+#' Adjust description
 #' @param gg bla
 #' @param title bla
 #' @param x_axis_title bla
@@ -360,7 +362,7 @@ adjust_flip <- function(gg, ...) {
 #' @param caption bla
 #' @param ... bla
 #' @export
-adjust_labels <- function(gg, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
+adjust_description <- function(gg, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
                               y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),
                               caption = ggplot2::waiver(), ...) {
   colour <- fill <- legend_title

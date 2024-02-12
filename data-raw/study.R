@@ -15,34 +15,34 @@ study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_jitter()
+  add_data_points_beeswarm()
 
 study %>%
   tidyplot(treatment, score) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_points() %>%
+  add_data_points() %>%
   add_line()
 
 study %>%
   tidyplot(treatment, score) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_points() %>%
+  add_data_points() %>%
   add_line(group = participant, dodge_width = 0)
 
 study %>%
   tidyplot(dose, score, color = group) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_jitter()
+  add_data_points_beeswarm()
 
 study %>%
   tidyplot(treatment, score, color = group) %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
-  add_points() %>%
+  add_data_points() %>%
   add_line(group = participant, dodge_width = 0) %>%
-  adjust_variable(treatment, sort_by = dose)
+  adjust_data_labels(treatment, sort_by = dose)
 
 usethis::use_data(study, overwrite = TRUE)

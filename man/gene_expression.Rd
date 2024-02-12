@@ -5,7 +5,7 @@
 \alias{gene_expression}
 \title{RNA-Seq expression data}
 \format{
-A data frame with 800 rows and 9 variables.
+A data frame.
 }
 \source{
 \itemize{
@@ -18,5 +18,8 @@ gene_expression
 }
 \description{
 RNA-Seq expression data
+}
+\examples{
+dplyr::glimpse(gene_expression)
 }
 \keyword{datasets}

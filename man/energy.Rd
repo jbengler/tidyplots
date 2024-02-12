@@ -5,7 +5,7 @@
 \alias{energy}
 \title{Energy data}
 \format{
-A data frame with 242 rows and 4 variables.
+A data frame.
 }
 \source{
 \href{https://www.energy-charts.info}{Energy-Charts}
@@ -15,5 +15,8 @@ energy
 }
 \description{
 Energy data
+}
+\examples{
+dplyr::glimpse(energy)
 }
 \keyword{datasets}

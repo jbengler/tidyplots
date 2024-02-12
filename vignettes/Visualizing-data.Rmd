@@ -56,12 +56,12 @@ energy %>%
 
 energy %>% 
   tidyplot(x = energy_type, y = power, color = energy_type) %>% 
-  add_jitter(jitter_width = 0.8, alpha = 0.3)
+  add_data_points_beeswarm(jitter_width = 0.8, alpha = 0.3)
 
 energy %>% 
   tidyplot(x = energy_type, y = power, color = energy_type) %>% 
   add_violin() %>% 
-  add_jitter(jitter_width = 0.8, alpha = 0.3)
+  add_data_points_beeswarm(jitter_width = 0.8, alpha = 0.3)
 
 ```
 
@@ -284,13 +284,13 @@ study %>%
   tidyplot(x = treatment, y = score) %>% 
   add_ci95_ribbon() %>% 
   add_mean_line() %>% 
-  add_jitter()
+  add_data_points_beeswarm()
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
   add_ci95_ribbon() %>% 
   add_mean_line() %>% 
-  add_jitter() %>% 
+  add_data_points_beeswarm() %>% 
   adjust_colors("orange")
 
 ```
@@ -311,7 +311,7 @@ energy_week %>%
 
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
-  add_points()
+  add_data_points()
 
 ```
 

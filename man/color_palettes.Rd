@@ -16,4 +16,7 @@ color_palettes
 \description{
 Color palettes
 }
+\examples{
+color_palettes
+}
 \keyword{datasets}

@@ -35,13 +35,13 @@ study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add(geom_col(alpha = 0.4, color = NA, width = 0.6)) %>%
   add_error() %>%
-  add_points("confetti", jitter_width = 0.2)
+  add_data_points("confetti", jitter_width = 0.2)
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add_mean_bar(alpha = 0.2) %>%
   add_error() %>%
-  add_points("confetti", jitter_width = 0.2)
+  add_data_points("confetti", jitter_width = 0.2)
 
 mapping <- ggplot2::aes(color = dose, fill = ggplot2::after_scale(apply_saturation(colour, saturation)))
 
@@ -84,29 +84,29 @@ mpg %>%
 study %>%
   tidyplot(group, score, color = dose) %>%
   add_line() %>%
-  add_points()
+  add_data_points()
 
 # order in data set defines how geom_line connects points
 study %>%
   dplyr::arrange(score) %>%
   tidyplot(group, score, color = dose) %>%
   add_line() %>%
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose, dodge_width = 0, group = dose) %>%
   add_area(alpha = 0.1) %>%
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose, group = participant) %>%
   add_area(alpha = 0.1) %>%
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose, group = participant, dodge_width = 0) %>%
   add_area(alpha = 0.1) %>%
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose) %>%
@@ -225,11 +225,11 @@ p <-
   dplyr::filter(!treatment == "A") %>%
   tidyplot(dose, score, color = group)
 
-p %>% add_box() %>% add_points()
-p %>% add_violin() %>% add_points() # preserve = "single" destroys violins, therefore not implemented here
-p %>% add_error() %>% add_points()
-p %>% add_mean_dash() %>% add_points()
-p %>% add_mean_bar() %>% add_points()
+p %>% add_boxplot() %>% add_data_points()
+p %>% add_violin() %>% add_data_points() # preserve = "single" destroys violins, therefore not implemented here
+p %>% add_error() %>% add_data_points()
+p %>% add_mean_dash() %>% add_data_points()
+p %>% add_mean_bar() %>% add_data_points()
 
 p <- study %>%
   dplyr::filter(!treatment == "A") %>%
@@ -267,10 +267,10 @@ gene_expression %>%
   tidyplot(x = sample, y = external_gene_name, color = row_zscore) %>%
   add_heatmap() %>%
   adjust_x_axis(rotate_labels = 90) %>%
-  adjust_variable(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
-  adjust_variable(direction, sort_by = dplyr::desc(direction)) %>%
+  adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red"), as_palette = TRUE) %>%
-  adjust_size(height = 90)
+  adjust_plot_size(height = 90)
 
 h1 <-
   gene_expression %>%
@@ -279,10 +279,10 @@ h1 <-
   tidyplot(x = replicate, y = external_gene_name, color = row_zscore) %>%
   add_heatmap() %>%
   adjust_x_axis(rotate_labels = 90) %>%
-  adjust_variable(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
-  adjust_variable(direction, sort_by = dplyr::desc(direction)) %>%
+  adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red"), as_palette = TRUE) %>%
-  adjust_size(height = 90)
+  adjust_plot_size(height = 90)
 
 h1
 h1 + ggplot2::facet_grid(cols = dplyr::vars(group), rows = dplyr::vars(direction), scales = "free_y")

@@ -39,7 +39,7 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
     adjust_x_axis() %>%
     adjust_y_axis() %>%
     adjust_colors() %>%
-    adjust_size(width = width, height = height)
+    adjust_plot_size(width = width, height = height)
 
   if (single_color_plot)
     gg <- gg %>% remove_legend()
@@ -51,9 +51,9 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 #   study %>%
 #   tidyplot(treatment, score, color = group) %>%
 #   add_median_dash() %>%
-#   add_points()
+#   add_data_points()
 
-#' Show plot
+#' Show plot on screen
 #' @param gg bla
 #' @param data bla
 #' @param title bla
@@ -123,7 +123,7 @@ split_plot <- function(gg,
   # free plot dimensions
   gg <-
     gg %>%
-    adjust_size(width = NA, height = NA)
+    adjust_plot_size(width = NA, height = NA)
 
   df <-
     gg$data %>%

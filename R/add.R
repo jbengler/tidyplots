@@ -1,6 +1,6 @@
 
-add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300) {
-  pf <- parent_function()
+add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300, level = 0) {
+  pf <- parent_function(level = level)
   if (check_input(gg) == "none")
     stop(glue::glue("{pf}: Please provide a ggplot or list of ggplots as input to 'gg'"))
 
@@ -23,30 +23,13 @@ add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300) {
 add <- .Primitive("+")
 
 
-#' Add data points
-#'
-#' @param gg bla
-#' @param data bla
-#' @param dodge_width bla
-#' @param jitter_width bla
-#' @param jitter_height bla
-#' @param size bla
-#' @param shape bla
-#' @param color bla
-#' @param rasterize bla
-#' @param rasterize_dpi bla
-#' @param preserve bla
-#' @param style bla
-#' @param ... bla
-#' @export
-add_points <- function(gg, style = c("point", "circle", "confetti"), data = all_rows(),
-                       color = NULL, size = 1,
-                       dodge_width = NULL,
-                       jitter_width = 0, jitter_height = 0,
-                       shape = NULL,
-                       preserve = "total",
-                       rasterize = FALSE, rasterize_dpi = 300, ...) {
-  style <- match.arg(style)
+## Points function
+f_points <- function(gg, data = all_rows(),
+                     shape = 19, size = 1, confetti = FALSE, beeswarm = FALSE,
+                     cex = 3, corral = "wrap", corral.width = 0.5,
+                     dodge_width = NULL,
+                     jitter_width = 0, jitter_height = 0, preserve = "total",
+                     rasterize = FALSE, rasterize_dpi = 300, ...) {
 
   if (is_discrete(gg, "x")) {
     dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
@@ -65,50 +48,97 @@ add_points <- function(gg, style = c("point", "circle", "confetti"), data = all_
                                                 dodge.width = dodge_width)
   }
 
-  if (is.null(shape)) {
-    use_style <- TRUE
-    if (style == "point") shape <- 19
-    if (style == "circle") shape <- 1
-    if (style == "confetti"){
-      shape <- 21
-      size <- size * 1.5
-      fill <- color
-      color <- "#FFFFFF"
-    }
+  if (confetti) {
+    size <- size * 1.5
+    shape = 21
   }
 
-  if (style == "confetti" && use_style) {
-    if (is.null(fill)) {
-      add_geom(gg, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, color = "#FFFFFF", ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi)
+  if (beeswarm) {
+    if (confetti) {
+      add_geom(gg, ggbeeswarm::geom_beeswarm(data = data, size = size, shape = shape, dodge.width = dodge_width, color = "#FFFFFF",
+                                             cex = cex, corral = corral, corral.width = corral.width, ...),
+               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
     } else {
-      add_geom(gg, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, color = "#FFFFFF", fill = fill, ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi)
+      add_geom(gg, ggbeeswarm::geom_beeswarm(data = data, size = size, shape = shape, dodge.width = dodge_width,
+                                             cex = cex, corral = corral, corral.width = corral.width, ...),
+               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
     }
+
   } else {
-    if (is.null(color)) {
-      add_geom(gg, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi)
+
+    # not beeswarm
+    if (confetti) {
+      add_geom(gg, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, color = "#FFFFFF", ...),
+               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
     } else {
-      add_geom(gg, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, color = color, ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi)
+      add_geom(gg, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, ...),
+               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
     }
   }
 }
-#' @rdname add_points
+#' Add data points
+#'
+#' @param gg bla
+#' @param data bla
+#' @param size bla
+#' @param shape bla
+#' @param confetti bla
+#' @param dodge_width bla
+#' @param jitter_width bla
+#' @param jitter_height bla
+#' @param preserve bla
+#' @param rasterize bla
+#' @param rasterize_dpi bla
+#' @param ... bla
+#' @inheritParams ggbeeswarm::geom_beeswarm
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_error() %>%
+#'   add_data_points_beeswarm()
+#'
 #' @export
-add_jitter <- function(gg, style = c("point", "circle", "confetti"), data = all_rows(),
-                       size = 1,
+add_data_points <- function(gg, data = all_rows(),
+                       shape = 19, size = 1, confetti = FALSE,
                        dodge_width = NULL,
-                       jitter_width = 0.2, jitter_height = 0,
-                       shape = NULL,
                        preserve = "total",
                        rasterize = FALSE, rasterize_dpi = 300, ...) {
-  style <- match.arg(style)
-  add_points(gg = gg, data = data, dodge_width = dodge_width,
-             jitter_width = jitter_width, jitter_height = jitter_height,
-             size = size, shape = shape, style = style,
-             preserve = preserve, rasterize = rasterize, rasterize_dpi = rasterize_dpi, ...)
+  f_points(gg = gg, data = data,
+           shape = shape, size = size, confetti = confetti,
+           dodge_width = dodge_width,
+           preserve = preserve,
+           rasterize = rasterize, rasterize_dpi = rasterize_dpi, ...)
+}
+#' @rdname add_data_points
+#' @export
+add_data_points_jitter <- function(gg, data = all_rows(),
+                              shape = 19, size = 1, confetti = FALSE,
+                              dodge_width = NULL,
+                              jitter_width = 0.2, jitter_height = 0, preserve = "total",
+                              rasterize = FALSE, rasterize_dpi = 300, ...) {
+  f_points(gg = gg, data = data,
+           shape = shape, size = size, confetti = confetti,
+           dodge_width = dodge_width,
+           jitter_width = jitter_width, jitter_height = jitter_height, preserve = preserve,
+           rasterize = rasterize, rasterize_dpi = rasterize_dpi, ...)
+}
+#' @rdname add_data_points
+#' @export
+add_data_points_beeswarm <- function(gg, data = all_rows(),
+                                shape = 19, size = 1, confetti = FALSE,
+                                cex = 3, corral = "wrap", corral.width = 0.5,
+                                dodge_width = NULL,
+                                preserve = "total",
+                                rasterize = FALSE, rasterize_dpi = 300, ...) {
+  f_points(beeswarm = TRUE,
+           gg = gg, data = data,
+           shape = shape, size = size, confetti = confetti,
+           cex = cex, corral = corral, corral.width = corral.width,
+           dodge_width = dodge_width,
+           preserve = preserve,
+           rasterize = rasterize, rasterize_dpi = rasterize_dpi, ...)
 }
 
 
@@ -136,11 +166,12 @@ add_error <- ff_errorbar(.fun.data = ggplot2::mean_se)
 add_range <- ff_errorbar(.fun.data = min_max)
 #' @rdname add_error
 #' @export
-add_sd <- ff_errorbar(.fun.data = ggplot2::mean_sdl)
+# add_sd <- ff_errorbar(.fun.data = ggplot2::mean_sdl)
+add_sd <- ff_errorbar(.fun.data = mean_sdl)
 #' @rdname add_error
 #' @export
-add_ci95 <- ff_errorbar(.fun.data = ggplot2::mean_cl_boot)
-
+# add_ci95 <- ff_errorbar(.fun.data = ggplot2::mean_cl_boot)
+add_ci95 <- ff_errorbar(.fun.data = mean_cl_boot)
 
 ## Ribbon function factory
 ff_ribbon <- function(.fun.data) {
@@ -417,7 +448,7 @@ add_count_area <- ff_line(.count = TRUE, .geom = "area")
 #' @param ... bla
 #'
 #' @export
-add_box <- function(gg, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = FALSE,
+add_boxplot <- function(gg, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = FALSE,
                     box_width = 0.6, whiskers_width = 0.5, outlier.size = 0.5, coef = 1.5,
                     outlier.shape = 19, linewidth = 0.25, preserve = "total", ...) {
   dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
@@ -538,7 +569,7 @@ ff_pie <- function(.type = "pie") {
       gg
   }
 }
-#' Add pie chart
+#' Add pie or donut chart
 #' @param gg bla
 #' @param bar_width bla
 #' @param reverse bla
@@ -765,7 +796,7 @@ add_reference_lines <- function(gg, x = NULL, y = NULL, linetype = "dashed", lin
 #' @param box.padding bla
 #' @param ... bla
 #' @export
-add_text <- function(gg, var, data = all_rows(), fontsize = 7,
+add_text_labels <- function(gg, var, data = all_rows(), fontsize = 7,
                      segment.size = 0.2, box.padding = 0.2, ...) {
   size <- fontsize/ggplot2::.pt
   gg + ggrepel::geom_text_repel(data = data, ggplot2::aes(label = {{var}}), size = size,

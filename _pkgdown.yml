@@ -6,10 +6,15 @@ authors:
   Jan Broder Engler:
     href: https://github.com/jbengler
 
+figures:
+  dpi: 300
+  fig.width: 5
+  fig.height: 2.5
+
 reference:
 - title:
   desc: >
-    To create a plot, you start with the `tidyplot()` function. Then you call `add_*()`, `adjust_*()`, `theme_*()` and `remove_*()` functions, preferably in that order. `split_plot()` must be last in this sequence and can only be followed by `save_plot()`.
+    To create a plot, you start with the `tidyplot()` function. Then you call `add_*()`, `adjust_*()` and `theme_*()` functions, preferably in that order. `split_plot()` must be last in this sequence and can only be followed by `save_plot()`.
 - title: Create
 - contents:
   - tidyplot
@@ -19,7 +24,7 @@ reference:
   desc: >
     **Data points & amounts**
 - contents:
-  - starts_with("add_points")
+  - starts_with("add_data_points")
   - starts_with("add_line")
   - starts_with("add_heatmap")
   - starts_with("add_count")
@@ -35,7 +40,7 @@ reference:
   desc: >
     **Dispersion & uncertainty**
 - contents:
-  - starts_with("add_box")
+  - starts_with("add_boxplot")
   - starts_with("add_violin")
   - starts_with("add_error")
 - subtitle:
@@ -61,20 +66,20 @@ reference:
     **Annotation**
 - contents:
   - starts_with("add_title")
-  - starts_with("add_text")
+  - starts_with("add_text_labels")
   - starts_with("add_reference")
 - title: Adjust
   desc: Adjust plot component and properties.
 - contents:
   - starts_with("adjust_x_axis")
-  - starts_with("adjust_variable")
+  - starts_with("adjust_data_labels")
   - starts_with("adjust_colors")
-  - starts_with("adjust_size")
-  - starts_with("adjust_fontsize")
+  - starts_with("adjust_plot_size")
+  - starts_with("adjust_font")
   - starts_with("adjust_legend")
   - starts_with("adjust_padding")
-  - starts_with("adjust_flip")
-  - starts_with("adjust_labels")
+  - starts_with("adjust_rotate_plot")
+  - starts_with("adjust_description")
 - title: Themes
   desc: Choose and modify a theme.
 - contents:
@@ -95,6 +100,7 @@ reference:
   - starts_with("format")
   - ends_with("_rows")
   - starts_with("color_palettes")
+  - starts_with("show_color_palettes")
 - title: Data
 - contents:
   - starts_with("animals")

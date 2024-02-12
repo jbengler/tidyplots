@@ -5,15 +5,18 @@
 \alias{eu_countries}
 \title{EU countries data}
 \format{
-A data frame with 800 rows and 9 variables.
+A data frame.
 }
 \source{
-\code{eu_countries} package
+\code{tidyplots} package
 }
 \usage{
 eu_countries
 }
 \description{
 EU countries data
+}
+\examples{
+dplyr::glimpse(eu_countries)
 }
 \keyword{datasets}

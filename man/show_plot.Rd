@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{show_plot}
 \alias{show_plot}
-\title{Show plot}
+\title{Show plot on screen}
 \usage{
 show_plot(gg, data = all_rows(), title = ggplot2::waiver(), ...)
 }
@@ -16,5 +16,5 @@ show_plot(gg, data = all_rows(), title = ggplot2::waiver(), ...)
 \item{...}{bla}
 }
 \description{
-Show plot
+Show plot on screen
 }

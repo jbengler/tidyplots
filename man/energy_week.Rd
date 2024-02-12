@@ -5,7 +5,7 @@
 \alias{energy_week}
 \title{Energy week data}
 \format{
-A data frame with 10,080 rows and 4 variables.
+A data frame.
 }
 \source{
 \href{https://www.energy-charts.info}{Energy-Charts}
@@ -15,5 +15,8 @@ energy_week
 }
 \description{
 Energy week data
+}
+\examples{
+dplyr::glimpse(energy_week)
 }
 \keyword{datasets}

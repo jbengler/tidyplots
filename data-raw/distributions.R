@@ -17,7 +17,7 @@ distributions <-
 distributions %>%
   tidyplot(x = name, y = value) %>%
   add_violin() %>%
-  add_jitter() %>%
+  add_data_points_beeswarm() %>%
   add_mean_dash(color = "red") %>%
   add_error(color = "red") %>%
   add_reference_lines(y = c(7, 8.25, 5.75))
@@ -29,7 +29,7 @@ distributions %>%
 
 distributions %>%
   tidyplot(x = group, y = value, color = group) %>%
-  add_box()
+  add_boxplot()
 
 distributions %>%
   tidyplot(x = group, y = value, color = group) %>%
@@ -38,11 +38,11 @@ distributions %>%
 distributions %>%
   tidyplot(x = group, y = value, color = group) %>%
   add_violin() %>%
-  add_jitter(jitter_width = 0.2)
+  add_data_points_beeswarm(jitter_width = 0.2)
 
 distributions %>%
   tidyplot(x = name, y = value, color = group) %>%
   add_violin() %>%
-  add_jitter(jitter_width = 0.2)
+  add_data_points_beeswarm(jitter_width = 0.2)
 
 usethis::use_data(distributions, overwrite = TRUE)

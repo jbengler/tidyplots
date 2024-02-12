@@ -40,7 +40,7 @@ study %>%
   add_sd() %>% 
   add_range() %>% 
   add_ci95() %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(treatment, score) %>%
@@ -48,7 +48,7 @@ study %>%
   add_sd_ribbon() %>% 
   add_range_ribbon() %>% 
   add_ci95_ribbon() %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(treatment, score) %>%
@@ -58,7 +58,7 @@ study %>%
   add_mean_value() %>% 
   add_mean_line() %>% 
   add_mean_area(alpha = 0.2, fill = "green") %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(treatment, score) %>%
@@ -68,7 +68,7 @@ study %>%
   add_median_value() %>% 
   add_median_line() %>% 
   add_median_area(alpha = 0.2, fill = "green") %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(treatment, score) %>%
@@ -78,7 +78,7 @@ study %>%
   add_sum_value() %>% 
   add_sum_line() %>% 
   add_sum_area(alpha = 0.2, fill = "green") %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(treatment) %>%
@@ -97,7 +97,7 @@ study %>%
   add_sd() %>% 
   add_range() %>% 
   add_ci95() %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose) %>%
@@ -105,7 +105,7 @@ study %>%
   add_sd_ribbon() %>% 
   add_range_ribbon() %>% 
   add_ci95_ribbon() %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose) %>%
@@ -115,7 +115,7 @@ study %>%
   add_mean_value() %>% 
   add_mean_line() %>% 
   add_mean_area(alpha = 0.5) %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose) %>%
@@ -125,7 +125,7 @@ study %>%
   add_median_value() %>% 
   add_median_line() %>% 
   add_median_area(alpha = 0.5) %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose) %>%
@@ -135,7 +135,7 @@ study %>%
   add_sum_value() %>% 
   add_sum_line() %>% 
   add_sum_area(alpha = 0.5) %>% 
-  add_points()
+  add_data_points()
 
 study %>%
   tidyplot(group, color = dose) %>%
@@ -147,74 +147,55 @@ study %>%
   add_count_area(alpha = 0.5)
 
 
-# add_points()
+# add_data_points()
 
 animals %>% 
   tidyplot(x = weight, y = size, color = number_of_legs) %>% 
-  add_points(style = "point", size = 2)
-  
-animals %>% 
-  tidyplot(x = weight, y = size, color = number_of_legs) %>% 
-  add_points(style = "circle", size = 2)
+  add_data_points()
 
 animals %>% 
   tidyplot(x = weight, y = size, color = number_of_legs) %>% 
-  add_points(style = "confetti", size = 2)
+  add_data_points(confetti = TRUE)
 
 ## x is discrete
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_points(style = "point", size = 2, jitter_width = 0.5)
+  add_data_points()
   
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_points(style = "circle", size = 2, jitter_width = 0.5)
+  add_data_points_jitter()
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_points(style = "confetti", size = 2, jitter_width = 0.5)
+  add_data_points_beeswarm()
 
-## add_jitter
+# confetti
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_jitter(style = "point", size = 2)
+  add_data_points(confetti = TRUE)
   
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_jitter(style = "circle", size = 2)
+  add_data_points_jitter(confetti = TRUE)
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_jitter(style = "confetti", size = 2)
+  add_data_points_beeswarm(confetti = TRUE)
 
 ## highlighting
 
 animals %>% 
   tidyplot(x = weight, y = size) %>% 
-  add_points(style = "point", size = 2) %>% 
-  add_points(style = "point", data = filter_rows(size > 200, size < 420), size = 0.5, color = "white")
+  add_data_points() %>% 
+  add_data_points(data = filter_rows(size > 200, size < 420), color = "white")
 
 animals %>% 
   tidyplot(x = weight, y = size) %>% 
-  add_points(style = "point", size = 2) %>% 
-  add_points(style = "circle", data = max_rows(weight, n = 3), size = 4, color = "red")
-
-animals %>% 
-  tidyplot(x = weight, y = size) %>% 
-  add_points(style = "point", size = 2) %>% 
-  add_points(style = "point", data = min_rows(weight, n = 3), size = 0.5, color = "white")
-
-animals %>% 
-  tidyplot(x = weight, y = size) %>% 
-  add_points(style = "point", size = 2) %>% 
-  add_points(style = "point", data = first_rows(n = 3), size = 0.5, color = "white")
-
-animals %>% 
-  tidyplot(x = weight, y = size) %>% 
-  add_points(style = "point", size = 2) %>% 
-  add_points(style = "point", data = last_rows(n = 3), size = 0.5, color = "white")
+  add_data_points() %>% 
+  add_data_points(data = max_rows(weight, n = 3), color = "red")
 
 ```
 

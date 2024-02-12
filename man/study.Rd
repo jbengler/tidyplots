@@ -5,7 +5,7 @@
 \alias{study}
 \title{Study data}
 \format{
-A data frame with 800 rows and 9 variables.
+A data frame.
 }
 \source{
 \code{tidyplots} package
@@ -15,5 +15,8 @@ study
 }
 \description{
 Study data
+}
+\examples{
+dplyr::glimpse(study)
 }
 \keyword{datasets}

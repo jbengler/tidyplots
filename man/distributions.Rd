@@ -5,7 +5,7 @@
 \alias{distributions}
 \title{Distributions data}
 \format{
-A data frame with 800 rows and 9 variables.
+A data frame.
 }
 \source{
 \code{tidyplots} package
@@ -15,5 +15,8 @@ distributions
 }
 \description{
 Distributions data
+}
+\examples{
+dplyr::glimpse(distributions)
 }
 \keyword{datasets}

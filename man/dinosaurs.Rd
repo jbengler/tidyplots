@@ -5,15 +5,18 @@
 \alias{dinosaurs}
 \title{Dinosaurs data}
 \format{
-A data frame with 800 rows and 9 variables.
+A data frame.
 }
 \source{
-\code{dinosaurs} package
+\code{tidyplots} package
 }
 \usage{
 dinosaurs
 }
 \description{
 Dinosaurs data
+}
+\examples{
+dplyr::glimpse(dinosaurs)
 }
 \keyword{datasets}

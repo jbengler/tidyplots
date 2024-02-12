@@ -12,6 +12,6 @@ library(tidyverse)
 gene_expression %>%
   tidyplot(sample, external_gene_name, color = expression, width = 100) %>%
   add_heatmap(scale = "row") %>%
-  adjust_variable(var = external_gene_name, sort_by = -padj) %>%
-  adjust_variable(var = direction, reverse = TRUE)+
+  adjust_data_labels(var = external_gene_name, sort_by = -padj) %>%
+  adjust_data_labels(var = direction, reverse = TRUE)+
   facet_wrap(vars(direction), scales = "free")
