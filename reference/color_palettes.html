@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,6 +73,80 @@
     <p><code>tidyplots</code> package</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">color_palettes</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $black_blue_pink_yellow</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#161523" "#171943" "#2C2E68" "#2E3D88" "#3F519D" "#48569F" "#5F569F"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#7D5099" "#8B5197" "#A14F96" "#C85296" "#DB5999" "#E06A7F" "#E27F6D"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "#E68F63" "#ECA562" "#F3BD66" "#F9D966" "#FAF06F" "#EEE969"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $blue_pink_yellow</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#00034D" "#000F9F" "#001CEF" "#241EF5" "#5823F6" "#A033E0" "#E85AB1"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#F1907C" "#F4AF63" "#FCE552" "#FFFB6D"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $blue2brown_v2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#09113F" "#2C4492" "#5880AB" "#A1C4CF" "#D9E9EC" "#FBFBFA" "#F7D9C3"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#EB9A72" "#CD4A37" "#A3201A" "#4B0913"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $blue2brown</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#1961A5" "#2671B5" "#2D80BF" "#268CC9" "#119DD8" "#00B2EB" "#66C5EF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#C4E5F8" "#FEFCF6" "#FDEEB8" "#FCDD67" "#F6C445" "#E78B43" "#DD5642"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "#DB3E34" "#CA3632" "#B3322E"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $bunq</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#248746" "#2D9B47" "#62B64F" "#88CC53" "#3CB7AA" "#3296D7" "#2772BA"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#1D5D83" "#973431" "#E23133" "#F18823" "#F5C836"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $color_circle_pale</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#D3D3D3" "#C6B4D4" "#F4C27C" "#EE9F9C" "#BCDE94" "#AECEE2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $color_circle_vivid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#939393" "#644296" "#F08533" "#D1352C" "#559E3F" "#3B78B0"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $color_circle</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#AECEE2" "#3B78B0" "#BCDE94" "#559E3F" "#EE9F9C" "#D1352C" "#F4C27C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#F08533" "#C6B4D4" "#644296" "#D3D3D3" "#939393"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ggsci_d3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#1F77B4" "#FF7F0E" "#2CA02C" "#D62728" "#9467BD" "#8C564B" "#E377C2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#7F7F7F" "#BCBD22" "#17BECF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ggsci_jco</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#0073C2" "#EFC000" "#868686" "#CD534C" "#7AA6DC" "#003C67" "#8F7700"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#3B3B3B" "#A73030" "#4A6990"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ggsci_locuszoom</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#D43F3A" "#EEA236" "#5CB85C" "#46B8DA" "#357EBD" "#9632B8" "#B8B8B8"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ggsci_npg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#E64B35" "#4DBBD5" "#00A087" "#3C5488" "#F39B7F" "#8491B4" "#91D1C2"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#DC0000" "#7E6148" "#B09C85"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $metro_ui</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#4DACD6" "#4FAE62" "#F6C54D" "#E37D46" "#C02D45"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $multiqc_align</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#437BB1" "#7CB5EC" "#F7A35C" "#B1084C" "#7F0000"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $multiqc_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "#7CB5EC" "#434348" "#90ED7D" "#F7A35C"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $multiqc_fastq_screen</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#87B5E7" "#434348" "#A6E98A" "#ECA669" "#8087E2" "#E06681" "#E2D269"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#F7A35C" "#B1084C" "#4A8E8E" "#E36561" "#77150C" "#CCCCCC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $white_ocre_brown</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#FDFCF4" "#F9F0CC" "#F9E59F" "#F4DA7A" "#F1CB62" "#EDBF55" "#DF9350"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#D87D4A" "#CF5C45" "#BC403D" "#AD3C39" "#9F3736" "#983534" "#842E2E"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $white_turquise_blue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "#FCFBDF" "#F7F7D1" "#EDF0BD" "#E3EBB6" "#CFE1B5" "#C4DDB6" "#9FCEB4"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "#83C5B3" "#5DBAB7" "#1FB1BA" "#00AFBF" "#049FBF" "#0493BF" "#037DB5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "#036DAC" "#16579E" "#224B95" "#2B3D8B" "#2B3977" "#232959" "#1F2451"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

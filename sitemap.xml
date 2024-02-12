@@ -40,13 +40,16 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_barstack_absolute.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_box.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_boxplot.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_count_bar.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_curve.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_data_points.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_density_curve.html</loc>
@@ -76,9 +79,6 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_pie.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_points.html</loc>
-  </url>
-  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_reference_lines.html</loc>
   </url>
   <url>
@@ -88,7 +88,7 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_sum_bar.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_text.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_text_labels.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_title.html</loc>
@@ -97,19 +97,16 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_violin.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_annotation.html</loc>
-  </url>
-  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_colors.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_flip.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_data_labels.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_fontsize.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_description.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_labels.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_font.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_legend.html</loc>
@@ -118,7 +115,10 @@
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_padding.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_size.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_plot_size.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_rotate_plot.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_x_axis.html</loc>
@@ -175,10 +175,13 @@
     <loc>https://jbengler.github.io/tidyplots/reference/remove_y_axis.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/render_plot.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/save_plot.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/save_plot.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/show_color_palettes.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/show_plot.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/spendings.html</loc>

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,13 +66,37 @@
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A data frame with 800 rows and 9 variables.</p>
+    <p>A data frame.</p>
     </div>
     <div class="section level2">
     <h2 id="source">Source<a class="anchor" aria-label="anchor" href="#source"></a></h2>
     <p><code>tidyplots</code> package</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">gene_statistics</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rows: 43,629</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Columns: 17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ ensembl_gene_id    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "ENSMUSG00000000001", "ENSMUSG00000000003", "ENSMUS…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ external_gene_name <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Gnai3", "Pbsn", "Cdc45", "H19", "Scml2", "Apoh", "…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ gene_biotype       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "protein_coding", "protein_coding", "protein_coding…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ description        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "guanine nucleotide binding protein (G protein), al…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ entrezgene         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 14679, 54192, 12544, NA, 107815, 11818, 67608, 1239…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ chromosome_name    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "3", "X", "16", "7", "X", "11", "11", "6", "13", "4…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ start_position     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 108107280, 77837901, 18780447, 142575529, 161117193…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ end_position       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 108146146, 77853623, 18811987, 142578143, 161258213…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ transcript_length  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3262, 902, 2143, 2286, 3440, 1190, 4395, 2733, 4217…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ baseMean           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 273.2171107, 0.0000000, 32.1923648, 14.1264941, 4.0…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ log2_foldchange    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -0.9888813, NA, 0.3419441, 0.8647726, -0.9975270, -…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ stat               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -1.6092149, NA, 0.3945114, 1.0162426, -0.9318522, -…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ pvalue             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 1.075694e-01, NA, 6.932035e-01, 3.095139e-01, 3.514…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ padj               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.278272e-01, NA, 8.103746e-01, 4.769611e-01, 5.204…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ neg_log10_padj     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.64239445, NA, 0.09131416, 0.32151702, 0.28361296,…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ is_cand            <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TR…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $ direction          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "down", NA, "down", "down", "down", "down", "down",…</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

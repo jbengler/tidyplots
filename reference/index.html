@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,7 +56,7 @@
     <div id="" class="section level2">
       
       
-      <p class="section-desc"></p><p>To create a plot, you start with the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function. Then you call <code>add_*()</code>, <code>adjust_*()</code>, <code>theme_*()</code> and <code>remove_*()</code> functions, preferably in that order. <code><a href="../reference/split_plot.html">split_plot()</a></code> must be last in this sequence and can only be followed by <code><a href="../reference/save_plot.html">save_plot()</a></code>.</p>
+      <p class="section-desc"></p><p>To create a plot, you start with the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function. Then you call <code>add_*()</code>, <code>adjust_*()</code> and <code>theme_*()</code> functions, preferably in that order. <code><a href="../reference/split_plot.html">split_plot()</a></code> must be last in this sequence and can only be followed by <code><a href="../reference/save_plot.html">save_plot()</a></code>.</p>
 
       
     </div><div class="section level2">
@@ -94,7 +94,7 @@
 
       <dl><dt>
           
-          <code><a href="add_points.html">add_points()</a></code> <code><a href="add_points.html">add_jitter()</a></code> 
+          <code><a href="add_data_points.html">add_data_points()</a></code> <code><a href="add_data_points.html">add_data_points_jitter()</a></code> <code><a href="add_data_points.html">add_data_points_beeswarm()</a></code> 
         </dt>
         <dd>Add data points</dd>
       </dl><dl><dt>
@@ -156,7 +156,7 @@
 
       <dl><dt>
           
-          <code><a href="add_box.html">add_box()</a></code> 
+          <code><a href="add_boxplot.html">add_boxplot()</a></code> 
         </dt>
         <dd>Add boxplot</dd>
       </dl><dl><dt>
@@ -236,7 +236,7 @@
           
           <code><a href="add_pie.html">add_pie()</a></code> <code><a href="add_pie.html">add_donut()</a></code> 
         </dt>
-        <dd>Add pie chart</dd>
+        <dd>Add pie or donut chart</dd>
       </dl></div><div id="" class="section level2">
       
       
@@ -255,7 +255,7 @@
         <dd>Add plot title or caption</dd>
       </dl><dl><dt>
           
-          <code><a href="add_text.html">add_text()</a></code> 
+          <code><a href="add_text_labels.html">add_text_labels()</a></code> 
         </dt>
         <dd>Add text labels</dd>
       </dl><dl><dt>
@@ -281,9 +281,9 @@
         <dd>Adjust axes</dd>
       </dl><dl><dt>
           
-          <code><a href="adjust_labels.html">adjust_labels()</a></code> 
+          <code><a href="adjust_data_labels.html">adjust_data_labels()</a></code> 
         </dt>
-        <dd>Adjust labels</dd>
+        <dd>Adjust data labels</dd>
       </dl><dl><dt>
           
           <code><a href="adjust_colors.html">adjust_colors()</a></code> 
@@ -291,14 +291,14 @@
         <dd>Adjust colors</dd>
       </dl><dl><dt>
           
-          <code><a href="adjust_size.html">adjust_size()</a></code> 
+          <code><a href="adjust_plot_size.html">adjust_plot_size()</a></code> 
         </dt>
         <dd>Adjust plot size</dd>
       </dl><dl><dt>
           
-          <code><a href="adjust_fontsize.html">adjust_fontsize()</a></code> 
+          <code><a href="adjust_font.html">adjust_font()</a></code> 
         </dt>
-        <dd>Adjust fontsize</dd>
+        <dd>Adjust font</dd>
       </dl><dl><dt>
           
           <code><a href="adjust_legend.html">adjust_legend()</a></code> 
@@ -311,14 +311,14 @@
         <dd>Adjust padding</dd>
       </dl><dl><dt>
           
-          <code><a href="adjust_flip.html">adjust_flip()</a></code> 
+          <code><a href="adjust_rotate_plot.html">adjust_rotate_plot()</a></code> 
         </dt>
-        <dd>Flip plot</dd>
+        <dd>Rotate plot by 90 degrees</dd>
       </dl><dl><dt>
           
-          <code><a href="adjust_annotation.html">adjust_annotation()</a></code> 
+          <code><a href="adjust_description.html">adjust_description()</a></code> 
         </dt>
-        <dd>Adjust annotation</dd>
+        <dd>Adjust description</dd>
       </dl></div><div class="section level2">
       <h2 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a></h2>
       
@@ -384,9 +384,9 @@
 
       <dl><dt>
           
-          <code><a href="render_plot.html">render_plot()</a></code> 
+          <code><a href="show_plot.html">show_plot()</a></code> 
         </dt>
-        <dd>Render plot</dd>
+        <dd>Show plot on screen</dd>
       </dl><dl><dt>
           
           <code><a href="save_plot.html">save_plot()</a></code> 
@@ -423,6 +423,11 @@
           <code><a href="color_palettes.html">color_palettes</a></code> 
         </dt>
         <dd>Color palettes</dd>
+      </dl><dl><dt>
+          
+          <code><a href="show_color_palettes.html">show_color_palettes()</a></code> 
+        </dt>
+        <dd>Show color palettes</dd>
       </dl></div><div class="section level2">
       <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a></h2>
       

@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,7 +72,6 @@
 <span>  units <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mm"</span>, <span class="st">"cm"</span>, <span class="st">"in"</span><span class="op">)</span>,</span>
 <span>  dpi <span class="op">=</span> <span class="fl">300</span>,</span>
 <span>  limitsize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  return_input <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  multiple_files <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  bg <span class="op">=</span> <span class="st">"transparent"</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -124,11 +123,6 @@ dimensions, system default device dimensions are used.</p></dd>
 <dd><p>When <code>TRUE</code> (the default), <code>ggsave()</code> will not
 save images larger than 50x50 inches, to prevent the common error of
 specifying dimensions in pixels.</p></dd>
-
-
-<dt>return_input</dt>
-<dd><p>Return the input ggplot or plotlist is after saving.
-This enables the use within <code>dplyr</code> pipes.</p></dd>
 
 
 <dt>multiple_files</dt>
