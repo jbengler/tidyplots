@@ -1,3 +1,9 @@
+# tidyplots 0.0.2
+
+* Renaming functions to improve consistency.
+
+* The package is still in early development. Expect user-facing and breaking changes.
+
 # tidyplots 0.0.1
 
 * Initial release. tidyplots streamlines the creation of publication-ready plots for scientific papers, making it incredibly easy to add and refine plot elements. It allows precise control over composition, style, and absolute sizes, while its utilization of the pipe `%>%` simplifies the construction of advanced plotting pipelines.

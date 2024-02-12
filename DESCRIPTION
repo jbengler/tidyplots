@@ -1,6 +1,6 @@
 Package: tidyplots
 Title: Tidy Plots Using the Pipe
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Jan Broder", "Engler", , "broder.engler@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-3169-2076"))
@@ -11,8 +11,10 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Imports: 
     cli,
+    colorspace,
     dplyr,
     forcats,
+    ggbeeswarm,
     ggplot2,
     ggpubr,
     ggrastr,
@@ -26,6 +28,7 @@ Imports:
     scales,
     stringr,
     svglite,
+    tibble,
     tidyr
 Depends: 
     R (>= 2.10)
