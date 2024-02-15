@@ -29,7 +29,7 @@ study %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
   add_data_points() %>%
-  add_line(group = participant, dodge_width = 0)
+  add_line(group = participant)
 
 study %>%
   tidyplot(dose, score, color = group) %>%
@@ -42,7 +42,7 @@ study %>%
   add_mean_bar(alpha = 0.3) %>%
   add_error() %>%
   add_data_points() %>%
-  add_line(group = participant, dodge_width = 0) %>%
+  add_line(group = participant) %>%
   adjust_data_labels(treatment, sort_by = dose)
 
 usethis::use_data(study, overwrite = TRUE)

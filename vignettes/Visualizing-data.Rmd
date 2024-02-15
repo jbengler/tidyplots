@@ -227,9 +227,9 @@ energy %>%
 
 energy %>% 
   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(x = year, y = power, color = energy_type) %>% 
-  add_sum_line(dodge_width = 0) %>%
-  add_sum_dot(dodge_width = 0) %>% 
+  tidyplot(x = year, y = power, color = energy_type, dodge_width = 0) %>% 
+  add_sum_line() %>%
+  add_sum_dot() %>% 
   adjust_colors(new_colors = new_colors)
 
 energy %>% 

@@ -507,18 +507,26 @@ add_line <- function(gg, group, dodge_width = NULL, linewidth = 0.25, preserve =
   if (!missing(group)) {
     mapping <- ggplot2::aes(group = {{group}})
   }
-  dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+  dodge_width <- dodge_width %||% 0
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
   gg + ggplot2::geom_line(mapping = mapping, linewidth = linewidth, position = position, ...)
 }
 #' @rdname add_line
 #' @export
-add_area <- function(gg, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
-  dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
+add_area <- function(gg, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
+  mapping <- NULL
+  if (is_missing(gg, "group")) {
+    mapping <- ggplot2::aes()
+    mapping$group <- gg$mapping$colour
+  }
+  if (!missing(group)) {
+    mapping <- ggplot2::aes(group = {{group}})
+  }
+  dodge_width <- dodge_width %||% 0
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
   gg %>%
     remove_padding() +
-    ggplot2::geom_area(linewidth = linewidth, position = position, ...)
+    ggplot2::geom_area(mapping = mapping, linewidth = linewidth, position = position, ...)
 }
 
 

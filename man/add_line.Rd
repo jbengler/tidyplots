@@ -14,7 +14,14 @@ add_line(
   ...
 )
 
-add_area(gg, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...)
+add_area(
+  gg,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+)
 }
 \arguments{
 \item{gg}{bla}
