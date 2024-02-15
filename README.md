@@ -15,8 +15,8 @@ construction of advanced plotting pipelines.
 ## Installation
 
 ``` r
-# install.packages("pak")
-pak::pak("jbengler/tidyplots")
+# install.packages("devtools")
+devtools::install_github("jbengler/tidyplots")
 ```
 
 ## Usage
