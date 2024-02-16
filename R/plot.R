@@ -175,6 +175,7 @@ save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, sc
   if (!ggplot2::is.ggplot(gg) && !all(purrr::map_lgl(gg, ggplot2::is.ggplot)))
     stop("argument 'gg' should be ggplot or list off ggplots")
 
+  print(gg)
   input <- gg
 
   if (ggplot2::is.ggplot(gg)) {
