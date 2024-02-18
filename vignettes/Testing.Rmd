@@ -190,12 +190,12 @@ study %>%
 animals %>% 
   tidyplot(x = weight, y = size) %>% 
   add_data_points() %>% 
-  add_data_points(data = filter_rows(size > 200, size < 420), color = "white")
+  add_data_points(data = max_rows(weight, n = 3), color = "red")
 
 animals %>% 
   tidyplot(x = weight, y = size) %>% 
   add_data_points() %>% 
-  add_data_points(data = max_rows(weight, n = 3), color = "red")
+  add_data_points(data = max_rows(weight, n = 3), color = "red", shape = 1, size = 3)
 
 ```
 

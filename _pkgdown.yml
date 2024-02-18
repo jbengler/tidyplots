@@ -69,10 +69,12 @@ reference:
   - starts_with("add_text_labels")
   - starts_with("add_reference")
 - title: Adjust
-  desc: Adjust plot component and properties.
+  desc: Adjust plot components, properties, data labels and themes.
+- subtitle:
+  desc: >
+    **Components & properties**
 - contents:
   - starts_with("adjust_x_axis")
-  - starts_with("adjust_data_labels")
   - starts_with("adjust_colors")
   - starts_with("adjust_plot_size")
   - starts_with("adjust_font")
@@ -80,8 +82,17 @@ reference:
   - starts_with("adjust_padding")
   - starts_with("adjust_rotate_plot")
   - starts_with("adjust_description")
-- title: Themes
-  desc: Choose and modify a theme.
+- subtitle:
+  desc: >
+    **Data labels**
+- contents:
+  - starts_with("rename")
+  - starts_with("reorder")
+  - starts_with("sort")
+  - starts_with("reverse")
+- subtitle:
+  desc: >
+    **Themes**
 - contents:
   - starts_with("theme")
   - starts_with("remove")

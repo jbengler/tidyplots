@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{save_plot}
 \alias{save_plot}
-\title{Save plot to file}
+\title{Save plots to file}
 \usage{
 save_plot(
   gg = last_plot(),
@@ -57,7 +57,7 @@ from the plot theme.}
 as specified by \code{device}.}
 }
 \description{
-This function takes a \code{ggplot} or list of \code{ggplot}s and writes them to a (multipage) file. See below for details.
+This function takes a plot or list of plots and writes them to a (multipage) file.
 }
 \details{
 \strong{Handling of multiple pages.}

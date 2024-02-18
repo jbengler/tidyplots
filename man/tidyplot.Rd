@@ -2,7 +2,7 @@
 % Please edit documentation in R/plot.R
 \name{tidyplot}
 \alias{tidyplot}
-\title{Create a new plot}
+\title{Create a new tidyplot}
 \usage{
 tidyplot(data, ..., width = 50, height = 50, dodge_width = 0.8)
 }
@@ -18,5 +18,5 @@ tidyplot(data, ..., width = 50, height = 50, dodge_width = 0.8)
 \item{dodge_width}{bla}
 }
 \description{
-Create a new plot
+Create a new tidyplot
 }

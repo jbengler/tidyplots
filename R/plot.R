@@ -1,6 +1,5 @@
-
-
-#' Create a new plot
+#' Create a new tidyplot
+#'
 #' @param data bla
 #' @param ... bla
 #' @param width bla
@@ -9,16 +8,16 @@
 #' @export
 tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   mapping <- ggplot2::aes(...)
-  single_color_plot <- FALSE
 
-  # in absence of `colour` and `fill`, add .single_color column to data
+  # Add .single_color column to data if `colour` and `fill` mappings are missing
+  single_color_plot <- FALSE
   if(!"colour" %in% names(mapping) && !"fill" %in% names(mapping)) {
     data$.single_color <- TRUE
     mapping$colour <- ggplot2::aes(colour = .single_color)[[1]]
     single_color_plot <- TRUE
   }
 
-  # align `colour` and `fill` aesthetic
+  # Align `colour` and `fill` mappings
   if("colour" %in% names(mapping) && !"fill" %in% names(mapping)) mapping$fill <- mapping$colour
   if("fill" %in% names(mapping) && !"colour" %in% names(mapping)) mapping$colour <- mapping$fill
 
@@ -44,6 +43,7 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   if (single_color_plot)
     gg <- gg %>% remove_legend()
 
+  class(gg) <- c("tidyplot", class(gg))
   gg
 }
 
@@ -54,6 +54,7 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 #   add_data_points()
 
 #' Show plot on screen
+#'
 #' @param gg bla
 #' @param data bla
 #' @param title bla
@@ -116,9 +117,9 @@ split_plot <- function(gg,
                        design = NULL,
                        unit = "mm") {
   if (!ggplot2::is.ggplot(gg))
-    stop("argument 'gg' should be a single ggplot")
+    stop("Argument 'gg' should be a single ggplot")
   if(missing(by))
-    stop("argument 'by' missing without default")
+    stop("Argument 'by' missing without default")
 
   # free plot dimensions
   gg <-
@@ -144,9 +145,9 @@ split_plot <- function(gg,
     return(out)
 }
 
-#' Save plot to file
+#' Save plots to file
 #'
-#' This function takes a `ggplot` or list of `ggplot`s and writes them to a (multipage) file. See below for details.
+#' This function takes a plot or list of plots and writes them to a (multipage) file.
 #'
 #' __Handling of multiple pages.__
 #' For a list of `ggplot`s, each list element is rendered as a separate page into a mutipage `pdf` file.

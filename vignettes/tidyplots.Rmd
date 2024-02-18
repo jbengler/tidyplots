@@ -103,7 +103,7 @@ animals %>%
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_data_points() %>% 
-  adjust_data_labels(family, sort_by = size)
+  sort_x_axis_labels(size)
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
@@ -171,27 +171,25 @@ new_names <-
     "D" = "Regime D")
 
 p2 %>% adjust_colors(new_colors)
-p2 %>% adjust_data_labels(treatment, new_order = c("C")) %>% adjust_colors(new_colors)
-p2 %>% adjust_colors(new_colors) %>% adjust_data_labels(treatment, new_order = c("C"))
+p2 %>% reorder_x_axis_labels("C") %>% adjust_colors(new_colors)
+p2 %>% adjust_colors(new_colors) %>% reorder_x_axis_labels("C")
 
 p2 %>% adjust_colors(new_colors)
-p2 %>% adjust_data_labels(treatment, new_names = new_names) %>% adjust_colors(new_colors)
-p2 %>% adjust_colors(new_colors) %>% adjust_data_labels(treatment, new_names = new_names)
+p2 %>% rename_x_axis_labels(new_names) %>% adjust_colors(new_colors)
+p2 %>% adjust_colors(new_colors) %>% rename_x_axis_labels(new_names)
+
+new_colors2 <-
+  c("Regime A" = "#B0B1B3",
+    "Regime B" = "#F18823",
+    "Regime C" = "#E23130",
+    "Regime D" = "#1D5D83")
+
+p2 %>% adjust_colors(new_colors2)
+p2 %>% rename_x_axis_labels(new_names) %>% adjust_colors(new_colors2)
+p2 %>% adjust_colors(new_colors2) %>% rename_x_axis_labels(new_names)
 
 # providing more colors, not a problem. Providing less colors -> Error
-new_colors <-
-  c("#B0B1B3",
-    "#F18823",
-    "#E23130",
-    "#1D5D83")
 
-p2 %>% adjust_colors(new_colors)
-p2 %>% adjust_data_labels(treatment, new_order = c("C")) %>% adjust_colors(new_colors)
-p2 %>% adjust_colors(new_colors) %>% adjust_data_labels(treatment, new_order = c("C"))
-
-p2 %>% adjust_colors(new_colors)
-p2 %>% adjust_data_labels(treatment, new_names = new_names) %>% adjust_colors(new_colors)
-p2 %>% adjust_colors(new_colors) %>% adjust_data_labels(treatment, new_names = new_names)
 
 # during split plot, single subplots might only have NA for certain categories
 # this has been fixed apparently by using drop = FALSE in 
@@ -254,29 +252,7 @@ new_names <-
     "C" = "plain text",
     "D" = "$H[2]*O$")
 
-p2 %>% adjust_data_labels(treatment, new_names = new_names)
-
-# adjust labels
-
-new_names <-
-  c("A" = "Regime A",
-    "B" = "Regime B",
-    "C" = "Regime C",
-    "D" = "Regime D")
-
-p2 %>% adjust_data_labels(treatment, new_names = new_names)
-p2 %>% adjust_data_labels(treatment, new_names = new_names) %>% adjust_x_axis(rotate_labels = TRUE)
-p2 %>% adjust_data_labels(treatment, new_names = new_names, sort_by = score)
-p2 %>% adjust_data_labels(treatment, new_names = new_names, reverse = TRUE)
-
-new_order <- 
-  c("D", "C")
-
-p2 %>% adjust_data_labels(treatment, new_order = new_order)
-p2 %>% adjust_data_labels(treatment, sort_by = score)
-p2 %>% adjust_data_labels(treatment, reverse = TRUE)
-
-p2 %>% adjust_data_labels(treatment)
+p2 %>% rename_x_axis_labels(new_names)
 
 # adjust colors
 
@@ -289,33 +265,78 @@ new_colors <-
 p2 %>% adjust_colors(new_colors)
 p2 %>% adjust_colors(new_colors, as_palette = TRUE)
 
-# new_colors AND new_names
-
-p2 %>%
-  adjust_data_labels(treatment, new_names = new_names) %>% 
-  adjust_colors(new_colors, saturation = 0.3)
-
-p2 %>% 
-  adjust_colors(new_colors, saturation = 0.3) %>% 
-  adjust_data_labels(treatment, new_names = new_names)
-
 # add_heatmap()
+
+  gene_expression %>%
+    tidyplot(x = sample, y = external_gene_name, color = expression) %>%
+    add_heatmap(scale = "row") %>%
+    adjust_plot_size(height = 90)
 
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap() %>% 
   adjust_plot_size(height = 90)
 
-gene_expression %>% 
+hm <- 
+  gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>% 
-  adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
   adjust_plot_size(height = 90)
+
+hm %>% reorder_y_axis_labels("Bsn")
+hm %>% reorder_y_axis_labels(c("Bsn", "Apol6"))
+hm %>% reorder_y_axis_labels(sample)
+
+hm %>% sort_y_axis_labels(direction)
+hm %>% sort_y_axis_labels(direction, -padj)
+
+hm
+hm %>% reorder_y_axis_labels("Bsn")
+hm %>% reorder_x_axis_labels("Hin_3")
+hm %>% reorder_x_axis_labels(sample)
+
+hm
+hm %>% sort_y_axis_labels(expression)
+hm %>% sort_y_axis_labels(direction)
+hm %>% sort_y_axis_labels(direction, -padj)
+hm %>% sort_x_axis_labels(group)
+hm %>% sort_x_axis_labels(sample_type)
+hm %>% sort_x_axis_labels(desc(sample_type))
+hm %>% sort_x_axis_labels(condition)
+
+hm
+hm %>% reverse_x_axis_labels()
+hm %>% reverse_y_axis_labels()
+
+hm
+hm %>% rename_x_axis_labels(new_names = c("Ein_1" = "Hallo"))
+hm %>% rename_y_axis_labels(new_names = c("Bsn" = "Juhooooooooooooooo!",
+                                     "Aip" = "Rabbithoooooooooooole"))
+
+dinosaurs %>% 
+  tidyplot(dinosaur, speed) %>% 
+  add_mean_bar() %>% 
+  sort_x_axis_labels(speed)
+
+animals %>%
+  tidyplot(family, size, color = family) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_data_points() %>% 
+  sort_x_axis_labels(size)
+
+study %>% 
+  tidyplot(treatment, score, color = treatment) %>% 
+  add_data_points_beeswarm() %>% 
+  reorder_x_axis_labels("D") %>% 
+  sort_x_axis_labels(score) %>% 
+  reverse_x_axis_labels() %>% 
+  rename_x_axis_labels(c("A" = "Hallo"))
 
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row", rasterize = TRUE, rasterize_dpi = 20) %>% 
-  adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
+  sort_y_axis_labels(direction) %>%
   adjust_plot_size(height = 90)
 
 gene_expression %>% 
@@ -533,7 +554,7 @@ study %>%
   add_error() %>%
   add_data_points() %>%
   add_line(group = participant, color = "grey") %>%
-  adjust_data_labels(treatment, sort_by = dose)
+  sort_x_axis_labels(dose)
 
 # proportions
 

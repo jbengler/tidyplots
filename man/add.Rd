@@ -2,12 +2,12 @@
 % Please edit documentation in R/add.R
 \name{add}
 \alias{add}
-\title{Add \code{ggplot2} code to your tidyplot}
+\title{Add ggplot2 code to your tidyplot}
 \usage{
 add()
 }
 \description{
-Add \code{ggplot2} code to your tidyplot
+Add ggplot2 code to your tidyplot
 }
 \examples{
 study \%>\%

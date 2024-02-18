@@ -27,5 +27,10 @@ add_ci95_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 \item{...}{bla}
 }
 \description{
-Add ribbon
+\itemize{
+\item \code{add_error_ribbon()} adds the standard error of mean.
+\item \code{add_range_ribbon()} adds the range from smallest to largest value.
+\item \code{add_sd_ribbon()} adds the standard deviation.
+\item \code{add_ci95_ribbon()} adds the 95\% confidence interval.
+}
 }

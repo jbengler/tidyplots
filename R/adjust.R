@@ -169,59 +169,6 @@ adjust_y_axis <- function(gg, title = ggplot2::waiver(), breaks = ggplot2::waive
 }
 
 
-#' Adjust data labels
-#' @param gg bla
-#' @param var bla
-#' @param new_names bla
-#' @param new_order bla
-#' @param sort_by bla
-#' @param reverse bla
-#' @export
-adjust_data_labels <- function(gg, var, new_names, new_order, sort_by, reverse = FALSE) {
-  out <- NULL
-
-  # rename
-  if (!missing(new_names) && !missing(var)) {
-    gg$tidyplot$new_names <- new_names
-    new_names <- setNames(names(new_names), new_names)
-    out <-
-      gg$data %>% dplyr::mutate({{var}} := forcats::fct_recode({{var}}, !!!new_names))
-    cli::cli_alert_success("adjust_data_labels: applied {.pkg new_names}")
-    gg <- gg %+% out
-    new_order <- names(new_names)
-  }
-
-  # reorder
-  if (!missing(new_order) && !missing(var)) {
-    out <-
-      # gg$data %>% dplyr::mutate({{var}} := factor({{var}}, levels = new_order))
-      gg$data %>% dplyr::mutate({{var}} := forcats::fct_relevel({{var}}, new_order))
-    cli::cli_alert_success("adjust_data_labels: reorderd by {.pkg new_order}")
-    gg <- gg %+% out
-  }
-
-  if (!missing(sort_by) && !missing(var)) {
-    out <-
-      gg$data %>% dplyr::mutate({{var}} := forcats::fct_reorder({{var}}, {{sort_by}}))
-    cli::cli_alert_success("adjust_data_labels: reorderd by variable {.pkg sort_by}")
-    return(gg %+% out)
-  }
-
-  if (reverse && !missing(var)) {
-    out <-
-      gg$data %>% dplyr::mutate({{var}} := forcats::fct_rev({{var}}))
-    cli::cli_alert_success("adjust_data_labels: {.pkg reversed} order of labels")
-    return(gg %+% out)
-  }
-
-  if(is.null(out)) {
-    cli::cli_alert_warning("adjust_data_labels: {.pkg nothing was changed}.")
-    cli::cli_alert_warning("Please provide {.pkg var} together with {.pkg new_names}, {.pkg new_order}, {.pkg sort_by} or {.pkg reverse = TRUE}.")
-  }
-  return(gg)
-}
-
-
 #' Adjust colors
 #' @param gg bla
 #' @param new_colors bla
@@ -230,11 +177,11 @@ adjust_data_labels <- function(gg, var, new_names, new_order, sort_by, reverse =
 #' @param labels bla
 #' @param ... bla
 #' @export
-adjust_colors <- function(gg, new_colors, saturation = 1, as_palette = FALSE,
+adjust_colors <- function(gg, new_colors = NULL, saturation = 1, as_palette = FALSE,
                           labels = tidyplot_parse_labels(), ...) {
   out <- gg
   # as individual colors
-  if (!missing(new_colors) && as_palette == FALSE) {
+  if (!is.null(new_colors) && as_palette == FALSE) {
     out$tidyplot$new_colors <- new_colors
     suppressMessages(
       out <-
@@ -243,9 +190,7 @@ adjust_colors <- function(gg, new_colors, saturation = 1, as_palette = FALSE,
         ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...)
     )
     cli::cli_alert_success("adjust_colors: applied {.pkg new_colors}")
-  }
-  # as color palette
-  if (!missing(new_colors) && as_palette == TRUE) {
+  } else {
     suppressMessages({
       if (is_discrete(gg, "colour"))
         out <- out + my_scale_color_d(palette = new_colors, drop = FALSE, labels = labels, ...)
@@ -261,24 +206,9 @@ adjust_colors <- function(gg, new_colors, saturation = 1, as_palette = FALSE,
     })
     cli::cli_alert_success("adjust_colors: applied {.pkg new color palette}")
   }
-  if (missing(new_colors)) {
-    suppressMessages({
-      if (is_discrete(gg, "colour"))
-        out <- out + my_scale_color_d(drop = FALSE, labels = labels, ...)
-
-      if (is_discrete(gg, "fill"))
-        out <- out + my_scale_fill_d(saturation = saturation, drop = FALSE, labels = labels, ...)
-
-      if (is_continuous(gg, "colour"))
-        out <- out + my_scale_color_c(labels = labels, ...)
-
-      if (is_continuous(gg, "fill"))
-        out <- out + my_scale_fill_c(saturation = saturation, labels = labels, ...)
-    })
-    cli::cli_alert_success("adjust_colors: applied tidyplots {.pkg default colors}")
-  }
-  return(out)
+  out
 }
+
 
 #' Adjust plot size
 #' @param gg bla

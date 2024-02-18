@@ -57,5 +57,10 @@ add_ci95(
 \item{...}{bla}
 }
 \description{
-Add error bar
+\itemize{
+\item \code{add_error()} adds the standard error of mean.
+\item \code{add_range()} adds the range from smallest to largest value.
+\item \code{add_sd()} adds the standard deviation.
+\item \code{add_ci95()} adds the 95\% confidence interval.
+}
 }

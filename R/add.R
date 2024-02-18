@@ -12,7 +12,7 @@ add_geom <- function(gg, geom, rasterize = FALSE, rasterize_dpi = 300, level = 0
   }
 }
 
-#' Add `ggplot2` code to your tidyplot
+#' Add ggplot2 code to your tidyplot
 #'
 #' @examples
 #' study %>%
@@ -153,6 +153,11 @@ ff_errorbar <- function(.fun.data) {
 }
 #' Add error bar
 #'
+#' * `add_error()` adds the standard error of mean.
+#' * `add_range()` adds the range from smallest to largest value.
+#' * `add_sd()` adds the standard deviation.
+#' * `add_ci95()` adds the 95% confidence interval.
+#'
 #' @param gg bla
 #' @param dodge_width bla
 #' @param width bla
@@ -185,6 +190,11 @@ ff_ribbon <- function(.fun.data) {
   }
 }
 #' Add ribbon
+#'
+#' * `add_error_ribbon()` adds the standard error of mean.
+#' * `add_range_ribbon()` adds the range from smallest to largest value.
+#' * `add_sd_ribbon()` adds the standard deviation.
+#' * `add_ci95_ribbon()` adds the 95% confidence interval.
 #'
 #' @param gg bla
 #' @param dodge_width bla
