@@ -4,12 +4,12 @@
 \alias{remove_padding}
 \title{Remove padding}
 \usage{
-remove_padding(gg, force_y_continuous = FALSE)
+remove_padding(gg, force_continuous = FALSE)
 }
 \arguments{
 \item{gg}{bla}
 
-\item{force_y_continuous}{bla}
+\item{force_continuous}{bla}
 }
 \description{
 Remove padding

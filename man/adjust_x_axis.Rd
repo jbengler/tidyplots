@@ -11,12 +11,11 @@ adjust_x_axis(
   breaks = ggplot2::waiver(),
   labels = ggplot2::waiver(),
   limits = NULL,
-  padding_left = NULL,
-  padding_right = NULL,
+  padding = c(NA, NA),
   rotate_labels = FALSE,
   transformation = "identity",
   cut_short_scale = FALSE,
-  position = "bottom",
+  force_continuous = FALSE,
   ...
 )
 
@@ -26,12 +25,11 @@ adjust_y_axis(
   breaks = ggplot2::waiver(),
   labels = ggplot2::waiver(),
   limits = NULL,
-  padding_bottom = NULL,
-  padding_top = NULL,
+  padding = c(NA, NA),
+  rotate_labels = FALSE,
   transformation = "identity",
-  position = "left",
   cut_short_scale = FALSE,
-  force_y_continuous = FALSE,
+  force_continuous = FALSE,
   ...
 )
 }
@@ -46,9 +44,7 @@ adjust_y_axis(
 
 \item{limits}{bla}
 
-\item{padding_left}{bla}
-
-\item{padding_right}{bla}
+\item{padding}{bla}
 
 \item{rotate_labels}{bla}
 
@@ -56,15 +52,9 @@ adjust_y_axis(
 
 \item{cut_short_scale}{bla}
 
-\item{position}{bla}
+\item{force_continuous}{bla}
 
 \item{...}{bla}
-
-\item{padding_bottom}{bla}
-
-\item{padding_top}{bla}
-
-\item{force_y_continuous}{bla}
 }
 \description{
 Adjust axes

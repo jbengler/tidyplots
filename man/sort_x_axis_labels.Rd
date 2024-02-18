@@ -3,11 +3,14 @@
 \name{sort_x_axis_labels}
 \alias{sort_x_axis_labels}
 \alias{sort_y_axis_labels}
-\title{Sort axis labels}
+\alias{sort_color_labels}
+\title{Sort axis and color labels}
 \usage{
 sort_x_axis_labels(gg, ...)
 
 sort_y_axis_labels(gg, ...)
+
+sort_color_labels(gg, ...)
 }
 \arguments{
 \item{gg}{bla}
@@ -15,5 +18,5 @@ sort_y_axis_labels(gg, ...)
 \item{...}{bla}
 }
 \description{
-Sort axis labels
+Sort axis and color labels
 }

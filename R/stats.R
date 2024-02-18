@@ -27,7 +27,7 @@ add_stats_pvalue <- function(gg,
   cli::cli_alert_success("add_stats: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
 
   gg <- gg  %>%
-    adjust_y_axis(padding_top = padding_top)
+    adjust_y_axis(padding = c(NA, padding_top))
 
   if(include_info)
     gg <- gg  %>% add_caption(caption = glue::glue("method = {method}

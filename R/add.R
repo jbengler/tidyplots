@@ -222,11 +222,11 @@ ff_bar <- function(.fun, .count = FALSE) {
     gg <- gg %>% adjust_colors(saturation = saturation)
     if (.count) {
       gg %>%
-        adjust_y_axis(padding_bottom = 0, force_y_continuous = TRUE) +
+        adjust_y_axis(padding = c(0, NA), force_continuous = TRUE) +
         ggplot2::stat_count(geom = "bar", color = NA, width = width, position = position, ...)
     } else {
       gg %>%
-        adjust_y_axis(padding_bottom = 0) +
+        adjust_y_axis(padding = c(0, NA)) +
         ggplot2::stat_summary(fun = .fun, geom = "bar", color = NA, width = width,
                               position = position, ...)
     }
@@ -267,11 +267,11 @@ ff_value <- function(.fun, .count = FALSE) {
     dodge_width <- dodge_width %||% gg$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     if (.count) {
-      gg %>% adjust_y_axis(padding_top = padding_top, force_y_continuous = TRUE) +
+      gg %>% adjust_y_axis(padding = c(NA, padding_top), force_continuous = TRUE) +
         ggplot2::stat_count(ggplot2::aes(label = format_number(ggplot2::after_stat(count), accuracy = accuracy, scale_cut = scale_cut)),
                             geom = "text", vjust = vjust, size = size, position = position, ...)
     } else {
-      gg %>% adjust_y_axis(padding_top = padding_top) +
+      gg %>% adjust_y_axis(padding = c(NA, padding_top)) +
         ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(y), accuracy = accuracy, scale_cut = scale_cut)),
                               fun = .fun, geom = "text", vjust = vjust, size = size, position = position, ...)
     }
@@ -604,7 +604,7 @@ ff_barstack <- function(.position_fun) {
   function(gg, bar_width = 0.8, reverse = FALSE, ...) {
     gg <-
       gg %>%
-      adjust_y_axis(padding_bottom = 0, padding_top = 0, force_y_continuous = TRUE)
+      adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
 
     mapping <- NULL
     if (is_missing(gg, "x")) mapping <- ggplot2::aes(x = "")
@@ -636,8 +636,8 @@ ff_areastack <- function(.position_fun) {
   function(gg, linewidth = 0.25, alpha = 0.3, reverse = FALSE, ...) {
     gg <-
       gg %>%
-      adjust_y_axis(padding_bottom = 0, padding_top = 0, force_y_continuous = TRUE) %>%
-      adjust_x_axis(padding_left = 0, padding_right = 0)
+      adjust_y_axis(padding = c(0, 0), force_continuous = TRUE) %>%
+      adjust_x_axis(padding = c(0, 0))
 
     # overwrite group aesthetic
     mapping <- ggplot2::aes()
@@ -695,14 +695,14 @@ add_areastack_relative <- ff_areastack(.position_fun = ggplot2::position_fill)
 #' @export
 add_histogram <- function(gg, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
   gg %>%
-    remove_padding(force_y_continuous = TRUE) +
+    remove_padding(force_continuous = TRUE) +
     ggplot2::geom_histogram(binwidth = binwidth, bins = bins, fill = color, ...)
 }
 #' @rdname add_histogram
 #' @export
 add_density_histogram <- function(gg, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
   gg %>%
-    remove_padding(force_y_continuous = TRUE) +
+    remove_padding(force_continuous = TRUE) +
     ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)),
                             binwidth = binwidth,bins = bins, fill = color, ...)
 }
@@ -720,7 +720,7 @@ add_density_histogram <- function(gg, binwidth = NULL, bins = NULL, color = "#4D
 #' @export
 add_density_curve <- function(gg, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, color = "#E37D46", fill = "#E37D46", alpha = 0.3, ...) {
   gg %>%
-    remove_padding(force_y_continuous = TRUE) +
+    remove_padding(force_continuous = TRUE) +
     ggplot2::geom_density(bw = bw, adjust = adjust, kernel = kernel, n = n, color = color, fill = fill, alpha = alpha, ...)
 }
 

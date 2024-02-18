@@ -13,12 +13,12 @@ ff_rename_axis_labels <- function(axis) {
       dplyr::mutate("{var}" := forcats::fct_recode(.data[[var]], !!!new_names))
 
     cli::cli_alert_danger(
-    "Warning: rename_{axis}_labels() changes labels across the entire the pipe!
-    This affects reorder_{axis}_labels() and adjust_colors(), when used with label names.")
+    "Warning: rename_*_labels() changes labels across the entire the pipe!
+    This affects reorder_*_labels() and adjust_colors(), when used with label names.")
     gg %+% new_data
   }
 }
-#' Rename axis labels
+#' Rename axis and color labels
 #'
 #' @param gg bla
 #' @param new_names bla
@@ -27,6 +27,9 @@ rename_x_axis_labels <- ff_rename_axis_labels(axis = "x")
 #' @rdname rename_x_axis_labels
 #' @export
 rename_y_axis_labels <- ff_rename_axis_labels(axis = "y")
+#' @rdname rename_x_axis_labels
+#' @export
+rename_color_labels <- ff_rename_axis_labels(axis = "colour")
 
 
 ff_reorder_axis_labels <- function(axis) {
@@ -42,7 +45,7 @@ ff_reorder_axis_labels <- function(axis) {
     gg %+% new_data
   }
 }
-#' Reorder axis labels
+#' Reorder axis and color labels
 #'
 #' @param gg bla
 #' @param ... bla
@@ -51,6 +54,9 @@ reorder_x_axis_labels <- ff_reorder_axis_labels(axis = "x")
 #' @rdname reorder_x_axis_labels
 #' @export
 reorder_y_axis_labels <- ff_reorder_axis_labels(axis = "y")
+#' @rdname reorder_x_axis_labels
+#' @export
+reorder_color_labels <- ff_reorder_axis_labels(axis = "colour")
 
 
 ff_sort_axis_labels <- function(axis) {
@@ -66,7 +72,7 @@ ff_sort_axis_labels <- function(axis) {
     gg %+% new_data
   }
 }
-#' Sort axis labels
+#' Sort axis and color labels
 #'
 #' @param gg bla
 #' @param ... bla
@@ -75,6 +81,9 @@ sort_x_axis_labels <- ff_sort_axis_labels(axis = "x")
 #' @rdname sort_x_axis_labels
 #' @export
 sort_y_axis_labels <- ff_sort_axis_labels(axis = "y")
+#' @rdname sort_x_axis_labels
+#' @export
+sort_color_labels <- ff_sort_axis_labels(axis = "colour")
 
 
 ff_reverse_axis_labels <- function(axis) {
@@ -89,7 +98,7 @@ ff_reverse_axis_labels <- function(axis) {
     gg %+% new_data
   }
 }
-#' Reverse axis labels
+#' Reverse axis and color labels
 #'
 #' @param gg bla
 #' @export
@@ -97,4 +106,7 @@ reverse_x_axis_labels <- ff_reverse_axis_labels(axis = "x")
 #' @rdname reverse_x_axis_labels
 #' @export
 reverse_y_axis_labels <- ff_reverse_axis_labels(axis = "y")
+#' @rdname reverse_x_axis_labels
+#' @export
+reverse_color_labels <- ff_reverse_axis_labels(axis = "colour")
 

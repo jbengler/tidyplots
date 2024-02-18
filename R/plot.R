@@ -28,8 +28,8 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   gg$tidyplot$padding_x <- c(0.05, 0.05)
   gg$tidyplot$padding_y <- c(0.05, 0.05)
 
-  gg$tidyplot$limits_x <- c(NA, NA)
-  gg$tidyplot$limits_y <- c(NA, NA)
+  gg$tidyplot$limits_x <- c(NULL, NULL)
+  gg$tidyplot$limits_y <- c(NULL, NULL)
 
   gg$tidyplot$dodge_width <- dodge_width
 

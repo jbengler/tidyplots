@@ -84,7 +84,7 @@ reference:
   - starts_with("adjust_description")
 - subtitle:
   desc: >
-    **Data labels**
+    **Axis and color labels**
 - contents:
   - starts_with("rename")
   - starts_with("reorder")

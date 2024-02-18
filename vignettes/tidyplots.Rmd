@@ -206,7 +206,7 @@ p3 <-
   animals %>% 
   tidyplot(x = weight, y = size, color = number_of_legs) %>% 
   add_data_points(confetti = TRUE) %>% 
-  add_data_points(confetti = TRUE, data = filter_rows(size > 300), color = "red") %>% 
+  add_data_points(data = filter_rows(size > 300), color = "red") %>% 
   add_text_labels(data = max_rows(weight, n = 3), var = animal, color = "black")
   
 p3
@@ -332,6 +332,18 @@ study %>%
   sort_x_axis_labels(score) %>% 
   reverse_x_axis_labels() %>% 
   rename_x_axis_labels(c("A" = "Hallo"))
+
+p4 <- 
+  study %>% 
+  tidyplot(group, score, color = dose) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
+  add_error() %>% 
+  add_data_points_beeswarm()
+
+p4
+p4 %>% reverse_color_labels()
+p4
+p4 %>% rename_color_labels(c("low" = "Nearly nothing", "high" = "Sky high"))
 
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 

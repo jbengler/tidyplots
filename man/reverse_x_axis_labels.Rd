@@ -3,15 +3,18 @@
 \name{reverse_x_axis_labels}
 \alias{reverse_x_axis_labels}
 \alias{reverse_y_axis_labels}
-\title{Reverse axis labels}
+\alias{reverse_color_labels}
+\title{Reverse axis and color labels}
 \usage{
 reverse_x_axis_labels(gg)
 
 reverse_y_axis_labels(gg)
+
+reverse_color_labels(gg)
 }
 \arguments{
 \item{gg}{bla}
 }
 \description{
-Reverse axis labels
+Reverse axis and color labels
 }

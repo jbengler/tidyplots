@@ -6,11 +6,11 @@
 \usage{
 adjust_padding(
   gg,
-  top = NULL,
-  right = NULL,
-  bottom = NULL,
-  left = NULL,
-  force_y_continuous = FALSE
+  top = NA,
+  right = NA,
+  bottom = NA,
+  left = NA,
+  force_continuous = FALSE
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ adjust_padding(
 
 \item{left}{bla}
 
-\item{force_y_continuous}{bla}
+\item{force_continuous}{bla}
 }
 \description{
 Adjust padding

@@ -6,7 +6,7 @@
 \alias{remove_y_axis_ticks}
 \alias{remove_y_axis_labels}
 \alias{remove_y_axis_title}
-\title{Remove \code{y} axis or parts of it}
+\title{Remove y axis or parts of it}
 \usage{
 remove_y_axis(gg)
 
@@ -22,5 +22,5 @@ remove_y_axis_title(gg)
 \item{gg}{bla}
 }
 \description{
-Remove \code{y} axis or parts of it
+Remove y axis or parts of it
 }

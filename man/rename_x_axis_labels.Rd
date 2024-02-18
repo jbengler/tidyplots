@@ -3,11 +3,14 @@
 \name{rename_x_axis_labels}
 \alias{rename_x_axis_labels}
 \alias{rename_y_axis_labels}
-\title{Rename axis labels}
+\alias{rename_color_labels}
+\title{Rename axis and color labels}
 \usage{
 rename_x_axis_labels(gg, new_names)
 
 rename_y_axis_labels(gg, new_names)
+
+rename_color_labels(gg, new_names)
 }
 \arguments{
 \item{gg}{bla}
@@ -15,5 +18,5 @@ rename_y_axis_labels(gg, new_names)
 \item{new_names}{bla}
 }
 \description{
-Rename axis labels
+Rename axis and color labels
 }

@@ -3,11 +3,14 @@
 \name{reorder_x_axis_labels}
 \alias{reorder_x_axis_labels}
 \alias{reorder_y_axis_labels}
-\title{Reorder axis labels}
+\alias{reorder_color_labels}
+\title{Reorder axis and color labels}
 \usage{
 reorder_x_axis_labels(gg, ...)
 
 reorder_y_axis_labels(gg, ...)
+
+reorder_color_labels(gg, ...)
 }
 \arguments{
 \item{gg}{bla}
@@ -15,5 +18,5 @@ reorder_y_axis_labels(gg, ...)
 \item{...}{bla}
 }
 \description{
-Reorder axis labels
+Reorder axis and color labels
 }

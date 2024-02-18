@@ -12,7 +12,7 @@ remove_legend_title <- function(gg) {
   gg + ggplot2::theme(legend.title = ggplot2::element_blank())
 }
 
-#' Remove `x` axis or parts of it
+#' Remove x axis or parts of it
 #' @param gg bla
 #' @export
 remove_x_axis <- function(gg) {
@@ -48,7 +48,7 @@ remove_x_axis_title <- function(gg) {
 }
 
 
-#' Remove `y` axis or parts of it
+#' Remove y axis or parts of it
 #' @param gg bla
 #' @export
 remove_y_axis <- function(gg) {
@@ -85,13 +85,13 @@ remove_y_axis_title <- function(gg) {
 
 #' Remove padding
 #' @param gg bla
-#' @param force_y_continuous bla
+#' @param force_continuous bla
 #' @export
-remove_padding <- function(gg, force_y_continuous = FALSE) {
+remove_padding <- function(gg, force_continuous = FALSE) {
   gg$tidyplot$padding_x <- c(0, 0)
   gg$tidyplot$padding_y <- c(0, 0)
   gg %>%
     adjust_x_axis() %>%
-    adjust_y_axis(force_y_continuous = force_y_continuous)
+    adjust_y_axis(force_continuous = force_continuous)
 }
 

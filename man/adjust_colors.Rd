@@ -6,7 +6,7 @@
 \usage{
 adjust_colors(
   gg,
-  new_colors,
+  new_colors = NULL,
   saturation = 1,
   as_palette = FALSE,
   labels = tidyplot_parse_labels(),
