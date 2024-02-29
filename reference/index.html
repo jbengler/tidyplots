@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
+    <a class="dropdown-item" href="../articles/Customized-defaults.html">Consistent style across plots</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
   </div>
@@ -74,7 +76,7 @@
           
           <code><a href="tidyplot.html">tidyplot()</a></code> 
         </dt>
-        <dd>Create a new plot</dd>
+        <dd>Create a new tidyplot</dd>
       </dl></div><div class="section level2">
       <h2 id="add">Add<a class="anchor" aria-label="anchor" href="#add"></a></h2>
       
@@ -266,7 +268,13 @@
       </dl></div><div class="section level2">
       <h2 id="adjust">Adjust<a class="anchor" aria-label="anchor" href="#adjust"></a></h2>
       
-      <p class="section-desc"></p><p>Adjust plot component and properties.</p>
+      <p class="section-desc"></p><p>Adjust plot components, properties, data labels and themes.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Components &amp; properties</strong></p>
 
       
     </div><div id="" class="section level2">
@@ -279,11 +287,6 @@
           <code><a href="adjust_x_axis.html">adjust_x_axis()</a></code> <code><a href="adjust_x_axis.html">adjust_y_axis()</a></code> 
         </dt>
         <dd>Adjust axes</dd>
-      </dl><dl><dt>
-          
-          <code><a href="adjust_data_labels.html">adjust_data_labels()</a></code> 
-        </dt>
-        <dd>Adjust data labels</dd>
       </dl><dl><dt>
           
           <code><a href="adjust_colors.html">adjust_colors()</a></code> 
@@ -319,10 +322,41 @@
           <code><a href="adjust_description.html">adjust_description()</a></code> 
         </dt>
         <dd>Adjust description</dd>
-      </dl></div><div class="section level2">
-      <h2 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a></h2>
+      </dl></div><div id="" class="section level2">
       
-      <p class="section-desc"></p><p>Choose and modify a theme.</p>
+      
+      <p class="section-desc"></p><p><strong>Axis and color labels</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="rename_x_axis_labels.html">rename_x_axis_labels()</a></code> <code><a href="rename_x_axis_labels.html">rename_y_axis_labels()</a></code> <code><a href="rename_x_axis_labels.html">rename_color_labels()</a></code> 
+        </dt>
+        <dd>Rename axis and color labels</dd>
+      </dl><dl><dt>
+          
+          <code><a href="reorder_x_axis_labels.html">reorder_x_axis_labels()</a></code> <code><a href="reorder_x_axis_labels.html">reorder_y_axis_labels()</a></code> <code><a href="reorder_x_axis_labels.html">reorder_color_labels()</a></code> 
+        </dt>
+        <dd>Reorder axis and color labels</dd>
+      </dl><dl><dt>
+          
+          <code><a href="sort_x_axis_labels.html">sort_x_axis_labels()</a></code> <code><a href="sort_x_axis_labels.html">sort_y_axis_labels()</a></code> <code><a href="sort_x_axis_labels.html">sort_color_labels()</a></code> 
+        </dt>
+        <dd>Sort axis and color labels</dd>
+      </dl><dl><dt>
+          
+          <code><a href="reverse_x_axis_labels.html">reverse_x_axis_labels()</a></code> <code><a href="reverse_x_axis_labels.html">reverse_y_axis_labels()</a></code> <code><a href="reverse_x_axis_labels.html">reverse_color_labels()</a></code> 
+        </dt>
+        <dd>Reverse axis and color labels</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Themes</strong></p>
 
       
     </div><div id="" class="section level2">
@@ -349,12 +383,38 @@
           
           <code><a href="remove_x_axis.html">remove_x_axis()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_line()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_ticks()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_labels()</a></code> <code><a href="remove_x_axis.html">remove_x_axis_title()</a></code> 
         </dt>
-        <dd>Remove <code>x</code> axis or parts of it</dd>
+        <dd>Remove x axis or parts of it</dd>
       </dl><dl><dt>
           
           <code><a href="remove_y_axis.html">remove_y_axis()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_line()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_ticks()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_labels()</a></code> <code><a href="remove_y_axis.html">remove_y_axis_title()</a></code> 
         </dt>
-        <dd>Remove <code>y</code> axis or parts of it</dd>
+        <dd>Remove y axis or parts of it</dd>
+      </dl></div><div id="" class="section level2">
+      
+      
+      <p class="section-desc"></p><p><strong>Colors</strong></p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="colors_discrete_metro_ui.html">colors_discrete_metro_ui</a></code> <code><a href="colors_discrete_metro_ui.html">colors_discrete_circle</a></code> 
+        </dt>
+        <dd>Discrete color schemes</dd>
+      </dl><dl><dt>
+          
+          <code><a href="colors_continuous_viridis.html">colors_continuous_viridis</a></code> <code><a href="colors_continuous_viridis.html">colors_continuous_magma</a></code> <code><a href="colors_continuous_viridis.html">colors_continuous_inferno</a></code> <code><a href="colors_continuous_viridis.html">colors_continuous_turbo</a></code> <code><a href="colors_continuous_viridis.html">colors_continuous_blue_pink_yellow</a></code> 
+        </dt>
+        <dd>Continuous color schemes</dd>
+      </dl><dl><dt>
+          
+          <code><a href="colors_diverging_blue2brown.html">colors_diverging_blue2brown</a></code> <code><a href="colors_diverging_blue2brown.html">colors_diverging_blue2red</a></code> <code><a href="colors_diverging_blue2brown.html">colors_diverging_RdBu</a></code> <code><a href="colors_diverging_blue2brown.html">colors_diverging_RdYlBu</a></code> 
+        </dt>
+        <dd>Diverging color schemes</dd>
       </dl></div><div class="section level2">
       <h2 id="split">Split<a class="anchor" aria-label="anchor" href="#split"></a></h2>
       
@@ -384,14 +444,14 @@
 
       <dl><dt>
           
-          <code><a href="show_plot.html">show_plot()</a></code> 
+          <code><a href="view_plot.html">view_plot()</a></code> 
         </dt>
-        <dd>Show plot on screen</dd>
+        <dd>View plot on screen</dd>
       </dl><dl><dt>
           
           <code><a href="save_plot.html">save_plot()</a></code> 
         </dt>
-        <dd>Save plot to file</dd>
+        <dd>Save plots to file</dd>
       </dl></div><div class="section level2">
       <h2 id="helpers">Helpers<a class="anchor" aria-label="anchor" href="#helpers"></a></h2>
       
@@ -407,7 +467,7 @@
           
           <code><a href="add.html">add()</a></code> 
         </dt>
-        <dd>Add <code>ggplot2</code> code to your tidyplot</dd>
+        <dd>Add ggplot2 code to your tidyplot</dd>
       </dl><dl><dt>
           
           <code><a href="format_number.html">format_number()</a></code> <code><a href="format_number.html">format_p_value()</a></code> 
@@ -415,19 +475,14 @@
         <dd>Format numbers and p values</dd>
       </dl><dl><dt>
           
-          <code><a href="all_rows.html">all_rows()</a></code> <code><a href="all_rows.html">filter_rows()</a></code> <code><a href="all_rows.html">max_rows()</a></code> <code><a href="all_rows.html">min_rows()</a></code> <code><a href="all_rows.html">first_rows()</a></code> <code><a href="all_rows.html">last_rows()</a></code> 
+          <code><a href="all_rows.html">all_rows()</a></code> <code><a href="all_rows.html">filter_rows()</a></code> <code><a href="all_rows.html">max_rows()</a></code> <code><a href="all_rows.html">min_rows()</a></code> <code><a href="all_rows.html">first_rows()</a></code> <code><a href="all_rows.html">last_rows()</a></code> <code><a href="all_rows.html">sample_rows()</a></code> 
         </dt>
         <dd>Subset data</dd>
       </dl><dl><dt>
           
-          <code><a href="color_palettes.html">color_palettes</a></code> 
+          <code><a href="new_color_scheme.html">new_color_scheme()</a></code> 
         </dt>
-        <dd>Color palettes</dd>
-      </dl><dl><dt>
-          
-          <code><a href="show_color_palettes.html">show_color_palettes()</a></code> 
-        </dt>
-        <dd>Show color palettes</dd>
+        <dd>New color scheme</dd>
       </dl></div><div class="section level2">
       <h2 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a></h2>
       

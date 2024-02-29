@@ -10,6 +10,12 @@
     <loc>https://jbengler.github.io/tidyplots/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/articles/Colors.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/articles/Customized-defaults.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/articles/Testing.html</loc>
   </url>
   <url>
@@ -100,9 +106,6 @@
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_colors.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_data_labels.html</loc>
-  </url>
-  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_description.html</loc>
   </url>
   <url>
@@ -130,7 +133,13 @@
     <loc>https://jbengler.github.io/tidyplots/reference/animals.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/color_palettes.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/colors_discrete_metro_ui.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/colors_diverging_blue2brown.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/dinosaurs.html</loc>
@@ -163,6 +172,9 @@
     <loc>https://jbengler.github.io/tidyplots/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/new_color_scheme.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/remove_legend.html</loc>
   </url>
   <url>
@@ -175,13 +187,19 @@
     <loc>https://jbengler.github.io/tidyplots/reference/remove_y_axis.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/rename_x_axis_labels.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/reorder_x_axis_labels.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/reverse_x_axis_labels.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/save_plot.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/show_color_palettes.html</loc>
-  </url>
-  <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/show_plot.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/sort_x_axis_labels.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/spendings.html</loc>
@@ -200,5 +218,8 @@
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/time_course.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/view_plot.html</loc>
   </url>
 </urlset>

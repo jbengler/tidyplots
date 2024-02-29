@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
+    <a class="dropdown-item" href="../articles/Customized-defaults.html">Consistent style across plots</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
   </div>
@@ -63,11 +65,11 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_padding</span><span class="op">(</span></span>
 <span>  <span class="va">gg</span>,</span>
-<span>  top <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  right <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  bottom <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  left <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  force_y_continuous <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  top <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  right <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  bottom <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  left <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>  force_continuous <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -93,7 +95,7 @@
 <dd><p>bla</p></dd>
 
 
-<dt>force_y_continuous</dt>
+<dt>force_continuous</dt>
 <dd><p>bla</p></dd>
 
 </dl></div>

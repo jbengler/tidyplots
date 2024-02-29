@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
+    <a class="dropdown-item" href="../articles/Customized-defaults.html">Consistent style across plots</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
   </div>
@@ -55,14 +57,24 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="development version" id="tidyplots-development-version">tidyplots (development version)<a class="anchor" aria-label="anchor" href="#tidyplots-development-version"></a></h2>
+<ul><li>New S3 class <code>tidycolor</code> for color schemes. The print method of <code>tidycolor</code> sends a html preview of the color scheme to the RStudio viewer panel.</li>
+<li>New <code><a href="../reference/new_color_scheme.html">new_color_scheme()</a></code> to create custom color schemes.</li>
+<li>New build-in color schemes using the prefix <code>colors_discrete_</code>, <code>colors_continuous_</code> and <code>colors_diverging_</code>.</li>
+<li>
+<code><a href="../reference/adjust_colors.html">adjust_colors()</a></code> now also works with too few or too many provided colors.</li>
+<li>New function factory behind <code><a href="../reference/adjust_x_axis.html">adjust_x_axis()</a></code> and <code><a href="../reference/adjust_x_axis.html">adjust_y_axis()</a></code>
+</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.2" id="tidyplots-002">tidyplots 0.0.2<a class="anchor" aria-label="anchor" href="#tidyplots-002"></a></h2>
-<ul><li><p>Renaming functions to improve consistency.</p></li>
-<li><p>The package is still in early development. Expect user-facing and breaking changes.</p></li>
+<ul><li>Renaming functions to improve consistency.</li>
+<li>The package is still in early development. Expect user-facing and breaking changes.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="tidyplots-001">tidyplots 0.0.1<a class="anchor" aria-label="anchor" href="#tidyplots-001"></a></h2>
-<ul><li><p>Initial release. tidyplots streamlines the creation of publication-ready plots for scientific papers, making it incredibly easy to add and refine plot elements. It allows precise control over composition, style, and absolute sizes, while its utilization of the pipe <code>%&gt;%</code> simplifies the construction of advanced plotting pipelines.</p></li>
-<li><p>The package is still in early development. Expect user-facing and breaking changes.</p></li>
+<ul><li>Initial release. tidyplots streamlines the creation of publication-ready plots for scientific papers, making it incredibly easy to add and refine plot elements. It allows precise control over composition, style, and absolute sizes, while its utilization of the pipe <code>%&gt;%</code> simplifies the construction of advanced plotting pipelines.</li>
+<li>The package is still in early development. Expect user-facing and breaking changes.</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

@@ -1,11 +1,13 @@
-pandoc: 2.19.2
+pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
+  Colors: Colors.html
+  Customized-defaults: Customized-defaults.html
   Testing: Testing.html
   Visualizing-data: Visualizing-data.html
   tidyplots: tidyplots.html
-last_built: 2024-02-12T11:08Z
+last_built: 2024-02-29T21:52Z
 urls:
   reference: https://jbengler.github.io/tidyplots/reference
   article: https://jbengler.github.io/tidyplots/articles

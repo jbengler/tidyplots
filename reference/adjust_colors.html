@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,6 +27,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
+    <a class="dropdown-item" href="../articles/Customized-defaults.html">Consistent style across plots</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
   </div>
@@ -51,7 +53,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Adjust colors</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jbengler/tidyplots/blob/HEAD/R/adjust.R" class="external-link"><code>R/adjust.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jbengler/tidyplots/blob/HEAD/R/colors.R" class="external-link"><code>R/colors.R</code></a></small>
       <div class="d-none name"><code>adjust_colors.Rd</code></div>
     </div>
 
@@ -63,9 +65,8 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_colors</span><span class="op">(</span></span>
 <span>  <span class="va">gg</span>,</span>
-<span>  <span class="va">new_colors</span>,</span>
+<span>  new_colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  saturation <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  as_palette <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  labels <span class="op">=</span> <span class="fu">tidyplot_parse_labels</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -82,10 +83,6 @@
 
 
 <dt>saturation</dt>
-<dd><p>bla</p></dd>
-
-
-<dt>as_palette</dt>
 <dd><p>bla</p></dd>
 
 
