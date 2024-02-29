@@ -37,15 +37,13 @@ filter_rows <- function(..., .by = NULL){
 #' @inheritParams dplyr::slice_max
 #' @export
 max_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE){
-  . %>% dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties,
-                         na_rm = na_rm)
+  . %>% dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm)
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_min
 #' @export
 min_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE){
-  . %>% dplyr::slice_min(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties,
-                         na_rm = na_rm)
+  . %>% dplyr::slice_min(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm)
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_head
@@ -58,6 +56,12 @@ first_rows <- function(n, by = NULL){
 #' @export
 last_rows <- function(n, by = NULL){
   . %>% dplyr::slice_tail(n = n, by = {{by}})
+}
+#' @rdname all_rows
+#' @inheritParams dplyr::slice_sample
+#' @export
+sample_rows <- function(n, by = NULL){
+  . %>% dplyr::slice_sample(n = n, by = {{by}})
 }
 
 
@@ -102,7 +106,7 @@ check_pipeline <- function(gg) {
   # add, adjust, theme, remove, split, render, save
   # add before adjust -> warn
   # adjust_levels before adjust_colors -> warn
-  # nothing after split_plot, except save_plot and show_plot -> error
+  # nothing after split_plot, except save_plot and view_plot -> error
 
   # unexpected behavior: adjust_levels(new_names) + adjust_colors(new_colors = named_vector)
 }

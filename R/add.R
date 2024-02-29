@@ -761,7 +761,7 @@ add_heatmap <- function(gg, scale = c("none", "row", "column"), rotate_labels = 
     ggplot2::coord_cartesian(expand = FALSE)
 
   if (scale %in% c("row", "column"))
-    gg <- gg %>% adjust_colors(c("blue", "white", "red"), as_palette = TRUE)
+    gg <- gg %>% adjust_colors(c("blue", "white", "red"))
 
   add_geom(gg, ggplot2::geom_raster(mapping = mapping, ...),
            rasterize = rasterize, rasterize_dpi = rasterize_dpi)

@@ -1,36 +1,174 @@
+#' @export
+print.tidycolor <- function(x, return_html = FALSE, ...) print_tidycolor(x, return_html = return_html)
+#' @export
+c.tidycolor <- function(...) new_color_scheme(NextMethod())
+#' @export
+`[.tidycolor` <- function(x, i) new_color_scheme(NextMethod())
+#' @export
+`[[.tidycolor` <- function(x, i) new_color_scheme(NextMethod())
 
-
-#' Show color palettes
-#'
-#' @param pals bla
-#' @param show_labels bla
-#' @param ncol bla
+#' Adjust colors
+#' @param gg bla
+#' @param new_colors bla
+#' @param saturation bla
+#' @param labels bla
 #' @param ... bla
 #' @export
-show_color_palettes <- function(pals = color_palettes, show_labels = TRUE, ncol = 3, ...) {
-  tidy_pals <-
-    tibble::enframe(pals, name = "pal") %>%
-    tidyr::unnest(cols = c(value)) %>%
-    tibble::rownames_to_column("nr") %>%
-    dplyr::mutate(
-      nr = factor(nr, levels = dplyr::row_number()),
-      label_color = dplyr::if_else(as(colorspace::hex2RGB(value), "HLS")@coords[,2] > 0.6, "#000000", "#FFFFFF"))
+adjust_colors <- function(gg, new_colors = NULL,
+                          saturation = 1,
+                          labels = tidyplot_parse_labels(), ...) {
+  out <- gg
+  as_palette <- FALSE
 
-  fill_colors <- tibble::deframe(tidy_pals[c(3,3)])
-  label_colors <- tibble::deframe(tidy_pals[c(4,4)])
+  if (is_discrete(gg, "colour")) {
 
-  ggplot2::ggplot(tidy_pals, ggplot2::aes(x = nr, y = 1, fill = value)) +
-    ggplot2::geom_tile() +
-    { if (show_labels) ggplot2::geom_text(ggplot2::aes(label = value, color = label_color), angle = 90, size = 2.5) else NULL
-    } +
-    ggplot2::scale_x_discrete(expand = c(0, 0)) +
-    ggplot2::scale_fill_manual(values = fill_colors, guide = "none") +
-    ggplot2::scale_color_manual(values = label_colors, guide = "none") +
-    ggplot2::theme_void() +
-    ggplot2::facet_wrap(facets = ggplot2::vars(pal), scales = "free", ncol = ncol, ...)
+    # Default colors
+    if (is.null(new_colors)) {
+      new_colors <- colors_discrete_metro_ui
+      as_palette <- TRUE
+    }
+
+    # Are enough new_colors provided?
+    named_vector <- FALSE
+    n_ratio <- 0
+    if (!is.null(names(new_colors))) {
+      named_vector <- TRUE
+      n_ratio <- 1
+    } else {
+      n_provided <- length(new_colors)
+      n_requested <-
+        dplyr::pull(gg$data, get_variable(gg, "colour")) %>%
+        unique() %>%
+        length
+      n_ratio <- n_provided / n_requested
+    }
+
+    if (named_vector || !as_palette && n_ratio >= 1) {
+
+      # Too many colors
+      if (n_ratio > 1 && !as_palette) {
+        cli::cli_alert_danger("adjust_colors: Too many colors. {n_provided} colors provided, but only {n_requested} needed.")
+        new_colors <- downsample_vector(new_colors, n_requested)
+      }
+
+      suppressMessages(out <- out + ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...))
+      suppressMessages(out <- out + ggplot2::scale_fill_manual(values = apply_saturation(new_colors, saturation = saturation), drop = FALSE, labels = labels, ...))
+      cli::cli_alert_success("adjust_colors: applied discrete {.pkg color values}")
+
+    } else {
+      suppressMessages(out <- out + scale_color_d(palette = new_colors, drop = FALSE, labels = labels, ...))
+      suppressMessages(out <- out + scale_fill_d(palette = new_colors, saturation = saturation, drop = FALSE, labels = labels, ...))
+      cli::cli_alert_success("adjust_colors: applied discrete {.pkg color palette}")
+
+      # Too few colors
+      if (n_ratio < 1 && !as_palette) cli::cli_alert_danger("adjust_colors: Too few colors. {n_provided} colors provided, but {n_requested} expected.")
+    }
+  }
+
+  if (is_continuous(gg, "colour")) {
+    # Default colors
+    if (is.null(new_colors)) new_colors <- colors_continuous_blue_pink_yellow
+
+    suppressMessages(out <- out + scale_color_c(palette = new_colors, labels = labels, ...))
+    suppressMessages(out <- out + scale_fill_c(palette = new_colors, saturation = saturation, labels = labels, ...))
+    cli::cli_alert_success("adjust_colors: applied continous {.pkg color palette}")
+  }
+  out
 }
 
+#' New color scheme
+#'
+#' @param x bla
+#' @param name bla
+#' @export
+new_color_scheme <- function(x, name = "Untitled color scheme") {
+  x <- as.character(x)
+  structure(x, class = c('tidycolor', 'character'), tidycolor.name = name)
+}
+
+
+#' Discrete color schemes
+#'
+#' @details
+#' Previews of build-in discrete color schemes
+#'
+#' ```{r results="asis", echo=FALSE, message=FALSE}
+#' print(colors_discrete_metro_ui, return_html = TRUE)
+#' print(colors_discrete_circle, return_html = TRUE)
+#' ```
+#' @md
+#'
+#' @export
+colors_discrete_metro_ui <- new_color_scheme(color_palettes$metro_ui, "colors_discrete_metro_ui")
+#' @rdname colors_discrete_metro_ui
+#' @export
+colors_discrete_circle <- new_color_scheme(color_palettes$color_circle_vivid, "colors_discrete_circle")
+
+
+#' Continuous color schemes
+#'
+#' @details
+#' Previews of build-in continuous color schemes
+#'
+#' ```{r results="asis", echo=FALSE, message=FALSE}
+#' print(colors_continuous_viridis, return_html = TRUE)
+#' print(colors_continuous_magma, return_html = TRUE)
+#' print(colors_continuous_inferno, return_html = TRUE)
+#' print(colors_continuous_turbo, return_html = TRUE)
+#' print(colors_continuous_blue_pink_yellow, return_html = TRUE)
+#' ```
+#' @md
+#'
+#' @export
+colors_continuous_viridis <- new_color_scheme(viridisLite::viridis(265), name = "colors_continuous_viridis")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_magma <- new_color_scheme(viridisLite::magma(265), "colors_continuous_magma")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_inferno <- new_color_scheme(viridisLite::inferno(265),"colors_continuous_inferno")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_turbo <- new_color_scheme(viridisLite::turbo(265), "colors_continuous_turbo")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_blue_pink_yellow <- new_color_scheme(color_palettes$blue_pink_yellow, "colors_continuous_blue_pink_yellow")
+
+
+#' Diverging color schemes
+#'
+#' @details
+#' Previews of build-in diverging color schemes
+#'
+#' ```{r results="asis", echo=FALSE, message=FALSE}
+#' print(colors_diverging_blue2brown, return_html = TRUE)
+#' print(colors_diverging_blue2red, return_html = TRUE)
+#' print(colors_diverging_RdBu, return_html = TRUE)
+#' print(colors_diverging_RdYlBu, return_html = TRUE)
+#' ```
+#' @md
+#'
+#' @export
+colors_diverging_blue2brown <- new_color_scheme(color_palettes$blue2brown, "colors_diverging_blue2brown")
+#' @rdname colors_diverging_blue2brown
+#' @export
+colors_diverging_blue2red <- new_color_scheme(c("#0000FF","#FFFFFF","#FF0000"), "colors_diverging_blue2red")
+#' @rdname colors_diverging_blue2brown
+#' @export
+colors_diverging_RdBu <- new_color_scheme(RColorBrewer::brewer.pal("RdBu", n = 11), "colors_diverging_RdBu")
+#' @rdname colors_diverging_blue2brown
+#' @export
+colors_diverging_RdYlBu <- new_color_scheme(RColorBrewer::brewer.pal("RdYlBu", n = 9), "colors_diverging_RdYlBu")
+
+
 # not exported
+downsample_vector <- function(x, n) {
+  if (length(x) <= n) return(x)
+  by <- (length(x) / (n-1)) - (1 / (n-1))
+  i <- round(cumsum(c(1, rep(by, n-1))))
+  x[i]
+}
+
 apply_saturation <- function(colors, saturation, background_color = "#FFFFFF") {
   purrr::map_chr(colors, function(color) {
     color <- col2rgb(color)
@@ -40,33 +178,80 @@ apply_saturation <- function(colors, saturation, background_color = "#FFFFFF") {
   })
 }
 
-my_pal <- function(palette, reverse = FALSE, saturation = 1, ...) {
+generate_html <- function(x, max_colors = 64) {
+  name <- attr(x, "tidycolor.name")
+  size <- length(x)
+  downsampled <- FALSE
+  downsample_text <- ""
+
+  if (length(x) > max_colors) {
+    downsampled <- TRUE
+    downsample_text <- paste0(", downsampled to ",max_colors," colors")
+    x <- downsample_vector(x, max_colors)
+  }
+
+  color_bar <- color_vector <- paste0("<span style='background-color:",x,"; display: inline-block; width:30px; height:20px;'></span>", collapse = "")
+  color_vector <- paste0("<span style='background-color:",x,"; display: inline-block; padding: 2px 10px 2px 10px;'>\"",x,"\"</span>", collapse = ",")
+
+  paste0("
+  <div style='margin-bottom: 80px;'>
+  <h4 style=\"font-family: 'Courier New', monospace;\">", name, "</h4>
+  <small style=\"font-family: 'Courier New', monospace;\">A tidyplots color scheme with ",size," colors",downsample_text,".</small>
+  <p>
+  ",color_bar,"
+  <p><p style=\"font-family: 'Courier New', monospace;\">
+  c(<br>", color_vector ,")
+  </div>")
+}
+
+print_tidycolor <- function(x, return_html = FALSE, max_colors = 64) {
+  cli::cli_alert_info(paste0("A tidyplots color scheme with ",length(x) ," colors."))
+
+  viewer <- getOption("viewer")
+  if (!is.null(viewer) || return_html) {
+
+    inner_html <- generate_html(x = x, max_colors = max_colors)
+    if (return_html)
+      return(htmltools::HTML(inner_html))
+
+    tempDir <- tempfile()
+    dir.create(tempDir)
+    htmlFile <- file.path(tempDir, "index.html")
+    html <- paste0("
+    <html><body>", inner_html, "</body></html>")
+
+    writeLines(html, htmlFile)
+    viewer(htmlFile)
+    cli::cli_alert_success("A preview was send to the RStudio viewer pane.")
+  } else {
+    print(as.character(x))
+  }
+}
+
+# palette and scale functions
+make_palette <- function(palette, reverse = FALSE, saturation = 1, ...) {
   pal <- palette
   if (reverse) pal <- rev(pal)
   pal <- apply_saturation(pal, saturation = saturation)
   grDevices::colorRampPalette(pal, ...)
 }
 
-my_scale_color_c <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  if (is.null(palette)) palette <- color_palettes[["blue_pink_yellow"]]
-  pal <- my_pal(palette = palette, saturation = saturation, reverse = reverse)
-  ggplot2::scale_color_gradientn(colours = pal(256), ...)
-}
-
-my_scale_color_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  if (is.null(palette)) palette <- color_palettes[["metro_ui"]]
-  pal <- my_pal(palette = palette, saturation = saturation, reverse = reverse)
+scale_color_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
+  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
   ggplot2::discrete_scale("colour", paste0("my_", palette), palette = pal, ...)
 }
 
-my_scale_fill_c <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  if (is.null(palette)) palette <- color_palettes[["blue_pink_yellow"]]
-  pal <- my_pal(palette = palette, saturation = saturation, reverse = reverse)
-  ggplot2::scale_fill_gradientn(colours = pal(256), ...)
+scale_fill_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
+  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
+  ggplot2::discrete_scale("fill", paste0("my_", palette), palette = pal, ...)
 }
 
-my_scale_fill_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  if (is.null(palette)) palette <- color_palettes[["metro_ui"]]
-  pal <- my_pal(palette = palette, saturation = saturation, reverse = reverse)
-  ggplot2::discrete_scale("fill", paste0("my_", palette), palette = pal, ...)
+scale_color_c <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
+  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
+  ggplot2::scale_color_gradientn(colours = pal(256), ...)
+}
+
+scale_fill_c <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
+  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
+  ggplot2::scale_fill_gradientn(colours = pal(256), ...)
 }

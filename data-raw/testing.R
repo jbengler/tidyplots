@@ -269,7 +269,7 @@ gene_expression %>%
   adjust_x_axis(rotate_labels = 90) %>%
   adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
   adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
-  adjust_colors(c("blue", "white", "red"), as_palette = TRUE) %>%
+  adjust_colors(c("blue", "white", "red")) %>%
   adjust_plot_size(height = 90)
 
 h1 <-
@@ -281,7 +281,7 @@ h1 <-
   adjust_x_axis(rotate_labels = 90) %>%
   adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
   adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
-  adjust_colors(c("blue", "white", "red"), as_palette = TRUE) %>%
+  adjust_colors(c("blue", "white", "red")) %>%
   adjust_plot_size(height = 90)
 
 h1
@@ -293,7 +293,7 @@ h2 <- h1 +
 h2 %>% split_plot(sample_type, heights = 90)
 
 h3 <- h1 %>%
-  adjust_colors(c("blue", "white", "red"), as_palette = TRUE, limits = c(-3, 3)) +
+  adjust_colors(c("blue", "white", "red"), limits = c(-3, 3)) +
   ggplot2::facet_grid(cols = dplyr::vars(condition), rows = dplyr::vars(direction), scales = "free_y")
 h3 %>% split_plot(sample_type, heights = 90)
 

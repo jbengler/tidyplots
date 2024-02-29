@@ -7,6 +7,7 @@
 \alias{min_rows}
 \alias{first_rows}
 \alias{last_rows}
+\alias{sample_rows}
 \title{Subset data}
 \usage{
 all_rows()
@@ -20,6 +21,8 @@ min_rows(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE)
 first_rows(n, by = NULL)
 
 last_rows(n, by = NULL)
+
+sample_rows(n, by = NULL)
 }
 \arguments{
 \item{...}{<\code{\link[rlang:args_data_masking]{data-masking}}> Expressions that

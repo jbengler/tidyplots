@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 - `tidyplots` aims at delivering ready-to-publish plots, eliminating cumbersome formatting tasks.
 
-- `tidyplots` uses the pipe `%>%` (instead of `+` like `ggplot2`) to build up plots. This way you can seamlessly pipe **into** and **out of** your plot. For example, coming from fram a data wrangeling pipeline you can generate a plot and directly pipe it into `save_plot()`. You can also call `save_plot()` or `show_plot()` in the middle of your pipeline to output intermediate results.
+- `tidyplots` uses the pipe `%>%` (instead of `+` like `ggplot2`) to build up plots. This way you can seamlessly pipe **into** and **out of** your plot. For example, coming from fram a data wrangeling pipeline you can generate a plot and directly pipe it into `save_plot()`. You can also call `save_plot()` or `view_plot()` in the middle of your pipeline to output intermediate results.
 
 - `tidyplots` tries to reduce the complexity of `ggplot2` by choosing sensible defaults. However, you take more detailed control by via the `...` argument in each function. And if you need to add plain `ggplot2` code, you can do this using `add()` function, which will preserve the `tidyplots` pipeline.
 
@@ -103,7 +103,11 @@ animals %>%
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_data_points() %>% 
-  sort_x_axis_labels(size)
+  sort_x_axis_labels(size) %>% 
+  adjust_colors(c("#B0B1B3",
+    "#F18823",
+    "#E23130",
+    "#1D5D83"))
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
@@ -263,14 +267,14 @@ new_colors <-
     "D" = "#1D5D83")
 
 p2 %>% adjust_colors(new_colors)
-p2 %>% adjust_colors(new_colors, as_palette = TRUE)
+p2 %>% adjust_colors(new_colors)
 
 # add_heatmap()
 
-  gene_expression %>%
-    tidyplot(x = sample, y = external_gene_name, color = expression) %>%
-    add_heatmap(scale = "row") %>%
-    adjust_plot_size(height = 90)
+gene_expression %>%
+  tidyplot(x = sample, y = external_gene_name, color = expression) %>%
+  add_heatmap(scale = "row") %>%
+  adjust_plot_size(height = 90)
 
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 

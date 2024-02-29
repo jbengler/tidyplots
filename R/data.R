@@ -88,13 +88,3 @@
 #' dplyr::glimpse(eu_countries)
 "eu_countries"
 
-#' Color palettes
-#' @format A list of 18 color palettes.
-#' @source
-#' `tidyplots` package
-#' @examples
-#' color_palettes
-"color_palettes"
-
-
-

@@ -130,45 +130,6 @@ adjust_x_axis <- ff_adjust_axis("x")
 adjust_y_axis <- ff_adjust_axis("y")
 
 
-#' Adjust colors
-#' @param gg bla
-#' @param new_colors bla
-#' @param saturation bla
-#' @param as_palette bla
-#' @param labels bla
-#' @param ... bla
-#' @export
-adjust_colors <- function(gg, new_colors = NULL, saturation = 1, as_palette = FALSE,
-                          labels = tidyplot_parse_labels(), ...) {
-  out <- gg
-  # as individual colors
-  if (!is.null(new_colors) && as_palette == FALSE) {
-    out$tidyplot$new_colors <- new_colors
-    suppressMessages(
-      out <-
-        out +
-        ggplot2::scale_fill_manual(values = apply_saturation(new_colors, saturation = saturation), drop = FALSE, labels = labels, ...) +
-        ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...)
-    )
-    cli::cli_alert_success("adjust_colors: applied {.pkg new_colors}")
-  } else {
-    # as color palette
-    suppressMessages({
-      if (is_discrete(gg, "colour"))
-        out <- out + my_scale_color_d(palette = new_colors, drop = FALSE, labels = labels, ...)
-      if (is_discrete(gg, "fill"))
-        out <- out + my_scale_fill_d(palette = new_colors, saturation = saturation, drop = FALSE, labels = labels, ...)
-      if (is_continuous(gg, "colour"))
-        out <- out + my_scale_color_c(palette = new_colors, labels = labels, ...)
-      if (is_continuous(gg, "fill"))
-        out <- out + my_scale_fill_c(palette = new_colors, saturation = saturation, labels = labels, ...)
-    })
-    cli::cli_alert_success("adjust_colors: applied {.pkg new color palette}")
-  }
-  out
-}
-
-
 #' Adjust plot size
 #' @param gg bla
 #' @param width bla

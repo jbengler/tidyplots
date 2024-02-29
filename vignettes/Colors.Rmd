@@ -1,0 +1,124 @@
+---
+title: "Colors"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Colors}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+# knitr::opts_chunk$set(
+#   collapse = TRUE,
+#   comment = "#>"
+# )
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  results = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 5,
+  fig.height = 2.5,
+  dpi = 300
+)
+
+```
+
+```{r setup}
+library(tidyplots)
+```
+
+```{r}
+
+colors_continuous_viridis
+colors_discrete_metro_ui
+colors_discrete_circle
+colors_continuous_viridis
+colors_continuous_magma
+colors_continuous_blue_pink_yellow
+
+new_color_scheme(c('#d73027','#f46d43','#fdae61','#fee090','#ffffbf','#e0f3f8','#abd9e9','#74add1','#4575b4'))
+new_color_scheme(c("#8ecae6", "#219ebc", "#023047", "#ffb703", "#fb8500"))
+new_color_scheme(c("#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe", "#a2d2ff"))
+new_color_scheme(c("#ef476f", "#ffd166", "#06d6a0", "#118ab2", "#073b4c"))
+new_color_scheme(c("#390099", "#9e0059", "#ff0054", "#ff5400", "#ffbd00"))
+new_color_scheme(c("#233d4d", "#fe7f2d", "#fcca46", "#a1c181", "#619b8a"))
+new_color_scheme(c("#006ba6", "#0496ff", "#ffbc42", "#d81159", "#8f2d56"))
+new_color_scheme(c("#ffc857", "#e9724c", "#c5283d", "#481d24", "#255f85"))
+new_color_scheme(c("#edae49", "#d1495b", "#00798c", "#30638e", "#003d5b"))
+new_color_scheme(c("#9b5de5", "#f15bb5", "#fee440", "#00bbf9", "#00f5d4"))
+new_color_scheme(c("#072ac8", "#1e96fc", "#a2d6f9", "#fcf300", "#ffc600"))
+new_color_scheme(c("#003f5c","#2f4b7c","#665191","#a05195","#d45087","#f95d6a","#ff7c43","#ffa600"))
+new_color_scheme(c("#E64B35","#4DBBD5","#00A087","#3C5488","#F39B7F","#8491B4",
+              "#91D1C2","#DC0000","#7E6148","#B09C85"))
+
+
+colors_discrete_metro_ui[2]
+colors_continuous_blue_pink_yellow[4:8]
+c(colors_continuous_blue_pink_yellow, colors_discrete_metro_ui)
+
+
+# preview_colors_in_viewer(list(
+#   colors_continuous_viridis,
+#   colors_continuous_magma,
+#   colors_continuous_turbo,
+#   colors_continuous_inferno))
+
+p1 <- 
+  animals %>%
+  tidyplot(family, color = family) %>%
+  add_count_bar()
+
+p2 <- 
+  animals %>%
+  tidyplot(animal, color = animal) %>%
+  add_count_bar()
+
+p3 <- 
+  animals %>%
+  dplyr::filter(family != "Reptile") %>% 
+  tidyplot(family, color = family) %>%
+  add_count_bar()
+
+p1
+# default
+p1 %>% adjust_colors()
+p1 %>% adjust_colors(colors_discrete_metro_ui)
+
+# correct number
+p1 %>% adjust_colors(colors_discrete_metro_ui)
+
+# too many
+p1 %>% adjust_colors(colors_continuous_blue_pink_yellow)
+p1 %>% adjust_colors(colors_continuous_turbo)
+
+# too few
+p1 %>% adjust_colors(colors_discrete_metro_ui[1:3])
+
+p2
+# default
+p2 %>% adjust_colors()
+p2 %>% adjust_colors(colors_discrete_metro_ui)
+
+# too few
+p2 %>% adjust_colors(colors_continuous_blue_pink_yellow)
+
+p3
+# default
+p3 %>% adjust_colors()
+p3 %>% adjust_colors(colors_discrete_metro_ui)
+
+# too many
+p3 %>% adjust_colors(colors_continuous_viridis)
+
+```
+
+```{r eval=FALSE}
+colors_continuous_inferno
+```
+
+```{r results='asis', echo=FALSE}
+print(colors_continuous_inferno, return_html = TRUE)
+```

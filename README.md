@@ -4,6 +4,8 @@
 # tidyplots <a href="https://jbengler.github.io/tidyplots/"><img src="man/figures/logo.svg" align="right" height="139" alt="tidyplots website" /></a>
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 tidyplots streamlines the creation of publication-ready plots for
@@ -120,11 +122,11 @@ study %>%
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_data_points_beeswarm() %>% 
-  show_plot(title = "Plot version A") %>% 
+  view_plot(title = "Plot version A") %>% 
   adjust_rotate_plot() %>% 
-  show_plot(title = "Plot version B") %>% 
-  adjust_font(family = "mono", fontsize = 10, face = "bold") %>% 
-  show_plot(title = "Plot version C")
+  view_plot(title = "Plot version B") %>% 
+  adjust_font(family = "mono", face = "bold") %>% 
+  view_plot(title = "Plot version C")
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-2.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-3.png" style="display: block; margin: auto;" />

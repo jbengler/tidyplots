@@ -96,6 +96,13 @@ reference:
 - contents:
   - starts_with("theme")
   - starts_with("remove")
+- subtitle:
+  desc: >
+    **Colors**
+- contents:
+  - starts_with("colors_discrete")
+  - starts_with("colors_continuous")
+  - starts_with("colors_diverging")
 - title: Split
   desc: Split the plot into a multi plot layout, eventually across multiple pages.
 - contents:
@@ -103,15 +110,14 @@ reference:
 - title: Output
   desc: Output the final plot or intermediate stages to the screen or to a file.
 - contents:
-  - show_plot
+  - view_plot
   - save_plot
 - title: Helpers
 - contents:
   - add
-  - starts_with("format")
+  - starts_with("format_")
   - ends_with("_rows")
-  - starts_with("color_palettes")
-  - starts_with("show_color_palettes")
+  - starts_with("new_color_scheme")
 - title: Data
 - contents:
   - starts_with("animals")

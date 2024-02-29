@@ -53,14 +53,14 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 #   add_median_dash() %>%
 #   add_data_points()
 
-#' Show plot on screen
+#' View plot on screen
 #'
 #' @param gg bla
 #' @param data bla
 #' @param title bla
 #' @param ... bla
 #' @export
-show_plot <- function(gg, data = all_rows(), title = ggplot2::waiver(), ...) {
+view_plot <- function(gg, data = all_rows(), title = ggplot2::waiver(), ...) {
   input <- gg
   if (inherits(data, "function")) gg <- gg %+% (gg$data %>% data()) + ggplot2::ggtitle(title)
   if (inherits(data, "data.frame")) gg <- gg %+% data + ggplot2::ggtitle(title)
@@ -68,8 +68,8 @@ show_plot <- function(gg, data = all_rows(), title = ggplot2::waiver(), ...) {
   invisible(input)
 }
 
-# gg %>% show_plot(data = filter_rows(sex == "female"), title = "bla")
-# gg %>% show_plot(data = study %>% dplyr::slice_sample(n = 4), title = "bla")
+# gg %>% view_plot(data = filter_rows(sex == "female"), title = "bla")
+# gg %>% view_plot(data = study %>% dplyr::slice_sample(n = 4), title = "bla")
 
 multipage_plots <- function(gg,
                             ncol = NULL,
