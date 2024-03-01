@@ -98,7 +98,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">colors_continuous_viridis</span></span>
-<span><span class="va">colors_discrete_metro_ui</span></span>
+<span><span class="va">colors_discrete_metro</span></span>
 <span><span class="va">colors_discrete_circle</span></span>
 <span><span class="va">colors_continuous_viridis</span></span>
 <span><span class="va">colors_continuous_magma</span></span>
@@ -120,9 +120,9 @@
 <span>              <span class="st">"#91D1C2"</span>,<span class="st">"#DC0000"</span>,<span class="st">"#7E6148"</span>,<span class="st">"#B09C85"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span></span>
-<span><span class="va">colors_discrete_metro_ui</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">colors_discrete_metro</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="va">colors_continuous_blue_pink_yellow</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">8</span><span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">colors_continuous_blue_pink_yellow</span>, <span class="va">colors_discrete_metro_ui</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">colors_continuous_blue_pink_yellow</span>, <span class="va">colors_discrete_metro</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># preview_colors_in_viewer(list(</span></span>
@@ -154,12 +154,12 @@
 <span><span class="va">p1</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-2.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p1</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro_ui</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">p1</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-3.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># correct number</span></span>
-<span><span class="va">p1</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro_ui</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">p1</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-4.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -172,7 +172,7 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># too few</span></span>
-<span><span class="va">p1</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro_ui</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">p1</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-7.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -183,7 +183,7 @@
 <span><span class="va">p2</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-9.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p2</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro_ui</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">p2</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-10.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
@@ -199,7 +199,7 @@
 <span><span class="va">p3</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-13.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">p3</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro_ui</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">p3</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_metro</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Colors_files/figure-html/unnamed-chunk-2-14.png" width="1500" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
