@@ -8,11 +8,11 @@
 [![R-CMD-check](https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-tidyplots streamlines the creation of publication-ready plots for
-scientific papers, making it incredibly easy to add and refine plot
-elements. It allows precise control over composition, style, and
-absolute sizes, while its utilization of the pipe `%>%` simplifies the
-construction of advanced plotting pipelines.
+The goal of `tidyplots` is to streamline the creation of
+publication-ready plots for scientific papers, making it incredibly easy
+to add and refine plot elements. It allows precise control over
+composition, style, and absolute sizes, while its utilization of the
+pipe `%>%` simplifies the construction of advanced plotting pipelines.
 
 ## Installation
 
@@ -122,11 +122,11 @@ study %>%
   add_mean_bar(alpha = 0.3) %>% 
   add_error() %>% 
   add_data_points_beeswarm() %>% 
-  view_plot(title = "Plot version A") %>% 
-  adjust_rotate_plot() %>% 
-  view_plot(title = "Plot version B") %>% 
-  adjust_font(family = "mono", face = "bold") %>% 
-  view_plot(title = "Plot version C")
+  view_plot(title = "Default color scheme: metro") %>% 
+  adjust_colors(colors_discrete_candy) %>% 
+  view_plot(title = "Alternative color scheme: candy") %>% 
+  adjust_colors(colors_discrete_seaside) %>% 
+  view_plot(title = "Alternative color scheme: seaside")
 ```
 
 <img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-2.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-3.png" style="display: block; margin: auto;" />

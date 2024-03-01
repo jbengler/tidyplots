@@ -24,7 +24,7 @@ adjust_colors <- function(gg, new_colors = NULL,
 
     # Default colors
     if (is.null(new_colors)) {
-      new_colors <- colors_discrete_metro_ui
+      new_colors <- colors_discrete_metro
       as_palette <- TRUE
     }
 
@@ -93,16 +93,28 @@ new_color_scheme <- function(x, name = "Untitled color scheme") {
 #' Previews of build-in discrete color schemes
 #'
 #' ```{r results="asis", echo=FALSE, message=FALSE}
-#' print(colors_discrete_metro_ui, return_html = TRUE)
+#' print(colors_discrete_metro, return_html = TRUE)
 #' print(colors_discrete_circle, return_html = TRUE)
+#' print(colors_discrete_candy, return_html = TRUE)
+#' print(colors_discrete_pastel, return_html = TRUE)
+#' print(colors_discrete_seaside, return_html = TRUE)
 #' ```
 #' @md
 #'
 #' @export
-colors_discrete_metro_ui <- new_color_scheme(color_palettes$metro_ui, "colors_discrete_metro_ui")
-#' @rdname colors_discrete_metro_ui
+colors_discrete_metro <- new_color_scheme(color_palettes$metro, "colors_discrete_metro")
+#' @rdname colors_discrete_metro
 #' @export
 colors_discrete_circle <- new_color_scheme(color_palettes$color_circle_vivid, "colors_discrete_circle")
+#' @rdname colors_discrete_metro
+#' @export
+colors_discrete_candy <- new_color_scheme(c("#9b5de5", "#f15bb5", "#fee440", "#00bbf9", "#00f5d4"), "colors_discrete_candy")
+#' @rdname colors_discrete_metro
+#' @export
+colors_discrete_pastel <- new_color_scheme(c("#cdb4db", "#ffc8dd", "#ffafcc", "#bde0fe", "#a2d2ff"), "colors_discrete_pastel")
+#' @rdname colors_discrete_metro
+#' @export
+colors_discrete_seaside <- new_color_scheme(c("#8ecae6", "#219ebc", "#023047", "#ffb703", "#fb8500"), "colors_discrete_seaside")
 
 
 #' Continuous color schemes
@@ -114,6 +126,10 @@ colors_discrete_circle <- new_color_scheme(color_palettes$color_circle_vivid, "c
 #' print(colors_continuous_viridis, return_html = TRUE)
 #' print(colors_continuous_magma, return_html = TRUE)
 #' print(colors_continuous_inferno, return_html = TRUE)
+#' print(colors_continuous_plasma, return_html = TRUE)
+#' print(colors_continuous_cividis, return_html = TRUE)
+#' print(colors_continuous_rocket, return_html = TRUE)
+#' print(colors_continuous_mako, return_html = TRUE)
 #' print(colors_continuous_turbo, return_html = TRUE)
 #' print(colors_continuous_blue_pink_yellow, return_html = TRUE)
 #' ```
@@ -127,6 +143,18 @@ colors_continuous_magma <- new_color_scheme(viridisLite::magma(265), "colors_con
 #' @rdname colors_continuous_viridis
 #' @export
 colors_continuous_inferno <- new_color_scheme(viridisLite::inferno(265),"colors_continuous_inferno")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_plasma <- new_color_scheme(viridisLite::plasma(265), "colors_continuous_plasma")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_cividis <- new_color_scheme(viridisLite::cividis(265), "colors_continuous_cividis")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_rocket <- new_color_scheme(viridisLite::rocket(265), "colors_continuous_rocket")
+#' @rdname colors_continuous_viridis
+#' @export
+colors_continuous_mako <- new_color_scheme(viridisLite::mako(265), "colors_continuous_mako")
 #' @rdname colors_continuous_viridis
 #' @export
 colors_continuous_turbo <- new_color_scheme(viridisLite::turbo(265), "colors_continuous_turbo")

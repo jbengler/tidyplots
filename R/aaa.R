@@ -35,7 +35,7 @@ color_palettes <- list(
     "#E64B35","#4DBBD5","#00A087","#3C5488","#F39B7F","#8491B4","#91D1C2",
     "#DC0000","#7E6148","#B09C85"),
 
-  metro_ui = c(
+  metro = c(
     "#4DACD6","#4FAE62","#F6C54D","#E37D46","#C02D45"),
 
   multiqc_align = c(
