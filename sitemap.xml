@@ -10,10 +10,13 @@
     <loc>https://jbengler.github.io/tidyplots/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/articles/Article.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/articles/Colors.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/articles/Customized-defaults.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/articles/Custom-styling.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/articles/Testing.html</loc>
@@ -163,7 +166,7 @@
     <loc>https://jbengler.github.io/tidyplots/reference/gene_expression.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/gene_statistics.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/general_arguments.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/grapes-greater-than-grapes.html</loc>

@@ -28,9 +28,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
-    <a class="dropdown-item" href="../articles/Customized-defaults.html">Consistent style across plots</a>
+    <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
+    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -64,7 +65,7 @@
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_data_points</span><span class="op">(</span></span>
-<span>  <span class="va">gg</span>,</span>
+<span>  <span class="va">plot</span>,</span>
 <span>  data <span class="op">=</span> <span class="fu"><a href="all_rows.html">all_rows</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  shape <span class="op">=</span> <span class="fl">19</span>,</span>
 <span>  size <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -77,7 +78,7 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">add_data_points_jitter</span><span class="op">(</span></span>
-<span>  <span class="va">gg</span>,</span>
+<span>  <span class="va">plot</span>,</span>
 <span>  data <span class="op">=</span> <span class="fu"><a href="all_rows.html">all_rows</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  shape <span class="op">=</span> <span class="fl">19</span>,</span>
 <span>  size <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -92,7 +93,7 @@
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">add_data_points_beeswarm</span><span class="op">(</span></span>
-<span>  <span class="va">gg</span>,</span>
+<span>  <span class="va">plot</span>,</span>
 <span>  data <span class="op">=</span> <span class="fu"><a href="all_rows.html">all_rows</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  shape <span class="op">=</span> <span class="fl">19</span>,</span>
 <span>  size <span class="op">=</span> <span class="fl">1</span>,</span>
@@ -110,40 +111,41 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>gg</dt>
-<dd><p>bla</p></dd>
+    <dl><dt>plot</dt>
+<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
 
 
 <dt>data</dt>
-<dd><p>bla</p></dd>
+<dd><p>A function to subset the data to be plotted. See <code><a href="all_rows.html">filter_rows()</a></code> and friends.</p></dd>
 
 
 <dt>shape</dt>
-<dd><p>bla</p></dd>
+<dd><p>A number representing the shape of the data points.</p></dd>
 
 
 <dt>size</dt>
-<dd><p>bla</p></dd>
+<dd><p>A number representing the size of the data points.</p></dd>
 
 
 <dt>confetti</dt>
-<dd><p>bla</p></dd>
+<dd><p>If <code>TRUE</code>, data points will get a white border. This can be
+useful to deal with overplotting.</p></dd>
 
 
 <dt>dodge_width</dt>
-<dd><p>bla</p></dd>
+<dd><p>For adjusting the distance between grouped objects.</p></dd>
 
 
 <dt>preserve</dt>
-<dd><p>bla</p></dd>
+<dd><p>general</p></dd>
 
 
 <dt>rasterize</dt>
-<dd><p>bla</p></dd>
+<dd><p>general</p></dd>
 
 
 <dt>rasterize_dpi</dt>
-<dd><p>bla</p></dd>
+<dd><p>general</p></dd>
 
 
 <dt>...</dt>
@@ -151,11 +153,15 @@
 
 
 <dt>jitter_width</dt>
-<dd><p>bla</p></dd>
+<dd><p>For adding a small amount of random noise the to the
+horizontal position of the of the data points. This can be useful to deal
+with overplotting.</p></dd>
 
 
 <dt>jitter_height</dt>
-<dd><p>bla</p></dd>
+<dd><p>For adding a small amount of random noise the to the
+vertical position of the of the data points. This can be useful to deal
+with overplotting.</p></dd>
 
 
 <dt>cex</dt>
@@ -180,11 +186,13 @@ wide horizontally, default is <code>"none"</code>. See details below.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_error.html">add_error</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">add_data_points_beeswarm</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color palette</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color palette</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
 <span class="r-plt img"><img src="add_data_points-1.png" alt="" width="1500" height="750"></span>
 <span class="r-in"><span></span></span>

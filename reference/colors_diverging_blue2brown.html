@@ -28,9 +28,10 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
-    <a class="dropdown-item" href="../articles/Customized-defaults.html">Consistent style across plots</a>
+    <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
+    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -53,7 +54,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Diverging color schemes</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jbengler/tidyplots/blob/HEAD/R/colors.R" class="external-link"><code>R/colors.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jbengler/tidyplots/blob/HEAD/R/tidycolor.R" class="external-link"><code>R/tidycolor.R</code></a></small>
       <div class="d-none name"><code>colors_diverging_blue2brown.Rd</code></div>
     </div>
 
@@ -67,21 +68,23 @@
 <span></span>
 <span><span class="va">colors_diverging_blue2red</span></span>
 <span></span>
-<span><span class="va">colors_diverging_RdBu</span></span>
+<span><span class="va">colors_diverging_BuRd</span></span>
 <span></span>
-<span><span class="va">colors_diverging_RdYlBu</span></span></code></pre></div>
+<span><span class="va">colors_diverging_BuYlRd</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
     <p>An object of class <code>tidycolor</code> (inherits from <code>character</code>) of length 17.</p>
-<p>An object of class <code>tidycolor</code> (inherits from <code>character</code>) of length 3.</p>
-<p>An object of class <code>tidycolor</code> (inherits from <code>character</code>) of length 11.</p>
+<p>An object of class <code>tidycolor</code> (inherits from <code>character</code>) of length 9.</p>
+<p>An object of class <code>tidycolor</code> (inherits from <code>character</code>) of length 9.</p>
 <p>An object of class <code>tidycolor</code> (inherits from <code>character</code>) of length 9.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Previews of build-in diverging color schemes
+    <p>Color schemes can be conveniently previewed by using the print method of the
+<code>tidycolor</code> class. This will send a html preview to the RStudio Viewer pane
+that looks like this:
 <!--html_preserve-->
 
 
@@ -95,27 +98,27 @@
   </p></div><!--/html_preserve--><!--html_preserve-->
   <div style="margin-bottom: 80px;">
   <h4 style="font-family: 'Courier New', monospace;">colors_diverging_blue2red</h4>
-  <small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 3 colors.</small>
-  <p>
-  <span style="background-color:#0000FF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FFFFFF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FF0000; display: inline-block; width:30px; height:20px;"></span>
-  </p><p></p><p style="font-family: 'Courier New', monospace;">
-  c(<br><span style="background-color:#0000FF; display: inline-block; padding: 2px 10px 2px 10px;">"#0000FF"</span>,<span style="background-color:#FFFFFF; display: inline-block; padding: 2px 10px 2px 10px;">"#FFFFFF"</span>,<span style="background-color:#FF0000; display: inline-block; padding: 2px 10px 2px 10px;">"#FF0000"</span>)
-  </p></div><!--/html_preserve--><!--html_preserve-->
-  <div style="margin-bottom: 80px;">
-  <h4 style="font-family: 'Courier New', monospace;">colors_diverging_RdBu</h4>
-  <small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 11 colors.</small>
-  <p>
-  <span style="background-color:#67001F; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#B2182B; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#D6604D; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#F4A582; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FDDBC7; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#F7F7F7; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#D1E5F0; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#92C5DE; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#4393C3; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#2166AC; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#053061; display: inline-block; width:30px; height:20px;"></span>
-  </p><p></p><p style="font-family: 'Courier New', monospace;">
-  c(<br><span style="background-color:#67001F; display: inline-block; padding: 2px 10px 2px 10px;">"#67001F"</span>,<span style="background-color:#B2182B; display: inline-block; padding: 2px 10px 2px 10px;">"#B2182B"</span>,<span style="background-color:#D6604D; display: inline-block; padding: 2px 10px 2px 10px;">"#D6604D"</span>,<span style="background-color:#F4A582; display: inline-block; padding: 2px 10px 2px 10px;">"#F4A582"</span>,<span style="background-color:#FDDBC7; display: inline-block; padding: 2px 10px 2px 10px;">"#FDDBC7"</span>,<span style="background-color:#F7F7F7; display: inline-block; padding: 2px 10px 2px 10px;">"#F7F7F7"</span>,<span style="background-color:#D1E5F0; display: inline-block; padding: 2px 10px 2px 10px;">"#D1E5F0"</span>,<span style="background-color:#92C5DE; display: inline-block; padding: 2px 10px 2px 10px;">"#92C5DE"</span>,<span style="background-color:#4393C3; display: inline-block; padding: 2px 10px 2px 10px;">"#4393C3"</span>,<span style="background-color:#2166AC; display: inline-block; padding: 2px 10px 2px 10px;">"#2166AC"</span>,<span style="background-color:#053061; display: inline-block; padding: 2px 10px 2px 10px;">"#053061"</span>)
-  </p></div><!--/html_preserve--><!--html_preserve-->
-  <div style="margin-bottom: 80px;">
-  <h4 style="font-family: 'Courier New', monospace;">colors_diverging_RdYlBu</h4>
   <small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 9 colors.</small>
   <p>
-  <span style="background-color:#D73027; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#F46D43; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FDAE61; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FEE090; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FFFFBF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#E0F3F8; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#ABD9E9; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#74ADD1; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#4575B4; display: inline-block; width:30px; height:20px;"></span>
+  <span style="background-color:#0000FF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#3F3FFF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#7F7FFF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#BFBFFF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FFFFFF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FFBFBF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FF7F7F; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FF3F3F; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FF0000; display: inline-block; width:30px; height:20px;"></span>
   </p><p></p><p style="font-family: 'Courier New', monospace;">
-  c(<br><span style="background-color:#D73027; display: inline-block; padding: 2px 10px 2px 10px;">"#D73027"</span>,<span style="background-color:#F46D43; display: inline-block; padding: 2px 10px 2px 10px;">"#F46D43"</span>,<span style="background-color:#FDAE61; display: inline-block; padding: 2px 10px 2px 10px;">"#FDAE61"</span>,<span style="background-color:#FEE090; display: inline-block; padding: 2px 10px 2px 10px;">"#FEE090"</span>,<span style="background-color:#FFFFBF; display: inline-block; padding: 2px 10px 2px 10px;">"#FFFFBF"</span>,<span style="background-color:#E0F3F8; display: inline-block; padding: 2px 10px 2px 10px;">"#E0F3F8"</span>,<span style="background-color:#ABD9E9; display: inline-block; padding: 2px 10px 2px 10px;">"#ABD9E9"</span>,<span style="background-color:#74ADD1; display: inline-block; padding: 2px 10px 2px 10px;">"#74ADD1"</span>,<span style="background-color:#4575B4; display: inline-block; padding: 2px 10px 2px 10px;">"#4575B4"</span>)
+  c(<br><span style="background-color:#0000FF; display: inline-block; padding: 2px 10px 2px 10px;">"#0000FF"</span>,<span style="background-color:#3F3FFF; display: inline-block; padding: 2px 10px 2px 10px;">"#3F3FFF"</span>,<span style="background-color:#7F7FFF; display: inline-block; padding: 2px 10px 2px 10px;">"#7F7FFF"</span>,<span style="background-color:#BFBFFF; display: inline-block; padding: 2px 10px 2px 10px;">"#BFBFFF"</span>,<span style="background-color:#FFFFFF; display: inline-block; padding: 2px 10px 2px 10px;">"#FFFFFF"</span>,<span style="background-color:#FFBFBF; display: inline-block; padding: 2px 10px 2px 10px;">"#FFBFBF"</span>,<span style="background-color:#FF7F7F; display: inline-block; padding: 2px 10px 2px 10px;">"#FF7F7F"</span>,<span style="background-color:#FF3F3F; display: inline-block; padding: 2px 10px 2px 10px;">"#FF3F3F"</span>,<span style="background-color:#FF0000; display: inline-block; padding: 2px 10px 2px 10px;">"#FF0000"</span>)
+  </p></div><!--/html_preserve--><!--html_preserve-->
+  <div style="margin-bottom: 80px;">
+  <h4 style="font-family: 'Courier New', monospace;">colors_diverging_BuRd</h4>
+  <small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 9 colors.</small>
+  <p>
+  <span style="background-color:#2166AC; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#4393C3; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#92C5DE; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#D1E5F0; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#F7F7F7; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FDDBC7; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#F4A582; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#D6604D; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#B2182B; display: inline-block; width:30px; height:20px;"></span>
+  </p><p></p><p style="font-family: 'Courier New', monospace;">
+  c(<br><span style="background-color:#2166AC; display: inline-block; padding: 2px 10px 2px 10px;">"#2166AC"</span>,<span style="background-color:#4393C3; display: inline-block; padding: 2px 10px 2px 10px;">"#4393C3"</span>,<span style="background-color:#92C5DE; display: inline-block; padding: 2px 10px 2px 10px;">"#92C5DE"</span>,<span style="background-color:#D1E5F0; display: inline-block; padding: 2px 10px 2px 10px;">"#D1E5F0"</span>,<span style="background-color:#F7F7F7; display: inline-block; padding: 2px 10px 2px 10px;">"#F7F7F7"</span>,<span style="background-color:#FDDBC7; display: inline-block; padding: 2px 10px 2px 10px;">"#FDDBC7"</span>,<span style="background-color:#F4A582; display: inline-block; padding: 2px 10px 2px 10px;">"#F4A582"</span>,<span style="background-color:#D6604D; display: inline-block; padding: 2px 10px 2px 10px;">"#D6604D"</span>,<span style="background-color:#B2182B; display: inline-block; padding: 2px 10px 2px 10px;">"#B2182B"</span>)
+  </p></div><!--/html_preserve--><!--html_preserve-->
+  <div style="margin-bottom: 80px;">
+  <h4 style="font-family: 'Courier New', monospace;">colors_diverging_BuYlRd</h4>
+  <small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 9 colors.</small>
+  <p>
+  <span style="background-color:#4575B4; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#74ADD1; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#ABD9E9; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#E0F3F8; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FFFFBF; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FEE090; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#FDAE61; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#F46D43; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#D73027; display: inline-block; width:30px; height:20px;"></span>
+  </p><p></p><p style="font-family: 'Courier New', monospace;">
+  c(<br><span style="background-color:#4575B4; display: inline-block; padding: 2px 10px 2px 10px;">"#4575B4"</span>,<span style="background-color:#74ADD1; display: inline-block; padding: 2px 10px 2px 10px;">"#74ADD1"</span>,<span style="background-color:#ABD9E9; display: inline-block; padding: 2px 10px 2px 10px;">"#ABD9E9"</span>,<span style="background-color:#E0F3F8; display: inline-block; padding: 2px 10px 2px 10px;">"#E0F3F8"</span>,<span style="background-color:#FFFFBF; display: inline-block; padding: 2px 10px 2px 10px;">"#FFFFBF"</span>,<span style="background-color:#FEE090; display: inline-block; padding: 2px 10px 2px 10px;">"#FEE090"</span>,<span style="background-color:#FDAE61; display: inline-block; padding: 2px 10px 2px 10px;">"#FDAE61"</span>,<span style="background-color:#F46D43; display: inline-block; padding: 2px 10px 2px 10px;">"#F46D43"</span>,<span style="background-color:#D73027; display: inline-block; padding: 2px 10px 2px 10px;">"#D73027"</span>)
   </p></div><!--/html_preserve-->
     </div>
 

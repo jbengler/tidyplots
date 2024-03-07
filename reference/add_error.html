@@ -42,9 +42,10 @@ add_ci95() adds the 95% confidence interval.
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
-    <a class="dropdown-item" href="../articles/Customized-defaults.html">Consistent style across plots</a>
+    <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
+    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -82,7 +83,7 @@ add_ci95() adds the 95% confidence interval.
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_error</span><span class="op">(</span></span>
-<span>  <span class="va">gg</span>,</span>
+<span>  <span class="va">plot</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span>  linewidth <span class="op">=</span> <span class="fl">0.25</span>,</span>
@@ -91,7 +92,7 @@ add_ci95() adds the 95% confidence interval.
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">add_range</span><span class="op">(</span></span>
-<span>  <span class="va">gg</span>,</span>
+<span>  <span class="va">plot</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span>  linewidth <span class="op">=</span> <span class="fl">0.25</span>,</span>
@@ -100,7 +101,7 @@ add_ci95() adds the 95% confidence interval.
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">add_sd</span><span class="op">(</span></span>
-<span>  <span class="va">gg</span>,</span>
+<span>  <span class="va">plot</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span>  linewidth <span class="op">=</span> <span class="fl">0.25</span>,</span>
@@ -109,7 +110,7 @@ add_ci95() adds the 95% confidence interval.
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">add_ci95</span><span class="op">(</span></span>
-<span>  <span class="va">gg</span>,</span>
+<span>  <span class="va">plot</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  width <span class="op">=</span> <span class="fl">0.4</span>,</span>
 <span>  linewidth <span class="op">=</span> <span class="fl">0.25</span>,</span>
@@ -120,12 +121,12 @@ add_ci95() adds the 95% confidence interval.
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>gg</dt>
-<dd><p>bla</p></dd>
+    <dl><dt>plot</dt>
+<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
 
 
 <dt>dodge_width</dt>
-<dd><p>bla</p></dd>
+<dd><p>For adjusting the distance between grouped objects.</p></dd>
 
 
 <dt>width</dt>
@@ -137,7 +138,7 @@ add_ci95() adds the 95% confidence interval.
 
 
 <dt>preserve</dt>
-<dd><p>bla</p></dd>
+<dd><p>general</p></dd>
 
 
 <dt>...</dt>
