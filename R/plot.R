@@ -21,19 +21,22 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   if("colour" %in% names(mapping) && !"fill" %in% names(mapping)) mapping$fill <- mapping$colour
   if("fill" %in% names(mapping) && !"colour" %in% names(mapping)) mapping$colour <- mapping$fill
 
-  gg <- ggplot2::ggplot(data = data, mapping = mapping)
+  plot <- ggplot2::ggplot(data = data, mapping = mapping)
+  class(plot) <- c("tidyplot", class(plot))
 
-  gg$tidyplot$mapping <- extract_mapping(gg)
+  plot$tidyplot$mapping <- extract_mapping(plot)
 
-  gg$tidyplot$padding_x <- c(0.05, 0.05)
-  gg$tidyplot$padding_y <- c(0.05, 0.05)
+  plot$tidyplot$padding_x <- c(0.05, 0.05)
+  plot$tidyplot$padding_y <- c(0.05, 0.05)
 
-  gg$tidyplot$limits_x <- c(NULL, NULL)
-  gg$tidyplot$limits_y <- c(NULL, NULL)
+  plot$tidyplot$limits_x <- c(NULL, NULL)
+  plot$tidyplot$limits_y <- c(NULL, NULL)
 
-  gg$tidyplot$dodge_width <- dodge_width
+  plot$tidyplot$dodge_width <- dodge_width
 
-  gg <- gg %>%
+  plot$tidyplot$named_colors <- NULL
+
+  plot <- plot %>%
     theme_tidyplot() %>%
     adjust_x_axis() %>%
     adjust_y_axis() %>%
@@ -41,13 +44,12 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
     adjust_plot_size(width = width, height = height)
 
   if (single_color_plot)
-    gg <- gg %>% remove_legend()
+    plot <- plot %>% remove_legend()
 
-  class(gg) <- c("tidyplot", class(gg))
-  gg
+  plot
 }
 
-# gg <-
+# plot <-
 #   study %>%
 #   tidyplot(treatment, score, color = group) %>%
 #   add_median_dash() %>%
@@ -55,23 +57,23 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 
 #' View plot on screen
 #'
-#' @param gg bla
+#' @param plot bla
 #' @param data bla
 #' @param title bla
 #' @param ... bla
 #' @export
-view_plot <- function(gg, data = all_rows(), title = ggplot2::waiver(), ...) {
-  input <- gg
-  if (inherits(data, "function")) gg <- gg %+% (gg$data %>% data()) + ggplot2::ggtitle(title)
-  if (inherits(data, "data.frame")) gg <- gg %+% data + ggplot2::ggtitle(title)
-  print(gg, ...)
+view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
+  input <- plot
+  if (inherits(data, "function")) plot <- plot %+% (plot$data %>% data()) + ggplot2::ggtitle(title)
+  if (inherits(data, "data.frame")) plot <- plot %+% data + ggplot2::ggtitle(title)
+  print(plot, ...)
   invisible(input)
 }
 
-# gg %>% view_plot(data = filter_rows(sex == "female"), title = "bla")
-# gg %>% view_plot(data = study %>% dplyr::slice_sample(n = 4), title = "bla")
+# plot %>% view_plot(data = filter_rows(sex == "female"), title = "bla")
+# plot %>% view_plot(data = study %>% dplyr::slice_sample(n = 4), title = "bla")
 
-multipage_plots <- function(gg,
+multipage_plots <- function(plot,
                             ncol = NULL,
                             nrow = NULL,
                             byrow = NULL,
@@ -81,31 +83,31 @@ multipage_plots <- function(gg,
                             tag_level = NULL,
                             design = NULL,
                             unit ="mm") {
-  if (!ggplot2::is.ggplot(gg) && !all(purrr::map_lgl(gg, ggplot2::is.ggplot)))
-    stop("argument 'gg' should be ggplot or list off ggplots")
-  if (ggplot2::is.ggplot(gg)) gg <- list(gg)
+  if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
+    cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
+  if (ggplot2::is.ggplot(plot)) plot <- list(plot)
 
   if (is.numeric(ncol) & is.numeric(nrow)) {
     plots_per_page <- nrow * ncol
   } else {
-    plots_per_page <- length(gg)
+    plots_per_page <- length(plot)
   }
-  cli::cli_alert_success("split_plot: split into {.pkg {length(gg)} plots} across {.pkg {ceiling(length(gg)/plots_per_page)} pages} on a {.pkg {ncol} x {nrow}} grid")
+  cli::cli_alert_success("split_plot: split into {.pkg {length(plot)} plots} across {.pkg {ceiling(length(plot)/plots_per_page)} pages} on a {.pkg {ncol} x {nrow}} grid")
   pages <-
-    split(gg, ceiling(seq_along(gg)/plots_per_page)) %>%
+    split(plot, ceiling(seq_along(plot)/plots_per_page)) %>%
     purrr::map(., ~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths, heights = heights, guides = guides, byrow = byrow, tag_level = tag_level, design = design))
   unname(pages)
 }
 
 
 #' Split plot into subplots
-#' @param gg A `ggplot`
+#' @param plot A `ggplot`
 #' @param by Variable that should be used for faceting.
 #' @param ncol,nrow The number of columns and rows per page.
 #' @param unit Unit of length. Defaults to "mm".
 #' @inheritParams patchwork::wrap_plots
 #' @export
-split_plot <- function(gg,
+split_plot <- function(plot,
                        by,
                        ncol = NULL,
                        nrow = NULL,
@@ -116,33 +118,31 @@ split_plot <- function(gg,
                        tag_level = NULL,
                        design = NULL,
                        unit = "mm") {
-  if (!ggplot2::is.ggplot(gg))
-    stop("Argument 'gg' should be a single ggplot")
+  if (!ggplot2::is.ggplot(plot))
+    cli::cli_abort("{.arg plot} must be a single plot.")
   if(missing(by))
-    stop("Argument 'by' missing without default")
+    cli::cli_abort("Argument {.arg by} missing without default.")
 
   # free plot dimensions
-  gg <-
-    gg %>%
+  plot <-
+    plot %>%
     adjust_plot_size(width = NA, height = NA)
 
   df <-
-    gg$data %>%
+    plot$data %>%
     tidyr::nest(data = -{{by}}) %>%
     dplyr::arrange({{by}})
   plots <-
     purrr::map2(df$data, df %>% dplyr::pull({{by}}),
          function(data, facet_title) {
-           gg %+% data + ggplot2::ggtitle(facet_title)
+           plot %+% data + ggplot2::ggtitle(facet_title)
          })
   cli::cli_alert_success("split_plot: {.pkg widths} = {widths} {unit}, {.pkg heights} = {heights} {unit}")
   if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
   if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
   out <- multipage_plots(plots, ncol = ncol, nrow = nrow, widths = widths, heights = heights, unit = unit, guides = guides, byrow = byrow, tag_level = tag_level, design = design)
-  if (length(out) == 1)
-    return(out[[1]])
-  else
-    return(out)
+  if (length(out) == 1) out <- out[[1]]
+  out
 }
 
 #' Save plots to file
@@ -160,7 +160,7 @@ split_plot <- function(gg,
 #' 2) Dimensions inferred from an incoming `ggplot` object containing absolute dimensions.
 #' 3) System default device dimensions.
 #'
-#' @param gg A `ggplot` or list of `ggplot`s
+#' @param plot A `ggplot` or list of `ggplot`s
 #'
 #' @param width,height Dimensions of the saved plot. If not specified, `save_multipage()` will
 #' try to infer the dimensions from the incoming `ggplot` object. If the incoming `ggplot` object has no absolute
@@ -170,26 +170,26 @@ split_plot <- function(gg,
 #' @inheritParams ggplot2::ggsave
 #'
 #' @export
-save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, scale = 1,
+save_plot <- function(plot = last_plot(), filename, device = NULL, path = NULL, scale = 1,
                            width = NA, height = NA, units = c("mm", "cm", "in"), dpi = 300, limitsize = TRUE,
                            multiple_files = FALSE, bg = "transparent", ...) {
-  if (!ggplot2::is.ggplot(gg) && !all(purrr::map_lgl(gg, ggplot2::is.ggplot)))
-    stop("argument 'gg' should be ggplot or list off ggplots")
+  if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
+    cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
 
-  print(gg)
-  input <- gg
+  print(plot)
+  input <- plot
 
-  if (ggplot2::is.ggplot(gg)) {
-    gg <- list(gg)
+  if (ggplot2::is.ggplot(plot)) {
+    plot <- list(plot)
   }
 
   units <- match.arg(units)
 
-  if (length(gg) > 1 && toupper(tools::file_ext(filename)) != "PDF")
+  if (length(plot) > 1 && toupper(tools::file_ext(filename)) != "PDF")
     multiple_files <- TRUE
 
-  if (check_input(gg) == "pw_list")
-    dimensions <- get_layout_size(gg, units)$max
+  if (check_input(plot) == "pw_list")
+    dimensions <- get_layout_size(plot, units)$max
   else
     dimensions <- list(width = NA, height = NA)
 
@@ -207,11 +207,11 @@ save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, sc
   cli::cli_alert_success("save_plot: {.pkg page height} {height_defined_by}")
 
   if (!is.na(width) && !is.na(height))
-    cli::cli_alert_success("save_plot: saving {.pkg {length(gg)} pages} with {.pkg {round(width)} x {round(height)}} mm to {.pkg {filename}}")
+    cli::cli_alert_success("save_plot: saving {.pkg {length(plot)} pages} with {.pkg {round(width)} x {round(height)}} mm to {.pkg {filename}}")
 
   if (multiple_files) {
-    filenames <- burst_filename(filename, length(gg))
-    purrr::map2(gg, filenames,
+    filenames <- burst_filename(filename, length(plot))
+    purrr::map2(plot, filenames,
          function(x, y) {
            ggplot2::ggsave(plot = x, filename = y, device = device, path = path, scale = scale,
                            width = width, height = height, units = units, dpi = dpi, limitsize = limitsize, ...)
@@ -244,7 +244,7 @@ save_plot <- function(gg = last_plot(), filename, device = NULL, path = NULL, sc
       grDevices::dev.off()
       if (old_dev > 1) grDevices::dev.set(old_dev) # restore old device unless null device
     }))
-    purrr::map(gg, ~grid::grid.draw(.x))
+    purrr::map(plot, ~grid::grid.draw(.x))
   }
   invisible(input)
 }

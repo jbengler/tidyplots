@@ -4,10 +4,10 @@
 \alias{adjust_rotate_plot}
 \title{Rotate plot by 90 degrees}
 \usage{
-adjust_rotate_plot(gg, ...)
+adjust_rotate_plot(plot, ...)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{...}{bla}
 }

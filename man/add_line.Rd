@@ -6,7 +6,7 @@
 \title{Add line}
 \usage{
 add_line(
-  gg,
+  plot,
   group,
   dodge_width = NULL,
   linewidth = 0.25,
@@ -15,7 +15,7 @@ add_line(
 )
 
 add_area(
-  gg,
+  plot,
   group,
   dodge_width = NULL,
   linewidth = 0.25,
@@ -24,15 +24,15 @@ add_area(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{group}{bla}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{linewidth}{bla}
 
-\item{preserve}{bla}
+\item{preserve}{general}
 
 \item{...}{bla}
 }

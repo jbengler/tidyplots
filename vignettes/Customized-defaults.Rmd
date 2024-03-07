@@ -2,7 +2,7 @@
 title: "Consistent style across plots"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Consistent-style}
+  %\VignetteIndexEntry{Consistent style across plots}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -33,7 +33,7 @@ library(tidyplots)
 
 my_style <- 
   . %>% 
-  adjust_colors(colors_continuous_blue_pink_yellow) %>% 
+  adjust_colors(colors_continuous_bluepinkyellow) %>% 
   adjust_font(family = "mono", face = "bold") %>% 
   remove_x_axis_ticks() %>% 
   remove_y_axis_ticks()

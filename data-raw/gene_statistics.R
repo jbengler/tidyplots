@@ -1,4 +1,4 @@
-## code to prepare `de_analysis` dataset goes here
+## code to prepare `gene_statistics` dataset goes here
 
 library(tidyverse)
 

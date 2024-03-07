@@ -14,7 +14,7 @@ figures:
 reference:
 - title:
   desc: >
-    To create a plot, you start with the `tidyplot()` function. Then you call `add_*()`, `adjust_*()` and `theme_*()` functions, preferably in that order. `split_plot()` must be last in this sequence and can only be followed by `save_plot()`.
+    To create a plot, you start with the `tidyplot()` function. Then you call `add_*()`, `adjust_*()` and `theme_*()` functions, preferably in that order. `split_plot()` must be last in this sequence and can only be followed by `view_plot()` and `save_plot()`.
 - title: Create
 - contents:
   - tidyplot

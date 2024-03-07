@@ -37,7 +37,7 @@ colors_discrete_metro
 colors_discrete_circle
 colors_continuous_viridis
 colors_continuous_magma
-colors_continuous_blue_pink_yellow
+colors_continuous_bluepinkyellow
 
 new_color_scheme(c('#d73027','#f46d43','#fdae61','#fee090','#ffffbf','#e0f3f8','#abd9e9','#74add1','#4575b4'))
 new_color_scheme(c("#8ecae6", "#219ebc", "#023047", "#ffb703", "#fb8500"))
@@ -56,15 +56,8 @@ new_color_scheme(c("#E64B35","#4DBBD5","#00A087","#3C5488","#F39B7F","#8491B4",
 
 
 colors_discrete_metro[2]
-colors_continuous_blue_pink_yellow[4:8]
-c(colors_continuous_blue_pink_yellow, colors_discrete_metro)
-
-
-# preview_colors_in_viewer(list(
-#   colors_continuous_viridis,
-#   colors_continuous_magma,
-#   colors_continuous_turbo,
-#   colors_continuous_inferno))
+colors_continuous_bluepinkyellow[4:8]
+c(colors_continuous_bluepinkyellow, colors_discrete_metro)
 
 p1 <- 
   animals %>%
@@ -91,8 +84,8 @@ p1 %>% adjust_colors(colors_discrete_metro)
 p1 %>% adjust_colors(colors_discrete_metro)
 
 # too many
-p1 %>% adjust_colors(colors_continuous_blue_pink_yellow)
-p1 %>% adjust_colors(colors_continuous_turbo)
+p1 %>% adjust_colors(colors_continuous_bluepinkyellow)
+p1 %>% adjust_colors(colors_continuous_plasma)
 
 # too few
 p1 %>% adjust_colors(colors_discrete_metro[1:3])
@@ -103,7 +96,7 @@ p2 %>% adjust_colors()
 p2 %>% adjust_colors(colors_discrete_metro)
 
 # too few
-p2 %>% adjust_colors(colors_continuous_blue_pink_yellow)
+p2 %>% adjust_colors(colors_continuous_bluepinkyellow)
 
 p3
 # default
@@ -112,6 +105,11 @@ p3 %>% adjust_colors(colors_discrete_metro)
 
 # too many
 p3 %>% adjust_colors(colors_continuous_viridis)
+
+# named vector
+p3 %>% adjust_colors(c("Bird" = "#007700"))
+p3 %>% adjust_colors(c("Bird" = "#007700", "Insect" = "#f80398"))
+p3 %>% adjust_colors(c("Bird" = "#007700", "Not_there" = "#f8f300"))
 
 ```
 

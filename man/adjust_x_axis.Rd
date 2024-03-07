@@ -6,7 +6,7 @@
 \title{Adjust axes}
 \usage{
 adjust_x_axis(
-  gg,
+  plot,
   title = ggplot2::waiver(),
   breaks = ggplot2::waiver(),
   labels = ggplot2::waiver(),
@@ -20,7 +20,7 @@ adjust_x_axis(
 )
 
 adjust_y_axis(
-  gg,
+  plot,
   title = ggplot2::waiver(),
   breaks = ggplot2::waiver(),
   labels = ggplot2::waiver(),
@@ -34,7 +34,7 @@ adjust_y_axis(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{title}{bla}
 

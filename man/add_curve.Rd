@@ -5,7 +5,7 @@
 \title{Add curve}
 \usage{
 add_curve(
-  gg,
+  plot,
   dodge_width = NULL,
   method = "loess",
   linewidth = 0.25,
@@ -15,9 +15,9 @@ add_curve(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{method}{bla}
 
@@ -25,7 +25,7 @@ add_curve(
 
 \item{alpha}{bla}
 
-\item{preserve}{bla}
+\item{preserve}{general}
 
 \item{...}{bla}
 }

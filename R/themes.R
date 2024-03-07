@@ -1,53 +1,58 @@
 
 #' Themes
-#' @param gg bla
+#' @param plot bla
 #' @param fontsize bla
 #' @export
-theme_tidyplot <- function(gg, fontsize = 7) {
-  gg %>%
+theme_tidyplot <- function(plot, fontsize = 7) {
+  check_tidyplot(plot)
+  plot %>%
     style_just_xy() %>%
     adjust_font(fontsize)
 }
 #' @rdname theme_tidyplot
 #' @export
-theme_ggplot2 <- function(gg, fontsize = 7) {
-  gg <- gg + ggplot2::theme_gray()
-  gg %>% adjust_font(fontsize)
+theme_ggplot2 <- function(plot, fontsize = 7) {
+  check_tidyplot(plot)
+  plot <- plot + ggplot2::theme_gray()
+  plot %>% adjust_font(fontsize)
 }
 #' @rdname theme_tidyplot
 #' @export
-theme_minimal_xy <- function(gg, fontsize = 7) {
-  gg <- gg + ggplot2::theme_minimal()
-  gg %>% adjust_font(fontsize) +
+theme_minimal_xy <- function(plot, fontsize = 7) {
+  check_tidyplot(plot)
+  plot <- plot + ggplot2::theme_minimal()
+  plot %>% adjust_font(fontsize) +
     ggplot2::theme(
-      axis.line.x = ggplot2::element_line(colour = "grey", size = 0.15),
-      panel.grid.major.x = ggplot2::element_line(colour = "grey", size = 0.15),
+      axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
+      panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.x = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_line(colour = "grey", size = 0.15),
+      panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.y = ggplot2::element_blank()
     )
 }
 #' @rdname theme_tidyplot
 #' @export
-theme_minimal_y <- function(gg, fontsize = 7) {
-  gg <- gg + ggplot2::theme_minimal()
-  gg %>% adjust_font(fontsize) +
+theme_minimal_y <- function(plot, fontsize = 7) {
+  check_tidyplot(plot)
+  plot <- plot + ggplot2::theme_minimal()
+  plot %>% adjust_font(fontsize) +
     ggplot2::theme(
-      axis.line.x = ggplot2::element_line(colour = "grey", size = 0.15),
+      axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.major.x = ggplot2::element_blank(),
       panel.grid.minor.x = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_line(colour = "grey", size = 0.15),
+      panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.y = ggplot2::element_blank()
     )
 }
 #' @rdname theme_tidyplot
 #' @export
-theme_minimal_x <- function(gg, fontsize = 7) {
-  gg <- gg + ggplot2::theme_minimal()
-  gg %>% adjust_font(fontsize) +
+theme_minimal_x <- function(plot, fontsize = 7) {
+  check_tidyplot(plot)
+  plot <- plot + ggplot2::theme_minimal()
+  plot %>% adjust_font(fontsize) +
     ggplot2::theme(
-      axis.line.y = ggplot2::element_line(colour = "grey", size = 0.15),
-      panel.grid.major.x = ggplot2::element_line(colour = "grey", size = 0.15),
+      axis.line.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
+      panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.x = ggplot2::element_blank(),
       panel.grid.major.y = ggplot2::element_blank(),
       panel.grid.minor.y = ggplot2::element_blank()
@@ -56,8 +61,8 @@ theme_minimal_x <- function(gg, fontsize = 7) {
 
 # non-exported helpers
 
-style_void <- function(gg) {
-  gg +
+style_void <- function(plot) {
+  plot +
     ggplot2::theme_void() +
     ggplot2::theme(
     plot.title = ggplot2::element_text(size = 7, colour = "black", hjust = 0.5, vjust = 0.5),
@@ -67,18 +72,18 @@ style_void <- function(gg) {
   )
 }
 
-style_just_xy <- function(gg) {
-  gg %>%
+style_just_xy <- function(plot) {
+  plot %>%
     style_white_bg() +
     ggplot2::theme(
       panel.border = ggplot2::element_blank(),
-      axis.line = ggplot2::element_line(size = 0.25, colour = "black"),
-      axis.ticks = ggplot2::element_line(size = 0.25, colour = "black")
+      axis.line = ggplot2::element_line(linewidth = 0.25, colour = "black"),
+      axis.ticks = ggplot2::element_line(linewidth = 0.25, colour = "black")
     )
 }
 
-style_white_bg <- function(gg) {
-  gg +
+style_white_bg <- function(plot) {
+  plot +
     ggplot2::theme(
       plot.margin = ggplot2::unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
       plot.background = ggplot2::element_rect(fill = NA, colour = NA),
@@ -86,9 +91,9 @@ style_white_bg <- function(gg) {
       legend.key = ggplot2::element_rect(fill = NA, colour = NA),
       strip.background = ggplot2::element_rect(fill = NA, colour = NA),
       panel.background = ggplot2::element_rect(fill = NA, colour = NA),
-      panel.border = ggplot2::element_rect(fill = NA, colour = "black", size = 0.5),
+      panel.border = ggplot2::element_rect(fill = NA, colour = "black", linewidth = 0.5),
       panel.grid.major = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
-      axis.ticks = ggplot2::element_line(colour = "black", size = 0.25)
+      axis.ticks = ggplot2::element_line(colour = "black", linewidth = 0.25)
     )
 }

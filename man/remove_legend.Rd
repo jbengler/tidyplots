@@ -5,12 +5,12 @@
 \alias{remove_legend_title}
 \title{Remove legend or legend title}
 \usage{
-remove_legend(gg)
+remove_legend(plot)
 
-remove_legend_title(gg)
+remove_legend_title(plot)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 }
 \description{
 Remove legend or legend title

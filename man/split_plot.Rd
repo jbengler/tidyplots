@@ -5,7 +5,7 @@
 \title{Split plot into subplots}
 \usage{
 split_plot(
-  gg,
+  plot,
   by,
   ncol = NULL,
   nrow = NULL,
@@ -19,7 +19,7 @@ split_plot(
 )
 }
 \arguments{
-\item{gg}{A \code{ggplot}}
+\item{plot}{A \code{ggplot}}
 
 \item{by}{Variable that should be used for faceting.}
 

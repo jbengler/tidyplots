@@ -5,12 +5,18 @@
 \alias{add_density_histogram}
 \title{Add histogram}
 \usage{
-add_histogram(gg, binwidth = NULL, bins = NULL, color = "#4DACD6", ...)
+add_histogram(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...)
 
-add_density_histogram(gg, binwidth = NULL, bins = NULL, color = "#4DACD6", ...)
+add_density_histogram(
+  plot,
+  binwidth = NULL,
+  bins = NULL,
+  color = "#4DACD6",
+  ...
+)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{binwidth}{bla}
 

@@ -10,7 +10,7 @@
 \title{Add count}
 \usage{
 add_count_bar(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.6,
   saturation = 1,
@@ -19,7 +19,7 @@ add_count_bar(
 )
 
 add_count_dash(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.6,
   linewidth = 0.25,
@@ -27,10 +27,10 @@ add_count_dash(
   ...
 )
 
-add_count_dot(gg, dodge_width = NULL, size = 2, preserve = "total", ...)
+add_count_dot(plot, dodge_width = NULL, size = 2, preserve = "total", ...)
 
 add_count_value(
-  gg,
+  plot,
   dodge_width = NULL,
   accuracy = 0.1,
   scale_cut = NULL,
@@ -42,7 +42,7 @@ add_count_value(
 )
 
 add_count_line(
-  gg,
+  plot,
   group,
   dodge_width = NULL,
   linewidth = 0.25,
@@ -51,7 +51,7 @@ add_count_line(
 )
 
 add_count_area(
-  gg,
+  plot,
   group,
   dodge_width = NULL,
   linewidth = 0.25,
@@ -60,15 +60,15 @@ add_count_area(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{width}{bla}
 
 \item{saturation}{bla}
 
-\item{preserve}{bla}
+\item{preserve}{general}
 
 \item{...}{bla}
 

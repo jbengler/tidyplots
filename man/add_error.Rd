@@ -8,7 +8,7 @@
 \title{Add error bar}
 \usage{
 add_error(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.4,
   linewidth = 0.25,
@@ -17,7 +17,7 @@ add_error(
 )
 
 add_range(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.4,
   linewidth = 0.25,
@@ -26,7 +26,7 @@ add_range(
 )
 
 add_sd(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.4,
   linewidth = 0.25,
@@ -35,7 +35,7 @@ add_sd(
 )
 
 add_ci95(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.4,
   linewidth = 0.25,
@@ -44,15 +44,15 @@ add_ci95(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{width}{bla}
 
 \item{linewidth}{bla}
 
-\item{preserve}{bla}
+\item{preserve}{general}
 
 \item{...}{bla}
 }

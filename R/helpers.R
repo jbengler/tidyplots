@@ -100,17 +100,6 @@ mean_cl_boot <- function(x) {
                 y = Mean, ymin = Lower, ymax = Upper)
 }
 
-
-check_pipeline <- function(gg) {
-  pf <- parent_function()
-  # add, adjust, theme, remove, split, render, save
-  # add before adjust -> warn
-  # adjust_levels before adjust_colors -> warn
-  # nothing after split_plot, except save_plot and view_plot -> error
-
-  # unexpected behavior: adjust_levels(new_names) + adjust_colors(new_colors = named_vector)
-}
-
 tidyplot_parser <- function(text) {
   # detect expressions by a leading and trailing "$"
   # message(text) # for debugging
@@ -144,51 +133,32 @@ parent_function <- function(level = 0){
 }
 
 check_input <- function(input) {
+  if (any(inherits(input, "tidyplot"))) return("tp")
   if (any(inherits(input, "patchwork"))) return("pw")
-  else if (any(inherits(input, "gg"))) return("gg")
-  else if (inherits(input, "list")) {
-    if (any(unlist(purrr::map(input, inherits, "patchwork")))) {
-      return("pw_list")
-    } else if (any(unlist(purrr::map(input, inherits, "gg")))) {
-      return("gg_list")
-    }
+  if (any(inherits(input, "gg"))) return("gg")
+  if (inherits(input, "list")) {
+    if (any(unlist(purrr::map(input, inherits, "tidyplot")))) return("tp_list")
+    if (any(unlist(purrr::map(input, inherits, "patchwork")))) return("pw_list")
+    if (any(unlist(purrr::map(input, inherits, "gg")))) return("gg_list")
   }
   else return("none")
 }
 
-# library(ggplot2)
-#
-# p1 <-
-#   study %>%
-#   ggplot(aes(treatment, score, color = treatment)) +
-#   geom_point()
-#
-# p2 <- p1
-# pw <- p1 + p2
-# gg_list <- list(p1, p2)
-# pw_list <- list(pw, pw)
-#
-# check_input(p1)
-# check_input(p2)
-# check_input(pw)
-# check_input(gg_list)
-# check_input(pw_list)
-
-extract_mapping <- function(gg) {
+extract_mapping <- function(plot) {
   my_variable <- function(inp) {
     purrr::map_chr(inp, function(x) {
-      if (is.null(gg$mapping[[x]])) return("!!MISSING")
-      if (is.na(rlang::quo_name(gg$mapping[[x]]))) return("!!NA")
-      rlang::quo_name(gg$mapping[[x]])
+      if (is.null(plot$mapping[[x]])) return("!!MISSING")
+      if (is.na(rlang::quo_name(plot$mapping[[x]]))) return("!!NA")
+      rlang::quo_name(plot$mapping[[x]])
     })
   }
   my_scale_type <- function(inp) {
     purrr::map_chr(inp, function(x) {
       if (x == "!!MISSING") return("!!MISSING")
       if (x == "!!NA") return("!!NA")
-      if (!x %in% colnames(gg$data)) cli::cli_abort("Variable '{x}' not found in supplied dataset")
+      if (!x %in% colnames(plot$data)) cli::cli_abort("Variable '{x}' not found in supplied dataset")
       if (stringr::str_detect(x, "after_stat|after_scale|stage\\(")) return("continuous")
-      gg$data[[x]] %>% ggplot2::scale_type() %>% .[[1]]
+      plot$data[[x]] %>% ggplot2::scale_type() %>% .[[1]]
     })
   }
   dplyr::tibble(aesthetic = c("x", "y", "colour", "fill", "group")) %>%
@@ -198,36 +168,59 @@ extract_mapping <- function(gg) {
     )
 }
 
-get_scale_type <- function(gg, aesthetic) {
-  m <- gg$tidyplot$mapping
+get_scale_type <- function(plot, aesthetic) {
+  m <- plot$tidyplot$mapping
   m$scale_type[m$aesthetic == aesthetic]
 }
 
-get_variable <- function(gg, aesthetic) {
-  m <- gg$tidyplot$mapping
+get_variable <- function(plot, aesthetic) {
+  m <- plot$tidyplot$mapping
   m$variable[m$aesthetic == aesthetic]
 }
 
-is_discrete <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "discrete" }
-is_continuous <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "continuous" }
-is_date <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "date" }
-is_time <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "time" }
-is_datetime <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "datetime" }
-is_missing <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "!!MISSING" }
-is_na <- function(gg, aesthetic) { get_scale_type(gg, aesthetic) == "!!NA" }
+is_discrete <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "discrete" }
+is_continuous <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "continuous" }
+is_date <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "date" }
+is_time <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "time" }
+is_datetime <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "datetime" }
+is_missing <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!MISSING" }
+is_na <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!NA" }
+
+
+check_tidyplot <- function(x, arg = rlang::caller_arg(x), call = rlang::caller_env()) {
+  if (!inherits(x, "tidyplot")) {
+    msg <- c("{.arg {arg}} must be a tidyplot.")
+    if (inherits(x, "list") || inherits(x, "patchwork"))
+      msg <- c(msg, "i" = "After using `split_plot()`, only `view_plot()` and `save_plot()` are allowed.")
+    else
+      msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")
+    cli::cli_abort(msg, call = call)
+  }
+}
+
+# check_tidyplot(c(22,22))
+
+is_hex_vector <- function(x) {
+  all(
+    is.character(x),
+    stringr::str_detect(x, "[#]"),
+    !stringr::str_detect(x, "[^#0-9a-fA-F]"),
+    stringr::str_length(x) %in% c(4, 7, 9)
+  )
+}
 
 burst_filename <- function(filename, n) {
   digits <- ceiling(log10(n+1))
   paste0(tools::file_path_sans_ext(filename), "_", sprintf(paste0("%0",digits,"d"), 1:n), ".", tools::file_ext(filename))
 }
 
-get_layout_size <- function(gg, units = c("mm", "cm", "in")) {
-  if (ggplot2::is.ggplot(gg)) gg <- list(gg)
+get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
+  if (ggplot2::is.ggplot(plot)) plot <- list(plot)
   units <- match.arg(units)
 
   pages <-
-    purrr::map(gg, function(x) {
-      if (!ggplot2::is.ggplot(x)) stop("Please provide a ggplot or list of ggplots as input to 'gg'")
+    purrr::map(plot, function(x) {
+      if (!ggplot2::is.ggplot(x)) stop("Please provide a ggplot or list of ggplots as input to 'plot'")
       gtab <- patchwork::patchworkGrob(x)
 
       width <- NA

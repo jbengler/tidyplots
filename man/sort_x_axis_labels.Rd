@@ -6,14 +6,14 @@
 \alias{sort_color_labels}
 \title{Sort axis and color labels}
 \usage{
-sort_x_axis_labels(gg, ...)
+sort_x_axis_labels(plot, ...)
 
-sort_y_axis_labels(gg, ...)
+sort_y_axis_labels(plot, ...)
 
-sort_color_labels(gg, ...)
+sort_color_labels(plot, ...)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{...}{bla}
 }

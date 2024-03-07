@@ -5,12 +5,12 @@
 \alias{add_caption}
 \title{Add plot title or caption}
 \usage{
-add_title(gg, title = ggplot2::waiver())
+add_title(plot, title = ggplot2::waiver())
 
-add_caption(gg, caption = ggplot2::waiver())
+add_caption(plot, caption = ggplot2::waiver())
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{title}{bla}
 

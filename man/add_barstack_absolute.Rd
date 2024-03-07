@@ -5,14 +5,14 @@
 \alias{add_barstack_relative}
 \title{Add bar stack}
 \usage{
-add_barstack_absolute(gg, bar_width = 0.8, reverse = FALSE, ...)
+add_barstack_absolute(plot, width = 0.8, reverse = FALSE, ...)
 
-add_barstack_relative(gg, bar_width = 0.8, reverse = FALSE, ...)
+add_barstack_relative(plot, width = 0.8, reverse = FALSE, ...)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{bar_width}{bla}
+\item{width}{bla}
 
 \item{reverse}{bla}
 

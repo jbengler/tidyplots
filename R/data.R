@@ -8,14 +8,6 @@
 #' dplyr::glimpse(gene_expression)
 "gene_expression"
 
-#' RNA-Seq differential expression data
-#' @format A data frame.
-#' @source
-#' `tidyplots` package
-#' @examples
-#' dplyr::glimpse(gene_statistics)
-"gene_statistics"
-
 #' Time course data
 #' @format A data frame with.
 #' @source

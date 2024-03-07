@@ -5,7 +5,7 @@
 \title{Add reference lines}
 \usage{
 add_reference_lines(
-  gg,
+  plot,
   x = NULL,
   y = NULL,
   linetype = "dashed",
@@ -14,7 +14,7 @@ add_reference_lines(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{x}{bla}
 

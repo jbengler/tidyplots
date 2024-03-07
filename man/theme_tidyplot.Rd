@@ -8,18 +8,18 @@
 \alias{theme_minimal_x}
 \title{Themes}
 \usage{
-theme_tidyplot(gg, fontsize = 7)
+theme_tidyplot(plot, fontsize = 7)
 
-theme_ggplot2(gg, fontsize = 7)
+theme_ggplot2(plot, fontsize = 7)
 
-theme_minimal_xy(gg, fontsize = 7)
+theme_minimal_xy(plot, fontsize = 7)
 
-theme_minimal_y(gg, fontsize = 7)
+theme_minimal_y(plot, fontsize = 7)
 
-theme_minimal_x(gg, fontsize = 7)
+theme_minimal_x(plot, fontsize = 7)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{fontsize}{bla}
 }

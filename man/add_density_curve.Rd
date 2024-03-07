@@ -5,7 +5,7 @@
 \title{Add density curve}
 \usage{
 add_density_curve(
-  gg,
+  plot,
   bw = "nrd0",
   adjust = 1,
   kernel = "gaussian",
@@ -17,7 +17,7 @@ add_density_curve(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{bw}{bla}
 

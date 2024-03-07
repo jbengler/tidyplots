@@ -2,7 +2,7 @@
 title: "Visualizing Data"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Visualizing-data}
+  %\VignetteIndexEntry{Visualizing Data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

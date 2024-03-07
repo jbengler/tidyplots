@@ -5,14 +5,14 @@
 \alias{add_donut}
 \title{Add pie or donut chart}
 \usage{
-add_pie(gg, bar_width = 1, reverse = FALSE, ...)
+add_pie(plot, width = 1, reverse = FALSE, ...)
 
-add_donut(gg, bar_width = 1, reverse = FALSE, ...)
+add_donut(plot, width = 1, reverse = FALSE, ...)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{bar_width}{bla}
+\item{width}{bla}
 
 \item{reverse}{bla}
 

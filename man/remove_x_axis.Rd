@@ -8,18 +8,18 @@
 \alias{remove_x_axis_title}
 \title{Remove x axis or parts of it}
 \usage{
-remove_x_axis(gg)
+remove_x_axis(plot)
 
-remove_x_axis_line(gg)
+remove_x_axis_line(plot)
 
-remove_x_axis_ticks(gg)
+remove_x_axis_ticks(plot)
 
-remove_x_axis_labels(gg)
+remove_x_axis_labels(plot)
 
-remove_x_axis_title(gg)
+remove_x_axis_title(plot)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 }
 \description{
 Remove x axis or parts of it

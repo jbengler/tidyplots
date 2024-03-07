@@ -6,7 +6,7 @@
 \title{Add statistics}
 \usage{
 add_stats_pvalue(
-  gg,
+  plot,
   padding_top = 0.15,
   method = "t.test",
   p.adjust.method = "none",
@@ -25,7 +25,7 @@ add_stats_pvalue(
 )
 
 add_stats_asterisks(
-  gg,
+  plot,
   padding_top = 0.1,
   method = "t.test",
   p.adjust.method = "none",
@@ -44,7 +44,7 @@ add_stats_asterisks(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{padding_top}{bla}
 

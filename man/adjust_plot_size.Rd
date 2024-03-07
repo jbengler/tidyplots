@@ -4,10 +4,10 @@
 \alias{adjust_plot_size}
 \title{Adjust plot size}
 \usage{
-adjust_plot_size(gg, width = 50, height = 50, unit = "mm")
+adjust_plot_size(plot, width = 50, height = 50, unit = "mm")
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{width}{bla}
 

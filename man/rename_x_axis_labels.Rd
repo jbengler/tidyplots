@@ -6,14 +6,14 @@
 \alias{rename_color_labels}
 \title{Rename axis and color labels}
 \usage{
-rename_x_axis_labels(gg, new_names)
+rename_x_axis_labels(plot, new_names)
 
-rename_y_axis_labels(gg, new_names)
+rename_y_axis_labels(plot, new_names)
 
-rename_color_labels(gg, new_names)
+rename_color_labels(plot, new_names)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{new_names}{bla}
 }

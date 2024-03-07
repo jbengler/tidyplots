@@ -5,7 +5,7 @@
 \title{Add violin plot}
 \usage{
 add_violin(
-  gg,
+  plot,
   dodge_width = NULL,
   saturation = 0.3,
   draw_quantiles = NULL,
@@ -16,9 +16,9 @@ add_violin(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{saturation}{bla}
 

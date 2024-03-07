@@ -5,7 +5,7 @@
 \title{Add boxplot}
 \usage{
 add_boxplot(
-  gg,
+  plot,
   dodge_width = NULL,
   saturation = 0.3,
   show_whiskers = TRUE,
@@ -21,9 +21,9 @@ add_boxplot(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{saturation}{bla}
 
@@ -43,7 +43,7 @@ add_boxplot(
 
 \item{linewidth}{bla}
 
-\item{preserve}{bla}
+\item{preserve}{general}
 
 \item{...}{bla}
 }

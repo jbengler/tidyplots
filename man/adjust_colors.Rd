@@ -5,7 +5,7 @@
 \title{Adjust colors}
 \usage{
 adjust_colors(
-  gg,
+  plot,
   new_colors = NULL,
   saturation = 1,
   labels = tidyplot_parse_labels(),
@@ -13,7 +13,7 @@ adjust_colors(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{new_colors}{bla}
 

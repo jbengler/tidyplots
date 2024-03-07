@@ -4,10 +4,10 @@
 \alias{adjust_legend}
 \title{Adjust legend}
 \usage{
-adjust_legend(gg, title = ggplot2::waiver(), position = "right")
+adjust_legend(plot, title = ggplot2::waiver(), position = "right")
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{title}{bla}
 

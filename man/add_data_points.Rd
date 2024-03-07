@@ -7,7 +7,7 @@
 \title{Add data points}
 \usage{
 add_data_points(
-  gg,
+  plot,
   data = all_rows(),
   shape = 19,
   size = 1,
@@ -20,7 +20,7 @@ add_data_points(
 )
 
 add_data_points_jitter(
-  gg,
+  plot,
   data = all_rows(),
   shape = 19,
   size = 1,
@@ -35,7 +35,7 @@ add_data_points_jitter(
 )
 
 add_data_points_beeswarm(
-  gg,
+  plot,
   data = all_rows(),
   shape = 19,
   size = 1,
@@ -51,29 +51,34 @@ add_data_points_beeswarm(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{data}{bla}
+\item{data}{A function to subset the data to be plotted. See \code{filter_rows()} and friends.}
 
-\item{shape}{bla}
+\item{shape}{A number representing the shape of the data points.}
 
-\item{size}{bla}
+\item{size}{A number representing the size of the data points.}
 
-\item{confetti}{bla}
+\item{confetti}{If \code{TRUE}, data points will get a white border. This can be
+useful to deal with overplotting.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{preserve}{bla}
+\item{preserve}{general}
 
-\item{rasterize}{bla}
+\item{rasterize}{general}
 
-\item{rasterize_dpi}{bla}
+\item{rasterize_dpi}{general}
 
 \item{...}{bla}
 
-\item{jitter_width}{bla}
+\item{jitter_width}{For adding a small amount of random noise the to the
+horizontal position of the of the data points. This can be useful to deal
+with overplotting.}
 
-\item{jitter_height}{bla}
+\item{jitter_height}{For adding a small amount of random noise the to the
+vertical position of the of the data points. This can be useful to deal
+with overplotting.}
 
 \item{cex}{Scaling for adjusting point spacing (see \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}).
 Values between 1 (default) and 3 tend to work best.}

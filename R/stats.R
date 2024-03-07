@@ -1,12 +1,12 @@
 
 #' Add statistics
-#' @param gg bla
+#' @param plot bla
 #' @param padding_top bla
 #' @param include_info bla
 #' @param ... bla
 #' @inheritParams ggpubr::geom_pwc
 #' @export
-add_stats_pvalue <- function(gg,
+add_stats_pvalue <- function(plot,
                       padding_top = 0.15,
                       method = "t.test",
                       p.adjust.method = "none",
@@ -24,19 +24,20 @@ add_stats_pvalue <- function(gg,
                       ),
                       include_info = TRUE,
                       ...) {
+  check_tidyplot(plot)
   cli::cli_alert_success("add_stats: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
 
-  gg <- gg  %>%
+  plot <- plot  %>%
     adjust_y_axis(padding = c(NA, padding_top))
 
   if(include_info)
-    gg <- gg  %>% add_caption(caption = glue::glue("method = {method}
+    plot <- plot  %>% add_caption(caption = glue::glue("method = {method}
                                             label = {label}
                                             p.adjust.method = {p.adjust.method}
                                             hide.ns = {hide.ns}
                                             ref.group = {ref.group}", .null = "NULL"))
 
-  gg + ggpubr::geom_pwc(method = method,
+  plot + ggpubr::geom_pwc(method = method,
                        p.adjust.method = p.adjust.method,
                        ref.group = ref.group,
                        label = label,
@@ -51,7 +52,7 @@ add_stats_pvalue <- function(gg,
 }
 #' @rdname add_stats_pvalue
 #' @export
-add_stats_asterisks <- function(gg,
+add_stats_asterisks <- function(plot,
                              padding_top = 0.1,
                              method = "t.test",
                              p.adjust.method = "none",
@@ -69,7 +70,8 @@ add_stats_asterisks <- function(gg,
                              ),
                              include_info = TRUE,
                              ...) {
-  add_stats_pvalue(gg,
+  check_tidyplot(plot)
+  add_stats_pvalue(plot,
             padding_top = padding_top,
             method = method,
             p.adjust.method = p.adjust.method,

@@ -10,7 +10,7 @@
 \title{Add median}
 \usage{
 add_median_bar(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.6,
   saturation = 1,
@@ -19,7 +19,7 @@ add_median_bar(
 )
 
 add_median_dash(
-  gg,
+  plot,
   dodge_width = NULL,
   width = 0.6,
   linewidth = 0.25,
@@ -27,10 +27,10 @@ add_median_dash(
   ...
 )
 
-add_median_dot(gg, dodge_width = NULL, size = 2, preserve = "total", ...)
+add_median_dot(plot, dodge_width = NULL, size = 2, preserve = "total", ...)
 
 add_median_value(
-  gg,
+  plot,
   dodge_width = NULL,
   accuracy = 0.1,
   scale_cut = NULL,
@@ -42,7 +42,7 @@ add_median_value(
 )
 
 add_median_line(
-  gg,
+  plot,
   group,
   dodge_width = NULL,
   linewidth = 0.25,
@@ -51,7 +51,7 @@ add_median_line(
 )
 
 add_median_area(
-  gg,
+  plot,
   group,
   dodge_width = NULL,
   linewidth = 0.25,
@@ -60,31 +60,31 @@ add_median_area(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{width}{bla}
 
-\item{saturation}{description}
+\item{saturation}{bla}
 
-\item{preserve}{bla}
+\item{preserve}{general}
 
-\item{...}{description}
+\item{...}{bla}
 
 \item{linewidth}{bla}
 
-\item{size}{description}
+\item{size}{bla}
 
-\item{accuracy}{description}
+\item{accuracy}{bla}
 
 \item{scale_cut}{bla}
 
-\item{fontsize}{description}
+\item{fontsize}{bla}
 
-\item{vjust}{description}
+\item{vjust}{bla}
 
-\item{padding_top}{description}
+\item{padding_top}{bla}
 
 \item{group}{bla}
 }

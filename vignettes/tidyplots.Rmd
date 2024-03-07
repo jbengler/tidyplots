@@ -2,7 +2,7 @@
 title: "Get started"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{tidyplot}
+  %\VignetteIndexEntry{Get started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -167,7 +167,8 @@ new_colors <-
     "C" = "#E23130",
     "D" = "#1D5D83")
 
-# providing less names, not a problem. Providing more names -> Error
+# Providing less names, not a problem.
+# Providing too many or wrong names -> Warning
 new_names <-
   c("A" = "Regime A",
     "B" = "Regime B",

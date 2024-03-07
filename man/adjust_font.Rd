@@ -4,10 +4,10 @@
 \alias{adjust_font}
 \title{Adjust font}
 \usage{
-adjust_font(gg, fontsize = 7, family = NULL, face = NULL, color = "black")
+adjust_font(plot, fontsize = 7, family = NULL, face = NULL, color = "black")
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{fontsize}{bla}
 

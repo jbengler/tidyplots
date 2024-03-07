@@ -5,7 +5,7 @@
 \title{Adjust description}
 \usage{
 adjust_description(
-  gg,
+  plot,
   title = ggplot2::waiver(),
   x_axis_title = ggplot2::waiver(),
   y_axis_title = ggplot2::waiver(),
@@ -15,7 +15,7 @@ adjust_description(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{title}{bla}
 

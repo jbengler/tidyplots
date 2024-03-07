@@ -5,7 +5,7 @@
 \title{Add heatmap}
 \usage{
 add_heatmap(
-  gg,
+  plot,
   scale = c("none", "row", "column"),
   rotate_labels = 90,
   rasterize = FALSE,
@@ -14,15 +14,15 @@ add_heatmap(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{scale}{bla}
 
 \item{rotate_labels}{bla}
 
-\item{rasterize}{bla}
+\item{rasterize}{general}
 
-\item{rasterize_dpi}{bla}
+\item{rasterize_dpi}{general}
 
 \item{...}{bla}
 }

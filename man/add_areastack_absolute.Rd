@@ -5,12 +5,24 @@
 \alias{add_areastack_relative}
 \title{Add area stack}
 \usage{
-add_areastack_absolute(gg, linewidth = 0.25, alpha = 0.3, reverse = FALSE, ...)
+add_areastack_absolute(
+  plot,
+  linewidth = 0.25,
+  alpha = 0.3,
+  reverse = FALSE,
+  ...
+)
 
-add_areastack_relative(gg, linewidth = 0.25, alpha = 0.3, reverse = FALSE, ...)
+add_areastack_relative(
+  plot,
+  linewidth = 0.25,
+  alpha = 0.3,
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{linewidth}{bla}
 

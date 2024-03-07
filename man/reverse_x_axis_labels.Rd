@@ -6,14 +6,14 @@
 \alias{reverse_color_labels}
 \title{Reverse axis and color labels}
 \usage{
-reverse_x_axis_labels(gg)
+reverse_x_axis_labels(plot)
 
-reverse_y_axis_labels(gg)
+reverse_y_axis_labels(plot)
 
-reverse_color_labels(gg)
+reverse_color_labels(plot)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 }
 \description{
 Reverse axis and color labels

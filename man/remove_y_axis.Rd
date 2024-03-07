@@ -8,18 +8,18 @@
 \alias{remove_y_axis_title}
 \title{Remove y axis or parts of it}
 \usage{
-remove_y_axis(gg)
+remove_y_axis(plot)
 
-remove_y_axis_line(gg)
+remove_y_axis_line(plot)
 
-remove_y_axis_ticks(gg)
+remove_y_axis_ticks(plot)
 
-remove_y_axis_labels(gg)
+remove_y_axis_labels(plot)
 
-remove_y_axis_title(gg)
+remove_y_axis_title(plot)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 }
 \description{
 Remove y axis or parts of it

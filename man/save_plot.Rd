@@ -5,7 +5,7 @@
 \title{Save plots to file}
 \usage{
 save_plot(
-  gg = last_plot(),
+  plot = last_plot(),
   filename,
   device = NULL,
   path = NULL,
@@ -21,7 +21,7 @@ save_plot(
 )
 }
 \arguments{
-\item{gg}{A \code{ggplot} or list of \code{ggplot}s}
+\item{plot}{A \code{ggplot} or list of \code{ggplot}s}
 
 \item{filename}{File name to create on disk.}
 

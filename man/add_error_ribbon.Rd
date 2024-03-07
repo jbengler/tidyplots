@@ -7,18 +7,18 @@
 \alias{add_ci95_ribbon}
 \title{Add ribbon}
 \usage{
-add_error_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_error_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 
-add_range_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_range_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 
-add_sd_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_sd_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 
-add_ci95_ribbon(gg, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects.}
 
 \item{alpha}{bla}
 

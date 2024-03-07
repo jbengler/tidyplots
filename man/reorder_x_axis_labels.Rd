@@ -6,14 +6,14 @@
 \alias{reorder_color_labels}
 \title{Reorder axis and color labels}
 \usage{
-reorder_x_axis_labels(gg, ...)
+reorder_x_axis_labels(plot, ...)
 
-reorder_y_axis_labels(gg, ...)
+reorder_y_axis_labels(plot, ...)
 
-reorder_color_labels(gg, ...)
+reorder_color_labels(plot, ...)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{...}{bla}
 }

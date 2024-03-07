@@ -4,10 +4,10 @@
 \alias{view_plot}
 \title{View plot on screen}
 \usage{
-view_plot(gg, data = all_rows(), title = ggplot2::waiver(), ...)
+view_plot(plot, data = all_rows(), title = ggplot2::waiver(), ...)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{data}{bla}
 

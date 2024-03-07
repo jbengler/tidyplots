@@ -4,10 +4,10 @@
 \alias{remove_padding}
 \title{Remove padding}
 \usage{
-remove_padding(gg, force_continuous = FALSE)
+remove_padding(plot, force_continuous = FALSE)
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{force_continuous}{bla}
 }

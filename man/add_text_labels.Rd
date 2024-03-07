@@ -5,7 +5,7 @@
 \title{Add text labels}
 \usage{
 add_text_labels(
-  gg,
+  plot,
   var,
   data = all_rows(),
   fontsize = 7,
@@ -15,11 +15,11 @@ add_text_labels(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
 
 \item{var}{bla}
 
-\item{data}{bla}
+\item{data}{A function to subset the data to be plotted. See \code{filter_rows()} and friends.}
 
 \item{fontsize}{bla}
 

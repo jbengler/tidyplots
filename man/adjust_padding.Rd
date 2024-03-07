@@ -5,7 +5,7 @@
 \title{Adjust padding}
 \usage{
 adjust_padding(
-  gg,
+  plot,
   top = NA,
   right = NA,
   bottom = NA,
@@ -14,7 +14,7 @@ adjust_padding(
 )
 }
 \arguments{
-\item{gg}{bla}
+\item{plot}{bla}
 
 \item{top}{bla}
 
