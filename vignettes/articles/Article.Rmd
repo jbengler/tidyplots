@@ -1,0 +1,27 @@
+---
+title: "Article"
+---
+
+```{r, include = FALSE}
+# knitr::opts_chunk$set(
+#   collapse = TRUE,
+#   comment = "#>"
+# )
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  results = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 5,
+  fig.height = 2.5,
+  dpi = 300
+)
+```
+
+```{r setup}
+library(tidyplots)
+```
+
+This is an example article.

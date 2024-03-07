@@ -1,8 +1,8 @@
 ---
-title: "Consistent style across plots"
+title: "Custom styling"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Consistent style across plots}
+  %\VignetteIndexEntry{Custom styling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

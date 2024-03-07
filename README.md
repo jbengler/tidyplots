@@ -11,11 +11,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 The goal of `tidyplots` is to streamline the creation of
-publication-ready plots for scientific papers, making it incredibly easy
-to gradually add and refine plot elements. It allows precise control
-over composition, style, and absolute sizes, while its utilization of
-the pipe `%>%` simplifies the construction of advanced plotting
-pipelines.
+publication-ready plots for scientific papers, by making it easy to
+gradually add and refine plot elements. It allows precise control over
+composition, style, and absolute sizes, while its utilization of the
+pipe `%>%` simplifies the construction of advanced plotting pipelines.
 
 ## Disclaimer
 
@@ -23,7 +22,7 @@ This package is still in early development. Expect user-facing and
 breaking changes. I would not recommend to use this package in
 production yet.
 
-Feel free to let me know about bugs and feature requests
+Feel free to report bugs and suggest missing features
 [here](https://github.com/jbengler/tidyplots/issues).
 
 ## Installation
