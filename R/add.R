@@ -1,4 +1,4 @@
-#' General arguments
+#' Common arguments
 #'
 #' @param plot A tidyplot generated with the `tidyplot()` function.
 #' @param data A function to subset the data to be plotted. See `filter_rows()` and friends.
@@ -6,7 +6,8 @@
 #' @param preserve general
 #' @param rasterize general
 #' @param rasterize_dpi general
-#' @name general_arguments
+#' @keywords internal
+#' @name common_arguments
 NULL
 
 
@@ -23,7 +24,7 @@ NULL
 #'  vertical position of the of the data points. This can be useful to deal
 #'  with overplotting.
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @inheritParams ggbeeswarm::geom_beeswarm
 #'
 #' @examples
@@ -151,7 +152,7 @@ ff_errorbar <- function(.fun.data) {
 #' @param width bla
 #' @param linewidth bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_error <- ff_errorbar(.fun.data = ggplot2::mean_se)
 #' @rdname add_error
@@ -187,7 +188,7 @@ ff_ribbon <- function(.fun.data) {
 #' @param alpha bla
 #' @param color bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_error_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_se)
 #' @rdname add_error_ribbon
@@ -306,7 +307,7 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 #' @param scale_cut bla
 #' @param group bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_mean_bar <- ff_bar(.fun = mean)
 #' @rdname add_mean_bar
@@ -327,7 +328,7 @@ add_mean_area <- ff_line(.fun = mean, .geom = "area")
 
 #' Add median
 #'
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @inheritParams add_mean_bar
 #' @export
 add_median_bar <- ff_bar(.fun = median)
@@ -350,7 +351,7 @@ add_median_area <- ff_line(.fun = median, .geom = "area")
 
 #' Add sum
 #'
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @inheritParams add_mean_bar
 #' @export
 add_sum_bar <- ff_bar(.fun = sum)
@@ -373,7 +374,7 @@ add_sum_area <- ff_line(.fun = sum, .geom = "area")
 
 #' Add count
 #'
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @inheritParams add_mean_bar
 #'
 #' @export
@@ -407,7 +408,7 @@ add_count_area <- ff_line(.count = TRUE, .geom = "area")
 #' @param outlier.shape bla
 #' @param linewidth bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #'
 #' @export
 add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = FALSE,
@@ -440,7 +441,7 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
 #' @param linewidth bla
 #' @param scale bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #'
 #' @export
 add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantiles = NULL, trim = FALSE,
@@ -457,7 +458,7 @@ add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantile
 #' @param group bla
 #' @param linewidth bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
   check_tidyplot(plot)
@@ -498,7 +499,7 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve
 #' @param linewidth bla
 #' @param alpha bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_curve <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.3,
                       preserve = "total", ...) {
@@ -544,7 +545,7 @@ ff_pie <- function(.type = "pie") {
 #' @param width bla
 #' @param reverse bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_pie <- ff_pie(.type = "pie")
 #' @rdname add_pie
@@ -577,7 +578,7 @@ ff_barstack <- function(.position_fun) {
 #' @param width bla
 #' @param reverse bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_barstack_absolute <- ff_barstack(.position_fun = ggplot2::position_stack)
 #' @rdname add_barstack_absolute
@@ -633,7 +634,7 @@ ff_areastack <- function(.position_fun) {
 #' @param alpha bla
 #' @param reverse bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_areastack_absolute <- ff_areastack(.position_fun = ggplot2::position_stack)
 #' @rdname add_areastack_absolute
@@ -646,7 +647,7 @@ add_areastack_relative <- ff_areastack(.position_fun = ggplot2::position_fill)
 #' @param bins bla
 #' @param color bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
   check_tidyplot(plot)
@@ -673,7 +674,7 @@ add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#
 #' @param fill bla
 #' @param alpha bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, color = "#E37D46", fill = "#E37D46", alpha = 0.3, ...) {
   check_tidyplot(plot)
@@ -687,7 +688,7 @@ add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian"
 #' @param scale bla
 #' @param rotate_labels bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels = 90,
                         rasterize = FALSE, rasterize_dpi = 300, ...) {
@@ -727,7 +728,7 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
 #' Add plot title or caption
 #' @param title bla
 #' @param caption bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_title <- function(plot, title = ggplot2::waiver()) {
   check_tidyplot(plot)
@@ -751,7 +752,7 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 #' @param linetype bla
 #' @param linewidth bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", linewidth = 0.25, ...) {
   check_tidyplot(plot)
@@ -772,7 +773,7 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 #' @param segment.size bla
 #' @param box.padding bla
 #' @param ... bla
-#' @inheritParams general_arguments
+#' @inheritParams common_arguments
 #' @export
 add_text_labels <- function(plot, var, data = all_rows(), fontsize = 7,
                      segment.size = 0.2, box.padding = 0.2, ...) {

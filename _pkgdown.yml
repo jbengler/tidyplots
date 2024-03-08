@@ -20,59 +20,43 @@ reference:
   - tidyplot
 - title: Add
   desc: Add plot components to represent data points, central tendency measures, dispersion and more.
-- subtitle:
-  desc: >
-    **Data points & amounts**
+- subtitle: Data points & amounts
 - contents:
   - starts_with("add_data_points")
   - starts_with("add_line")
   - starts_with("add_heatmap")
   - starts_with("add_count")
   - starts_with("add_sum")
-- subtitle:
-  desc: >
-    **Central tendency**
+- subtitle: Central tendency
 - contents:
   - starts_with("add_mean")
   - starts_with("add_median")
   - starts_with("add_curve")
-- subtitle:
-  desc: >
-    **Dispersion & uncertainty**
+- subtitle: Dispersion & uncertainty
 - contents:
   - starts_with("add_boxplot")
   - starts_with("add_violin")
   - starts_with("add_error")
-- subtitle:
-  desc: >
-    **Statistical comparison**
+- subtitle: Statistical comparison
 - contents:
   - starts_with("add_stats")
-- subtitle:
-  desc: >
-    **Distribution**
+- subtitle: Distribution
 - contents:
   - starts_with("add_histogram")
   - starts_with("add_density")
-- subtitle:
-  desc: >
-    **Proportion**
+- subtitle: Proportion
 - contents:
   - starts_with("add_areastack")
   - starts_with("add_barstack")
   - starts_with("add_pie")
-- subtitle:
-  desc: >
-    **Annotation**
+- subtitle: Annotation
 - contents:
   - starts_with("add_title")
   - starts_with("add_text_labels")
   - starts_with("add_reference")
 - title: Adjust
   desc: Adjust plot components, properties, data labels and themes.
-- subtitle:
-  desc: >
-    **Components & properties**
+- subtitle: Components & properties
 - contents:
   - starts_with("adjust_x_axis")
   - starts_with("adjust_colors")
@@ -82,23 +66,17 @@ reference:
   - starts_with("adjust_padding")
   - starts_with("adjust_rotate_plot")
   - starts_with("adjust_description")
-- subtitle:
-  desc: >
-    **Axis and color labels**
+- subtitle: Axis and color labels
 - contents:
   - starts_with("rename")
   - starts_with("reorder")
   - starts_with("sort")
   - starts_with("reverse")
-- subtitle:
-  desc: >
-    **Themes**
+- subtitle: Themes
 - contents:
   - starts_with("theme")
   - starts_with("remove")
-- subtitle:
-  desc: >
-    **Colors**
+- subtitle: Colors
 - contents:
   - starts_with("colors_discrete")
   - starts_with("colors_continuous")
