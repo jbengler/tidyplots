@@ -15,7 +15,7 @@ adjust_description(
 )
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{title}{bla}
 
@@ -27,7 +27,10 @@ adjust_description(
 
 \item{caption}{bla}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{ggplot2::labs()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Adjust description

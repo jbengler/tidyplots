@@ -10,11 +10,14 @@ add_title(plot, title = ggplot2::waiver())
 add_caption(plot, caption = ggplot2::waiver())
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{title}{bla}
 
 \item{caption}{bla}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add plot title or caption

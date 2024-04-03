@@ -34,13 +34,32 @@ adjust_y_axis(
 )
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{title}{bla}
 
-\item{breaks}{bla}
+\item{breaks}{One of:
+\itemize{
+\item \code{NULL} for no breaks
+\item \code{waiver()} for the default breaks computed by the
+\link[scales:trans_new]{transformation object}
+\item A numeric vector of positions
+\item A function that takes the limits as input and returns breaks
+as output (e.g., a function returned by \code{\link[scales:breaks_extended]{scales::extended_breaks()}}).
+Also accepts rlang \link[rlang:as_function]{lambda} function notation.
+}}
 
-\item{labels}{bla}
+\item{labels}{One of:
+\itemize{
+\item \code{NULL} for no labels
+\item \code{waiver()} for the default labels computed by the
+transformation object
+\item A character vector giving labels (must be same length as \code{breaks})
+\item An expression vector (must be the same length as breaks). See ?plotmath for details.
+\item A function that takes the breaks as input and returns labels
+as output. Also accepts rlang \link[rlang:as_function]{lambda} function
+notation.
+}}
 
 \item{limits}{bla}
 
@@ -54,7 +73,10 @@ adjust_y_axis(
 
 \item{force_continuous}{bla}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Adjust axes

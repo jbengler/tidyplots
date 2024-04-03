@@ -22,15 +22,18 @@ add_areastack_relative(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{linewidth}{bla}
+\item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{alpha}{bla}
+\item{alpha}{common}
 
-\item{reverse}{bla}
+\item{reverse}{common}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add area stack

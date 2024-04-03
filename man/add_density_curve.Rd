@@ -17,23 +17,33 @@ add_density_curve(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{bw}{bla}
+\item{bw}{The smoothing bandwidth to be used.
+If numeric, the standard deviation of the smoothing kernel.
+If character, a rule to choose the bandwidth, as listed in
+\code{\link[stats:bandwidth]{stats::bw.nrd()}}.}
 
-\item{adjust}{bla}
+\item{adjust}{A multiplicate bandwidth adjustment. This makes it possible
+to adjust the bandwidth while still using the a bandwidth estimator.
+For example, \code{adjust = 1/2} means use half of the default bandwidth.}
 
-\item{kernel}{bla}
+\item{kernel}{Kernel. See list of available kernels in \code{\link[=density]{density()}}.}
 
-\item{n}{bla}
+\item{n}{number of equally spaced points at which the density is to be
+estimated, should be a power of two, see \code{\link[=density]{density()}} for
+details}
 
-\item{color}{bla}
+\item{color}{common}
 
-\item{fill}{bla}
+\item{fill}{common}
 
-\item{alpha}{bla}
+\item{alpha}{common}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add density curve

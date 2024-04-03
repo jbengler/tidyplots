@@ -44,17 +44,22 @@ add_ci95(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{width}{bla}
+\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between \code{0} and \code{1}.}
 
-\item{linewidth}{bla}
+\item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{preserve}{general}
+\item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
+a position, or the width of a \code{"single"} element?}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 \itemize{
@@ -63,4 +68,23 @@ add_ci95(
 \item \code{add_sd()} adds the standard deviation.
 \item \code{add_ci95()} adds the 95\% confidence interval.
 }
+}
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_error()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_range()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_sd()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_ci95()
+
 }

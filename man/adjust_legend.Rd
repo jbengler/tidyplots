@@ -7,11 +7,15 @@
 adjust_legend(plot, title = ggplot2::waiver(), position = "right")
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{title}{bla}
 
-\item{position}{bla}
+\item{position}{The position of legends. Can be one of \code{"none"}, \code{"left"}, \code{"right"},
+\code{"bottom"}, \code{"top"}, or a two-element numeric vector.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Adjust legend

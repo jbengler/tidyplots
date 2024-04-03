@@ -7,15 +7,18 @@
 adjust_font(plot, fontsize = 7, family = NULL, face = NULL, color = "black")
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{fontsize}{bla}
+\item{fontsize}{common}
 
 \item{family}{Font family}
 
 \item{face}{Font face ("plain", "italic", "bold", "bold.italic")}
 
-\item{color}{bla}
+\item{color}{common}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Adjust font

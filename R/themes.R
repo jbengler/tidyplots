@@ -97,3 +97,19 @@ style_white_bg <- function(plot) {
       axis.ticks = ggplot2::element_line(colour = "black", linewidth = 0.25)
     )
 }
+
+style_black_bg <- function(plot) {
+  plot +
+    ggplot2::theme(
+      plot.margin = ggplot2::unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
+      plot.background = ggplot2::element_rect(fill = "black", colour = "black"),
+      legend.background = ggplot2::element_rect(fill = "black", colour = "black"),
+      legend.key = ggplot2::element_rect(fill = "black", colour = "black"),
+      strip.background = ggplot2::element_rect(fill = "black", colour = "black"),
+      panel.background = ggplot2::element_rect(fill = "black", colour = "black"),
+      panel.border = ggplot2::element_rect(fill = NA, colour = "grey", linewidth = 0.5),
+      panel.grid.major = ggplot2::element_blank(),
+      panel.grid.minor = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_line(colour = "grey", linewidth = 0.25)
+    )
+}

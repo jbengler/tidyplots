@@ -14,17 +14,24 @@ add_heatmap(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{scale}{bla}
 
 \item{rotate_labels}{bla}
 
-\item{rasterize}{general}
+\item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
+vector shapes. If \code{TRUE} the layer will be rastered to a pixel image. This can
+be useful when plotting many individual objects (1,000 or more) compromises
+the performance of the generated PDF file.}
 
-\item{rasterize_dpi}{general}
+\item{rasterize_dpi}{The resolution in dots per inch (dpi) used for rastering
+the layer if \code{rasterize} is \code{TRUE}. The default is \code{300} dpi.}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add heatmap

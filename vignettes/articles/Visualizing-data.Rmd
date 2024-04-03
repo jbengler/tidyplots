@@ -95,6 +95,10 @@ energy %>%
 
 energy %>% 
   tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute()
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
   add_barstack_relative()
 
 energy %>% 

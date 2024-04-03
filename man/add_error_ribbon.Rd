@@ -16,15 +16,18 @@ add_sd_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{alpha}{bla}
+\item{alpha}{common}
 
-\item{color}{bla}
+\item{color}{common}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 \itemize{
@@ -33,4 +36,23 @@ add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 \item \code{add_sd_ribbon()} adds the standard deviation.
 \item \code{add_ci95_ribbon()} adds the 95\% confidence interval.
 }
+}
+\examples{
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_mean_line() \%>\%
+  add_error_ribbon()
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_mean_line() \%>\%
+  add_range_ribbon()
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_mean_line() \%>\%
+  add_sd_ribbon()
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_mean_line() \%>\%
+  add_ci95_ribbon()
+
 }

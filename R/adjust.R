@@ -112,17 +112,15 @@ ff_adjust_axis <- function(axis) {
   }
 }
 #' Adjust axes
-#' @param plot bla
 #' @param title bla
-#' @param breaks bla
-#' @param labels bla
 #' @param limits bla
-#' @param padding bla
 #' @param rotate_labels bla
 #' @param transformation bla
 #' @param cut_short_scale bla
 #' @param force_continuous bla
-#' @param ... bla
+#' @param padding bla
+#' @inherit common_arguments
+#' @inheritParams ggplot2::scale_x_continuous
 #' @export
 adjust_x_axis <- ff_adjust_axis("x")
 #' @rdname adjust_x_axis
@@ -131,10 +129,10 @@ adjust_y_axis <- ff_adjust_axis("y")
 
 
 #' Adjust plot size
-#' @param plot bla
 #' @param width bla
 #' @param height bla
 #' @param unit bla
+#' @inherit common_arguments
 #' @export
 adjust_plot_size <- function(plot, width = 50, height = 50, unit = "mm") {
   check_tidyplot(plot)
@@ -146,9 +144,7 @@ adjust_plot_size <- function(plot, width = 50, height = 50, unit = "mm") {
 
 
 #' Adjust font
-#' @param plot bla
-#' @param fontsize bla
-#' @param color bla
+#' @inherit common_arguments
 #' @inheritParams ggplot2::element_text
 #' @export
 adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = "black") {
@@ -169,9 +165,10 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 
 
 #' Adjust legend
-#' @param plot bla
 #' @param title bla
-#' @param position bla
+#' @param position The position of legends. Can be one of `"none"`, `"left"`, `"right"`,
+#'   `"bottom"`, `"top"`, or a two-element numeric vector.
+#' @inherit common_arguments
 #' @export
 adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
   check_tidyplot(plot)
@@ -184,12 +181,12 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 
 
 #' Adjust padding
-#' @param plot bla
 #' @param top bla
 #' @param right bla
 #' @param bottom bla
 #' @param left bla
 #' @param force_continuous bla
+#' @inherit common_arguments
 #' @export
 adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, force_continuous = FALSE) {
   check_tidyplot(plot)
@@ -200,8 +197,8 @@ adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, f
 
 
 #' Rotate plot by 90 degrees
-#' @param plot bla
-#' @param ... bla
+#' @param ... Arguments passed on to the `ggplot2::coord_flip()`.
+#' @inherit common_arguments
 #' @export
 adjust_rotate_plot <- function(plot, ...) {
   check_tidyplot(plot)
@@ -209,13 +206,13 @@ adjust_rotate_plot <- function(plot, ...) {
 }
 
 #' Adjust description
-#' @param plot bla
 #' @param title bla
 #' @param x_axis_title bla
 #' @param y_axis_title bla
 #' @param legend_title bla
 #' @param caption bla
-#' @param ... bla
+#' @param ... Arguments passed on to the `ggplot2::labs()`.
+#' @inherit common_arguments
 #' @export
 adjust_description <- function(plot, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
                               y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),

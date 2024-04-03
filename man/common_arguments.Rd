@@ -4,17 +4,61 @@
 \alias{common_arguments}
 \title{Common arguments}
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{data}{A function to subset the data to be plotted. See \code{filter_rows()} and friends.}
+\item{data}{The data to be displayed in this layer. There are three options:
+\itemize{
+\item If \code{all_rows()} (the default) the complete plot data is displayed.
+\item A \code{function} to subset the plot data. See \code{filter_rows()} and friends.
+\item A \code{data.frame} to override the plot data.
+}}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{preserve}{general}
+\item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
+a position, or the width of a \code{"single"} element?}
 
-\item{rasterize}{general}
+\item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
+vector shapes. If \code{TRUE} the layer will be rastered to a pixel image. This can
+be useful when plotting many individual objects (1,000 or more) compromises
+the performance of the generated PDF file.}
 
-\item{rasterize_dpi}{general}
+\item{rasterize_dpi}{The resolution in dots per inch (dpi) used for rastering
+the layer if \code{rasterize} is \code{TRUE}. The default is \code{300} dpi.}
+
+\item{shape}{An \code{integer} between \code{0} and \code{24}, representing the shape of the
+plot symbol.
+
+\figure{unnamed-chunk-1-1.png}}
+
+\item{size}{A \code{number} representing the size of the plot symbol. Typical
+values range between \code{1} and \code{3}.}
+
+\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between \code{0} and \code{1}.}
+
+\item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
+
+\item{...}{Arguments passed on to the \code{geom} function.}
+
+\item{alpha}{common}
+
+\item{color}{common}
+
+\item{fill}{common}
+
+\item{group}{common}
+
+\item{saturation}{common}
+
+\item{reverse}{common}
+
+\item{scale_cut}{common}
+
+\item{fontsize}{common}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Common arguments

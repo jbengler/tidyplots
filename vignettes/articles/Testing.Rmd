@@ -30,8 +30,9 @@ knitr::opts_chunk$set(
 library(tidyplots)
 ```
 
-```{r}
+![](demo.png)
 
+```{r}
 # test function factories
 
 study %>%
@@ -196,6 +197,87 @@ animals %>%
   tidyplot(x = weight, y = size) %>% 
   add_data_points() %>% 
   add_data_points(data = max_rows(weight, n = 3), color = "red", shape = 1, size = 3)
+
+
+animals %>%
+  tidyplot(color = family) %>%
+  add_barstack_absolute(alpha = 0.3)
+
+animals %>%
+  tidyplot(x = diet, color = family) %>%
+  add_barstack_absolute(alpha = 0.3)
+
+animals %>%
+  tidyplot(y = diet, color = family) %>%
+  add_barstack_absolute(alpha = 0.3)
+
+animals %>%
+  tidyplot(x = diet, y = speed, color = family) %>%
+  add_barstack_absolute(alpha = 0.3)
+
+animals %>%
+  tidyplot(y = diet, x = speed, color = family) %>%
+  add_barstack_absolute(alpha = 0.3)
+
+#
+
+animals %>%
+  tidyplot(color = family) %>%
+  add_barstack_relative(alpha = 0.3)
+
+animals %>%
+  tidyplot(x = diet, color = family) %>%
+  add_barstack_relative(alpha = 0.3)
+
+animals %>%
+  tidyplot(y = diet, color = family) %>%
+  add_barstack_relative(alpha = 0.3)
+
+animals %>%
+  tidyplot(x = diet, y = speed, color = family) %>%
+  add_barstack_relative(alpha = 0.3)
+
+animals %>%
+  tidyplot(y = diet, x = speed, color = family) %>%
+  add_barstack_relative(alpha = 0.3)
+
+##
+
+animals %>%
+  tidyplot(x = diet, color = family) %>%
+  add_areastack_absolute(alpha = 0.3)
+
+# animals %>%
+#   tidyplot(y = diet, color = family) %>%
+#   add_areastack_absolute(alpha = 0.3)
+
+animals %>%
+  tidyplot(x = diet, y = speed, color = family) %>%
+  add_areastack_absolute(alpha = 0.3)
+
+# animals %>%
+#   tidyplot(y = diet, x = speed, color = family) %>%
+#   add_areastack_absolute(alpha = 0.3)
+
+# animals %>%
+#   tidyplot(color = family) %>%
+#   add_areastack_relative(alpha = 0.3)
+
+animals %>%
+  tidyplot(x = diet, color = family) %>%
+  add_areastack_relative(alpha = 0.3)
+
+# animals %>%
+#   tidyplot(y = diet, color = family) %>%
+#   add_areastack_relative(alpha = 0.3)
+
+animals %>%
+  tidyplot(x = diet, y = speed, color = family) %>%
+  add_areastack_relative(alpha = 0.3)
+
+# animals %>%
+#   tidyplot(y = diet, x = speed, color = family) %>%
+#   add_areastack_relative(alpha = 0.3)
 
 ```
 

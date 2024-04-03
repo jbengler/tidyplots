@@ -14,7 +14,7 @@ adjust_padding(
 )
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{top}{bla}
 
@@ -25,6 +25,9 @@ adjust_padding(
 \item{left}{bla}
 
 \item{force_continuous}{bla}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Adjust padding

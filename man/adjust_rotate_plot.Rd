@@ -7,9 +7,12 @@
 adjust_rotate_plot(plot, ...)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{ggplot2::coord_flip()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Rotate plot by 90 degrees

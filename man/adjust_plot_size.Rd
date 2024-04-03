@@ -7,13 +7,16 @@
 adjust_plot_size(plot, width = 50, height = 50, unit = "mm")
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{width}{bla}
 
 \item{height}{bla}
 
 \item{unit}{bla}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Adjust plot size

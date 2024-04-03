@@ -51,34 +51,48 @@ add_data_points_beeswarm(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{data}{A function to subset the data to be plotted. See \code{filter_rows()} and friends.}
+\item{data}{The data to be displayed in this layer. There are three options:
+\itemize{
+\item If \code{all_rows()} (the default) the complete plot data is displayed.
+\item A \code{function} to subset the plot data. See \code{filter_rows()} and friends.
+\item A \code{data.frame} to override the plot data.
+}}
 
-\item{shape}{A number representing the shape of the data points.}
+\item{shape}{An \code{integer} between \code{0} and \code{24}, representing the shape of the
+plot symbol.
 
-\item{size}{A number representing the size of the data points.}
+\figure{unnamed-chunk-1-1.png}}
 
-\item{confetti}{If \code{TRUE}, data points will get a white border. This can be
+\item{size}{A \code{number} representing the size of the plot symbol. Typical
+values range between \code{1} and \code{3}.}
+
+\item{confetti}{If \code{TRUE} data points get a white border. This can be
 useful to deal with overplotting.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{preserve}{general}
+\item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
+a position, or the width of a \code{"single"} element?}
 
-\item{rasterize}{general}
+\item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
+vector shapes. If \code{TRUE} the layer will be rastered to a pixel image. This can
+be useful when plotting many individual objects (1,000 or more) compromises
+the performance of the generated PDF file.}
 
-\item{rasterize_dpi}{general}
+\item{rasterize_dpi}{The resolution in dots per inch (dpi) used for rastering
+the layer if \code{rasterize} is \code{TRUE}. The default is \code{300} dpi.}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
 
-\item{jitter_width}{For adding a small amount of random noise the to the
+\item{jitter_width}{Amount of random noise to be added to the
 horizontal position of the of the data points. This can be useful to deal
-with overplotting.}
+with overplotting. Typical values range between \code{0} and \code{1}.}
 
-\item{jitter_height}{For adding a small amount of random noise the to the
+\item{jitter_height}{Amount of random noise to be added to the
 vertical position of the of the data points. This can be useful to deal
-with overplotting.}
+with overplotting. Typical values range between \code{0} and \code{1}.}
 
 \item{cex}{Scaling for adjusting point spacing (see \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}).
 Values between 1 (default) and 3 tend to work best.}
@@ -88,14 +102,21 @@ wide horizontally, default is \code{"none"}. See details below.}
 
 \item{corral.width}{\code{numeric}. Width of the corral, default is \code{0.9}.}
 }
+\value{
+A \code{tidyplot} object
+}
 \description{
 Add data points
 }
 \examples{
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_error() \%>\%
+  add_data_points()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_jitter()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm()
 
 }

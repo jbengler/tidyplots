@@ -15,19 +15,29 @@ add_text_labels(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{var}{bla}
 
-\item{data}{A function to subset the data to be plotted. See \code{filter_rows()} and friends.}
+\item{data}{The data to be displayed in this layer. There are three options:
+\itemize{
+\item If \code{all_rows()} (the default) the complete plot data is displayed.
+\item A \code{function} to subset the plot data. See \code{filter_rows()} and friends.
+\item A \code{data.frame} to override the plot data.
+}}
 
-\item{fontsize}{bla}
+\item{fontsize}{common}
 
 \item{segment.size}{bla}
 
-\item{box.padding}{bla}
+\item{box.padding}{Amount of padding around bounding box, as unit or number.
+Defaults to 0.25. (Default unit is lines, but other units can be specified
+by passing \code{unit(x, "units")}).}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add text labels

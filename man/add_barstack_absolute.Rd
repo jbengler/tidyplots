@@ -10,13 +10,17 @@ add_barstack_absolute(plot, width = 0.8, reverse = FALSE, ...)
 add_barstack_relative(plot, width = 0.8, reverse = FALSE, ...)
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{width}{bla}
+\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between \code{0} and \code{1}.}
 
-\item{reverse}{bla}
+\item{reverse}{common}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add bar stack

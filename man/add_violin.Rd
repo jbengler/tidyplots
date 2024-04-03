@@ -16,21 +16,28 @@ add_violin(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{saturation}{bla}
+\item{saturation}{common}
 
-\item{draw_quantiles}{bla}
+\item{draw_quantiles}{If \code{not(NULL)} (default), draw horizontal lines
+at the given quantiles of the density estimate.}
 
-\item{trim}{bla}
+\item{trim}{If \code{TRUE} (default), trim the tails of the violins
+to the range of the data. If \code{FALSE}, don't trim the tails.}
 
-\item{linewidth}{bla}
+\item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{scale}{bla}
+\item{scale}{if "area" (default), all violins have the same area (before trimming
+the tails). If "count", areas are scaled proportionally to the number of
+observations. If "width", all violins have the same maximum width.}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add violin plot

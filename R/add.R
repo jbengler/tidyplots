@@ -1,11 +1,54 @@
 #' Common arguments
 #'
-#' @param plot A tidyplot generated with the `tidyplot()` function.
-#' @param data A function to subset the data to be plotted. See `filter_rows()` and friends.
+#' @param plot A `tidyplot` generated with the function `tidyplot()`.
+#' @param data The data to be displayed in this layer. There are three options:
+#'
+#'   * If `all_rows()` (the default) the complete plot data is displayed.
+#'
+#'   * A `function` to subset the plot data. See `filter_rows()` and friends.
+#'
+#'   * A `data.frame` to override the plot data.
 #' @param dodge_width For adjusting the distance between grouped objects.
-#' @param preserve general
-#' @param rasterize general
-#' @param rasterize_dpi general
+#' @param preserve Should dodging preserve the `"total"` width of all elements at
+#'   a position, or the width of a `"single"` element?
+#' @param rasterize If `FALSE` (the default) the layer will be constructed of
+#'   vector shapes. If `TRUE` the layer will be rastered to a pixel image. This can
+#'   be useful when plotting many individual objects (1,000 or more) compromises
+#'   the performance of the generated PDF file.
+#' @param rasterize_dpi The resolution in dots per inch (dpi) used for rastering
+#'   the layer if `rasterize` is `TRUE`. The default is `300` dpi.
+#' @param shape An `integer` between `0` and `24`, representing the shape of the
+#'   plot symbol.
+#'
+#'   ```{r echo=FALSE, fig.width=4, fig.height=4, fig.dpi=120}
+#'   shapes <- data.frame(
+#'   shape = c(0:19, 22, 21, 24, 23, 20),
+#'   x = 0:24 %/% 5,
+#'   y = -(0:24 %% 5)
+#'   )
+#'   ggplot2::ggplot(shapes, ggplot2::aes(x, y)) +
+#'   ggplot2::geom_point(ggplot2::aes(shape = shape), size = 5, fill = "red") +
+#'   ggplot2::geom_text(ggplot2::aes(label = shape), hjust = 0, nudge_x = 0.15) +
+#'   ggplot2::scale_shape_identity() +
+#'   ggplot2::expand_limits(x = 4.1) +
+#'   ggplot2::theme_void()
+#'   ```
+#' @param size A `number` representing the size of the plot symbol. Typical
+#'   values range between `1` and `3`.
+#' @param width Horizontal width of the plotted object (bar, error bar, boxplot,
+#'   violin plot, etc). Typical values range between `0` and `1`.
+#' @param linewidth Thickness of the line in points (pt). Typical values range between `0.25` and `1`.
+#' @param ... Arguments passed on to the `geom` function.
+#' @param alpha common
+#' @param color common
+#' @param fill common
+#' @param saturation common
+#' @param group common
+#' @param saturation common
+#' @param reverse common
+#' @param scale_cut common
+#' @param fontsize common
+#' @return A `tidyplot` object
 #' @keywords internal
 #' @name common_arguments
 NULL
@@ -13,25 +56,26 @@ NULL
 
 #' Add data points
 #'
-#' @param size A number representing the size of the data points.
-#' @param shape A number representing the shape of the data points.
-#' @param confetti If `TRUE`, data points will get a white border. This can be
+#' @param confetti If `TRUE` data points get a white border. This can be
 #'  useful to deal with overplotting.
-#' @param jitter_width For adding a small amount of random noise the to the
+#' @param jitter_width Amount of random noise to be added to the
 #'  horizontal position of the of the data points. This can be useful to deal
-#'  with overplotting.
-#' @param jitter_height For adding a small amount of random noise the to the
+#'  with overplotting. Typical values range between `0` and `1`.
+#' @param jitter_height Amount of random noise to be added to the
 #'  vertical position of the of the data points. This can be useful to deal
-#'  with overplotting.
-#' @param ... bla
-#' @inheritParams common_arguments
+#'  with overplotting. Typical values range between `0` and `1`.
+#' @inherit common_arguments
 #' @inheritParams ggbeeswarm::geom_beeswarm
 #'
 #' @examples
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_error() %>%
+#'   add_data_points()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_jitter()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm()
 #'
 #' @export
@@ -149,10 +193,26 @@ ff_errorbar <- function(.fun.data) {
 #' * `add_sd()` adds the standard deviation.
 #' * `add_ci95()` adds the 95% confidence interval.
 #'
-#' @param width bla
-#' @param linewidth bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_error()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_range()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sd()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_ci95()
+#'
 #' @export
 add_error <- ff_errorbar(.fun.data = ggplot2::mean_se)
 #' @rdname add_error
@@ -185,10 +245,26 @@ ff_ribbon <- function(.fun.data) {
 #' * `add_sd_ribbon()` adds the standard deviation.
 #' * `add_ci95_ribbon()` adds the 95% confidence interval.
 #'
-#' @param alpha bla
-#' @param color bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#'
+#' @examples
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_mean_line() %>%
+#'   add_error_ribbon()
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_mean_line() %>%
+#'   add_range_ribbon()
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_mean_line() %>%
+#'   add_sd_ribbon()
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_mean_line() %>%
+#'   add_ci95_ribbon()
+#'
 #' @export
 add_error_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_se)
 #' @rdname add_error_ribbon
@@ -296,18 +372,10 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 
 #' Add mean
 #'
-#' @param width bla
-#' @param linewidth bla
-#' @param size bla
-#' @param saturation bla
-#' @param accuracy bla
-#' @param fontsize bla
 #' @param vjust bla
 #' @param padding_top bla
-#' @param scale_cut bla
-#' @param group bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#' @inheritParams scales::number
 #' @export
 add_mean_bar <- ff_bar(.fun = mean)
 #' @rdname add_mean_bar
@@ -328,7 +396,7 @@ add_mean_area <- ff_line(.fun = mean, .geom = "area")
 
 #' Add median
 #'
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @inheritParams add_mean_bar
 #' @export
 add_median_bar <- ff_bar(.fun = median)
@@ -351,7 +419,7 @@ add_median_area <- ff_line(.fun = median, .geom = "area")
 
 #' Add sum
 #'
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @inheritParams add_mean_bar
 #' @export
 add_sum_bar <- ff_bar(.fun = sum)
@@ -374,7 +442,7 @@ add_sum_area <- ff_line(.fun = sum, .geom = "area")
 
 #' Add count
 #'
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @inheritParams add_mean_bar
 #'
 #' @export
@@ -398,17 +466,14 @@ add_count_area <- ff_line(.count = TRUE, .geom = "area")
 
 #' Add boxplot
 #'
-#' @param saturation bla
 #' @param show_whiskers bla
 #' @param show_outliers bla
 #' @param box_width bla
 #' @param whiskers_width bla
-#' @param outlier.size bla
-#' @param coef bla
 #' @param outlier.shape bla
-#' @param linewidth bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @param outlier.size bla
+#' @inherit common_arguments
+#' @inheritParams ggplot2::geom_boxplot
 #'
 #' @export
 add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = FALSE,
@@ -435,13 +500,8 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
 
 #' Add violin plot
 #'
-#' @param saturation bla
-#' @param draw_quantiles bla
-#' @param trim bla
-#' @param linewidth bla
-#' @param scale bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#' @inheritParams ggplot2::geom_violin
 #'
 #' @export
 add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantiles = NULL, trim = FALSE,
@@ -455,10 +515,7 @@ add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantile
 }
 
 #' Add line
-#' @param group bla
-#' @param linewidth bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @export
 add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
   check_tidyplot(plot)
@@ -495,11 +552,8 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve
 
 
 #' Add curve
-#' @param method bla
-#' @param linewidth bla
-#' @param alpha bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#' @inheritParams ggplot2::geom_smooth
 #' @export
 add_curve <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.3,
                       preserve = "total", ...) {
@@ -542,10 +596,7 @@ ff_pie <- function(.type = "pie") {
   }
 }
 #' Add pie or donut chart
-#' @param width bla
-#' @param reverse bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @export
 add_pie <- ff_pie(.type = "pie")
 #' @rdname add_pie
@@ -557,17 +608,26 @@ add_donut <- ff_pie(.type = "donut")
 ff_barstack <- function(.position_fun) {
   function(plot, width = 0.8, reverse = FALSE, ...) {
     check_tidyplot(plot)
-    plot <-
-      plot %>%
-      adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
 
     mapping <- NULL
-    if (is_missing(plot, "x")) mapping <- ggplot2::aes(x = "")
+    if (is_missing(plot, "x") && is_missing(plot, "y")) {
+      mapping <- ggplot2::aes(x = "")
+      plot <- plot %>% adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
+    } else if (is_missing(plot, "x")) {
+      plot <- plot %>% adjust_x_axis(padding = c(0, 0), force_continuous = TRUE)
+    } else if (is_missing(plot, "y")) {
+      plot <- plot %>% adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
+    }
 
-    if (is_missing(plot, "y")){
+    if (is_missing(plot, "x") || is_missing(plot, "y")){
       plot + ggplot2::geom_bar(mapping = mapping, position = .position_fun(reverse = reverse),
                              width = width, color = NA, ...)
     } else {
+      if (is_continuous(plot, "x"))
+        plot <- plot %>% adjust_x_axis(padding = c(0, 0), force_continuous = TRUE)
+      if (is_continuous(plot, "y"))
+        plot <- plot %>% adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
+
       plot + ggplot2::stat_summary(mapping = mapping, geom = "bar", fun = sum,
                                  position = .position_fun(reverse = reverse), width = width,
                                  color = NA, ...)
@@ -575,10 +635,7 @@ ff_barstack <- function(.position_fun) {
   }
 }
 #' Add bar stack
-#' @param width bla
-#' @param reverse bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @export
 add_barstack_absolute <- ff_barstack(.position_fun = ggplot2::position_stack)
 #' @rdname add_barstack_absolute
@@ -590,10 +647,10 @@ add_barstack_relative <- ff_barstack(.position_fun = ggplot2::position_fill)
 ff_areastack <- function(.position_fun) {
   function(plot, linewidth = 0.25, alpha = 0.3, reverse = FALSE, ...) {
     check_tidyplot(plot)
-    plot <-
-      plot %>%
-      adjust_y_axis(padding = c(0, 0), force_continuous = TRUE) %>%
-      adjust_x_axis(padding = c(0, 0))
+    # plot <-
+    #   plot %>%
+    #   adjust_y_axis(padding = c(0, 0), force_continuous = TRUE) %>%
+    #   adjust_x_axis(padding = c(0, 0))
 
     # overwrite group aesthetic
     mapping <- ggplot2::aes()
@@ -630,11 +687,7 @@ ff_areastack <- function(.position_fun) {
   }
 }
 #' Add area stack
-#' @param linewidth bla
-#' @param alpha bla
-#' @param reverse bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @export
 add_areastack_absolute <- ff_areastack(.position_fun = ggplot2::position_stack)
 #' @rdname add_areastack_absolute
@@ -643,11 +696,8 @@ add_areastack_relative <- ff_areastack(.position_fun = ggplot2::position_fill)
 
 
 #' Add histogram
-#' @param binwidth bla
-#' @param bins bla
-#' @param color bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#' @inheritParams ggplot2::geom_histogram
 #' @export
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
   check_tidyplot(plot)
@@ -666,15 +716,8 @@ add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#
 }
 
 #' Add density curve
-#' @param bw bla
-#' @param adjust bla
-#' @param kernel bla
-#' @param n bla
-#' @param color bla
-#' @param fill bla
-#' @param alpha bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#' @inheritParams ggplot2::geom_density
 #' @export
 add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, color = "#E37D46", fill = "#E37D46", alpha = 0.3, ...) {
   check_tidyplot(plot)
@@ -687,8 +730,7 @@ add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian"
 #' Add heatmap
 #' @param scale bla
 #' @param rotate_labels bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @export
 add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels = 90,
                         rasterize = FALSE, rasterize_dpi = 300, ...) {
@@ -728,7 +770,7 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
 #' Add plot title or caption
 #' @param title bla
 #' @param caption bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
 #' @export
 add_title <- function(plot, title = ggplot2::waiver()) {
   check_tidyplot(plot)
@@ -749,10 +791,9 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 #' Add reference lines
 #' @param x bla
 #' @param y bla
-#' @param linetype bla
-#' @param linewidth bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @param linetype Either an integer (0-6) or a name (0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash).
+#' @inherit common_arguments
+#' @inheritParams ggplot2::geom_vline
 #' @export
 add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", linewidth = 0.25, ...) {
   check_tidyplot(plot)
@@ -769,11 +810,9 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 
 #' Add text labels
 #' @param var bla
-#' @param fontsize bla
 #' @param segment.size bla
-#' @param box.padding bla
-#' @param ... bla
-#' @inheritParams common_arguments
+#' @inherit common_arguments
+#' @inheritParams ggrepel::geom_text_repel
 #' @export
 add_text_labels <- function(plot, var, data = all_rows(), fontsize = 7,
                      segment.size = 0.2, box.padding = 0.2, ...) {

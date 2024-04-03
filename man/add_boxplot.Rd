@@ -21,11 +21,11 @@ add_boxplot(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{saturation}{bla}
+\item{saturation}{common}
 
 \item{show_whiskers}{bla}
 
@@ -37,15 +37,19 @@ add_boxplot(
 
 \item{outlier.size}{bla}
 
-\item{coef}{bla}
+\item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 
 \item{outlier.shape}{bla}
 
-\item{linewidth}{bla}
+\item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{preserve}{general}
+\item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
+a position, or the width of a \code{"single"} element?}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add boxplot

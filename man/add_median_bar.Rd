@@ -60,33 +60,44 @@ add_median_area(
 )
 }
 \arguments{
-\item{plot}{A tidyplot generated with the \code{tidyplot()} function.}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
 
-\item{width}{bla}
+\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between \code{0} and \code{1}.}
 
-\item{saturation}{bla}
+\item{saturation}{common}
 
-\item{preserve}{general}
+\item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
+a position, or the width of a \code{"single"} element?}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{geom} function.}
 
-\item{linewidth}{bla}
+\item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{size}{bla}
+\item{size}{A \code{number} representing the size of the plot symbol. Typical
+values range between \code{1} and \code{3}.}
 
-\item{accuracy}{bla}
+\item{accuracy}{A number to round to. Use (e.g.) \code{0.01} to show 2 decimal
+places of precision. If \code{NULL}, the default, uses a heuristic that should
+ensure breaks have the minimum number of digits needed to show the
+difference between adjacent values.
 
-\item{scale_cut}{bla}
+Applied to rescaled data.}
 
-\item{fontsize}{bla}
+\item{scale_cut}{common}
+
+\item{fontsize}{common}
 
 \item{vjust}{bla}
 
 \item{padding_top}{bla}
 
-\item{group}{bla}
+\item{group}{common}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add median
