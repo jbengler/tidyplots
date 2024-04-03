@@ -29,9 +29,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
     <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
+    <a class="dropdown-item" href="../articles/More-tests.html">More tests</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
-    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -96,7 +96,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>plot</dt>
-<dd><p>bla</p></dd>
+<dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
 <dt>title</dt>
@@ -104,11 +104,26 @@
 
 
 <dt>breaks</dt>
-<dd><p>bla</p></dd>
+<dd><p>One of:</p><ul><li><p><code>NULL</code> for no breaks</p></li>
+<li><p><code>waiver()</code> for the default breaks computed by the
+<a href="https://scales.r-lib.org/reference/new_transform.html" class="external-link">transformation object</a></p></li>
+<li><p>A numeric vector of positions</p></li>
+<li><p>A function that takes the limits as input and returns breaks
+as output (e.g., a function returned by <code><a href="https://scales.r-lib.org/reference/breaks_extended.html" class="external-link">scales::extended_breaks()</a></code>).
+Also accepts rlang <a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">lambda</a> function notation.</p></li>
+</ul></dd>
 
 
 <dt>labels</dt>
-<dd><p>bla</p></dd>
+<dd><p>One of:</p><ul><li><p><code>NULL</code> for no labels</p></li>
+<li><p><code>waiver()</code> for the default labels computed by the
+transformation object</p></li>
+<li><p>A character vector giving labels (must be same length as <code>breaks</code>)</p></li>
+<li><p>An expression vector (must be the same length as breaks). See ?plotmath for details.</p></li>
+<li><p>A function that takes the breaks as input and returns labels
+as output. Also accepts rlang <a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">lambda</a> function
+notation.</p></li>
+</ul></dd>
 
 
 <dt>limits</dt>
@@ -136,9 +151,15 @@
 
 
 <dt>...</dt>
-<dd><p>bla</p></dd>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <code>tidyplot</code> object</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

@@ -29,9 +29,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
     <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
+    <a class="dropdown-item" href="../articles/More-tests.html">More tests</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
-    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -80,41 +80,54 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>plot</dt>
-<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
+<dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
 <dt>bw</dt>
-<dd><p>bla</p></dd>
+<dd><p>The smoothing bandwidth to be used.
+If numeric, the standard deviation of the smoothing kernel.
+If character, a rule to choose the bandwidth, as listed in
+<code><a href="https://rdrr.io/r/stats/bandwidth.html" class="external-link">stats::bw.nrd()</a></code>.</p></dd>
 
 
 <dt>adjust</dt>
-<dd><p>bla</p></dd>
+<dd><p>A multiplicate bandwidth adjustment. This makes it possible
+to adjust the bandwidth while still using the a bandwidth estimator.
+For example, <code>adjust = 1/2</code> means use half of the default bandwidth.</p></dd>
 
 
 <dt>kernel</dt>
-<dd><p>bla</p></dd>
+<dd><p>Kernel. See list of available kernels in <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">density()</a></code>.</p></dd>
 
 
 <dt>n</dt>
-<dd><p>bla</p></dd>
+<dd><p>number of equally spaced points at which the density is to be
+estimated, should be a power of two, see <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">density()</a></code> for
+details</p></dd>
 
 
 <dt>color</dt>
-<dd><p>bla</p></dd>
+<dd><p>common</p></dd>
 
 
 <dt>fill</dt>
-<dd><p>bla</p></dd>
+<dd><p>common</p></dd>
 
 
 <dt>alpha</dt>
-<dd><p>bla</p></dd>
+<dd><p>common</p></dd>
 
 
 <dt>...</dt>
-<dd><p>bla</p></dd>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <code>tidyplot</code> object</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

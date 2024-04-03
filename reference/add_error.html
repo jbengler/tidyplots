@@ -43,9 +43,9 @@ add_ci95() adds the 95% confidence interval.
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
     <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
+    <a class="dropdown-item" href="../articles/More-tests.html">More tests</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
-    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -122,7 +122,7 @@ add_ci95() adds the 95% confidence interval.
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>plot</dt>
-<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
+<dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
 <dt>dodge_width</dt>
@@ -130,22 +130,75 @@ add_ci95() adds the 95% confidence interval.
 
 
 <dt>width</dt>
-<dd><p>bla</p></dd>
+<dd><p>Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between <code>0</code> and <code>1</code>.</p></dd>
 
 
 <dt>linewidth</dt>
-<dd><p>bla</p></dd>
+<dd><p>Thickness of the line in points (pt). Typical values range between <code>0.25</code> and <code>1</code>.</p></dd>
 
 
 <dt>preserve</dt>
-<dd><p>general</p></dd>
+<dd><p>Should dodging preserve the <code>"total"</code> width of all elements at
+a position, or the width of a <code>"single"</code> element?</p></dd>
 
 
 <dt>...</dt>
-<dd><p>bla</p></dd>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
 
+<p>A <code>tidyplot</code> object</p>
+    </div>
+
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_error</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
+<span class="r-plt img"><img src="add_error-1.png" alt="" width="1500" height="750"></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_range</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
+<span class="r-plt img"><img src="add_error-2.png" alt="" width="1500" height="750"></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_sd</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
+<span class="r-plt img"><img src="add_error-3.png" alt="" width="1500" height="750"></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_ci95</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
+<span class="r-plt img"><img src="add_error-4.png" alt="" width="1500" height="750"></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 

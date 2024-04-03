@@ -29,9 +29,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
     <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
+    <a class="dropdown-item" href="../articles/More-tests.html">More tests</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
-    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -78,25 +78,41 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>plot</dt>
-<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
+<dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
 <dt>binwidth</dt>
-<dd><p>bla</p></dd>
+<dd><p>The width of the bins. Can be specified as a numeric value
+or as a function that calculates width from unscaled x. Here, "unscaled x"
+refers to the original x values in the data, before application of any
+scale transformation. When specifying a function along with a grouping
+structure, the function will be called once per group.
+The default is to use the number of bins in <code>bins</code>,
+covering the range of the data. You should always override
+this value, exploring multiple widths to find the best to illustrate the
+stories in your data.</p>
+<p>The bin width of a date variable is the number of days in each time; the
+bin width of a time variable is the number of seconds.</p></dd>
 
 
 <dt>bins</dt>
-<dd><p>bla</p></dd>
+<dd><p>Number of bins. Overridden by <code>binwidth</code>. Defaults to 30.</p></dd>
 
 
 <dt>color</dt>
-<dd><p>bla</p></dd>
+<dd><p>common</p></dd>
 
 
 <dt>...</dt>
-<dd><p>bla</p></dd>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <code>tidyplot</code> object</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

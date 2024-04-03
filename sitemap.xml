@@ -10,13 +10,13 @@
     <loc>https://jbengler.github.io/tidyplots/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/articles/Article.html</loc>
-  </url>
-  <url>
     <loc>https://jbengler.github.io/tidyplots/articles/Colors.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/articles/Custom-styling.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/articles/More-tests.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/articles/Testing.html</loc>

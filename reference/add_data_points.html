@@ -29,9 +29,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
     <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
+    <a class="dropdown-item" href="../articles/More-tests.html">More tests</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
-    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -112,23 +112,29 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>plot</dt>
-<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
+<dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
 <dt>data</dt>
-<dd><p>A function to subset the data to be plotted. See <code><a href="all_rows.html">filter_rows()</a></code> and friends.</p></dd>
+<dd><p>The data to be displayed in this layer. There are three options:</p><ul><li><p>If <code><a href="all_rows.html">all_rows()</a></code> (the default) the complete plot data is displayed.</p></li>
+<li><p>A <code>function</code> to subset the plot data. See <code><a href="all_rows.html">filter_rows()</a></code> and friends.</p></li>
+<li><p>A <code>data.frame</code> to override the plot data.</p></li>
+</ul></dd>
 
 
 <dt>shape</dt>
-<dd><p>A number representing the shape of the data points.</p></dd>
+<dd><p>An <code>integer</code> between <code>0</code> and <code>24</code>, representing the shape of the
+plot symbol.</p>
+<p><img src="figures/unnamed-chunk-1-1.png" alt=""></p></dd>
 
 
 <dt>size</dt>
-<dd><p>A number representing the size of the data points.</p></dd>
+<dd><p>A <code>number</code> representing the size of the plot symbol. Typical
+values range between <code>1</code> and <code>3</code>.</p></dd>
 
 
 <dt>confetti</dt>
-<dd><p>If <code>TRUE</code>, data points will get a white border. This can be
+<dd><p>If <code>TRUE</code> data points get a white border. This can be
 useful to deal with overplotting.</p></dd>
 
 
@@ -137,31 +143,36 @@ useful to deal with overplotting.</p></dd>
 
 
 <dt>preserve</dt>
-<dd><p>general</p></dd>
+<dd><p>Should dodging preserve the <code>"total"</code> width of all elements at
+a position, or the width of a <code>"single"</code> element?</p></dd>
 
 
 <dt>rasterize</dt>
-<dd><p>general</p></dd>
+<dd><p>If <code>FALSE</code> (the default) the layer will be constructed of
+vector shapes. If <code>TRUE</code> the layer will be rastered to a pixel image. This can
+be useful when plotting many individual objects (1,000 or more) compromises
+the performance of the generated PDF file.</p></dd>
 
 
 <dt>rasterize_dpi</dt>
-<dd><p>general</p></dd>
+<dd><p>The resolution in dots per inch (dpi) used for rastering
+the layer if <code>rasterize</code> is <code>TRUE</code>. The default is <code>300</code> dpi.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>bla</p></dd>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
 
 <dt>jitter_width</dt>
-<dd><p>For adding a small amount of random noise the to the
+<dd><p>Amount of random noise to be added to the
 horizontal position of the of the data points. This can be useful to deal
-with overplotting.</p></dd>
+with overplotting. Typical values range between <code>0</code> and <code>1</code>.</p></dd>
 
 
 <dt>jitter_height</dt>
-<dd><p>For adding a small amount of random noise the to the
+<dd><p>Amount of random noise to be added to the
 vertical position of the of the data points. This can be useful to deal
-with overplotting.</p></dd>
+with overplotting. Typical values range between <code>0</code> and <code>1</code>.</p></dd>
 
 
 <dt>cex</dt>
@@ -178,23 +189,42 @@ wide horizontally, default is <code>"none"</code>. See details below.</p></dd>
 <dd><p><code>numeric</code>. Width of the corral, default is <code>0.9</code>.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <code>tidyplot</code> object</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_error.html">add_error</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
+<span class="r-plt img"><img src="add_data_points-1.png" alt="" width="1500" height="750"></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points_jitter</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
+<span class="r-plt img"><img src="add_data_points-2.png" alt="" width="1500" height="750"></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">add_data_points_beeswarm</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_x_axis: <span style="color: #0000BB;">discrete</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_plot_size: <span style="color: #0000BB;">width</span> = 50 mm, <span style="color: #0000BB;">height</span> = 50 mm</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> adjust_colors: Too many colors. 5 colors provided, but only 4 needed.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_colors: applied discrete <span style="color: #0000BB;">color values</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> adjust_y_axis: <span style="color: #0000BB;">continuous</span></span>
-<span class="r-plt img"><img src="add_data_points-1.png" alt="" width="1500" height="750"></span>
+<span class="r-plt img"><img src="add_data_points-3.png" alt="" width="1500" height="750"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -29,9 +29,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
     <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
+    <a class="dropdown-item" href="../articles/More-tests.html">More tests</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
-    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -78,7 +78,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>plot</dt>
-<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
+<dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
 <dt>var</dt>
@@ -86,11 +86,14 @@
 
 
 <dt>data</dt>
-<dd><p>A function to subset the data to be plotted. See <code><a href="all_rows.html">filter_rows()</a></code> and friends.</p></dd>
+<dd><p>The data to be displayed in this layer. There are three options:</p><ul><li><p>If <code><a href="all_rows.html">all_rows()</a></code> (the default) the complete plot data is displayed.</p></li>
+<li><p>A <code>function</code> to subset the plot data. See <code><a href="all_rows.html">filter_rows()</a></code> and friends.</p></li>
+<li><p>A <code>data.frame</code> to override the plot data.</p></li>
+</ul></dd>
 
 
 <dt>fontsize</dt>
-<dd><p>bla</p></dd>
+<dd><p>common</p></dd>
 
 
 <dt>segment.size</dt>
@@ -98,13 +101,21 @@
 
 
 <dt>box.padding</dt>
-<dd><p>bla</p></dd>
+<dd><p>Amount of padding around bounding box, as unit or number.
+Defaults to 0.25. (Default unit is lines, but other units can be specified
+by passing <code>unit(x, "units")</code>).</p></dd>
 
 
 <dt>...</dt>
-<dd><p>bla</p></dd>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
+
+<p>A <code>tidyplot</code> object</p>
+    </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

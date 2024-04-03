@@ -29,9 +29,9 @@
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/Colors.html">Colors</a>
     <a class="dropdown-item" href="../articles/Custom-styling.html">Custom styling</a>
+    <a class="dropdown-item" href="../articles/More-tests.html">More tests</a>
     <a class="dropdown-item" href="../articles/Testing.html">Testing</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing Data</a>
-    <a class="dropdown-item" href="../articles/Article.html">Article</a>
   </div>
 </li>
 <li class="nav-item">
@@ -66,11 +66,14 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>plot</dt>
-<dd><p>A tidyplot generated with the <code><a href="tidyplot.html">tidyplot()</a></code> function.</p></dd>
+<dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
 <dt>data</dt>
-<dd><p>A function to subset the data to be plotted. See <code><a href="all_rows.html">filter_rows()</a></code> and friends.</p></dd>
+<dd><p>The data to be displayed in this layer. There are three options:</p><ul><li><p>If <code><a href="all_rows.html">all_rows()</a></code> (the default) the complete plot data is displayed.</p></li>
+<li><p>A <code>function</code> to subset the plot data. See <code><a href="all_rows.html">filter_rows()</a></code> and friends.</p></li>
+<li><p>A <code>data.frame</code> to override the plot data.</p></li>
+</ul></dd>
 
 
 <dt>dodge_width</dt>
@@ -78,19 +81,87 @@
 
 
 <dt>preserve</dt>
-<dd><p>general</p></dd>
+<dd><p>Should dodging preserve the <code>"total"</code> width of all elements at
+a position, or the width of a <code>"single"</code> element?</p></dd>
 
 
 <dt>rasterize</dt>
-<dd><p>general</p></dd>
+<dd><p>If <code>FALSE</code> (the default) the layer will be constructed of
+vector shapes. If <code>TRUE</code> the layer will be rastered to a pixel image. This can
+be useful when plotting many individual objects (1,000 or more) compromises
+the performance of the generated PDF file.</p></dd>
 
 
 <dt>rasterize_dpi</dt>
-<dd><p>general</p></dd>
+<dd><p>The resolution in dots per inch (dpi) used for rastering
+the layer if <code>rasterize</code> is <code>TRUE</code>. The default is <code>300</code> dpi.</p></dd>
+
+
+<dt>shape</dt>
+<dd><p>An <code>integer</code> between <code>0</code> and <code>24</code>, representing the shape of the
+plot symbol.</p>
+<p><img src="figures/unnamed-chunk-1-1.png" alt=""></p></dd>
+
+
+<dt>size</dt>
+<dd><p>A <code>number</code> representing the size of the plot symbol. Typical
+values range between <code>1</code> and <code>3</code>.</p></dd>
+
+
+<dt>width</dt>
+<dd><p>Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between <code>0</code> and <code>1</code>.</p></dd>
+
+
+<dt>linewidth</dt>
+<dd><p>Thickness of the line in points (pt). Typical values range between <code>0.25</code> and <code>1</code>.</p></dd>
+
+
+<dt>...</dt>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
+
+
+<dt>alpha</dt>
+<dd><p>common</p></dd>
+
+
+<dt>color</dt>
+<dd><p>common</p></dd>
+
+
+<dt>fill</dt>
+<dd><p>common</p></dd>
+
+
+<dt>group</dt>
+<dd><p>common</p></dd>
+
+
+<dt>saturation</dt>
+<dd><p>common</p></dd>
+
+
+<dt>reverse</dt>
+<dd><p>common</p></dd>
+
+
+<dt>scale_cut</dt>
+<dd><p>common</p></dd>
+
+
+<dt>fontsize</dt>
+<dd><p>common</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
 
-  </main></div>
+<p>A <code>tidyplot</code> object</p>
+    </div>
+
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
