@@ -95,16 +95,14 @@ remove_y_axis_title <- function(plot) {
   plot + ggplot2::theme(axis.title.y = ggplot2::element_blank())
 }
 
-#' Remove padding
+#' Remove plot area padding
 #' @param plot bla
 #' @param force_continuous bla
 #' @export
-remove_padding <- function(plot, force_continuous = FALSE) {
+remove_plot_area_padding <- function(plot, force_continuous = FALSE) {
   check_tidyplot(plot)
-  plot$tidyplot$padding_x <- c(0, 0)
-  plot$tidyplot$padding_y <- c(0, 0)
   plot %>%
-    adjust_x_axis() %>%
-    adjust_y_axis(force_continuous = force_continuous)
+    adjust_x_axis(padding = c(0, 0), force_continuous = force_continuous) %>%
+    adjust_y_axis(padding = c(0, 0), force_continuous = force_continuous)
 }
 

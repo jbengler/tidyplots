@@ -11,10 +11,10 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 <!-- badges: end -->
 
 The goal of `tidyplots` is to streamline the creation of
-publication-ready plots for scientific papers, by making it easy to
-gradually add and refine plot elements. It allows precise control over
-composition, style, and absolute sizes, while its utilization of the
-pipe `%>%` simplifies the construction of advanced plotting pipelines.
+publication-ready plots for scientific papers. It allows to gradually
+add and refine plot elements, and provides precise control over
+composition, style, and absolute sizes. By consistent use of the pipe
+`%>%` it simplifies the construction of advanced plotting pipelines.
 
 ## Disclaimer
 
@@ -22,7 +22,7 @@ This package is still in early development. Expect user-facing and
 breaking changes. I would not recommend to use this package in
 production yet.
 
-Feel free to report bugs and suggest missing features
+Feel free to report bugs and suggest features
 [here](https://github.com/jbengler/tidyplots/issues).
 
 ## Installation
@@ -34,8 +34,7 @@ devtools::install_github("jbengler/tidyplots")
 
 ## Usage
 
-Here are some examples of what you can do with just a few key strokes.
-The full documentation can be found
+Here are some examples. The full documentation can be found
 [here](https://jbengler.github.io/tidyplots/).
 
 ``` r
@@ -44,7 +43,7 @@ library(tidyplots)
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
-  add_error() %>% 
+  add_error_bar() %>% 
   add_data_points_beeswarm()
 ```
 
@@ -118,7 +117,7 @@ gene_expression %>%
   dplyr::filter(external_gene_name %in% c("Apol6", "Col5a3", "Vgf", "Bsn")) %>% 
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_error() %>% 
+  add_error_bar() %>% 
   add_data_points_beeswarm() %>% 
   add_stats_asterisks(include_info = FALSE) %>% 
   remove_x_axis_title() %>% 
@@ -131,7 +130,7 @@ gene_expression %>%
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
-  add_error() %>% 
+  add_error_bar() %>% 
   add_data_points_beeswarm() %>% 
   view_plot(title = "Default color scheme: metro") %>% 
   adjust_colors(colors_discrete_candy) %>% 

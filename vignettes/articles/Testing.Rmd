@@ -37,10 +37,18 @@ library(tidyplots)
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
-  add_error() %>%
-  add_sd() %>% 
-  add_range() %>% 
-  add_ci95() %>% 
+  add_error_bar() %>%
+  add_sd_bar() %>% 
+  add_range_bar() %>% 
+  add_ci95_bar() %>% 
+  add_data_points()
+
+study %>%
+  tidyplot(score, treatment, color = treatment) %>%
+  add_error_bar() %>%
+  add_sd_bar() %>% 
+  add_range_bar() %>% 
+  add_ci95_bar() %>% 
   add_data_points()
 
 study %>%
@@ -52,7 +60,25 @@ study %>%
   add_data_points()
 
 study %>%
+  tidyplot(score, treatment) %>%
+  add_error_ribbon() %>%
+  add_sd_ribbon() %>% 
+  add_range_ribbon() %>% 
+  add_ci95_ribbon() %>% 
+  add_data_points()
+
+study %>%
   tidyplot(treatment, score) %>%
+  add_mean_bar(alpha = 0.3) %>% 
+  add_mean_dash() %>% 
+  add_mean_dot() %>% 
+  add_mean_value() %>% 
+  add_mean_line() %>% 
+  add_mean_area(alpha = 0.2, fill = "green") %>% 
+  add_data_points()
+
+study %>%
+  tidyplot(score, treatment) %>%
   add_mean_bar(alpha = 0.3) %>% 
   add_mean_dash() %>% 
   add_mean_dot() %>% 
@@ -72,11 +98,31 @@ study %>%
   add_data_points()
 
 study %>%
+  tidyplot(score, treatment) %>%
+  add_median_bar(alpha = 0.3) %>% 
+  add_median_dash() %>% 
+  add_median_dot() %>% 
+  add_median_value() %>% 
+  add_median_line() %>% 
+  add_median_area(alpha = 0.2, fill = "green") %>% 
+  add_data_points()
+
+study %>%
   tidyplot(treatment, score) %>%
   add_sum_bar(alpha = 0.3) %>% 
   add_sum_dash() %>% 
   add_sum_dot() %>% 
   add_sum_value() %>% 
+  add_sum_line() %>% 
+  add_sum_area(alpha = 0.2, fill = "green") %>% 
+  add_data_points()
+
+study %>%
+  tidyplot(score, treatment) %>%
+  add_sum_bar(alpha = 0.3) %>% 
+  add_sum_dash() %>% 
+  add_sum_dot() %>% 
+  add_sum_value(extra_padding = 0.3) %>% 
   add_sum_line() %>% 
   add_sum_area(alpha = 0.2, fill = "green") %>% 
   add_data_points()
@@ -94,10 +140,10 @@ study %>%
 
 study %>%
   tidyplot(group, score, color = dose) %>%
-  add_error() %>%
-  add_sd() %>% 
-  add_range() %>% 
-  add_ci95() %>% 
+  add_error_bar() %>%
+  add_sd_bar() %>% 
+  add_range_bar() %>% 
+  add_ci95_bar() %>% 
   add_data_points()
 
 study %>%
@@ -245,39 +291,38 @@ animals %>%
 
 animals %>%
   tidyplot(x = diet, color = family) %>%
-  add_areastack_absolute(alpha = 0.3)
-
-# animals %>%
-#   tidyplot(y = diet, color = family) %>%
-#   add_areastack_absolute(alpha = 0.3)
+  add_areastack_absolute(alpha = 0.3) %>% 
+  reverse_x_axis_labels()
 
 animals %>%
   tidyplot(x = diet, y = speed, color = family) %>%
   add_areastack_absolute(alpha = 0.3)
 
-# animals %>%
-#   tidyplot(y = diet, x = speed, color = family) %>%
-#   add_areastack_absolute(alpha = 0.3)
+# as_tidyplot
 
-# animals %>%
-#   tidyplot(color = family) %>%
-#   add_areastack_relative(alpha = 0.3)
+library(ggplot2)
 
-animals %>%
-  tidyplot(x = diet, color = family) %>%
-  add_areastack_relative(alpha = 0.3)
+p <- 
+  study %>% 
+  ggplot(aes(x = treatment, y = score, color = treatment, fill = treatment)) +
+  stat_summary(fun = mean, geom = "bar", color = NA, width = 0.6, alpha = 0.3) +
+  stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = 0.25, width = 0.4) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.2))
 
-# animals %>%
-#   tidyplot(y = diet, color = family) %>%
-#   add_areastack_relative(alpha = 0.3)
+p
+p$mapping
 
-animals %>%
-  tidyplot(x = diet, y = speed, color = family) %>%
-  add_areastack_relative(alpha = 0.3)
+as_tp <- 
+  p %>%
+  as_tidyplot() %>% 
+  adjust_plot_area_padding(bottom = 0)
+as_tp
+as_tp$tidyplot
 
-# animals %>%
-#   tidyplot(y = diet, x = speed, color = family) %>%
-#   add_areastack_relative(alpha = 0.3)
+as_tp %>% 
+  adjust_colors(new_colors = c("C" = "#766123")) %>% 
+  reorder_x_axis_labels(c("C")) %>% 
+  rename_x_axis_labels(c("C" = "control"))
 
 ```
 

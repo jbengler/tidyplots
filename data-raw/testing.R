@@ -1,6 +1,40 @@
 
 library(tidyverse)
 
+# orientation
+# orientation is only determined when the plot is rendered
+
+p1 <-
+  study %>%
+  tidyplot(group, score, color = dose) %>%
+  add_mean_bar()
+
+p2 <-
+  study %>%
+  tidyplot(score, group, color = dose) %>%
+  add_mean_bar()
+
+p3 <-
+  study %>%
+  tidyplot(group, score, color = dose) %>%
+  add_mean_bar(orientation = "y")
+
+is_flipped(p1)
+is_flipped(p2)
+is_flipped(p3)
+
+study %>%
+  tidyplot(group, score, color = dose) %>%
+  add_mean_bar()
+
+study %>%
+  tidyplot(score, group, color = dose) %>%
+  add_mean_bar()
+
+study %>%
+  tidyplot(group, score, color = dose) %>%
+  add_mean_bar(orientation = "y")
+
 # investigate saturation
 # alpha only works on fill for box, bar and violin!
 # is "saturation" really needed?
@@ -34,14 +68,14 @@ study %>%
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add(geom_col(alpha = 0.4, color = NA, width = 0.6)) %>%
-  add_error() %>%
-  add_data_points("confetti", jitter_width = 0.2)
+  add_error_bar() %>%
+  add_data_points(jitter_width = 0.2)
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add_mean_bar(alpha = 0.2) %>%
-  add_error() %>%
-  add_data_points("confetti", jitter_width = 0.2)
+  add_error_bar() %>%
+  add_data_points(jitter_width = 0.2)
 
 mapping <- ggplot2::aes(color = dose, fill = ggplot2::after_scale(apply_saturation(colour, saturation)))
 
@@ -95,22 +129,50 @@ study %>%
 
 study %>%
   tidyplot(group, score, color = dose, dodge_width = 0, group = dose) %>%
-  add_area(alpha = 0.1) %>%
+  add_area() %>%
   add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose, group = participant) %>%
-  add_area(alpha = 0.1) %>%
+  add_area() %>%
   add_data_points()
 
 study %>%
   tidyplot(group, score, color = dose, group = participant, dodge_width = 0) %>%
-  add_area(alpha = 0.1) %>%
+  add_area() %>%
   add_data_points()
+
+
+study %>%
+  dplyr::arrange(score) %>%
+  tidyplot(score, group, color = dose) %>%
+  add_line() %>%
+  add_data_points()
+
+study %>%
+  tidyplot(score, group, color = dose, dodge_width = 0, group = dose) %>%
+  add_area() %>%
+  add_data_points()
+
+study %>%
+  tidyplot(score, group, color = dose, group = participant) %>%
+  add_area() %>%
+  add_data_points()
+
+study %>%
+  tidyplot(score, group, color = dose, group = participant, dodge_width = 0) %>%
+  add_area() %>%
+  add_data_points()
+
+
 
 study %>%
   tidyplot(group, score, color = dose) %>%
   add_areastack_absolute(alpha = 0.1)
+
+animals %>%
+  tidyplot(number_of_legs) %>%
+  add_count_area()
 
 # stat_count and stat_sum are ignoring categories with no data
 # this is fixed
@@ -127,16 +189,13 @@ animals %>%
   add_areastack_absolute()
 
 df %>%
-  tidyplot(number_of_legs, count, color = family) %>%
+  tidyplot(count, number_of_legs, color = family) %>%
   add_areastack_absolute()
 
 animals %>%
   tidyplot(number_of_legs, color = family) %>%
   add_areastack_relative()
 
-df %>%
-  tidyplot(number_of_legs, count, color = family) %>%
-  add_areastack_relative()
 
 # function calls as aesthetics:
 
@@ -227,7 +286,7 @@ p <-
 
 p %>% add_boxplot() %>% add_data_points()
 p %>% add_violin() %>% add_data_points() # preserve = "single" destroys violins, therefore not implemented here
-p %>% add_error() %>% add_data_points()
+p %>% add_error_bar() %>% add_data_points()
 p %>% add_mean_dash() %>% add_data_points()
 p %>% add_mean_bar() %>% add_data_points()
 
@@ -270,7 +329,7 @@ gene_expression %>%
   adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
   adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red")) %>%
-  adjust_plot_size(height = 90)
+  adjust_plot_area_size(height = 90)
 
 h1 <-
   gene_expression %>%
@@ -282,7 +341,7 @@ h1 <-
   adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
   adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red")) %>%
-  adjust_plot_size(height = 90)
+  adjust_plot_area_size(height = 90)
 
 h1
 h1 + ggplot2::facet_grid(cols = dplyr::vars(group), rows = dplyr::vars(direction), scales = "free_y")
@@ -296,5 +355,42 @@ h3 <- h1 %>%
   adjust_colors(c("blue", "white", "red"), limits = c(-3, 3)) +
   ggplot2::facet_grid(cols = dplyr::vars(condition), rows = dplyr::vars(direction), scales = "free_y")
 h3 %>% split_plot(sample_type, heights = 90)
+
+# handling of incoming orientation parameter
+
+
+custom_stat_summary <- function(mapping = NULL, data = NULL,
+                                geom = "bar", fun = sum, ...) {
+
+  args <- list(...)
+  if (!"orientation" %in% names(args)) args$orientation <- NA
+
+  do.call(ggplot2::stat_summary, c(list(mapping = mapping, data = data, geom = geom,
+                                        fun = fun), args))
+}
+
+custom_stat_summary2 <- function(mapping = NULL, data = NULL,
+                                geom = "bar", fun = sum, ...) {
+  args <- list(...)
+  if (!"orientation" %in% names(args)) args$orientation <- NA
+
+  rlang::inject(ggplot2::stat_summary(mapping = mapping, data = data, geom = geom,
+                                        fun = fun, !!!args))
+}
+
+library(ggplot2)
+
+data <- data.frame(
+  category = c("A", "B", "C", "A", "B", "C"),
+  value = c(10, 20, 30, 40, 50, 60)
+)
+
+ggplot(data, aes(x = category, y = value)) +
+  custom_stat_summary(orientation = "y")
+
+ggplot(data, aes(x = category, y = value)) +
+  custom_stat_summary2(orientation = "y")
+
+
 
 

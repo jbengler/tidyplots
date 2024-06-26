@@ -3,7 +3,7 @@
 \name{add_line}
 \alias{add_line}
 \alias{add_area}
-\title{Add line}
+\title{Add line or area}
 \usage{
 add_line(
   plot,
@@ -19,6 +19,7 @@ add_area(
   group,
   dodge_width = NULL,
   linewidth = 0.25,
+  alpha = 0.3,
   preserve = "total",
   ...
 )
@@ -36,10 +37,12 @@ add_area(
 a position, or the width of a \code{"single"} element?}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
+
+\item{alpha}{common}
 }
 \value{
 A \code{tidyplot} object
 }
 \description{
-Add line
+Add line or area
 }

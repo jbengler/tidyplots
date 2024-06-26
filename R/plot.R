@@ -41,7 +41,7 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
     adjust_x_axis() %>%
     adjust_y_axis() %>%
     adjust_colors() %>%
-    adjust_plot_size(width = width, height = height)
+    adjust_plot_area_size(width = width, height = height)
 
   if (single_color_plot)
     plot <- plot %>% remove_legend()
@@ -126,7 +126,7 @@ split_plot <- function(plot,
   # free plot dimensions
   plot <-
     plot %>%
-    adjust_plot_size(width = NA, height = NA)
+    adjust_plot_area_size(width = NA, height = NA)
 
   df <-
     plot$data %>%

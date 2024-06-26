@@ -41,7 +41,7 @@ my_style <-
 study %>% 
   tidyplot(group, score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
-  add_error() %>% 
+  add_error_bar() %>% 
   add_data_points_beeswarm() %>% 
   my_style()
 

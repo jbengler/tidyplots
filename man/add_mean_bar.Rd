@@ -35,8 +35,9 @@ add_mean_value(
   accuracy = 0.1,
   scale_cut = NULL,
   fontsize = 7,
-  vjust = -0.5,
-  padding_top = 0.15,
+  extra_padding = 0.15,
+  vjust = NULL,
+  hjust = NULL,
   preserve = "total",
   ...
 )
@@ -90,9 +91,11 @@ Applied to rescaled data.}
 
 \item{fontsize}{common}
 
+\item{extra_padding}{bla}
+
 \item{vjust}{bla}
 
-\item{padding_top}{bla}
+\item{hjust}{bla}
 
 \item{group}{common}
 }

@@ -31,24 +31,24 @@ reference:
 - contents:
   - starts_with("add_mean")
   - starts_with("add_median")
-  - starts_with("add_curve")
+  - starts_with("add_curve_fit")
+- subtitle: Distribution
+- contents:
+  - starts_with("add_histogram")
+  - starts_with("add_density")
 - subtitle: Dispersion & uncertainty
 - contents:
   - starts_with("add_boxplot")
   - starts_with("add_violin")
   - starts_with("add_error")
-- subtitle: Statistical comparison
-- contents:
-  - starts_with("add_stats")
-- subtitle: Distribution
-- contents:
-  - starts_with("add_histogram")
-  - starts_with("add_density")
 - subtitle: Proportion
 - contents:
   - starts_with("add_areastack")
   - starts_with("add_barstack")
   - starts_with("add_pie")
+- subtitle: Statistical comparison
+- contents:
+  - starts_with("add_stats")
 - subtitle: Annotation
 - contents:
   - starts_with("add_title")
@@ -58,14 +58,14 @@ reference:
   desc: Adjust plot components, properties, data labels and themes.
 - subtitle: Components & properties
 - contents:
-  - starts_with("adjust_x_axis")
   - starts_with("adjust_colors")
-  - starts_with("adjust_plot_size")
   - starts_with("adjust_font")
   - starts_with("adjust_legend")
-  - starts_with("adjust_padding")
-  - starts_with("adjust_rotate_plot")
   - starts_with("adjust_description")
+  - starts_with("adjust_plot_area_size")
+  - starts_with("adjust_plot_area_padding")
+  - starts_with("adjust_x_axis")
+  - starts_with("adjust_flip_plot")
 - subtitle: Axis and color labels
 - contents:
   - starts_with("rename")
@@ -76,11 +76,12 @@ reference:
 - contents:
   - starts_with("theme")
   - starts_with("remove")
-- subtitle: Colors
+- subtitle: Color schemes
 - contents:
   - starts_with("colors_discrete")
   - starts_with("colors_continuous")
   - starts_with("colors_diverging")
+  - starts_with("new_color_scheme")
 - title: Split
   desc: Split the plot into a multi plot layout, eventually across multiple pages.
 - contents:
@@ -95,7 +96,7 @@ reference:
   - add
   - starts_with("format_")
   - ends_with("_rows")
-  - starts_with("new_color_scheme")
+  - starts_with("as_tidyplot")
 - title: Data
 - contents:
   - starts_with("animals")

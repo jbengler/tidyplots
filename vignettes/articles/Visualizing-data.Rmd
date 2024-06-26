@@ -94,14 +94,6 @@ energy %>%
   add_barstack_absolute()
 
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute()
-
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_relative()
-
-energy %>% 
   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
   tidyplot(y = power, color = energy_source) %>% 
   add_pie() %>% 
@@ -144,7 +136,11 @@ animals %>%
 ## with y supplied
 
 animals %>% 
-  tidyplot(y = speed, color = family) %>% 
+  tidyplot(y = diet, color = family) %>% 
+  add_barstack_absolute()
+
+animals %>% 
+  tidyplot(x = diet, color = family) %>% 
   add_barstack_absolute()
 
 animals %>% 
@@ -152,10 +148,6 @@ animals %>%
   add_barstack_absolute()
 
 # add_barstack_absolute
-
-animals %>% 
-  tidyplot(color = family) %>% 
-  add_barstack_relative()
 
 animals %>% 
   tidyplot(x = diet, color = family) %>% 
@@ -174,7 +166,7 @@ animals %>%
   add_areastack_absolute()
 
 animals %>% 
-  tidyplot(y = speed, color = family) %>% 
+  tidyplot(y = diet, color = family) %>% 
   add_barstack_relative()
 
 animals %>% 
@@ -186,11 +178,11 @@ animals %>%
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
   add_line() %>% 
-  remove_padding()
+  remove_plot_area_padding()
 
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
-  add_area(alpha = 0.3)
+  add_area()
 
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
@@ -255,12 +247,12 @@ energy_week %>%
   tidyplot(date, power, color = energy_type) %>% 
   add_sum_line() %>%
   adjust_colors(new_colors = new_colors) %>% 
-  remove_padding()
+  remove_plot_area_padding()
 
 energy_week %>% 
   dplyr::summarise(power = sum(power), .by = c(date, energy_type)) %>% 
   tidyplot(date, power, color = energy_type) %>% 
-  add_area(alpha = 0.3) %>% 
+  add_area() %>% 
   adjust_colors(new_colors = new_colors)
 
 energy_week %>% 
@@ -282,7 +274,7 @@ energy_week %>%
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_ci95()
+  add_ci95_bar()
 
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
@@ -307,11 +299,11 @@ study %>%
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
   add_line() %>% 
-  remove_padding()
+  remove_plot_area_padding()
 
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
-  add_area(alpha = 0.3)
+  add_area()
 
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 

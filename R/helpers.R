@@ -10,8 +10,58 @@ is_waiver <- function(x) inherits(x, "waiver")
 #' @export
 `%>%` <- dplyr::`%>%`
 
+#' Convert ggplot to tidyplot
+#'
+#' @param gg bla
+#' @param width bla
+#' @param height bla
+#' @param dodge_width bla
+#' @export
+as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
+  mapping <- gg$mapping
+  plot <- gg
 
-#' Subset data
+  # Add .single_color column to data if `colour` and `fill` mappings are missing
+  single_color_plot <- FALSE
+  if(!"colour" %in% names(mapping) && !"fill" %in% names(mapping)) {
+    data$.single_color <- TRUE
+    mapping$colour <- ggplot2::aes(colour = .single_color)[[1]]
+    single_color_plot <- TRUE
+  }
+
+  # Align `colour` and `fill` mappings
+  if("colour" %in% names(mapping) && !"fill" %in% names(mapping)) mapping$fill <- mapping$colour
+  if("fill" %in% names(mapping) && !"colour" %in% names(mapping)) mapping$colour <- mapping$fill
+
+  plot$mapping <- mapping
+  class(plot) <- c("tidyplot", class(plot))
+
+  plot$tidyplot$mapping <- extract_mapping(plot)
+
+  plot$tidyplot$padding_x <- c(0.05, 0.05)
+  plot$tidyplot$padding_y <- c(0.05, 0.05)
+
+  plot$tidyplot$limits_x <- c(NULL, NULL)
+  plot$tidyplot$limits_y <- c(NULL, NULL)
+
+  plot$tidyplot$dodge_width <- dodge_width
+
+  plot$tidyplot$named_colors <- NULL
+
+  plot <- plot %>%
+    theme_tidyplot() %>%
+    adjust_x_axis() %>%
+    adjust_y_axis() %>%
+    adjust_colors() %>%
+    adjust_plot_area_size(width = width, height = height)
+
+  if (single_color_plot)
+    plot <- plot %>% remove_legend()
+
+  plot
+}
+
+#' Subset data rows
 #' @export
 all_rows <- function(){
   function(x) { x }
@@ -65,7 +115,7 @@ sample_rows <- function(n, by = NULL){
 }
 
 
-#' Format numbers and p values
+#' Format numbers or p values
 #' @param x bla
 #' @param ... bla
 #' @inheritParams scales::number
@@ -186,6 +236,54 @@ is_datetime <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "d
 is_missing <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!MISSING" }
 is_na <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!NA" }
 
+is_flipped <- function(plot) {
+  # this will only inspect the last geom
+  tail(ggplot2::ggplot_build(plot)$data, n = 1)[[1]]$flipped_aes[1]
+}
+
+get_plottype <- function(plot) {
+  pt <- "none"
+
+  if (is_missing(plot, "x") && is_missing(plot, "y")) pt <- "__"
+
+  if (!is_missing(plot, "x") && is_missing(plot, "y")) {
+    if (is_time(plot, "x")) pt <- "t_"
+    if (is_date(plot, "x")) pt <- "t_"
+    if (is_datetime(plot, "x")) pt <- "t_"
+    if (is_continuous(plot, "x")) pt <- "c_"
+    if (is_discrete(plot, "x")) pt <- "d_"
+  }
+
+  if (!is_missing(plot, "y") && is_missing(plot, "x")) {
+    if (is_time(plot, "y")) pt <- "_t"
+    if (is_date(plot, "y")) pt <- "_t"
+    if (is_datetime(plot, "y")) pt <- "_t"
+    if (is_continuous(plot, "y")) pt <- "_c"
+    if (is_discrete(plot, "y")) pt <- "_d"
+  }
+
+  if (is_discrete(plot, "x") && is_continuous(plot, "y")) pt <- "dc"
+  if (is_continuous(plot, "x") && is_discrete(plot, "y")) pt <- "cd"
+  if (is_continuous(plot, "x") && is_continuous(plot, "y")) pt <- "cc"
+  if (is_discrete(plot, "x") && is_discrete(plot, "y")) pt <- "dd"
+
+  if (is_time(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
+  if (is_date(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
+  if (is_datetime(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
+
+  if (is_continuous(plot, "x") && is_time(plot, "y")) pt <- "ct"
+  if (is_continuous(plot, "x") && is_date(plot, "y")) pt <- "ct"
+  if (is_continuous(plot, "x") && is_datetime(plot, "y")) pt <- "ct"
+
+  if (is_time(plot, "x") && is_discrete(plot, "y")) pt <- "td"
+  if (is_date(plot, "x") && is_discrete(plot, "y")) pt <- "td"
+  if (is_datetime(plot, "x") && is_discrete(plot, "y")) pt <- "td"
+
+  if (is_discrete(plot, "x") && is_time(plot, "y")) pt <- "dt"
+  if (is_discrete(plot, "x") && is_date(plot, "y")) pt <- "dt"
+  if (is_discrete(plot, "x") && is_datetime(plot, "y")) pt <- "dt"
+  pt
+}
 
 check_tidyplot <- function(x, arg = rlang::caller_arg(x), call = rlang::caller_env()) {
   if (!inherits(x, "tidyplot")) {

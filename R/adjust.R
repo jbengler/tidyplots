@@ -77,12 +77,16 @@ ff_adjust_axis <- function(axis) {
     if (is_waiver(labels) && cut_short_scale)
       labels <- scales::label_number(scale_cut = scales::cut_short_scale())
     cli::cli_alert_success("adjust_{axis}_axis: {.pkg continuous}")
-    suppressMessages(
-      if (axis == "x")
-        plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_x, trans = transformation, ...)
-      else
-        plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_y, trans = transformation, ...)
-    )
+
+    suppressMessages({
+      if (axis == "x") {
+        if(!is_discrete(plot, "x")) {
+          plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_x, trans = transformation, ...)}
+      } else {
+        if(!is_discrete(plot, "y")) {
+          plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_y, trans = transformation, ...)}
+      }
+    })
 
     # Set limits
     if (!is.null(plot$tidyplot$limits_x) && is_continuous(plot, "x")) xlim <- plot$tidyplot$limits_x else xlim <- NULL
@@ -128,15 +132,15 @@ adjust_x_axis <- ff_adjust_axis("x")
 adjust_y_axis <- ff_adjust_axis("y")
 
 
-#' Adjust plot size
+#' Adjust plot area size
 #' @param width bla
 #' @param height bla
 #' @param unit bla
 #' @inherit common_arguments
 #' @export
-adjust_plot_size <- function(plot, width = 50, height = 50, unit = "mm") {
+adjust_plot_area_size <- function(plot, width = 50, height = 50, unit = "mm") {
   check_tidyplot(plot)
-  cli::cli_alert_success("adjust_plot_size: {.pkg width} = {width} {unit}, {.pkg height} = {height} {unit}")
+  cli::cli_alert_success("adjust_plot_area_size: {.pkg width} = {width} {unit}, {.pkg height} = {height} {unit}")
   if (!is.na(width)) width <- ggplot2::unit(width, unit)
   if (!is.na(height)) height <- ggplot2::unit(height, unit)
   plot + patchwork::plot_layout(widths = width, heights = height)
@@ -180,7 +184,7 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 }
 
 
-#' Adjust padding
+#' Adjust plot area padding
 #' @param top bla
 #' @param right bla
 #' @param bottom bla
@@ -188,19 +192,19 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 #' @param force_continuous bla
 #' @inherit common_arguments
 #' @export
-adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, force_continuous = FALSE) {
+adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, force_continuous = FALSE, ...) {
   check_tidyplot(plot)
   plot %>%
-    adjust_x_axis(padding = c(left, right)) %>%
-    adjust_y_axis(padding = c(bottom, top), force_continuous = force_continuous)
+    adjust_x_axis(padding = c(left, right), force_continuous = force_continuous, ...) %>%
+    adjust_y_axis(padding = c(bottom, top), force_continuous = force_continuous, ...)
 }
 
 
-#' Rotate plot by 90 degrees
+#' Flip x and y axis
 #' @param ... Arguments passed on to the `ggplot2::coord_flip()`.
 #' @inherit common_arguments
 #' @export
-adjust_rotate_plot <- function(plot, ...) {
+adjust_flip_plot <- function(plot, ...) {
   check_tidyplot(plot)
   plot + ggplot2::coord_flip(...)
 }

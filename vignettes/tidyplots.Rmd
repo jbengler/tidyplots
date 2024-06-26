@@ -29,7 +29,7 @@ knitr::opts_chunk$set(
 
 - `tidyplots` tries to reduce the complexity of `ggplot2` by choosing sensible defaults. However, you take more detailed control by via the `...` argument in each function. And if you need to add plain `ggplot2` code, you can do this using `add()` function, which will preserve the `tidyplots` pipeline.
 
-- All plots have absolute dimensions by default, defined in "mm". These dimensions refer to the plotting area, not the entire plot, thus ensuring consistent lengths of `x` any `y` axes. The dimension can be changed with the `width` and `height` parameters, either when creating the plot with `tidyplot()` or later with `adjust_plot_size()`. If you want to restore the `ggplot2` behavior that a plot automatically takes up all available space, set `width` and `height` to `NA`.
+- All plots have absolute dimensions by default, defined in "mm". These dimensions refer to the plotting area, not the entire plot, thus ensuring consistent lengths of `x` any `y` axes. The dimension can be changed with the `width` and `height` parameters, either when creating the plot with `tidyplot()` or later with `adjust_plot_area_size()`. If you want to restore the `ggplot2` behavior that a plot automatically takes up all available space, set `width` and `height` to `NA`.
 
 - `tidyplots` allows to split plots into subplots by a variable of choice, similar to `ggplot2::facet_wrap()`. However, `split_plot()` provides a more consistent look and allows to distribute subplots across multiple pages.
 
@@ -86,6 +86,6 @@ study %>%
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
-  add_error() %>% 
+  add_error_bar() %>% 
   add_data_points_jitter()
 ```

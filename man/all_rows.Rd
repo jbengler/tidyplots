@@ -8,7 +8,7 @@
 \alias{first_rows}
 \alias{last_rows}
 \alias{sample_rows}
-\title{Subset data}
+\title{Subset data rows}
 \usage{
 all_rows()
 
@@ -59,5 +59,5 @@ they will only be included if there are insufficient non-missing values to
 reach \code{n}.}
 }
 \description{
-Subset data
+Subset data rows
 }

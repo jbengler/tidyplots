@@ -4,7 +4,7 @@
 \alias{reverse_x_axis_labels}
 \alias{reverse_y_axis_labels}
 \alias{reverse_color_labels}
-\title{Reverse axis and color labels}
+\title{Reverse axis or color labels}
 \usage{
 reverse_x_axis_labels(plot)
 
@@ -16,5 +16,5 @@ reverse_color_labels(plot)
 \item{plot}{bla}
 }
 \description{
-Reverse axis and color labels
+Reverse axis or color labels
 }

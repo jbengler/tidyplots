@@ -4,7 +4,7 @@
 \alias{rename_x_axis_labels}
 \alias{rename_y_axis_labels}
 \alias{rename_color_labels}
-\title{Rename axis and color labels}
+\title{Rename axis or color labels}
 \usage{
 rename_x_axis_labels(plot, new_names)
 
@@ -18,5 +18,5 @@ rename_color_labels(plot, new_names)
 \item{new_names}{bla}
 }
 \description{
-Rename axis and color labels
+Rename axis or color labels
 }

@@ -188,10 +188,10 @@ ff_errorbar <- function(.fun.data) {
 }
 #' Add error bar
 #'
-#' * `add_error()` adds the standard error of mean.
-#' * `add_range()` adds the range from smallest to largest value.
-#' * `add_sd()` adds the standard deviation.
-#' * `add_ci95()` adds the 95% confidence interval.
+#' * `add_error_bar()` adds the standard error of mean.
+#' * `add_range_bar()` adds the range from smallest to largest value.
+#' * `add_sd_bar()` adds the standard deviation.
+#' * `add_ci95_bar()` adds the 95% confidence interval.
 #'
 #' @inherit common_arguments
 #'
@@ -199,31 +199,31 @@ ff_errorbar <- function(.fun.data) {
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_error()
+#'   add_error_bar()
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_range()
+#'   add_range_bar()
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_sd()
+#'   add_sd_bar()
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_ci95()
+#'   add_ci95_bar()
 #'
 #' @export
-add_error <- ff_errorbar(.fun.data = ggplot2::mean_se)
-#' @rdname add_error
+add_error_bar <- ff_errorbar(.fun.data = ggplot2::mean_se)
+#' @rdname add_error_bar
 #' @export
-add_range <- ff_errorbar(.fun.data = min_max)
-#' @rdname add_error
+add_range_bar <- ff_errorbar(.fun.data = min_max)
+#' @rdname add_error_bar
 #' @export
-add_sd <- ff_errorbar(.fun.data = mean_sdl)
-#' @rdname add_error
+add_sd_bar <- ff_errorbar(.fun.data = mean_sdl)
+#' @rdname add_error_bar
 #' @export
-add_ci95 <- ff_errorbar(.fun.data = mean_cl_boot)
+add_ci95_bar <- ff_errorbar(.fun.data = mean_cl_boot)
 
 
 ## Ribbon function factory
@@ -286,15 +286,20 @@ ff_bar <- function(.fun, .count = FALSE) {
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     plot <- plot %>% adjust_colors(saturation = saturation)
     if (.count) {
-      plot %>%
-        adjust_y_axis(padding = c(0, NA), force_continuous = TRUE) +
+      plot <- plot +
         ggplot2::stat_count(geom = "bar", color = NA, width = width, position = position, ...)
     } else {
-      plot %>%
-        adjust_y_axis(padding = c(0, NA)) +
+      plot <- plot +
         ggplot2::stat_summary(fun = .fun, geom = "bar", color = NA, width = width,
                               position = position, ...)
     }
+    # remove padding between bar and axis
+    if (is_flipped(plot)) {
+      plot <- plot %>% adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+    } else {
+      plot <- plot %>% adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+    }
+    plot
   }
 }
 ## Dash function factory
@@ -329,26 +334,48 @@ ff_dot <- function(.fun, .count = FALSE) {
 ## Value function factory
 ff_value <- function(.fun, .count = FALSE) {
   function(plot, dodge_width = NULL, accuracy = 0.1, scale_cut = NULL, fontsize = 7,
-           vjust = -0.5, padding_top = 0.15, preserve = "total", ...) {
+           extra_padding = 0.15, vjust = NULL, hjust = NULL, preserve = "total", ...) {
     check_tidyplot(plot)
+    ptype <- get_plottype(plot)
+
+    if ((stringr::str_sub(ptype, 2, 2) == "c" || .count)) {
+      vjust <- vjust %||% -1
+      hjust <- hjust %||% 0.5
+      plot <- plot %>% adjust_y_axis(padding = c(NA, extra_padding), force_continuous = TRUE)
+    }
+    if ((stringr::str_sub(ptype, 1, 1) == "c")) {
+      vjust <- vjust %||% 0.5
+      hjust <- hjust %||% -0.25
+      plot <- plot %>% adjust_x_axis(padding = c(NA, extra_padding), force_continuous = TRUE)
+    }
+    vjust <- vjust %||% 0.5
+    hjust <- hjust %||% 0.5
+
     size <- fontsize/ggplot2::.pt
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     if (.count) {
-      plot %>% adjust_y_axis(padding = c(NA, padding_top), force_continuous = TRUE) +
+      plot <- plot +
         ggplot2::stat_count(ggplot2::aes(label = format_number(ggplot2::after_stat(count), accuracy = accuracy, scale_cut = scale_cut)),
-                            geom = "text", vjust = vjust, size = size, position = position, ...)
+                            geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, ...)
     } else {
-      plot %>% adjust_y_axis(padding = c(NA, padding_top)) +
-        ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(y), accuracy = accuracy, scale_cut = scale_cut)),
-                              fun = .fun, geom = "text", vjust = vjust, size = size, position = position, ...)
+      if ((stringr::str_sub(ptype, 2, 2) == "c")) {
+        plot <- plot + ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(y), accuracy = accuracy, scale_cut = scale_cut)),
+                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, ...)
+      }
+      if ((stringr::str_sub(ptype, 1, 1) == "c")) {
+          plot <- plot + ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(x), accuracy = accuracy, scale_cut = scale_cut)),
+                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, ...)
+      }
     }
+    plot
   }
 }
 ## Line function factory
 ff_line <- function(.fun, .count = FALSE, .geom) {
   function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
     check_tidyplot(plot)
+    if(.geom == "area") linewidth = NA
     mapping <- NULL
     if (is_missing(plot, "group")) {
       mapping <- ggplot2::aes()
@@ -360,12 +387,21 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     if (.count) {
-      plot + ggplot2::stat_count(mapping = mapping, geom = .geom,
+      plot <- plot + ggplot2::stat_count(mapping = mapping, geom = .geom,
                                linewidth = linewidth, position = position, ...)
     } else {
-      plot + ggplot2::stat_summary(mapping = mapping, fun = .fun, geom = .geom,
+      plot <- plot + ggplot2::stat_summary(mapping = mapping, fun = .fun, geom = .geom,
                                  linewidth = linewidth, position = position, ...)
     }
+    if(.geom == "area") {
+      # remove padding between area and axis
+      if (is_flipped(plot)) {
+        plot <- plot %>% adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+      } else {
+        plot <- plot %>% adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+      }
+    }
+    plot
   }
 }
 
@@ -373,7 +409,8 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 #' Add mean
 #'
 #' @param vjust bla
-#' @param padding_top bla
+#' @param hjust bla
+#' @param extra_padding bla
 #' @inherit common_arguments
 #' @inheritParams scales::number
 #' @export
@@ -514,7 +551,7 @@ add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantile
                             scale = scale, position = position, ...)
 }
 
-#' Add line
+#' Add line or area
 #' @inherit common_arguments
 #' @export
 add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
@@ -533,8 +570,19 @@ add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve
 }
 #' @rdname add_line
 #' @export
-add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
+add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 0.3, preserve = "total", ...) {
   check_tidyplot(plot)
+  ptype <- get_plottype(plot)
+
+  # detect orientation
+  orientation <- NA
+  if (ptype %in% c("_d", "cd", "ct")) {
+    orientation <- "y"
+  }
+  # add orientation to args if not already present
+  args <- list(...)
+  if (!"orientation" %in% names(args)) args$orientation <- orientation
+
   mapping <- NULL
   if (is_missing(plot, "group")) {
     mapping <- ggplot2::aes()
@@ -545,17 +593,24 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve
   }
   dodge_width <- dodge_width %||% 0
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
-  plot %>%
-    remove_padding() +
-    ggplot2::geom_area(mapping = mapping, linewidth = linewidth, position = position, ...)
+  plot <- plot +
+    rlang::inject(ggplot2::geom_area(mapping = mapping, linewidth = linewidth, alpha = alpha, position = position, !!!args))
+
+  # remove padding between area and axis
+  if (is_flipped(plot)) {
+    plot <- plot %>% adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+  } else {
+    plot <- plot %>% adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+  }
+  plot
 }
 
 
-#' Add curve
+#' Add curve fit
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_smooth
 #' @export
-add_curve <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.3,
+add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.3,
                       preserve = "total", ...) {
   check_tidyplot(plot)
   mapping <- ggplot2::aes()
@@ -573,8 +628,10 @@ ff_pie <- function(.type = "pie") {
     check_tidyplot(plot)
     plot <-
       plot %>%
-      remove_padding() %>%
+      remove_plot_area_padding() %>%
       style_void()
+
+    if (!is_missing(plot, "x")) stop("add_pie() and add_donut() accept color and y, but not x.")
 
     if (is_missing(plot, "y")) {
       plot <- plot + ggplot2::geom_bar(ggplot2::aes(x = NA), position = ggplot2::position_fill(reverse = reverse),
@@ -608,30 +665,46 @@ add_donut <- ff_pie(.type = "donut")
 ff_barstack <- function(.position_fun) {
   function(plot, width = 0.8, reverse = FALSE, ...) {
     check_tidyplot(plot)
+    ptype <- get_plottype(plot)
+
+    if (is_missing(plot, "colour")) stop("color missing without default")
+
+    # detect orientation
+    orientation <- NA
+    if (ptype %in% c("_d", "cd", "ct")) {
+      orientation <- "y"
+    }
+    # add orientation to args if not already present
+    args <- list(...)
+    if (!"orientation" %in% names(args)) args$orientation <- orientation
 
     mapping <- NULL
-    if (is_missing(plot, "x") && is_missing(plot, "y")) {
-      mapping <- ggplot2::aes(x = "")
-      plot <- plot %>% adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
-    } else if (is_missing(plot, "x")) {
-      plot <- plot %>% adjust_x_axis(padding = c(0, 0), force_continuous = TRUE)
-    } else if (is_missing(plot, "y")) {
-      plot <- plot %>% adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
+    if (ptype %in% c("_c", "__")) {
+      mapping <- plot$mapping
+      mapping$x <- ggplot2::aes(x = "")$x
     }
 
-    if (is_missing(plot, "x") || is_missing(plot, "y")){
-      plot + ggplot2::geom_bar(mapping = mapping, position = .position_fun(reverse = reverse),
-                             width = width, color = NA, ...)
-    } else {
-      if (is_continuous(plot, "x"))
-        plot <- plot %>% adjust_x_axis(padding = c(0, 0), force_continuous = TRUE)
-      if (is_continuous(plot, "y"))
-        plot <- plot %>% adjust_y_axis(padding = c(0, 0), force_continuous = TRUE)
+    if (ptype == "c_") {
+      mapping <- plot$mapping
+      mapping$y <- ggplot2::aes(y = "")$y
+    }
 
-      plot + ggplot2::stat_summary(mapping = mapping, geom = "bar", fun = sum,
+    if (stringr::str_detect(ptype, "c")) {
+      plot <- plot + rlang::inject(ggplot2::stat_summary(mapping = mapping, geom = "bar", fun = sum,
                                  position = .position_fun(reverse = reverse), width = width,
-                                 color = NA, ...)
+                                 color = NA, !!!args))
+    } else {
+      plot <- plot + rlang::inject(ggplot2::geom_bar(mapping = mapping, position = .position_fun(reverse = reverse),
+                                       width = width, color = NA, !!!args))
     }
+
+    # remove padding between bar and axis
+    if (is_flipped(plot)) {
+      plot <- plot %>% adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+    } else {
+      plot <- plot %>% adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+    }
+    plot
   }
 }
 #' Add bar stack
@@ -647,43 +720,78 @@ add_barstack_relative <- ff_barstack(.position_fun = ggplot2::position_fill)
 ff_areastack <- function(.position_fun) {
   function(plot, linewidth = 0.25, alpha = 0.3, reverse = FALSE, ...) {
     check_tidyplot(plot)
-    # plot <-
-    #   plot %>%
-    #   adjust_y_axis(padding = c(0, 0), force_continuous = TRUE) %>%
-    #   adjust_x_axis(padding = c(0, 0))
+    ptype <- get_plottype(plot)
 
     # overwrite group aesthetic
     mapping <- ggplot2::aes()
     mapping$group <- plot$mapping$colour
 
-    if (is_missing(plot, "y")){
-      # plot + ggplot2::stat_count(mapping = mapping, geom = "area",
-      #                         position = .position_fun(reverse = reverse),
-      #                         linewidth = linewidth, alpha = alpha, ...)
+    if (is_missing(plot, "x") && is_missing(plot, "y")) {
+      stop("x, y or both must be supplied")
+    }
+
+    # detect orientation
+    orientation <- NA
+    if (ptype %in% c("_d", "cd", "ct")) {
+      orientation <- "y"
+    }
+    # add orientation to args if not already present
+    args <- list(...)
+    if (!"orientation" %in% names(args)) args$orientation <- orientation
+
+    if (is_missing(plot, "y")) {
       vars <- c(get_variable(plot, "x"), get_variable(plot, "colour"))
-      df <-
+      plot$data <-
         plot$data %>%
         dplyr::summarize(count = dplyr::n(), .by = all_of(vars)) %>%
         tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
       mapping$y <- ggplot2::aes(y = count)$y
-      plot + ggplot2::geom_area(data = df, mapping = mapping,
-                              position = .position_fun(reverse = reverse), linewidth = linewidth,
-                              alpha = alpha, ...)
-    } else {
-      # plot + ggplot2::stat_summary(mapping = mapping, geom = "area", fun = sum,
-      #                            position = .position_fun(reverse = reverse), alpha = alpha, linewidth = linewidth, ...)
-      vars <- c(get_variable(plot, "x"), get_variable(plot, "colour"))
-      y_var <- get_variable(plot, "y")
+      plot <- plot %>%
+        remove_plot_area_padding(force_continuous = TRUE) %>%
+        adjust_y_axis(title = "count") +
+        rlang::inject(ggplot2::geom_area(mapping = mapping,
+                           position = .position_fun(reverse = reverse), linewidth = linewidth,
+                           alpha = alpha, !!!args))
+    }
+
+    if (is_missing(plot, "x")) {
+      vars <- c(get_variable(plot, "y"), get_variable(plot, "colour"))
+      plot$data <-
+        plot$data %>%
+        dplyr::summarize(count = dplyr::n(), .by = all_of(vars)) %>%
+        tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
+      mapping$x <- ggplot2::aes(x = count)$x
+      plot <- plot %>%
+        remove_plot_area_padding(force_continuous = TRUE) %>%
+        adjust_x_axis(title = "count") +
+        rlang::inject(ggplot2::geom_area(mapping = mapping,
+                           position = .position_fun(reverse = reverse), linewidth = linewidth,
+                           alpha = alpha, !!!args))
+    }
+
+    if (!is_missing(plot, "x") && !is_missing(plot, "y")) {
+
+      if (is_discrete(plot, "y")) {
+        vars <- c(get_variable(plot, "y"), get_variable(plot, "colour"))
+        y_var <- get_variable(plot, "x")
+      } else {
+        vars <- c(get_variable(plot, "x"), get_variable(plot, "colour"))
+        y_var <- get_variable(plot, "y")
+      }
+
       zero <- list(y_var = 0)
       names(zero) <- y_var
-      df <-
+      plot$data <-
         plot$data %>%
         dplyr::summarize("{y_var}" := sum(.data[[y_var]]), .by = all_of(vars)) %>%
         tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = zero)
-      plot + ggplot2::geom_area(data = df, mapping = mapping,
-                              position = .position_fun(reverse = reverse), linewidth = linewidth,
-                              alpha = alpha, ...)
+      plot <- plot %>%
+        remove_plot_area_padding(force_continuous = TRUE) +
+        rlang::inject(ggplot2::geom_area(mapping = mapping,
+                           position = .position_fun(reverse = reverse), linewidth = linewidth,
+                           alpha = alpha, !!!args))
     }
+    plot
   }
 }
 #' Add area stack
@@ -702,7 +810,7 @@ add_areastack_relative <- ff_areastack(.position_fun = ggplot2::position_fill)
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
   check_tidyplot(plot)
   plot %>%
-    remove_padding(force_continuous = TRUE) +
+    remove_plot_area_padding(force_continuous = TRUE) +
     ggplot2::geom_histogram(binwidth = binwidth, bins = bins, fill = color, ...)
 }
 #' @rdname add_histogram
@@ -710,7 +818,7 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6",
 add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
   check_tidyplot(plot)
   plot %>%
-    remove_padding(force_continuous = TRUE) +
+    remove_plot_area_padding(force_continuous = TRUE) +
     ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)),
                             binwidth = binwidth,bins = bins, fill = color, ...)
 }
@@ -722,7 +830,7 @@ add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#
 add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, color = "#E37D46", fill = "#E37D46", alpha = 0.3, ...) {
   check_tidyplot(plot)
   plot %>%
-    remove_padding(force_continuous = TRUE) +
+    remove_plot_area_padding(force_continuous = TRUE) +
     ggplot2::geom_density(bw = bw, adjust = adjust, kernel = kernel, n = n, color = color, fill = fill, alpha = alpha, ...)
 }
 

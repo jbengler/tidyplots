@@ -4,7 +4,7 @@
 \alias{reorder_x_axis_labels}
 \alias{reorder_y_axis_labels}
 \alias{reorder_color_labels}
-\title{Reorder axis and color labels}
+\title{Reorder axis or color labels}
 \usage{
 reorder_x_axis_labels(plot, ...)
 
@@ -18,5 +18,5 @@ reorder_color_labels(plot, ...)
 \item{...}{bla}
 }
 \description{
-Reorder axis and color labels
+Reorder axis or color labels
 }

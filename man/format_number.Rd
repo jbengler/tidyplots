@@ -3,7 +3,7 @@
 \name{format_number}
 \alias{format_number}
 \alias{format_p_value}
-\title{Format numbers and p values}
+\title{Format numbers or p values}
 \usage{
 format_number(x, accuracy = 0.1, big.mark = ",", scale_cut = NULL, ...)
 
@@ -32,7 +32,10 @@ Applied to rescaled data.}
 If you supply a vector \code{c(a = 100, b = 1000)}, absolute values in the
 range \verb{[0, 100)} will not be rescaled, absolute values in the range \verb{[100, 1000)}
 will be divided by 100 and given the suffix "a", and absolute values in
-the range \verb{[1000, Inf)} will be divided by 1000 and given the suffix "b".}
+the range \verb{[1000, Inf)} will be divided by 1000 and given the suffix "b".
+If the division creates an irrational value (or one with many digits), the
+cut value below will be tried to see if it improves the look of the final
+label.}
 
 \item{...}{
   Arguments passed on to \code{\link[scales:number]{scales::number}}
@@ -44,6 +47,10 @@ large.}
 \itemize{
 \item \code{"none"} (the default): no change, e.g. \code{1}.
 \item \code{"plus"}: preceded by \code{+}, e.g. \code{+1}.
+\item \code{"space"}: preceded by a Unicode "figure space", i.e., a space equally
+as wide as a number or \code{+}. Compared to \code{"none"}, adding a figure space
+can ensure numbers remain properly aligned when they are left- or
+right-justified.
 }}
     \item{\code{style_negative}}{A string that determines the style of negative numbers:
 \itemize{
@@ -56,5 +63,5 @@ the horizontal bar of \code{+}.
   }}
 }
 \description{
-Format numbers and p values
+Format numbers or p values
 }

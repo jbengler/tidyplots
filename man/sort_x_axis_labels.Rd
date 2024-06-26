@@ -4,7 +4,7 @@
 \alias{sort_x_axis_labels}
 \alias{sort_y_axis_labels}
 \alias{sort_color_labels}
-\title{Sort axis and color labels}
+\title{Sort axis or color labels}
 \usage{
 sort_x_axis_labels(plot, ...)
 
@@ -18,5 +18,5 @@ sort_color_labels(plot, ...)
 \item{...}{bla}
 }
 \description{
-Sort axis and color labels
+Sort axis or color labels
 }

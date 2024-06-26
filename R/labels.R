@@ -29,7 +29,7 @@ ff_rename_axis_labels <- function(axis) {
     plot %+% new_data
   }
 }
-#' Rename axis and color labels
+#' Rename axis or color labels
 #'
 #' @param plot bla
 #' @param new_names bla
@@ -57,7 +57,7 @@ ff_reorder_axis_labels <- function(axis) {
     plot %+% new_data
   }
 }
-#' Reorder axis and color labels
+#' Reorder axis or color labels
 #'
 #' @param plot bla
 #' @param ... bla
@@ -85,7 +85,7 @@ ff_sort_axis_labels <- function(axis) {
     plot %+% new_data
   }
 }
-#' Sort axis and color labels
+#' Sort axis or color labels
 #'
 #' @param plot bla
 #' @param ... bla
@@ -112,7 +112,7 @@ ff_reverse_axis_labels <- function(axis) {
     plot %+% new_data
   }
 }
-#' Reverse axis and color labels
+#' Reverse axis or color labels
 #'
 #' @param plot bla
 #' @export
