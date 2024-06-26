@@ -55,7 +55,7 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_count_bar.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_curve.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_curve_fit.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_data_points.html</loc>
@@ -64,7 +64,7 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_density_curve.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_error.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_error_bar.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_error_ribbon.html</loc>
@@ -112,19 +112,19 @@
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_description.html</loc>
   </url>
   <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_flip_plot.html</loc>
+  </url>
+  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_font.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_legend.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_padding.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_plot_area_padding.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_plot_size.html</loc>
-  </url>
-  <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_rotate_plot.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/adjust_plot_area_size.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_x_axis.html</loc>
@@ -134,6 +134,9 @@
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/animals.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/as_tidyplot.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.html</loc>
@@ -181,7 +184,7 @@
     <loc>https://jbengler.github.io/tidyplots/reference/remove_legend.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/remove_padding.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/reference/remove_plot_area_padding.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/remove_x_axis.html</loc>
