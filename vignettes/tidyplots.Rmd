@@ -353,6 +353,8 @@ study %>%
 
 # What's more?
 
+This getting started guide is meant to give a high level overview of the tidyplots workflow. To dive deeper into more specific aspects of tidyplots, here a couple of resources.
+
 - [Function reference](https://jbengler.github.io/tidyplots/reference/index.html)  
 A great overview of all tidyplots functions
 
