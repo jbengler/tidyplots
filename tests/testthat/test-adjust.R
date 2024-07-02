@@ -106,6 +106,7 @@ test_that("plotmath expressions work", {
     vdiffr::expect_doppelganger("plotmath expression x axis labels", .)
 })
 
+# failing in remote check
 # test_that("adjust plot area size work", {
 #   study %>%
 #     tidyplot(x = dose, y = score, color = group) %>%

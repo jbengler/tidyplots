@@ -15,9 +15,9 @@ articles:
 - title: Articles
   navbar: ~
   contents:
+  - articles/Advanced-plotting
   - articles/Visualizing-data
   - articles/Color-schemes
-  - articles/Advanced-plotting
   - articles/Design-principles
 
 reference:
@@ -32,10 +32,10 @@ reference:
 - subtitle: Data points & amounts
 - contents:
   - starts_with("add_data_points")
-  - starts_with("add_line")
-  - starts_with("add_heatmap")
   - starts_with("add_count")
   - starts_with("add_sum")
+  - starts_with("add_heatmap")
+  - starts_with("add_line")
 - subtitle: Central tendency
 - contents:
   - starts_with("add_mean")

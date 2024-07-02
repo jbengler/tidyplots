@@ -14,6 +14,7 @@ test_that("add annotation", {
     vdiffr::expect_doppelganger("add title and caption", .)
 })
 
+# violins failing in remote check
 # test_that("add boxplot and violin works", {
 #   study %>%
 #     tidyplot(x = treatment, y = score, color = treatment) %>%

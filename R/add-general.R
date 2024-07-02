@@ -236,15 +236,15 @@ ff_value <- function(.fun, .count = FALSE) {
     if (.count) {
       plot <- plot +
         ggplot2::stat_count(ggplot2::aes(label = format_number(ggplot2::after_stat(count), accuracy = accuracy, scale_cut = scale_cut)),
-                            geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, ...)
+                            geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, show.legend = FALSE, ...)
     } else {
       if ((stringr::str_sub(ptype, 2, 2) == "c")) {
         plot <- plot + ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(y), accuracy = accuracy, scale_cut = scale_cut)),
-                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, ...)
+                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, show.legend = FALSE, ...)
       }
       if ((stringr::str_sub(ptype, 1, 1) == "c")) {
           plot <- plot + ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(x), accuracy = accuracy, scale_cut = scale_cut)),
-                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, ...)
+                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, show.legend = FALSE, ...)
       }
     }
     plot
