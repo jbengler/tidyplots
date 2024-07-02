@@ -339,7 +339,10 @@ or legend. For this we will use the function
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_error_bar.html">add_error_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_description.html">adjust_description</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"This is my fantastic plot"</span>, x_axis_title <span class="op">=</span> <span class="st">"Treatment group"</span>, y_axis_title <span class="op">=</span> <span class="st">"Disease score"</span>, legend_title <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/adjust_description.html">adjust_description</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"This is my fantastic plot"</span>,</span>
+<span>                     x_axis_title <span class="op">=</span> <span class="st">"Treatment group"</span>,</span>
+<span>                     y_axis_title <span class="op">=</span> <span class="st">"Disease score"</span>,</span>
+<span>                     legend_title <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-13-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that I removed the legend title by setting it to an empty string
 <code>legend_title = ""</code>. This is alternative to
@@ -360,7 +363,10 @@ to use special characters.</p>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_error_bar.html">add_error_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_description.html">adjust_description</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"$H[2]*O$"</span>, x_axis_title <span class="op">=</span> <span class="st">"$E==m*c^{2}$"</span>, y_axis_title <span class="op">=</span> <span class="st">"$TNF*alpha~level$"</span>, legend_title <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/adjust_description.html">adjust_description</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"$H[2]*O$"</span>,</span>
+<span>                     x_axis_title <span class="op">=</span> <span class="st">"$E==m*c^{2}$"</span>,</span>
+<span>                     y_axis_title <span class="op">=</span> <span class="st">"$TNF*alpha~level$"</span>,</span>
+<span>                     legend_title <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-14-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Another common task is to adjust the colors in your plot. You can do
 this using the <code><a href="../reference/adjust_colors.html">adjust_colors()</a></code> function.</p>
@@ -446,7 +452,7 @@ reference</a>.</p>
 <h3 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a>
 </h3>
 <p>Themes are a great way to modify the look an feel of you plot without
-changing the representation of the data. You can stay with the defult
+changing the representation of the data. You can stay with the default
 tidyplots theme.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -456,7 +462,7 @@ tidyplots theme.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_tidyplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-21-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Or try something more ggplot2.</p>
+<p>Or try something more like ggplot2.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -465,7 +471,7 @@ tidyplots theme.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_ggplot2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-22-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Or minimal.</p>
+<p>Or more minimal.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -475,24 +481,65 @@ tidyplots theme.</p>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_minimal_y</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-23-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>To learn more about these color schemes have a look at the article <a href="https://jbengler.github.io/tidyplots/articles/Color-schemes.html">Color
-schemes</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="split">Split<a class="anchor" aria-label="anchor" href="#split"></a>
 </h3>
+<p>When you have a complex dataset, you might want split the plot into
+multiple subplots. In tidyplots, this can be done with the function
+<code><a href="../reference/split_plot.html">split_plot()</a></code>.</p>
+<p>Starting with the <code>study</code> dataset, you could plot the
+<code>score</code> against the treatment <code>group</code> and split
+this plot by <code>dose</code> into a high dose and a low dose plot.</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_error_bar.html">add_error_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">dose</span><span class="op">)</span></span></code></pre></div>
+<p><img src="tidyplots_files/figure-html/unnamed-chunk-24-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
+<div class="section level3">
+<h3 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+</h3>
+<p>The classical way to output a plot is to write it to a
+<code>PDF</code> or <code>PNG</code> file. This can be easily done by
+piping the plot into the function <code><a href="../reference/save_plot.html">save_plot()</a></code>.
+Conveniently, <code><a href="../reference/save_plot.html">save_plot()</a></code> also gives back the plot it
+received, allowing it to be used in the middle of a pipeline. If
+<code><a href="../reference/save_plot.html">save_plot()</a></code> is a the end of pipeline, the plot will still
+be rendered on screen, providing a visual confirmation of what was saved
+to file.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_error_bar.html">add_error_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="st">"my_plot.pdf"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
-</h2>
 </div>
 <div class="section level2">
 <h2 id="whats-more">What’s more?<a class="anchor" aria-label="anchor" href="#whats-more"></a>
 </h2>
 <ul>
-<li>Link to Reference</li>
-<li>Link to Advanced plotting</li>
+<li><p><a href="https://jbengler.github.io/tidyplots/reference/index.html">Function
+reference</a><br>
+A great overview of all tidyplots functions</p></li>
+<li><p><a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html">Advanced
+plotting</a><br>
+An article about advanced plotting techniques and workflows</p></li>
+<li><p><a href="https://jbengler.github.io/tidyplots/articles/Visualizing-data.html">Visualizing
+data</a><br>
+An article with examples for common data visualizations</p></li>
+<li><p><a href="https://jbengler.github.io/tidyplots/articles/Color-schemes.html">Color
+schemes</a><br>
+An article about the use of color schemes in tidyplots</p></li>
+<li><p><a href="https://jbengler.github.io/tidyplots/articles/Design-principles.html">Design
+principles</a><br>
+An article about the design choices in tidyplots, including notable
+differences to ggplot2</p></li>
 </ul>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
