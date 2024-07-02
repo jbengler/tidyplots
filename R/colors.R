@@ -85,12 +85,12 @@ make_palette <- function(palette, reverse = FALSE, saturation = 1, ...) {
 
 scale_color_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
   pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
-  ggplot2::discrete_scale("colour", paste0("my_", palette), palette = pal, ...)
+  ggplot2::discrete_scale("colour", palette = pal, ...)
 }
 
 scale_fill_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
   pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
-  ggplot2::discrete_scale("fill", paste0("my_", palette), palette = pal, ...)
+  ggplot2::discrete_scale("fill", palette = pal, ...)
 }
 
 scale_color_c <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {

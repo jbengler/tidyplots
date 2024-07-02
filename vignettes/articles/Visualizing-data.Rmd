@@ -1,17 +1,8 @@
 ---
-title: "Visualizing Data"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Visualizing Data}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: "Visualizing data"
 ---
 
 ```{r, include = FALSE}
-# knitr::opts_chunk$set(
-#   collapse = TRUE,
-#   comment = "#>"
-# )
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -34,6 +25,12 @@ library(tidyplots)
 # Distributions
 
 ```{r}
+
+distributions %>% 
+  tidyplot(name, value) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
+  add_error_bar() %>% 
+  add_data_points_beeswarm()
 
 energy %>% 
   tidyplot(x = power) %>% 
@@ -67,12 +64,6 @@ energy %>%
 
 
 # Proportions
-
-## Subproportions
-
-## Megadrom
-
-### Subsubheading
 
 ```{r}
 

@@ -200,15 +200,6 @@ adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, le
 }
 
 
-#' Flip x and y axis
-#' @param ... Arguments passed on to the `ggplot2::coord_flip()`.
-#' @inherit common_arguments
-#' @export
-adjust_flip_plot <- function(plot, ...) {
-  check_tidyplot(plot)
-  plot + ggplot2::coord_flip(...)
-}
-
 #' Adjust description
 #' @param title bla
 #' @param x_axis_title bla
@@ -222,6 +213,12 @@ adjust_description <- function(plot, title = ggplot2::waiver(), x_axis_title = g
                               y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),
                               caption = ggplot2::waiver(), ...) {
   check_tidyplot(plot)
+  if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
+  if (!is_waiver(x_axis_title)) x_axis_title <- tidyplot_parser(as.character(x_axis_title))
+  if (!is_waiver(y_axis_title)) y_axis_title <- tidyplot_parser(as.character(y_axis_title))
+  if (!is_waiver(legend_title)) legend_title <- tidyplot_parser(as.character(legend_title))
+  if (!is_waiver(caption)) caption <- tidyplot_parser(as.character(caption))
+
   colour <- fill <- legend_title
   plot + ggplot2::labs(x = x_axis_title, y = y_axis_title, colour = colour, fill = fill,
                      title = title, caption = caption, ...)

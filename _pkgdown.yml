@@ -11,6 +11,15 @@ figures:
   fig.width: 5
   fig.height: 2.5
 
+articles:
+- title: Articles
+  navbar: ~
+  contents:
+  - articles/Visualizing-data
+  - articles/Color-schemes
+  - articles/Advanced-plotting
+  - articles/Design-principles
+
 reference:
 - title:
   desc: >
@@ -54,8 +63,12 @@ reference:
   - starts_with("add_title")
   - starts_with("add_text_labels")
   - starts_with("add_reference")
+- title: Remove
+  desc: Remove plot components.
+- contents:
+  - starts_with("remove")
 - title: Adjust
-  desc: Adjust plot components, properties, data labels and themes.
+  desc: Adjust plot components, properties, and data labels.
 - subtitle: Components & properties
 - contents:
   - starts_with("adjust_colors")
@@ -65,17 +78,17 @@ reference:
   - starts_with("adjust_plot_area_size")
   - starts_with("adjust_plot_area_padding")
   - starts_with("adjust_x_axis")
-  - starts_with("adjust_flip_plot")
 - subtitle: Axis and color labels
 - contents:
   - starts_with("rename")
   - starts_with("reorder")
   - starts_with("sort")
   - starts_with("reverse")
+- title: Themes
+  desc: Finetune the appearance of the plot with themes and color schemes.
 - subtitle: Themes
 - contents:
   - starts_with("theme")
-  - starts_with("remove")
 - subtitle: Color schemes
 - contents:
   - starts_with("colors_discrete")
@@ -93,10 +106,11 @@ reference:
   - save_plot
 - title: Helpers
 - contents:
-  - add
-  - starts_with("format_")
   - ends_with("_rows")
+  - add
   - starts_with("as_tidyplot")
+  - starts_with("flip_plot")
+  - starts_with("format_")
 - title: Data
 - contents:
   - starts_with("animals")

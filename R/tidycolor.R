@@ -37,10 +37,10 @@ new_color_scheme <- function(x, name = "Untitled color scheme", reverse = FALSE)
 #' @md
 #'
 #' @export
-colors_discrete_metro <- new_color_scheme(color_palettes$metro, "colors_discrete_metro")
+colors_discrete_metro <- new_color_scheme(c("#4DACD6","#4FAE62","#F6C54D","#E37D46","#C02D45"), "colors_discrete_metro")
 #' @rdname colors_discrete_metro
 #' @export
-colors_discrete_circle <- new_color_scheme(color_palettes$color_circle_vivid, "colors_discrete_circle")
+colors_discrete_circle <- new_color_scheme(c("#939393","#644296","#F08533","#D1352C","#559E3F","#3B78B0"), "colors_discrete_circle")
 #' @rdname colors_discrete_metro
 #' @export
 colors_discrete_candy <- new_color_scheme(c("#9b5de5", "#f15bb5", "#fee440", "#00bbf9", "#00f5d4"), "colors_discrete_candy")
@@ -97,7 +97,9 @@ colors_continuous_mako <- new_color_scheme(viridisLite::mako(265), "colors_conti
 colors_continuous_turbo <- new_color_scheme(viridisLite::turbo(265), "colors_continuous_turbo")
 #' @rdname colors_continuous_viridis
 #' @export
-colors_continuous_bluepinkyellow <- new_color_scheme(color_palettes$blue_pink_yellow, "colors_continuous_bluepinkyellow")
+colors_continuous_bluepinkyellow <- new_color_scheme(c(
+  "#00034D","#000F9F","#001CEF","#241EF5","#5823F6","#A033E0","#E85AB1",
+  "#F1907C","#F4AF63","#FCE552","#FFFB6D"), "colors_continuous_bluepinkyellow")
 
 
 #' Diverging color schemes
@@ -116,7 +118,10 @@ colors_continuous_bluepinkyellow <- new_color_scheme(color_palettes$blue_pink_ye
 #' @md
 #'
 #' @export
-colors_diverging_blue2brown <- new_color_scheme(color_palettes$blue2brown, "colors_diverging_blue2brown")
+colors_diverging_blue2brown <- new_color_scheme(c(
+  "#1961A5","#2671B5","#2D80BF","#268CC9","#119DD8","#00B2EB","#66C5EF",
+  "#C4E5F8","#FEFCF6","#FDEEB8","#FCDD67","#F6C445","#E78B43","#DD5642",
+  "#DB3E34","#CA3632","#B3322E"), "colors_diverging_blue2brown")
 #' @rdname colors_diverging_blue2brown
 #' @export
 colors_diverging_blue2red <- new_color_scheme(grDevices::colorRampPalette(c("#0000FF","#FFFFFF","#FF0000"))(9), "colors_diverging_blue2red")

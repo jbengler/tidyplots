@@ -61,6 +61,15 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
   plot
 }
 
+#' Flip x and y axis
+#' @param ... Arguments passed on to the `ggplot2::coord_flip()`.
+#' @inherit common_arguments
+#' @export
+flip_plot <- function(plot, ...) {
+  check_tidyplot(plot)
+  plot + ggplot2::coord_flip(...)
+}
+
 #' Subset data rows
 #' @export
 all_rows <- function(){
