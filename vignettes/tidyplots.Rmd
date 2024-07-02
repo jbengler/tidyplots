@@ -186,7 +186,10 @@ study %>%
   add_data_points() %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_error_bar() %>% 
-  adjust_description(title = "This is my fantastic plot", x_axis_title = "Treatment group", y_axis_title = "Disease score", legend_title = "")
+  adjust_description(title = "This is my fantastic plot",
+                     x_axis_title = "Treatment group",
+                     y_axis_title = "Disease score",
+                     legend_title = "")
 ```
 
 Note that I removed the legend title by setting it to an empty string `legend_title = ""`. This is alternative to `remove_legend_title()`, however the result is not exactly the same. I am sure you will figure out the difference.
@@ -199,7 +202,10 @@ study %>%
   add_data_points() %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_error_bar() %>% 
-  adjust_description(title = "$H[2]*O$", x_axis_title = "$E==m*c^{2}$", y_axis_title = "$TNF*alpha~level$", legend_title = "")
+  adjust_description(title = "$H[2]*O$",
+                     x_axis_title = "$E==m*c^{2}$",
+                     y_axis_title = "$TNF*alpha~level$",
+                     legend_title = "")
 ```
 
 Another common task is to adjust the colors in your plot. You can do this using the `adjust_colors()` function.
@@ -283,7 +289,7 @@ Of course, there are many more `adjust_` funtions that you can find in the [Func
 
 ## Themes
 
-Themes are a great way to modify the look an feel of you plot without changing the representation of the data. You can stay with the defult tidyplots theme.
+Themes are a great way to modify the look an feel of you plot without changing the representation of the data. You can stay with the default tidyplots theme.
 
 ```{r}
 study %>% 
@@ -294,7 +300,7 @@ study %>%
   theme_tidyplot()
 ```
 
-Or try something more ggplot2.
+Or try something more like ggplot2.
 
 ```{r}
 study %>% 
@@ -305,7 +311,7 @@ study %>%
   theme_ggplot2()
 ```
 
-Or minimal.
+Or more minimal.
 
 ```{r}
 study %>% 
@@ -317,17 +323,47 @@ study %>%
   remove_x_axis_line()
 ```
 
-To learn more about these color schemes have a look at the article [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html).
-
 ## Split
 
+When you have a complex dataset, you might want split the plot into multiple subplots. In tidyplots, this can be done with the function `split_plot()`.
 
+Starting with the `study` dataset, you could plot the `score` against the treatment `group` and split this plot by `dose` into a high dose and a low dose plot.
 
-# Output
+```{r}
+study %>% 
+  tidyplot(x = group, y = score, color = group) %>% 
+  add_data_points() %>% 
+  add_error_bar() %>% 
+  add_mean_dash() %>% 
+  split_plot(by = dose)
+```
 
+## Output
 
+The classical way to output a plot is to write it to a `PDF` or `PNG` file. This can be easily done by piping the plot into the function `save_plot()`. Conveniently, `save_plot()` also gives back the plot it received, allowing it to be used in the middle of a pipeline. If `save_plot()` is a the end of pipeline, the plot will still be rendered on screen, providing a visual confirmation of what was saved to file.
+
+```{r eval=FALSE}
+study %>% 
+  tidyplot(x = group, y = score, color = group) %>% 
+  add_data_points() %>% 
+  add_error_bar() %>% 
+  add_mean_dash() %>% 
+  save_plot("my_plot.pdf")
+```
 
 # What's more?
 
-- Link to Reference
-- Link to Advanced plotting
+- [Function reference](https://jbengler.github.io/tidyplots/reference/index.html)  
+A great overview of all tidyplots functions
+
+- [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
+An article about advanced plotting techniques and workflows
+
+- [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
+An article with examples for common data visualizations
+
+- [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
+An article about the use of color schemes in tidyplots
+
+- [Design principles](https://jbengler.github.io/tidyplots/articles/Design-principles.html)  
+An article about the design choices in tidyplots, including notable differences to ggplot2
