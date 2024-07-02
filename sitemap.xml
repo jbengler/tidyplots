@@ -10,16 +10,13 @@
     <loc>https://jbengler.github.io/tidyplots/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/articles/Colors.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/articles/Custom-styling.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/articles/Color-schemes.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/articles/More-tests.html</loc>
-  </url>
-  <url>
-    <loc>https://jbengler.github.io/tidyplots/articles/Testing.html</loc>
+    <loc>https://jbengler.github.io/tidyplots/articles/Design-principles.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/articles/Visualizing-data.html</loc>
@@ -112,9 +109,6 @@
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_description.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/adjust_flip_plot.html</loc>
-  </url>
-  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/adjust_font.html</loc>
   </url>
   <url>
@@ -164,6 +158,9 @@
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/eu_countries.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/flip_plot.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/format_number.html</loc>
