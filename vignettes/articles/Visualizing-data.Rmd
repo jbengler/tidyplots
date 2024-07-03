@@ -17,15 +17,17 @@ knitr::opts_chunk$set(
 
 ```
 
-```{r setup}
-library(tidyplots)
-```
+::: {.lead}
+In this article, we will explore different types of datasets and showcase the application of tidyplots to extract meaningful insights. We will cover the plotting of raw data points, amounts, and heatmaps, as well as measures for central tendency, dispersion, and uncertainty. We will conclude by visualizing distributions and proportions, and adding statistical comparisons and annotations.
+:::
 
 # Data points
 
 Plotting the raw data points is probably the most bare bone way to visualize a dataset. The corresponding function in tidyplots is called `add_data_points()`.
 
 ```{r}
+library(tidyplots)
+
 animals %>% 
   tidyplot(x = weight, y = size) %>% 
   add_data_points()

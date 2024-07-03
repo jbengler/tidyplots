@@ -16,6 +16,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+::: {.lead}
+In this article, we will explore the design choices made in tidyplots, including notable differences to ggplot2.
+We will cover.
+We will conclude by.
+:::
+
 ```{r setup}
 library(tidyplots)
 ```

@@ -17,6 +17,13 @@ knitr::opts_chunk$set(
 
 ```
 
+::: {.lead}
+In this article, we will demonstrate the use of color schemes in tidyplots.
+built in and construct new.
+We will cover.
+We will conclude by.
+:::
+
 ```{r setup}
 library(tidyplots)
 ```
