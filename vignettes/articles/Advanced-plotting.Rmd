@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ::: {.lead}
-In this article, we will explore advanced plotting techniques offered in tidyplots. We will cover the rasterizing of individual plot components, data subsetting for highlighting selected data points, and the construction of powerful plotting pipelines. Moreover, we will discuss the visualization of paired and missing data. We will conclude by introducing the concepts of plot orientation and plot area padding.
+In this article, we will explore advanced plotting techniques offered in tidyplots. We will cover the rasterizing of individual plot components, data subsetting for highlighting selected data points, and the construction of powerful plotting pipelines. Moreover, we will discuss the visualization of paired and missing data. We will conclude by introducing the concepts of plot orientation, dodging and plot area padding.
 :::
 
 # Raster versus vector
@@ -274,4 +274,6 @@ time_course %>%
 ```
 
 # Padding
+
+# Dodging
 

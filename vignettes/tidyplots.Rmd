@@ -17,12 +17,12 @@ knitr::opts_chunk$set(
 ```
 
 ::: {.lead}
-This getting started guide aims to empower individuals without a programming background to engage in code-based plotting with tidyplots. We will start by covering essential software tools and discussing data preparation. Next, we will introduce the tidyplots workflow, which includes adding, removing, and adjusting plot components, as well as applying themes and multiplot layouts. Finally, we'll conclude with additional resources for further exploration of code-based plotting.
+This getting started guide aims to empower individuals without a programming background to engage in code-based plotting with tidyplots. We will start by covering essential software tools and discussing data preparation. Next, we will introduce the tidyplots workflow, which includes adding, removing, and adjusting plot components. Finally, we will showcase the application of themes and multiplot layouts.
 :::
 
 # Prerequisites
 
-You never used R for scientific plots? Great to have you here! To get you started, we will install a couple of software tools to setup your new working environment.
+You never generated code-based scientific plots? Great to have you here! To get you started, we will install a couple of software tools to setup your new working environment.
 
 ## Install R and RStudio Desktop
 
@@ -356,12 +356,12 @@ Conveniently, `save_plot()` also gives back the plot it received, allowing it to
 
 This getting started guide is meant to give a high level overview of the tidyplots workflow. To dive deeper into more specific aspects of tidyplots, here a couple of resources.
 
-## Reference
+## tidyplots reference
 
 - [Function reference](https://jbengler.github.io/tidyplots/reference/index.html)  
 A great overview of all tidyplots functions
 
-## Articles
+## tidyplots articles
 
 - [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
 An article with examples for common data visualizations
@@ -374,3 +374,14 @@ An article about the use of color schemes in tidyplots
 
 - [Design principles](https://jbengler.github.io/tidyplots/articles/Design-principles.html)  
 An article about the design choices in tidyplots, including notable differences to ggplot2
+
+## Other ressources
+
+- [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)   
+Free online book by Garrett Grolemund
+
+- [R for Data Science](https://r4ds.hadley.nz)  
+Free online book by Hadley Wickham
+
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)  
+Free online book by Claus O. Wilke

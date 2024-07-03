@@ -10,7 +10,7 @@
 #' @inheritParams ggplot2::geom_boxplot
 #'
 #' @export
-add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = FALSE,
+add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = TRUE,
                         box_width = 0.6, whiskers_width = 0.5, outlier.size = 0.5, coef = 1.5,
                         outlier.shape = 19, linewidth = 0.25, preserve = "total", ...) {
   check_tidyplot(plot)
@@ -21,11 +21,10 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
     coef = 0
     whiskers_width = box_width
   }
-  if (show_outliers == FALSE) outliers = FALSE
   plot +
     ggplot2::stat_boxplot(geom ='errorbar', width = whiskers_width, position = position,
                           linewidth = linewidth, coef = coef) +
-    ggplot2::geom_boxplot(outliers = outliers, outlier.shape = outlier.shape, outlier.size = outlier.size,
+    ggplot2::geom_boxplot(outliers = show_outliers, outlier.shape = outlier.shape, outlier.size = outlier.size,
                           width = box_width, position = position, linewidth = linewidth, coef = coef, ...)
 }
 

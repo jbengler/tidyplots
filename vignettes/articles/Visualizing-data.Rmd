@@ -168,7 +168,7 @@ gene_expression %>%
   dplyr::glimpse()
 ```
 
-I used the `dplyr::glimpse()` function from the dplyr package get a nice overview of all variables including in the dataset. We will start by plotting the `expression` values of each `external_gene_name` across the `sample` variable.
+We will start by plotting the `expression` values of each `external_gene_name` across the `sample` variable.
 
 ```{r}
 gene_expression %>% 
@@ -196,7 +196,7 @@ gene_expression %>%
 
 Now it much easier to appreciate the dynamics of individual genes across the samples on the x axis.
 
-However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, in the dataset there is a variable called `direction`, which is either "up" or "down". Let's use this variable to sort our y axis.
+However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, in the dataset there is a variable called `direction`, which classifies genes as being either "up" or "down" regulated. Let's use this variable to sort our y axis.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 
@@ -208,310 +208,406 @@ gene_expression %>%
 
 # Central tendency
 
-
+In cases with multiple data points per experimental group, the `mean` and the `median` are a great way to compute a typical center value for the group, also known as central tendency measure. In tidyplots, these function start with `add_mean_` or `add_median_`.
 
 ```{r}
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute()
+study %>% 
+  tidyplot(x = treatment, y = score) %>% 
+  add_data_points_beeswarm() %>% 
+  add_mean_dash()
+```
 
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_seaside)
+As for the `count` and `sum` function, the second part of the function name is dedicated to the graphical representation. These include the representation as `bar`, `dash`, `dot`, `value`, `line` or `area`. Of course, these different representations can also be combined. Like in this case `line` and `dot`.
 
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_candy)
+```{r}
+time_course %>% 
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  add_mean_line() %>% 
+  add_mean_dot()
+```
 
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_pastel)
+Or in this case `line` and `area`.
 
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_circle)
+```{r}
+time_course %>% 
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  add_mean_line(linewidth = 1) %>% 
+  add_mean_area(alpha = 0.2)
+```
+
+In case you ask yourself why I included `dodge_width = 0` in all `tidyplot()` calls used to show a `line` or `area`, you might want to learn more about dodging in the article about [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html).
+
+Back to representations of central tendency, here is one more example using `bar` and `value`.
+
+```{r}
+study %>% 
+  tidyplot(x = treatment, y = score) %>% 
+  add_mean_bar() %>% 
+  add_mean_value()
+```
+
+You could also plot the `mean` and the `median` together to explore in which cases they diverge. In the example below the `mean` is shown in orange and the `median` in purple.
+
+```{r}
+study %>% 
+  tidyplot(x = treatment, y = score) %>% 
+  add_data_points_beeswarm() %>% 
+  add_mean_dash(color = "orange") %>% 
+  add_median_dash(color = "purple")
 ```
 
 # Dispersion & uncertainty
 
-```{r}
+To complement the central tendency measure, it is often helpful to provide information about the variability or dispersion of the data points. Such measures include the standard `error` of the mean, the standard deviation `sd`, the `range` from the highest to the lowest data point or the 95% confidence interval `ci95`.
 
+A classical representation of dispersion is an error `bar`.
+
+```{r}
+time_course %>% 
+  tidyplot(x = day, y = score, color = treatment) %>% 
+  add_mean_line() %>% 
+  add_mean_dot() %>% 
+  add_error_bar(width = 2)
+```
+
+Or the use of a semitransparent `ribbon`.
+
+```{r}
+time_course %>% 
+  tidyplot(x = day, y = score, color = treatment) %>% 
+  add_mean_line() %>% 
+  add_mean_dot() %>% 
+  add_error_ribbon()
+```
+
+Another widely used alternative, especially for not normally distributed data is the use of `violin` or `boxplot`s. Starting with the `violin`, the shape of these plots resembles the underlying distribution of the data points.
+
+```{r}
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
+  add_violin()
+```
+
+These can be further augmented by adding, for example, the 0.5 quantile and the underlying data points.
+
+```{r}
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
+  add_violin(draw_quantiles = 0.5) %>% 
+  add_data_points_beeswarm()
+```
+
+The `boxplot` is the more classical approach, in which the quantiles are visualized by a box and whiskers.
+
+```{r}
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
+  add_boxplot()
+```
+
+Finally, while not strictly being a measure of central tendency you can also fit a curve though your data in order derive an abstracted representation of your data.
+
+```{r}
+time_course %>% 
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  add_curve_fit()
 ```
 
 # Distribution
 
-```{r}
-distributions %>% 
-  tidyplot(name, value) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_error_bar() %>% 
-  add_data_points_beeswarm()
+When looking at a single distribution of values, a classical approach for visualization is a `histogram`.
 
+```{r}
 energy %>% 
   tidyplot(x = power) %>% 
   add_histogram()
+```
 
-energy %>% 
-  tidyplot(x = power) %>% 
-  add_density_curve()
+To represent the density of values along the x axis another approach is a `density_histogram` or `density_curve`, which also can be combined in one plot.
 
+```{r}
 energy %>% 
   tidyplot(x = power) %>% 
   add_density_histogram() %>% 
   add_density_curve()
+```
 
-# multiple distributions
+If you want to compare multiple distributions, again `violin` or `boxplot` are two potential solutions.
 
-energy %>% 
-  tidyplot(x = energy_type, y = power, color = energy_type) %>% 
-  add_violin()
-
-energy %>% 
-  tidyplot(x = energy_type, y = power, color = energy_type) %>% 
-  add_data_points_beeswarm(jitter_width = 0.8, alpha = 0.3)
-
-energy %>% 
-  tidyplot(x = energy_type, y = power, color = energy_type) %>% 
+```{r}
+distributions %>% 
+  tidyplot(x = name, y = value) %>% 
   add_violin() %>% 
-  add_data_points_beeswarm(jitter_width = 0.8, alpha = 0.3)
+  add_data_points_beeswarm()
 ```
 
 # Proportion
 
+Proportional data provides insights into the proportion or percentage that each individual category contributes to the total. To explore the visualization of proportional data in tidyplots, let's introduce the `energy` dataset.
+
 ```{r}
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  dplyr::glimpse()
+```
+
+As you might appreciate, this dataset contains the `power` in gigawatt produced from different `energy_source`s in Germany between the `year`s 2002 and 2023. Although this might arguably not be the best plot, let's start with a `pie` plot.
+
+```{r}
+energy %>% 
+  tidyplot(color = energy_type) %>% 
+  add_pie()
+```
+
+The above plot represents the count of values across the different `energy_type` categories.
+
+However, we might be more interested, in the contribution of each `energy_type` to the total `power` production. Therefore, we have to provide the variable `power` as a `y` parameter to the `tidyplots()` function.
+
+```{r}
+energy %>% 
+  tidyplot(y = power, color = energy_type) %>% 
+  add_donut()
+```
+
+Now we can appreciate the contribution of each energy type. Note that I also changed the `pie` for a `donut` plot, which is basically a pie chart with a white hole in the middle.
+
+The main criticism of pie and donut plots stems from difficulty of the human brain to faithfully extract the proportions from the plot. For example, has Fossil or Renewable power a bigger share in the plot?
+
+Another graphical representation is a `barstack` plot.
+
+```{r}
+energy %>% 
+  tidyplot(y = power, color = energy_type) %>% 
   add_barstack_absolute()
+```
 
-energy %>% 
-  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(y = power, color = energy_source) %>% 
-  add_pie() %>% 
-  split_plot(by = year)
+Here it might be slightly easier to compare the energy types. However to really pinpoint this, we probably need to go back to a classical bar plot.
 
+```{r}
 energy %>% 
+  tidyplot(x = energy_type, y = power) %>% 
+  add_sum_bar() %>% 
+  add_sum_value() %>% 
+  reorder_x_axis_labels("Renewable")
+```
+
+Now we can appreciate that Renewable power produced the most energy in the time between 2002 and 2023.
+
+However, if we want to visualize proportional data across time or another variable, `barstack` plots can still be informative.
+
+```{r}
+energy %>% 
+  tidyplot(x = year, y = power, color = energy_type) %>% 
+  add_barstack_absolute()
+```
+
+Moreover, to see the relative instead of the absolute contribution, we can use the `add_barstack_relative()` function.
+
+```{r}
+energy %>% 
+  tidyplot(x = year, y = power, color = energy_type) %>% 
+  add_barstack_relative()
+```
+
+A similar plot can be achieved using an `areastack`.
+
+```{r}
+energy %>% 
+  tidyplot(x = year, y = power, color = energy_type) %>% 
+  add_areastack_relative()
+```
+
+In both plots, the increasing contribution of renewable energy to the total energy production becomes apparent.
+
+This can also be shown using donut plots. However, we need to downsample the dataset to 4 representative years.
+
+```{r}
+energy %>% 
+  # downsample to 4 representative years
   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(y = power, color = energy_source) %>% 
+  # start plotting
+  tidyplot(y = power, color = energy_type) %>% 
   add_donut() %>% 
+  adjust_colors(new_colors = c("Fossil" = "grey",
+                               "Nuclear" = "#F6C54D",
+                               "Renewable" = "#4FAE62",
+                               "Other" = "#C02D45")) %>%  
   split_plot(by = year)
-
-# pie and donut
-
-animals %>% 
-  tidyplot(y = weight, color = family) %>% 
-  add_pie()
-
-animals %>% 
-  tidyplot(y = weight, color = family) %>% 
-  add_donut()
-
-animals %>% 
-  tidyplot(color = family) %>% 
-  add_pie()
-
-animals %>% 
-  tidyplot(color = family) %>% 
-  add_donut()
-
-# add_barstack_absolute
-
-animals %>% 
-  tidyplot(color = family) %>% 
-  add_barstack_absolute()
-
-animals %>% 
-  tidyplot(x = diet, color = family) %>% 
-  add_barstack_absolute()
-
-## with y supplied
-
-animals %>% 
-  tidyplot(y = diet, color = family) %>% 
-  add_barstack_absolute()
-
-animals %>% 
-  tidyplot(x = diet, color = family) %>% 
-  add_barstack_absolute()
-
-animals %>% 
-  tidyplot(x = diet, y = speed, color = family) %>% 
-  add_barstack_absolute()
-
-# add_barstack_absolute
-
-animals %>% 
-  tidyplot(x = diet, color = family) %>% 
-  add_barstack_relative()
-
-animals %>% 
-  tidyplot(x = diet, color = family) %>% 
-  add_barstack_absolute(alpha = 0.3) %>% 
-  add_areastack_absolute()
-
-## with y supplied
-
-animals %>% 
-  tidyplot(x = diet, y = speed, color = family) %>% 
-  add_barstack_absolute(alpha = 0.3) %>% 
-  add_areastack_absolute()
-
-animals %>% 
-  tidyplot(y = diet, color = family) %>% 
-  add_barstack_relative()
-
-animals %>% 
-  tidyplot(x = diet, y = speed, color = family) %>% 
-  add_barstack_relative()
 ```
 
-# Statistical comparison
+Now let's have a look at a related dataset showing one week of the energy data in higher resolution.
 
 ```{r}
-
-```
-
-# Annotation
-
-```{r}
-
-```
-
-
-
-```{r}
-# curves
-
-energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
-  add_line() %>% 
-  remove_plot_area_padding()
-
-energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
-  add_area()
-
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
   add_areastack_absolute()
+```
 
+In this plot, one can appreciate the higher contribution of solar power during day time in comparison to night time.
+
+Also this plot can be shown as a relative areastack.
+
+```{r}
 energy_week %>% 
   tidyplot(date, power, color = energy_source) %>% 
   add_areastack_relative()
-
-###
-
-energy %>% 
-  tidyplot(year, power, color = energy_type) %>% 
-  add_barstack_absolute()
-
-energy %>% 
-  tidyplot(year, power, color = energy_type) %>% 
-  add_barstack_relative()
-
-new_colors <- c("Fossil" = "grey",
-               "Nuclear" = "#F6C54D",
-               "Renewable" = "#4FAE62",
-               "Other" = "#C02D45")
-
-energy %>% 
-  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(y = power, color = energy_type) %>% 
-  add_pie() %>% 
-  adjust_colors(new_colors = new_colors) %>% 
-  split_plot(by = year)
-
-energy %>% 
-  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(y = power, color = energy_type) %>% 
-  add_donut() %>% 
-  adjust_colors(new_colors = new_colors) %>%  
-  split_plot(by = year)
-
-energy %>% 
-  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(x = year, y = power, color = energy_type, dodge_width = 0) %>% 
-  add_sum_line() %>%
-  add_sum_dot() %>% 
-  adjust_colors(new_colors = new_colors)
-
-energy %>% 
-  tidyplot(x = year, y = power, color = energy_type) %>% 
-  add_areastack_absolute() %>% 
-  adjust_colors(new_colors = new_colors)
-
-energy %>% 
-  tidyplot(x = year, y = power, color = energy_source) %>% 
-  add_areastack_absolute()
-
-energy %>% 
-  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(x = year, y = power, color = energy_type) %>% 
-  add_areastack_relative() %>% 
-  adjust_colors(new_colors = new_colors)
-
-energy_week %>% 
-  tidyplot(date, power, color = energy_type) %>% 
-  add_sum_line() %>%
-  adjust_colors(new_colors = new_colors) %>% 
-  remove_plot_area_padding()
-
-energy_week %>% 
-  dplyr::summarise(power = sum(power), .by = c(date, energy_type)) %>% 
-  tidyplot(date, power, color = energy_type) %>% 
-  add_area() %>% 
-  adjust_colors(new_colors = new_colors)
-
-energy_week %>% 
-  tidyplot(date, power, color = energy_type) %>% 
-  add_areastack_absolute() %>% 
-  adjust_colors(new_colors = new_colors)
-
-energy_week %>%
-  tidyplot(date, power, color = energy_type) %>% 
-  add_areastack_relative() %>% 
-  adjust_colors(new_colors = new_colors)
-
 ```
+
+This nicely illustrates how wind energy closes the solar gap during the night, however when wind is weak, like on September 10, fossil energy sources need to kick in to fill the gap.
+
+# Statistical comparison
+
+To test for differences between experimental groups, tidyplots offers the funtions `add_stats_asterisks()` and `add_stats_pvalue()`. While the first one includes asterisks for symbolizing significance.
+
+```{r}
+study %>% 
+  tidyplot(x = dose, y = score, color = group) %>% 
+  add_mean_dash() %>% 
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_stats_asterisks()
+```
+
+`add_stats_pvalue()` provides the computed _p_ value.
+
+```{r}
+study %>% 
+  tidyplot(x = dose, y = score, color = group) %>% 
+  add_mean_dash() %>% 
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_stats_pvalue()
+```
+
+As you might have noted, when using these functions, a caption is automatically included that provides details about the statistical testing performed. The default is a Student's _t_ test without multiple comparison adjustment.
+
+Both can be changed by providing the `method` and `p.adjust.method` parameters.
+
+For example, lets perform a Wilcoxon signed-rank test with Benjamini--Hochberg adjustment.
+
+```{r}
+study %>% 
+  tidyplot(x = dose, y = score, color = group) %>% 
+  add_mean_dash() %>% 
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_stats_pvalue(method = "wilcoxon", p.adjust.method = "BH")
+```
+
+In non paired data, it might also make sense to compare all experimental conditions to a control condition. For example, let's say treatment "A" is our control.
 
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_ci95_bar()
-
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
-  add_ci95_ribbon() %>% 
-  add_mean_line() %>% 
-  add_data_points_beeswarm()
-
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
-  add_ci95_ribbon() %>% 
-  add_mean_line() %>% 
-  add_data_points_beeswarm() %>% 
-  adjust_colors("orange")
-
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_stats_pvalue(ref.group = "A")
 ```
+
+In some scenarios you have a mixture of significant and non-significant _p_ values.
 
 ```{r}
-
-energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
-  add_line() %>% 
-  remove_plot_area_padding()
-
-energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
-  add_area()
-
-energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
-  add_data_points()
-
+gene_expression %>% 
+  # filter to one gene
+  dplyr::filter(external_gene_name == "Apol6") %>% 
+  # start plotting
+  tidyplot(x = condition, y = expression, color = sample_type) %>% 
+  add_mean_dash() %>% 
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_stats_pvalue()
 ```
 
+Here you can choose to hide the non-significant _p_ value using `hide.ns = TRUE`.
+
+```{r}
+gene_expression %>% 
+  # filter to one gene
+  dplyr::filter(external_gene_name == "Apol6") %>% 
+  # start plotting
+  tidyplot(x = condition, y = expression, color = sample_type) %>% 
+  add_mean_dash() %>% 
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_stats_pvalue(hide.ns = TRUE)
+```
+
+Finally, if you want to hide the caption with statistical information you can do this by providing `include_info = FALSE`.
+
+```{r}
+gene_expression %>% 
+  # filter to one gene
+  dplyr::filter(external_gene_name == "Apol6") %>% 
+  # start plotting
+  tidyplot(x = condition, y = expression, color = sample_type) %>% 
+  add_mean_dash() %>% 
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_stats_pvalue(hide.ns = TRUE, include_info = FALSE)
+```
+
+There are many more things you can do with statistical comparisons. Just check out the documentation of `add_stats_pvalue()` and the underlying function `ggpubr::geom_pwc()`.
+
+# Annotation
+
+Sometimes you wish to add annotations to provide the reader with important additional information. For example, tidyplots let's you add a `title` and a `caption`.
+
+```{r}
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
+  add_mean_dash() %>% 
+  add_error_bar() %>% 
+  add_data_points() %>% 
+  add_title("Interesting study") %>% 
+  add_caption("Here is some more detail how the study was performed")
+```
+
+In other cases you might want to highlight specific data points or reference values in the plot. Let's take the `animals` dataset and plot `speed` versus `weight`.
+
+```{r}
+animals %>% 
+  tidyplot(x = weight, y = speed) %>% 
+  add_data_points()
+```
+
+Here it might be interesting to have closer at the extreme values. First, let's highlight the heaviest and the fastest animal.
+
+```{r}
+animals %>% 
+  tidyplot(x = weight, y = speed) %>% 
+  add_data_points() %>% 
+  add_data_points(data = max_rows(weight, 1), color = "red", shape = 1, size = 2) %>% 
+  add_data_points(data = max_rows(speed, 1), color = "red", shape = 1, size = 2)
+```
+
+Now it would interesting to know the names of these animals. We can plot the names of all animals.
+
+```{r}
+animals %>% 
+  tidyplot(x = weight, y = speed) %>% 
+  add_data_points() %>% 
+  add_text_labels(animal, max.overlaps = Inf)
+```
+
+This looks a little bit too busy. So let's restrict the labels to the 3 heaviest and the 3 fastest animals.
+
+```{r}
+animals %>% 
+  tidyplot(x = weight, y = speed) %>% 
+  add_data_points() %>% 
+  add_text_labels(data = max_rows(weight, 3), animal) %>% 
+  add_text_labels(data = max_rows(speed, 3), animal)
+```
+
+There is lot tweaking that can be done with text labels. For more details have a look at the documentation of `add_text_labels()` and the underlying function `ggrepel::geom_text_repel()`.
+
+As one last thing, let's add some reference lines, to highlight specific values on the x and y axis.
+
+```{r}
+animals %>% 
+  tidyplot(x = weight, y = speed) %>% 
+  add_reference_lines(x = 4000, y = c(100, 200)) %>% 
+  add_data_points() %>% 
+  add_text_labels(data = max_rows(weight, 3), animal) %>% 
+  add_text_labels(data = max_rows(speed, 3), animal)
+```

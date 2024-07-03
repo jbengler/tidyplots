@@ -29,6 +29,32 @@ library(tidyplots)
 ```
 
 ```{r}
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute()
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_seaside)
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_candy)
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_pastel)
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_circle)
+```
+
+```{r}
 
 colors_continuous_viridis
 colors_discrete_metro
