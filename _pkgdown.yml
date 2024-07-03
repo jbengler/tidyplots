@@ -9,14 +9,14 @@ authors:
 figures:
   dpi: 300
   fig.width: 5
-  fig.height: 2.5
+  fig.height: 5
 
 articles:
 - title: Articles
   navbar: ~
   contents:
-  - articles/Advanced-plotting
   - articles/Visualizing-data
+  - articles/Advanced-plotting
   - articles/Color-schemes
   - articles/Design-principles
 

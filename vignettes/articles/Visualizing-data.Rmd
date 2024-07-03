@@ -23,7 +23,7 @@ library(tidyplots)
 
 # Data points
 
-Plotting the raw data points is probably the most bare bone way to visualize a dataset. the corresponding function in tidyplots is called `add_data_points()`.
+Plotting the raw data points is probably the most bare bone way to visualize a dataset. The corresponding function in tidyplots is called `add_data_points()`.
 
 ```{r}
 animals %>% 
@@ -47,7 +47,7 @@ animals %>%
   add_data_points(alpha = 0.3)
 ```
 
-Or by changing the plotting symbol to an open `shape`.
+Or to change the plotting symbol to an open `shape`.
 
 ```{r}
 animals %>% 
@@ -81,9 +81,9 @@ study %>%
 
 # Amounts
 
-For some datasets, it makes sense to `count` or `sum` up, data points in order to arrive to a conclusion. As one example, let's have a look at the `spendings` dataset.
+For some datasets, it makes sense to `count` or `sum` up data points in order to arrive to a conclusion. As one example, let's have a look at the `spendings` dataset.
 
-```{r results='markup'}
+```{r, results='markup'}
 spendings
 ```
 
@@ -139,7 +139,7 @@ spendings %>%
   remove_x_axis_ticks()
 ```
 
-Note that besides the x axis labels, I also removed the x axis ticks and x axis title to achieve a clean look.
+Note that besides the x axis labels, I also removed the x axis ticks and x axis title to achieve a cleaner look.
 
 Of course you are free to play around with different graphical representations of the sum values. Here is an example of a lollipop plot constructed from a thin `bar` and a `dot`.
 
@@ -161,7 +161,7 @@ I also added the sum value as text label using the `add_sum_value()` function.
 
 Heatmaps are a great way to plot a _continuous variable_ across to two _discrete variables_. To exemplify this, we will have a look at the `gene_expression` dataset.
 
-```{r results='markup'}
+```{r, results='markup'}
 gene_expression %>% 
   dplyr::glimpse()
 ```
@@ -174,44 +174,64 @@ gene_expression %>%
   add_heatmap()
 ```
 
-One thing to note here is that the y axis labeks are overlapping. So let's increase the height of the plot area from 50 to 80 mm.
+One thing to note here is that the y axis labeks are overlapping. So let's increase the height of the plot area from 50 to 100 mm.
 
-```{r fig.height=5}
+```{r, fig.asp=0.9}
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap() %>%
-  adjust_plot_area_size(height = 80)
+  adjust_plot_area_size(height = 100)
 ```
 
 The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show very high expression while others show much lower values. Let's apply a classical technique to reserve the variations in the color for differences within each  row. This is done by calculating _row z scores_ for each row individually. Luckily, tidyplots does this for us when setting the parameter `scale = "row"` withing the `add_heatmap()` function call.
 
-```{r}
+```{r, fig.asp=0.9}
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
-  adjust_plot_area_size(height = 80)
+  adjust_plot_area_size(height = 100)
 ```
 
 Now it much easier to appreciate the dynamics of individual genes across the samples on the x axis.
 
 However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, in the dataset there is a variable called `direction`, which is either "up" or "down". Let's use this variable to sort our y axis.
 
-```{r}
+```{r, fig.asp=0.9}
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
-  adjust_plot_area_size(height = 80) %>% 
+  adjust_plot_area_size(height = 100) %>% 
   sort_y_axis_labels(direction)
 ```
-
-This starts looking like a classical gene expression heatmap
 
 # Central tendency
 
 
 
 ```{r}
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute()
 
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_seaside)
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_candy)
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_pastel)
+
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_circle)
 ```
 
 # Dispersion & uncertainty
@@ -455,9 +475,6 @@ energy_week %>%
 
 ```
 
-
-# Uncertainty
-
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
@@ -478,9 +495,6 @@ study %>%
   adjust_colors("orange")
 
 ```
-
-
-# x--y relationships
 
 ```{r}
 

@@ -137,7 +137,7 @@ Although there are many more `add_*()` functions available, I will stop here and
 
 ## Remove
 
-Besides adding plot elements, you might want to remove certain parts of the plot. This can be archived by the `remove_*()` family of functions. For example, you might want to remove the color legend title, or in some rare cases even the entire y axis.
+Besides adding plot elements, you might want to remove certain parts of the plot. This can be achieved by the `remove_*()` family of functions. For example, you might want to remove the color legend title, or in some rare cases even the entire y axis.
 
 ```{r}
 study %>% 
@@ -194,7 +194,7 @@ study %>%
 
 Note that I removed the legend title by setting it to an empty string `legend_title = ""`. This is alternative to `remove_legend_title()`, however the result is not exactly the same. I am sure you will figure out the difference.
 
-When it comes to scientific plots, titles often contain special characters like Greek characters, subscript or superscript. For this purpose, tidyplots supports _plotmath expressions_. Besides finding out how to use the [plotmath expression syntax](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath), please note that in tidyplots all plotmath expression need to start and end with a `$` character. Moreover, you can not mix plotmath with plain text in one string, instead the entire string needs to be a plotmath expression if you want to use special characters.
+When it comes to scientific plots, titles often contain special characters like Greek symbols, subscript or superscript. For this purpose, tidyplots supports _plotmath expressions_. Besides finding out how to use the [plotmath expression syntax](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath), please note that in tidyplots all plotmath expression need to start and end with a `$` character. Moreover, you can not mix plotmath with plain text in one string, instead the entire string needs to be a plotmath expression if you want to use special characters.
 
 ```{r}
 study %>% 
@@ -230,11 +230,11 @@ study %>%
   adjust_colors(new_colors = colors_discrete_seaside)
 ```
 
-##### Rename, reorder, sort, and reverse
+**Rename, reorder, sort, and reverse**
 
-A special type of adjust function deals with the _data labels_ in your plot. These function are special because they need to modify the underlying data of the plot. Moreover, they do not start with `adjust_` but with `rename_`, `reorder_`, `sort_`, and `reverse_`.
+A special group of adjust functions deals with the _data labels_ in your plot. These function are special because they need to modify the underlying data of the plot. Moreover, they do not start with `adjust_` but with `rename_`, `reorder_`, `sort_`, and `reverse_`.
 
-For example, to rename the data labels for the treatment variable on the x axis, you can do this.
+For example, to rename the data labels for the `treatment` variable on the x axis, you can do this.
 
 ```{r}
 study %>% 
@@ -250,7 +250,7 @@ study %>%
 
 Note that we provide a _named character vector_ to make it clear which old label should be replace with which new label.
 
-The functions starting with `reorder_`, `sort_`, and `reverse_` do not change the name of the label but their order in the graph.
+The remaining functions, starting with `reorder_`, `sort_`, and `reverse_`, do not change the name of the label but their order in the plot.
 
 For example, you can bring the treatment "D" to the front.
 
@@ -285,11 +285,11 @@ study %>%
   reverse_x_axis_labels()
 ```
 
-Of course, there are many more `adjust_` funtions that you can find in the [Function reference](https://jbengler.github.io/tidyplots/reference/index.html).
+Of course, there are many more `adjust_` functions that you can find in the [Function reference](https://jbengler.github.io/tidyplots/reference/index.html).
 
 ## Themes
 
-Themes are a great way to modify the look an feel of you plot without changing the representation of the data. You can stay with the default tidyplots theme.
+Themes are a great way to modify the look an feel of your plot without changing the representation of the data. You can stay with the default tidyplots theme.
 
 ```{r}
 study %>% 
@@ -340,7 +340,7 @@ study %>%
 
 ## Output
 
-The classical way to output a plot is to write it to a `PDF` or `PNG` file. This can be easily done by piping the plot into the function `save_plot()`. Conveniently, `save_plot()` also gives back the plot it received, allowing it to be used in the middle of a pipeline. If `save_plot()` is a the end of pipeline, the plot will still be rendered on screen, providing a visual confirmation of what was saved to file.
+The classical way to output a plot is to write it to a `PDF` or `PNG` file. This can be easily done by piping the plot into the function `save_plot()`.
 
 ```{r eval=FALSE}
 study %>% 
@@ -351,18 +351,24 @@ study %>%
   save_plot("my_plot.pdf")
 ```
 
+Conveniently, `save_plot()` also gives back the plot it received, allowing it to be used in the middle of a pipeline. If `save_plot()` is a the end of pipeline, the plot will still be rendered on screen, providing a visual confirmation of what was saved to file.
+
 # What's more?
 
 This getting started guide is meant to give a high level overview of the tidyplots workflow. To dive deeper into more specific aspects of tidyplots, here a couple of resources.
 
+## Reference
+
 - [Function reference](https://jbengler.github.io/tidyplots/reference/index.html)  
 A great overview of all tidyplots functions
 
-- [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
-An article about advanced plotting techniques and workflows
+## Articles
 
 - [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
 An article with examples for common data visualizations
+
+- [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
+An article about advanced plotting techniques and workflows
 
 - [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
 An article about the use of color schemes in tidyplots
