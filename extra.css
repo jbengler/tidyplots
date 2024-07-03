@@ -6,6 +6,11 @@ h3 {
 }
 
 h2 {
-  /*margin-top: 2.2rem;*/
+  margin-top: 2rem;
   /*border-bottom: 1px solid rgb(222, 226, 230);*/
+}
+
+.lead {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
 }
