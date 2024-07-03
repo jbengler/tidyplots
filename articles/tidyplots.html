@@ -52,8 +52,8 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Advanced-plotting.html">Advanced plotting</a>
     <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing data</a>
+    <a class="dropdown-item" href="../articles/Advanced-plotting.html">Advanced plotting</a>
     <a class="dropdown-item" href="../articles/Color-schemes.html">Color schemes</a>
     <a class="dropdown-item" href="../articles/Design-principles.html">Design principles</a>
   </div>
@@ -282,7 +282,7 @@ data</a> for further inspiration.</p>
 <h3 id="remove">Remove<a class="anchor" aria-label="anchor" href="#remove"></a>
 </h3>
 <p>Besides adding plot elements, you might want to remove certain parts
-of the plot. This can be archived by the <code>remove_*()</code> family
+of the plot. This can be achieved by the <code>remove_*()</code> family
 of functions. For example, you might want to remove the color legend
 title, or in some rare cases even the entire y axis.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -349,7 +349,7 @@ or legend. For this we will use the function
 <code><a href="../reference/remove_legend.html">remove_legend_title()</a></code>, however the result is not exactly
 the same. I am sure you will figure out the difference.</p>
 <p>When it comes to scientific plots, titles often contain special
-characters like Greek characters, subscript or superscript. For this
+characters like Greek symbols, subscript or superscript. For this
 purpose, tidyplots supports <em>plotmath expressions</em>. Besides
 finding out how to use the <a href="https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath" class="external-link">plotmath
 expression syntax</a>, please note that in tidyplots all plotmath
@@ -389,17 +389,15 @@ schemes</a>.</p>
 <span>  <span class="fu"><a href="../reference/add_error_bar.html">add_error_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">colors_discrete_seaside</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-16-1.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="section level6">
-<h6 id="rename-reorder-sort-and-reverse">Rename, reorder, sort, and reverse<a class="anchor" aria-label="anchor" href="#rename-reorder-sort-and-reverse"></a>
-</h6>
-<p>A special type of adjust function deals with the <em>data labels</em>
-in your plot. These function are special because they need to modify the
-underlying data of the plot. Moreover, they do not start with
-<code>adjust_</code> but with <code>rename_</code>,
+<p><strong>Rename, reorder, sort, and reverse</strong></p>
+<p>A special group of adjust functions deals with the <em>data
+labels</em> in your plot. These function are special because they need
+to modify the underlying data of the plot. Moreover, they do not start
+with <code>adjust_</code> but with <code>rename_</code>,
 <code>reorder_</code>, <code>sort_</code>, and
 <code>reverse_</code>.</p>
-<p>For example, to rename the data labels for the treatment variable on
-the x axis, you can do this.</p>
+<p>For example, to rename the data labels for the <code>treatment</code>
+variable on the x axis, you can do this.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -413,9 +411,9 @@ the x axis, you can do this.</p>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-17-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that we provide a <em>named character vector</em> to make it
 clear which old label should be replace with which new label.</p>
-<p>The functions starting with <code>reorder_</code>,
-<code>sort_</code>, and <code>reverse_</code> do not change the name of
-the label but their order in the graph.</p>
+<p>The remaining functions, starting with <code>reorder_</code>,
+<code>sort_</code>, and <code>reverse_</code>, do not change the name of
+the label but their order in the plot.</p>
 <p>For example, you can bring the treatment “D” to the front.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -443,17 +441,16 @@ the label but their order in the graph.</p>
 <span>  <span class="fu"><a href="../reference/add_error_bar.html">add_error_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/reverse_x_axis_labels.html">reverse_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-20-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Of course, there are many more <code>adjust_</code> funtions that you
-can find in the <a href="https://jbengler.github.io/tidyplots/reference/index.html">Function
+<p>Of course, there are many more <code>adjust_</code> functions that
+you can find in the <a href="https://jbengler.github.io/tidyplots/reference/index.html">Function
 reference</a>.</p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="themes">Themes<a class="anchor" aria-label="anchor" href="#themes"></a>
 </h3>
-<p>Themes are a great way to modify the look an feel of you plot without
-changing the representation of the data. You can stay with the default
-tidyplots theme.</p>
+<p>Themes are a great way to modify the look an feel of your plot
+without changing the representation of the data. You can stay with the
+default tidyplots theme.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -505,12 +502,7 @@ this plot by <code>dose</code> into a high dose and a low dose plot.</p>
 </h3>
 <p>The classical way to output a plot is to write it to a
 <code>PDF</code> or <code>PNG</code> file. This can be easily done by
-piping the plot into the function <code><a href="../reference/save_plot.html">save_plot()</a></code>.
-Conveniently, <code><a href="../reference/save_plot.html">save_plot()</a></code> also gives back the plot it
-received, allowing it to be used in the middle of a pipeline. If
-<code><a href="../reference/save_plot.html">save_plot()</a></code> is a the end of pipeline, the plot will still
-be rendered on screen, providing a visual confirmation of what was saved
-to file.</p>
+piping the plot into the function <code><a href="../reference/save_plot.html">save_plot()</a></code>.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -518,6 +510,11 @@ to file.</p>
 <span>  <span class="fu"><a href="../reference/add_error_bar.html">add_error_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="st">"my_plot.pdf"</span><span class="op">)</span></span></code></pre></div>
+<p>Conveniently, <code><a href="../reference/save_plot.html">save_plot()</a></code> also gives back the plot it
+received, allowing it to be used in the middle of a pipeline. If
+<code><a href="../reference/save_plot.html">save_plot()</a></code> is a the end of pipeline, the plot will still
+be rendered on screen, providing a visual confirmation of what was saved
+to file.</p>
 </div>
 </div>
 <div class="section level2">
@@ -526,16 +523,26 @@ to file.</p>
 <p>This getting started guide is meant to give a high level overview of
 the tidyplots workflow. To dive deeper into more specific aspects of
 tidyplots, here a couple of resources.</p>
+<div class="section level3">
+<h3 id="reference">Reference<a class="anchor" aria-label="anchor" href="#reference"></a>
+</h3>
 <ul>
-<li><p><a href="https://jbengler.github.io/tidyplots/reference/index.html">Function
+<li>
+<a href="https://jbengler.github.io/tidyplots/reference/index.html">Function
 reference</a><br>
-A great overview of all tidyplots functions</p></li>
-<li><p><a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html">Advanced
-plotting</a><br>
-An article about advanced plotting techniques and workflows</p></li>
+A great overview of all tidyplots functions</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="articles">Articles<a class="anchor" aria-label="anchor" href="#articles"></a>
+</h3>
+<ul>
 <li><p><a href="https://jbengler.github.io/tidyplots/articles/Visualizing-data.html">Visualizing
 data</a><br>
 An article with examples for common data visualizations</p></li>
+<li><p><a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html">Advanced
+plotting</a><br>
+An article about advanced plotting techniques and workflows</p></li>
 <li><p><a href="https://jbengler.github.io/tidyplots/articles/Color-schemes.html">Color
 schemes</a><br>
 An article about the use of color schemes in tidyplots</p></li>
@@ -544,6 +551,7 @@ principles</a><br>
 An article about the design choices in tidyplots, including notable
 differences to ggplot2</p></li>
 </ul>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
