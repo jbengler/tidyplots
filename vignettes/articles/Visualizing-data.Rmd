@@ -65,7 +65,7 @@ study %>%
   add_data_points()
 ```
 
-To avoid overplotting in this scenario, there are two additional options. You can add some random noise or _jitter_ to the y position.
+To avoid overplotting in this scenario, there are two additional options. You can add some random noise to the y position, also known as _jitter_.
 
 ```{r}
 study %>% 
@@ -176,7 +176,7 @@ gene_expression %>%
   add_heatmap()
 ```
 
-One thing to note here is that the y axis labeks are overlapping. So let's increase the height of the plot area from 50 to 100 mm.
+One thing to note here is that the y axis labels are overlapping. So let's increase the height of the plot area from 50 to 100 mm.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 
@@ -345,7 +345,7 @@ distributions %>%
 
 Proportional data provides insights into the proportion or percentage that each individual category contributes to the total. To explore the visualization of proportional data in tidyplots, let's introduce the `energy` dataset.
 
-```{r}
+```{r, results='markup'}
 energy %>% 
   dplyr::glimpse()
 ```
@@ -456,7 +456,7 @@ This nicely illustrates how wind energy closes the solar gap during the night, h
 
 # Statistical comparison
 
-To test for differences between experimental groups, tidyplots offers the funtions `add_stats_asterisks()` and `add_stats_pvalue()`. While the first one includes asterisks for symbolizing significance.
+To test for differences between experimental groups, tidyplots offers the functions `add_stats_asterisks()` and `add_stats_pvalue()`. While the first one includes asterisks for symbolizing significance.
 
 ```{r}
 study %>% 
@@ -611,3 +611,35 @@ animals %>%
   add_text_labels(data = max_rows(weight, 3), animal) %>% 
   add_text_labels(data = max_rows(speed, 3), animal)
 ```
+
+# What's more?
+
+To dive deeper into code-based plotting, here a couple of resources.
+
+## tidyplots documentation
+
+- [Reference](https://jbengler.github.io/tidyplots/reference/index.html)  
+Overview of all tidyplots functions
+
+- [Get started](file:///Users/janbroderengler/GoogleDrive/R/packages/tidyplots/docs/articles/tidyplots.html)  
+Getting started guide
+
+- [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
+Article with examples for common data visualizations
+
+- [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
+Article about advanced plotting techniques and workflows
+
+- [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
+Article about the use of color schemes
+
+## Other resources
+
+- [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)   
+Free online book by Garrett Grolemund
+
+- [R for Data Science](https://r4ds.hadley.nz)  
+Free online book by Hadley Wickham
+
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)  
+Free online book by Claus O. Wilke

@@ -44,7 +44,6 @@
 #' @param fill common
 #' @param saturation common
 #' @param group common
-#' @param saturation common
 #' @param reverse common
 #' @param scale_cut common
 #' @param fontsize common

@@ -31,7 +31,7 @@ We will be using the programming language R and the software RStudio Desktop, wh
 1. Download and install [R](https://ftp.gwdg.de/pub/misc/cran/) for your operating system. On Windows, choose the _base_ version.
 2. Download and install [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
 
-For more information about R programming have a look at the free online book [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) by Garrett Grolemund, which has a chapter with detailed [installation instructions](https://rstudio-education.github.io/hopr/starting.html). For a quick video tour of the RStudio Desktop user interface queck out [RStudio for the Total Beginner](https://www.youtube.com/watch?v=FIrsOBy5k58).
+For more information about R programming have a look at the free online book [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) by Garrett Grolemund, which has a chapter with detailed [installation instructions](https://rstudio-education.github.io/hopr/starting.html). For a quick video tour of the RStudio Desktop user interface check out [RStudio for the Total Beginner](https://www.youtube.com/watch?v=FIrsOBy5k58).
 
 ## Install packages
 
@@ -354,28 +354,26 @@ Conveniently, `save_plot()` also gives back the plot it received, allowing it to
 
 # What's more?
 
-This getting started guide is meant to give a high level overview of the tidyplots workflow. To dive deeper into more specific aspects of tidyplots, here a couple of resources.
+To dive deeper into code-based plotting, here a couple of resources.
 
-## tidyplots reference
+## tidyplots documentation
 
-- [Function reference](https://jbengler.github.io/tidyplots/reference/index.html)  
-A great overview of all tidyplots functions
+- [Reference](https://jbengler.github.io/tidyplots/reference/index.html)  
+Overview of all tidyplots functions
 
-## tidyplots articles
+- [Get started](file:///Users/janbroderengler/GoogleDrive/R/packages/tidyplots/docs/articles/tidyplots.html)  
+Getting started guide
 
 - [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
-An article with examples for common data visualizations
+Article with examples for common data visualizations
 
 - [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
-An article about advanced plotting techniques and workflows
+Article about advanced plotting techniques and workflows
 
 - [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
-An article about the use of color schemes in tidyplots
+Article about the use of color schemes
 
-- [Design principles](https://jbengler.github.io/tidyplots/articles/Design-principles.html)  
-An article about the design choices in tidyplots, including notable differences to ggplot2
-
-## Other ressources
+## Other resources
 
 - [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)   
 Free online book by Garrett Grolemund
