@@ -391,6 +391,29 @@ ggplot(data, aes(x = category, y = value)) +
 ggplot(data, aes(x = category, y = value)) +
   custom_stat_summary2(orientation = "y")
 
+###
 
+gene_expression %>%
+  tidyplot(x = sample_type, y = expression, color = condition) %>%
+  add_mean_dash() %>%
+  add_error_bar() %>%
+  add_data_points() %>%
+  add_stats_asterisks(include_info = FALSE) %>%
+  split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>%
+  save_plot("multipage2.pdf")
 
+gene_expression %>%
+  tidyplot(x = sample_type, y = expression, color = condition) %>%
+  add_mean_dash() %>%
+  add_error_bar() %>%
+  add_data_points() %>%
+  add_stats_asterisks() %>%
+  split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>%
+  save_plot("multipage3.pdf", units = "cm")
 
+gene_expression %>%
+  tidyplot(x = sample_type, y = expression, color = condition) %>%
+  add_mean_dash() %>%
+  add_error_bar() %>%
+  split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>%
+  save_plot("multipage4.pdf", units = "in")

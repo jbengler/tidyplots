@@ -122,14 +122,12 @@
 <rect x='432.89' y='281.79' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #4DACD6; fill-opacity: 0.30;' />
 <line x1='433.32' y1='286.75' x2='442.39' y2='286.75' style='stroke-width: 0.53; stroke: #4DACD6; stroke-linecap: butt;' />
 <circle cx='437.85' cy='286.75' r='2.49' style='stroke-width: 0.71; stroke: #4DACD6; fill: #4DACD6;' />
-<text x='437.85' y='296.42' text-anchor='middle' style='font-size: 7.00px; fill: #4DACD6; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>a</text>
 <line x1='433.32' y1='286.75' x2='442.39' y2='286.75' style='stroke-width: 0.53; stroke: #4DACD6; stroke-linecap: butt;' />
 <circle cx='437.85' cy='286.75' r='1.42' style='stroke-width: 0.71; stroke: #4DACD6; fill: #4DACD6;' />
 <rect x='432.18' y='292.42' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
 <rect x='432.89' y='293.13' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #C02D45; fill-opacity: 0.30;' />
 <line x1='433.32' y1='298.09' x2='442.39' y2='298.09' style='stroke-width: 0.53; stroke: #C02D45; stroke-linecap: butt;' />
 <circle cx='437.85' cy='298.09' r='2.49' style='stroke-width: 0.71; stroke: #C02D45; fill: #C02D45;' />
-<text x='437.85' y='307.76' text-anchor='middle' style='font-size: 7.00px; fill: #C02D45; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>a</text>
 <line x1='433.32' y1='298.09' x2='442.39' y2='298.09' style='stroke-width: 0.53; stroke: #C02D45; stroke-linecap: butt;' />
 <circle cx='437.85' cy='298.09' r='1.42' style='stroke-width: 0.71; stroke: #C02D45; fill: #C02D45;' />
 <text x='449.00' y='289.16' style='font-size: 7.00px; font-family: sans;' textLength='13.23px' lengthAdjust='spacingAndGlyphs'>high</text>

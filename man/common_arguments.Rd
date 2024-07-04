@@ -47,9 +47,9 @@ violin plot, etc). Typical values range between \code{0} and \code{1}.}
 
 \item{fill}{common}
 
-\item{group}{common}
-
 \item{saturation}{common}
+
+\item{group}{common}
 
 \item{reverse}{common}
 

@@ -1,3 +1,13 @@
+#' @importFrom grDevices col2rgb rgb dev.off pdf
+#' @importFrom stats density sd setNames
+#' @importFrom utils tail
+#' @importFrom rlang := .data
+NULL
+
+utils::globalVariables(c(".", ".single_color", "Lower", "Mean", "Upper", "aesthetic",
+                         "col_zscore", "count", "row_zscore", "variable", "x", "y"))
+
+
 color_palettes <- list(
   black_blue_pink_yellow = c(
     "#161523","#171943","#2C2E68","#2E3D88","#3F519D","#48569F","#5F569F",

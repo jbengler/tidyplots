@@ -122,7 +122,7 @@ ff_areastack <- function(.position_fun) {
         vars <- c(get_variable(plot, "x"), get_variable(plot, "colour"))
         plot$data <-
           plot$data %>%
-          dplyr::summarize(count = dplyr::n(), .by = all_of(vars)) %>%
+          dplyr::summarize(count = dplyr::n(), .by = tidyselect::all_of(vars)) %>%
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
         mapping$y <- ggplot2::aes(y = count)$y
         plot <- plot %>%
@@ -146,7 +146,7 @@ ff_areastack <- function(.position_fun) {
         vars <- c(get_variable(plot, "y"), get_variable(plot, "colour"))
         plot$data <-
           plot$data %>%
-          dplyr::summarize(count = dplyr::n(), .by = all_of(vars)) %>%
+          dplyr::summarize(count = dplyr::n(), .by = tidyselect::all_of(vars)) %>%
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
         mapping$x <- ggplot2::aes(x = count)$x
         plot <- plot %>%
@@ -180,7 +180,7 @@ ff_areastack <- function(.position_fun) {
         names(zero) <- y_var
         plot$data <-
           plot$data %>%
-          dplyr::summarize("{y_var}" := sum(.data[[y_var]]), .by = all_of(vars)) %>%
+          dplyr::summarize("{y_var}" := sum(.data[[y_var]]), .by = tidyselect::all_of(vars)) %>%
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = zero)
         plot <- plot %>%
           remove_plot_area_padding(force_continuous = TRUE) +

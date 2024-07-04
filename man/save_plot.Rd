@@ -5,7 +5,7 @@
 \title{Save plots to file}
 \usage{
 save_plot(
-  plot = last_plot(),
+  plot = ggplot2::last_plot(),
   filename,
   device = NULL,
   path = NULL,

@@ -106,23 +106,22 @@ test_that("plotmath expressions work", {
     vdiffr::expect_doppelganger("plotmath expression x axis labels", .)
 })
 
-# failing in remote check
-# test_that("adjust plot area size work", {
-#   study %>%
-#     tidyplot(x = dose, y = score, color = group) %>%
-#     add_violin() %>%
-#     adjust_plot_area_size(width = 70) %>%
-#     vdiffr::expect_doppelganger("plot area size width", .)
-#
-#   study %>%
-#     tidyplot(x = dose, y = score, color = group) %>%
-#     add_violin() %>%
-#     adjust_plot_area_size(width = 25, height = 25) %>%
-#     vdiffr::expect_doppelganger("plot area size width and height", .)
-#
-#   study %>%
-#     tidyplot(x = dose, y = score, color = group) %>%
-#     add_violin() %>%
-#     adjust_plot_area_size(width = NA, height = NA) %>%
-#     vdiffr::expect_doppelganger("plot area size NA", .)
-# })
+test_that("adjust plot area size work", {
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    add_violin() %>%
+    adjust_plot_area_size(width = 70) %>%
+    vdiffr::expect_doppelganger("plot area size width", .)
+
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    add_violin() %>%
+    adjust_plot_area_size(width = 25, height = 25) %>%
+    vdiffr::expect_doppelganger("plot area size width and height", .)
+
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    add_violin() %>%
+    adjust_plot_area_size(width = NA, height = NA) %>%
+    vdiffr::expect_doppelganger("plot area size NA", .)
+})

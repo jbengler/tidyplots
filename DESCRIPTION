@@ -23,13 +23,11 @@ Imports:
     htmltools,
     patchwork,
     purrr,
-    ragg,
     rlang,
     scales,
     stringr,
-    svglite,
     tidyr,
-    vdiffr
+    tidyselect
 Depends: 
     R (>= 2.10)
 LazyData: true
@@ -38,6 +36,7 @@ BugReports: https://github.com/jbengler/tidyplots/issues
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    vdiffr
 VignetteBuilder: knitr
 Config/testthat/edition: 3
