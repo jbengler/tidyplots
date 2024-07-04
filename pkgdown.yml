@@ -4,10 +4,9 @@ pkgdown_sha: ~
 articles:
   Advanced-plotting: Advanced-plotting.html
   Color-schemes: Color-schemes.html
-  Design-principles: Design-principles.html
   tidyplots: tidyplots.html
   Visualizing-data: Visualizing-data.html
-last_built: 2024-07-03T16:14Z
+last_built: 2024-07-04T16:20Z
 urls:
   reference: https://jbengler.github.io/tidyplots/reference
   article: https://jbengler.github.io/tidyplots/articles
