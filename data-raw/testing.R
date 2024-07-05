@@ -1,6 +1,11 @@
 
 library(tidyverse)
 
+
+study %>%
+  tidyplot(score, group, color = dose) %>%
+  add_data_points()
+
 # orientation
 # orientation is only determined when the plot is rendered
 

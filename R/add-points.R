@@ -74,7 +74,7 @@ f_points <- function(plot, data = all_rows(),
                      jitter_width = 0, jitter_height = 0, preserve = "total",
                      rasterize = FALSE, rasterize_dpi = 300, ...) {
 
-  if (is_discrete(plot, "x")) {
+  if (is_discrete(plot, "x") || is_discrete(plot, "y")) {
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   } else {
     dodge_width <- dodge_width %||% 0
