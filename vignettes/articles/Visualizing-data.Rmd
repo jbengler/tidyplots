@@ -116,7 +116,7 @@ spendings %>%
 
 Now we can appreciate that this family had reoccurring spendings for _Food_ but just one spending for _Housing_.
 
-Next, we ask the question how much was spend on each of the categories by plotting the `sum` amount.
+Next, we ask the question _how much_ was spend on each of the categories by plotting the `sum` amount.
 
 ```{r}
 spendings %>% 
@@ -185,7 +185,7 @@ gene_expression %>%
   adjust_plot_area_size(height = 100)
 ```
 
-The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show very high expression while others show much lower values. Let's apply a classical technique to reserve the variations in the color for differences within each  row. This is done by calculating _row z scores_ for each row individually. Luckily, tidyplots does this for us when setting the parameter `scale = "row"` withing the `add_heatmap()` function call.
+The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show very high expression while others show much lower values. Let's apply a classical technique to reserve the color range for differences within each row. This is done by calculating _row z scores_ for each row individually. Luckily, tidyplots does this for us when setting the parameter `scale = "row"` withing the `add_heatmap()` function call.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 
@@ -196,7 +196,7 @@ gene_expression %>%
 
 Now it much easier to appreciate the dynamics of individual genes across the samples on the x axis.
 
-However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, in the dataset there is a variable called `direction`, which classifies genes as being either "up" or "down" regulated. Let's use this variable to sort our y axis.
+However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, there is a variable called `direction` in the dataset, which classifies genes as being either "up" or "down" regulated. Let's use this variable to sort our y axis.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 
@@ -251,14 +251,14 @@ You could also plot the `mean` and the `median` together to explore in which cas
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
-  add_data_points_beeswarm() %>% 
+  add_data_points_beeswarm(color = "grey") %>% 
   add_mean_dash(color = "orange") %>% 
   add_median_dash(color = "purple")
 ```
 
 # Dispersion & uncertainty
 
-To complement the central tendency measure, it is often helpful to provide information about the variability or dispersion of the data points. Such measures include the standard `error` of the mean, the standard deviation `sd`, the `range` from the highest to the lowest data point or the 95% confidence interval `ci95`.
+To complement the central tendency measure, it is often helpful to provide information about the variability or dispersion of the data points. Such measures include the standard error of the mean `sem`, the standard deviation `sd`, the `range` from the highest to the lowest data point or the 95% confidence interval `ci95`.
 
 A classical representation of dispersion is an error `bar`.
 
@@ -267,7 +267,7 @@ time_course %>%
   tidyplot(x = day, y = score, color = treatment) %>% 
   add_mean_line() %>% 
   add_mean_dot() %>% 
-  add_error_bar(width = 2)
+  add_sem_bar(width = 2)
 ```
 
 Or the use of a semitransparent `ribbon`.
@@ -277,7 +277,7 @@ time_course %>%
   tidyplot(x = day, y = score, color = treatment) %>% 
   add_mean_line() %>% 
   add_mean_dot() %>% 
-  add_error_ribbon()
+  add_sem_ribbon()
 ```
 
 Another widely used alternative, especially for not normally distributed data is the use of `violin` or `boxplot`s. Starting with the `violin`, the shape of these plots resembles the underlying distribution of the data points.
@@ -462,7 +462,7 @@ To test for differences between experimental groups, tidyplots offers the functi
 study %>% 
   tidyplot(x = dose, y = score, color = group) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_stats_asterisks()
 ```
@@ -473,7 +473,7 @@ study %>%
 study %>% 
   tidyplot(x = dose, y = score, color = group) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_stats_pvalue()
 ```
@@ -488,7 +488,7 @@ For example, lets perform a Wilcoxon signed-rank test with Benjamini--Hochberg a
 study %>% 
   tidyplot(x = dose, y = score, color = group) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_stats_pvalue(method = "wilcoxon", p.adjust.method = "BH")
 ```
@@ -499,7 +499,7 @@ In non paired data, it might also make sense to compare all experimental conditi
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_stats_pvalue(ref.group = "A")
 ```
@@ -513,7 +513,7 @@ gene_expression %>%
   # start plotting
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_stats_pvalue()
 ```
@@ -527,7 +527,7 @@ gene_expression %>%
   # start plotting
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_stats_pvalue(hide.ns = TRUE)
 ```
@@ -541,7 +541,7 @@ gene_expression %>%
   # start plotting
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_stats_pvalue(hide.ns = TRUE, include_info = FALSE)
 ```
@@ -556,7 +556,7 @@ Sometimes you wish to add annotations to provide the reader with important addit
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points() %>% 
   add_title("Interesting study") %>% 
   add_caption("Here is some more detail how the study was performed")

@@ -153,26 +153,26 @@
 <polyline points='430.38,410.83 430.38,408.09 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='437.47,410.83 437.47,408.09 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='444.55,410.83 444.55,408.09 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
-<text transform='translate(314.72,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_1</text>
-<text transform='translate(321.81,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_2</text>
-<text transform='translate(328.90,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_3</text>
-<text transform='translate(335.98,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_4</text>
-<text transform='translate(343.07,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_5</text>
-<text transform='translate(350.16,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_1</text>
-<text transform='translate(357.24,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_2</text>
-<text transform='translate(364.33,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_3</text>
-<text transform='translate(371.42,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_4</text>
-<text transform='translate(378.50,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_5</text>
-<text transform='translate(385.59,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_1</text>
-<text transform='translate(392.68,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_2</text>
-<text transform='translate(399.76,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_3</text>
-<text transform='translate(406.85,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_4</text>
-<text transform='translate(413.94,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_5</text>
-<text transform='translate(421.02,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_1</text>
-<text transform='translate(428.11,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_2</text>
-<text transform='translate(435.20,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_3</text>
-<text transform='translate(442.28,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_4</text>
-<text transform='translate(449.37,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_5</text>
+<text transform='translate(312.32,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_1</text>
+<text transform='translate(319.40,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_2</text>
+<text transform='translate(326.49,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_3</text>
+<text transform='translate(333.58,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_4</text>
+<text transform='translate(340.66,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Ein_5</text>
+<text transform='translate(347.75,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_1</text>
+<text transform='translate(354.84,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_2</text>
+<text transform='translate(361.92,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_3</text>
+<text transform='translate(369.01,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_4</text>
+<text transform='translate(376.10,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>Eip_5</text>
+<text transform='translate(383.18,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_1</text>
+<text transform='translate(390.27,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_2</text>
+<text transform='translate(397.36,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_3</text>
+<text transform='translate(404.44,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_4</text>
+<text transform='translate(411.53,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hin_5</text>
+<text transform='translate(418.62,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_1</text>
+<text transform='translate(425.70,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_2</text>
+<text transform='translate(432.79,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_3</text>
+<text transform='translate(439.88,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_4</text>
+<text transform='translate(446.96,413.03) rotate(-90)' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='18.29px' lengthAdjust='spacingAndGlyphs'>Hip_5</text>
 <text x='377.23' y='438.87' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='22.57px' lengthAdjust='spacingAndGlyphs'>sample</text>
 <text transform='translate(220.94,280.54) rotate(-90)' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='65.78px' lengthAdjust='spacingAndGlyphs'>external_gene_name</text>
 <rect x='459.06' y='240.83' width='44.82' height='79.40' style='stroke-width: 1.07; stroke: none;' />

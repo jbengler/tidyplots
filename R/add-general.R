@@ -66,7 +66,7 @@ ff_errorbar <- function(.fun.data) {
 }
 #' Add error bar
 #'
-#' * `add_error_bar()` adds the standard error of mean.
+#' * `add_sem_bar()` adds the standard error of mean.
 #' * `add_range_bar()` adds the range from smallest to largest value.
 #' * `add_sd_bar()` adds the standard deviation.
 #' * `add_ci95_bar()` adds the 95% confidence interval.
@@ -77,7 +77,7 @@ ff_errorbar <- function(.fun.data) {
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_error_bar()
+#'   add_sem_bar()
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
@@ -92,14 +92,14 @@ ff_errorbar <- function(.fun.data) {
 #'   add_ci95_bar()
 #'
 #' @export
-add_error_bar <- ff_errorbar(.fun.data = ggplot2::mean_se)
-#' @rdname add_error_bar
+add_sem_bar <- ff_errorbar(.fun.data = ggplot2::mean_se)
+#' @rdname add_sem_bar
 #' @export
 add_range_bar <- ff_errorbar(.fun.data = min_max)
-#' @rdname add_error_bar
+#' @rdname add_sem_bar
 #' @export
 add_sd_bar <- ff_errorbar(.fun.data = mean_sdl)
-#' @rdname add_error_bar
+#' @rdname add_sem_bar
 #' @export
 add_ci95_bar <- ff_errorbar(.fun.data = mean_cl_boot)
 
@@ -118,7 +118,7 @@ ff_ribbon <- function(.fun.data) {
 }
 #' Add ribbon
 #'
-#' * `add_error_ribbon()` adds the standard error of mean.
+#' * `add_sem_ribbon()` adds the standard error of mean.
 #' * `add_range_ribbon()` adds the range from smallest to largest value.
 #' * `add_sd_ribbon()` adds the standard deviation.
 #' * `add_ci95_ribbon()` adds the 95% confidence interval.
@@ -129,7 +129,7 @@ ff_ribbon <- function(.fun.data) {
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_mean_line() %>%
-#'   add_error_ribbon()
+#'   add_sem_ribbon()
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_mean_line() %>%
@@ -144,14 +144,14 @@ ff_ribbon <- function(.fun.data) {
 #'   add_ci95_ribbon()
 #'
 #' @export
-add_error_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_se)
-#' @rdname add_error_ribbon
+add_sem_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_se)
+#' @rdname add_sem_ribbon
 #' @export
 add_range_ribbon <- ff_ribbon(.fun.data = min_max)
-#' @rdname add_error_ribbon
+#' @rdname add_sem_ribbon
 #' @export
 add_sd_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_sdl)
-#' @rdname add_error_ribbon
+#' @rdname add_sem_ribbon
 #' @export
 add_ci95_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_cl_boot)
 

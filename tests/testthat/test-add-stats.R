@@ -3,7 +3,7 @@ test_that("stats work", {
     study %>%
     tidyplot(treatment, score, color = treatment) %>%
     add_mean_bar(alpha = 0.3) %>%
-    add_error_bar()
+    add_sem_bar()
 
   p2 %>% add_stats_pvalue(ref.group = 1) %>%
     vdiffr::expect_doppelganger("add stats pvalue ref.group", .)
@@ -16,7 +16,7 @@ test_that("stats work", {
     study %>%
     tidyplot(x = dose, y = score, color = group) %>%
     add_mean_bar(alpha = 0.3) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_data_points_beeswarm()
 
   p3 %>% add_stats_pvalue() %>%

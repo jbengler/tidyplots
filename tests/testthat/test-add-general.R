@@ -1,7 +1,7 @@
 test_that("ungrouped plots work", {
   study %>%
     tidyplot(treatment, score, color = treatment) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_sd_bar() %>%
     add_range_bar() %>%
     #add_ci95_bar() %>%
@@ -10,7 +10,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(score, treatment, color = treatment) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_sd_bar() %>%
     add_range_bar() %>%
     #add_ci95_bar() %>%
@@ -19,7 +19,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(treatment, score) %>%
-    add_error_ribbon() %>%
+    add_sem_ribbon() %>%
     add_sd_ribbon() %>%
     add_range_ribbon() %>%
     #add_ci95_ribbon() %>%
@@ -28,7 +28,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(score, treatment) %>%
-    add_error_ribbon() %>%
+    add_sem_ribbon() %>%
     add_sd_ribbon() %>%
     add_range_ribbon() %>%
     #add_ci95_ribbon() %>%
@@ -112,7 +112,7 @@ test_that("ungrouped plots work", {
 test_that("grouped plots work", {
   study %>%
     tidyplot(group, score, color = dose) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_sd_bar() %>%
     add_range_bar() %>%
     #add_ci95_bar() %>%
@@ -121,7 +121,7 @@ test_that("grouped plots work", {
 
   study %>%
     tidyplot(group, score, color = dose) %>%
-    add_error_ribbon() %>%
+    add_sem_ribbon() %>%
     add_sd_ribbon() %>%
     add_range_ribbon() %>%
     #add_ci95_ribbon() %>%
@@ -174,7 +174,7 @@ test_that("grouped plots work", {
   study %>%
     tidyplot(treatment, score) %>%
     add_mean_bar(alpha = 0.3) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_data_points() %>%
     add_line(group = participant) %>%
     vdiffr::expect_doppelganger("Add grouped line", .)

@@ -8,7 +8,7 @@ test_that("add annotation", {
   study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
     add_mean_dash() %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_title("My fancy long title") %>%
     add_caption("Here goes the fine print") %>%
     vdiffr::expect_doppelganger("add title and caption", .)

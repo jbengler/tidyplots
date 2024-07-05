@@ -12,7 +12,7 @@
 #   animals %>%
 #   tidyplot(family, size, color = family) %>%
 #   add_mean_bar(alpha = 0.3) %>%
-#   add_error_bar() %>%
+#   add_sem_bar() %>%
 #   adjust_data_labels(family, sort_by = size)
 #
 # # default random jitter

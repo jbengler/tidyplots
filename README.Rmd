@@ -50,7 +50,7 @@ library(tidyplots)
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points_beeswarm()
 
 ```
@@ -99,7 +99,7 @@ time_course %>%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
   add_mean_line() %>%
   add_mean_dot() %>%
-  add_error_ribbon()
+  add_sem_ribbon()
 
 ```
 
@@ -116,7 +116,7 @@ gene_expression %>%
   dplyr::filter(external_gene_name %in% c("Apol6", "Col5a3", "Vgf", "Bsn")) %>% 
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points_beeswarm() %>% 
   add_stats_asterisks(include_info = FALSE) %>% 
   remove_x_axis_title() %>% 
@@ -128,7 +128,7 @@ gene_expression %>%
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_bar(alpha = 0.3) %>% 
-  add_error_bar() %>% 
+  add_sem_bar() %>% 
   add_data_points_beeswarm() %>% 
   view_plot(title = "Default color scheme: metro") %>% 
   adjust_colors(colors_discrete_seaside) %>% 

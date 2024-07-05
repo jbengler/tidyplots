@@ -3,7 +3,7 @@ test_that("adjust_color works", {
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
     add_mean_bar(alpha = 0.3) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_data_points_beeswarm()
 
   new_colors <-
@@ -33,7 +33,7 @@ test_that("adjust axes works", {
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
     add_mean_bar(alpha = 0.3) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_data_points_beeswarm()
 
   demo_xy <-
@@ -68,7 +68,7 @@ test_that("adjust legend works", {
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
     add_mean_bar(alpha = 0.3) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_data_points_beeswarm()
 
   p %>% adjust_legend(title = "My legend title") %>%
@@ -82,7 +82,7 @@ test_that("plotmath expressions work", {
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
     add_mean_bar(alpha = 0.3) %>%
-    add_error_bar() %>%
+    add_sem_bar() %>%
     add_data_points_beeswarm()
 
   p %>% add_title(title = "$E==m*c^{2}~H[2]*O$") %>%

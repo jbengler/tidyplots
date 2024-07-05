@@ -11,7 +11,7 @@ time_course %>%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
   add_mean_line() %>%
   add_mean_dot() %>%
-  add_error_ribbon()
+  add_sem_ribbon()
 
 library(tidyverse)
 

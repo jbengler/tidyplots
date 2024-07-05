@@ -48,7 +48,7 @@ reference:
 - contents:
   - starts_with("add_boxplot")
   - starts_with("add_violin")
-  - starts_with("add_error")
+  - starts_with("add_sem")
 - subtitle: Proportion
 - contents:
   - starts_with("add_areastack")
