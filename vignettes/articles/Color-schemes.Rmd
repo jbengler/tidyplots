@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 ::: {.lead}
-In this article, we will demonstrate the use of color schemes. We will explore the default color schemes that come with tidyplots and are ready to use for plotting. These include schemes for discrete, continuous and diverging variables. To conclude, we will discuss the creation of custom color schemes from hex colors.
+In this article, we will demonstrate the use of color schemes in tidyplots. We will explore the default color schemes that come with tidyplots and are ready to use for plotting. These include schemes for discrete, continuous and diverging variables. To conclude, we will discuss the creation of custom color schemes from hex colors.
 :::
 
 # Default color schemes
@@ -65,10 +65,6 @@ energy %>%
   tidyplot(year, power, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_pastel)
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_circle)
 ```
 
 ## Continuous
@@ -168,7 +164,7 @@ Of course you can also construct custom color schemes using the `new_color_schem
 
 ```{r}
 my_colors <- 
-  new_color_scheme(c("#A6E98A","#ECA669","#8087E2","#E06681","#E2D269"),
+  new_color_scheme(c("#ECA669","#E06681","#8087E2","#E2D269"),
                    name = "my_custom_color_scheme")
 my_colors
 ```

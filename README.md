@@ -6,8 +6,6 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 The goal of `tidyplots` is to streamline the creation of
@@ -133,13 +131,11 @@ study %>%
   add_error_bar() %>% 
   add_data_points_beeswarm() %>% 
   view_plot(title = "Default color scheme: metro") %>% 
-  adjust_colors(colors_discrete_candy) %>% 
-  view_plot(title = "Alternative color scheme: candy") %>% 
   adjust_colors(colors_discrete_seaside) %>% 
   view_plot(title = "Alternative color scheme: seaside")
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-2.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-3.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-2.png" style="display: block; margin: auto;" />
 
 ## Acknowledgements
 
