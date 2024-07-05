@@ -57,7 +57,7 @@ animals %>%
   add_data_points(shape = 1)
 ```
 
-However, data points can also be used when plotting a _discrete variable_ like `treatment` against a _continuous variable_ like `score`.
+However, data points can also be used to plot a _discrete variable_ against a _continuous variable_.
 
 ```{r}
 study %>% 

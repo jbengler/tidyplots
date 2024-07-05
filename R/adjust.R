@@ -10,11 +10,12 @@ ff_adjust_axis <- function(axis) {
 
   # Rotate labels
   if (rotate_labels == TRUE) rotate_labels <- 45
-  if (is.numeric(rotate_labels)) {
+  if (is.numeric(rotate_labels) && rotate_labels != 0) {
+    if (rotate_labels >= 90) vjust <- 0.5 else vjust <- 1
     if (axis == "x")
-      plot <- plot + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = rotate_labels, hjust=1))
+      plot <- plot + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = rotate_labels, hjust = 1, vjust = vjust))
     if (axis == "y")
-      plot <- plot + ggplot2::theme(axis.text.y = ggplot2::element_text(angle = rotate_labels, hjust=1))
+      plot <- plot + ggplot2::theme(axis.text.y = ggplot2::element_text(angle = rotate_labels, hjust = vjust, vjust = 1))
   }
 
   # Adjust limits
