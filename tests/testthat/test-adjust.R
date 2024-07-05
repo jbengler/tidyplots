@@ -109,19 +109,19 @@ test_that("plotmath expressions work", {
 test_that("adjust plot area size work", {
   study %>%
     tidyplot(x = dose, y = score, color = group) %>%
-    add_violin() %>%
+    add_boxplot() %>%
     adjust_plot_area_size(width = 70) %>%
     vdiffr::expect_doppelganger("plot area size width", .)
 
   study %>%
     tidyplot(x = dose, y = score, color = group) %>%
-    add_violin() %>%
+    add_boxplot() %>%
     adjust_plot_area_size(width = 25, height = 25) %>%
     vdiffr::expect_doppelganger("plot area size width and height", .)
 
   study %>%
     tidyplot(x = dose, y = score, color = group) %>%
-    add_violin() %>%
+    add_boxplot() %>%
     adjust_plot_area_size(width = NA, height = NA) %>%
     vdiffr::expect_doppelganger("plot area size NA", .)
 })
