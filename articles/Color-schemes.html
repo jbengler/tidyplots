@@ -94,11 +94,11 @@
     
     
 <div class="lead">
-<p>In this article, we will demonstrate the use of color schemes. We
-will explore the default color schemes that come with tidyplots and are
-ready to use for plotting. These include schemes for discrete,
-continuous and diverging variables. To conclude, we will discuss the
-creation of custom color schemes from hex colors.</p>
+<p>In this article, we will demonstrate the use of color schemes in
+tidyplots. We will explore the default color schemes that come with
+tidyplots and are ready to use for plotting. These include schemes for
+discrete, continuous and diverging variables. To conclude, we will
+discuss the creation of custom color schemes from hex colors.</p>
 </div>
 <div class="section level2">
 <h2 id="default-color-schemes">Default color schemes<a class="anchor" aria-label="anchor" href="#default-color-schemes"></a>
@@ -167,19 +167,13 @@ for the plot.</p>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_pastel</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-5-3.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span><span class="va">colors_discrete_circle</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Color-schemes_files/figure-html/unnamed-chunk-5-4.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="continuous">Continuous<a class="anchor" aria-label="anchor" href="#continuous"></a>
 </h3>
 <p>Continuous color schemes are meant for continuous variables. The
 default schemes in tidyplots usually consist of 265 colors.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">colors_continuous_viridis</span></span></code></pre></div>
 
   <div style="margin-bottom: 80px;">
@@ -194,35 +188,35 @@ default schemes in tidyplots usually consist of 265 colors.</p>
   </p>
 </div>
 <p>Here is a use case for a continuous color scheme.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-8-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>And here are some variations.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">colors_continuous_viridis</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-9-1.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">colors_continuous_mako</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-9-2.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">colors_continuous_turbo</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-9-3.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
@@ -236,7 +230,7 @@ default schemes in tidyplots usually consist of 265 colors.</p>
 <p>Diverging color schemes are meant for continuous variables that have
 a central point in the middle. A classical example is the blue–white–red
 gradient used for gene expression heatmaps.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">colors_diverging_blue2red</span></span></code></pre></div>
 
   <div style="margin-bottom: 80px;">
@@ -251,7 +245,7 @@ gradient used for gene expression heatmaps.</p>
   </p>
 </div>
 <p>Here is a use case for a diverging color scheme.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
@@ -259,7 +253,7 @@ gradient used for gene expression heatmaps.</p>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-12-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>And here are some variations.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
@@ -267,7 +261,7 @@ gradient used for gene expression heatmaps.</p>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">colors_diverging_blue2brown</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-13-1.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
@@ -275,7 +269,7 @@ gradient used for gene expression heatmaps.</p>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">colors_diverging_BuRd</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-13-2.png" width="1500" style="display: block; margin: auto;"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
@@ -290,26 +284,26 @@ gradient used for gene expression heatmaps.</p>
 </h2>
 <p>Of course you can also construct custom color schemes using the
 <code><a href="../reference/new_color_scheme.html">new_color_scheme()</a></code> function.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">my_colors</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="../reference/new_color_scheme.html">new_color_scheme</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#A6E98A"</span>,<span class="st">"#ECA669"</span>,<span class="st">"#8087E2"</span>,<span class="st">"#E06681"</span>,<span class="st">"#E2D269"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="../reference/new_color_scheme.html">new_color_scheme</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ECA669"</span>,<span class="st">"#E06681"</span>,<span class="st">"#8087E2"</span>,<span class="st">"#E2D269"</span><span class="op">)</span>,</span>
 <span>                   name <span class="op">=</span> <span class="st">"my_custom_color_scheme"</span><span class="op">)</span></span>
 <span><span class="va">my_colors</span></span></code></pre></div>
 
   <div style="margin-bottom: 80px;">
   <h5 style="font-family: 'Courier New', monospace;">my_custom_color_scheme</h5>
-  <small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 5 colors.</small>
+  <small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 4 colors.</small>
   <p>
-  <span style="background-color:#A6E98A; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#ECA669; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#8087E2; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#E06681; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#E2D269; display: inline-block; width:30px; height:20px;"></span>
+  <span style="background-color:#ECA669; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#E06681; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#8087E2; display: inline-block; width:30px; height:20px;"></span><span style="background-color:#E2D269; display: inline-block; width:30px; height:20px;"></span>
   </p>
 <p></p>
 <p style="font-family: 'Courier New', monospace;">
-  c(<br><span style="background-color:#A6E98A; display: inline-block; padding: 2px 10px 2px 10px;">"#A6E98A"</span>,<span style="background-color:#ECA669; display: inline-block; padding: 2px 10px 2px 10px;">"#ECA669"</span>,<span style="background-color:#8087E2; display: inline-block; padding: 2px 10px 2px 10px;">"#8087E2"</span>,<span style="background-color:#E06681; display: inline-block; padding: 2px 10px 2px 10px;">"#E06681"</span>,<span style="background-color:#E2D269; display: inline-block; padding: 2px 10px 2px 10px;">"#E2D269"</span>)
+  c(<br><span style="background-color:#ECA669; display: inline-block; padding: 2px 10px 2px 10px;">"#ECA669"</span>,<span style="background-color:#E06681; display: inline-block; padding: 2px 10px 2px 10px;">"#E06681"</span>,<span style="background-color:#8087E2; display: inline-block; padding: 2px 10px 2px 10px;">"#8087E2"</span>,<span style="background-color:#E2D269; display: inline-block; padding: 2px 10px 2px 10px;">"#E2D269"</span>)
   </p>
 </div>
 <p>Than you can use your scheme as input to the
 <code><a href="../reference/adjust_colors.html">adjust_colors()</a></code> function.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -318,7 +312,7 @@ gradient used for gene expression heatmaps.</p>
 <p>Besides creating new schemes, you can also subset and concatenate
 existing schemes in the exact same way you would do with a regular
 character string.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">colors_discrete_metro</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 
   <div style="margin-bottom: 80px;">
@@ -332,7 +326,7 @@ character string.</p>
   c(<br><span style="background-color:#4FAE62; display: inline-block; padding: 2px 10px 2px 10px;">"#4FAE62"</span>)
   </p>
 </div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">colors_discrete_metro</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></span></code></pre></div>
 
   <div style="margin-bottom: 80px;">
@@ -346,7 +340,7 @@ character string.</p>
   c(<br><span style="background-color:#4FAE62; display: inline-block; padding: 2px 10px 2px 10px;">"#4FAE62"</span>,<span style="background-color:#F6C54D; display: inline-block; padding: 2px 10px 2px 10px;">"#F6C54D"</span>,<span style="background-color:#E37D46; display: inline-block; padding: 2px 10px 2px 10px;">"#E37D46"</span>)
   </p>
 </div>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">colors_discrete_metro</span>, <span class="va">colors_discrete_seaside</span><span class="op">)</span></span></code></pre></div>
 
   <div style="margin-bottom: 80px;">
