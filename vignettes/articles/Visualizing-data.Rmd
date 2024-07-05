@@ -33,12 +33,12 @@ animals %>%
   add_data_points()
 ```
 
-In the above example some data points appear to overlap other points. To account for this so called _overplotting_, you might want to add a thin white border around the points. This is achieved by setting the parameter `confetti = TRUE`.
+In the above example some data points appear to overlap other points. To account for this so called _overplotting_, you might want to add a thin white border around the points. This is achieved by setting the parameter `white_border = TRUE`.
 
 ```{r}
 animals %>% 
   tidyplot(x = weight, y = size) %>% 
-  add_data_points(confetti = TRUE)
+  add_data_points(white_border = TRUE)
 ```
 
 Another way is to make the points transparent using the `alpha` parameter.

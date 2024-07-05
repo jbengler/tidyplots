@@ -16,18 +16,18 @@ test_that("add points works", {
 
   study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_data_points(confetti = TRUE) %>%
-    vdiffr::expect_doppelganger("Add confetti data points", .)
+    add_data_points(white_border = TRUE) %>%
+    vdiffr::expect_doppelganger("Add white_border data points", .)
 
   study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_data_points_jitter(confetti = TRUE) %>%
-    vdiffr::expect_doppelganger("Add confetti data points jitter", .)
+    add_data_points_jitter(white_border = TRUE) %>%
+    vdiffr::expect_doppelganger("Add white_border data points jitter", .)
 
   study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_data_points_beeswarm(confetti = TRUE) %>%
-    vdiffr::expect_doppelganger("Add confetti data points beaswarm", .)
+    add_data_points_beeswarm(white_border = TRUE) %>%
+    vdiffr::expect_doppelganger("Add white_border data points beaswarm", .)
 })
 
 test_that("rasterize works", {
@@ -48,16 +48,16 @@ test_that("rasterize works", {
 
   study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_data_points(confetti = TRUE, rasterize = TRUE, rasterize_dpi = 50) %>%
-    vdiffr::expect_doppelganger("Rasterize confetti data points", .)
+    add_data_points(white_border = TRUE, rasterize = TRUE, rasterize_dpi = 50) %>%
+    vdiffr::expect_doppelganger("Rasterize white_border data points", .)
 
   study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_data_points_jitter(confetti = TRUE, rasterize = TRUE, rasterize_dpi = 50) %>%
-    vdiffr::expect_doppelganger("Rasterize confetti data points jitter", .)
+    add_data_points_jitter(white_border = TRUE, rasterize = TRUE, rasterize_dpi = 50) %>%
+    vdiffr::expect_doppelganger("Rasterize white_border data points jitter", .)
 
   study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_data_points_beeswarm(confetti = TRUE, rasterize = TRUE, rasterize_dpi = 50) %>%
-    vdiffr::expect_doppelganger("Rasterize confetti data points beaswarm", .)
+    add_data_points_beeswarm(white_border = TRUE, rasterize = TRUE, rasterize_dpi = 50) %>%
+    vdiffr::expect_doppelganger("Rasterize white_border data points beaswarm", .)
 })

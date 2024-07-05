@@ -11,7 +11,7 @@ add_data_points(
   data = all_rows(),
   shape = 19,
   size = 1,
-  confetti = FALSE,
+  white_border = FALSE,
   dodge_width = NULL,
   preserve = "total",
   rasterize = FALSE,
@@ -24,7 +24,7 @@ add_data_points_jitter(
   data = all_rows(),
   shape = 19,
   size = 1,
-  confetti = FALSE,
+  white_border = FALSE,
   dodge_width = NULL,
   jitter_width = 0.2,
   jitter_height = 0,
@@ -39,7 +39,7 @@ add_data_points_beeswarm(
   data = all_rows(),
   shape = 19,
   size = 1,
-  confetti = FALSE,
+  white_border = FALSE,
   cex = 3,
   corral = "wrap",
   corral.width = 0.5,
@@ -68,7 +68,7 @@ plot symbol.
 \item{size}{A \code{number} representing the size of the plot symbol. Typical
 values range between \code{1} and \code{3}.}
 
-\item{confetti}{If \code{TRUE} data points get a white border. This can be
+\item{white_border}{If \code{TRUE} data points get a white border. This can be
 useful to deal with overplotting.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects.}
