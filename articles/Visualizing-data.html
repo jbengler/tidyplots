@@ -117,11 +117,11 @@ visualize a dataset. The corresponding function in tidyplots is called
 <p>In the above example some data points appear to overlap other points.
 To account for this so called <em>overplotting</em>, you might want to
 add a thin white border around the points. This is achieved by setting
-the parameter <code>confetti = TRUE</code>.</p>
+the parameter <code>white_border = TRUE</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>confetti <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>white_border <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Another way is to make the points transparent using the
 <code>alpha</code> parameter.</p>
