@@ -58,12 +58,6 @@
     <loc>https://jbengler.github.io/tidyplots/reference/add_density_curve.html</loc>
   </url>
   <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_error_bar.html</loc>
-  </url>
-  <url>
-    <loc>https://jbengler.github.io/tidyplots/reference/add_error_ribbon.html</loc>
-  </url>
-  <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_heatmap.html</loc>
   </url>
   <url>
@@ -83,6 +77,12 @@
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_reference_lines.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_sem_bar.html</loc>
+  </url>
+  <url>
+    <loc>https://jbengler.github.io/tidyplots/reference/add_sem_ribbon.html</loc>
   </url>
   <url>
     <loc>https://jbengler.github.io/tidyplots/reference/add_stats_pvalue.html</loc>
