@@ -24,7 +24,7 @@ add_stats_pvalue <- function(plot,
                       include_info = TRUE,
                       ...) {
   check_tidyplot(plot)
-  cli::cli_alert_success("add_stats: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
+  # cli::cli_alert_success("add_stats: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
 
   plot <- plot  %>%
     adjust_y_axis(padding = c(NA, padding_top))

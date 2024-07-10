@@ -39,7 +39,7 @@ ff_adjust_axis <- function(axis) {
 
   # Datetime
   if (is_datetime(plot, axis)) {
-    cli::cli_alert_success("adjust_{axis}_axis: {.pkg datetime}")
+    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg datetime}")
     suppressMessages(
       if (axis == "x")
         plot <- plot + ggplot2::scale_x_datetime(name = title, breaks = breaks, labels = labels, expand = expand_x, ...)
@@ -51,7 +51,7 @@ ff_adjust_axis <- function(axis) {
 
   # Date
   if (is_date(plot, axis)) {
-    cli::cli_alert_success("adjust_{axis}_axis: {.pkg date}")
+    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg date}")
     suppressMessages(
       if (axis == "x")
         plot <- plot + ggplot2::scale_x_date(name = title, breaks = breaks, labels = labels, expand = expand_x, ...)
@@ -63,7 +63,7 @@ ff_adjust_axis <- function(axis) {
 
   # Time
   if (is_time(plot, axis)) {
-    cli::cli_alert_success("adjust_{axis}_axis: {.pkg time}")
+    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg time}")
     suppressMessages(
       if (axis == "x")
         plot <- plot + ggplot2::scale_x_time(name = title, breaks = breaks, labels = labels, expand = expand_x, ...)
@@ -77,7 +77,7 @@ ff_adjust_axis <- function(axis) {
   if (is_continuous(plot, axis) || force_continuous) {
     if (is_waiver(labels) && cut_short_scale)
       labels <- scales::label_number(scale_cut = scales::cut_short_scale())
-    cli::cli_alert_success("adjust_{axis}_axis: {.pkg continuous}")
+    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg continuous}")
 
     suppressMessages({
       if (axis == "x") {
@@ -101,7 +101,7 @@ ff_adjust_axis <- function(axis) {
   if (is_discrete(plot, axis)) {
     if (is_waiver(labels))
       labels <- tidyplot_parse_labels()
-    cli::cli_alert_success("adjust_{axis}_axis: {.pkg discrete}")
+    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg discrete}")
     suppressMessages(
       if (axis == "x")
         plot <- plot + ggplot2::scale_x_discrete(name = title, breaks = breaks, labels = labels, expand = ggplot2::waiver(), ...)
@@ -112,7 +112,7 @@ ff_adjust_axis <- function(axis) {
   }
 
   # Catch the rest
-  cli::cli_alert_warning("adjust_{axis}_axis: {.pkg x axis} was not changed.")
+  # cli::cli_alert_warning("adjust_{axis}_axis: {.pkg x axis} was not changed.")
   return(plot)
   }
 }
@@ -136,7 +136,7 @@ adjust_y_axis <- ff_adjust_axis("y")
 #' @export
 adjust_plot_area_size <- function(plot, width = 50, height = 50, unit = "mm") {
   check_tidyplot(plot)
-  cli::cli_alert_success("adjust_plot_area_size: {.pkg width} = {width} {unit}, {.pkg height} = {height} {unit}")
+  # cli::cli_alert_success("adjust_plot_area_size: {.arg width} = {width} {unit}, {.arg height} = {height} {unit}")
   if (!is.na(width)) width <- ggplot2::unit(width, unit)
   if (!is.na(height)) height <- ggplot2::unit(height, unit)
   plot + patchwork::plot_layout(widths = width, heights = height)

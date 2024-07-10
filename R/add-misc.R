@@ -272,7 +272,7 @@ add <- .Primitive("+")
 add_geom <- function(plot, geom, rasterize = FALSE, rasterize_dpi = 300, level = 0) {
   pf <- parent_function(level = level)
   if (rasterize) {
-    cli::cli_alert_success("{pf}: {.pkg rasterized} at {rasterize_dpi} dpi")
+    # cli::cli_alert_success("{pf}: {.pkg rasterized} at {rasterize_dpi} dpi")
     plot + ggrastr::rasterise(geom, dpi = rasterize_dpi, dev = "ragg")
   } else {
     plot + geom

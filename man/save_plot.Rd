@@ -7,14 +7,9 @@
 save_plot(
   plot = ggplot2::last_plot(),
   filename,
-  device = NULL,
-  path = NULL,
-  scale = 1,
   width = NA,
   height = NA,
   units = c("mm", "cm", "in"),
-  dpi = 300,
-  limitsize = TRUE,
   multiple_files = FALSE,
   bg = "transparent",
   ...
@@ -25,27 +20,9 @@ save_plot(
 
 \item{filename}{File name to create on disk.}
 
-\item{device}{Device to use. Can either be a device function
-(e.g. \link{png}), or one of "eps", "ps", "tex" (pictex),
-"pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only). If
-\code{NULL} (default), the device is guessed based on the \code{filename} extension.}
-
-\item{path}{Path of the directory to save plot to: \code{path} and \code{filename}
-are combined to create the fully qualified file name. Defaults to the
-working directory.}
-
-\item{scale}{Multiplicative scaling factor.}
-
 \item{width, height}{Dimensions of the saved plot. Defaults to \code{NA}.}
 
 \item{units}{Units of length. Defaults to \code{"mm"}.}
-
-\item{dpi}{Plot resolution. Also accepts a string input: "retina" (320),
-"print" (300), or "screen" (72). Applies only to raster output types.}
-
-\item{limitsize}{When \code{TRUE} (the default), \code{ggsave()} will not
-save images larger than 50x50 inches, to prevent the common error of
-specifying dimensions in pixels.}
 
 \item{multiple_files}{Whether to save multiple pages as individual files.}
 

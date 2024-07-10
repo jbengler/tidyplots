@@ -7,9 +7,9 @@ authors:
     href: https://github.com/jbengler
 
 figures:
-  dpi: 300
-  fig.width: 5
-  fig.height: 5
+  dpi: 200
+  fig.width: 4
+  fig.height: 3
 
 articles:
 - title: Articles
@@ -22,7 +22,7 @@ articles:
 reference:
 - title:
   desc: >
-    To create a plot, start with the `tidyplot()` function. Build the plot by adding, removing, and adjusting plot components using the `add_*()`, `remove_*()`, `adjust_*()`, and `theme_*()` functions, preferably in that order. The `split_plot()` function must be called last in this sequence and can only be followed by `view_plot()` and `save_plot()`.
+    To create a plot, start with the `tidyplot()` function. Build the plot by adding, removing, and adjusting plot components. The `split_plot()` function must be called last in this sequence and can only be followed by `save_plot()`.
 - title: Create
 - contents:
   - tidyplot

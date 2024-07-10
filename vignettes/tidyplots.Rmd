@@ -176,10 +176,10 @@ This is perfect to achieve a consistent look, which is most easily done by selec
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
+  add_data_points_beeswarm(shape = 1) %>%
   add_mean_bar(alpha = 0.3) %>% 
   add_sem_bar() %>% 
-  adjust_plot_area_size(width = 40, height = 20)
+  adjust_plot_area_size(width = 20, height = 20)
 ```
 
 Another common adjustment is to change the titles of the plot, axes, or legend. For this we will use the function `adjust_description()`.

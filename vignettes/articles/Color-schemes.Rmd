@@ -81,7 +81,7 @@ print(colors_continuous_viridis, return_html = TRUE)
 
 Here is a use case for a continuous color scheme.
 
-```{r, fig.asp=0.9}
+```{r}
 climate %>% 
   tidyplot(x = month, y = year, color = max_temperature) %>% 
   add_heatmap()
@@ -89,7 +89,7 @@ climate %>%
 
 And here are some variations.
 
-```{r, fig.asp=0.9}
+```{r}
 climate %>% 
   tidyplot(x = month, y = year, color = max_temperature) %>% 
   add_heatmap() %>% 

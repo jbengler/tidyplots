@@ -296,7 +296,7 @@ check_tidyplot <- function(x, arg = rlang::caller_arg(x), call = rlang::caller_e
   if (!inherits(x, "tidyplot")) {
     msg <- c("{.arg {arg}} must be a tidyplot.")
     if (inherits(x, "list") || inherits(x, "patchwork"))
-      msg <- c(msg, "i" = "After using `split_plot()`, only `view_plot()` and `save_plot()` are allowed.")
+      msg <- c(msg, "i" = "After using `split_plot()`, only `save_plot()` is allowed.")
     else
       msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")
     cli::cli_abort(msg, call = call)
@@ -325,7 +325,7 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
 
   pages <-
     purrr::map(plot, function(x) {
-      if (!ggplot2::is.ggplot(x)) stop("Please provide a ggplot or list of ggplots as input to 'plot'")
+      if (!ggplot2::is.ggplot(x)) cli::cli_abort("Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}")
       gtab <- patchwork::patchworkGrob(x)
 
       width <- NA

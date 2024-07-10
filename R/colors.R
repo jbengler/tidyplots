@@ -36,21 +36,21 @@ adjust_colors <- function(plot, new_colors = NULL,
 
       # Too many colors
       if (n_ratio > 1) {
-        cli::cli_alert_info("adjust_colors: Too many colors. {n_provided} colors provided, but only {n_requested} needed.")
+        # cli::cli_alert_info("adjust_colors: Too many colors. {n_provided} colors provided, but only {n_requested} needed.")
         new_colors <- downsample_vector(new_colors, n_requested)
       }
 
       suppressMessages(out <- out + ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...))
       suppressMessages(out <- out + ggplot2::scale_fill_manual(values = apply_saturation(new_colors, saturation = saturation), drop = FALSE, labels = labels, ...))
-      cli::cli_alert_success("adjust_colors: applied discrete {.pkg color values}")
+      # cli::cli_alert_success("adjust_colors: applied discrete {.pkg color values}")
 
     } else {
       suppressMessages(out <- out + scale_color_d(palette = new_colors, drop = FALSE, labels = labels, ...))
       suppressMessages(out <- out + scale_fill_d(palette = new_colors, saturation = saturation, drop = FALSE, labels = labels, ...))
-      cli::cli_alert_success("adjust_colors: applied discrete {.pkg color palette}")
+      # cli::cli_alert_success("adjust_colors: applied discrete {.pkg color palette}")
 
       # Too few colors
-      if (n_ratio < 1) cli::cli_alert_info("adjust_colors: Too few colors. {n_provided} colors provided, but {n_requested} expected.")
+      # if (n_ratio < 1) cli::cli_alert_info("adjust_colors: Too few colors. {n_provided} colors provided, but {n_requested} expected.")
     }
   }
 
@@ -61,7 +61,7 @@ adjust_colors <- function(plot, new_colors = NULL,
 
     suppressMessages(out <- out + scale_color_c(palette = new_colors, labels = labels, ...))
     suppressMessages(out <- out + scale_fill_c(palette = new_colors, saturation = saturation, labels = labels, ...))
-    cli::cli_alert_success("adjust_colors: applied continous {.pkg color palette}")
+    # cli::cli_alert_success("adjust_colors: applied continous {.pkg color palette}")
   }
   out
 }

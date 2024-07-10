@@ -6,7 +6,7 @@ ff_rename_axis_labels <- function(axis) {
     if (scale_type != "discrete")
       cli::cli_abort("Axis must be discrete not {scale_type}!")
     if (is.null(names(new_names)))
-      cli::cli_abort("'new_names' must be a named character vector!")
+      cli::cli_abort("{.arg new_names} must be a named character vector!")
     var <- get_variable(plot, axis)
 
     new_factors <- setNames(names(new_names), new_names)

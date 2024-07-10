@@ -168,7 +168,7 @@ generate_html <- function(x, max_colors) {
 }
 
 print_tidycolor <- function(x, max_colors, return_html = FALSE) {
-  cli::cli_alert_info(paste0("A tidyplots color scheme with ",length(x) ," colors."))
+  # cli::cli_alert_info(paste0("A tidyplots color scheme with ",length(x) ," colors."))
 
   viewer <- getOption("viewer")
   if (!is.null(viewer) || return_html) {
@@ -185,7 +185,7 @@ print_tidycolor <- function(x, max_colors, return_html = FALSE) {
 
     writeLines(html, htmlFile)
     viewer(htmlFile)
-    cli::cli_alert_success("A preview was send to the RStudio viewer pane.")
+    # cli::cli_alert_success("A preview was send to the RStudio viewer pane.")
   } else {
     print(as.character(x))
   }

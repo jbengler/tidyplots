@@ -7,7 +7,7 @@ ff_pie <- function(.type = "pie") {
       remove_plot_area_padding() %>%
       style_void()
 
-    if (!is_missing(plot, "x")) stop("add_pie() and add_donut() accept color and y, but not x.")
+    if (!is_missing(plot, "x")) cli::cli_abort("{.fun add_pie} and {.fun add_donut} accept {.arg color} and {.arg y}, but not {.arg x}.")
 
     if (is_missing(plot, "y")) {
       plot <- plot + ggplot2::geom_bar(ggplot2::aes(x = NA), position = ggplot2::position_fill(reverse = reverse),
@@ -45,7 +45,7 @@ ff_barstack <- function(.position_fun) {
     check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
-    if (is_missing(plot, "colour")) stop("color missing without default")
+    if (is_missing(plot, "colour")) cli::cli_abort("Argument {.arg color} missing without default")
 
     # detect orientation
     orientation <- NA
@@ -105,7 +105,7 @@ ff_areastack <- function(.position_fun) {
     mapping$group <- plot$mapping$colour
 
     if (is_missing(plot, "x") && is_missing(plot, "y")) {
-      stop("x, y or both must be supplied")
+      cli::cli_abort("Arguments {.arg x}, {.arg y} or both must be supplied")
     }
 
     # detect orientation

@@ -49,7 +49,7 @@ study %>%
 
 ``` r
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(x = year, y = power, color = energy_source) %>% 
   add_barstack_absolute()
 ```
 
@@ -67,7 +67,7 @@ energy %>%
 
 ``` r
 energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
+  tidyplot(x = date, y = power, color = energy_source) %>% 
   add_areastack_absolute()
 ```
 
@@ -75,7 +75,7 @@ energy_week %>%
 
 ``` r
 energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
+  tidyplot(x = date, y = power, color = energy_source) %>% 
   add_areastack_relative()
 ```
 
@@ -140,6 +140,6 @@ study %>%
 ## Acknowledgements
 
 tidyplots relies on a number of fantastic packages that do all the heavy
-lifting behind the scenes. These include cli, dplyr, forcats, ggplot2,
-ggpubr, ggrastr, ggrepel, glue, Hmisc, patchwork, purrr, ragg, rlang,
-scales, stringr, svglite and tidyr.
+lifting behind the scenes. These include cli, dplyr, forcats,
+ggbeeswarm, ggplot2, ggpubr, ggrastr, ggrepel, glue, Hmisc, htmltools,
+patchwork, purrr, rlang, scales, stringr, tidyr, and tidyselect.
