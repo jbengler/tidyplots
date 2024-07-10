@@ -48,14 +48,9 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">save_plot</span><span class="op">(</span></span>
 <span>  plot <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/last_plot.html" class="external-link">last_plot</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  <span class="va">filename</span>,</span>
-<span>  device <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  path <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  scale <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  height <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  units <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"mm"</span>, <span class="st">"cm"</span>, <span class="st">"in"</span><span class="op">)</span>,</span>
-<span>  dpi <span class="op">=</span> <span class="fl">300</span>,</span>
-<span>  limitsize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  multiple_files <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  bg <span class="op">=</span> <span class="st">"transparent"</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -74,40 +69,12 @@
 <dd><p>File name to create on disk.</p></dd>
 
 
-<dt id="arg-device">device<a class="anchor" aria-label="anchor" href="#arg-device"></a></dt>
-<dd><p>Device to use. Can either be a device function
-(e.g. <a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a>), or one of "eps", "ps", "tex" (pictex),
-"pdf", "jpeg", "tiff", "png", "bmp", "svg" or "wmf" (windows only). If
-<code>NULL</code> (default), the device is guessed based on the <code>filename</code> extension.</p></dd>
-
-
-<dt id="arg-path">path<a class="anchor" aria-label="anchor" href="#arg-path"></a></dt>
-<dd><p>Path of the directory to save plot to: <code>path</code> and <code>filename</code>
-are combined to create the fully qualified file name. Defaults to the
-working directory.</p></dd>
-
-
-<dt id="arg-scale">scale<a class="anchor" aria-label="anchor" href="#arg-scale"></a></dt>
-<dd><p>Multiplicative scaling factor.</p></dd>
-
-
 <dt id="arg-width-height">width, height<a class="anchor" aria-label="anchor" href="#arg-width-height"></a></dt>
 <dd><p>Dimensions of the saved plot. Defaults to <code>NA</code>.</p></dd>
 
 
 <dt id="arg-units">units<a class="anchor" aria-label="anchor" href="#arg-units"></a></dt>
 <dd><p>Units of length. Defaults to <code>"mm"</code>.</p></dd>
-
-
-<dt id="arg-dpi">dpi<a class="anchor" aria-label="anchor" href="#arg-dpi"></a></dt>
-<dd><p>Plot resolution. Also accepts a string input: "retina" (320),
-"print" (300), or "screen" (72). Applies only to raster output types.</p></dd>
-
-
-<dt id="arg-limitsize">limitsize<a class="anchor" aria-label="anchor" href="#arg-limitsize"></a></dt>
-<dd><p>When <code>TRUE</code> (the default), <code>ggsave()</code> will not
-save images larger than 50x50 inches, to prevent the common error of
-specifying dimensions in pixels.</p></dd>
 
 
 <dt id="arg-multiple-files">multiple_files<a class="anchor" aria-label="anchor" href="#arg-multiple-files"></a></dt>
