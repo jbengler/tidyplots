@@ -5,7 +5,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="tidyplots">
 <title>Get started • tidyplots</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -15,67 +14,49 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js" integrity="sha512-7O5pXpc0oCRrxk8RUfDYFgn0nO1t+jLuIOQdOMRp4APB7uZ4vSjspzp5y6YDtDs4VzUSTbWzBFZ/LKJhnyFOKw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Get started">
-<meta property="og:description" content="tidyplots">
-<meta property="og:image" content="https://jbengler.github.io/tidyplots/logo.svg">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light" data-bs-theme="light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2.9000</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item">
-  <a class="nav-link" href="../articles/tidyplots.html">Get started</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
+<li class="active nav-item"><a class="nav-link" href="../articles/tidyplots.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
-  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
-  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing data</a>
-    <a class="dropdown-item" href="../articles/Advanced-plotting.html">Advanced plotting</a>
-    <a class="dropdown-item" href="../articles/Color-schemes.html">Color schemes</a>
-  </div>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/Visualizing-data.html">Visualizing data</a></li>
+    <li><a class="dropdown-item" href="../articles/Advanced-plotting.html">Advanced plotting</a></li>
+    <li><a class="dropdown-item" href="../articles/Color-schemes.html">Color schemes</a></li>
+  </ul>
 </li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jbengler/tidyplots/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jbengler/tidyplots/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -87,7 +68,7 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Get started</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/jbengler/tidyplots/blob/HEAD/vignettes/tidyplots.Rmd" class="external-link"><code>vignettes/tidyplots.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jbengler/tidyplots/blob/master/vignettes/tidyplots.Rmd" class="external-link"><code>vignettes/tidyplots.Rmd</code></a></small>
       <div class="d-none name"><code>tidyplots.Rmd</code></div>
     </div>
 
@@ -131,10 +112,10 @@ Beginner</a>.</p>
 <div class="section level3">
 <h3 id="install-packages">Install packages<a class="anchor" aria-label="anchor" href="#install-packages"></a>
 </h3>
-<p>After opening RStudio, you will find in your R console in the lower
-left corner. All code you enter in the console will be directly executed
-by R. Let’s start by installing some essential packages. Packages
-deliver additional functionality that is not built into base R.</p>
+<p>After opening RStudio, you will find your R console in the lower left
+corner. All code you enter in the console will be directly executed by
+R. Let’s start by installing some essential packages. Packages deliver
+additional functionality that is not built into base R.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
@@ -147,16 +128,16 @@ deliver additional functionality that is not built into base R.</p>
 <p>Before starting to plot, the first thing is to ensure that your data
 is <em>tidy</em>. More formally, in tidy data</p>
 <ol style="list-style-type: decimal">
-<li>each variable must have its own column</li>
-<li>each observation must have its own row and</li>
-<li>each value must have its own cell</li>
+<li>each <em>variable</em> must have its own column</li>
+<li>each <em>observation</em> must have its own row and</li>
+<li>each <em>value</em> must have its own cell</li>
 </ol>
 <p>For more details about tidy data analysis have a look at the free
 online book <a href="https://r4ds.hadley.nz" class="external-link">R for Data Science</a> by
 Hadley Wickham, which has a chapter dedicated to <a href="https://r4ds.hadley.nz/data-tidy" class="external-link">tidy data</a>.</p>
-<p>tidyplots comes with a number of demo dataset that are ready to use
-for plotting. We start by loading the tidyplots package and have a look
-at the <code>study</code> dataset.</p>
+<p>tidyplots comes with a number of tidy demo dataset that are ready to
+use for plotting. We start by loading the tidyplots package and have a
+look at the <code>study</code> dataset.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jbengler/tidyplots" class="external-link">tidyplots</a></span><span class="op">)</span></span>
 <span><span class="va">study</span></span>
@@ -182,10 +163,10 @@ at the <code>study</code> dataset.</p>
 <span><span class="co">#&gt; 19         D treatment  low         p09  37   male    22</span></span>
 <span><span class="co">#&gt; 20         D treatment  low         p10  24 female    23</span></span></code></pre></div>
 <p>As you can see, the <code>study</code> dataset consists of a table
-with 7 columns also called <em>variables</em>, and 20 rows, also called
+with 7 columns, also called <em>variables</em>, and 20 rows, also called
 <em>observations</em>. The study participants received 4 different kinds
-of <code>treatment</code> (A, B, C, or D) and some sort of
-<code>score</code> was measured to assess treatment success.</p>
+of <code>treatment</code> (A, B, C, or D) and a <code>score</code> was
+measured to assess treatment success.</p>
 </div>
 <div class="section level2">
 <h2 id="plotting">Plotting<a class="anchor" aria-label="anchor" href="#plotting"></a>
@@ -208,19 +189,19 @@ have a closer look at the code above.</p>
 output of the first line is handed over as input to the next line. In
 the second line, we generate the tidyplot and specify which variables we
 want to use for the x and y axis using the <code>x</code> and
-<code>y</code> parameters of the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function.</p>
+<code>y</code> arguments of the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function.</p>
 <p><em>Tip: The keyboard shortcut for the pipe is <code>Cmd</code> +
 <code>Shift</code> + <code>M</code> on the Mac and <code>Ctrl</code> +
 <code>Shift</code> + <code>M</code> on Windows.</em></p>
 <div class="section level3">
 <h3 id="add">Add<a class="anchor" aria-label="anchor" href="#add"></a>
 </h3>
-<p>Next, lets add some more elements to the plot. This is done by using
+<p>Next, let’s add some more elements to the plot. This is done by using
 a family of functions that all start with <code>add_</code>. For
 example, we can add the data points by adding one more line to the code.
 Note, that we need a <code>%&gt;%</code> at the end of each line, where
 the output should be piped into the next line. When you combine multiple
-lines like this, you have generated a pipeline.</p>
+lines like this, you have generated a <em>pipeline</em>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -230,7 +211,7 @@ lines like this, you have generated a pipeline.</p>
 <code>add_*()</code> functions you can choose from. An overview of all
 function in the tidyplots package can be found in the <a href="https://jbengler.github.io/tidyplots/reference/index.html">Function
 reference</a>.</p>
-<p>For now, lets add some bars to the plot. As soon as you start typing
+<p>For now, let’s add some bars to the plot. As soon as you start typing
 “add” in RStudio you should see a little window next to your courser
 that shows all available function that start with “add” and can thus be
 used to build up your plot. You can also manually trigger the
@@ -249,12 +230,12 @@ each treatment group represented as a bar.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-7-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>One thing to note here is that I added <code>alpha = 0.3</code> as a
-parameter to the <code><a href="../reference/add_mean_bar.html">add_mean_bar()</a></code> function. This adds a
-little transparency to the bars and results in a lighter blue color in
+argument to the <code><a href="../reference/add_mean_bar.html">add_mean_bar()</a></code> function. This adds a little
+transparency to the bars and results in a lighter blue color in
 comparison to the data points.</p>
-<p>You might argue that you do not like bars for this kind of plot. So
-lets exchange the <code>bar</code> for a <code>dash</code>. And while we
-are on it, let’s add the standard error of the mean represented as error
+<p>Some people might do not like bars so much. So let’s exchange the
+<code>bar</code> for a <code>dash</code>. And while we are on it, let’s
+add the standard error of the mean <code>sem</code> represented as error
 bar.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -268,7 +249,7 @@ until your plot has all the elements you need.</p>
 <p>But there is one more building block that we need to cover and that
 is color. Color is a very powerful way to encode information in a plot.
 As colors can encode <em>variables</em> in a similar way as axes, the
-parameter <code>color</code> needs to be to provided in the initial call
+argument <code>color</code> needs to be to provided in the initial call
 of the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -289,9 +270,9 @@ data</a> for further inspiration.</p>
 <h3 id="remove">Remove<a class="anchor" aria-label="anchor" href="#remove"></a>
 </h3>
 <p>Besides adding plot elements, you might want to remove certain parts
-of the plot. This can be achieved by the <code>remove_*()</code> family
-of functions. For example, you might want to remove the color legend
-title, or in some rare cases even the entire y axis.</p>
+of the plot. This can be achieved with the <code>remove_*()</code>
+family of functions. For example, you might want to remove the color
+legend title, or in some rare cases even the entire y axis.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -308,8 +289,8 @@ reference</a>.</p>
 <h3 id="adjust">Adjust<a class="anchor" aria-label="anchor" href="#adjust"></a>
 </h3>
 <p>After you have assembled your plot, you often want to tweak some
-details about how the plot or its components are displayed For this
-task, tidyplot provides a number of <code>adjust_*()</code>
+details about how the plot or its components are displayed. For this
+task, tidyplots provides a number of <code>adjust_*()</code>
 functions.</p>
 <p>Let’s start with this plot.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -320,10 +301,10 @@ functions.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_bar.html">add_sem_bar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-11-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>When preparing figures for a paper, you might want ensure, that all
-plots have a consistent size. The default in tidyplot is a width of 50
-mm and a width of 50 mm. Please note that these values refer to size of
-the <em>plot area</em>, which is the area defined by the x and y axis.
-Therefore labels, titles, and legend are not counting towards the
+plots have a consistent size. The default in tidyplots is a width of 50
+mm and a height of 50 mm. Please note that these values refer to size of
+the <em>plot area</em>, which is the area enclosed by the x and y axis.
+Therefore labels, titles, and legends are not counting towards the
 <em>plot area size</em>.</p>
 <p>This is perfect to achieve a consistent look, which is most easily
 done by selecting a consistent <code>height</code> across plots, while
@@ -360,7 +341,7 @@ characters like Greek symbols, subscript or superscript. For this
 purpose, tidyplots supports <em>plotmath expressions</em>. Besides
 finding out how to use the <a href="https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath" class="external-link">plotmath
 expression syntax</a>, please note that in tidyplots all plotmath
-expression need to start and end with a <code>$</code> character.
+expressions need to start and end with a <code>$</code> character.
 Moreover, you can not mix plotmath with plain text in one string,
 instead the entire string needs to be a plotmath expression if you want
 to use special characters.</p>
@@ -421,14 +402,15 @@ clear which old label should be replace with which new label.</p>
 <p>The remaining functions, starting with <code>reorder_</code>,
 <code>sort_</code>, and <code>reverse_</code>, do not change the name of
 the label but their order in the plot.</p>
-<p>For example, you can bring the treatment “D” to the front.</p>
+<p>For example, you can bring the treatment “D” and “C” to the
+front.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_bar.html">add_sem_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/reorder_x_axis_labels.html">reorder_x_axis_labels</a></span><span class="op">(</span><span class="st">"D"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/reorder_x_axis_labels.html">reorder_x_axis_labels</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"C"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-18-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Sort the treatments by their score.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
@@ -475,7 +457,7 @@ default tidyplots theme.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_ggplot2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-22-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Or more minimal.</p>
+<p>Or something more minimal.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -519,9 +501,9 @@ piping the plot into the function <code><a href="../reference/save_plot.html">sa
 <span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="st">"my_plot.pdf"</span><span class="op">)</span></span></code></pre></div>
 <p>Conveniently, <code><a href="../reference/save_plot.html">save_plot()</a></code> also gives back the plot it
 received, allowing it to be used in the middle of a pipeline. If
-<code><a href="../reference/save_plot.html">save_plot()</a></code> is a the end of pipeline, the plot will still
-be rendered on screen, providing a visual confirmation of what was saved
-to file.</p>
+<code><a href="../reference/save_plot.html">save_plot()</a></code> is a the end of pipeline, the plot will be
+rendered on screen, providing a visual confirmation of what was saved to
+file.</p>
 </div>
 </div>
 <div class="section level2">
@@ -564,7 +546,7 @@ Free online book by Claus O. Wilke</p></li>
 </ul>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
@@ -575,15 +557,15 @@ Free online book by Claus O. Wilke</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
