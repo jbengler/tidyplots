@@ -46,10 +46,9 @@ add_ci95_bar(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
-\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
-violin plot, etc). Typical values range between \code{0} and \code{1}.}
+\item{width}{Width of the plot area. Defaults to \code{50}.}
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 

@@ -8,7 +8,7 @@
 A data frame.
 }
 \source{
-\href{https://www.energy-charts.info}{Energy-Charts}
+\href{https://www.energy-charts.info}{Energy-Charts}, Energy production data, Germany
 }
 \usage{
 energy_week

@@ -1,6 +1,6 @@
 
 #' Remove legend or legend title
-#' @param plot bla
+#' @inherit common_arguments
 #' @export
 remove_legend <- function(plot) {
   check_tidyplot(plot)
@@ -15,7 +15,7 @@ remove_legend_title <- function(plot) {
 }
 
 #' Remove x axis or parts of it
-#' @param plot bla
+#' @inherit common_arguments
 #' @export
 remove_x_axis <- function(plot) {
   check_tidyplot(plot)
@@ -56,7 +56,7 @@ remove_x_axis_title <- function(plot) {
 
 
 #' Remove y axis or parts of it
-#' @param plot bla
+#' @inherit common_arguments
 #' @export
 remove_y_axis <- function(plot) {
   check_tidyplot(plot)
@@ -96,8 +96,7 @@ remove_y_axis_title <- function(plot) {
 }
 
 #' Remove plot area padding
-#' @param plot bla
-#' @param force_continuous bla
+#' @inherit common_arguments
 #' @export
 remove_plot_area_padding <- function(plot, force_continuous = FALSE) {
   check_tidyplot(plot)

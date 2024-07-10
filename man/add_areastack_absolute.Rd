@@ -28,11 +28,11 @@ add_areastack_relative(
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{alpha}{common}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
-\item{reverse}{common}
+\item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 
-\item{replace_na}{common}
+\item{replace_na}{Whether to replace \code{count = NA} with \code{count = 0}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 }

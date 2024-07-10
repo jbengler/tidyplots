@@ -23,23 +23,23 @@ add_boxplot(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
-\item{saturation}{common}
+\item{saturation}{A \code{number} between \code{0} and \code{1} for the color saturation of an object. A value of \code{0} is completely desaturated (white), \code{1} is the original color.}
 
-\item{show_whiskers}{bla}
+\item{show_whiskers}{Whether to show boxplot whiskers. Defaults to \code{TRUE}.}
 
-\item{show_outliers}{bla}
+\item{show_outliers}{Whether to show outliers. Defaults to \code{TRUE}.}
 
-\item{box_width}{bla}
+\item{box_width}{Width of the boxplot. Defaults to \code{0.6}.}
 
-\item{whiskers_width}{bla}
+\item{whiskers_width}{Width of the whiskers. Defaults to \code{0.8}.}
 
-\item{outlier.size}{bla}
+\item{outlier.size}{Size of the outliers. Defaults to \code{0.5}.}
 
 \item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 
-\item{outlier.shape}{bla}
+\item{outlier.shape}{Shape of the outliers. Defaults to \code{19}.}
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 

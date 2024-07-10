@@ -22,7 +22,7 @@ articles:
 reference:
 - title:
   desc: >
-    To create a plot, you start with the `tidyplot()` function. Then you call `add_*()`, `adjust_*()` and `theme_*()` functions, preferably in that order. `split_plot()` must be last in this sequence and can only be followed by `view_plot()` and `save_plot()`.
+    To create a plot, start with the `tidyplot()` function. Build the plot by adding, removing, and adjusting plot components using the `add_*()`, `remove_*()`, `adjust_*()`, and `theme_*()` functions, preferably in that order. The `split_plot()` function must be called last in this sequence and can only be followed by `view_plot()` and `save_plot()`.
 - title: Create
 - contents:
   - tidyplot
@@ -60,7 +60,7 @@ reference:
 - subtitle: Annotation
 - contents:
   - starts_with("add_title")
-  - starts_with("add_text_labels")
+  - starts_with("add_data_labels")
   - starts_with("add_reference")
 - title: Remove
   desc: Remove plot components.
@@ -113,6 +113,7 @@ reference:
 - title: Data
 - contents:
   - starts_with("animals")
+  - starts_with("climate")
   - starts_with("dinosaurs")
   - starts_with("distributions")
   - starts_with("energy")

@@ -2,7 +2,7 @@
 ff_adjust_axis <- function(axis) {
   function(plot, title = ggplot2::waiver(), breaks = ggplot2::waiver(),
            labels = ggplot2::waiver(), limits = NULL, padding = c(NA, NA),
-           rotate_labels = FALSE, transformation = "identity",
+           rotate_labels = FALSE, transform = "identity",
            cut_short_scale = FALSE, force_continuous = FALSE, ...) {
     check_tidyplot(plot)
   # Parse title
@@ -82,10 +82,10 @@ ff_adjust_axis <- function(axis) {
     suppressMessages({
       if (axis == "x") {
         if(!is_discrete(plot, "x")) {
-          plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_x, trans = transformation, ...)}
+          plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_x, transform = transform, ...)}
       } else {
         if(!is_discrete(plot, "y")) {
-          plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_y, trans = transformation, ...)}
+          plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_y, transform = transform, ...)}
       }
     })
 
@@ -117,13 +117,11 @@ ff_adjust_axis <- function(axis) {
   }
 }
 #' Adjust axes
-#' @param title bla
-#' @param limits bla
-#' @param rotate_labels bla
-#' @param transformation bla
-#' @param cut_short_scale bla
-#' @param force_continuous bla
-#' @param padding bla
+#' @param title Axis title.
+#' @param limits Axis limits. For example, with `limits = c(20, 90)` the axis starts at 20 and ends at 90.
+#' @param rotate_labels Whether to rotate axis labels. If `TRUE` is set to 45 degrees. You can also provide custom degree values, for example, `rotate_labels = 90`. Defaults to `FALSE`.
+#' @param cut_short_scale Whether to shorten axis labels using `K` for thousand, `M` for million, and so on. Defaults to `FALSE`.
+#' @param padding Extra space between the data points and the axes. Defaults to `c(NA, NA)`, which does not change the padding.
 #' @inherit common_arguments
 #' @inheritParams ggplot2::scale_x_continuous
 #' @export
@@ -134,9 +132,6 @@ adjust_y_axis <- ff_adjust_axis("y")
 
 
 #' Adjust plot area size
-#' @param width bla
-#' @param height bla
-#' @param unit bla
 #' @inherit common_arguments
 #' @export
 adjust_plot_area_size <- function(plot, width = 50, height = 50, unit = "mm") {
@@ -170,7 +165,7 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 
 
 #' Adjust legend
-#' @param title bla
+#' @param title Legend title.
 #' @param position The position of legends. Can be one of `"none"`, `"left"`, `"right"`,
 #'   `"bottom"`, `"top"`, or a two-element numeric vector.
 #' @inherit common_arguments
@@ -186,11 +181,10 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 
 
 #' Adjust plot area padding
-#' @param top bla
-#' @param right bla
-#' @param bottom bla
-#' @param left bla
-#' @param force_continuous bla
+#' @param top Extra space between the data points and the top. Defaults to `NA`, which does not change the padding.
+#' @param right Extra space between the data points and the right. Defaults to `NA`, which does not change the padding.
+#' @param bottom Extra space between the data points and the bottom. Defaults to `NA`, which does not change the padding.
+#' @param left Extra space between the data points and the left. Defaults to `NA`, which does not change the padding.
 #' @inherit common_arguments
 #' @export
 adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, force_continuous = FALSE, ...) {
@@ -202,12 +196,12 @@ adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, le
 
 
 #' Adjust description
-#' @param title bla
-#' @param x_axis_title bla
-#' @param y_axis_title bla
-#' @param legend_title bla
-#' @param caption bla
-#' @param ... Arguments passed on to the `ggplot2::labs()`.
+#' @param title Plot title.
+#' @param x_axis_title X axis title.
+#' @param y_axis_title Y axis title.
+#' @param legend_title Legend title.
+#' @param caption Plot caption text.
+#' @param ... Arguments passed on to `ggplot2::labs()`.
 #' @inherit common_arguments
 #' @export
 adjust_description <- function(plot, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),

@@ -12,10 +12,8 @@ is_waiver <- function(x) inherits(x, "waiver")
 
 #' Convert ggplot to tidyplot
 #'
-#' @param gg bla
-#' @param width bla
-#' @param height bla
-#' @param dodge_width bla
+#' @param gg A ggplot.
+#' @inherit common_arguments
 #' @export
 as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
   mapping <- gg$mapping
@@ -62,7 +60,7 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
 }
 
 #' Flip x and y axis
-#' @param ... Arguments passed on to the `ggplot2::coord_flip()`.
+#' @param ... Arguments passed on to `ggplot2::coord_flip()`.
 #' @inherit common_arguments
 #' @export
 flip_plot <- function(plot, ...) {
@@ -125,8 +123,8 @@ sample_rows <- function(n, by = NULL){
 
 
 #' Format numbers or p values
-#' @param x bla
-#' @param ... bla
+#' @param x Number to format.
+#' @param ... Arguments passed on to `scales::number()`.
 #' @inheritParams scales::number
 #' @inheritDotParams scales::number scale style_positive style_negative
 #' @export

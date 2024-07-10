@@ -13,7 +13,10 @@ reverse_y_axis_labels(plot)
 reverse_color_labels(plot)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Reverse axis or color labels

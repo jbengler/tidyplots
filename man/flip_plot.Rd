@@ -9,7 +9,7 @@ flip_plot(plot, ...)
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{...}{Arguments passed on to the \code{ggplot2::coord_flip()}.}
+\item{...}{Arguments passed on to \code{ggplot2::coord_flip()}.}
 }
 \value{
 A \code{tidyplot} object

@@ -1,9 +1,8 @@
 #' Adjust colors
-#' @param plot bla
-#' @param new_colors bla
-#' @param saturation bla
-#' @param labels bla
-#' @param ... bla
+#' @param new_colors A character vector of new hex colors to use. Can be a named character vector of hex colors to assign certain data labels to specific colors.
+#' @param ... Arguments passed on to the `scale` function.
+#' @inherit common_arguments
+#' @inheritParams ggplot2::scale_x_continuous
 #' @export
 adjust_colors <- function(plot, new_colors = NULL,
                           saturation = 1,

@@ -13,9 +13,12 @@ rename_y_axis_labels(plot, new_names)
 rename_color_labels(plot, new_names)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{new_names}{bla}
+\item{new_names}{Named character vector in the format c("old1" = "new1", "old2" = "new2").}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Rename axis or color labels

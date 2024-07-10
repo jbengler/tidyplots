@@ -8,12 +8,12 @@
 
 \item{data}{The data to be displayed in this layer. There are three options:
 \itemize{
-\item If \code{all_rows()} (the default) the complete plot data is displayed.
+\item If \code{all_rows()} (the default) the complete dataset is displayed.
 \item A \code{function} to subset the plot data. See \code{filter_rows()} and friends.
 \item A \code{data.frame} to override the plot data.
 }}
 
-\item{dodge_width}{For adjusting the distance between grouped objects.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
 \item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
 a position, or the width of a \code{"single"} element?}
@@ -34,30 +34,35 @@ plot symbol.
 \item{size}{A \code{number} representing the size of the plot symbol. Typical
 values range between \code{1} and \code{3}.}
 
-\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
-violin plot, etc). Typical values range between \code{0} and \code{1}.}
-
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 
-\item{alpha}{common}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
-\item{color}{common}
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 
-\item{fill}{common}
+\item{fill}{A hex color for the fill color. For example, \code{"#FFFFFF"} for white.}
 
-\item{saturation}{common}
+\item{saturation}{A \code{number} between \code{0} and \code{1} for the color saturation of an object. A value of \code{0} is completely desaturated (white), \code{1} is the original color.}
 
-\item{group}{common}
+\item{group}{Variable in the dataset to be used for grouping.}
 
-\item{reverse}{common}
+\item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 
-\item{scale_cut}{common}
+\item{scale_cut}{Scale cut function to be applied. See \code{scales::cut_short_scale()} and friends.}
 
-\item{fontsize}{common}
+\item{fontsize}{Font size in points. Defaults to \code{7}.}
 
-\item{replace_na}{common}
+\item{replace_na}{Whether to replace \code{count = NA} with \code{count = 0}.}
+
+\item{width}{Width of the plot area. Defaults to \code{50}.}
+
+\item{height}{Height of the plot area. Defaults to \code{50}.}
+
+\item{unit}{Unit of the plot area width and height. Defaults to \code{mm}.}
+
+\item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 }
 \value{
 A \code{tidyplot} object

@@ -3,12 +3,12 @@
 #' @param plot A `tidyplot` generated with the function `tidyplot()`.
 #' @param data The data to be displayed in this layer. There are three options:
 #'
-#'   * If `all_rows()` (the default) the complete plot data is displayed.
+#'   * If `all_rows()` (the default) the complete dataset is displayed.
 #'
 #'   * A `function` to subset the plot data. See `filter_rows()` and friends.
 #'
 #'   * A `data.frame` to override the plot data.
-#' @param dodge_width For adjusting the distance between grouped objects.
+#' @param dodge_width For adjusting the distance between grouped objects. Defaults to `0.8`.
 #' @param preserve Should dodging preserve the `"total"` width of all elements at
 #'   a position, or the width of a `"single"` element?
 #' @param rasterize If `FALSE` (the default) the layer will be constructed of
@@ -39,15 +39,19 @@
 #'   violin plot, etc). Typical values range between `0` and `1`.
 #' @param linewidth Thickness of the line in points (pt). Typical values range between `0.25` and `1`.
 #' @param ... Arguments passed on to the `geom` function.
-#' @param alpha common
-#' @param color common
-#' @param fill common
-#' @param saturation common
-#' @param group common
-#' @param reverse common
-#' @param scale_cut common
-#' @param fontsize common
-#' @param replace_na common
+#' @param alpha A `number` between `0` and `1` for the transparency of an object. A value of `0` is completely transparent, `1` is completely opaque.
+#' @param color A hex color for the stroke color. For example, `"#FFFFFF"` for white.
+#' @param fill A hex color for the fill color. For example, `"#FFFFFF"` for white.
+#' @param saturation A `number` between `0` and `1` for the color saturation of an object. A value of `0` is completely desaturated (white), `1` is the original color.
+#' @param group Variable in the dataset to be used for grouping.
+#' @param reverse Whether the order should be reversed or not. Defaults to `FALSE`, meaning not reversed.
+#' @param scale_cut Scale cut function to be applied. See `scales::cut_short_scale()` and friends.
+#' @param fontsize Font size in points. Defaults to `7`.
+#' @param replace_na Whether to replace `count = NA` with `count = 0`.
+#' @param width Width of the plot area. Defaults to `50`.
+#' @param height Height of the plot area. Defaults to `50`.
+#' @param unit Unit of the plot area width and height. Defaults to `mm`.
+#' @param force_continuous Whether to force the axis to be continuous. Defaults to `FALSE`.
 #' @return A `tidyplot` object
 #' @keywords internal
 #' @name common_arguments
@@ -286,9 +290,9 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 
 #' Add mean
 #'
-#' @param vjust bla
-#' @param hjust bla
-#' @param extra_padding bla
+#' @param vjust Vertical position adjustment of the value label.
+#' @param hjust Horizontal position adjustment of the value label.
+#' @param extra_padding Extra padding to create space for the value label.
 #' @inherit common_arguments
 #' @inheritParams scales::number
 #' @export

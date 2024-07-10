@@ -9,9 +9,9 @@ c.tidycolor <- function(...) new_color_scheme(NextMethod())
 
 #' New color scheme
 #'
-#' @param x bla
-#' @param name bla
-#' @param reverse bla
+#' @param x Character vector of hex colors. For example `x = c("#FF00FF", "#00FFFF")`.
+#' @param name Name of the custom color scheme.
+#' @inherit common_arguments
 #' @export
 new_color_scheme <- function(x, name = "Untitled color scheme", reverse = FALSE) {
   if (!is_hex_vector(x)) cli::cli_abort("{.arg x} must be a vector of hex colors.")

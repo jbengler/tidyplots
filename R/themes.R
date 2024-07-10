@@ -1,7 +1,6 @@
 
 #' Themes
-#' @param plot bla
-#' @param fontsize bla
+#' @inherit common_arguments
 #' @export
 theme_tidyplot <- function(plot, fontsize = 7) {
   check_tidyplot(plot)
@@ -14,6 +13,8 @@ theme_tidyplot <- function(plot, fontsize = 7) {
 theme_ggplot2 <- function(plot, fontsize = 7) {
   check_tidyplot(plot)
   plot <- plot + ggplot2::theme_gray()
+  if (get_variable(plot, "colour") == ".single_color")
+    plot <- plot %>% remove_legend()
   plot %>% adjust_font(fontsize)
 }
 #' @rdname theme_tidyplot
@@ -21,6 +22,8 @@ theme_ggplot2 <- function(plot, fontsize = 7) {
 theme_minimal_xy <- function(plot, fontsize = 7) {
   check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
+  if (get_variable(plot, "colour") == ".single_color")
+    plot <- plot %>% remove_legend()
   plot %>% adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
@@ -35,6 +38,8 @@ theme_minimal_xy <- function(plot, fontsize = 7) {
 theme_minimal_y <- function(plot, fontsize = 7) {
   check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
+  if (get_variable(plot, "colour") == ".single_color")
+    plot <- plot %>% remove_legend()
   plot %>% adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
@@ -49,6 +54,8 @@ theme_minimal_y <- function(plot, fontsize = 7) {
 theme_minimal_x <- function(plot, fontsize = 7) {
   check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
+  if (get_variable(plot, "colour") == ".single_color")
+    plot <- plot %>% remove_legend()
   plot %>% adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),

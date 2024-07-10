@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 ```
 
 ::: {.lead}
-In this article, we will demonstrate the use of color schemes in tidyplots. We will explore the default color schemes that come with tidyplots and are ready to use for plotting. These include schemes for discrete, continuous and diverging variables. To conclude, we will discuss the creation of custom color schemes from hex colors.
+In this article, we will demonstrate the use of color schemes in tidyplots. We will explore the default color schemes that come with tidyplots and are ready to use for plotting. These include schemes for discrete, continuous and diverging variables. To conclude, we will discuss the creation of custom color schemes from hex values.
 :::
 
 # Default color schemes
@@ -38,7 +38,7 @@ colors_discrete_metro
 print(colors_discrete_metro, return_html = TRUE)
 ```
 
-_Tip: You can copy the hex colors directly from the preview in the Viewer pane and paste into your script._
+_Tip: You can copy individual hex colors directly from the preview to use them in your script._
 
 ## Discrete
 
@@ -82,34 +82,29 @@ print(colors_continuous_viridis, return_html = TRUE)
 Here is a use case for a continuous color scheme.
 
 ```{r, fig.asp=0.9}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap() %>%
-  adjust_plot_area_size(height = 100)
+climate %>% 
+  tidyplot(x = month, y = year, color = max_temperature) %>% 
+  add_heatmap()
 ```
 
 And here are some variations.
 
 ```{r, fig.asp=0.9}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap() %>%
-  adjust_plot_area_size(height = 100) %>% 
+climate %>% 
+  tidyplot(x = month, y = year, color = max_temperature) %>% 
+  add_heatmap() %>% 
   adjust_colors(new_colors = colors_continuous_viridis)
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap() %>%
-  adjust_plot_area_size(height = 100) %>% 
+climate %>% 
+  tidyplot(x = month, y = year, color = max_temperature) %>% 
+  add_heatmap() %>% 
   adjust_colors(new_colors = colors_continuous_mako)
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap() %>%
-  adjust_plot_area_size(height = 100) %>% 
+climate %>% 
+  tidyplot(x = month, y = year, color = max_temperature) %>% 
+  add_heatmap() %>% 
   adjust_colors(new_colors = colors_continuous_turbo)
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap() %>%
-  adjust_plot_area_size(height = 100) %>% 
+climate %>% 
+  tidyplot(x = month, y = year, color = max_temperature) %>% 
+  add_heatmap() %>% 
   adjust_colors(new_colors = colors_continuous_rocket)
 ```
 

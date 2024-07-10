@@ -5,6 +5,8 @@ ff_rename_axis_labels <- function(axis) {
     scale_type <- get_scale_type(plot, axis)
     if (scale_type != "discrete")
       cli::cli_abort("Axis must be discrete not {scale_type}!")
+    if (is.null(names(new_names)))
+      cli::cli_abort("'new_names' must be a named character vector!")
     var <- get_variable(plot, axis)
 
     new_factors <- setNames(names(new_names), new_names)
@@ -23,16 +25,15 @@ ff_rename_axis_labels <- function(axis) {
       plot <- plot %>% adjust_colors(new_named_colors)
     }
 
-    cli::cli_alert_danger(
-    "Warning: rename_*_labels() changes labels across the entire the pipe!
-    This affects reorder_*_labels() and adjust_colors(), when used with label names.")
+    # cli::cli_alert_danger("Warning: rename_*_labels() changes labels across the entire the pipe!
+    # This affects reorder_*_labels() and adjust_colors(), when used with label names.")
     plot %+% new_data
   }
 }
 #' Rename axis or color labels
 #'
-#' @param plot bla
-#' @param new_names bla
+#' @param new_names Named character vector in the format c("old1" = "new1", "old2" = "new2").
+#' @inherit common_arguments
 #' @export
 rename_x_axis_labels <- ff_rename_axis_labels(axis = "x")
 #' @rdname rename_x_axis_labels
@@ -59,8 +60,8 @@ ff_reorder_axis_labels <- function(axis) {
 }
 #' Reorder axis or color labels
 #'
-#' @param plot bla
-#' @param ... bla
+#' @inherit common_arguments
+#' @param ... Arguments passed on to `forcats::fct_relevel()`.
 #' @export
 reorder_x_axis_labels <- ff_reorder_axis_labels(axis = "x")
 #' @rdname reorder_x_axis_labels
@@ -87,8 +88,8 @@ ff_sort_axis_labels <- function(axis) {
 }
 #' Sort axis or color labels
 #'
-#' @param plot bla
-#' @param ... bla
+#' @inherit common_arguments
+#' @param ... Arguments passed on to `forcats::fct_reorder()`.
 #' @export
 sort_x_axis_labels <- ff_sort_axis_labels(axis = "x")
 #' @rdname sort_x_axis_labels
@@ -114,7 +115,7 @@ ff_reverse_axis_labels <- function(axis) {
 }
 #' Reverse axis or color labels
 #'
-#' @param plot bla
+#' @inherit common_arguments
 #' @export
 reverse_x_axis_labels <- ff_reverse_axis_labels(axis = "x")
 #' @rdname reverse_x_axis_labels

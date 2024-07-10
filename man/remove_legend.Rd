@@ -10,7 +10,10 @@ remove_legend(plot)
 remove_legend_title(plot)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Remove legend or legend title

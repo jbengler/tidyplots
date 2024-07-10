@@ -33,7 +33,7 @@ bin width of a time variable is the number of seconds.}
 
 \item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
-\item{color}{common}
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 }

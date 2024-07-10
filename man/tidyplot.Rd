@@ -7,15 +7,23 @@
 tidyplot(data, ..., width = 50, height = 50, dodge_width = 0.8)
 }
 \arguments{
-\item{data}{bla}
+\item{data}{The data to be displayed in this layer. There are three options:
+\itemize{
+\item If \code{all_rows()} (the default) the complete dataset is displayed.
+\item A \code{function} to subset the plot data. See \code{filter_rows()} and friends.
+\item A \code{data.frame} to override the plot data.
+}}
 
-\item{...}{bla}
+\item{...}{Mappings for the \code{x} axis, \code{y} axis and \code{color}, see examples. Additional argument are passed to \code{ggplot2::aes()}.}
 
-\item{width}{bla}
+\item{width}{Width of the plot area. Defaults to \code{50}.}
 
-\item{height}{bla}
+\item{height}{Height of the plot area. Defaults to \code{50}.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Create a new tidyplot

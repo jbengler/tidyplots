@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ::: {.lead}
-In this article, we will explore advanced plotting techniques offered in tidyplots. We will cover the rasterizing of individual plot components, data subsetting for highlighting selected data points, and the construction of powerful plotting pipelines. Moreover, we will discuss the visualization of paired and missing data. We will conclude by introducing the concepts of plot orientation, dodging and plot area padding.
+In this article, we will explore advanced plotting techniques offered in tidyplots. We will cover the rasterizing of plot components, data subsetting for highlighting selected data points, and the construction of powerful plotting pipelines. Moreover, we will discuss the visualization of paired and missing data, generate multiplot layouts and introduce the concepts of plot orientation, dodging, coloring, plot area padding, and more. We will conclude by discussing the compatibility of tidyplots with ggplot2.
 :::
 
 # Rasterizing
@@ -26,7 +26,7 @@ Generally, vector graphics like PDF and SVG are superior to raster images like P
 
 However, in plots with many data points, such as busy scatter plots or heatmaps, the presence of too many vector shapes can slow down performance without providing extra information. In these cases, rasterizing individual layers of the plot can be beneficial, as it reduces file size and rendering time, making the graphs more manageable and quicker to load or display.
 
-Ideally, the rasterizing only affects the problematic layers of the plot, while the rest of the plot still uses vector shapes. In tidyplots this can be achieved with the parameters `rasterize = TRUE` and `rasterize_dpi` which are available in `add_heatmap()` and `add_data_points()` functions.
+Ideally, the rasterizing only affects the problematic layers of the plot, while the rest of the plot still uses vector shapes. In tidyplots this can be achieved with the arguments `rasterize = TRUE` and `rasterize_dpi` which are available in `add_heatmap()` and `add_data_points()` functions.
 
 In the examples below I intentionally chose a low resolution of of 30 to 50 dpi, to make the rastering more obvious. A typical resolution for print would be 300 dpi.
 
@@ -79,7 +79,9 @@ energy_week %>%
 
 # Data subsetting
 
-In general, data wrangling should be done before plotting graphs, including subsetting the data to include only the points that should appear in the plot. However, there are times when you have one large data frame that serves as the basis for multiple plots or when you want to highlight specific parts of the data while showing the entire dataset in the background. For these situations, tidyplots enables subsetting the data during the plotting process.
+In general, data wrangling should be done before plotting graphs, including subsetting the data to include only the points that should appear in the plot. 
+
+However, there are times when you have one large data frame that serves as the basis for multiple plots or when you want to highlight specific parts of the data while showing the entire dataset in the background. For these situations, tidyplots enables subsetting the data during the plotting process.
 
 Let's say you have a scatter plot of animals displaying their weight and size, and you want to highlight in red all animals larger than 300 cm.
 
@@ -97,7 +99,7 @@ animals %>%
   tidyplot(x = weight, y = size) %>%
   add_data_points() %>% 
   add_data_points(data = filter_rows(size > 300), color = "red") %>% 
-  add_text_labels(data = max_rows(weight, n = 3), var = animal, color = "black")
+  add_data_labels_repel(data = max_rows(weight, n = 3), label = animal, color = "black")
 ```
 
 You can also adjust the shape used for highlighting.
@@ -147,13 +149,13 @@ gene_expression %>%
   view_plot(data = filter_rows(external_gene_name == "Bsn"), title = "Bsn")
 ```
 
-Note that in this example, the `data` parameter together with the `filter_rows()` function is used to subset the data to one gene at a time. In addition, the `title` parameter lets you include a plot title to avoid confusing individual plots.
+Note that in this example, the `data` argument together with the `filter_rows()` function is used to subset the data to one gene at a time. In addition, the `title` argument lets you include a plot title to avoid confusing individual plots.
 
 # Paired data
 
 When dealing with paired data, you might wish to connect paired data points. In the example below, all participants switched the treatment group after a certain time period. Thus for each participant the dataset contains a score "on placebo" and a score "on treatment". 
 
-The connecting line can be added by using the `group` parameter of `add_line()` to specify the grouping variable.
+The connecting line can be added by using the `group` argument of `add_line()` to specify the grouping variable.
 
 ```{r}
 study %>% 
@@ -196,7 +198,7 @@ animals %>%
   add_areastack_absolute()
 ```
 
-What happened? Because all insects have six legs, the function could not find another point on the x axis to draw a connecting line and plot the area underneath. As a result, insects completely disappeared. The same thing happened to fish and birds, which always have zero and two legs, respectively.
+What happened? Because all insects have six legs, the function could not find another point on the x axis to draw a connecting line and plot the area underneath. As a result, insects completely disappeared. The same happened to fish and birds, which always have zero and two legs, respectively.
 
 What the function needs is the information that insects with less than six legs are missing in the dataset because they do not exist. Thus it is save to replace the information `count = NA` with the information `count = 0`.
 
@@ -208,7 +210,7 @@ animals %>%
   add_areastack_absolute(replace_na = TRUE)
 ```
 
-# Multiple plots
+# Multiplot layouts
 
 Often times you have to generate identical plots for many different subsets of the same dataset. For example, you might look at a gene expression dataset like `gene_expression` including many individual genes.
 
@@ -251,7 +253,7 @@ animals %>%
   add_sem_bar()
 ```
 
-As expected, swapping the `x` and `y` parameters results in horizontal bars.
+As expected, swapping the `x` and `y` arguments results in horizontal bars.
 
 ```{r}
 animals %>% 
@@ -280,8 +282,7 @@ Per default, tidyplots gives the data points a little bit of extra space towards
 ```{r}
 animals %>% 
   tidyplot(x = weight, y = speed) %>% 
-  add_data_points() %>% 
-  adjust_plot_area_padding(top = )
+  add_data_points()
 ```
 
 This _padding_, also known as _expansion_ in ggplot2, is 0.05 by default and can be changes using the `adjust_plot_area_padding()` function.
@@ -293,7 +294,7 @@ animals %>%
   adjust_plot_area_padding(top = 0.2, right = 0.2, bottom = 0.2, left = 0.2)
 ```
 
-To remove the padding completely, you can use use the `remove_padding()` function. But note that the highest and lowest values are cut off.
+To remove the padding completely, you can use use the `remove_plot_area_padding()` function. But note that the extreme values now fall onto the axis and are partially cut off.
 
 ```{r}
 animals %>% 
@@ -312,7 +313,7 @@ study %>%
   add_data_points()
 ```
 
-You can revert this manually like so.
+You can re-introduce the bottom padding like so.
 
 ```{r}
 study %>% 
@@ -335,17 +336,17 @@ study %>%
   add_data_points()
 ```
 
-Increasing the `dodge_width` in the `tidyplots()` function call increases the spacing between grouped bars.
+Decreasing the `dodge_width` in the `tidyplots()` function call decreases the spacing between grouped bars.
 
 ```{r}
 study %>% 
-  tidyplot(x = group, y = score, color = dose, dodge_width = 1.2) %>% 
+  tidyplot(x = group, y = score, color = dose, dodge_width = 0.4) %>% 
   add_mean_bar(alpha = 0.3) %>% 
   add_sem_bar() %>% 
   add_data_points()
 ```
 
-Setting `dodge_width = 0` results in overlapping positions.
+Setting `dodge_width = 0` results in completely overlapping positions.
 
 ```{r}
 study %>% 
@@ -365,7 +366,7 @@ time_course %>%
   add_reference_lines(x = 10)
 ```
 
-And here with the default `dodge_width = 0.8`. I added a reference line at day 10 to make it easier to see the difference.
+And here with the default `dodge_width = 0.8`. I added a reference line at day 10 to make it easier to appreciate the difference.
 
 ```{r}
 time_course %>% 
@@ -377,23 +378,23 @@ time_course %>%
 
 # Coloring
 
-tidyplots follows are quite straight forward approach when dealing with color. The variable that should be encoded by colors is passed via the `color` parameter to the `tidyplot()` function.
+tidyplots follows are quite straight forward approach when dealing with color. The variable that should be encoded by colors is passed via the `color` argument to the `tidyplot()` function.
 
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
-  add_mean_bar(saturation = 0.3) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
   add_sem_bar() %>% 
   add_data_points()
 ```
 
 In ggplot2, the plotting package that underlies tidyplots, colors are little more complicated. ggplot2 distinguishes between the fill color of an object `fill` and the stroke color of an object `color`. Some objects like bars can have both, while other objects like lines just have a stroke `color` but no `fill`.
 
-Usually, tidyplots users do not have to care about these details. Internally, tidyplots matches both `fill` and `color` to the same color. And this is the color that comes in as the `color` parameter into the `tidyplot()` function.
+Usually, tidyplots users do not have to care about these details. Internally, tidyplots matches both `fill` and `color` to the same color. And this is the color that comes in as the `color` argument into the `tidyplot()` function.
 
 In some cases though, you might want to take manual control over the `fill` and stroke `color` of specific objects.
 
-For example, want to plot a boxplot without the `fill` color.
+For example, you want to plot a boxplot without the `fill` color.
 
 ```{r}
 study %>% 
@@ -414,7 +415,7 @@ Or you want to have black text labels.
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
-  add_mean_bar(saturation = 0.3) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
   add_mean_value(color = "black")
 ```
 
@@ -429,7 +430,7 @@ study %>%
   theme_minimal_y()
 ```
 
-One way to do this is to reduce the opacity by decreasing the alpha parameter. Note how the horizontal lines start to shine through the bars.
+One way to do this is to reduce the opacity by decreasing the alpha argument. Note how the horizontal lines start to shine through the bars.
 
 ```{r}
 study %>% 
@@ -438,7 +439,7 @@ study %>%
   theme_minimal_y()
 ```
 
-In the `add_mean_bar()` family of functions, in `add_violin()` and in `add_boxplots()` functions, tidyplots offers one additional method using the `saturation` parameter.
+In the `add_mean_bar()` family of functions, in `add_violin()` and in `add_boxplots()` functions, tidyplots offers one additional method using the `saturation` argument.
 
 ```{r}
 study %>% 
@@ -451,9 +452,9 @@ Note how here the saturation is decreased without making the bars transparent. T
 
 # ggplot2 compatibiliy
 
-tidyplots is based on ggplot2 but does a few things slightly different.
+tidyplots is built on ggplot2, yet the two packages differ in several key aspects.
 
-The most noticeable is probably that ggplot uses `+` to add plot components while tidyplots completely relies on the pipe `%>%`.
+The most noticeable difference is probably that tidyplots consistently uses the pipe `%>%` to add plot components while ggplot uses `+` .
 
 There is still a certain compatibility of both systems. For example, you can transform a ggplot to tidyplot using the `as_tidyplot()` function.
 
@@ -462,7 +463,7 @@ Also, you can add ggplot code to a tidyplot using the `add()` helper function.
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_bar(saturation = 0.3) %>% 
+  add_mean_bar(alpha = 0.3) %>% 
   add(ggplot2::geom_point())
 ```
 

@@ -12,9 +12,9 @@ add_caption(plot, caption = ggplot2::waiver())
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{title}{bla}
+\item{title}{Title of the plot.}
 
-\item{caption}{bla}
+\item{caption}{Caption of the plot.}
 }
 \value{
 A \code{tidyplot} object

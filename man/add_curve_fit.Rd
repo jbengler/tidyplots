@@ -17,7 +17,7 @@ add_curve_fit(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
 \item{method}{Smoothing method (function) to use, accepts either
 \code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"}
@@ -38,12 +38,12 @@ model that \code{method = NULL} would use, then set
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{alpha}{common}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
 \item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
 a position, or the width of a \code{"single"} element?}
 
-\item{...}{Arguments passed on to the \code{geom} function.}
+\item{...}{Arguments passed on to \code{ggplot2::geom_smooth()}.}
 }
 \value{
 A \code{tidyplot} object

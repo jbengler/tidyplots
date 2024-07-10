@@ -1,10 +1,7 @@
 #' Create a new tidyplot
 #'
-#' @param data bla
-#' @param ... bla
-#' @param width bla
-#' @param height bla
-#' @param dodge_width bla
+#' @param ... Mappings for the `x` axis, `y` axis and `color`, see examples. Additional argument are passed to `ggplot2::aes()`.
+#' @inherit common_arguments
 #' @export
 tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   mapping <- ggplot2::aes(...)
@@ -57,10 +54,9 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 
 #' View plot on screen
 #'
-#' @param plot bla
-#' @param data bla
-#' @param title bla
-#' @param ... bla
+#' @param title Plot title.
+#' @param ... Arguments passed on to `print()`.
+#' @inherit common_arguments
 #' @export
 view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
   input <- plot
@@ -98,11 +94,11 @@ multipage_plots <- function(plot,
 
 
 #' Split plot into subplots
-#' @param plot A `ggplot`
-#' @param by Variable that should be used for faceting.
+#' @param by Variable that should be used for splitting.
 #' @param ncol,nrow The number of columns and rows per page.
-#' @param unit Unit of length. Defaults to "mm".
+#' @param unit Unit of length. Defaults to `"mm"`.
 #' @inheritParams patchwork::wrap_plots
+#' @inherit common_arguments
 #' @export
 split_plot <- function(plot,
                        by,
@@ -146,25 +142,17 @@ split_plot <- function(plot,
 #'
 #' This function takes a plot or list of plots and writes them to a (multipage) file.
 #'
-#' __Handling of multiple pages.__
-#' For a list of `ggplot`s, each list element is rendered as a separate page into a mutipage `pdf` file.
-#' To save pages as individual files, use `multiple_files = TRUE`.
-#' For output formats that do not support multipage files (`png`, `jpg`, etc), pages are saved to individual files by default.
-#'
 #' __Handling of file dimensions.__
 #' Output file dimensions are determined according the the following precedence.
-#' 1) The `width` and `height` parameters of `save_multipage()`.
-#' 2) Dimensions inferred from an incoming `ggplot` object containing absolute dimensions.
+#' 1) The `width` and `height` arguments.
+#' 2) Dimensions inferred from an incoming `plot` object with absolute dimensions.
 #' 3) System default device dimensions.
 #'
-#' @param plot A `ggplot` or list of `ggplot`s
-#'
-#' @param width,height Dimensions of the saved plot. If not specified, `save_multipage()` will
-#' try to infer the dimensions from the incoming `ggplot` object. If the incoming `ggplot` object has no absolute
-#' dimensions, system default device dimensions are used.
-#' @param units Unit dimensions. Defaults to "mm".
-#' @param multiple_files Save pages as individal files.
+#' @param width,height Dimensions of the saved plot. Defaults to `NA`.
+#' @param units Units of length. Defaults to `"mm"`.
+#' @param multiple_files Whether to save multiple pages as individual files.
 #' @inheritParams ggplot2::ggsave
+#' @inherit common_arguments
 #'
 #' @export
 save_plot <- function(plot = ggplot2::last_plot(), filename, device = NULL, path = NULL, scale = 1,
@@ -191,10 +179,10 @@ save_plot <- function(plot = ggplot2::last_plot(), filename, device = NULL, path
     dimensions <- list(width = NA, height = NA)
 
   width_defined_by <- dplyr::case_when(is.na(width) && is.na(dimensions[["width"]]) ~ "was not defined - system default used",
-                                !is.na(width) ~ "was provided as parameter 'width'",
+                                !is.na(width) ~ "was provided as argument 'width'",
                                 TRUE ~ "was inferred from plot dimensions")
   height_defined_by <- dplyr::case_when(is.na(height) && is.na(dimensions[["height"]]) ~ "was not defined - system default used",
-                                 !is.na(height) ~ "was provided as parameter 'height'",
+                                 !is.na(height) ~ "was provided as argument 'height'",
                                  TRUE ~ "was inferred from plot dimensions")
 
   if (is.na(width)) width <- dimensions[["width"]] * 1.1

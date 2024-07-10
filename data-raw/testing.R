@@ -3,8 +3,9 @@ library(tidyverse)
 
 
 study %>%
-  tidyplot(score, group, color = dose) %>%
-  add_data_points()
+  tidyplot(group, score, color = dose) %>%
+  add_data_points() %>%
+  adjust_y_axis(transform = "log10")
 
 # orientation
 # orientation is only determined when the plot is rendered
@@ -361,7 +362,7 @@ h3 <- h1 %>%
   ggplot2::facet_grid(cols = dplyr::vars(condition), rows = dplyr::vars(direction), scales = "free_y")
 h3 %>% split_plot(sample_type, heights = 90)
 
-# handling of incoming orientation parameter
+# handling of incoming orientation argument
 
 
 custom_stat_summary <- function(mapping = NULL, data = NULL,

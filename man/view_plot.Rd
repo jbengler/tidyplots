@@ -7,13 +7,21 @@
 view_plot(plot, data = all_rows(), title = ggplot2::waiver(), ...)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{data}{bla}
+\item{data}{The data to be displayed in this layer. There are three options:
+\itemize{
+\item If \code{all_rows()} (the default) the complete dataset is displayed.
+\item A \code{function} to subset the plot data. See \code{filter_rows()} and friends.
+\item A \code{data.frame} to override the plot data.
+}}
 
-\item{title}{bla}
+\item{title}{Plot title.}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to \code{print()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 View plot on screen

@@ -18,11 +18,11 @@ add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
-\item{alpha}{common}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
-\item{color}{common}
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 }

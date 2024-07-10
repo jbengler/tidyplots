@@ -16,9 +16,9 @@ add_heatmap(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{scale}{bla}
+\item{scale}{Whether to compute row z scores for \code{"row"} or \code{"column"}. Defaults to \code{"none"}.}
 
-\item{rotate_labels}{bla}
+\item{rotate_labels}{Degree to rotate the x axis labels. Defaults to \code{90}.}
 
 \item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
 vector shapes. If \code{TRUE} the layer will be rastered to a pixel image. This can

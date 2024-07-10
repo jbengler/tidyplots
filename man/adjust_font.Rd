@@ -9,13 +9,13 @@ adjust_font(plot, fontsize = 7, family = NULL, face = NULL, color = "black")
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{fontsize}{common}
+\item{fontsize}{Font size in points. Defaults to \code{7}.}
 
 \item{family}{Font family}
 
 \item{face}{Font face ("plain", "italic", "bold", "bold.italic")}
 
-\item{color}{common}
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 }
 \value{
 A \code{tidyplot} object

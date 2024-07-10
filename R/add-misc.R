@@ -1,11 +1,11 @@
 #' Add boxplot
 #'
-#' @param show_whiskers bla
-#' @param show_outliers bla
-#' @param box_width bla
-#' @param whiskers_width bla
-#' @param outlier.shape bla
-#' @param outlier.size bla
+#' @param show_whiskers Whether to show boxplot whiskers. Defaults to `TRUE`.
+#' @param show_outliers Whether to show outliers. Defaults to `TRUE`.
+#' @param box_width Width of the boxplot. Defaults to `0.6`.
+#' @param whiskers_width Width of the whiskers. Defaults to `0.8`.
+#' @param outlier.shape Shape of the outliers. Defaults to `19`.
+#' @param outlier.size Size of the outliers. Defaults to `0.5`.
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_boxplot
 #'
@@ -108,6 +108,7 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 
 #' Add curve fit
 #' @inherit common_arguments
+#' @param ... Arguments passed on to `ggplot2::geom_smooth()`.
 #' @inheritParams ggplot2::geom_smooth
 #' @export
 add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.3,
@@ -155,8 +156,8 @@ add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian"
 
 
 #' Add plot title or caption
-#' @param title bla
-#' @param caption bla
+#' @param title Title of the plot.
+#' @param caption Caption of the plot.
 #' @inherit common_arguments
 #' @export
 add_title <- function(plot, title = ggplot2::waiver()) {
@@ -176,8 +177,8 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 
 
 #' Add reference lines
-#' @param x bla
-#' @param y bla
+#' @param x Numeric values where the reference lines should meet the x axis. For example, `x = 4` or `x = c(2,3,4)`.
+#' @param y Numeric values where the reference lines should meet the y axis. For example, `y = 4` or `y = c(2,3,4)`.
 #' @param linetype Either an integer (0-6) or a name (0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash).
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_vline
@@ -195,22 +196,69 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 }
 
 
-#' Add text labels
-#' @param var bla
-#' @param segment.size bla
+#' Add data labels
+#' @param label Varibale in the dataset to be used for the text label.
+#' @param background Whether to include semitransparent background box behind the labels to improve legibility. Defaults to `FALSE`.
+#' @param background_color Hex color of the background box. Defaults to `"#FFFFFF"` for white.
+#' @param background_alpha Transparency of the background box. Defaults to `0.6`.
+#' @param label_position Position of the label in relation to the data point. Can be one of `c("bottom", "top", "left", "right", "center")`.
+#' @param segment.size Thickness of the line connecting the label with the data point. Defaults to `0.2`.
 #' @inherit common_arguments
-#' @inheritParams ggrepel::geom_text_repel
+#' @inheritParams ggrepel::geom_label_repel
 #' @export
-add_text_labels <- function(plot, var, data = all_rows(), fontsize = 7,
-                            segment.size = 0.2, box.padding = 0.2, ...) {
+add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
+                            background = FALSE, background_color = "#FFFFFF", background_alpha = 0.6,
+                            label_position = c("bottom", "top", "left", "right", "center"), ...) {
   check_tidyplot(plot)
   size <- fontsize/ggplot2::.pt
-  plot + ggrepel::geom_text_repel(data = data, ggplot2::aes(label = {{var}}), size = size,
-                                  segment.size = segment.size, box.padding = box.padding, ...)
+  if (!background) background_alpha <- 0
+  label.padding <- ggplot2::unit(0.1, "lines")
+
+  label_position <- match.arg(label_position)
+  if (label_position == "right") {
+    vjust <- 0.5
+    hjust <- -0.05
+  }
+  if (label_position == "left") {
+    vjust <- 0.5
+    hjust <- 1.05
+  }
+  if (label_position == "bottom") {
+    vjust <- 1.05
+    hjust <- 0.5
+  }
+  if (label_position == "top") {
+    vjust <- -0.2
+    hjust <- 0.5
+  }
+  if (label_position == "center") {
+    vjust <- 0.5
+    hjust <- 0.5
+  }
+
+    plot +
+      ggplot2::geom_label(data = data, ggplot2::aes(label = {{label}}), size = size,
+                          fill = scales::alpha(background_color, background_alpha),
+                          vjust = vjust, hjust = hjust, label.size = NA, label.padding = label.padding, ...)
+}
+#' @rdname add_data_labels
+#' @export
+add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
+                                  segment.size = 0.2, box.padding = 0.2, max.overlaps = Inf,
+                                  background = FALSE, background_color = "#FFFFFF", background_alpha = 0.6, ...) {
+  check_tidyplot(plot)
+  size <- fontsize/ggplot2::.pt
+  if (!background) background_alpha <- 0
+  label.padding <- ggplot2::unit(0.1, "lines")
+
+  plot + ggrepel::geom_label_repel(data = data, ggplot2::aes(label = {{label}}), size = size,
+                                  segment.size = segment.size, box.padding = box.padding, max.overlaps = max.overlaps,
+                                  fill = scales::alpha(background_color, background_alpha),
+                                  label.size = NA, label.padding = label.padding, ...)
 }
 
 
-#' Add ggplot2 code to your tidyplot
+#' Add ggplot2 code to a tidyplot
 #'
 #' @examples
 #' study %>%

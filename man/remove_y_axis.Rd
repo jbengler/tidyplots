@@ -19,7 +19,10 @@ remove_y_axis_labels(plot)
 remove_y_axis_title(plot)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Remove y axis or parts of it

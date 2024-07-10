@@ -7,11 +7,14 @@
 new_color_scheme(x, name = "Untitled color scheme", reverse = FALSE)
 }
 \arguments{
-\item{x}{bla}
+\item{x}{Character vector of hex colors. For example \code{x = c("#FF00FF", "#00FFFF")}.}
 
-\item{name}{bla}
+\item{name}{Name of the custom color scheme.}
 
-\item{reverse}{bla}
+\item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 New color scheme

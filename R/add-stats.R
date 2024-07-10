@@ -1,8 +1,8 @@
 #' Add statistics
-#' @param plot bla
-#' @param padding_top bla
-#' @param include_info bla
-#' @param ... bla
+#' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
+#' @param include_info Whether to include details about the statistical testing as caption. Defaults to `TRUE`.
+#' @param ... Arguments passed on to `ggpubr::geom_pwc()`.
+#' @inherit common_arguments
 #' @inheritParams ggpubr::geom_pwc
 #' @export
 add_stats_pvalue <- function(plot,

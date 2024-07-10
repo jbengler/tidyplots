@@ -17,15 +17,15 @@ adjust_plot_area_padding(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{top}{bla}
+\item{top}{Extra space between the data points and the top. Defaults to \code{NA}, which does not change the padding.}
 
-\item{right}{bla}
+\item{right}{Extra space between the data points and the right. Defaults to \code{NA}, which does not change the padding.}
 
-\item{bottom}{bla}
+\item{bottom}{Extra space between the data points and the bottom. Defaults to \code{NA}, which does not change the padding.}
 
-\item{left}{bla}
+\item{left}{Extra space between the data points and the left. Defaults to \code{NA}, which does not change the padding.}
 
-\item{force_continuous}{bla}
+\item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 }

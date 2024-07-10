@@ -8,7 +8,7 @@
 A data frame.
 }
 \source{
-\code{tidyplots} package
+tidyplots package
 }
 \usage{
 distributions

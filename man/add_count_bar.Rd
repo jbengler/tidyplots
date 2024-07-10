@@ -63,12 +63,11 @@ add_count_area(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
-\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
-violin plot, etc). Typical values range between \code{0} and \code{1}.}
+\item{width}{Width of the plot area. Defaults to \code{50}.}
 
-\item{saturation}{common}
+\item{saturation}{A \code{number} between \code{0} and \code{1} for the color saturation of an object. A value of \code{0} is completely desaturated (white), \code{1} is the original color.}
 
 \item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
 a position, or the width of a \code{"single"} element?}
@@ -87,17 +86,17 @@ difference between adjacent values.
 
 Applied to rescaled data.}
 
-\item{scale_cut}{common}
+\item{scale_cut}{Scale cut function to be applied. See \code{scales::cut_short_scale()} and friends.}
 
-\item{fontsize}{common}
+\item{fontsize}{Font size in points. Defaults to \code{7}.}
 
-\item{extra_padding}{bla}
+\item{extra_padding}{Extra padding to create space for the value label.}
 
-\item{vjust}{bla}
+\item{vjust}{Vertical position adjustment of the value label.}
 
-\item{hjust}{bla}
+\item{hjust}{Horizontal position adjustment of the value label.}
 
-\item{group}{common}
+\item{group}{Variable in the dataset to be used for grouping.}
 }
 \value{
 A \code{tidyplot} object

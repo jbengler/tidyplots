@@ -13,9 +13,12 @@ sort_y_axis_labels(plot, ...)
 sort_color_labels(plot, ...)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to \code{forcats::fct_reorder()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Sort axis or color labels

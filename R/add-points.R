@@ -1,7 +1,6 @@
 #' Add data points
 #'
-#' @param white_border If `TRUE` data points get a white border. This can be
-#'  useful to deal with overplotting.
+#' @param white_border Whether to include a white border around data points. Defaults to `FALSE`.
 #' @param jitter_width Amount of random noise to be added to the
 #'  horizontal position of the of the data points. This can be useful to deal
 #'  with overplotting. Typical values range between `0` and `1`.

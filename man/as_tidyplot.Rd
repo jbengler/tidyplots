@@ -7,13 +7,16 @@
 as_tidyplot(gg, width = 50, height = 50, dodge_width = 0.8)
 }
 \arguments{
-\item{gg}{bla}
+\item{gg}{A ggplot.}
 
-\item{width}{bla}
+\item{width}{Width of the plot area. Defaults to \code{50}.}
 
-\item{height}{bla}
+\item{height}{Height of the plot area. Defaults to \code{50}.}
 
-\item{dodge_width}{bla}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Convert ggplot to tidyplot

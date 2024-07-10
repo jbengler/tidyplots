@@ -55,7 +55,7 @@ add_data_points_beeswarm(
 
 \item{data}{The data to be displayed in this layer. There are three options:
 \itemize{
-\item If \code{all_rows()} (the default) the complete plot data is displayed.
+\item If \code{all_rows()} (the default) the complete dataset is displayed.
 \item A \code{function} to subset the plot data. See \code{filter_rows()} and friends.
 \item A \code{data.frame} to override the plot data.
 }}
@@ -68,10 +68,9 @@ plot symbol.
 \item{size}{A \code{number} representing the size of the plot symbol. Typical
 values range between \code{1} and \code{3}.}
 
-\item{white_border}{If \code{TRUE} data points get a white border. This can be
-useful to deal with overplotting.}
+\item{white_border}{Whether to include a white border around data points. Defaults to \code{FALSE}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
 \item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
 a position, or the width of a \code{"single"} element?}

@@ -19,9 +19,9 @@ split_plot(
 )
 }
 \arguments{
-\item{plot}{A \code{ggplot}}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{by}{Variable that should be used for faceting.}
+\item{by}{Variable that should be used for splitting.}
 
 \item{ncol, nrow}{The number of columns and rows per page.}
 
@@ -50,7 +50,10 @@ auto-tagging should behave. See \code{\link[patchwork:plot_annotation]{plot_anno
 be specified as a text string or by concatenating calls to \code{\link[patchwork:area]{area()}} together.
 See the examples for further information on use.}
 
-\item{unit}{Unit of length. Defaults to "mm".}
+\item{unit}{Unit of length. Defaults to \code{"mm"}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Split plot into subplots

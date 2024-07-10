@@ -17,17 +17,17 @@ adjust_description(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{title}{bla}
+\item{title}{Plot title.}
 
-\item{x_axis_title}{bla}
+\item{x_axis_title}{X axis title.}
 
-\item{y_axis_title}{bla}
+\item{y_axis_title}{Y axis title.}
 
-\item{legend_title}{bla}
+\item{legend_title}{Legend title.}
 
-\item{caption}{bla}
+\item{caption}{Plot caption text.}
 
-\item{...}{Arguments passed on to the \code{ggplot2::labs()}.}
+\item{...}{Arguments passed on to \code{ggplot2::labs()}.}
 }
 \value{
 A \code{tidyplot} object

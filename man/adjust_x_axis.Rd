@@ -13,7 +13,7 @@ adjust_x_axis(
   limits = NULL,
   padding = c(NA, NA),
   rotate_labels = FALSE,
-  transformation = "identity",
+  transform = "identity",
   cut_short_scale = FALSE,
   force_continuous = FALSE,
   ...
@@ -27,7 +27,7 @@ adjust_y_axis(
   limits = NULL,
   padding = c(NA, NA),
   rotate_labels = FALSE,
-  transformation = "identity",
+  transform = "identity",
   cut_short_scale = FALSE,
   force_continuous = FALSE,
   ...
@@ -36,7 +36,7 @@ adjust_y_axis(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{title}{bla}
+\item{title}{Axis title.}
 
 \item{breaks}{One of:
 \itemize{
@@ -62,17 +62,28 @@ as output. Also accepts rlang \link[rlang:as_function]{lambda} function
 notation.
 }}
 
-\item{limits}{bla}
+\item{limits}{Axis limits. For example, with \code{limits = c(20, 90)} the axis starts at 20 and ends at 90.}
 
-\item{padding}{bla}
+\item{padding}{Extra space between the data points and the axes. Defaults to \code{c(NA, NA)}, which does not change the padding.}
 
-\item{rotate_labels}{bla}
+\item{rotate_labels}{Whether to rotate axis labels. If \code{TRUE} is set to 45 degrees. You can also provide custom degree values, for example, \code{rotate_labels = 90}. Defaults to \code{FALSE}.}
 
-\item{transformation}{bla}
+\item{transform}{For continuous scales, the name of a transformation object
+or the object itself. Built-in transformations include "asn", "atanh",
+"boxcox", "date", "exp", "hms", "identity", "log", "log10", "log1p", "log2",
+"logit", "modulus", "probability", "probit", "pseudo_log", "reciprocal",
+"reverse", "sqrt" and "time".
 
-\item{cut_short_scale}{bla}
+A transformation object bundles together a transform, its inverse,
+and methods for generating breaks and labels. Transformation objects
+are defined in the scales package, and are called \verb{transform_<name>}. If
+transformations require arguments, you can call them from the scales
+package, e.g. \code{\link[scales:transform_boxcox]{scales::transform_boxcox(p = 2)}}.
+You can create your own transformation with \code{\link[scales:new_transform]{scales::new_transform()}}.}
 
-\item{force_continuous}{bla}
+\item{cut_short_scale}{Whether to shorten axis labels using \code{K} for thousand, \code{M} for million, and so on. Defaults to \code{FALSE}.}
+
+\item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 }

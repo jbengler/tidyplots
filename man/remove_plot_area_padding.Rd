@@ -7,9 +7,12 @@
 remove_plot_area_padding(plot, force_continuous = FALSE)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{force_continuous}{bla}
+\item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Remove plot area padding

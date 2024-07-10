@@ -44,9 +44,9 @@ add_stats_asterisks(
 )
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{padding_top}{bla}
+\item{padding_top}{Extra padding above the data points to accommodate the statistical comparisons.}
 
 \item{method}{a character string indicating which method to be used for
 pairwise comparisons. Default is \code{"wilcox_test"}. Allowed methods
@@ -122,9 +122,12 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
  \code{*}: p <= 0.05 \item \code{**}: p <= 0.01 \item \code{***}: p <= 0.001
  \item \code{****}:  p <= 0.0001 }}
 
-\item{include_info}{bla}
+\item{include_info}{Whether to include details about the statistical testing as caption. Defaults to \code{TRUE}.}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to \code{ggpubr::geom_pwc()}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Add statistics

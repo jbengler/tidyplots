@@ -10,7 +10,7 @@ format_number(x, accuracy = 0.1, big.mark = ",", scale_cut = NULL, ...)
 format_p_value(x, accuracy = 1e-04)
 }
 \arguments{
-\item{x}{bla}
+\item{x}{Number to format.}
 
 \item{accuracy}{A number to round to. Use (e.g.) \code{0.01} to show 2 decimal
 places of precision. If \code{NULL}, the default, uses a heuristic that should

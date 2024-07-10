@@ -8,10 +8,9 @@
 A data frame.
 }
 \source{
-\itemize{
-\item Nature Neuroscience, \href{https://www.nature.com/articles/s41593-019-0385-4}{Bassoon proteinopathy drives neurodegeneration in multiple sclerosis}
-\item Gene Expression Omnibus, study accession \href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104899}{GSE104899}
-}
+\href{https://www.nature.com/articles/s41593-019-0385-4}{Bassoon proteinopathy drives neurodegeneration in multiple sclerosis}, Nature Neuroscience
+
+\href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104899}{GSE104899}, Gene Expression Omnibus
 }
 \usage{
 gene_expression

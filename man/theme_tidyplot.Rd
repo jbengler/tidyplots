@@ -19,9 +19,12 @@ theme_minimal_y(plot, fontsize = 7)
 theme_minimal_x(plot, fontsize = 7)
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{fontsize}{bla}
+\item{fontsize}{Font size in points. Defaults to \code{7}.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Themes

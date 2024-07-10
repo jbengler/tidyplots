@@ -21,7 +21,7 @@ save_plot(
 )
 }
 \arguments{
-\item{plot}{A \code{ggplot} or list of \code{ggplot}s}
+\item{plot}{Plot to save, defaults to last plot displayed.}
 
 \item{filename}{File name to create on disk.}
 
@@ -36,11 +36,9 @@ working directory.}
 
 \item{scale}{Multiplicative scaling factor.}
 
-\item{width, height}{Dimensions of the saved plot. If not specified, \code{save_multipage()} will
-try to infer the dimensions from the incoming \code{ggplot} object. If the incoming \code{ggplot} object has no absolute
-dimensions, system default device dimensions are used.}
+\item{width, height}{Dimensions of the saved plot. Defaults to \code{NA}.}
 
-\item{units}{Unit dimensions. Defaults to "mm".}
+\item{units}{Units of length. Defaults to \code{"mm"}.}
 
 \item{dpi}{Plot resolution. Also accepts a string input: "retina" (320),
 "print" (300), or "screen" (72). Applies only to raster output types.}
@@ -49,7 +47,7 @@ dimensions, system default device dimensions are used.}
 save images larger than 50x50 inches, to prevent the common error of
 specifying dimensions in pixels.}
 
-\item{multiple_files}{Save pages as individal files.}
+\item{multiple_files}{Whether to save multiple pages as individual files.}
 
 \item{bg}{Background colour. If \code{NULL}, uses the \code{plot.background} fill value
 from the plot theme.}
@@ -57,20 +55,18 @@ from the plot theme.}
 \item{...}{Other arguments passed on to the graphics device function,
 as specified by \code{device}.}
 }
+\value{
+A \code{tidyplot} object
+}
 \description{
 This function takes a plot or list of plots and writes them to a (multipage) file.
 }
 \details{
-\strong{Handling of multiple pages.}
-For a list of \code{ggplot}s, each list element is rendered as a separate page into a mutipage \code{pdf} file.
-To save pages as individual files, use \code{multiple_files = TRUE}.
-For output formats that do not support multipage files (\code{png}, \code{jpg}, etc), pages are saved to individual files by default.
-
 \strong{Handling of file dimensions.}
 Output file dimensions are determined according the the following precedence.
 \enumerate{
-\item The \code{width} and \code{height} parameters of \code{save_multipage()}.
-\item Dimensions inferred from an incoming \code{ggplot} object containing absolute dimensions.
+\item The \code{width} and \code{height} arguments.
+\item Dimensions inferred from an incoming \code{plot} object with absolute dimensions.
 \item System default device dimensions.
 }
 }

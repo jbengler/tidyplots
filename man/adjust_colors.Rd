@@ -13,15 +13,28 @@ adjust_colors(
 )
 }
 \arguments{
-\item{plot}{bla}
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{new_colors}{bla}
+\item{new_colors}{A character vector of new hex colors to use. Can be a named character vector of hex colors to assign certain data labels to specific colors.}
 
-\item{saturation}{bla}
+\item{saturation}{A \code{number} between \code{0} and \code{1} for the color saturation of an object. A value of \code{0} is completely desaturated (white), \code{1} is the original color.}
 
-\item{labels}{bla}
+\item{labels}{One of:
+\itemize{
+\item \code{NULL} for no labels
+\item \code{waiver()} for the default labels computed by the
+transformation object
+\item A character vector giving labels (must be same length as \code{breaks})
+\item An expression vector (must be the same length as breaks). See ?plotmath for details.
+\item A function that takes the breaks as input and returns labels
+as output. Also accepts rlang \link[rlang:as_function]{lambda} function
+notation.
+}}
 
-\item{...}{bla}
+\item{...}{Arguments passed on to the \code{scale} function.}
+}
+\value{
+A \code{tidyplot} object
 }
 \description{
 Adjust colors

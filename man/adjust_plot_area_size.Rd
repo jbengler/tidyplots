@@ -9,11 +9,11 @@ adjust_plot_area_size(plot, width = 50, height = 50, unit = "mm")
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{width}{bla}
+\item{width}{Width of the plot area. Defaults to \code{50}.}
 
-\item{height}{bla}
+\item{height}{Height of the plot area. Defaults to \code{50}.}
 
-\item{unit}{bla}
+\item{unit}{Unit of the plot area width and height. Defaults to \code{mm}.}
 }
 \value{
 A \code{tidyplot} object

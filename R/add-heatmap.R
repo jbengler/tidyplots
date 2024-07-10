@@ -1,6 +1,6 @@
 #' Add heatmap
-#' @param scale bla
-#' @param rotate_labels bla
+#' @param scale Whether to compute row z scores for `"row"` or `"column"`. Defaults to `"none"`.
+#' @param rotate_labels Degree to rotate the x axis labels. Defaults to `90`.
 #' @inherit common_arguments
 #' @export
 add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels = 90,

@@ -35,11 +35,11 @@ For example, \code{adjust = 1/2} means use half of the default bandwidth.}
 estimated, should be a power of two, see \code{\link[=density]{density()}} for
 details}
 
-\item{color}{common}
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 
-\item{fill}{common}
+\item{fill}{A hex color for the fill color. For example, \code{"#FFFFFF"} for white.}
 
-\item{alpha}{common}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 }

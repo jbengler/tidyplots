@@ -8,7 +8,7 @@
 A data frame with.
 }
 \source{
-\code{tidyplots} package
+tidyplots package
 }
 \usage{
 time_course
