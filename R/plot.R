@@ -2,6 +2,24 @@
 #'
 #' @param ... Mappings for the `x` axis, `y` axis and `color`, see examples. Additional argument are passed to `ggplot2::aes()`.
 #' @inherit common_arguments
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm()
+#' study %>%
+#'   tidyplot(x = group, y = score, color = dose) %>%
+#'   add_mean_bar()
+#' # Change plot area size
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment,
+#'     width = 35, height = 35) %>%
+#'   add_data_points_beeswarm()
+#' # Change dodge_width
+#' study %>%
+#'   tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) %>%
+#'   add_mean_bar()
+#'
 #' @export
 tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
   mapping <- ggplot2::aes(...)
@@ -53,18 +71,18 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 #' @param unit Unit of length. Defaults to `"mm"`.
 #' @inheritParams patchwork::wrap_plots
 #' @inherit common_arguments
+#'
+#' @examples
+#' energy %>%
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
+#'   tidyplot(y = power, color = energy_source) %>%
+#'   add_donut() %>%
+#'   split_plot(by = year)
+#'
 #' @export
-split_plot <- function(plot,
-                       by,
-                       ncol = NULL,
-                       nrow = NULL,
-                       byrow = NULL,
-                       widths = 30,
-                       heights = 25,
-                       guides = "collect",
-                       tag_level = NULL,
-                       design = NULL,
-                       unit = "mm") {
+split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
+                       widths = 30, heights = 25, guides = "collect",
+                       tag_level = NULL, design = NULL, unit = "mm") {
   check_tidyplot(plot)
   if(missing(by))
     cli::cli_abort("Argument {.arg by} missing without default.")
@@ -78,15 +96,35 @@ split_plot <- function(plot,
     plot$data %>%
     tidyr::nest(data = -{{by}}) %>%
     dplyr::arrange({{by}})
+
   plots <-
     purrr::map2(df$data, df %>% dplyr::pull({{by}}),
          function(data, facet_title) {
            plot %+% data + ggplot2::ggtitle(facet_title)
          })
-  # cli::cli_alert_success("split_plot: {.pkg widths} = {widths} {unit}, {.pkg heights} = {heights} {unit}")
+
   if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
   if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
-  out <- multipage_plots(plots, ncol = ncol, nrow = nrow, widths = widths, heights = heights, unit = unit, guides = guides, byrow = byrow, tag_level = tag_level, design = design)
+
+  # if (!ggplot2::is.ggplot(plots) && !all(purrr::map_lgl(plots, ggplot2::is.ggplot)))
+  #   cli::cli_abort("{.arg plots} must be a single plot or a list of plots.")
+  # if (ggplot2::is.ggplot(plots)) plots <- list(plots)
+
+  if (is.numeric(ncol) && is.numeric(nrow)) {
+    plots_per_page <- nrow * ncol
+  } else {
+    plots_per_page <- length(plots)
+  }
+
+  pages <-
+    split(plots, ceiling(seq_along(plots)/plots_per_page)) %>%
+    purrr::map(., ~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths,
+                                         heights = heights, guides = guides, byrow = byrow,
+                                         tag_level = tag_level, design = design))
+
+  cli::cli_alert_success("split_plot: split into {.pkg {length(plots)} plot{?s}} across {.pkg {ceiling(length(plots)/plots_per_page)} page{?s}}")
+
+  out <- unname(pages)
   if (length(out) == 1) out <- out[[1]]
   out
 }
@@ -131,7 +169,6 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
   if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
 
-  print(plot)
   input <- plot
   if (ggplot2::is.ggplot(plot)) plot <- list(plot)
   units <- match.arg(units)
@@ -141,24 +178,22 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
   else
     dimensions <- list(width = NA, height = NA)
 
-  width_defined_by <- dplyr::case_when(is.na(width) && is.na(dimensions[["width"]]) ~ "was not defined - system default used",
-                                       !is.na(width) ~ "was provided as argument 'width'",
-                                       TRUE ~ "was inferred from plot dimensions")
-  height_defined_by <- dplyr::case_when(is.na(height) && is.na(dimensions[["height"]]) ~ "was not defined - system default used",
-                                        !is.na(height) ~ "was provided as argument 'height'",
-                                        TRUE ~ "was inferred from plot dimensions")
+  # width_defined_by <- dplyr::case_when(is.na(width) && is.na(dimensions[["width"]]) ~ "was not defined - system default used",
+  #                                      !is.na(width) ~ "was provided as argument 'width'",
+  #                                      TRUE ~ "was inferred from plot dimensions")
+  # height_defined_by <- dplyr::case_when(is.na(height) && is.na(dimensions[["height"]]) ~ "was not defined - system default used",
+  #                                       !is.na(height) ~ "was provided as argument 'height'",
+  #                                       TRUE ~ "was inferred from plot dimensions")
+  # cli::cli_alert_success("save_plot: {.pkg page width} {width_defined_by}")
+  # cli::cli_alert_success("save_plot: {.pkg page height} {height_defined_by}")
 
   if (is.na(width)) width <- dimensions[["width"]] * 1.1
   if (is.na(height)) height <- dimensions[["height"]] * 1.1
 
-  # cli::cli_alert_success("save_plot: {.pkg page width} {width_defined_by}")
-  # cli::cli_alert_success("save_plot: {.pkg page height} {height_defined_by}")
-  # cli::cli_alert_success("save_plot: saving {.pkg {length(plot)} page{?s}} with {.pkg {round(width)} x {round(height)}} mm to {.file {filename}}")
-
   if (length(plot) == 1) {
     # single plot
     ggplot2::ggsave(plot = plot[[1]], filename = filename, width = width,
-                    height = height, units = units, bg = bg,...)
+                    height = height, units = units, bg = bg, ...)
     cli::cli_alert_success("save_plot: saved to {.file {filename}}")
   } else{
     # multiple plots
@@ -187,32 +222,6 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
       cli::cli_alert_success("save_plot: saved multiple plots to {.file {filenames}}")
     }
   }
+  print(input)
   invisible(input)
-}
-
-# not exported
-multipage_plots <- function(plot,
-                            ncol = NULL,
-                            nrow = NULL,
-                            byrow = NULL,
-                            widths = 30,
-                            heights = 25,
-                            guides = "collect",
-                            tag_level = NULL,
-                            design = NULL,
-                            unit ="mm") {
-  if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
-    cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
-  if (ggplot2::is.ggplot(plot)) plot <- list(plot)
-
-  if (is.numeric(ncol) & is.numeric(nrow)) {
-    plots_per_page <- nrow * ncol
-  } else {
-    plots_per_page <- length(plot)
-  }
-  cli::cli_alert_success("split_plot: split into {.pkg {length(plot)} plots} across {.pkg {ceiling(length(plot)/plots_per_page)} pages} on a {.pkg {ncol} x {nrow}} grid")
-  pages <-
-    split(plot, ceiling(seq_along(plot)/plots_per_page)) %>%
-    purrr::map(., ~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths, heights = heights, guides = guides, byrow = byrow, tag_level = tag_level, design = design))
-  unname(pages)
 }

@@ -65,3 +65,12 @@ the horizontal bar of \code{+}.
 \description{
 Format numbers or p values
 }
+\examples{
+format_number(232342.3443)
+format_number(232342.3443, accuracy = 0.01)
+format_number(232342.3443, accuracy = 1, big.mark = "")
+format_p_value(0.03445553)
+format_p_value(0.0003445553)
+format_p_value(0.00003445553)
+
+}

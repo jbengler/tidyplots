@@ -21,6 +21,7 @@ Imports:
     glue,
     Hmisc,
     htmltools,
+    lifecycle,
     patchwork,
     purrr,
     rlang,

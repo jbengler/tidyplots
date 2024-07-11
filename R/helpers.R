@@ -14,6 +14,15 @@ is_waiver <- function(x) inherits(x, "waiver")
 #'
 #' @param gg A ggplot.
 #' @inherit common_arguments
+#'
+#' @examples
+#' gg <-
+#'   study %>%
+#'   ggplot2::ggplot(ggplot2::aes(x = treatment, y = score, color = treatment)) +
+#'   ggplot2::geom_point()
+#' gg
+#' gg %>% as_tidyplot()
+#'
 #' @export
 as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
   mapping <- gg$mapping
@@ -62,6 +71,34 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
 #' Flip x and y axis
 #' @param ... Arguments passed on to `ggplot2::coord_flip()`.
 #' @inherit common_arguments
+#' @description
+#' `r lifecycle::badge("superseded")`
+#'
+#' This function is superseded because in many cases, `flip_plot()` can easily
+#' be replaced by swapping the `x` and `y` axis. Some plot components additionally
+#' require to set the `orientation` argument to `"y"`.
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   flip_plot()
+#' energy %>%
+#'   tidyplot(x = year, y = power, color = energy_type) %>%
+#'   add_barstack_absolute() %>%
+#'   flip_plot()
+#' # Better solutions without `flip_plot()`
+#' study %>%
+#'   tidyplot(x = score, y = treatment, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar()
+#' energy %>%
+#'   tidyplot(x = power, y = year, color = energy_type) %>%
+#'   add_barstack_absolute(orientation = "y")
+#'
 #' @export
 flip_plot <- function(plot, ...) {
   check_tidyplot(plot)
@@ -92,6 +129,45 @@ filter_rows <- function(..., .by = NULL){
 #'   they will only be included if there are insufficient non-missing values to
 #'   reach `n`.
 #' @inheritParams dplyr::slice_max
+#'
+#' @examples
+#' # Highlight all animals
+#' animals %>%
+#'  tidyplot(x = weight, y = size) %>%
+#'  add_data_points() %>%
+#'  add_data_points(data = all_rows(),
+#'   color = "red", shape = 1, size = 3)
+#' # Highlight 3 animals with the highest weight
+#' animals %>%
+#'  tidyplot(x = weight, y = size) %>%
+#'  add_data_points() %>%
+#'  add_data_points(data = max_rows(weight, n = 3),
+#'   color = "red", shape = 1, size = 3)
+#' # Highlight 3 animals with the lowest weight
+#' animals %>%
+#'  tidyplot(x = weight, y = size) %>%
+#'  add_data_points() %>%
+#'  add_data_points(data = min_rows(weight, n = 3),
+#'   color = "red", shape = 1, size = 3)
+#' # Highlight the 3 first animals in the dataset
+#' animals %>%
+#'  tidyplot(x = weight, y = size) %>%
+#'  add_data_points() %>%
+#'  add_data_points(data = first_rows(n = 3),
+#'   color = "red", shape = 1, size = 3)
+#' # Highlight the 3 last animals in the dataset
+#' animals %>%
+#'  tidyplot(x = weight, y = size) %>%
+#'  add_data_points() %>%
+#'  add_data_points(data = last_rows(n = 3),
+#'   color = "red", shape = 1, size = 3)
+#' # Highlight 3 random animals
+#' animals %>%
+#'  tidyplot(x = weight, y = size) %>%
+#'  add_data_points() %>%
+#'  add_data_points(data = sample_rows(n = 3),
+#'   color = "red", shape = 1, size = 3)
+#'
 #' @export
 max_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE){
   . %>% dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm)
@@ -127,11 +203,19 @@ sample_rows <- function(n, by = NULL){
 #' @param ... Arguments passed on to `scales::number()`.
 #' @inheritParams scales::number
 #' @inheritDotParams scales::number scale style_positive style_negative
+#'
+#' @examples
+#' format_number(232342.3443)
+#' format_number(232342.3443, accuracy = 0.01)
+#' format_number(232342.3443, accuracy = 1, big.mark = "")
+#' format_p_value(0.03445553)
+#' format_p_value(0.0003445553)
+#' format_p_value(0.00003445553)
+#'
 #' @export
 format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = NULL, ...) {
   scales::number(x = x, accuracy = accuracy, big.mark = big.mark, scale_cut = scale_cut, ...)
 }
-
 #' @rdname format_number
 #' @export
 format_p_value <- function(x, accuracy = 0.0001) {

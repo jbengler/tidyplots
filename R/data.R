@@ -10,7 +10,7 @@
 "gene_expression"
 
 #' Time course data
-#' @format A data frame with.
+#' @format A data frame.
 #' @source
 #' tidyplots package
 #' @examples

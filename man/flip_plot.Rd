@@ -15,5 +15,31 @@ flip_plot(plot, ...)
 A \code{tidyplot} object
 }
 \description{
-Flip x and y axis
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}
+
+This function is superseded because in many cases, \code{flip_plot()} can easily
+be replaced by swapping the \code{x} and \code{y} axis. Some plot components additionally
+require to set the \code{orientation} argument to \code{"y"}.
+}
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  flip_plot()
+energy \%>\%
+  tidyplot(x = year, y = power, color = energy_type) \%>\%
+  add_barstack_absolute() \%>\%
+  flip_plot()
+# Better solutions without `flip_plot()`
+study \%>\%
+  tidyplot(x = score, y = treatment, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+energy \%>\%
+  tidyplot(x = power, y = year, color = energy_type) \%>\%
+  add_barstack_absolute(orientation = "y")
+
 }

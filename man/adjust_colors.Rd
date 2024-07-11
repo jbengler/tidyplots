@@ -31,11 +31,47 @@ as output. Also accepts rlang \link[rlang:as_function]{lambda} function
 notation.
 }}
 
-\item{...}{Arguments passed on to the \code{scale} function.}
+\item{...}{Arguments passed on to the ggplot2 \code{scale} function.}
 }
 \value{
 A \code{tidyplot} object
 }
 \description{
 Adjust colors
+}
+\examples{
+# Provide hex colors
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_colors(new_colors = c("#644296","#F08533","#3B78B0", "#D1352C"))
+# Provide discrete color scheme
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_colors(new_colors = colors_discrete_seaside)
+# Provide name vector
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_colors(new_colors = c(
+    "A" = "pink",
+    "B" = "purple",
+    "C" = "grey",
+    "D" = "blue"))
+# Provide continuous color scheme
+climate \%>\%
+  tidyplot(x = month, y = year, color = max_temperature) \%>\%
+  add_heatmap() \%>\%
+  adjust_colors(new_colors = colors_continuous_turbo)
+
+}
+\seealso{
+\code{\link[=colors_discrete_metro]{colors_discrete_metro()}}, \code{\link[=colors_continuous_viridis]{colors_continuous_viridis()}}, \code{\link[=colors_diverging_blue2brown]{colors_diverging_blue2brown()}}, and \code{\link[=new_color_scheme]{new_color_scheme()}}
 }

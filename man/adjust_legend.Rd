@@ -11,12 +11,61 @@ adjust_legend(plot, title = ggplot2::waiver(), position = "right")
 
 \item{title}{Legend title.}
 
-\item{position}{The position of legends. Can be one of \code{"none"}, \code{"left"}, \code{"right"},
-\code{"bottom"}, \code{"top"}, or a two-element numeric vector.}
+\item{position}{The position of the legend. Can be one of
+\code{c("right", "left", "bottom", "top", "none")}. Defaults to \code{"right"}.}
 }
 \value{
 A \code{tidyplot} object
 }
 \description{
 Adjust legend
+}
+\details{
+\itemize{
+\item The \code{title} argument of \code{adjust_legend()} supports \href{https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath}{plotmath expressions} to include special characters.
+See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters}{Advanced plotting}.
+}
+}
+\examples{
+# New title
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_legend(title = "My new legend title")
+# New title with plotmath expression
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_legend(title = "$E==m*c^{2}$")
+# Alternative legend positions
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_legend(position = "left")
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_legend(position = "top")
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_legend(position = "bottom")
+# `position = "none"` hides the legend
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_legend(position = "none")
+
 }

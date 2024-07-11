@@ -58,3 +58,11 @@ A \code{tidyplot} object
 \description{
 Split plot into multiple subplots
 }
+\examples{
+energy \%>\%
+  dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) \%>\%
+  tidyplot(y = power, color = energy_source) \%>\%
+  add_donut() \%>\%
+  split_plot(by = year)
+
+}

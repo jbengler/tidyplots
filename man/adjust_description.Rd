@@ -35,3 +35,35 @@ A \code{tidyplot} object
 \description{
 Adjust description
 }
+\details{
+\itemize{
+\item \code{adjust_description()} supports \href{https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath}{plotmath expressions} to include special characters.
+See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters}{Advanced plotting}.
+}
+}
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_description(
+    title = "This is my fantastic plot title",
+    x_axis_title = "Treatment group",
+    y_axis_title = "Disease score",
+    legend_title = "Legend title",
+    caption = "Here goes the caption")
+# Plotmath expressions
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  adjust_description(
+    title = "$H[2]*O$",
+    x_axis_title = "$H[2]*O$",
+    y_axis_title = "$H[2]*O$",
+    legend_title = "$H[2]*O$",
+    caption = "$H[2]*O$")
+
+}

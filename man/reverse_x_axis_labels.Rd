@@ -21,3 +21,24 @@ A \code{tidyplot} object
 \description{
 Reverse axis or color labels
 }
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  reverse_x_axis_labels()
+study \%>\%
+  tidyplot(x = score, y = treatment, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  reverse_y_axis_labels()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  reverse_color_labels()
+
+}

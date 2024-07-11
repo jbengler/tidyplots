@@ -5,7 +5,7 @@
 \alias{time_course}
 \title{Time course data}
 \format{
-A data frame with.
+A data frame.
 }
 \source{
 tidyplots package

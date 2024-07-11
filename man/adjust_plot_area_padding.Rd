@@ -38,3 +38,32 @@ A \code{tidyplot} object
 \description{
 Adjust plot area padding
 }
+\examples{
+# Original plot
+animals \%>\%
+  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  add_data_points() \%>\%
+  adjust_plot_area_padding()
+# Increase plot area padding
+animals \%>\%
+  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  add_data_points() \%>\%
+  adjust_plot_area_padding(all = 0.2)
+animals \%>\%
+  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  add_data_points() \%>\%
+  adjust_plot_area_padding(top = 0.8)
+animals \%>\%
+  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  add_data_points() \%>\%
+  adjust_plot_area_padding(bottom = 0.8)
+animals \%>\%
+  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  add_data_points() \%>\%
+  adjust_plot_area_padding(right = 0.8)
+animals \%>\%
+  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  add_data_points() \%>\%
+  adjust_plot_area_padding(left = 0.8)
+
+}

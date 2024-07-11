@@ -23,3 +23,34 @@ A \code{tidyplot} object
 \description{
 Rename axis or color labels
 }
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  rename_x_axis_labels(new_names = c(
+    "A" = "This",
+    "B" = "is",
+    "C" = "totally",
+    "D" = "new"))
+study \%>\%
+  tidyplot(x = score, y = treatment, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  rename_y_axis_labels(new_names = c(
+    "A" = "This",
+    "B" = "is",
+    "C" = "totally",
+    "D" = "new"))
+study \%>\%
+  tidyplot(x = treatment, y = score, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  rename_color_labels(new_names = c(
+    "placebo" = "The first",
+    "treatment" = "The second"))
+
+}

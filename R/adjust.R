@@ -122,8 +122,52 @@ ff_adjust_axis <- function(axis) {
 #' @param rotate_labels Whether to rotate axis labels. If `TRUE` is set to 45 degrees. You can also provide custom degree values, for example, `rotate_labels = 90`. Defaults to `FALSE`.
 #' @param cut_short_scale Whether to shorten axis labels using `K` for thousand, `M` for million, and so on. Defaults to `FALSE`.
 #' @param padding Extra space between the data points and the axes. Defaults to `c(NA, NA)`, which does not change the padding.
+#' @param ... Arguments passed on to ggplot2 `scale` function.
 #' @inherit common_arguments
 #' @inheritParams ggplot2::scale_x_continuous
+#'
+#' @details
+#' * The `title` argument of `adjust_x_axis()` and `adjust_y_axis()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
+#' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
+#'
+#' @examples
+#' # New titles
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_x_axis(title = "My new x axis title") %>%
+#'   adjust_y_axis(title = "My new y axis title")
+#' # New titles with plotmath expressions
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_x_axis(title = "$H[2]*O$") %>%
+#'   adjust_y_axis(title = "$E==m*c^{2}$")
+#' # Axes limits
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_x_axis(limits = c(-1000, 4000)) %>%
+#'   adjust_y_axis(limits = c(-200, 600))
+#' # Rotate labels
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_x_axis(rotate_labels = 90) %>%
+#'   adjust_y_axis(rotate_labels = 90)
+#' # Increase plot area padding
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_x_axis(padding = c(0.2, 0.2)) %>%
+#'   adjust_y_axis(padding = c(0.2, 0.2))
+#' # Scale transformation
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_x_axis(transform = "log10") %>%
+#'   adjust_y_axis(transform = "log2")
+#'
 #' @export
 adjust_x_axis <- ff_adjust_axis("x")
 #' @rdname adjust_x_axis
@@ -133,6 +177,30 @@ adjust_y_axis <- ff_adjust_axis("y")
 
 #' Adjust plot area size
 #' @inherit common_arguments
+#'
+#' @examples
+#' # Resize to 20 x 20 mm
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm(shape = 1) %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_plot_area_size(width = 20, height = 20)
+#' # Resize to 4 x 4 cm
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm(shape = 1) %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_plot_area_size(width = 4, height = 4, unit = "cm")
+#' # Remove absolute dimensions and take all available space. This is the ggplot2 default.
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm(shape = 1) %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_plot_area_size(width = NA, height = NA)
+#'
 #' @export
 adjust_plot_area_size <- function(plot, width = 50, height = 50, unit = "mm") {
   check_tidyplot(plot)
@@ -146,6 +214,30 @@ adjust_plot_area_size <- function(plot, width = 50, height = 50, unit = "mm") {
 #' Adjust font
 #' @inherit common_arguments
 #' @inheritParams ggplot2::element_text
+#'
+#' @examples
+#' # Increase font size
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_font(fontsize = 16)
+#' # Change font family
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_font(family = "mono")
+#' # Change font face
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_font(face = "bold")
+#'
 #' @export
 adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = "black") {
   check_tidyplot(plot)
@@ -166,9 +258,56 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 
 #' Adjust legend
 #' @param title Legend title.
-#' @param position The position of legends. Can be one of `"none"`, `"left"`, `"right"`,
-#'   `"bottom"`, `"top"`, or a two-element numeric vector.
+#' @param position The position of the legend. Can be one of
+#' `c("right", "left", "bottom", "top", "none")`. Defaults to `"right"`.
 #' @inherit common_arguments
+#'
+#' @details
+#' * The `title` argument of `adjust_legend()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
+#' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
+#'
+#' @examples
+#' # New title
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_legend(title = "My new legend title")
+#' # New title with plotmath expression
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_legend(title = "$E==m*c^{2}$")
+#' # Alternative legend positions
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_legend(position = "left")
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_legend(position = "top")
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_legend(position = "bottom")
+#' # `position = "none"` hides the legend
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_legend(position = "none")
+#'
 #' @export
 adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
   check_tidyplot(plot)
@@ -187,6 +326,35 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 #' @param left Extra space between the data points and the left. Defaults to `NA`, which does not change the padding.
 #' @param all Extra space around the data pointst. Overwrites `top`, `right`, `bottom`, `left` if set. Defaults to `NA`, which does not change the padding.
 #' @inherit common_arguments
+#'
+#' @examples
+#' # Original plot
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_plot_area_padding()
+#' # Increase plot area padding
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_plot_area_padding(all = 0.2)
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_plot_area_padding(top = 0.8)
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_plot_area_padding(bottom = 0.8)
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_plot_area_padding(right = 0.8)
+#' animals %>%
+#'   tidyplot(x = weight, y = size, color = number_of_legs) %>%
+#'   add_data_points() %>%
+#'   adjust_plot_area_padding(left = 0.8)
+#'
 #' @export
 adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, all = NA, force_continuous = FALSE, ...) {
   check_tidyplot(plot)
@@ -207,6 +375,36 @@ adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, le
 #' @param caption Plot caption text.
 #' @param ... Arguments passed on to `ggplot2::labs()`.
 #' @inherit common_arguments
+#'
+#' @details
+#' * `adjust_description()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
+#' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_description(
+#'     title = "This is my fantastic plot title",
+#'     x_axis_title = "Treatment group",
+#'     y_axis_title = "Disease score",
+#'     legend_title = "Legend title",
+#'     caption = "Here goes the caption")
+#' # Plotmath expressions
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   adjust_description(
+#'     title = "$H[2]*O$",
+#'     x_axis_title = "$H[2]*O$",
+#'     y_axis_title = "$H[2]*O$",
+#'     legend_title = "$H[2]*O$",
+#'     caption = "$H[2]*O$")
+#'
 #' @export
 adjust_description <- function(plot, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
                               y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),

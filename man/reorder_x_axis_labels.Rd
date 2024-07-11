@@ -23,3 +23,24 @@ A \code{tidyplot} object
 \description{
 Reorder axis or color labels
 }
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  reorder_x_axis_labels("D", "B")
+study \%>\%
+  tidyplot(x = score, y = treatment, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  reorder_y_axis_labels("D", "B")
+study \%>\%
+  tidyplot(x = treatment, y = score, color = group) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  reorder_color_labels("treatment")
+
+}
