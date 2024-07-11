@@ -145,14 +145,67 @@ You can create your own transformation with <code><a href="https://scales.r-lib.
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
+<dd><p>Arguments passed on to ggplot2 <code>scale</code> function.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>tidyplot</code> object</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
 
+<ul><li><p>The <code>title</code> argument of <code>adjust_x_axis()</code> and <code>adjust_y_axis()</code> supports <a href="https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath" class="external-link">plotmath expressions</a> to include special characters.
+See examples and <a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters">Advanced plotting</a>.</p></li>
+</ul></div>
+
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># New titles</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">number_of_legs</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_x_axis</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"My new x axis title"</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_y_axis</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"My new y axis title"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="adjust_x_axis-1.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># New titles with plotmath expressions</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">number_of_legs</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_x_axis</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"$H[2]*O$"</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_y_axis</span><span class="op">(</span>title <span class="op">=</span> <span class="st">"$E==m*c^{2}$"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="adjust_x_axis-2.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Axes limits</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">number_of_legs</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_x_axis</span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1000</span>, <span class="fl">4000</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_y_axis</span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">200</span>, <span class="fl">600</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="adjust_x_axis-3.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Rotate labels</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">number_of_legs</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_x_axis</span><span class="op">(</span>rotate_labels <span class="op">=</span> <span class="fl">90</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_y_axis</span><span class="op">(</span>rotate_labels <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="adjust_x_axis-4.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Increase plot area padding</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">number_of_legs</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_x_axis</span><span class="op">(</span>padding <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_y_axis</span><span class="op">(</span>padding <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="adjust_x_axis-5.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Scale transformation</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">number_of_legs</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_x_axis</span><span class="op">(</span>transform <span class="op">=</span> <span class="st">"log10"</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_y_axis</span><span class="op">(</span>transform <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="adjust_x_axis-6.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
