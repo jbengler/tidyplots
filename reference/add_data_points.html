@@ -175,6 +175,14 @@ wide horizontally, default is <code>"none"</code>. See details below.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>tidyplot</code> object</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+
+<ul><li><p><code>add_data_points_beeswarm()</code> is based on <code><a href="https://rdrr.io/pkg/ggbeeswarm/man/geom_beeswarm.html" class="external-link">ggbeeswarm::geom_beeswarm()</a></code>.
+Check there for additional arguments.</p></li>
+<li><p><code>add_data_points()</code> and friends support rasterizing. See examples and <a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing">Advanced plotting</a>.</p></li>
+<li><p><code>add_data_points()</code> and friends support data subsetting. See examples and <a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting">Advanced plotting</a>.</p></li>
+</ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -190,6 +198,30 @@ wide horizontally, default is <code>"none"</code>. See details below.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">add_data_points_beeswarm</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_data_points-3.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Changing arguments</span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points_jitter</span><span class="op">(</span>jitter_width <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_points-4.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points</span><span class="op">(</span>white_border <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_points-5.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points</span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_points-6.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Rasterizing</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points</span><span class="op">(</span>rasterize <span class="op">=</span> <span class="cn">TRUE</span>, rasterize_dpi <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_points-7.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Data subsetting</span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">add_data_points</span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="all_rows.html">filter_rows</a></span><span class="op">(</span><span class="va">size</span> <span class="op">&gt;</span> <span class="fl">300</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_points-8.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

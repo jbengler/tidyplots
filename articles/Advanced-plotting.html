@@ -322,7 +322,7 @@ dataset and then split the plot by the gene name using the
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_bar.html">add_sem_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_asterisks</a></span><span class="op">(</span>include_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_asterisks</a></span><span class="op">(</span>hide_info <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-17-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In case there are too many genes to fit on one page, you can also
@@ -335,7 +335,7 @@ to have on one page.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_bar.html">add_sem_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_asterisks</a></span><span class="op">(</span>include_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_asterisks</a></span><span class="op">(</span>hide_info <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">external_gene_name</span>, ncol <span class="op">=</span> <span class="fl">3</span>, nrow <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="st">"test.pdf"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -560,6 +560,30 @@ transparent. Thus, the horizontal lines do not shine through the
 bars.</p>
 </div>
 <div class="section level2">
+<h2 id="special-characters">Special characters<a class="anchor" aria-label="anchor" href="#special-characters"></a>
+</h2>
+<p>When it comes to scientific plots, titles often contain special
+characters like Greek symbols, subscript or superscript. For this
+purpose, tidyplots supports <em>plotmath expressions</em>.</p>
+<p>Besides finding out how to use the <a href="https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath" class="external-link">plotmath
+expression syntax</a>, please note that in tidyplots all plotmath
+expressions need to start and end with a <code>$</code> character.
+Moreover, you can not mix plotmath with plain text in one string,
+instead the entire string needs to be a valid plotmath expression that
+includes the plain text.</p>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_bar.html">add_sem_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/adjust_description.html">adjust_description</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"$H[2]*O$"</span>,</span>
+<span>                     x_axis_title <span class="op">=</span> <span class="st">"$E==m*c^{2}$"</span>,</span>
+<span>                     y_axis_title <span class="op">=</span> <span class="st">"$TNF*alpha~level$"</span>,</span>
+<span>                     legend_title <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
+</div>
+<div class="section level2">
 <h2 id="ggplot2-compatibiliy">ggplot2 compatibiliy<a class="anchor" aria-label="anchor" href="#ggplot2-compatibiliy"></a>
 </h2>
 <p>tidyplots is built on ggplot2, yet the two packages differ in several
@@ -572,12 +596,12 @@ you can transform a ggplot to tidyplot using the
 <code><a href="../reference/as_tidyplot.html">as_tidyplot()</a></code> function.</p>
 <p>Also, you can add ggplot code to a tidyplot using the
 <code><a href="../reference/add.html">add()</a></code> helper function.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add.html">add</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-40-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>However, be ready to experience unexpected hiccups, when mixing
 ggplot and tidyplots, since ensuring compatibility in every edge case
 was not a priority when developing the tidyplots package.</p>

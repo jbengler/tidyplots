@@ -444,7 +444,7 @@ also can be combined in one plot.</p>
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">power</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_histogram.html">add_density_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_density_curve.html">add_density_curve</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_histogram.html">add_density_curve</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-33-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>If you want to compare multiple distributions, <code>violin</code> or
 <code>boxplot</code> are two potential solutions.</p>
@@ -655,7 +655,7 @@ using <code>hide.ns = TRUE</code>.</p>
 <span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-51-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Finally, if you want to hide the caption with statistical information
-you can do this by providing <code>include_info = FALSE</code>.</p>
+you can do this by providing <code>hide_info = TRUE</code>.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># filter to one gene</span></span>
@@ -665,7 +665,7 @@ you can do this by providing <code>include_info = FALSE</code>.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_bar.html">add_sem_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span>, include_info <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span>, hide_info <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-52-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>There are many more things you can do with statistical comparisons.
 Just check out the documentation of <code><a href="../reference/add_stats_pvalue.html">add_stats_pvalue()</a></code> and
@@ -733,8 +733,8 @@ the 3 fastest animals.</p>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">weight</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">speed</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-58-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>There is lot tweaking that can be done with text labels. For more
-details have a look at the documentation of
+<p>There is lot tweaking that can be done with repelling data labels.
+For more details have a look at the documentation of
 <code><a href="../reference/add_data_labels.html">add_data_labels_repel()</a></code>, the underlying function
 <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_text_repel()</a></code> and <a href="https://ggrepel.slowkow.com/articles/examples" class="external-link">ggrepel
 examples</a>.</p>

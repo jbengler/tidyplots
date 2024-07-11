@@ -53,7 +53,7 @@
 <span>  background <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  background_color <span class="op">=</span> <span class="st">"#FFFFFF"</span>,</span>
 <span>  background_alpha <span class="op">=</span> <span class="fl">0.6</span>,</span>
-<span>  label_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bottom"</span>, <span class="st">"top"</span>, <span class="st">"left"</span>, <span class="st">"right"</span>, <span class="st">"center"</span><span class="op">)</span>,</span>
+<span>  label_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"below"</span>, <span class="st">"above"</span>, <span class="st">"left"</span>, <span class="st">"right"</span>, <span class="st">"center"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -81,7 +81,7 @@
 
 
 <dt id="arg-label">label<a class="anchor" aria-label="anchor" href="#arg-label"></a></dt>
-<dd><p>Varibale in the dataset to be used for the text label.</p></dd>
+<dd><p>Variable in the dataset to be used for the text label.</p></dd>
 
 
 <dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
@@ -104,11 +104,11 @@
 
 
 <dt id="arg-background-alpha">background_alpha<a class="anchor" aria-label="anchor" href="#arg-background-alpha"></a></dt>
-<dd><p>Transparency of the background box. Defaults to <code>0.6</code>.</p></dd>
+<dd><p>Opacity of the background box. Defaults to <code>0.6</code>.</p></dd>
 
 
 <dt id="arg-label-position">label_position<a class="anchor" aria-label="anchor" href="#arg-label-position"></a></dt>
-<dd><p>Position of the label in relation to the data point. Can be one of <code>c("bottom", "top", "left", "right", "center")</code>.</p></dd>
+<dd><p>Position of the label in relation to the data point. Can be one of <code>c("below", "above", "left", "right", "center")</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -136,7 +136,56 @@ Defaults to 10.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A <code>tidyplot</code> object</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
 
+<ul><li><p><code>add_data_labels_repel()</code> uses <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_text_repel()</a></code>. Check there
+and in <a href="https://ggrepel.slowkow.com/articles/examples" class="external-link">ggrepel examples</a> for
+additional arguments.</p></li>
+<li><p><code>add_data_labels()</code> and <code>add_data_labels_repel()</code> support data subsetting. See <a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting">Advanced plotting</a>.</p></li>
+</ul></div>
+
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Create plot and increase padding to make more space for labels</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op">&lt;-</span></span></span>
+<span class="r-in"><span>  <span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="theme_tidyplot.html">theme_ggplot2</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="adjust_plot_area_padding.html">adjust_plot_area_padding</a></span><span class="op">(</span>all <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Default label position is `below` the data point</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-1.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Alternative label positions</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, label_position <span class="op">=</span> <span class="st">"above"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-2.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, label_position <span class="op">=</span> <span class="st">"right"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-3.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, label_position <span class="op">=</span> <span class="st">"left"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-4.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Include white background box</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, background <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-5.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, background <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>  background_color <span class="op">=</span> <span class="st">"pink"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-6.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Black labels</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-7.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="co"># Use repelling data labels</span></span></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels_repel</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-8.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels_repel</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, color <span class="op">=</span> <span class="st">"black"</span>,</span></span>
+<span class="r-in"><span>  background <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-9.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span><span class="va">p</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span> <span class="fu">add_data_labels_repel</span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span>, color <span class="op">=</span> <span class="st">"black"</span>,</span></span>
+<span class="r-in"><span>  background <span class="op">=</span> <span class="cn">TRUE</span>, min.segment.length <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="add_data_labels-10.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
