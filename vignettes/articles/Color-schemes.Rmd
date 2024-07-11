@@ -209,7 +209,7 @@ To dive deeper into code-based plotting, here a couple of resources.
 
 ## tidyplots documentation
 
-- [Reference](https://jbengler.github.io/tidyplots/reference/index.html)  
+- [Package index](https://jbengler.github.io/tidyplots/reference/index.html)  
 Overview of all tidyplots functions
 
 - [Get started](file:///Users/janbroderengler/GoogleDrive/R/packages/tidyplots/docs/articles/tidyplots.html)  

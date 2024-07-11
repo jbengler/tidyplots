@@ -98,7 +98,7 @@ study %>%
   add_data_points()
 ```
 
-Of course, you do not have to stop here. There are many `add_*()` functions you can choose from. An overview of all function in the tidyplots package can be found in the [Function reference](https://jbengler.github.io/tidyplots/reference/index.html).
+Of course, you do not have to stop here. There are many `add_*()` functions you can choose from. An overview of all function in the tidyplots package can be found in the [Package index](https://jbengler.github.io/tidyplots/reference/index.html).
 
 For now, let's add some bars to the plot. As soon as you start typing "add" in RStudio you should see a little window next to your courser that shows all available function that start with "add" and can thus be used to build up your plot. You can also manually trigger the auto-completion window by hitting the `tab` key.
 
@@ -137,7 +137,7 @@ study %>%
 
 As you can see, `color` acts as a way to group the data by a third _variable_, thus complementing the `x` and `y` axis.
 
-Although there are many more `add_*()` functions available, I will stop here and leave you with the [Function reference](https://jbengler.github.io/tidyplots/reference/index.html) and the article about [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html) for further inspiration.
+Although there are many more `add_*()` functions available, I will stop here and leave you with the [Package index](https://jbengler.github.io/tidyplots/reference/index.html) and the article about [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html) for further inspiration.
 
 ## Remove
 
@@ -153,7 +153,7 @@ study %>%
   remove_y_axis()
 ```
 
-More `remove_*()` functions can be found in the [Function reference](https://jbengler.github.io/tidyplots/reference/index.html).
+More `remove_*()` functions can be found in the [Package index](https://jbengler.github.io/tidyplots/reference/index.html).
 
 ## Adjust
 
@@ -289,7 +289,7 @@ study %>%
   reverse_x_axis_labels()
 ```
 
-Of course, there are many more `adjust_` functions that you can find in the [Function reference](https://jbengler.github.io/tidyplots/reference/index.html).
+Of course, there are many more `adjust_` functions that you can find in the [Package index](https://jbengler.github.io/tidyplots/reference/index.html).
 
 ## Themes
 
@@ -363,7 +363,7 @@ To dive deeper into code-based plotting, here a couple of resources.
 
 ## tidyplots documentation
 
-- [Reference](https://jbengler.github.io/tidyplots/reference/index.html)  
+- [Package index](https://jbengler.github.io/tidyplots/reference/index.html)  
 Overview of all tidyplots functions
 
 - [Get started](file:///Users/janbroderengler/GoogleDrive/R/packages/tidyplots/docs/articles/tidyplots.html)  
