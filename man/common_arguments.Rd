@@ -38,7 +38,7 @@ values range between \code{1} and \code{3}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 
-\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
 \item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 

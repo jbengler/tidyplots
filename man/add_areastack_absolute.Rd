@@ -28,7 +28,7 @@ add_areastack_relative(
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
 \item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 
@@ -41,4 +41,30 @@ A \code{tidyplot} object
 }
 \description{
 Add area stack
+}
+\examples{
+# for a `count` provide `x` and `color`
+# `count` of the data points in each `energy_type` category
+energy \%>\%
+  tidyplot(x = year, color = energy_type) \%>\%
+  add_areastack_absolute()
+energy \%>\%
+  tidyplot(x = year, color = energy_type) \%>\%
+  add_areastack_relative()
+# for a `sum` provide `x`, `y` and `color`
+# `sum` of `power` in each `energy_type` category
+energy \%>\%
+  tidyplot(x = year, y = power, color = energy_type) \%>\%
+  add_areastack_absolute()
+energy \%>\%
+  tidyplot(x = year, y = power, color = energy_type) \%>\%
+  add_areastack_relative()
+# Flip x and y axis
+energy \%>\%
+  tidyplot(x = power, y = year, color = energy_type) \%>\%
+  add_areastack_absolute(orientation = "y")
+energy \%>\%
+  tidyplot(x = power, y = year, color = energy_type) \%>\%
+  add_areastack_relative(orientation = "y")
+
 }

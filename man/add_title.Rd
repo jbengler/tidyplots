@@ -22,3 +22,25 @@ A \code{tidyplot} object
 \description{
 Add plot title or caption
 }
+\details{
+\itemize{
+\item \code{add_title()} and \code{add_caption()} support \href{https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath}{plotmath expressions} to include special characters.
+See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters}{Advanced plotting}.
+}
+}
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_title("This is my title")
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_caption("This is the fine print in the caption")
+# plotmath expressions need to be wrapped in `$` characters
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_title("$H[2]*O~and~E==m*c^{2}$")
+
+}

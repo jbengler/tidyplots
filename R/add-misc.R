@@ -9,6 +9,24 @@
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_boxplot
 #'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_boxplot()
+#' # Changing arguments:
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_boxplot(show_whiskers = FALSE)
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_boxplot(show_outliers = FALSE)
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_boxplot(box_width = 0.2)
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_boxplot(whiskers_width = 0.2)
+#'
 #' @export
 add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = TRUE,
                         box_width = 0.6, whiskers_width = 0.8, outlier.size = 0.5, coef = 1.5,
@@ -21,12 +39,6 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
     coef = 0
     whiskers_width = box_width
   }
-  # plot +
-  #   ggplot2::stat_boxplot(geom ='errorbar', width = whiskers_width, position = position,
-  #                         linewidth = linewidth, coef = coef) +
-  #   ggplot2::geom_boxplot(outliers = show_outliers, outlier.shape = outlier.shape, outlier.size = outlier.size,
-  #                         width = box_width, position = position, linewidth = linewidth, coef = coef, ...)
-  # with staplewidth
   plot +
     ggplot2::geom_boxplot(staplewidth = whiskers_width, outliers = show_outliers, outlier.shape = outlier.shape, outlier.size = outlier.size,
                           width = box_width, position = position, linewidth = linewidth, coef = coef, ...)
@@ -40,6 +52,24 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_violin
 #'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_violin()
+#' # Changing arguments:
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_violin(saturation = 0.6)
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_violin(draw_quantiles = c(0.25, 0.5, 0.75))
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_violin(trim = TRUE)
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_violin(linewidth = 1)
+#'
 #' @export
 add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantiles = NULL, trim = FALSE,
                        linewidth = 0.25, scale = "width", ...) {
@@ -52,7 +82,25 @@ add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantile
 }
 
 #' Add line or area
+#'
+#' `add_line()` and `add_area()` connect individual data points, which is rarely needed.
+#' In most cases, you are probably looking for `add_sum_line()`, `add_mean_line()`, `add_sum_area()` or `add_mean_area()`.
+#'
 #' @inherit common_arguments
+#'
+#' @examples
+#' # Paired data points
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = group) %>%
+#'   reorder_x_axis_labels("A", "C", "B", "D") %>%
+#'   add_data_points() %>%
+#'   add_line(group = participant, color = "grey")
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   reorder_x_axis_labels("A", "C", "B", "D") %>%
+#'   add_data_points() %>%
+#'   add_area(group = participant)
+#'
 #' @export
 add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
   check_tidyplot(plot)
@@ -110,6 +158,23 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 #' @inherit common_arguments
 #' @param ... Arguments passed on to `ggplot2::geom_smooth()`.
 #' @inheritParams ggplot2::geom_smooth
+#'
+#' @examples
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_curve_fit()
+#' # Changing arguments
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_curve_fit(linewidth = 1)
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_curve_fit(alpha = 0.8)
+#' # Remove confidence interval
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_curve_fit(se = FALSE)
+#'
 #' @export
 add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.3,
                           preserve = "total", ...) {
@@ -123,9 +188,20 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 }
 
 
-#' Add histogram
+#' Add histogram or density
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_histogram
+#' @inheritParams ggplot2::geom_density
+#'
+#' @examples
+#' energy %>%
+#'   tidyplot(x = power) %>%
+#'   add_histogram()
+#' energy %>%
+#'   tidyplot(x = power) %>%
+#'    add_density_histogram() %>%
+#'    add_density_curve()
+#'
 #' @export
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
   check_tidyplot(plot)
@@ -142,10 +218,7 @@ add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#
     ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)),
                             binwidth = binwidth,bins = bins, fill = color, ...)
 }
-
-#' Add density curve
-#' @inherit common_arguments
-#' @inheritParams ggplot2::geom_density
+#' @rdname add_histogram
 #' @export
 add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, color = "#E37D46", fill = "#E37D46", alpha = 0.3, ...) {
   check_tidyplot(plot)
@@ -159,6 +232,26 @@ add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian"
 #' @param title Title of the plot.
 #' @param caption Caption of the plot.
 #' @inherit common_arguments
+#'
+#' @details
+#' * `add_title()` and `add_caption()` support [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
+#' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_title("This is my title")
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_caption("This is the fine print in the caption")
+#' # plotmath expressions need to be wrapped in `$` characters
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_title("$H[2]*O~and~E==m*c^{2}$")
+#'
 #' @export
 add_title <- function(plot, title = ggplot2::waiver()) {
   check_tidyplot(plot)
@@ -182,6 +275,17 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 #' @param linetype Either an integer (0-6) or a name (0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash).
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_vline
+#'
+#' @examples
+#' animals %>%
+#'   tidyplot(x = weight, y = speed) %>%
+#'    add_reference_lines(x = 4000, y = c(100, 200)) %>%
+#'    add_data_points()
+#' animals %>%
+#'   tidyplot(x = weight, y = speed) %>%
+#'    add_reference_lines(x = 4000, y = c(100, 200), linetype = "dotdash") %>%
+#'    add_data_points()
+#'
 #' @export
 add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", linewidth = 0.25, ...) {
   check_tidyplot(plot)
@@ -197,18 +301,54 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 
 
 #' Add data labels
-#' @param label Varibale in the dataset to be used for the text label.
+#' @param label Variable in the dataset to be used for the text label.
 #' @param background Whether to include semitransparent background box behind the labels to improve legibility. Defaults to `FALSE`.
 #' @param background_color Hex color of the background box. Defaults to `"#FFFFFF"` for white.
-#' @param background_alpha Transparency of the background box. Defaults to `0.6`.
-#' @param label_position Position of the label in relation to the data point. Can be one of `c("bottom", "top", "left", "right", "center")`.
+#' @param background_alpha Opacity of the background box. Defaults to `0.6`.
+#' @param label_position Position of the label in relation to the data point. Can be one of `c("below", "above", "left", "right", "center")`.
 #' @param segment.size Thickness of the line connecting the label with the data point. Defaults to `0.2`.
 #' @inherit common_arguments
 #' @inheritParams ggrepel::geom_label_repel
+#'
+#' @details
+#' * `add_data_labels_repel()` uses `ggrepel::geom_text_repel()`. Check there
+#' and in [ggrepel examples](https://ggrepel.slowkow.com/articles/examples) for
+#' additional arguments.
+#'
+#' * `add_data_labels()` and `add_data_labels_repel()` support data subsetting. See [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting).
+#'
+#' @examples
+#' # Create plot and increase padding to make more space for labels
+#' p <-
+#'   animals %>%
+#'   dplyr::slice_head(n = 5) %>%
+#'   tidyplot(x = weight, y = speed) %>%
+#'   theme_ggplot2() %>%
+#'   add_data_points() %>%
+#'   adjust_plot_area_padding(all = 0.3)
+#' # Default label position is `below` the data point
+#' p %>% add_data_labels(label = animal)
+#' # Alternative label positions
+#' p %>% add_data_labels(label = animal, label_position = "above")
+#' p %>% add_data_labels(label = animal, label_position = "right")
+#' p %>% add_data_labels(label = animal, label_position = "left")
+#' # Include white background box
+#' p %>% add_data_labels(label = animal, background = TRUE)
+#' p %>% add_data_labels(label = animal, background = TRUE,
+#'   background_color = "pink")
+#' # Black labels
+#' p %>% add_data_labels(label = animal, color = "black")
+#' # Use repelling data labels
+#' p %>% add_data_labels_repel(label = animal, color = "black")
+#' p %>% add_data_labels_repel(label = animal, color = "black",
+#'   background = TRUE)
+#' p %>% add_data_labels_repel(label = animal, color = "black",
+#'   background = TRUE, min.segment.length = 0)
+#'
 #' @export
 add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
                             background = FALSE, background_color = "#FFFFFF", background_alpha = 0.6,
-                            label_position = c("bottom", "top", "left", "right", "center"), ...) {
+                            label_position = c("below", "above", "left", "right", "center"), ...) {
   check_tidyplot(plot)
   size <- fontsize/ggplot2::.pt
   if (!background) background_alpha <- 0
@@ -217,18 +357,18 @@ add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
   label_position <- match.arg(label_position)
   if (label_position == "right") {
     vjust <- 0.5
-    hjust <- -0.05
+    hjust <- -0.07
   }
   if (label_position == "left") {
     vjust <- 0.5
-    hjust <- 1.05
+    hjust <- 1.07
   }
-  if (label_position == "bottom") {
-    vjust <- 1.05
+  if (label_position == "below") {
+    vjust <- 1.2
     hjust <- 0.5
   }
-  if (label_position == "top") {
-    vjust <- -0.2
+  if (label_position == "above") {
+    vjust <- -0.4
     hjust <- 0.5
   }
   if (label_position == "center") {

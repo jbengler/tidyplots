@@ -43,7 +43,6 @@ reference:
 - subtitle: Distribution
 - contents:
   - starts_with("add_histogram")
-  - starts_with("add_density")
 - subtitle: Dispersion & uncertainty
 - contents:
   - starts_with("add_boxplot")
@@ -51,8 +50,8 @@ reference:
   - starts_with("add_sem")
 - subtitle: Proportion
 - contents:
-  - starts_with("add_areastack")
   - starts_with("add_barstack")
+  - starts_with("add_areastack")
   - starts_with("add_pie")
 - subtitle: Statistical comparison
 - contents:

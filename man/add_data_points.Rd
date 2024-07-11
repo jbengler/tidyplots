@@ -107,6 +107,14 @@ A \code{tidyplot} object
 \description{
 Add data points
 }
+\details{
+\itemize{
+\item \code{add_data_points_beeswarm()} is based on \code{ggbeeswarm::geom_beeswarm()}.
+Check there for additional arguments.
+\item \code{add_data_points()} and friends support rasterizing. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing}{Advanced plotting}.
+\item \code{add_data_points()} and friends support data subsetting. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting}{Advanced plotting}.
+}
+}
 \examples{
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -117,5 +125,24 @@ study \%>\%
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm()
+# Changing arguments
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_jitter(jitter_width = 1)
+animals \%>\%
+  tidyplot(x = weight, y = size) \%>\%
+  add_data_points(white_border = TRUE)
+animals \%>\%
+  tidyplot(x = weight, y = size) \%>\%
+  add_data_points(alpha = 0.3)
+# Rasterizing
+animals \%>\%
+  tidyplot(x = weight, y = size) \%>\%
+  add_data_points(rasterize = TRUE, rasterize_dpi = 50)
+# Data subsetting
+animals \%>\%
+  tidyplot(x = weight, y = size) \%>\%
+  add_data_points() \%>\%
+  add_data_points(data = filter_rows(size > 300), color = "red")
 
 }

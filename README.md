@@ -117,7 +117,7 @@ gene_expression %>%
   add_mean_dash() %>% 
   add_sem_bar() %>% 
   add_data_points_beeswarm() %>% 
-  add_stats_asterisks(include_info = FALSE) %>% 
+  add_stats_asterisks(hide_info = TRUE) %>% 
   remove_x_axis_title() %>% 
   split_plot(by = external_gene_name)
 ```

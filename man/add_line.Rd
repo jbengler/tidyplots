@@ -38,11 +38,26 @@ a position, or the width of a \code{"single"} element?}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 
-\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 }
 \value{
 A \code{tidyplot} object
 }
 \description{
-Add line or area
+\code{add_line()} and \code{add_area()} connect individual data points, which is rarely needed.
+In most cases, you are probably looking for \code{add_sum_line()}, \code{add_mean_line()}, \code{add_sum_area()} or \code{add_mean_area()}.
+}
+\examples{
+# Paired data points
+study \%>\%
+  tidyplot(x = treatment, y = score, color = group) \%>\%
+  reorder_x_axis_labels("A", "C", "B", "D") \%>\%
+  add_data_points() \%>\%
+  add_line(group = participant, color = "grey")
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  reorder_x_axis_labels("A", "C", "B", "D") \%>\%
+  add_data_points() \%>\%
+  add_area(group = participant)
+
 }

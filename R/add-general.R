@@ -39,7 +39,7 @@
 #'   violin plot, etc). Typical values range between `0` and `1`.
 #' @param linewidth Thickness of the line in points (pt). Typical values range between `0.25` and `1`.
 #' @param ... Arguments passed on to the `geom` function.
-#' @param alpha A `number` between `0` and `1` for the transparency of an object. A value of `0` is completely transparent, `1` is completely opaque.
+#' @param alpha A `number` between `0` and `1` for the opacity of an object. A value of `0` is completely transparent, `1` is completely opaque.
 #' @param color A hex color for the stroke color. For example, `"#FFFFFF"` for white.
 #' @param fill A hex color for the fill color. For example, `"#FFFFFF"` for white.
 #' @param saturation A `number` between `0` and `1` for the color saturation of an object. A value of `0` is completely desaturated (white), `1` is the original color.
@@ -78,22 +78,36 @@ ff_errorbar <- function(.fun.data) {
 #' @inherit common_arguments
 #'
 #' @examples
+#' # Standard error of the mean
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
 #'   add_sem_bar()
+#' # Range from minimum to maximum value
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
 #'   add_range_bar()
+#' # Standard deviation
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
 #'   add_sd_bar()
+#' # 95% confidence interval
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
 #'   add_ci95_bar()
+#' # Changing arguments: error bar width
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sem_bar(width = 0.8)
+#' # Changing arguments: error bar line width
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sem_bar(linewidth = 1)
 #'
 #' @export
 add_sem_bar <- ff_errorbar(.fun.data = ggplot2::mean_se)
@@ -130,22 +144,31 @@ ff_ribbon <- function(.fun.data) {
 #' @inherit common_arguments
 #'
 #' @examples
+#' # Standard error of the mean
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_mean_line() %>%
 #'   add_sem_ribbon()
+#' # Range from minimum to maximum value
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_mean_line() %>%
 #'   add_range_ribbon()
+#' # Standard deviation
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_mean_line() %>%
 #'   add_sd_ribbon()
+#' # 95% confidence interval
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_mean_line() %>%
 #'   add_ci95_ribbon()
+#' # Changing arguments: alpha
+#' time_course %>%
+#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   add_mean_line() %>%
+#'   add_sem_ribbon(alpha = 0.7)
 #'
 #' @export
 add_sem_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_se)
@@ -295,6 +318,59 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 #' @param extra_padding Extra padding to create space for the value label.
 #' @inherit common_arguments
 #' @inheritParams scales::number
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_bar()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_dash()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_dot()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_value()
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_mean_line()
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_mean_area()
+#' # Combination
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_mean_dash() %>%
+#'   add_mean_dot() %>%
+#'   add_mean_value() %>%
+#'   add_mean_line()
+#' # Changing arguments: alpha
+#' # Makes objects transparent
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   theme_minimal_y() %>%
+#'   add_mean_bar(alpha = 0.3)
+#' # Changing arguments: saturation
+#' # Reduces fill color saturation without making the object transparent
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   theme_minimal_y() %>%
+#'   add_mean_bar(saturation = 0.3)
+#' # Changing arguments: accuracy
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_value(accuracy = 0.01)
+#' # Changing arguments: fontsize
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_value(fontsize = 10)
+#' # Changing arguments: color
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_value(color = "black")
+#'
 #' @export
 add_mean_bar <- ff_bar(.fun = mean)
 #' @rdname add_mean_bar
@@ -317,6 +393,59 @@ add_mean_area <- ff_line(.fun = mean, .geom = "area")
 #'
 #' @inherit common_arguments
 #' @inheritParams add_mean_bar
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_median_bar()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_median_dash()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_median_dot()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_median_value()
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_median_line()
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_median_area()
+#' # Combination
+#' study %>%
+#'   tidyplot(x = treatment, y = score) %>%
+#'   add_median_bar(alpha = 0.3) %>%
+#'   add_median_dash() %>%
+#'   add_median_dot() %>%
+#'   add_median_value() %>%
+#'   add_median_line()
+#' # Changing arguments: alpha
+#' # Makes objects transparent
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   theme_minimal_y() %>%
+#'   add_median_bar(alpha = 0.3)
+#' # Changing arguments: saturation
+#' # Reduces fill color saturation without making the object transparent
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   theme_minimal_y() %>%
+#'   add_median_bar(saturation = 0.3)
+#' # Changing arguments: accuracy
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_median_value(accuracy = 0.01)
+#' # Changing arguments: fontsize
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_median_value(fontsize = 10)
+#' # Changing arguments: color
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_median_value(color = "black")
+#'
 #' @export
 add_median_bar <- ff_bar(.fun = median)
 #' @rdname add_median_bar
@@ -340,6 +469,76 @@ add_median_area <- ff_line(.fun = median, .geom = "area")
 #'
 #' @inherit common_arguments
 #' @inheritParams add_mean_bar
+#'
+#' @examples
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_bar()
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_dash()
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_dot()
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_value()
+#' spendings %>%
+#'   tidyplot(x = category, y = amount) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_line()
+#' spendings %>%
+#'   tidyplot(x = category, y = amount) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_area()
+#' # Combination
+#' spendings %>%
+#'   tidyplot(x = category, y = amount) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_median_bar(alpha = 0.3) %>%
+#'   add_median_dash() %>%
+#'   add_median_dot() %>%
+#'   add_median_value() %>%
+#'   add_median_line()
+#' # Changing arguments: alpha
+#' # Makes objects transparent
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   theme_minimal_y() %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_bar(alpha = 0.3)
+#' # Changing arguments: saturation
+#' # Reduces fill color saturation without making the object transparent
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   theme_minimal_y() %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_bar(saturation = 0.3)
+#' # Changing arguments: accuracy
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_value(accuracy = 1)
+#' # Changing arguments: fontsize
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_value(fontsize = 10)
+#' # Changing arguments: color
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_value(color = "black")
+#' # Changing arguments: extra_padding
+#' spendings %>%
+#'   tidyplot(x = category, y = amount, color = category) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_sum_value(extra_padding = 0.5)
+#'
 #' @export
 add_sum_bar <- ff_bar(.fun = sum)
 #' @rdname add_sum_bar
@@ -363,6 +562,70 @@ add_sum_area <- ff_line(.fun = sum, .geom = "area")
 #'
 #' @inherit common_arguments
 #' @inheritParams add_mean_bar
+#'
+#' @examples
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_bar()
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_dash()
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_dot()
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_value()
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_line()
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_area()
+#' # Combination
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_bar(alpha = 0.3) %>%
+#'   add_count_dash() %>%
+#'   add_count_dot() %>%
+#'   add_count_value() %>%
+#'   add_count_line()
+#' # Changing arguments: alpha
+#' # Makes objects transparent
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   theme_minimal_y() %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_bar(alpha = 0.3)
+#' # Changing arguments: saturation
+#' # Reduces fill color saturation without making the object transparent
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   theme_minimal_y() %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_bar(saturation = 0.3)
+#' # Changing arguments: accuracy
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_value(accuracy = 1)
+#' # Changing arguments: fontsize
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_value(fontsize = 10)
+#' # Changing arguments: color
+#' dinosaurs %>%
+#'   tidyplot(x = time_lived, color = time_lived) %>%
+#'   adjust_x_axis(rotate_labels = TRUE) %>%
+#'   add_count_value(color = "black")
 #'
 #' @export
 add_count_bar <- ff_bar(.count = TRUE)

@@ -2,6 +2,27 @@
 #' @param scale Whether to compute row z scores for `"row"` or `"column"`. Defaults to `"none"`.
 #' @param rotate_labels Degree to rotate the x axis labels. Defaults to `90`.
 #' @inherit common_arguments
+#'
+#' @details
+#' * `add_heatmap()` supports rasterizing. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing).
+#'
+#' @examples
+#' climate %>%
+#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#'   add_heatmap()
+#' # Calculate row-wise z score
+#' climate %>%
+#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#'   add_heatmap(scale = "row")
+#' # Calculate column-wise z score
+#' climate %>%
+#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#'   add_heatmap(scale = "column")
+#' # Rasterize heatmap
+#' climate %>%
+#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#'   add_heatmap(rasterize = TRUE, rasterize_dpi = 20)
+#'
 #' @export
 add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels = 90,
                         rasterize = FALSE, rasterize_dpi = 300, ...) {

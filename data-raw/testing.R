@@ -404,7 +404,7 @@ gene_expression %>%
   add_mean_dash() %>%
   add_sem_bar() %>%
   add_data_points() %>%
-  add_stats_asterisks(include_info = FALSE) %>%
+  add_stats_asterisks(hide_info = TRUE) %>%
   split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>%
   save_plot("multipage2.pdf")
 

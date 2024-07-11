@@ -24,3 +24,22 @@ A \code{tidyplot} object
 \description{
 Add pie or donut chart
 }
+\examples{
+# for a `count` only provide `color`
+# `count` of the data points in each `energy_type` category
+energy \%>\%
+  tidyplot(color = energy_type) \%>\%
+  add_pie()
+energy \%>\%
+  tidyplot(color = energy_type) \%>\%
+  add_donut()
+# for a `sum` provide `color` and `y`
+# `sum` of `power` in each `energy_type` category
+energy \%>\%
+  tidyplot(y = power, color = energy_type) \%>\%
+  add_pie()
+energy \%>\%
+  tidyplot(y = power, color = energy_type) \%>\%
+  add_donut()
+
+}

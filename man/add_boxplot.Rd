@@ -54,3 +54,22 @@ A \code{tidyplot} object
 \description{
 Add boxplot
 }
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_boxplot()
+# Changing arguments:
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_boxplot(show_whiskers = FALSE)
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_boxplot(show_outliers = FALSE)
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_boxplot(box_width = 0.2)
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_boxplot(whiskers_width = 0.2)
+
+}

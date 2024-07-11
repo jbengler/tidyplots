@@ -38,7 +38,7 @@ model that \code{method = NULL} would use, then set
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
-\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
 \item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
 a position, or the width of a \code{"single"} element?}
@@ -50,4 +50,21 @@ A \code{tidyplot} object
 }
 \description{
 Add curve fit
+}
+\examples{
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_curve_fit()
+# Changing arguments
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_curve_fit(linewidth = 1)
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_curve_fit(alpha = 0.8)
+# Remove confidence interval
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_curve_fit(se = FALSE)
+
 }

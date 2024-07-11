@@ -32,3 +32,14 @@ A \code{tidyplot} object
 \description{
 Add reference lines
 }
+\examples{
+animals \%>\%
+  tidyplot(x = weight, y = speed) \%>\%
+   add_reference_lines(x = 4000, y = c(100, 200)) \%>\%
+   add_data_points()
+animals \%>\%
+  tidyplot(x = weight, y = speed) \%>\%
+   add_reference_lines(x = 4000, y = c(100, 200), linetype = "dotdash") \%>\%
+   add_data_points()
+
+}

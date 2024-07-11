@@ -20,7 +20,7 @@ add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
 
 \item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 
-\item{alpha}{A \code{number} between \code{0} and \code{1} for the transparency of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
 \item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 
@@ -38,21 +38,30 @@ A \code{tidyplot} object
 }
 }
 \examples{
+# Standard error of the mean
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_sem_ribbon()
+# Range from minimum to maximum value
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_range_ribbon()
+# Standard deviation
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_sd_ribbon()
+# 95\% confidence interval
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_ci95_ribbon()
+# Changing arguments: alpha
+time_course \%>\%
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  add_mean_line() \%>\%
+  add_sem_ribbon(alpha = 0.7)
 
 }

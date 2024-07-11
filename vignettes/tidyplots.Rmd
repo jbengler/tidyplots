@@ -198,20 +198,6 @@ study %>%
 
 Note that I removed the legend title by setting it to an empty string `legend_title = ""`. This is alternative to `remove_legend_title()`, however the result is not exactly the same. I am sure you will figure out the difference.
 
-When it comes to scientific plots, titles often contain special characters like Greek symbols, subscript or superscript. For this purpose, tidyplots supports _plotmath expressions_. Besides finding out how to use the [plotmath expression syntax](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath), please note that in tidyplots all plotmath expressions need to start and end with a `$` character. Moreover, you can not mix plotmath with plain text in one string, instead the entire string needs to be a plotmath expression if you want to use special characters.
-
-```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
-  adjust_description(title = "$H[2]*O$",
-                     x_axis_title = "$E==m*c^{2}$",
-                     y_axis_title = "$TNF*alpha~level$",
-                     legend_title = "")
-```
-
 Another common task is to adjust the colors in your plot. You can do this using the `adjust_colors()` function.
 
 ```{r}

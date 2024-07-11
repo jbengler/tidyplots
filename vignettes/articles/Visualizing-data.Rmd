@@ -532,7 +532,7 @@ gene_expression %>%
   add_stats_pvalue(hide.ns = TRUE)
 ```
 
-Finally, if you want to hide the caption with statistical information you can do this by providing `include_info = FALSE`.
+Finally, if you want to hide the caption with statistical information you can do this by providing `hide_info = TRUE`.
 
 ```{r}
 gene_expression %>% 
@@ -543,7 +543,7 @@ gene_expression %>%
   add_mean_dash() %>% 
   add_sem_bar() %>% 
   add_data_points() %>% 
-  add_stats_pvalue(hide.ns = TRUE, include_info = FALSE)
+  add_stats_pvalue(hide.ns = TRUE, hide_info = TRUE)
 ```
 
 There are many more things you can do with statistical comparisons. Just check out the documentation of `add_stats_pvalue()` and the underlying function `ggpubr::geom_pwc()`.
@@ -610,7 +610,7 @@ animals %>%
   add_data_labels_repel(data = max_rows(speed, 3), animal)
 ```
 
-There is lot tweaking that can be done with text labels. For more details have a look at the documentation of `add_data_labels_repel()`, the underlying function `ggrepel::geom_text_repel()` and [ggrepel examples](https://ggrepel.slowkow.com/articles/examples).
+There is lot tweaking that can be done with repelling data labels. For more details have a look at the documentation of `add_data_labels_repel()`, the underlying function `ggrepel::geom_text_repel()` and [ggrepel examples](https://ggrepel.slowkow.com/articles/examples).
 
 As one last thing, let's add some reference lines, to highlight specific values on the x and y axis.
 

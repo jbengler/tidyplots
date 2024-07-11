@@ -36,3 +36,26 @@ A \code{tidyplot} object
 \description{
 Add heatmap
 }
+\details{
+\itemize{
+\item \code{add_heatmap()} supports rasterizing. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing}{Advanced plotting}.
+}
+}
+\examples{
+climate \%>\%
+  tidyplot(x = month, y = year, color = max_temperature) \%>\%
+  add_heatmap()
+# Calculate row-wise z score
+climate \%>\%
+  tidyplot(x = month, y = year, color = max_temperature) \%>\%
+  add_heatmap(scale = "row")
+# Calculate column-wise z score
+climate \%>\%
+  tidyplot(x = month, y = year, color = max_temperature) \%>\%
+  add_heatmap(scale = "column")
+# Rasterize heatmap
+climate \%>\%
+  tidyplot(x = month, y = year, color = max_temperature) \%>\%
+  add_heatmap(rasterize = TRUE, rasterize_dpi = 20)
+
+}

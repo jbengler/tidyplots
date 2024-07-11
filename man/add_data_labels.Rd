@@ -13,7 +13,7 @@ add_data_labels(
   background = FALSE,
   background_color = "#FFFFFF",
   background_alpha = 0.6,
-  label_position = c("bottom", "top", "left", "right", "center"),
+  label_position = c("below", "above", "left", "right", "center"),
   ...
 )
 
@@ -34,7 +34,7 @@ add_data_labels_repel(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{label}{Varibale in the dataset to be used for the text label.}
+\item{label}{Variable in the dataset to be used for the text label.}
 
 \item{data}{The data to be displayed in this layer. There are three options:
 \itemize{
@@ -49,9 +49,9 @@ add_data_labels_repel(
 
 \item{background_color}{Hex color of the background box. Defaults to \code{"#FFFFFF"} for white.}
 
-\item{background_alpha}{Transparency of the background box. Defaults to \code{0.6}.}
+\item{background_alpha}{Opacity of the background box. Defaults to \code{0.6}.}
 
-\item{label_position}{Position of the label in relation to the data point. Can be one of \code{c("bottom", "top", "left", "right", "center")}.}
+\item{label_position}{Position of the label in relation to the data point. Can be one of \code{c("below", "above", "left", "right", "center")}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 
@@ -71,4 +71,41 @@ A \code{tidyplot} object
 }
 \description{
 Add data labels
+}
+\details{
+\itemize{
+\item \code{add_data_labels_repel()} uses \code{ggrepel::geom_text_repel()}. Check there
+and in \href{https://ggrepel.slowkow.com/articles/examples}{ggrepel examples} for
+additional arguments.
+\item \code{add_data_labels()} and \code{add_data_labels_repel()} support data subsetting. See \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting}{Advanced plotting}.
+}
+}
+\examples{
+# Create plot and increase padding to make more space for labels
+p <-
+  animals \%>\%
+  dplyr::slice_head(n = 5) \%>\%
+  tidyplot(x = weight, y = speed) \%>\%
+  theme_ggplot2() \%>\%
+  add_data_points() \%>\%
+  adjust_plot_area_padding(all = 0.3)
+# Default label position is `below` the data point
+p \%>\% add_data_labels(label = animal)
+# Alternative label positions
+p \%>\% add_data_labels(label = animal, label_position = "above")
+p \%>\% add_data_labels(label = animal, label_position = "right")
+p \%>\% add_data_labels(label = animal, label_position = "left")
+# Include white background box
+p \%>\% add_data_labels(label = animal, background = TRUE)
+p \%>\% add_data_labels(label = animal, background = TRUE,
+  background_color = "pink")
+# Black labels
+p \%>\% add_data_labels(label = animal, color = "black")
+# Use repelling data labels
+p \%>\% add_data_labels_repel(label = animal, color = "black")
+p \%>\% add_data_labels_repel(label = animal, color = "black",
+  background = TRUE)
+p \%>\% add_data_labels_repel(label = animal, color = "black",
+  background = TRUE, min.segment.length = 0)
+
 }

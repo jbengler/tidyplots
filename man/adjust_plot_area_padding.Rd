@@ -10,6 +10,7 @@ adjust_plot_area_padding(
   right = NA,
   bottom = NA,
   left = NA,
+  all = NA,
   force_continuous = FALSE,
   ...
 )
@@ -24,6 +25,8 @@ adjust_plot_area_padding(
 \item{bottom}{Extra space between the data points and the bottom. Defaults to \code{NA}, which does not change the padding.}
 
 \item{left}{Extra space between the data points and the left. Defaults to \code{NA}, which does not change the padding.}
+
+\item{all}{Extra space around the data pointst. Overwrites \code{top}, \code{right}, \code{bottom}, \code{left} if set. Defaults to \code{NA}, which does not change the padding.}
 
 \item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 

@@ -185,10 +185,14 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 #' @param right Extra space between the data points and the right. Defaults to `NA`, which does not change the padding.
 #' @param bottom Extra space between the data points and the bottom. Defaults to `NA`, which does not change the padding.
 #' @param left Extra space between the data points and the left. Defaults to `NA`, which does not change the padding.
+#' @param all Extra space around the data pointst. Overwrites `top`, `right`, `bottom`, `left` if set. Defaults to `NA`, which does not change the padding.
 #' @inherit common_arguments
 #' @export
-adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, force_continuous = FALSE, ...) {
+adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, all = NA, force_continuous = FALSE, ...) {
   check_tidyplot(plot)
+  if (!is.na(all) && is.numeric(all)) {
+    top <- right <- bottom <- left <- all
+  }
   plot %>%
     adjust_x_axis(padding = c(left, right), force_continuous = force_continuous, ...) %>%
     adjust_y_axis(padding = c(bottom, top), force_continuous = force_continuous, ...)

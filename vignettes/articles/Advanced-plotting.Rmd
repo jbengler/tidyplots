@@ -225,7 +225,7 @@ gene_expression %>%
   add_mean_dash() %>% 
   add_sem_bar() %>% 
   add_data_points_beeswarm() %>% 
-  add_stats_asterisks(include_info = FALSE) %>% 
+  add_stats_asterisks(hide_info = TRUE) %>% 
   split_plot(by = external_gene_name, ncol = 2, nrow = 2)
 ```
 
@@ -237,7 +237,7 @@ gene_expression %>%
   add_mean_dash() %>% 
   add_sem_bar() %>% 
   add_data_points_beeswarm() %>% 
-  add_stats_asterisks(include_info = FALSE) %>% 
+  add_stats_asterisks(hide_info = TRUE) %>% 
   split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>% 
   save_plot("test.pdf")
 ```
@@ -449,6 +449,24 @@ study %>%
 ```
 
 Note how here the saturation is decreased without making the bars transparent. Thus, the horizontal lines do not shine through the bars.
+
+# Special characters
+
+When it comes to scientific plots, titles often contain special characters like Greek symbols, subscript or superscript. For this purpose, tidyplots supports _plotmath expressions_.
+
+Besides finding out how to use the [plotmath expression syntax](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath), please note that in tidyplots all plotmath expressions need to start and end with a `$` character. Moreover, you can not mix plotmath with plain text in one string, instead the entire string needs to be a valid plotmath expression that includes the plain text.
+
+```{r}
+study %>% 
+  tidyplot(x = treatment, y = score, color = treatment) %>% 
+  add_data_points() %>% 
+  add_mean_bar(alpha = 0.3) %>% 
+  add_sem_bar() %>% 
+  adjust_description(title = "$H[2]*O$",
+                     x_axis_title = "$E==m*c^{2}$",
+                     y_axis_title = "$TNF*alpha~level$",
+                     legend_title = "")
+```
 
 # ggplot2 compatibiliy
 

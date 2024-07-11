@@ -20,7 +20,7 @@ add_stats_pvalue(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
-  include_info = TRUE,
+  hide_info = FALSE,
   ...
 )
 
@@ -39,7 +39,7 @@ add_stats_asterisks(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
-  include_info = TRUE,
+  hide_info = FALSE,
   ...
 )
 }
@@ -122,7 +122,7 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
  \code{*}: p <= 0.05 \item \code{**}: p <= 0.01 \item \code{***}: p <= 0.001
  \item \code{****}:  p <= 0.0001 }}
 
-\item{include_info}{Whether to include details about the statistical testing as caption. Defaults to \code{TRUE}.}
+\item{hide_info}{Whether to hide details about the statistical testing as caption. Defaults to \code{FALSE}.}
 
 \item{...}{Arguments passed on to \code{ggpubr::geom_pwc()}.}
 }
@@ -131,4 +131,57 @@ A \code{tidyplot} object
 }
 \description{
 Add statistics
+}
+\details{
+\itemize{
+\item \code{add_stats_pvalue()} and \code{add_stats_asterisks()} use \code{ggpubr::geom_pwc()}.
+Check there for additional arguments.
+}
+}
+\examples{
+study \%>\%
+  tidyplot(x = dose, y = score, color = group) \%>\%
+  add_mean_dash() \%>\%
+  add_sem_bar() \%>\%
+  add_data_points() \%>\%
+  add_stats_pvalue()
+# Change stat methods
+study \%>\%
+  tidyplot(x = dose, y = score, color = group) \%>\%
+  add_mean_dash() \%>\%
+  add_sem_bar() \%>\%
+  add_data_points() \%>\%
+  add_stats_pvalue(method = "wilcoxon", p.adjust.method = "BH")
+# Define reference group to test against
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_dash() \%>\%
+  add_sem_bar() \%>\%
+  add_data_points() \%>\%
+  add_stats_pvalue(ref.group = "A")
+# hide non-significant p values
+gene_expression \%>\%
+  # filter to one gene
+  dplyr::filter(external_gene_name == "Apol6") \%>\%
+  # start plotting
+  tidyplot(x = condition, y = expression, color = sample_type) \%>\%
+  add_mean_dash() \%>\%
+  add_sem_bar() \%>\%
+  add_data_points() \%>\%
+  add_stats_pvalue(hide.ns = TRUE)
+# Adjust top padding for statistical comparisons
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_dash() \%>\%
+  add_sem_bar() \%>\%
+  add_data_points() \%>\%
+  add_stats_pvalue(padding_top = 0.08)
+# Hide stats information
+study \%>\%
+  tidyplot(x = dose, y = score, color = group) \%>\%
+  add_mean_dash() \%>\%
+  add_sem_bar() \%>\%
+  add_data_points() \%>\%
+  add_stats_pvalue(hide_info = TRUE)
+
 }
