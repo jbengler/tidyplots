@@ -19,3 +19,9 @@ A \code{tidyplot} object
 \description{
 New color scheme
 }
+\examples{
+new_color_scheme(c("#ECA669","#E06681","#8087E2","#E2D269"))
+new_color_scheme(c("#ECA669","#E06681","#8087E2","#E2D269"),
+  name = "my_custom_color_scheme")
+
+}

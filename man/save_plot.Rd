@@ -47,3 +47,39 @@ Output file dimensions are determined according the the following precedence.
 \item System default device dimensions.
 }
 }
+\examples{
+if (FALSE) {
+
+# Save plot to file
+study \%>\%
+  tidyplot(treatment, score) \%>\%
+  add_data_points() \%>\%
+  save_plot("single_plot.pdf")
+
+# Save multipage PDF file
+gene_expression \%>\%
+  tidyplot(group, expression, color = sample_type) \%>\%
+  add_data_points() \%>\%
+  split_plot(by = external_gene_name, nrow = 3, ncol = 3) \%>\%
+  save_plot("multipage_plot.pdf")
+
+# Save multiple PDF files
+gene_expression \%>\%
+  tidyplot(group, expression, color = sample_type) \%>\%
+  add_data_points() \%>\%
+  split_plot(by = external_gene_name, nrow = 3, ncol = 3) \%>\%
+  save_plot("plot.pdf", multiple_files = TRUE)
+
+# Save intermediate stages to file
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  add_data_points_beeswarm() \%>\%
+  save_plot("before.pdf") \%>\%
+  adjust_colors(colors_discrete_seaside) \%>\%
+  save_plot("after.pdf")
+
+  }
+
+}

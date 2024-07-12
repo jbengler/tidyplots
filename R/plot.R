@@ -73,11 +73,24 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 #' @inherit common_arguments
 #'
 #' @examples
+#' # Split by year
 #' energy %>%
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
 #'   tidyplot(y = power, color = energy_source) %>%
 #'   add_donut() %>%
 #'   split_plot(by = year)
+#' # Change dimensions of subplots
+#' energy %>%
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
+#'   tidyplot(y = power, color = energy_source) %>%
+#'   add_donut() %>%
+#'   split_plot(by = year, widths = 15, heights = 15)
+#' # Spread plots across multiple pages
+#' energy %>%
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
+#'   tidyplot(y = power, color = energy_source) %>%
+#'   add_donut() %>%
+#'   split_plot(by = year, ncol = 2, nrow = 1)
 #'
 #' @export
 split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
@@ -135,6 +148,31 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 #' @param title Plot title.
 #' @param ... Arguments passed on to `print()`.
 #' @inherit common_arguments
+#'
+#' @details
+#' * `view_plot()` supports data subsetting. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting).
+#'
+#' @examples
+#' # View intermediate stages on screen
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   add_data_points_beeswarm() %>%
+#'   view_plot(title = "Before changing color scheme") %>%
+#'   adjust_colors(colors_discrete_seaside) %>%
+#'   view_plot(title = "After changing color scheme")
+#' # View data subsets on screen
+#' gene_expression %>%
+#'   tidyplot(x = condition, y = expression, color = sample_type) %>%
+#'   add_mean_dash() %>%
+#'   add_sem_bar() %>%
+#'   add_data_points_beeswarm() %>%
+#'   view_plot(data = filter_rows(external_gene_name == "Apol6"),
+#'     title = "Apol6") %>%
+#'   view_plot(data = filter_rows(external_gene_name == "Bsn"),
+#'     title = "Bsn")
+#'
 #' @export
 view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
   check_tidyplot(plot)
@@ -161,6 +199,41 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' @param multiple_files Whether to save multiple pages as individual files.
 #' @inheritParams ggplot2::ggsave
 #' @inherit common_arguments
+#'
+#' @examples
+#' if (FALSE) {
+#'
+#' # Save plot to file
+#' study %>%
+#'   tidyplot(treatment, score) %>%
+#'   add_data_points() %>%
+#'   save_plot("single_plot.pdf")
+#'
+#' # Save multipage PDF file
+#' gene_expression %>%
+#'   tidyplot(group, expression, color = sample_type) %>%
+#'   add_data_points() %>%
+#'   split_plot(by = external_gene_name, nrow = 3, ncol = 3) %>%
+#'   save_plot("multipage_plot.pdf")
+#'
+#' # Save multiple PDF files
+#' gene_expression %>%
+#'   tidyplot(group, expression, color = sample_type) %>%
+#'   add_data_points() %>%
+#'   split_plot(by = external_gene_name, nrow = 3, ncol = 3) %>%
+#'   save_plot("plot.pdf", multiple_files = TRUE)
+#'
+#' # Save intermediate stages to file
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_sem_bar() %>%
+#'   add_data_points_beeswarm() %>%
+#'   save_plot("before.pdf") %>%
+#'   adjust_colors(colors_discrete_seaside) %>%
+#'   save_plot("after.pdf")
+#'
+#'   }
 #'
 #' @export
 save_plot <- function(plot = ggplot2::last_plot(), filename,

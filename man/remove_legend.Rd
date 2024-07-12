@@ -18,3 +18,14 @@ A \code{tidyplot} object
 \description{
 Remove legend or legend title
 }
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_legend()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_legend_title()
+
+}

@@ -27,3 +27,26 @@ A \code{tidyplot} object
 \description{
 Remove x axis or parts of it
 }
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_x_axis_line()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_x_axis_ticks()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_x_axis_labels()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_x_axis_title()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_x_axis()
+
+}

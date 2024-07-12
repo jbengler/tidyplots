@@ -17,3 +17,19 @@ A \code{tidyplot} object
 \description{
 Remove plot area padding
 }
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar() \%>\%
+  remove_plot_area_padding()
+# Before removing plot area padding
+animals \%>\%
+  tidyplot(x = weight, y = speed, color = family) \%>\%
+  add_data_points()
+# After removing plot area padding
+animals \%>\%
+  tidyplot(x = weight, y = speed, color = family) \%>\%
+  add_data_points() \%>\%
+  remove_plot_area_padding()
+
+}

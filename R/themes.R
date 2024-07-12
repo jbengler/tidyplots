@@ -1,6 +1,39 @@
 
 #' Themes
 #' @inherit common_arguments
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sem_bar() %>%
+#'   add_mean_dash() %>%
+#'   theme_tidyplot()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sem_bar() %>%
+#'   add_mean_dash() %>%
+#'   theme_ggplot2()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sem_bar() %>%
+#'   add_mean_dash() %>%
+#'   theme_minimal_xy()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sem_bar() %>%
+#'   add_mean_dash() %>%
+#'   theme_minimal_x()
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points() %>%
+#'   add_sem_bar() %>%
+#'   add_mean_dash() %>%
+#'   theme_minimal_y()
+#'
 #' @export
 theme_tidyplot <- function(plot, fontsize = 7) {
   check_tidyplot(plot)
@@ -35,22 +68,6 @@ theme_minimal_xy <- function(plot, fontsize = 7) {
 }
 #' @rdname theme_tidyplot
 #' @export
-theme_minimal_y <- function(plot, fontsize = 7) {
-  check_tidyplot(plot)
-  plot <- plot + ggplot2::theme_minimal()
-  if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot %>% remove_legend()
-  plot %>% adjust_font(fontsize) +
-    ggplot2::theme(
-      axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.major.x = ggplot2::element_blank(),
-      panel.grid.minor.x = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.minor.y = ggplot2::element_blank()
-    )
-}
-#' @rdname theme_tidyplot
-#' @export
 theme_minimal_x <- function(plot, fontsize = 7) {
   check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
@@ -62,6 +79,22 @@ theme_minimal_x <- function(plot, fontsize = 7) {
       panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.x = ggplot2::element_blank(),
       panel.grid.major.y = ggplot2::element_blank(),
+      panel.grid.minor.y = ggplot2::element_blank()
+    )
+}
+#' @rdname theme_tidyplot
+#' @export
+theme_minimal_y <- function(plot, fontsize = 7) {
+  check_tidyplot(plot)
+  plot <- plot + ggplot2::theme_minimal()
+  if (get_variable(plot, "colour") == ".single_color")
+    plot <- plot %>% remove_legend()
+  plot %>% adjust_font(fontsize) +
+    ggplot2::theme(
+      axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
+      panel.grid.major.x = ggplot2::element_blank(),
+      panel.grid.minor.x = ggplot2::element_blank(),
+      panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.y = ggplot2::element_blank()
     )
 }

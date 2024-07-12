@@ -26,3 +26,30 @@ A \code{tidyplot} object
 \description{
 View plot on screen
 }
+\details{
+\itemize{
+\item \code{view_plot()} supports data subsetting. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting}{Advanced plotting}.
+}
+}
+\examples{
+# View intermediate stages on screen
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar() \%>\%
+  add_data_points_beeswarm() \%>\%
+  view_plot(title = "Before changing color scheme") \%>\%
+  adjust_colors(colors_discrete_seaside) \%>\%
+  view_plot(title = "After changing color scheme")
+# View data subsets on screen
+gene_expression \%>\%
+  tidyplot(x = condition, y = expression, color = sample_type) \%>\%
+  add_mean_dash() \%>\%
+  add_sem_bar() \%>\%
+  add_data_points_beeswarm() \%>\%
+  view_plot(data = filter_rows(external_gene_name == "Apol6"),
+    title = "Apol6") \%>\%
+  view_plot(data = filter_rows(external_gene_name == "Bsn"),
+    title = "Bsn")
+
+}

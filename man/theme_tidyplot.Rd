@@ -4,8 +4,8 @@
 \alias{theme_tidyplot}
 \alias{theme_ggplot2}
 \alias{theme_minimal_xy}
-\alias{theme_minimal_y}
 \alias{theme_minimal_x}
+\alias{theme_minimal_y}
 \title{Themes}
 \usage{
 theme_tidyplot(plot, fontsize = 7)
@@ -14,9 +14,9 @@ theme_ggplot2(plot, fontsize = 7)
 
 theme_minimal_xy(plot, fontsize = 7)
 
-theme_minimal_y(plot, fontsize = 7)
-
 theme_minimal_x(plot, fontsize = 7)
+
+theme_minimal_y(plot, fontsize = 7)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
@@ -28,4 +28,37 @@ A \code{tidyplot} object
 }
 \description{
 Themes
+}
+\examples{
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_sem_bar() \%>\%
+  add_mean_dash() \%>\%
+  theme_tidyplot()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_sem_bar() \%>\%
+  add_mean_dash() \%>\%
+  theme_ggplot2()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_sem_bar() \%>\%
+  add_mean_dash() \%>\%
+  theme_minimal_xy()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_sem_bar() \%>\%
+  add_mean_dash() \%>\%
+  theme_minimal_x()
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_sem_bar() \%>\%
+  add_mean_dash() \%>\%
+  theme_minimal_y()
+
 }

@@ -59,10 +59,23 @@ A \code{tidyplot} object
 Split plot into multiple subplots
 }
 \examples{
+# Split by year
 energy \%>\%
   dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) \%>\%
   tidyplot(y = power, color = energy_source) \%>\%
   add_donut() \%>\%
   split_plot(by = year)
+# Change dimensions of subplots
+energy \%>\%
+  dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) \%>\%
+  tidyplot(y = power, color = energy_source) \%>\%
+  add_donut() \%>\%
+  split_plot(by = year, widths = 15, heights = 15)
+# Spread plots across multiple pages
+energy \%>\%
+  dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) \%>\%
+  tidyplot(y = power, color = energy_source) \%>\%
+  add_donut() \%>\%
+  split_plot(by = year, ncol = 2, nrow = 1)
 
 }
