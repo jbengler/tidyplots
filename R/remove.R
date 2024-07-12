@@ -3,14 +3,21 @@
 #' @inherit common_arguments
 #'
 #' @examples
+#' # Before removing
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
-#'   remove_legend()
+#'   add_mean_bar()
+#'
+#' # After removing
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_legend_title()
+#'
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_bar() %>%
+#'   remove_legend()
 #'
 #' @export
 remove_legend <- function(plot) {
@@ -29,22 +36,32 @@ remove_legend_title <- function(plot) {
 #' @inherit common_arguments
 #'
 #' @examples
+#' # Before removing
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_bar()
+#'
+#' # After removing
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_x_axis_line()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_x_axis_ticks()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_x_axis_labels()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_x_axis_title()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
@@ -93,22 +110,32 @@ remove_x_axis_title <- function(plot) {
 #' @inherit common_arguments
 #'
 #' @examples
+#' # Before removing
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_mean_bar()
+#'
+#' # After removing
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_y_axis_line()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_y_axis_ticks()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_y_axis_labels()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
 #'   remove_y_axis_title()
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_bar() %>%
@@ -156,15 +183,12 @@ remove_y_axis_title <- function(plot) {
 #' @inherit common_arguments
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
-#'   remove_plot_area_padding()
-#' # Before removing plot area padding
+#' # Before removing
 #' animals %>%
 #'   tidyplot(x = weight, y = speed, color = family) %>%
 #'   add_data_points()
-#' # After removing plot area padding
+#'
+#' # After removing
 #' animals %>%
 #'   tidyplot(x = weight, y = speed, color = family) %>%
 #'   add_data_points() %>%

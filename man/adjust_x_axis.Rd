@@ -100,39 +100,49 @@ See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-pl
 }
 }
 \examples{
+# Plot without adjustments
+animals \%>\%
+  tidyplot(x = weight, y = size, color = family) \%>\%
+  add_data_points()
+
 # New titles
 animals \%>\%
-  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  tidyplot(x = weight, y = size, color = family) \%>\%
   add_data_points() \%>\%
   adjust_x_axis(title = "My new x axis title") \%>\%
   adjust_y_axis(title = "My new y axis title")
+
 # New titles with plotmath expressions
 animals \%>\%
-  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  tidyplot(x = weight, y = size, color = family) \%>\%
   add_data_points() \%>\%
   adjust_x_axis(title = "$H[2]*O$") \%>\%
   adjust_y_axis(title = "$E==m*c^{2}$")
+
 # Axes limits
 animals \%>\%
-  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  tidyplot(x = weight, y = size, color = family) \%>\%
   add_data_points() \%>\%
   adjust_x_axis(limits = c(-1000, 4000)) \%>\%
   adjust_y_axis(limits = c(-200, 600))
+
 # Rotate labels
 animals \%>\%
-  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  tidyplot(x = weight, y = size, color = family) \%>\%
   add_data_points() \%>\%
   adjust_x_axis(rotate_labels = 90) \%>\%
   adjust_y_axis(rotate_labels = 90)
+
 # Increase plot area padding
 animals \%>\%
-  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  tidyplot(x = weight, y = size, color = family) \%>\%
   add_data_points() \%>\%
   adjust_x_axis(padding = c(0.2, 0.2)) \%>\%
   adjust_y_axis(padding = c(0.2, 0.2))
+
 # Scale transformation
 animals \%>\%
-  tidyplot(x = weight, y = size, color = number_of_legs) \%>\%
+  tidyplot(x = weight, y = size, color = family) \%>\%
   add_data_points() \%>\%
   adjust_x_axis(transform = "log10") \%>\%
   adjust_y_axis(transform = "log2")

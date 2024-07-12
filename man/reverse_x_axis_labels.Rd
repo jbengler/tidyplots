@@ -22,20 +22,46 @@ A \code{tidyplot} object
 Reverse axis or color labels
 }
 \examples{
+# Before adjustments
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Reverse x axis labels
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   reverse_x_axis_labels()
+
+# Before adjustments
 study \%>\%
-  tidyplot(x = score, y = treatment, color = group) \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Reverse y axis labels
+study \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   reverse_y_axis_labels()
+
+# Before adjustment
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = group, y = score, color = dose) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Reverse color labels
+study \%>\%
+  tidyplot(x = group, y = score, color = dose) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%

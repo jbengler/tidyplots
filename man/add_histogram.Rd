@@ -80,6 +80,7 @@ Add histogram or density
 energy \%>\%
   tidyplot(x = power) \%>\%
   add_histogram()
+
 energy \%>\%
   tidyplot(x = power) \%>\%
    add_density_histogram() \%>\%

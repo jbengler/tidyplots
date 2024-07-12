@@ -44,13 +44,15 @@ _Tip: You can copy individual hex colors directly from the preview to use them i
 
 Discrete color schemes are meant for categorical variables. The default schemes in tidyplots consist of 5--6 colors. However, if more categories are present in the plot, tidyplots will automatically fill up the gaps between colors to deliver exactly the number that is required for the plot.
 
+Similarly, when more colors are provided than needed, tidyplots will select the required number of colors by attempting to evenly sample from the supplied color vector.
+
 ```{r}
 energy %>% 
   tidyplot(year, power, color = energy_source) %>% 
   add_barstack_absolute()
 ```
 
-And here are some variations.
+And here are some alternative color schemes.
 
 ```{r}
 energy %>% 
@@ -87,7 +89,7 @@ climate %>%
   add_heatmap()
 ```
 
-And here are some variations.
+And here are some alternative color schemes.
 
 ```{r}
 climate %>% 
@@ -130,7 +132,7 @@ gene_expression %>%
   adjust_plot_area_size(height = 100)
 ```
 
-And here are some variations.
+And here are some alternative color schemes.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 

@@ -161,7 +161,7 @@ I also added the sum value as text label using the `add_sum_value()` function.
 
 # Heatmaps
 
-Heatmaps are a great way to plot a _continuous variable_ across to two additional _variables_. To exemplify this, we will have a look at the `gene_expression` dataset.
+Heatmaps are a great way to plot a _continuous variable_ across two additional _variables_. To exemplify this, we will have a look at the `gene_expression` dataset.
 
 ```{r, results='markup'}
 gene_expression %>% 
@@ -185,7 +185,7 @@ gene_expression %>%
   adjust_plot_area_size(height = 100)
 ```
 
-The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show very high values while other rows show much lower values. Let's apply a classical technique to reserve the color range for differences within each row. This is done by calculating _row z scores_ for each row individually. Luckily, tidyplots does this for us when setting the argument `scale = "row"` withing the `add_heatmap()` function call.
+The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show very high values while other rows show much lower values. Let's apply a classical technique to reserve the color range for differences within each row. This is done by calculating _row z scores_ for each row individually. Luckily, tidyplots does this for us when setting the argument `scale = "row"` within the `add_heatmap()` function call.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 
@@ -235,7 +235,7 @@ time_course %>%
   add_mean_area(alpha = 0.2)
 ```
 
-In case you ask yourself why I included `dodge_width = 0` in all `tidyplot()` calls used to show a `line` or `area`, you might want to learn more about dodging in the article about [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html).
+In case you ask yourself why I included `dodge_width = 0` in all `tidyplot()` calls used to show a `line` or `area`, you might want to learn more about dodging in the article about [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#dodging).
 
 Back to central tendency measures, here is one more example using `bar` and `value`.
 
@@ -305,7 +305,7 @@ study %>%
   add_boxplot()
 ```
 
-Finally, while not strictly being a measure of central tendency you can also fit a curve through your data in order derive an abstracted representation of your data.
+Finally, although it is not strictly a measure of central tendency, you can fit a curve through your data to derive an abstracted representation.
 
 ```{r}
 time_course %>% 
@@ -350,7 +350,7 @@ energy %>%
   dplyr::glimpse()
 ```
 
-As you might appreciate, this dataset contains the `power` in gigawatt produced per `energy_source` in Germany between the `year` 2002 and 2023. Let's start with a `pie` plot.
+As you might appreciate, this dataset contains the `power` in gigawatt produced per `energy_source` in Germany between `year` 2002 and 2023. Let's start with a `pie` plot.
 
 ```{r}
 energy %>% 
@@ -368,9 +368,9 @@ energy %>%
   add_donut()
 ```
 
-Now we can appreciate the contribution of each energy type. Note that I also changed the `pie` for a `donut` plot, which is basically a pie chart with a white hole in the middle.
+Now we can appreciate the contribution of each energy type. Note that I also changed the `pie` for a `donut` plot, which is basically a pie chart with a white hole in the center.
 
-The main criticism of pie and donut plots is that the human brain struggles to accurately interpret the proportions represented. For example, it's challenging to determine whether fossil or renewable power has a larger share in the plot.
+The main criticism of `pie` and `donut` plots is that the human brain struggles to accurately interpret the proportions represented. For example, it's challenging to determine whether fossil or renewable power has a larger share in the plot.
 
 Another graphical representation is a `barstack` plot.
 
@@ -390,7 +390,7 @@ energy %>%
   reorder_x_axis_labels("Renewable")
 ```
 
-Now we can appreciate that renewable power production had an overall bigger share than fossil power production in the time period between 2002 and 2023.
+Now we can see that renewable power production had a slightly larger overall share than fossil power production in the period between 2002 and 2023.
 
 However, if we want to visualize proportional data across time or another variable, `barstack` plots can still be informative.
 
@@ -434,7 +434,7 @@ energy %>%
   split_plot(by = year)
 ```
 
-Now let's have a look at a related dataset showing one week of the energy data in higher resolution.
+Now, let’s examine a related dataset that presents one week of energy data with higher time resolution.
 
 ```{r}
 energy_week %>% 
@@ -452,7 +452,7 @@ energy_week %>%
   add_areastack_relative()
 ```
 
-This nicely illustrates how wind energy closes the solar gap during the night, however when wind is weak, like on September 10, fossil energy sources need to kick in to fill the gap.
+This illustrates nicely how wind energy compensates for the lack of solar power during the night. However, when wind is weak, as on September 10, fossil energy sources need to step in to fill the gap.
 
 # Statistical comparison
 
@@ -493,7 +493,7 @@ study %>%
   add_stats_pvalue(method = "wilcoxon", p.adjust.method = "BH")
 ```
 
-In non paired data, it might also make sense to compare all experimental conditions to a control condition. For example, let's say treatment "A" is our control.
+It often makes sense to compare all experimental conditions to a control condition. For example, let's say treatment "A" is our control.
 
 ```{r}
 study %>% 
@@ -589,9 +589,9 @@ animals %>%
   add_data_labels(label = animal)
 ```
 
-Note that I provided the `label` argument to the `add_data_labels()` function to chose the variable in the dataset that should be added as text labels.
+Note that I provided the `label` argument to the `add_data_labels()` function to indicate the variable in the dataset that should be used for the text labels.
 
-Another thing to note is that there is quite some overlap of labels in the lower left of the plot. Let' try to repel the data labels from one another using the `add_data_labels_repel()` function.
+Another thing to note is that there is quite some overlap of labels in the lower left of the plot. Let's try to separate the data labels using the `add_data_labels_repel()` function.
 
 ```{r}
 animals %>% 

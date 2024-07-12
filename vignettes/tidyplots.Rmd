@@ -31,7 +31,7 @@ You never generated code-based scientific plots? Great to have you here! To get 
 
 ## Install R and RStudio Desktop
 
-We will be using the programming language R and the software RStudio Desktop, which serves as an editor for your code but also comes with a bunch of additional functionality.
+We will be using the programming language R and the software RStudio Desktop, which serves as an editor for your code but also comes with a bunch of additional features.
 
 1. Download and install [R](https://ftp.gwdg.de/pub/misc/cran/) for your operating system. On Windows, choose the _base_ version.
 2. Download and install [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
@@ -113,7 +113,7 @@ study %>%
 
 One thing to note here is that I added `alpha = 0.3` as a argument to the `add_mean_bar()` function. This adds a little transparency to the bars and results in a lighter blue color in comparison to the data points.
 
-Some people might do not like bars so much. So let's exchange the `bar` for a `dash`. And while we are on it, let's add the standard error of the mean `sem` represented as error bar.
+Some people might do not like bars so much. So let's exchange the `bar` for a `dash`. And while we are on it, let's add the standard error of the mean `sem`, represented as error bar.
 
 ```{r}
 study %>% 
@@ -330,7 +330,7 @@ study %>%
 
 ## Output
 
-The classical way to output a plot is to write it to a `PDF` or `PNG` file. This can be easily done by piping the plot into the function `save_plot()`.
+The classical way to output a plot is to write it to a PDF or PNG file. This can be easily done by piping the plot into the function `save_plot()`.
 
 ```{r eval=FALSE}
 study %>% 

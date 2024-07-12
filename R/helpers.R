@@ -20,7 +20,9 @@ is_waiver <- function(x) inherits(x, "waiver")
 #'   study %>%
 #'   ggplot2::ggplot(ggplot2::aes(x = treatment, y = score, color = treatment)) +
 #'   ggplot2::geom_point()
+#'
 #' gg
+#'
 #' gg %>% as_tidyplot()
 #'
 #' @export
@@ -85,16 +87,19 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
 #'   add_mean_bar(alpha = 0.3) %>%
 #'   add_sem_bar() %>%
 #'   flip_plot()
+#'
 #' energy %>%
 #'   tidyplot(x = year, y = power, color = energy_type) %>%
 #'   add_barstack_absolute() %>%
 #'   flip_plot()
+#'
 #' # Better solutions without `flip_plot()`
 #' study %>%
 #'   tidyplot(x = score, y = treatment, color = treatment) %>%
 #'   add_data_points() %>%
 #'   add_mean_bar(alpha = 0.3) %>%
 #'   add_sem_bar()
+#'
 #' energy %>%
 #'   tidyplot(x = power, y = year, color = energy_type) %>%
 #'   add_barstack_absolute(orientation = "y")
@@ -137,30 +142,35 @@ filter_rows <- function(..., .by = NULL){
 #'  add_data_points() %>%
 #'  add_data_points(data = all_rows(),
 #'   color = "red", shape = 1, size = 3)
+#'
 #' # Highlight 3 animals with the highest weight
 #' animals %>%
 #'  tidyplot(x = weight, y = size) %>%
 #'  add_data_points() %>%
 #'  add_data_points(data = max_rows(weight, n = 3),
 #'   color = "red", shape = 1, size = 3)
+#'
 #' # Highlight 3 animals with the lowest weight
 #' animals %>%
 #'  tidyplot(x = weight, y = size) %>%
 #'  add_data_points() %>%
 #'  add_data_points(data = min_rows(weight, n = 3),
 #'   color = "red", shape = 1, size = 3)
-#' # Highlight the 3 first animals in the dataset
+#'
+#' # Highlight the first 3 animals in the dataset
 #' animals %>%
 #'  tidyplot(x = weight, y = size) %>%
 #'  add_data_points() %>%
 #'  add_data_points(data = first_rows(n = 3),
 #'   color = "red", shape = 1, size = 3)
-#' # Highlight the 3 last animals in the dataset
+#'
+#' # Highlight the last 3 animals in the dataset
 #' animals %>%
 #'  tidyplot(x = weight, y = size) %>%
 #'  add_data_points() %>%
 #'  add_data_points(data = last_rows(n = 3),
 #'   color = "red", shape = 1, size = 3)
+#'
 #' # Highlight 3 random animals
 #' animals %>%
 #'  tidyplot(x = weight, y = size) %>%
@@ -206,10 +216,15 @@ sample_rows <- function(n, by = NULL){
 #'
 #' @examples
 #' format_number(232342.3443)
+#'
 #' format_number(232342.3443, accuracy = 0.01)
+#'
 #' format_number(232342.3443, accuracy = 1, big.mark = "")
+#'
 #' format_p_value(0.03445553)
+#'
 #' format_p_value(0.0003445553)
+#'
 #' format_p_value(0.00003445553)
 #'
 #' @export

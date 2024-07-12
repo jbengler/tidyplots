@@ -24,8 +24,16 @@ A \code{tidyplot} object
 Rename axis or color labels
 }
 \examples{
+# Before adjustments
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Rename x axis labels
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
@@ -34,8 +42,17 @@ study \%>\%
     "B" = "is",
     "C" = "totally",
     "D" = "new"))
+
+# Before adjustments
 study \%>\%
-  tidyplot(x = score, y = treatment, color = group) \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Rename y axis labels
+study \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
@@ -44,13 +61,22 @@ study \%>\%
     "B" = "is",
     "C" = "totally",
     "D" = "new"))
+
+# Before adjustment
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = group, y = score, color = dose) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Rename color labels
+study \%>\%
+  tidyplot(x = group, y = score, color = dose) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   rename_color_labels(new_names = c(
-    "placebo" = "The first",
-    "treatment" = "The second"))
+    "high" = "Sky high",
+    "low" = "Deep low"))
 
 }

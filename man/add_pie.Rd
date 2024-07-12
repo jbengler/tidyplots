@@ -30,14 +30,17 @@ Add pie or donut chart
 energy \%>\%
   tidyplot(color = energy_type) \%>\%
   add_pie()
+
 energy \%>\%
   tidyplot(color = energy_type) \%>\%
   add_donut()
+
 # for a `sum` provide `color` and `y`
 # `sum` of `power` in each `energy_type` category
 energy \%>\%
   tidyplot(y = power, color = energy_type) \%>\%
   add_pie()
+
 energy \%>\%
   tidyplot(y = power, color = energy_type) \%>\%
   add_donut()

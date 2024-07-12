@@ -46,16 +46,20 @@ Add violin plot
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_violin()
+
 # Changing arguments:
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_violin(saturation = 0.6)
+
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_violin(draw_quantiles = c(0.25, 0.5, 0.75))
+
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_violin(trim = TRUE)
+
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_violin(linewidth = 1)

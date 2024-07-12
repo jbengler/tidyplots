@@ -45,14 +45,17 @@ Add heatmap
 climate \%>\%
   tidyplot(x = month, y = year, color = max_temperature) \%>\%
   add_heatmap()
+
 # Calculate row-wise z score
 climate \%>\%
   tidyplot(x = month, y = year, color = max_temperature) \%>\%
   add_heatmap(scale = "row")
+
 # Calculate column-wise z score
 climate \%>\%
   tidyplot(x = month, y = year, color = max_temperature) \%>\%
   add_heatmap(scale = "column")
+
 # Rasterize heatmap
 climate \%>\%
   tidyplot(x = month, y = year, color = max_temperature) \%>\%

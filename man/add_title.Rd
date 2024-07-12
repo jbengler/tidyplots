@@ -33,11 +33,13 @@ study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   add_data_points_beeswarm() \%>\%
   add_title("This is my title")
+
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   add_data_points_beeswarm() \%>\%
   add_caption("This is the fine print in the caption")
-# plotmath expressions need to be wrapped in `$` characters
+
+# Plotmath expression
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   add_data_points_beeswarm() \%>\%

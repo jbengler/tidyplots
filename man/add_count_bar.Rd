@@ -109,26 +109,32 @@ dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_bar()
+
 dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_dash()
+
 dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_dot()
+
 dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_value()
+
 dinosaurs \%>\%
   tidyplot(x = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_line()
+
 dinosaurs \%>\%
   tidyplot(x = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_area()
+
 # Combination
 dinosaurs \%>\%
   tidyplot(x = time_lived) \%>\%
@@ -138,6 +144,7 @@ dinosaurs \%>\%
   add_count_dot() \%>\%
   add_count_value() \%>\%
   add_count_line()
+
 # Changing arguments: alpha
 # Makes objects transparent
 dinosaurs \%>\%
@@ -145,6 +152,7 @@ dinosaurs \%>\%
   theme_minimal_y() \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_bar(alpha = 0.3)
+
 # Changing arguments: saturation
 # Reduces fill color saturation without making the object transparent
 dinosaurs \%>\%
@@ -152,16 +160,19 @@ dinosaurs \%>\%
   theme_minimal_y() \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_bar(saturation = 0.3)
+
 # Changing arguments: accuracy
 dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_value(accuracy = 1)
+
 # Changing arguments: fontsize
 dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_count_value(fontsize = 10)
+
 # Changing arguments: color
 dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%

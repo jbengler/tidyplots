@@ -24,6 +24,13 @@ A \code{tidyplot} object
 Adjust font
 }
 \examples{
+# Plot without adjustments
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
 # Increase font size
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -31,6 +38,7 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_font(fontsize = 16)
+
 # Change font family
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -38,6 +46,7 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_font(family = "mono")
+
 # Change font face
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%

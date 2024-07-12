@@ -30,13 +30,13 @@ Ideally, the rasterizing only affects the problematic layers of the plot, while 
 
 In the examples below I intentionally chose a low resolution of of 30 to 50 dpi, to make the rastering more obvious. A typical resolution for print would be 300 dpi.
 
-```{r}
+```{r, fig.asp=0.9}
 library(tidyplots)
 
 gene_expression %>%
   tidyplot(x = sample, y = external_gene_name, color = expression) %>%
   add_heatmap(scale = "row", rasterize = TRUE, rasterize_dpi = 30) %>%
-  adjust_plot_area_size(height = 90)
+  adjust_plot_area_size(height = 100)
 ```
 
 And here another example using `add_data_points()`.
@@ -294,7 +294,7 @@ animals %>%
   adjust_plot_area_padding(top = 0.2, right = 0.2, bottom = 0.2, left = 0.2)
 ```
 
-To remove the padding completely, you can use use the `remove_plot_area_padding()` function. But note that the extreme values now fall onto the axis and are partially cut off.
+To completely remove the padding, you can use the `remove_plot_area_padding()` function. However, note that this will cause extreme values to fall onto the border of the plot area and be partially cut off.
 
 ```{r}
 animals %>% 
@@ -470,9 +470,7 @@ study %>%
 
 # ggplot2 compatibiliy
 
-tidyplots is built on ggplot2, yet the two packages differ in several key aspects.
-
-The most noticeable difference is probably that tidyplots consistently uses the pipe `%>%` to add plot components while ggplot uses `+` .
+tidyplots is built on ggplot2, yet the two packages differ in several key aspects. The most noticeable difference is probably that tidyplots consistently uses the pipe `%>%` to add plot components while ggplot uses `+` .
 
 There is still a certain compatibility of both systems. For example, you can transform a ggplot to tidyplot using the `as_tidyplot()` function.
 

@@ -9,12 +9,16 @@ c.tidycolor <- function(...) new_color_scheme(NextMethod())
 
 #' New color scheme
 #'
+#' For more information about the use of color schemes in tidyplots, check out this article:
+#' [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)
+#'
 #' @param x Character vector of hex colors. For example `x = c("#FF00FF", "#00FFFF")`.
 #' @param name Name of the custom color scheme.
 #' @inherit common_arguments
 #'
 #' @examples
 #' new_color_scheme(c("#ECA669","#E06681","#8087E2","#E2D269"))
+#'
 #' new_color_scheme(c("#ECA669","#E06681","#8087E2","#E2D269"),
 #'   name = "my_custom_color_scheme")
 #'
@@ -28,6 +32,9 @@ new_color_scheme <- function(x, name = "Untitled color scheme", reverse = FALSE)
 
 #' Discrete color schemes
 #'
+#' For more information about the use of color schemes in tidyplots, check out this article:
+#' [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)
+#'
 #' @details
 #' Color schemes can be conveniently previewed by using the print method of the
 #' `tidycolor` class. This will send a html preview to the RStudio Viewer pane
@@ -40,8 +47,8 @@ new_color_scheme <- function(x, name = "Untitled color scheme", reverse = FALSE)
 #' print(colors_discrete_pastel, return_html = TRUE)
 #' print(colors_discrete_seaside, return_html = TRUE)
 #' ```
-#' @md
 #'
+#' @md
 #' @export
 colors_discrete_metro <- new_color_scheme(c("#4DACD6","#4FAE62","#F6C54D","#E37D46","#C02D45"), "colors_discrete_metro")
 #' @rdname colors_discrete_metro
@@ -60,6 +67,9 @@ colors_discrete_seaside <- new_color_scheme(c("#8ecae6", "#219ebc", "#023047", "
 
 #' Continuous color schemes
 #'
+#' For more information about the use of color schemes in tidyplots, check out this article:
+#' [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)
+#'
 #' @details
 #' Color schemes can be conveniently previewed by using the print method of the
 #' `tidycolor` class. This will send a html preview to the RStudio Viewer pane
@@ -76,8 +86,8 @@ colors_discrete_seaside <- new_color_scheme(c("#8ecae6", "#219ebc", "#023047", "
 #' print(colors_continuous_turbo, return_html = TRUE)
 #' print(colors_continuous_bluepinkyellow, return_html = TRUE)
 #' ```
-#' @md
 #'
+#' @md
 #' @export
 colors_continuous_viridis <- new_color_scheme(viridisLite::viridis(265), name = "colors_continuous_viridis")
 #' @rdname colors_continuous_viridis
@@ -110,6 +120,9 @@ colors_continuous_bluepinkyellow <- new_color_scheme(c(
 
 #' Diverging color schemes
 #'
+#' For more information about the use of color schemes in tidyplots, check out this article:
+#' [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)
+#'
 #' @details
 #' Color schemes can be conveniently previewed by using the print method of the
 #' `tidycolor` class. This will send a html preview to the RStudio Viewer pane
@@ -121,8 +134,8 @@ colors_continuous_bluepinkyellow <- new_color_scheme(c(
 #' print(colors_diverging_BuRd, return_html = TRUE)
 #' print(colors_diverging_BuYlRd, return_html = TRUE)
 #' ```
-#' @md
 #'
+#' @md
 #' @export
 colors_diverging_blue2brown <- new_color_scheme(c(
   "#1961A5","#2671B5","#2D80BF","#268CC9","#119DD8","#00B2EB","#66C5EF",

@@ -145,6 +145,7 @@ study \%>\%
   add_sem_bar() \%>\%
   add_data_points() \%>\%
   add_stats_pvalue()
+
 # Change stat methods
 study \%>\%
   tidyplot(x = dose, y = score, color = group) \%>\%
@@ -152,6 +153,7 @@ study \%>\%
   add_sem_bar() \%>\%
   add_data_points() \%>\%
   add_stats_pvalue(method = "wilcoxon", p.adjust.method = "BH")
+
 # Define reference group to test against
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -159,6 +161,7 @@ study \%>\%
   add_sem_bar() \%>\%
   add_data_points() \%>\%
   add_stats_pvalue(ref.group = "A")
+
 # hide non-significant p values
 gene_expression \%>\%
   # filter to one gene
@@ -169,6 +172,7 @@ gene_expression \%>\%
   add_sem_bar() \%>\%
   add_data_points() \%>\%
   add_stats_pvalue(hide.ns = TRUE)
+
 # Adjust top padding for statistical comparisons
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -176,6 +180,7 @@ study \%>\%
   add_sem_bar() \%>\%
   add_data_points() \%>\%
   add_stats_pvalue(padding_top = 0.08)
+
 # Hide stats information
 study \%>\%
   tidyplot(x = dose, y = score, color = group) \%>\%

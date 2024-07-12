@@ -119,26 +119,33 @@ Check there for additional arguments.
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points()
+
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_jitter()
+
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm()
+
 # Changing arguments
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_jitter(jitter_width = 1)
+
 animals \%>\%
   tidyplot(x = weight, y = size) \%>\%
   add_data_points(white_border = TRUE)
+
 animals \%>\%
   tidyplot(x = weight, y = size) \%>\%
   add_data_points(alpha = 0.3)
+
 # Rasterizing
 animals \%>\%
   tidyplot(x = weight, y = size) \%>\%
   add_data_points(rasterize = TRUE, rasterize_dpi = 50)
+
 # Data subsetting
 animals \%>\%
   tidyplot(x = weight, y = size) \%>\%

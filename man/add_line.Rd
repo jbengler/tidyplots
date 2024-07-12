@@ -54,6 +54,7 @@ study \%>\%
   reorder_x_axis_labels("A", "C", "B", "D") \%>\%
   add_data_points() \%>\%
   add_line(group = participant, color = "grey")
+
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   reorder_x_axis_labels("A", "C", "B", "D") \%>\%

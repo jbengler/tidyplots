@@ -42,6 +42,14 @@ See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-pl
 }
 }
 \examples{
+# Plot without adjustments
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Adjust description
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
@@ -53,6 +61,7 @@ study \%>\%
     y_axis_title = "Disease score",
     legend_title = "Legend title",
     caption = "Here goes the caption")
+
 # Plotmath expressions
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%

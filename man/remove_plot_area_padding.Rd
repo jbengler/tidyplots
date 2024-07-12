@@ -18,15 +18,12 @@ A \code{tidyplot} object
 Remove plot area padding
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar() \%>\%
-  remove_plot_area_padding()
-# Before removing plot area padding
+# Before removing
 animals \%>\%
   tidyplot(x = weight, y = speed, color = family) \%>\%
   add_data_points()
-# After removing plot area padding
+
+# After removing
 animals \%>\%
   tidyplot(x = weight, y = speed, color = family) \%>\%
   add_data_points() \%>\%

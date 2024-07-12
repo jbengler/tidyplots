@@ -74,26 +74,31 @@ study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
   add_sem_bar()
+
 # Range from minimum to maximum value
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
   add_range_bar()
+
 # Standard deviation
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
   add_sd_bar()
+
 # 95\% confidence interval
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
   add_ci95_bar()
+
 # Changing arguments: error bar width
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
   add_sem_bar(width = 0.8)
+
 # Changing arguments: error bar line width
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%

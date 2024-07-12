@@ -41,6 +41,7 @@ study \%>\%
   view_plot(title = "Before changing color scheme") \%>\%
   adjust_colors(colors_discrete_seaside) \%>\%
   view_plot(title = "After changing color scheme")
+
 # View data subsets on screen
 gene_expression \%>\%
   tidyplot(x = condition, y = expression, color = sample_type) \%>\%

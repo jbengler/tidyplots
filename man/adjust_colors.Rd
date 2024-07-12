@@ -40,6 +40,13 @@ A \code{tidyplot} object
 Adjust colors
 }
 \examples{
+# Plot without adjustments
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
 # Provide hex colors
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -47,6 +54,7 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_colors(new_colors = c("#644296","#F08533","#3B78B0", "#D1352C"))
+
 # Provide discrete color scheme
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -54,7 +62,8 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_colors(new_colors = colors_discrete_seaside)
-# Provide name vector
+
+# Provide named vector
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
@@ -65,6 +74,7 @@ study \%>\%
     "B" = "purple",
     "C" = "grey",
     "D" = "blue"))
+
 # Provide continuous color scheme
 climate \%>\%
   tidyplot(x = month, y = year, color = max_temperature) \%>\%

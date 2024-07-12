@@ -68,30 +68,35 @@ animals \%>\%
  add_data_points() \%>\%
  add_data_points(data = all_rows(),
   color = "red", shape = 1, size = 3)
+
 # Highlight 3 animals with the highest weight
 animals \%>\%
  tidyplot(x = weight, y = size) \%>\%
  add_data_points() \%>\%
  add_data_points(data = max_rows(weight, n = 3),
   color = "red", shape = 1, size = 3)
+
 # Highlight 3 animals with the lowest weight
 animals \%>\%
  tidyplot(x = weight, y = size) \%>\%
  add_data_points() \%>\%
  add_data_points(data = min_rows(weight, n = 3),
   color = "red", shape = 1, size = 3)
-# Highlight the 3 first animals in the dataset
+
+# Highlight the first 3 animals in the dataset
 animals \%>\%
  tidyplot(x = weight, y = size) \%>\%
  add_data_points() \%>\%
  add_data_points(data = first_rows(n = 3),
   color = "red", shape = 1, size = 3)
-# Highlight the 3 last animals in the dataset
+
+# Highlight the last 3 animals in the dataset
 animals \%>\%
  tidyplot(x = weight, y = size) \%>\%
  add_data_points() \%>\%
  add_data_points(data = last_rows(n = 3),
   color = "red", shape = 1, size = 3)
+
 # Highlight 3 random animals
 animals \%>\%
  tidyplot(x = weight, y = size) \%>\%

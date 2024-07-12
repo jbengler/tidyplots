@@ -37,6 +37,7 @@ animals \%>\%
   tidyplot(x = weight, y = speed) \%>\%
    add_reference_lines(x = 4000, y = c(100, 200)) \%>\%
    add_data_points()
+
 animals \%>\%
   tidyplot(x = weight, y = speed) \%>\%
    add_reference_lines(x = 4000, y = c(100, 200), linetype = "dotdash") \%>\%

@@ -24,23 +24,49 @@ A \code{tidyplot} object
 Sort axis or color labels
 }
 \examples{
+# Before adjustments
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Sort x axis labels by score
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   sort_x_axis_labels(score)
+
+# Before adjustments
 study \%>\%
-  tidyplot(x = score, y = treatment, color = group) \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Sort y axis labels by score
+study \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
-  sort_y_axis_labels(-score)
+  sort_y_axis_labels(score)
+
+# Before adjustment
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = group, y = score, color = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Sort color labels by score
+study \%>\%
+  tidyplot(x = group, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
-  sort_color_labels(-score)
+  sort_color_labels(score)
 
 }

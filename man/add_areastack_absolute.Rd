@@ -48,21 +48,26 @@ Add area stack
 energy \%>\%
   tidyplot(x = year, color = energy_type) \%>\%
   add_areastack_absolute()
+
 energy \%>\%
   tidyplot(x = year, color = energy_type) \%>\%
   add_areastack_relative()
+
 # for a `sum` provide `x`, `y` and `color`
 # `sum` of `power` in each `energy_type` category
 energy \%>\%
   tidyplot(x = year, y = power, color = energy_type) \%>\%
   add_areastack_absolute()
+
 energy \%>\%
   tidyplot(x = year, y = power, color = energy_type) \%>\%
   add_areastack_relative()
+
 # Flip x and y axis
 energy \%>\%
   tidyplot(x = power, y = year, color = energy_type) \%>\%
   add_areastack_absolute(orientation = "y")
+
 energy \%>\%
   tidyplot(x = power, y = year, color = energy_type) \%>\%
   add_areastack_relative(orientation = "y")

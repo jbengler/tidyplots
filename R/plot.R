@@ -7,14 +7,17 @@
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm()
+#'
 #' study %>%
 #'   tidyplot(x = group, y = score, color = dose) %>%
 #'   add_mean_bar()
+#'
 #' # Change plot area size
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment,
 #'     width = 35, height = 35) %>%
 #'   add_data_points_beeswarm()
+#'
 #' # Change dodge_width
 #' study %>%
 #'   tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) %>%
@@ -73,18 +76,26 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 #' @inherit common_arguments
 #'
 #' @examples
+#' # Before splitting
+#' energy %>%
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
+#'   tidyplot(y = power, color = energy_source) %>%
+#'   add_donut()
+#'
 #' # Split by year
 #' energy %>%
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
 #'   tidyplot(y = power, color = energy_source) %>%
 #'   add_donut() %>%
 #'   split_plot(by = year)
+#'
 #' # Change dimensions of subplots
 #' energy %>%
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
 #'   tidyplot(y = power, color = energy_source) %>%
 #'   add_donut() %>%
 #'   split_plot(by = year, widths = 15, heights = 15)
+#'
 #' # Spread plots across multiple pages
 #' energy %>%
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
@@ -162,6 +173,7 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 #'   view_plot(title = "Before changing color scheme") %>%
 #'   adjust_colors(colors_discrete_seaside) %>%
 #'   view_plot(title = "After changing color scheme")
+#'
 #' # View data subsets on screen
 #' gene_expression %>%
 #'   tidyplot(x = condition, y = expression, color = sample_type) %>%

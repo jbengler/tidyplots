@@ -24,23 +24,49 @@ A \code{tidyplot} object
 Reorder axis or color labels
 }
 \examples{
+# Before adjustments
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Reorder x axis labels
+study \%>\%
+  tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
-  reorder_x_axis_labels("D", "B")
+  reorder_x_axis_labels("D", "B", "A")
+
+# Before adjustments
 study \%>\%
-  tidyplot(x = score, y = treatment, color = group) \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Reorder y axis labels
+study \%>\%
+  tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
-  reorder_y_axis_labels("D", "B")
+  reorder_y_axis_labels("D", "B", "A")
+
+# Before adjustment
 study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
+  tidyplot(x = group, y = score, color = dose) \%>\%
+  add_data_points() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
+# Reorder color labels
+study \%>\%
+  tidyplot(x = group, y = score, color = dose) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
-  reorder_color_labels("treatment")
+  reorder_color_labels("low")
 
 }

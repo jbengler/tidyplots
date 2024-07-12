@@ -28,16 +28,19 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   flip_plot()
+
 energy \%>\%
   tidyplot(x = year, y = power, color = energy_type) \%>\%
   add_barstack_absolute() \%>\%
   flip_plot()
+
 # Better solutions without `flip_plot()`
 study \%>\%
   tidyplot(x = score, y = treatment, color = treatment) \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar()
+
 energy \%>\%
   tidyplot(x = power, y = year, color = energy_type) \%>\%
   add_barstack_absolute(orientation = "y")

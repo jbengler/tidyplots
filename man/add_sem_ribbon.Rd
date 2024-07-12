@@ -43,21 +43,25 @@ time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_sem_ribbon()
+
 # Range from minimum to maximum value
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_range_ribbon()
+
 # Standard deviation
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_sd_ribbon()
+
 # 95\% confidence interval
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_mean_line() \%>\%
   add_ci95_ribbon()
+
 # Changing arguments: alpha
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%

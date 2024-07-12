@@ -109,26 +109,32 @@ spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_bar()
+
 spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_dash()
+
 spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_dot()
+
 spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_value()
+
 spendings \%>\%
   tidyplot(x = category, y = amount) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_line()
+
 spendings \%>\%
   tidyplot(x = category, y = amount) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_area()
+
 # Combination
 spendings \%>\%
   tidyplot(x = category, y = amount) \%>\%
@@ -138,6 +144,7 @@ spendings \%>\%
   add_median_dot() \%>\%
   add_median_value() \%>\%
   add_median_line()
+
 # Changing arguments: alpha
 # Makes objects transparent
 spendings \%>\%
@@ -145,6 +152,7 @@ spendings \%>\%
   theme_minimal_y() \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_bar(alpha = 0.3)
+
 # Changing arguments: saturation
 # Reduces fill color saturation without making the object transparent
 spendings \%>\%
@@ -152,21 +160,25 @@ spendings \%>\%
   theme_minimal_y() \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_bar(saturation = 0.3)
+
 # Changing arguments: accuracy
 spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_value(accuracy = 1)
+
 # Changing arguments: fontsize
 spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_value(fontsize = 10)
+
 # Changing arguments: color
 spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
   add_sum_value(color = "black")
+
 # Changing arguments: extra_padding
 spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%

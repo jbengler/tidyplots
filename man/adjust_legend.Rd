@@ -27,6 +27,13 @@ See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-pl
 }
 }
 \examples{
+# Plot without adjustments
+study \%>\%
+  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+  add_data_points_beeswarm() \%>\%
+  add_mean_bar(alpha = 0.3) \%>\%
+  add_sem_bar()
+
 # New title
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -34,6 +41,7 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_legend(title = "My new legend title")
+
 # New title with plotmath expression
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -41,6 +49,7 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_legend(title = "$E==m*c^{2}$")
+
 # Alternative legend positions
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
@@ -48,18 +57,21 @@ study \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_legend(position = "left")
+
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_legend(position = "top")
+
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm() \%>\%
   add_mean_bar(alpha = 0.3) \%>\%
   add_sem_bar() \%>\%
   adjust_legend(position = "bottom")
+
 # `position = "none"` hides the legend
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%

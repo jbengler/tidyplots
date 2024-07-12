@@ -31,7 +31,8 @@ colors_discrete_pastel
 colors_discrete_seaside
 }
 \description{
-Discrete color schemes
+For more information about the use of color schemes in tidyplots, check out this article:
+\href{https://jbengler.github.io/tidyplots/articles/Color-schemes.html}{Color schemes}
 }
 \details{
 Color schemes can be conveniently previewed by using the print method of the

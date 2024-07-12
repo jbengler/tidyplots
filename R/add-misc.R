@@ -13,16 +13,20 @@
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_boxplot()
+#'
 #' # Changing arguments:
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_boxplot(show_whiskers = FALSE)
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_boxplot(show_outliers = FALSE)
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_boxplot(box_width = 0.2)
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_boxplot(whiskers_width = 0.2)
@@ -56,16 +60,20 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_violin()
+#'
 #' # Changing arguments:
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_violin(saturation = 0.6)
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_violin(draw_quantiles = c(0.25, 0.5, 0.75))
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_violin(trim = TRUE)
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_violin(linewidth = 1)
@@ -95,6 +103,7 @@ add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantile
 #'   reorder_x_axis_labels("A", "C", "B", "D") %>%
 #'   add_data_points() %>%
 #'   add_line(group = participant, color = "grey")
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
 #'   reorder_x_axis_labels("A", "C", "B", "D") %>%
@@ -163,13 +172,16 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_curve_fit()
+#'
 #' # Changing arguments
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_curve_fit(linewidth = 1)
+#'
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
 #'   add_curve_fit(alpha = 0.8)
+#'
 #' # Remove confidence interval
 #' time_course %>%
 #'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
@@ -197,6 +209,7 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #' energy %>%
 #'   tidyplot(x = power) %>%
 #'   add_histogram()
+#'
 #' energy %>%
 #'   tidyplot(x = power) %>%
 #'    add_density_histogram() %>%
@@ -242,11 +255,13 @@ add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian"
 #'   tidyplot(x = treatment, y = score) %>%
 #'   add_data_points_beeswarm() %>%
 #'   add_title("This is my title")
+#'
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
 #'   add_data_points_beeswarm() %>%
 #'   add_caption("This is the fine print in the caption")
-#' # plotmath expressions need to be wrapped in `$` characters
+#'
+#' # Plotmath expression
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
 #'   add_data_points_beeswarm() %>%
@@ -281,6 +296,7 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 #'   tidyplot(x = weight, y = speed) %>%
 #'    add_reference_lines(x = 4000, y = c(100, 200)) %>%
 #'    add_data_points()
+#'
 #' animals %>%
 #'   tidyplot(x = weight, y = speed) %>%
 #'    add_reference_lines(x = 4000, y = c(100, 200), linetype = "dotdash") %>%
@@ -326,22 +342,32 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 #'   theme_ggplot2() %>%
 #'   add_data_points() %>%
 #'   adjust_plot_area_padding(all = 0.3)
+#'
 #' # Default label position is `below` the data point
 #' p %>% add_data_labels(label = animal)
+#'
 #' # Alternative label positions
 #' p %>% add_data_labels(label = animal, label_position = "above")
+#'
 #' p %>% add_data_labels(label = animal, label_position = "right")
+#'
 #' p %>% add_data_labels(label = animal, label_position = "left")
+#'
 #' # Include white background box
 #' p %>% add_data_labels(label = animal, background = TRUE)
+#'
 #' p %>% add_data_labels(label = animal, background = TRUE,
 #'   background_color = "pink")
+#'
 #' # Black labels
 #' p %>% add_data_labels(label = animal, color = "black")
+#'
 #' # Use repelling data labels
 #' p %>% add_data_labels_repel(label = animal, color = "black")
+#'
 #' p %>% add_data_labels_repel(label = animal, color = "black",
 #'   background = TRUE)
+#'
 #' p %>% add_data_labels_repel(label = animal, color = "black",
 #'   background = TRUE, min.segment.length = 0)
 #'

@@ -14,15 +14,6 @@ add and refine plot elements, and provides precise control over
 composition, style, and absolute sizes. By consistent use of the pipe
 `%>%` it simplifies the construction of advanced plotting pipelines.
 
-## Disclaimer
-
-This package is still in early development. Expect user-facing and
-breaking changes. I would not recommend to use this package in
-production yet.
-
-Feel free to report bugs and suggest features
-[here](https://github.com/jbengler/tidyplots/issues).
-
 ## Installation
 
 ``` r
@@ -32,8 +23,10 @@ devtools::install_github("jbengler/tidyplots")
 
 ## Usage
 
-Here are some examples. The full documentation can be found
-[here](https://jbengler.github.io/tidyplots/).
+Here are some examples. Also have a look at the [getting started
+guide](https://jbengler.github.io/tidyplots/articles/tidyplots.html) and
+the [full
+documentation](https://jbengler.github.io/tidyplots/reference).
 
 ``` r
 library(tidyplots)
@@ -102,13 +95,21 @@ time_course %>%
 <img src="man/figures/README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
 ``` r
+climate %>%
+  tidyplot(x = month, y = year, color = max_temperature) %>%
+  add_heatmap()
+```
+
+<img src="man/figures/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+
+``` r
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_boxplot() %>% 
   add_stats_pvalue(ref.group = 1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 ``` r
 gene_expression %>% 
@@ -122,7 +123,7 @@ gene_expression %>%
   split_plot(by = external_gene_name)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 ``` r
 study %>% 
@@ -135,11 +136,20 @@ study %>%
   view_plot(title = "Alternative color scheme: seaside")
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-11-2.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
 
 ## Acknowledgements
 
-tidyplots relies on a number of fantastic packages that do all the heavy
+I would like to thank Lars Binkle-Ladisch for our insightful discussions
+and for consistently challenging my decisions regarding the naming of
+functions and their arguments.
+
+Many thanks to the R and tidyverse communities. tidyplots is built upon
+their software and coding paradigms, and it would not have been possible
+without their contributions.
+
+tidyplots relies on several fantastic packages that handle all the heavy
 lifting behind the scenes. These include cli, dplyr, forcats,
 ggbeeswarm, ggplot2, ggpubr, ggrastr, ggrepel, glue, Hmisc, htmltools,
-patchwork, purrr, rlang, scales, stringr, tidyr, and tidyselect.
+lifecycle, patchwork, purrr, rlang, scales, stringr, tidyr, and
+tidyselect.

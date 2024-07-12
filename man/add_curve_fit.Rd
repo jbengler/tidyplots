@@ -55,13 +55,16 @@ Add curve fit
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_curve_fit()
+
 # Changing arguments
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_curve_fit(linewidth = 1)
+
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
   add_curve_fit(alpha = 0.8)
+
 # Remove confidence interval
 time_course \%>\%
   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
