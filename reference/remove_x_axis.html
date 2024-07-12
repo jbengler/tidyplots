@@ -71,31 +71,42 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Before removing</span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="remove_x_axis-1.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># After removing</span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">remove_x_axis_line</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="remove_x_axis-1.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="remove_x_axis-2.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">remove_x_axis_ticks</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="remove_x_axis-2.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="remove_x_axis-3.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">remove_x_axis_labels</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="remove_x_axis-3.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="remove_x_axis-4.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">remove_x_axis_title</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="remove_x_axis-4.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="remove_x_axis-5.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">remove_x_axis</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="remove_x_axis-5.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="remove_x_axis-6.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

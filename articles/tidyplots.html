@@ -93,7 +93,7 @@ setup your new working environment.</p>
 </h3>
 <p>We will be using the programming language R and the software RStudio
 Desktop, which serves as an editor for your code but also comes with a
-bunch of additional functionality.</p>
+bunch of additional features.</p>
 <ol style="list-style-type: decimal">
 <li>Download and install <a href="https://ftp.gwdg.de/pub/misc/cran/" class="external-link">R</a> for your operating
 system. On Windows, choose the <em>base</em> version.</li>
@@ -235,8 +235,8 @@ transparency to the bars and results in a lighter blue color in
 comparison to the data points.</p>
 <p>Some people might do not like bars so much. So let’s exchange the
 <code>bar</code> for a <code>dash</code>. And while we are on it, let’s
-add the standard error of the mean <code>sem</code> represented as error
-bar.</p>
+add the standard error of the mean <code>sem</code>, represented as
+error bar.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -469,9 +469,9 @@ this plot by <code>dose</code> into a high dose and a low dose plot.</p>
 <div class="section level3">
 <h3 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
 </h3>
-<p>The classical way to output a plot is to write it to a
-<code>PDF</code> or <code>PNG</code> file. This can be easily done by
-piping the plot into the function <code><a href="../reference/save_plot.html">save_plot()</a></code>.</p>
+<p>The classical way to output a plot is to write it to a PDF or PNG
+file. This can be easily done by piping the plot into the function
+<code><a href="../reference/save_plot.html">save_plot()</a></code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>

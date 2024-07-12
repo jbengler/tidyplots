@@ -124,12 +124,15 @@ default schemes in tidyplots consist of 5–6 colors. However, if more
 categories are present in the plot, tidyplots will automatically fill up
 the gaps between colors to deliver exactly the number that is required
 for the plot.</p>
+<p>Similarly, when more colors are provided than needed, tidyplots will
+select the required number of colors by attempting to evenly sample from
+the supplied color vector.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-4-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>And here are some variations.</p>
+<p>And here are some alternative color schemes.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -174,7 +177,7 @@ default schemes in tidyplots usually consist of 265 colors.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">year</span>, color <span class="op">=</span> <span class="va">max_temperature</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-8-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>And here are some variations.</p>
+<p>And here are some alternative color schemes.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">climate</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">month</span>, y <span class="op">=</span> <span class="va">year</span>, color <span class="op">=</span> <span class="va">max_temperature</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -228,7 +231,7 @@ gradient used for gene expression heatmaps.</p>
 <span>  <span class="fu"><a href="../reference/sort_x_axis_labels.html">sort_y_axis_labels</a></span><span class="op">(</span><span class="va">direction</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Color-schemes_files/figure-html/unnamed-chunk-12-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>And here are some variations.</p>
+<p>And here are some alternative color schemes.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>

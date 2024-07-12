@@ -116,14 +116,19 @@ the horizontal bar of <code>+</code>.</p></li>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">format_number</span><span class="op">(</span><span class="fl">232342.3443</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "232,342.3"</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">format_number</span><span class="op">(</span><span class="fl">232342.3443</span>, accuracy <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "232,342.34"</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">format_number</span><span class="op">(</span><span class="fl">232342.3443</span>, accuracy <span class="op">=</span> <span class="fl">1</span>, big.mark <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "232342"</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">format_p_value</span><span class="op">(</span><span class="fl">0.03445553</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "0.0345"</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">format_p_value</span><span class="op">(</span><span class="fl">0.0003445553</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "0.0003"</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">format_p_value</span><span class="op">(</span><span class="fl">0.00003445553</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "&lt; 0.0001"</span>
 <span class="r-in"><span></span></span>

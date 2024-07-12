@@ -122,14 +122,22 @@ See the examples for further information on use.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Split by year</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Before splitting</span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="split_plot-1.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Split by year</span></span></span>
 <span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">1 page</span></span>
-<span class="r-plt img"><img src="split_plot-1.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="split_plot-2.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Change dimensions of subplots</span></span></span>
 <span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
@@ -137,7 +145,8 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span>, widths <span class="op">=</span> <span class="fl">15</span>, heights <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">1 page</span></span>
-<span class="r-plt img"><img src="split_plot-2.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="split_plot-3.png" alt="" width="800" height="600"></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Spread plots across multiple pages</span></span></span>
 <span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
@@ -146,10 +155,10 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">2 pages</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
-<span class="r-plt img"><img src="split_plot-3.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="split_plot-4.png" alt="" width="800" height="600"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-plt img"><img src="split_plot-4.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="split_plot-5.png" alt="" width="800" height="600"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

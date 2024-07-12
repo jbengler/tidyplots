@@ -112,7 +112,7 @@ print would be 300 dpi.</p>
 <span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"row"</span>, rasterize <span class="op">=</span> <span class="cn">TRUE</span>, rasterize_dpi <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/adjust_plot_area_size.html">adjust_plot_area_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-2-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>And here another example using <code><a href="../reference/add_data_points.html">add_data_points()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -396,9 +396,10 @@ is 0.05 by default and can be changes using the
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_plot_area_padding.html">adjust_plot_area_padding</a></span><span class="op">(</span>top <span class="op">=</span> <span class="fl">0.2</span>, right <span class="op">=</span> <span class="fl">0.2</span>, bottom <span class="op">=</span> <span class="fl">0.2</span>, left <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-23-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>To remove the padding completely, you can use use the
-<code><a href="../reference/remove_plot_area_padding.html">remove_plot_area_padding()</a></code> function. But note that the
-extreme values now fall onto the axis and are partially cut off.</p>
+<p>To completely remove the padding, you can use the
+<code><a href="../reference/remove_plot_area_padding.html">remove_plot_area_padding()</a></code> function. However, note that
+this will cause extreme values to fall onto the border of the plot area
+and be partially cut off.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -587,8 +588,7 @@ includes the plain text.</p>
 <h2 id="ggplot2-compatibiliy">ggplot2 compatibiliy<a class="anchor" aria-label="anchor" href="#ggplot2-compatibiliy"></a>
 </h2>
 <p>tidyplots is built on ggplot2, yet the two packages differ in several
-key aspects.</p>
-<p>The most noticeable difference is probably that tidyplots
+key aspects. The most noticeable difference is probably that tidyplots
 consistently uses the pipe <code>%&gt;%</code> to add plot components
 while ggplot uses <code>+</code> .</p>
 <p>There is still a certain compatibility of both systems. For example,

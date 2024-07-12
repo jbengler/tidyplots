@@ -246,7 +246,7 @@ constructed from a thin <code>bar</code> and a <code>dot</code>.</p>
 <h2 id="heatmaps">Heatmaps<a class="anchor" aria-label="anchor" href="#heatmaps"></a>
 </h2>
 <p>Heatmaps are a great way to plot a <em>continuous variable</em>
-across to two additional <em>variables</em>. To exemplify this, we will
+across two additional <em>variables</em>. To exemplify this, we will
 have a look at the <code>gene_expression</code> dataset.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -285,7 +285,7 @@ and <em>Kif1a</em> show very high values while other rows show much
 lower values. Let’s apply a classical technique to reserve the color
 range for differences within each row. This is done by calculating
 <em>row z scores</em> for each row individually. Luckily, tidyplots does
-this for us when setting the argument <code>scale = "row"</code> withing
+this for us when setting the argument <code>scale = "row"</code> within
 the <code><a href="../reference/add_heatmap.html">add_heatmap()</a></code> function call.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -345,7 +345,7 @@ representations can also be combined. Like in this case
 <p>In case you ask yourself why I included <code>dodge_width = 0</code>
 in all <code><a href="../reference/tidyplot.html">tidyplot()</a></code> calls used to show a <code>line</code> or
 <code>area</code>, you might want to learn more about dodging in the
-article about <a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html">Advanced
+article about <a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#dodging">Advanced
 plotting</a>.</p>
 <p>Back to central tendency measures, here is one more example using
 <code>bar</code> and <code>value</code>.</p>
@@ -418,9 +418,9 @@ quantiles are visualized by a box and whiskers.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_boxplot.html">add_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-30-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Finally, while not strictly being a measure of central tendency you
-can also fit a curve through your data in order derive an abstracted
-representation of your data.</p>
+<p>Finally, although it is not strictly a measure of central tendency,
+you can fit a curve through your data to derive an abstracted
+representation.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">time_course</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span>, dodge_width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -474,7 +474,7 @@ visualization of proportional data in tidyplots, let’s introduce the
 <span><span class="co">#&gt; $ power_unit    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "GW", "GW", "GW", "GW", "GW", "GW", "GW", "GW", "GW", "G…</span></span></code></pre></div>
 <p>As you might appreciate, this dataset contains the <code>power</code>
 in gigawatt produced per <code>energy_source</code> in Germany between
-the <code>year</code> 2002 and 2023. Let’s start with a <code>pie</code>
+<code>year</code> 2002 and 2023. Let’s start with a <code>pie</code>
 plot.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -495,11 +495,11 @@ variable <code>power</code> as a <code>y</code> argument to the
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-37-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Now we can appreciate the contribution of each energy type. Note that
 I also changed the <code>pie</code> for a <code>donut</code> plot, which
-is basically a pie chart with a white hole in the middle.</p>
-<p>The main criticism of pie and donut plots is that the human brain
-struggles to accurately interpret the proportions represented. For
-example, it’s challenging to determine whether fossil or renewable power
-has a larger share in the plot.</p>
+is basically a pie chart with a white hole in the center.</p>
+<p>The main criticism of <code>pie</code> and <code>donut</code> plots
+is that the human brain struggles to accurately interpret the
+proportions represented. For example, it’s challenging to determine
+whether fossil or renewable power has a larger share in the plot.</p>
 <p>Another graphical representation is a <code>barstack</code> plot.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -516,9 +516,9 @@ classical bar plot.</p>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_value</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/reorder_x_axis_labels.html">reorder_x_axis_labels</a></span><span class="op">(</span><span class="st">"Renewable"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Now we can appreciate that renewable power production had an overall
-bigger share than fossil power production in the time period between
-2002 and 2023.</p>
+<p>Now we can see that renewable power production had a slightly larger
+overall share than fossil power production in the period between 2002
+and 2023.</p>
 <p>However, if we want to visualize proportional data across time or
 another variable, <code>barstack</code> plots can still be
 informative.</p>
@@ -557,8 +557,8 @@ downsample the dataset to 4 representative years.</p>
 <span>                               <span class="st">"Other"</span> <span class="op">=</span> <span class="st">"#C02D45"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span>  </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-43-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Now let’s have a look at a related dataset showing one week of the
-energy data in higher resolution.</p>
+<p>Now, let’s examine a related dataset that presents one week of energy
+data with higher time resolution.</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -572,9 +572,9 @@ power during day time in comparison to night time.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-45-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>This nicely illustrates how wind energy closes the solar gap during
-the night, however when wind is weak, like on September 10, fossil
-energy sources need to kick in to fill the gap.</p>
+<p>This illustrates nicely how wind energy compensates for the lack of
+solar power during the night. However, when wind is weak, as on
+September 10, fossil energy sources need to step in to fill the gap.</p>
 </div>
 <div class="section level2">
 <h2 id="statistical-comparison">Statistical comparison<a class="anchor" aria-label="anchor" href="#statistical-comparison"></a>
@@ -617,9 +617,9 @@ Benjamini–Hochberg adjustment.</p>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_stats_pvalue.html">add_stats_pvalue</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"wilcoxon"</span>, p.adjust.method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-48-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>In non paired data, it might also make sense to compare all
-experimental conditions to a control condition. For example, let’s say
-treatment “A” is our control.</p>
+<p>It often makes sense to compare all experimental conditions to a
+control condition. For example, let’s say treatment “A” is our
+control.</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -712,11 +712,11 @@ plot the names of all animals.</p>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-56-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that I provided the <code>label</code> argument to the
-<code><a href="../reference/add_data_labels.html">add_data_labels()</a></code> function to chose the variable in the
-dataset that should be added as text labels.</p>
+<code><a href="../reference/add_data_labels.html">add_data_labels()</a></code> function to indicate the variable in the
+dataset that should be used for the text labels.</p>
 <p>Another thing to note is that there is quite some overlap of labels
-in the lower left of the plot. Let’ try to repel the data labels from
-one another using the <code><a href="../reference/add_data_labels.html">add_data_labels_repel()</a></code> function.</p>
+in the lower left of the plot. Let’s try to separate the data labels
+using the <code><a href="../reference/add_data_labels.html">add_data_labels_repel()</a></code> function.</p>
 <div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
