@@ -126,6 +126,23 @@ study %>%
   view_plot(title = "Alternative color scheme: 'apple'")
 ```
 
+## Documentation
+
+- [Package index](https://jbengler.github.io/tidyplots/reference/index.html)  
+Overview of all tidyplots functions
+
+- [Get started](https://jbengler.github.io/tidyplots/articles/tidyplots.html)  
+Getting started guide
+
+- [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
+Article with examples for common data visualizations
+
+- [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
+Article about advanced plotting techniques and workflows
+
+- [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
+Article about the use of color schemes
+
 ## Acknowledgements
 
 I would like to thank Lars Binkle-Ladisch for our insightful discussions and for consistently challenging my decisions regarding the naming of functions and their arguments.

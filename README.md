@@ -138,6 +138,28 @@ study %>%
 
 <img src="man/figures/README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
 
+## Documentation
+
+- [Package
+  index](https://jbengler.github.io/tidyplots/reference/index.html)  
+  Overview of all tidyplots functions
+
+- [Get
+  started](https://jbengler.github.io/tidyplots/articles/tidyplots.html)  
+  Getting started guide
+
+- [Visualizing
+  data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
+  Article with examples for common data visualizations
+
+- [Advanced
+  plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
+  Article about advanced plotting techniques and workflows
+
+- [Color
+  schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
+  Article about the use of color schemes
+
 ## Acknowledgements
 
 I would like to thank Lars Binkle-Ladisch for our insightful discussions
