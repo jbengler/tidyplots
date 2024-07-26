@@ -33,8 +33,8 @@ library(tidyplots)
 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points_beeswarm()
 ```
 
@@ -77,7 +77,7 @@ energy_week %>%
 ``` r
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
+  add_mean_bar(alpha = 0.4) %>% 
   add_mean_dash() %>% 
   add_mean_value()
 ```
@@ -106,7 +106,7 @@ climate %>%
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_boxplot() %>% 
-  add_stats_pvalue(ref.group = 1)
+  add_test_pvalue(ref.group = 1)
 ```
 
 <img src="man/figures/README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
@@ -116,9 +116,9 @@ gene_expression %>%
   dplyr::filter(external_gene_name %in% c("Apol6", "Col5a3", "Vgf", "Bsn")) %>% 
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points_beeswarm() %>% 
-  add_stats_asterisks(hide_info = TRUE) %>% 
+  add_test_asterisks(hide_info = TRUE) %>% 
   remove_x_axis_title() %>% 
   split_plot(by = external_gene_name)
 ```
@@ -128,12 +128,12 @@ gene_expression %>%
 ``` r
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points_beeswarm() %>% 
-  view_plot(title = "Default color scheme: metro") %>% 
-  adjust_colors(colors_discrete_seaside) %>% 
-  view_plot(title = "Alternative color scheme: seaside")
+  view_plot(title = "Default color scheme: 'friendly'") %>% 
+  adjust_colors(colors_discrete_apple) %>% 
+  view_plot(title = "Alternative color scheme: 'apple'")
 ```
 
 <img src="man/figures/README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-12-2.png" style="display: block; margin: auto;" />

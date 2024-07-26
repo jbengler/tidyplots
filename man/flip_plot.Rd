@@ -25,8 +25,8 @@ require to set the \code{orientation} argument to \code{"y"}.
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   flip_plot()
 
 energy \%>\%
@@ -38,8 +38,8 @@ energy \%>\%
 study \%>\%
   tidyplot(x = score, y = treatment, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar()
 
 energy \%>\%
   tidyplot(x = power, y = year, color = energy_type) \%>\%

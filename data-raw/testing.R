@@ -74,13 +74,13 @@ study %>%
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add(geom_col(alpha = 0.4, color = NA, width = 0.6)) %>%
-  add_sem_bar() %>%
+  add_sem_errorbar() %>%
   add_data_points(jitter_width = 0.2)
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
   add_mean_bar(alpha = 0.2) %>%
-  add_sem_bar() %>%
+  add_sem_errorbar() %>%
   add_data_points(jitter_width = 0.2)
 
 mapping <- ggplot2::aes(color = dose, fill = ggplot2::after_scale(apply_saturation(colour, saturation)))
@@ -292,7 +292,7 @@ p <-
 
 p %>% add_boxplot() %>% add_data_points()
 p %>% add_violin() %>% add_data_points() # preserve = "single" destroys violins, therefore not implemented here
-p %>% add_sem_bar() %>% add_data_points()
+p %>% add_sem_errorbar() %>% add_data_points()
 p %>% add_mean_dash() %>% add_data_points()
 p %>% add_mean_bar() %>% add_data_points()
 
@@ -335,7 +335,7 @@ gene_expression %>%
   adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
   adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red")) %>%
-  adjust_plot_area_size(height = 90)
+  adjust_size(height = 90)
 
 h1 <-
   gene_expression %>%
@@ -347,7 +347,7 @@ h1 <-
   adjust_data_labels(external_gene_name, sort_by = -dplyr::desc(direction)) %>%
   adjust_data_labels(direction, sort_by = dplyr::desc(direction)) %>%
   adjust_colors(c("blue", "white", "red")) %>%
-  adjust_plot_area_size(height = 90)
+  adjust_size(height = 90)
 
 h1
 h1 + ggplot2::facet_grid(cols = dplyr::vars(group), rows = dplyr::vars(direction), scales = "free_y")
@@ -402,24 +402,24 @@ ggplot(data, aes(x = category, y = value)) +
 gene_expression %>%
   tidyplot(x = sample_type, y = expression, color = condition) %>%
   add_mean_dash() %>%
-  add_sem_bar() %>%
+  add_sem_errorbar() %>%
   add_data_points() %>%
-  add_stats_asterisks(hide_info = TRUE) %>%
+  add_test_asterisks(hide_info = TRUE) %>%
   split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>%
   save_plot("multipage2.pdf")
 
 gene_expression %>%
   tidyplot(x = sample_type, y = expression, color = condition) %>%
   add_mean_dash() %>%
-  add_sem_bar() %>%
+  add_sem_errorbar() %>%
   add_data_points() %>%
-  add_stats_asterisks() %>%
+  add_test_asterisks() %>%
   split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>%
   save_plot("multipage3.pdf", units = "cm")
 
 gene_expression %>%
   tidyplot(x = sample_type, y = expression, color = condition) %>%
   add_mean_dash() %>%
-  add_sem_bar() %>%
+  add_sem_errorbar() %>%
   split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>%
   save_plot("multipage4.pdf", units = "in")

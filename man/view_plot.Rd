@@ -35,8 +35,8 @@ View plot on screen
 # View intermediate stages on screen
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   add_data_points_beeswarm() \%>\%
   view_plot(title = "Before changing color scheme") \%>\%
   adjust_colors(colors_discrete_seaside) \%>\%
@@ -46,7 +46,7 @@ study \%>\%
 gene_expression \%>\%
   tidyplot(x = condition, y = expression, color = sample_type) \%>\%
   add_mean_dash() \%>\%
-  add_sem_bar() \%>\%
+  add_sem_errorbar() \%>\%
   add_data_points_beeswarm() \%>\%
   view_plot(data = filter_rows(external_gene_name == "Apol6"),
     title = "Apol6") \%>\%

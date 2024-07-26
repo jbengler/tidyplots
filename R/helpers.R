@@ -62,7 +62,7 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
     adjust_x_axis() %>%
     adjust_y_axis() %>%
     adjust_colors() %>%
-    adjust_plot_area_size(width = width, height = height)
+    adjust_size(width = width, height = height)
 
   if (single_color_plot)
     plot <- plot %>% remove_legend()
@@ -84,8 +84,8 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   flip_plot()
 #'
 #' energy %>%
@@ -97,8 +97,8 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
 #' study %>%
 #'   tidyplot(x = score, y = treatment, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar()
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar()
 #'
 #' energy %>%
 #'   tidyplot(x = power, y = year, color = energy_type) %>%

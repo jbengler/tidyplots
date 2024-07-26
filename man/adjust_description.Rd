@@ -46,15 +46,15 @@ See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-pl
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar()
 
 # Adjust description
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_description(
     title = "This is my fantastic plot title",
     x_axis_title = "Treatment group",
@@ -66,8 +66,8 @@ study \%>\%
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_description(
     title = "$H[2]*O$",
     x_axis_title = "$H[2]*O$",

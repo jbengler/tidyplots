@@ -19,13 +19,13 @@ distributions %>%
   add_violin() %>%
   add_data_points_beeswarm() %>%
   add_mean_dash(color = "red") %>%
-  add_sem_bar(color = "red") %>%
+  add_sem_errorbar(color = "red") %>%
   add_reference_lines(y = c(7, 8.25, 5.75))
 
 distributions %>%
   tidyplot(x = group, y = value, color = group) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) %>%
+  add_sem_errorbar()
 
 distributions %>%
   tidyplot(x = group, y = value, color = group) %>%

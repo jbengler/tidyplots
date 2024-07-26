@@ -132,7 +132,7 @@ study \%>\%
 # Combination
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
   add_mean_dash() \%>\%
   add_mean_dot() \%>\%
   add_mean_value() \%>\%
@@ -143,7 +143,7 @@ study \%>\%
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   theme_minimal_y() \%>\%
-  add_mean_bar(alpha = 0.3)
+  add_mean_bar(alpha = 0.4)
 
 # Changing arguments: saturation
 # Reduces fill color saturation without making the object transparent

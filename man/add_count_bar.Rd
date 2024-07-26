@@ -139,7 +139,7 @@ dinosaurs \%>\%
 dinosaurs \%>\%
   tidyplot(x = time_lived) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
-  add_count_bar(alpha = 0.3) \%>\%
+  add_count_bar(alpha = 0.4) \%>\%
   add_count_dash() \%>\%
   add_count_dot() \%>\%
   add_count_value() \%>\%
@@ -151,7 +151,7 @@ dinosaurs \%>\%
   tidyplot(x = time_lived, color = time_lived) \%>\%
   theme_minimal_y() \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
-  add_count_bar(alpha = 0.3)
+  add_count_bar(alpha = 0.4)
 
 # Changing arguments: saturation
 # Reduces fill color saturation without making the object transparent

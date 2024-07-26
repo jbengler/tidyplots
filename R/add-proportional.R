@@ -4,7 +4,7 @@ ff_pie <- function(.type = "pie") {
     check_tidyplot(plot)
     plot <-
       plot %>%
-      remove_plot_area_padding() %>%
+      remove_padding() %>%
       style_void()
 
     if (!is_missing(plot, "x")) cli::cli_abort("{.fun add_pie} and {.fun add_donut} accept {.arg color} and {.arg y}, but not {.arg x}.")
@@ -158,7 +158,7 @@ add_barstack_relative <- ff_barstack(.position_fun = ggplot2::position_fill)
 
 ## Areastack function factory
 ff_areastack <- function(.position_fun) {
-  function(plot, linewidth = 0.25, alpha = 0.3, reverse = FALSE, replace_na = FALSE, ...) {
+  function(plot, linewidth = 0.25, alpha = 0.4, reverse = FALSE, replace_na = FALSE, ...) {
     check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
@@ -188,14 +188,14 @@ ff_areastack <- function(.position_fun) {
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
         mapping$y <- ggplot2::aes(y = count)$y
         plot <- plot %>%
-          remove_plot_area_padding(force_continuous = TRUE) %>%
+          remove_padding(force_continuous = TRUE) %>%
           adjust_y_axis(title = "count") +
           rlang::inject(ggplot2::geom_area(mapping = mapping,
                                            position = .position_fun(reverse = reverse), linewidth = linewidth,
                                            alpha = alpha, !!!args))
       } else {
         plot <- plot %>%
-          remove_plot_area_padding(force_continuous = TRUE) +
+          remove_padding(force_continuous = TRUE) +
           rlang::inject(ggplot2::stat_count(mapping = mapping, geom = "area",
                                             position = .position_fun(reverse = reverse),
                                             linewidth = linewidth, alpha = alpha, !!!args))
@@ -212,14 +212,14 @@ ff_areastack <- function(.position_fun) {
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
         mapping$x <- ggplot2::aes(x = count)$x
         plot <- plot %>%
-          remove_plot_area_padding(force_continuous = TRUE) %>%
+          remove_padding(force_continuous = TRUE) %>%
           adjust_x_axis(title = "count") +
           rlang::inject(ggplot2::geom_area(mapping = mapping,
                                            position = .position_fun(reverse = reverse), linewidth = linewidth,
                                            alpha = alpha, !!!args))
       } else {
         plot <- plot %>%
-          remove_plot_area_padding(force_continuous = TRUE) +
+          remove_padding(force_continuous = TRUE) +
           rlang::inject(ggplot2::stat_count(mapping = mapping, geom = "area",
                                             position = .position_fun(reverse = reverse),
                                             linewidth = linewidth, alpha = alpha, !!!args))
@@ -245,13 +245,13 @@ ff_areastack <- function(.position_fun) {
           dplyr::summarize("{y_var}" := sum(.data[[y_var]]), .by = tidyselect::all_of(vars)) %>%
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = zero)
         plot <- plot %>%
-          remove_plot_area_padding(force_continuous = TRUE) +
+          remove_padding(force_continuous = TRUE) +
           rlang::inject(ggplot2::geom_area(mapping = mapping,
                                            position = .position_fun(reverse = reverse), linewidth = linewidth,
                                            alpha = alpha, !!!args))
       } else {
         plot <- plot %>%
-          remove_plot_area_padding(force_continuous = TRUE) +
+          remove_padding(force_continuous = TRUE) +
           rlang::inject(ggplot2::stat_summary(mapping = mapping, geom = "area", fun = sum,
                                               position = .position_fun(reverse = reverse),
                                               alpha = alpha, linewidth = linewidth, !!!args))

@@ -55,7 +55,7 @@ reference:
   - starts_with("add_pie")
 - subtitle: Statistical comparison
 - contents:
-  - starts_with("add_stats")
+  - starts_with("add_test")
 - subtitle: Annotation
 - contents:
   - starts_with("add_title")
@@ -73,8 +73,8 @@ reference:
   - starts_with("adjust_font")
   - starts_with("adjust_legend")
   - starts_with("adjust_description")
-  - starts_with("adjust_plot_area_size")
-  - starts_with("adjust_plot_area_padding")
+  - starts_with("adjust_size")
+  - starts_with("adjust_padding")
   - starts_with("adjust_x_axis")
 - subtitle: Axis and color labels
 - contents:

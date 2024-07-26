@@ -28,31 +28,31 @@ Adjust font
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar()
 
 # Increase font size
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_font(fontsize = 16)
 
 # Change font family
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_font(family = "mono")
 
 # Change font face
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_font(face = "bold")
 
 }

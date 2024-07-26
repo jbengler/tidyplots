@@ -13,34 +13,34 @@ study <-
 
 study %>%
   tidyplot(treatment, score, color = treatment) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_sem_bar() %>%
+  add_mean_bar(alpha = 0.4) %>%
+  add_sem_errorbar() %>%
   add_data_points_beeswarm()
 
 study %>%
   tidyplot(treatment, score) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_sem_bar() %>%
+  add_mean_bar(alpha = 0.4) %>%
+  add_sem_errorbar() %>%
   add_data_points() %>%
   add_line()
 
 study %>%
   tidyplot(treatment, score) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_sem_bar() %>%
+  add_mean_bar(alpha = 0.4) %>%
+  add_sem_errorbar() %>%
   add_data_points() %>%
   add_line(group = participant)
 
 study %>%
   tidyplot(dose, score, color = group) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_sem_bar() %>%
+  add_mean_bar(alpha = 0.4) %>%
+  add_sem_errorbar() %>%
   add_data_points_beeswarm()
 
 study %>%
   tidyplot(treatment, score, color = group) %>%
-  add_mean_bar(alpha = 0.3) %>%
-  add_sem_bar() %>%
+  add_mean_bar(alpha = 0.4) %>%
+  add_sem_errorbar() %>%
   add_data_points() %>%
   add_line(group = participant) %>%
   adjust_data_labels(treatment, sort_by = dose)

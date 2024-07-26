@@ -108,10 +108,10 @@ In tidyplots, function names that start with `add_` usually continue with the st
 study %>% 
   tidyplot(x = treatment, y = score) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3)
+  add_mean_bar(alpha = 0.4)
 ```
 
-One thing to note here is that I added `alpha = 0.3` as a argument to the `add_mean_bar()` function. This adds a little transparency to the bars and results in a lighter blue color in comparison to the data points.
+One thing to note here is that I added `alpha = 0.4` as a argument to the `add_mean_bar()` function. This adds a little transparency to the bars and results in a lighter blue color in comparison to the data points.
 
 Some people might do not like bars so much. So let's exchange the `bar` for a `dash`. And while we are on it, let's add the standard error of the mean `sem`, represented as error bar.
 
@@ -120,7 +120,7 @@ study %>%
   tidyplot(x = treatment, y = score) %>% 
   add_data_points() %>% 
   add_mean_dash() %>% 
-  add_sem_bar()
+  add_sem_errorbar()
 ```
 
 I think by now you got the principle. You can just keep adding layers until your plot has all the elements you need.
@@ -132,7 +132,7 @@ study %>%
   tidyplot(x = group, y = score, color = dose) %>% 
   add_data_points() %>% 
   add_mean_dash() %>% 
-  add_sem_bar()
+  add_sem_errorbar()
 ```
 
 As you can see, `color` acts as a way to group the data by a third _variable_, thus complementing the `x` and `y` axis.
@@ -148,7 +148,7 @@ study %>%
   tidyplot(x = group, y = score, color = dose) %>% 
   add_data_points() %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   remove_legend_title() %>% 
   remove_y_axis()
 ```
@@ -165,8 +165,8 @@ Let's start with this plot.
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar()
 ```
 
 When preparing figures for a paper, you might want ensure, that all plots have a consistent size. The default in tidyplots is a width of 50 mm and a height of 50 mm. Please note that these values refer to size of the _plot area_, which is the area enclosed by the x and y axis. Therefore labels, titles, and legends are not counting towards the _plot area size_.
@@ -177,9 +177,9 @@ This is perfect to achieve a consistent look, which is most easily done by selec
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points_beeswarm(shape = 1) %>%
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
-  adjust_plot_area_size(width = 20, height = 20)
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
+  adjust_size(width = 20, height = 20)
 ```
 
 Another common adjustment is to change the titles of the plot, axes, or legend. For this we will use the function `adjust_description()`.
@@ -188,8 +188,8 @@ Another common adjustment is to change the titles of the plot, axes, or legend. 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   adjust_description(title = "This is my fantastic plot",
                      x_axis_title = "Treatment group",
                      y_axis_title = "Disease score",
@@ -204,8 +204,8 @@ Another common task is to adjust the colors in your plot. You can do this using 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   adjust_colors(new_colors = c("#644296","#F08533","#3B78B0", "#D1352C"))
 ```
 
@@ -215,8 +215,8 @@ You can also use the color schemes, that are built into tidyplots. To learn more
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   adjust_colors(new_colors = colors_discrete_seaside)
 ```
 
@@ -230,8 +230,8 @@ For example, to rename the data labels for the `treatment` variable on the x axi
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   rename_x_axis_labels(new_names = c("A" = "This",
                                      "B" = "is",
                                      "C" = "totally",
@@ -248,8 +248,8 @@ For example, you can bring the treatment "D" and "C" to the front.
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   reorder_x_axis_labels("D", "C")
 ```
 
@@ -259,8 +259,8 @@ Sort the treatments by their score.
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   sort_x_axis_labels(score)
 ```
 
@@ -270,8 +270,8 @@ Or simply reverse the order of the labels.
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   reverse_x_axis_labels()
 ```
 
@@ -285,7 +285,7 @@ Themes are a great way to modify the look an feel of your plot without changing 
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_mean_dash() %>% 
   theme_tidyplot()
 ```
@@ -296,7 +296,7 @@ Or try something more like ggplot2.
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_mean_dash() %>% 
   theme_ggplot2()
 ```
@@ -307,7 +307,7 @@ Or something more minimal.
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_mean_dash() %>% 
   theme_minimal_y() %>% 
   remove_x_axis_line()
@@ -323,7 +323,7 @@ Starting with the `study` dataset, you could plot the `score` against the treatm
 study %>% 
   tidyplot(x = group, y = score, color = group) %>% 
   add_data_points() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_mean_dash() %>% 
   split_plot(by = dose)
 ```
@@ -336,7 +336,7 @@ The classical way to output a plot is to write it to a PDF or PNG file. This can
 study %>% 
   tidyplot(x = group, y = score, color = group) %>% 
   add_data_points() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_mean_dash() %>% 
   save_plot("my_plot.pdf")
 ```

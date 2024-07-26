@@ -70,10 +70,10 @@ ff_errorbar <- function(.fun.data) {
 }
 #' Add error bar
 #'
-#' * `add_sem_bar()` adds the standard error of mean.
-#' * `add_range_bar()` adds the range from smallest to largest value.
-#' * `add_sd_bar()` adds the standard deviation.
-#' * `add_ci95_bar()` adds the 95% confidence interval.
+#' * `add_sem_errorbar()` adds the standard error of mean.
+#' * `add_range_errorbar()` adds the range from smallest to largest value.
+#' * `add_sd_errorbar()` adds the standard deviation.
+#' * `add_ci95_errorbar()` adds the 95% confidence interval.
 #'
 #' @inherit common_arguments
 #'
@@ -82,54 +82,54 @@ ff_errorbar <- function(.fun.data) {
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_sem_bar()
+#'   add_sem_errorbar()
 #'
 #' # Range from minimum to maximum value
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_range_bar()
+#'   add_range_errorbar()
 #'
 #' # Standard deviation
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_sd_bar()
+#'   add_sd_errorbar()
 #'
 #' # 95% confidence interval
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_ci95_bar()
+#'   add_ci95_errorbar()
 #'
 #' # Changing arguments: error bar width
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_sem_bar(width = 0.8)
+#'   add_sem_errorbar(width = 0.8)
 #'
 #' # Changing arguments: error bar line width
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_sem_bar(linewidth = 1)
+#'   add_sem_errorbar(linewidth = 1)
 #'
 #' @export
-add_sem_bar <- ff_errorbar(.fun.data = ggplot2::mean_se)
-#' @rdname add_sem_bar
+add_sem_errorbar <- ff_errorbar(.fun.data = ggplot2::mean_se)
+#' @rdname add_sem_errorbar
 #' @export
-add_range_bar <- ff_errorbar(.fun.data = min_max)
-#' @rdname add_sem_bar
+add_range_errorbar <- ff_errorbar(.fun.data = min_max)
+#' @rdname add_sem_errorbar
 #' @export
-add_sd_bar <- ff_errorbar(.fun.data = mean_sdl)
-#' @rdname add_sem_bar
+add_sd_errorbar <- ff_errorbar(.fun.data = mean_sdl)
+#' @rdname add_sem_errorbar
 #' @export
-add_ci95_bar <- ff_errorbar(.fun.data = mean_cl_boot)
+add_ci95_errorbar <- ff_errorbar(.fun.data = mean_cl_boot)
 
 
 ## Ribbon function factory
 ff_ribbon <- function(.fun.data) {
-  function(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...) {
+  function(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...) {
     check_tidyplot(plot)
     mapping <- ggplot2::aes()
     mapping$group <- plot$mapping$colour
@@ -198,7 +198,9 @@ ff_bar <- function(.fun, .count = FALSE) {
     check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
-    plot <- plot %>% adjust_colors(saturation = saturation)
+    if (saturation != 1) {
+      plot <- plot %>% adjust_colors(saturation = saturation)
+    }
     if (.count) {
       plot <- plot +
         ggplot2::stat_count(geom = "bar", color = NA, width = width, position = position, ...)
@@ -356,7 +358,7 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 #' # Combination
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
+#'   add_mean_bar(alpha = 0.4) %>%
 #'   add_mean_dash() %>%
 #'   add_mean_dot() %>%
 #'   add_mean_value() %>%
@@ -367,7 +369,7 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   theme_minimal_y() %>%
-#'   add_mean_bar(alpha = 0.3)
+#'   add_mean_bar(alpha = 0.4)
 #'
 #' # Changing arguments: saturation
 #' # Reduces fill color saturation without making the object transparent
@@ -442,7 +444,7 @@ add_mean_area <- ff_line(.fun = mean, .geom = "area")
 #' # Combination
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
-#'   add_median_bar(alpha = 0.3) %>%
+#'   add_median_bar(alpha = 0.4) %>%
 #'   add_median_dash() %>%
 #'   add_median_dot() %>%
 #'   add_median_value() %>%
@@ -453,7 +455,7 @@ add_mean_area <- ff_line(.fun = mean, .geom = "area")
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   theme_minimal_y() %>%
-#'   add_median_bar(alpha = 0.3)
+#'   add_median_bar(alpha = 0.4)
 #'
 #' # Changing arguments: saturation
 #' # Reduces fill color saturation without making the object transparent
@@ -536,7 +538,7 @@ add_median_area <- ff_line(.fun = median, .geom = "area")
 #' spendings %>%
 #'   tidyplot(x = category, y = amount) %>%
 #'   adjust_x_axis(rotate_labels = TRUE) %>%
-#'   add_median_bar(alpha = 0.3) %>%
+#'   add_median_bar(alpha = 0.4) %>%
 #'   add_median_dash() %>%
 #'   add_median_dot() %>%
 #'   add_median_value() %>%
@@ -548,7 +550,7 @@ add_median_area <- ff_line(.fun = median, .geom = "area")
 #'   tidyplot(x = category, y = amount, color = category) %>%
 #'   theme_minimal_y() %>%
 #'   adjust_x_axis(rotate_labels = TRUE) %>%
-#'   add_sum_bar(alpha = 0.3)
+#'   add_sum_bar(alpha = 0.4)
 #'
 #' # Changing arguments: saturation
 #' # Reduces fill color saturation without making the object transparent
@@ -641,7 +643,7 @@ add_sum_area <- ff_line(.fun = sum, .geom = "area")
 #' dinosaurs %>%
 #'   tidyplot(x = time_lived) %>%
 #'   adjust_x_axis(rotate_labels = TRUE) %>%
-#'   add_count_bar(alpha = 0.3) %>%
+#'   add_count_bar(alpha = 0.4) %>%
 #'   add_count_dash() %>%
 #'   add_count_dot() %>%
 #'   add_count_value() %>%
@@ -653,7 +655,7 @@ add_sum_area <- ff_line(.fun = sum, .geom = "area")
 #'   tidyplot(x = time_lived, color = time_lived) %>%
 #'   theme_minimal_y() %>%
 #'   adjust_x_axis(rotate_labels = TRUE) %>%
-#'   add_count_bar(alpha = 0.3)
+#'   add_count_bar(alpha = 0.4)
 #'
 #' # Changing arguments: saturation
 #' # Reduces fill color saturation without making the object transparent

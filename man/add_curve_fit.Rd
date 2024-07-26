@@ -9,7 +9,7 @@ add_curve_fit(
   dodge_width = NULL,
   method = "loess",
   linewidth = 0.25,
-  alpha = 0.3,
+  alpha = 0.4,
   preserve = "total",
   ...
 )

@@ -2,8 +2,8 @@ test_that("adjust_color works", {
   p <-
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_mean_bar(alpha = 0.3) %>%
-    add_sem_bar() %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_sem_errorbar() %>%
     add_data_points_beeswarm()
 
   new_colors <-
@@ -32,8 +32,8 @@ test_that("adjust axes works", {
   p <-
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_mean_bar(alpha = 0.3) %>%
-    add_sem_bar() %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_sem_errorbar() %>%
     add_data_points_beeswarm()
 
   demo_xy <-
@@ -67,8 +67,8 @@ test_that("adjust legend works", {
   p <-
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_mean_bar(alpha = 0.3) %>%
-    add_sem_bar() %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_sem_errorbar() %>%
     add_data_points_beeswarm()
 
   p %>% adjust_legend(title = "My legend title") %>%
@@ -81,8 +81,8 @@ test_that("plotmath expressions work", {
   p <-
     study %>%
     tidyplot(x = treatment, y = score, color = treatment) %>%
-    add_mean_bar(alpha = 0.3) %>%
-    add_sem_bar() %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_sem_errorbar() %>%
     add_data_points_beeswarm()
 
   p %>% add_title(title = "$E==m*c^{2}~H[2]*O$") %>%
@@ -110,18 +110,18 @@ test_that("adjust plot area size work", {
   study %>%
     tidyplot(x = dose, y = score, color = group) %>%
     add_boxplot() %>%
-    adjust_plot_area_size(width = 70) %>%
+    adjust_size(width = 70) %>%
     vdiffr::expect_doppelganger("plot area size width", .)
 
   study %>%
     tidyplot(x = dose, y = score, color = group) %>%
     add_boxplot() %>%
-    adjust_plot_area_size(width = 25, height = 25) %>%
+    adjust_size(width = 25, height = 25) %>%
     vdiffr::expect_doppelganger("plot area size width and height", .)
 
   study %>%
     tidyplot(x = dose, y = score, color = group) %>%
     add_boxplot() %>%
-    adjust_plot_area_size(width = NA, height = NA) %>%
+    adjust_size(width = NA, height = NA) %>%
     vdiffr::expect_doppelganger("plot area size NA", .)
 })

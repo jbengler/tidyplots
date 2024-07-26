@@ -59,7 +59,7 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
     adjust_x_axis() %>%
     adjust_y_axis() %>%
     adjust_colors() %>%
-    adjust_plot_area_size(width = width, height = height)
+    adjust_size(width = width, height = height)
 
   if (single_color_plot)
     plot <- plot %>% remove_legend()
@@ -114,7 +114,7 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
   # free plot dimensions
   plot <-
     plot %>%
-    adjust_plot_area_size(width = NA, height = NA)
+    adjust_size(width = NA, height = NA)
 
   df <-
     plot$data %>%
@@ -167,8 +167,8 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 #' # View intermediate stages on screen
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points_beeswarm() %>%
 #'   view_plot(title = "Before changing color scheme") %>%
 #'   adjust_colors(colors_discrete_seaside) %>%
@@ -178,7 +178,7 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 #' gene_expression %>%
 #'   tidyplot(x = condition, y = expression, color = sample_type) %>%
 #'   add_mean_dash() %>%
-#'   add_sem_bar() %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points_beeswarm() %>%
 #'   view_plot(data = filter_rows(external_gene_name == "Apol6"),
 #'     title = "Apol6") %>%
@@ -238,8 +238,8 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' # Save intermediate stages to file
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points_beeswarm() %>%
 #'   save_plot("before.pdf") %>%
 #'   adjust_colors(colors_discrete_seaside) %>%

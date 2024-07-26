@@ -6,32 +6,32 @@
 #' @inheritParams ggpubr::geom_pwc
 #'
 #' @details
-#' * `add_stats_pvalue()` and `add_stats_asterisks()` use `ggpubr::geom_pwc()`.
+#' * `add_test_pvalue()` and `add_test_asterisks()` use `ggpubr::geom_pwc()`.
 #' Check there for additional arguments.
 #'
 #' @examples
 #' study %>%
 #'   tidyplot(x = dose, y = score, color = group) %>%
 #'   add_mean_dash() %>%
-#'   add_sem_bar() %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points() %>%
-#'   add_stats_pvalue()
+#'   add_test_pvalue()
 #'
 #' # Change stat methods
 #' study %>%
 #'   tidyplot(x = dose, y = score, color = group) %>%
 #'   add_mean_dash() %>%
-#'   add_sem_bar() %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points() %>%
-#'   add_stats_pvalue(method = "wilcoxon", p.adjust.method = "BH")
+#'   add_test_pvalue(method = "wilcoxon", p.adjust.method = "BH")
 #'
 #' # Define reference group to test against
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_dash() %>%
-#'   add_sem_bar() %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points() %>%
-#'   add_stats_pvalue(ref.group = "A")
+#'   add_test_pvalue(ref.group = "A")
 #'
 #' # hide non-significant p values
 #' gene_expression %>%
@@ -40,28 +40,28 @@
 #'   # start plotting
 #'   tidyplot(x = condition, y = expression, color = sample_type) %>%
 #'   add_mean_dash() %>%
-#'   add_sem_bar() %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points() %>%
-#'   add_stats_pvalue(hide.ns = TRUE)
+#'   add_test_pvalue(hide.ns = TRUE)
 #'
 #' # Adjust top padding for statistical comparisons
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_mean_dash() %>%
-#'   add_sem_bar() %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points() %>%
-#'   add_stats_pvalue(padding_top = 0.08)
+#'   add_test_pvalue(padding_top = 0.08)
 #'
 #' # Hide stats information
 #' study %>%
 #'   tidyplot(x = dose, y = score, color = group) %>%
 #'   add_mean_dash() %>%
-#'   add_sem_bar() %>%
+#'   add_sem_errorbar() %>%
 #'   add_data_points() %>%
-#'   add_stats_pvalue(hide_info = TRUE)
+#'   add_test_pvalue(hide_info = TRUE)
 #'
 #' @export
-add_stats_pvalue <- function(plot,
+add_test_pvalue <- function(plot,
                       padding_top = 0.15,
                       method = "t.test",
                       p.adjust.method = "none",
@@ -80,7 +80,7 @@ add_stats_pvalue <- function(plot,
                       hide_info = FALSE,
                       ...) {
   check_tidyplot(plot)
-  # cli::cli_alert_success("add_stats: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
+  # cli::cli_alert_success("add_test: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
 
   plot <- plot  %>%
     adjust_y_axis(padding = c(NA, padding_top))
@@ -105,9 +105,9 @@ add_stats_pvalue <- function(plot,
                        symnum.args = symnum.args,
                        ...)
 }
-#' @rdname add_stats_pvalue
+#' @rdname add_test_pvalue
 #' @export
-add_stats_asterisks <- function(plot,
+add_test_asterisks <- function(plot,
                              padding_top = 0.1,
                              method = "t.test",
                              p.adjust.method = "none",
@@ -126,7 +126,7 @@ add_stats_asterisks <- function(plot,
                              hide_info = FALSE,
                              ...) {
   check_tidyplot(plot)
-  add_stats_pvalue(plot,
+  add_test_pvalue(plot,
             padding_top = padding_top,
             method = method,
             p.adjust.method = p.adjust.method,

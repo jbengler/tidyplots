@@ -42,7 +42,7 @@
 #'
 #' animals %>%
 #'   tidyplot(x = weight, y = size) %>%
-#'   add_data_points(alpha = 0.3)
+#'   add_data_points(alpha = 0.4)
 #'
 #' # Rasterizing
 #' animals %>%

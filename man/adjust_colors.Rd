@@ -44,31 +44,31 @@ Adjust colors
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar()
 
 # Provide hex colors
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_colors(new_colors = c("#644296","#F08533","#3B78B0", "#D1352C"))
 
 # Provide discrete color scheme
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_colors(new_colors = colors_discrete_seaside)
 
 # Provide named vector
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   adjust_colors(new_colors = c(
     "A" = "pink",
     "B" = "purple",
@@ -83,5 +83,5 @@ climate \%>\%
 
 }
 \seealso{
-\code{\link[=colors_discrete_metro]{colors_discrete_metro()}}, \code{\link[=colors_continuous_viridis]{colors_continuous_viridis()}}, \code{\link[=colors_diverging_blue2brown]{colors_diverging_blue2brown()}}, and \code{\link[=new_color_scheme]{new_color_scheme()}}
+\code{\link[=colors_discrete_friendly]{colors_discrete_friendly()}}, \code{\link[=colors_continuous_viridis]{colors_continuous_viridis()}}, \code{\link[=colors_diverging_blue2brown]{colors_diverging_blue2brown()}}, and \code{\link[=new_color_scheme]{new_color_scheme()}}
 }

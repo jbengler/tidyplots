@@ -28,45 +28,45 @@ Sort axis or color labels
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar()
 
 # Sort x axis labels by score
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   sort_x_axis_labels(score)
 
 # Before adjustments
 study \%>\%
   tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar()
 
 # Sort y axis labels by score
 study \%>\%
   tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   sort_y_axis_labels(score)
 
 # Before adjustment
 study \%>\%
   tidyplot(x = group, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar()
 
 # Sort color labels by score
 study \%>\%
   tidyplot(x = group, y = score, color = treatment) \%>\%
   add_data_points() \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   sort_color_labels(score)
 
 }

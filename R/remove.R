@@ -192,10 +192,10 @@ remove_y_axis_title <- function(plot) {
 #' animals %>%
 #'   tidyplot(x = weight, y = speed, color = family) %>%
 #'   add_data_points() %>%
-#'   remove_plot_area_padding()
+#'   remove_padding()
 #'
 #' @export
-remove_plot_area_padding <- function(plot, force_continuous = FALSE) {
+remove_padding <- function(plot, force_continuous = FALSE) {
   check_tidyplot(plot)
   plot %>%
     adjust_x_axis(padding = c(0, 0), force_continuous = force_continuous) %>%

@@ -139,7 +139,7 @@ spendings \%>\%
 spendings \%>\%
   tidyplot(x = category, y = amount) \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
-  add_median_bar(alpha = 0.3) \%>\%
+  add_median_bar(alpha = 0.4) \%>\%
   add_median_dash() \%>\%
   add_median_dot() \%>\%
   add_median_value() \%>\%
@@ -151,7 +151,7 @@ spendings \%>\%
   tidyplot(x = category, y = amount, color = category) \%>\%
   theme_minimal_y() \%>\%
   adjust_x_axis(rotate_labels = TRUE) \%>\%
-  add_sum_bar(alpha = 0.3)
+  add_sum_bar(alpha = 0.4)
 
 # Changing arguments: saturation
 # Reduces fill color saturation without making the object transparent

@@ -19,7 +19,7 @@ add_area(
   group,
   dodge_width = NULL,
   linewidth = 0.25,
-  alpha = 0.3,
+  alpha = 0.4,
   preserve = "total",
   ...
 )

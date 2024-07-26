@@ -25,24 +25,24 @@ In this article, we will demonstrate the use of color schemes in tidyplots. We w
 
 tidyplots comes with a number of default color schemes. Many of them are adapted from the `viridisLite` and `RColorBrewer` packages. You access them by loading the the tidyplots library and start typing `colors_`. The auto-completion will guide you through a selection of `discrete`, `continuous` and `diverging` schemes.
 
-Let's have a look at the signature scheme of tidyplots, which is called `colors_discrete_metro`. When running the line `colors_discrete_metro` in the console or within a script, a preview of the scheme will be rendered to the Viewer pane in the lower right of the RStudio Desktop interface.
+Let's have a look at the signature scheme of tidyplots `colors_discrete_friendly`, which was designed to work well for people with color vision deficiency. When running the line `colors_discrete_friendly` in the console or within a script, a preview of the scheme will be rendered to the Viewer pane in the lower right of the RStudio Desktop interface.
 
 In essence, tidyplots color schemes are just a character vector of hex colors with a special print method that sends a preview to the RStudio viewer pane.
 
 ```{r}
 library(tidyplots)
-colors_discrete_metro
+colors_discrete_friendly
 ```
 
 ```{r results='asis', echo=FALSE}
-print(colors_discrete_metro, return_html = TRUE)
+print(colors_discrete_friendly, return_html = TRUE)
 ```
 
 _Tip: You can copy individual hex colors directly from the preview to use them in your script._
 
 ## Discrete
 
-Discrete color schemes are meant for categorical variables. The default schemes in tidyplots consist of 5--6 colors. However, if more categories are present in the plot, tidyplots will automatically fill up the gaps between colors to deliver exactly the number that is required for the plot.
+Discrete color schemes are meant for categorical variables. The default schemes in tidyplots consist of 5--7 colors. However, if more categories are present in the plot, tidyplots will automatically fill up the gaps between colors to deliver exactly the number that is required for the plot.
 
 Similarly, when more colors are provided than needed, tidyplots will select the required number of colors by attempting to evenly sample from the supplied color vector.
 
@@ -62,11 +62,20 @@ energy %>%
 energy %>% 
   tidyplot(year, power, color = energy_source) %>% 
   add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_candy)
+  adjust_colors(colors_discrete_friendly_long)
 energy %>% 
   tidyplot(year, power, color = energy_source) %>% 
   add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_pastel)
+  adjust_colors(colors_discrete_apple)
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_ibm)
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_candy)
+
 ```
 
 ## Continuous
@@ -95,7 +104,7 @@ And here are some alternative color schemes.
 climate %>% 
   tidyplot(x = month, y = year, color = max_temperature) %>% 
   add_heatmap() %>% 
-  adjust_colors(new_colors = colors_continuous_viridis)
+  adjust_colors(new_colors = colors_continuous_inferno)
 climate %>% 
   tidyplot(x = month, y = year, color = max_temperature) %>% 
   add_heatmap() %>% 
@@ -129,7 +138,7 @@ gene_expression %>%
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
   sort_y_axis_labels(direction) %>% 
-  adjust_plot_area_size(height = 100)
+  adjust_size(height = 100)
 ```
 
 And here are some alternative color schemes.
@@ -139,20 +148,20 @@ gene_expression %>%
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
   sort_y_axis_labels(direction) %>% 
-  adjust_plot_area_size(height = 100) %>% 
+  adjust_size(height = 100) %>% 
   adjust_colors(new_colors = colors_diverging_blue2brown)
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
   sort_y_axis_labels(direction) %>% 
-  adjust_plot_area_size(height = 100) %>% 
-  adjust_colors(new_colors = colors_diverging_BuRd)
+  adjust_size(height = 100) %>% 
+  adjust_colors(new_colors = colors_diverging_spectral)
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
   sort_y_axis_labels(direction) %>% 
-  adjust_plot_area_size(height = 100) %>% 
-  adjust_colors(new_colors = colors_diverging_BuYlRd)
+  adjust_size(height = 100) %>% 
+  adjust_colors(new_colors = colors_diverging_icefire)
 ```
 
 # Custom color schemes

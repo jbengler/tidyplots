@@ -88,7 +88,7 @@ p <-
   tidyplot(x = weight, y = speed) \%>\%
   theme_ggplot2() \%>\%
   add_data_points() \%>\%
-  adjust_plot_area_padding(all = 0.3)
+  adjust_padding(all = 0.3)
 
 # Default label position is `below` the data point
 p \%>\% add_data_labels(label = animal)

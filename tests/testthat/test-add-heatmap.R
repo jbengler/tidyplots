@@ -2,26 +2,26 @@ test_that("add_heatmap works", {
   gene_expression %>%
     tidyplot(x = sample, y = external_gene_name, color = expression) %>%
     add_heatmap(scale = "row") %>%
-    adjust_plot_area_size(height = 90) %>%
+    adjust_size(height = 90) %>%
     vdiffr::expect_doppelganger("heatmap with scale row", .)
 
   gene_expression %>%
     tidyplot(x = sample, y = external_gene_name, color = expression) %>%
     add_heatmap(scale = "column") %>%
-    adjust_plot_area_size(height = 90) %>%
+    adjust_size(height = 90) %>%
     vdiffr::expect_doppelganger("heatmap with scale column", .)
 
   gene_expression %>%
     tidyplot(x = sample, y = external_gene_name, color = expression) %>%
     add_heatmap() %>%
-    adjust_plot_area_size(height = 90) %>%
+    adjust_size(height = 90) %>%
     vdiffr::expect_doppelganger("heatmap without scaling", .)
 
   hm <-
     gene_expression %>%
     tidyplot(x = sample, y = external_gene_name, color = expression) %>%
     add_heatmap(scale = "row") %>%
-    adjust_plot_area_size(height = 90)
+    adjust_size(height = 90)
 
   hm %>% reorder_y_axis_labels("Bsn") %>%
     vdiffr::expect_doppelganger("heatmap reorder y axis 1", .)
@@ -61,6 +61,6 @@ test_that("rasterize works", {
   gene_expression %>%
     tidyplot(x = sample, y = external_gene_name, color = expression) %>%
     add_heatmap(scale = "row", rasterize = TRUE, rasterize_dpi = 20) %>%
-    adjust_plot_area_size(height = 90) %>%
+    adjust_size(height = 90) %>%
     vdiffr::expect_doppelganger("rasterize heatmap", .)
 })

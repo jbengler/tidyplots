@@ -193,37 +193,37 @@ adjust_y_axis <- ff_adjust_axis("y")
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm(shape = 1) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar()
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar()
 #'
 #' # Resize to 20 x 20 mm
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm(shape = 1) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
-#'   adjust_plot_area_size(width = 20, height = 20)
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
+#'   adjust_size(width = 20, height = 20)
 #'
 #' # Resize to 4 x 4 cm
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm(shape = 1) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
-#'   adjust_plot_area_size(width = 4, height = 4, unit = "cm")
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
+#'   adjust_size(width = 4, height = 4, unit = "cm")
 #'
 #' # Remove absolute dimensions and take all available space. This is the ggplot2 default.
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm(shape = 1) %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
-#'   adjust_plot_area_size(width = NA, height = NA)
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
+#'   adjust_size(width = NA, height = NA)
 #'
 #' @export
-adjust_plot_area_size <- function(plot, width = 50, height = 50, unit = "mm") {
+adjust_size <- function(plot, width = 50, height = 50, unit = "mm") {
   check_tidyplot(plot)
-  # cli::cli_alert_success("adjust_plot_area_size: {.arg width} = {width} {unit}, {.arg height} = {height} {unit}")
+  # cli::cli_alert_success("adjust_size: {.arg width} = {width} {unit}, {.arg height} = {height} {unit}")
   if (!is.na(width)) width <- ggplot2::unit(width, unit)
   if (!is.na(height)) height <- ggplot2::unit(height, unit)
   plot + patchwork::plot_layout(widths = width, heights = height)
@@ -239,31 +239,31 @@ adjust_plot_area_size <- function(plot, width = 50, height = 50, unit = "mm") {
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar()
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar()
 #'
 #' # Increase font size
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_font(fontsize = 16)
 #'
 #' # Change font family
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_font(family = "mono")
 #'
 #' # Change font face
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_font(face = "bold")
 #'
 #' @export
@@ -299,53 +299,53 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar()
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar()
 #'
 #' # New title
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_legend(title = "My new legend title")
 #'
 #' # New title with plotmath expression
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_legend(title = "$E==m*c^{2}$")
 #'
 #' # Alternative legend positions
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_legend(position = "left")
 #'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_legend(position = "top")
 #'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_legend(position = "bottom")
 #'
 #' # `position = "none"` hides the legend
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_legend(position = "none")
 #'
 #' @export
@@ -372,36 +372,36 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 #' animals %>%
 #'   tidyplot(x = weight, y = size, color = family) %>%
 #'   add_data_points() %>%
-#'   adjust_plot_area_padding()
+#'   adjust_padding()
 #'
 #' # Increase plot area padding
 #' animals %>%
 #'   tidyplot(x = weight, y = size, color = family) %>%
 #'   add_data_points() %>%
-#'   adjust_plot_area_padding(all = 0.2)
+#'   adjust_padding(all = 0.2)
 #'
 #' animals %>%
 #'   tidyplot(x = weight, y = size, color = family) %>%
 #'   add_data_points() %>%
-#'   adjust_plot_area_padding(top = 0.8)
+#'   adjust_padding(top = 0.8)
 #'
 #' animals %>%
 #'   tidyplot(x = weight, y = size, color = family) %>%
 #'   add_data_points() %>%
-#'   adjust_plot_area_padding(bottom = 0.8)
+#'   adjust_padding(bottom = 0.8)
 #'
 #' animals %>%
 #'   tidyplot(x = weight, y = size, color = family) %>%
 #'   add_data_points() %>%
-#'   adjust_plot_area_padding(right = 0.8)
+#'   adjust_padding(right = 0.8)
 #'
 #' animals %>%
 #'   tidyplot(x = weight, y = size, color = family) %>%
 #'   add_data_points() %>%
-#'   adjust_plot_area_padding(left = 0.8)
+#'   adjust_padding(left = 0.8)
 #'
 #' @export
-adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, all = NA, force_continuous = FALSE, ...) {
+adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, all = NA, force_continuous = FALSE, ...) {
   check_tidyplot(plot)
   if (!is.na(all) && is.numeric(all)) {
     top <- right <- bottom <- left <- all
@@ -430,15 +430,15 @@ adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, le
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar()
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar()
 #'
 #' # Adjust description
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_description(
 #'     title = "This is my fantastic plot title",
 #'     x_axis_title = "Treatment group",
@@ -450,8 +450,8 @@ adjust_plot_area_padding <- function(plot, top = NA, right = NA, bottom = NA, le
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_description(
 #'     title = "$H[2]*O$",
 #'     x_axis_title = "$H[2]*O$",

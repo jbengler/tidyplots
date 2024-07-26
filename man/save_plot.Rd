@@ -73,8 +73,8 @@ gene_expression \%>\%
 # Save intermediate stages to file
 study \%>\%
   tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar(alpha = 0.3) \%>\%
-  add_sem_bar() \%>\%
+  add_mean_bar(alpha = 0.4) \%>\%
+  add_sem_errorbar() \%>\%
   add_data_points_beeswarm() \%>\%
   save_plot("before.pdf") \%>\%
   adjust_colors(colors_discrete_seaside) \%>\%

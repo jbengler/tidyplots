@@ -36,7 +36,7 @@ library(tidyplots)
 gene_expression %>%
   tidyplot(x = sample, y = external_gene_name, color = expression) %>%
   add_heatmap(scale = "row", rasterize = TRUE, rasterize_dpi = 30) %>%
-  adjust_plot_area_size(height = 100)
+  adjust_size(height = 100)
 ```
 
 And here another example using `add_data_points()`.
@@ -67,8 +67,8 @@ Each individual plot can then be piped into `my_style()` as the final step.
 ```{r}
 study %>% 
   tidyplot(group, score, color = treatment) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points_beeswarm() %>% 
   my_style()
 energy_week %>% 
@@ -131,7 +131,7 @@ study %>%
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
   save_plot(filename = "stage_1.pdf") %>%
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   save_plot(filename = "stage_2.pdf") %>% 
   add_data_points_beeswarm() %>% 
   save_plot(filename = "stage_3.pdf")
@@ -143,7 +143,7 @@ Or you have a big data frame with multiple genes and you quickly want to generat
 gene_expression %>% 
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points_beeswarm() %>% 
   view_plot(data = filter_rows(external_gene_name == "Apol6"), title = "Apol6") %>% 
   view_plot(data = filter_rows(external_gene_name == "Bsn"), title = "Bsn")
@@ -161,7 +161,7 @@ The connecting line can be added by using the `group` argument of `add_line()` t
 study %>% 
   tidyplot(x = treatment, y = score, color = group) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_line(group = participant, color = "grey") %>% 
   add_data_points()
 ```
@@ -172,7 +172,7 @@ As a final step, you might want to rearrange the order of the x axis labels to h
 study %>%
   tidyplot(x = treatment, y = score, color = group) %>%
   add_mean_dash() %>% 
-  add_sem_bar() %>%
+  add_sem_errorbar() %>%
   add_data_points() %>%
   add_line(group = participant, color = "grey") %>%
   sort_x_axis_labels(dose)
@@ -223,9 +223,9 @@ gene_expression %>%
   # start plotting
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points_beeswarm() %>% 
-  add_stats_asterisks(hide_info = TRUE) %>% 
+  add_test_asterisks(hide_info = TRUE) %>% 
   split_plot(by = external_gene_name, ncol = 2, nrow = 2)
 ```
 
@@ -235,9 +235,9 @@ In case there are too many genes to fit on one page, you can also spread them ac
 gene_expression %>% 
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points_beeswarm() %>% 
-  add_stats_asterisks(hide_info = TRUE) %>% 
+  add_test_asterisks(hide_info = TRUE) %>% 
   split_plot(by = external_gene_name, ncol = 3, nrow = 3) %>% 
   save_plot("test.pdf")
 ```
@@ -249,8 +249,8 @@ Some plot elements like bars, areas or curve fits have an orientation that needs
 ```{r}
 animals %>% 
   tidyplot(x = diet, y = weight) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar()
 ```
 
 As expected, swapping the `x` and `y` arguments results in horizontal bars.
@@ -258,8 +258,8 @@ As expected, swapping the `x` and `y` arguments results in horizontal bars.
 ```{r}
 animals %>% 
   tidyplot(x = weight, y = diet) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar()
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar()
 ```
 
 In most cases the auto-detection of the orientation works well. In case it does not fit your needs, you can manually set the `orientation` to either `"x"` or `"y"`.
@@ -285,22 +285,22 @@ animals %>%
   add_data_points()
 ```
 
-This _padding_, also known as _expansion_ in ggplot2, is 0.05 by default and can be changes using the `adjust_plot_area_padding()` function.
+This _padding_, also known as _expansion_ in ggplot2, is 0.05 by default and can be changes using the `adjust_padding()` function.
 
 ```{r}
 animals %>% 
   tidyplot(x = weight, y = speed) %>% 
   add_data_points() %>% 
-  adjust_plot_area_padding(top = 0.2, right = 0.2, bottom = 0.2, left = 0.2)
+  adjust_padding(top = 0.2, right = 0.2, bottom = 0.2, left = 0.2)
 ```
 
-To completely remove the padding, you can use the `remove_plot_area_padding()` function. However, note that this will cause extreme values to fall onto the border of the plot area and be partially cut off.
+To completely remove the padding, you can use the `remove_padding()` function. However, note that this will cause extreme values to fall onto the border of the plot area and be partially cut off.
 
 ```{r}
 animals %>% 
   tidyplot(x = weight, y = speed) %>% 
   add_data_points() %>% 
-  remove_plot_area_padding()
+  remove_padding()
 ```
 
 When using certain types of plot components, tidyplots automatically adapts the padding to improve the look of the plot. For example, in `bar` and `area` plots the padding between the `bar` or `area` and the axis is removed.
@@ -308,8 +308,8 @@ When using certain types of plot components, tidyplots automatically adapts the 
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points()
 ```
 
@@ -318,10 +318,10 @@ You can re-introduce the bottom padding like so.
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  adjust_plot_area_padding(bottom = 0.05)
+  adjust_padding(bottom = 0.05)
 ```
 
 # Dodging
@@ -331,8 +331,8 @@ Dodging refers to the distance between grouped objects. The default in tidyplots
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points()
 ```
 
@@ -341,8 +341,8 @@ Decreasing the `dodge_width` in the `tidyplots()` function call decreases the sp
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose, dodge_width = 0.4) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points()
 ```
 
@@ -351,8 +351,8 @@ Setting `dodge_width = 0` results in completely overlapping positions.
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose, dodge_width = 0) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points()
 ```
 
@@ -383,8 +383,8 @@ tidyplots follows are quite straight forward approach when dealing with color. T
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   add_data_points()
 ```
 
@@ -415,7 +415,7 @@ Or you want to have black text labels.
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
+  add_mean_bar(alpha = 0.4) %>% 
   add_mean_value(color = "black")
 ```
 
@@ -435,7 +435,7 @@ One way to do this is to reduce the opacity by decreasing the alpha argument. No
 ```{r}
 study %>% 
   tidyplot(x = group, y = score, color = dose) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
+  add_mean_bar(alpha = 0.4) %>% 
   theme_minimal_y()
 ```
 
@@ -460,8 +460,8 @@ Besides finding out how to use the [plotmath expression syntax](https://www.rdoc
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_data_points() %>% 
-  add_mean_bar(alpha = 0.3) %>% 
-  add_sem_bar() %>% 
+  add_mean_bar(alpha = 0.4) %>% 
+  add_sem_errorbar() %>% 
   adjust_description(title = "$H[2]*O$",
                      x_axis_title = "$E==m*c^{2}$",
                      y_axis_title = "$TNF*alpha~level$",
@@ -479,7 +479,7 @@ Also, you can add ggplot code to a tidyplot using the `add()` helper function.
 ```{r}
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_bar(alpha = 0.3) %>% 
+  add_mean_bar(alpha = 0.4) %>% 
   add(ggplot2::geom_point())
 ```
 

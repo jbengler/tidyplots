@@ -4,38 +4,38 @@
 #' @inherit common_arguments
 #' @inheritParams ggplot2::scale_x_continuous
 #'
-#' @seealso [colors_discrete_metro()], [colors_continuous_viridis()], [colors_diverging_blue2brown()], and [new_color_scheme()]
+#' @seealso [colors_discrete_friendly()], [colors_continuous_viridis()], [colors_diverging_blue2brown()], and [new_color_scheme()]
 #'
 #' @examples
 #' # Plot without adjustments
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar()
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar()
 #'
 #' # Provide hex colors
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_colors(new_colors = c("#644296","#F08533","#3B78B0", "#D1352C"))
 #'
 #' # Provide discrete color scheme
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_colors(new_colors = colors_discrete_seaside)
 #'
 #' # Provide named vector
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.3) %>%
-#'   add_sem_bar() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   add_sem_errorbar() %>%
 #'   adjust_colors(new_colors = c(
 #'     "A" = "pink",
 #'     "B" = "purple",
@@ -58,7 +58,7 @@ adjust_colors <- function(plot, new_colors = NULL,
   if (is_discrete(plot, "colour")) {
 
     # Default colors
-    if (is.null(new_colors)) new_colors <- colors_discrete_metro
+    if (is.null(new_colors)) new_colors <- colors_discrete_friendly
 
     # Are enough new_colors provided?
     named_vector <- FALSE
@@ -102,7 +102,7 @@ adjust_colors <- function(plot, new_colors = NULL,
   if (is_continuous(plot, "colour")) {
 
     # Default colors
-    if (is.null(new_colors)) new_colors <- colors_continuous_bluepinkyellow
+    if (is.null(new_colors)) new_colors <- colors_continuous_viridis
 
     suppressMessages(out <- out + scale_color_c(palette = new_colors, labels = labels, ...))
     suppressMessages(out <- out + scale_fill_c(palette = new_colors, saturation = saturation, labels = labels, ...))

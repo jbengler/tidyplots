@@ -50,10 +50,10 @@
 </g>
 <g clip-path='url(#cpMjcwLjEyfDQxMS44NnwyMTUuNjh8MzU3LjQx)'>
 <rect x='270.12' y='215.68' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none;' />
-<rect x='280.25' y='262.62' width='20.25' height='88.35' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #766123; fill-opacity: 0.30;' />
-<rect x='313.99' y='341.31' width='20.25' height='9.66' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F; fill-opacity: 0.30;' />
-<rect x='347.74' y='323.36' width='20.25' height='27.61' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F; fill-opacity: 0.30;' />
-<rect x='381.49' y='298.51' width='20.25' height='52.46' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F; fill-opacity: 0.30;' />
+<rect x='280.25' y='262.62' width='20.25' height='88.35' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #766123; fill-opacity: 0.40;' />
+<rect x='313.99' y='341.31' width='20.25' height='9.66' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F; fill-opacity: 0.40;' />
+<rect x='347.74' y='323.36' width='20.25' height='27.61' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F; fill-opacity: 0.40;' />
+<rect x='381.49' y='298.51' width='20.25' height='52.46' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F; fill-opacity: 0.40;' />
 <polyline points='283.62,249.88 297.12,249.88 ' style='stroke-width: 0.53; stroke: #766123; stroke-linecap: butt;' />
 <polyline points='290.37,249.88 290.37,275.36 ' style='stroke-width: 0.53; stroke: #766123; stroke-linecap: butt;' />
 <polyline points='283.62,275.36 297.12,275.36 ' style='stroke-width: 0.53; stroke: #766123; stroke-linecap: butt;' />
@@ -109,7 +109,7 @@
 <rect x='422.82' y='269.52' width='48.79' height='34.05' style='stroke-width: 1.07; stroke: none;' />
 <text x='428.29' y='280.55' style='font-size: 7.00px; font-family: sans;' textLength='29.57px' lengthAdjust='spacingAndGlyphs'>treatment</text>
 <rect x='428.29' y='286.75' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
-<rect x='429.00' y='287.46' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #766123; fill-opacity: 0.30;' />
+<rect x='429.00' y='287.46' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #766123; fill-opacity: 0.40;' />
 <line x1='429.43' y1='292.42' x2='438.50' y2='292.42' style='stroke-width: 0.53; stroke: #766123; stroke-linecap: butt;' />
 <circle cx='433.96' cy='292.42' r='1.95' style='stroke-width: 0.71; stroke: #766123; fill: #766123;' />
 <text x='445.11' y='294.83' style='font-size: 7.00px; font-family: sans;' textLength='21.01px' lengthAdjust='spacingAndGlyphs'>control</text>

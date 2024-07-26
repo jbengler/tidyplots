@@ -8,7 +8,7 @@
 add_areastack_absolute(
   plot,
   linewidth = 0.25,
-  alpha = 0.3,
+  alpha = 0.4,
   reverse = FALSE,
   replace_na = FALSE,
   ...
@@ -17,7 +17,7 @@ add_areastack_absolute(
 add_areastack_relative(
   plot,
   linewidth = 0.25,
-  alpha = 0.3,
+  alpha = 0.4,
   reverse = FALSE,
   replace_na = FALSE,
   ...

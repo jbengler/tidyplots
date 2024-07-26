@@ -38,7 +38,9 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
   check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
-  plot <- plot %>% adjust_colors(saturation = saturation)
+  if (saturation != 1) {
+    plot <- plot %>% adjust_colors(saturation = saturation)
+  }
   if (show_whiskers == FALSE) {
     coef = 0
     whiskers_width = box_width
@@ -127,7 +129,7 @@ add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve
 }
 #' @rdname add_line
 #' @export
-add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 0.3, preserve = "total", ...) {
+add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 0.4, preserve = "total", ...) {
   check_tidyplot(plot)
   ptype <- get_plottype(plot)
 
@@ -188,7 +190,7 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 #'   add_curve_fit(se = FALSE)
 #'
 #' @export
-add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.3,
+add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.4,
                           preserve = "total", ...) {
   check_tidyplot(plot)
   mapping <- ggplot2::aes()
@@ -216,28 +218,28 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #'    add_density_curve()
 #'
 #' @export
-add_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
+add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
   check_tidyplot(plot)
   plot %>%
-    remove_plot_area_padding(force_continuous = TRUE) +
-    ggplot2::geom_histogram(binwidth = binwidth, bins = bins, fill = color, ...)
+    remove_padding(force_continuous = TRUE) +
+    ggplot2::geom_histogram(binwidth = binwidth, bins = bins, ...)
 }
 #' @rdname add_histogram
 #' @export
-add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, color = "#4DACD6", ...) {
+add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
   check_tidyplot(plot)
   plot %>%
-    remove_plot_area_padding(force_continuous = TRUE) +
+    remove_padding(force_continuous = TRUE) +
     ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)),
-                            binwidth = binwidth,bins = bins, fill = color, ...)
+                            binwidth = binwidth, bins = bins, ...)
 }
 #' @rdname add_histogram
 #' @export
-add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, color = "#E37D46", fill = "#E37D46", alpha = 0.3, ...) {
+add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, alpha = 0.4, color = "#D55E00",...) {
   check_tidyplot(plot)
   plot %>%
-    remove_plot_area_padding(force_continuous = TRUE) +
-    ggplot2::geom_density(bw = bw, adjust = adjust, kernel = kernel, n = n, color = color, fill = fill, alpha = alpha, ...)
+    remove_padding(force_continuous = TRUE) +
+    ggplot2::geom_density(bw = bw, adjust = adjust, kernel = kernel, n = n, color = color, fill = color, alpha = alpha, ...)
 }
 
 
@@ -341,7 +343,7 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 #'   tidyplot(x = weight, y = speed) %>%
 #'   theme_ggplot2() %>%
 #'   add_data_points() %>%
-#'   adjust_plot_area_padding(all = 0.3)
+#'   adjust_padding(all = 0.3)
 #'
 #' # Default label position is `below` the data point
 #' p %>% add_data_labels(label = animal)

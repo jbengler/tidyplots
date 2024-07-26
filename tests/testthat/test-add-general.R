@@ -1,19 +1,19 @@
 test_that("ungrouped plots work", {
   study %>%
     tidyplot(treatment, score, color = treatment) %>%
-    add_sem_bar() %>%
-    add_sd_bar() %>%
-    add_range_bar() %>%
-    #add_ci95_bar() %>%
+    add_sem_errorbar() %>%
+    add_sd_errorbar() %>%
+    add_range_errorbar() %>%
+    #add_ci95_errorbar() %>%
     add_data_points() %>%
     vdiffr::expect_doppelganger("Add error bars xy", .)
 
   study %>%
     tidyplot(score, treatment, color = treatment) %>%
-    add_sem_bar() %>%
-    add_sd_bar() %>%
-    add_range_bar() %>%
-    #add_ci95_bar() %>%
+    add_sem_errorbar() %>%
+    add_sd_errorbar() %>%
+    add_range_errorbar() %>%
+    #add_ci95_errorbar() %>%
     add_data_points() %>%
     vdiffr::expect_doppelganger("Add error bars yx", .)
 
@@ -37,7 +37,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(treatment, score) %>%
-    add_mean_bar(alpha = 0.3) %>%
+    add_mean_bar(alpha = 0.4) %>%
     add_mean_dash() %>%
     add_mean_dot() %>%
     add_mean_value() %>%
@@ -48,7 +48,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(score, treatment) %>%
-    add_mean_bar(alpha = 0.3) %>%
+    add_mean_bar(alpha = 0.4) %>%
     add_mean_dash() %>%
     add_mean_dot() %>%
     add_mean_value() %>%
@@ -59,7 +59,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(treatment, score) %>%
-    add_median_bar(alpha = 0.3) %>%
+    add_median_bar(alpha = 0.4) %>%
     add_median_dash() %>%
     add_median_dot() %>%
     add_median_value() %>%
@@ -70,7 +70,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(score, treatment) %>%
-    add_median_bar(alpha = 0.3) %>%
+    add_median_bar(alpha = 0.4) %>%
     add_median_dash() %>%
     add_median_dot() %>%
     add_median_value() %>%
@@ -80,7 +80,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(treatment, score) %>%
-    add_sum_bar(alpha = 0.3) %>%
+    add_sum_bar(alpha = 0.4) %>%
     add_sum_dash() %>%
     add_sum_dot() %>%
     add_sum_value() %>%
@@ -90,7 +90,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(score, treatment) %>%
-    add_sum_bar(alpha = 0.3) %>%
+    add_sum_bar(alpha = 0.4) %>%
     add_sum_dash() %>%
     add_sum_dot() %>%
     add_sum_value(extra_padding = 0.3) %>%
@@ -100,7 +100,7 @@ test_that("ungrouped plots work", {
 
   study %>%
     tidyplot(treatment) %>%
-    add_count_bar(alpha = 0.3) %>%
+    add_count_bar(alpha = 0.4) %>%
     add_count_dash() %>%
     add_count_dot() %>%
     add_count_value() %>%
@@ -112,10 +112,10 @@ test_that("ungrouped plots work", {
 test_that("grouped plots work", {
   study %>%
     tidyplot(group, score, color = dose) %>%
-    add_sem_bar() %>%
-    add_sd_bar() %>%
-    add_range_bar() %>%
-    #add_ci95_bar() %>%
+    add_sem_errorbar() %>%
+    add_sd_errorbar() %>%
+    add_range_errorbar() %>%
+    #add_ci95_errorbar() %>%
     add_data_points() %>%
     vdiffr::expect_doppelganger("Add grouped error bar xy", .)
 
@@ -130,7 +130,7 @@ test_that("grouped plots work", {
 
   study %>%
     tidyplot(group, score, color = dose) %>%
-    add_mean_bar(alpha = 0.3) %>%
+    add_mean_bar(alpha = 0.4) %>%
     add_mean_dash() %>%
     add_mean_dot() %>%
     add_mean_value() %>%
@@ -141,7 +141,7 @@ test_that("grouped plots work", {
 
   study %>%
     tidyplot(group, score, color = dose) %>%
-    add_median_bar(alpha = 0.3) %>%
+    add_median_bar(alpha = 0.4) %>%
     add_median_dash() %>%
     add_median_dot() %>%
     add_median_value() %>%
@@ -152,7 +152,7 @@ test_that("grouped plots work", {
 
   study %>%
     tidyplot(group, score, color = dose) %>%
-    add_sum_bar(alpha = 0.3) %>%
+    add_sum_bar(alpha = 0.4) %>%
     add_sum_dash() %>%
     add_sum_dot() %>%
     add_sum_value() %>%
@@ -163,7 +163,7 @@ test_that("grouped plots work", {
 
   study %>%
     tidyplot(group, color = dose) %>%
-    add_count_bar(alpha = 0.3) %>%
+    add_count_bar(alpha = 0.4) %>%
     add_count_dash() %>%
     add_count_dot() %>%
     add_count_value() %>%
@@ -173,15 +173,15 @@ test_that("grouped plots work", {
 
   study %>%
     tidyplot(treatment, score) %>%
-    add_mean_bar(alpha = 0.3) %>%
-    add_sem_bar() %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_sem_errorbar() %>%
     add_data_points() %>%
     add_line(group = participant) %>%
     vdiffr::expect_doppelganger("Add grouped line", .)
 
   study %>%
     tidyplot(group, color = dose, dodge_width = 0.6) %>%
-    add_count_bar(alpha = 0.3) %>%
+    add_count_bar(alpha = 0.4) %>%
     add_count_dash() %>%
     add_count_dot() %>%
     add_count_value() %>%
@@ -190,7 +190,7 @@ test_that("grouped plots work", {
 
   study %>%
     tidyplot(group, color = dose, dodge_width = 1.0) %>%
-    add_count_bar(alpha = 0.3, width = 0.2) %>%
+    add_count_bar(alpha = 0.4, width = 0.2) %>%
     add_count_dash() %>%
     add_count_dot() %>%
     add_count_value() %>%

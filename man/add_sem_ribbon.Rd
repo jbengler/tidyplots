@@ -7,13 +7,13 @@
 \alias{add_ci95_ribbon}
 \title{Add ribbon}
 \usage{
-add_sem_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_sem_ribbon(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...)
 
-add_range_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_range_ribbon(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...)
 
-add_sd_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_sd_ribbon(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...)
 
-add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.3, color = NA, ...)
+add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}

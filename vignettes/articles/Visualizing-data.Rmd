@@ -46,7 +46,7 @@ Another way is to make the points transparent using the `alpha` argument.
 ```{r}
 animals %>% 
   tidyplot(x = weight, y = size) %>% 
-  add_data_points(alpha = 0.3)
+  add_data_points(alpha = 0.4)
 ```
 
 Or to change the plotting symbol to an open `shape`.
@@ -182,7 +182,7 @@ One thing to note here is that the y axis labels are overlapping. So let's incre
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap() %>%
-  adjust_plot_area_size(height = 100)
+  adjust_size(height = 100)
 ```
 
 The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show very high values while other rows show much lower values. Let's apply a classical technique to reserve the color range for differences within each row. This is done by calculating _row z scores_ for each row individually. Luckily, tidyplots does this for us when setting the argument `scale = "row"` within the `add_heatmap()` function call.
@@ -191,7 +191,7 @@ The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show ve
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
-  adjust_plot_area_size(height = 100)
+  adjust_size(height = 100)
 ```
 
 Now it much easier to appreciate the dynamics of individual genes across the samples on the x axis.
@@ -202,7 +202,7 @@ However, the rows appear to be mixed. Some having rather high expression in the 
 gene_expression %>% 
   tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
   add_heatmap(scale = "row") %>%
-  adjust_plot_area_size(height = 100) %>% 
+  adjust_size(height = 100) %>% 
   sort_y_axis_labels(direction)
 ```
 
@@ -260,14 +260,14 @@ study %>%
 
 To complement the central tendency measure, it is often helpful to provide information about the variability or dispersion of the data points. Such measures include the standard error of the mean `sem`, the standard deviation `sd`, the `range` from the highest to the lowest data point and the 95% confidence interval `ci95`.
 
-A classical representation of dispersion is an error `bar`.
+A classical representation of dispersion is an `errorbar`.
 
 ```{r}
 time_course %>% 
   tidyplot(x = day, y = score, color = treatment) %>% 
   add_mean_line() %>% 
   add_mean_dot() %>% 
-  add_sem_bar(width = 2)
+  add_sem_errorbar(width = 2)
 ```
 
 Or the use of a semitransparent `ribbon`.
@@ -456,26 +456,26 @@ This illustrates nicely how wind energy compensates for the lack of solar power 
 
 # Statistical comparison
 
-To test for differences between experimental groups, tidyplots offers the functions `add_stats_asterisks()` and `add_stats_pvalue()`. While the first one includes asterisks for symbolizing significance.
+To test for differences between experimental groups, tidyplots offers the functions `add_test_asterisks()` and `add_test_pvalue()`. While the first one includes asterisks for symbolizing significance.
 
 ```{r}
 study %>% 
   tidyplot(x = dose, y = score, color = group) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  add_stats_asterisks()
+  add_test_asterisks()
 ```
 
-`add_stats_pvalue()` provides the computed _p_ value.
+`add_test_pvalue()` provides the computed _p_ value.
 
 ```{r}
 study %>% 
   tidyplot(x = dose, y = score, color = group) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  add_stats_pvalue()
+  add_test_pvalue()
 ```
 
 As you might have noted, when using these functions, a caption is automatically included that provides details about the statistical testing performed. The default is a Student's _t_ test without multiple comparison adjustment.
@@ -488,9 +488,9 @@ For example, let's perform a Wilcoxon signed-rank test with Benjamini--Hochberg 
 study %>% 
   tidyplot(x = dose, y = score, color = group) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  add_stats_pvalue(method = "wilcoxon", p.adjust.method = "BH")
+  add_test_pvalue(method = "wilcoxon", p.adjust.method = "BH")
 ```
 
 It often makes sense to compare all experimental conditions to a control condition. For example, let's say treatment "A" is our control.
@@ -499,9 +499,9 @@ It often makes sense to compare all experimental conditions to a control conditi
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  add_stats_pvalue(ref.group = "A")
+  add_test_pvalue(ref.group = "A")
 ```
 
 In some scenarios you have a mixture of significant and non-significant _p_ values.
@@ -513,9 +513,9 @@ gene_expression %>%
   # start plotting
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  add_stats_pvalue()
+  add_test_pvalue()
 ```
 
 Here you can choose to hide the non-significant _p_ value using `hide.ns = TRUE`.
@@ -527,9 +527,9 @@ gene_expression %>%
   # start plotting
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  add_stats_pvalue(hide.ns = TRUE)
+  add_test_pvalue(hide.ns = TRUE)
 ```
 
 Finally, if you want to hide the caption with statistical information you can do this by providing `hide_info = TRUE`.
@@ -541,12 +541,12 @@ gene_expression %>%
   # start plotting
   tidyplot(x = condition, y = expression, color = sample_type) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
-  add_stats_pvalue(hide.ns = TRUE, hide_info = TRUE)
+  add_test_pvalue(hide.ns = TRUE, hide_info = TRUE)
 ```
 
-There are many more things you can do with statistical comparisons. Just check out the documentation of `add_stats_pvalue()` and the underlying function `ggpubr::geom_pwc()`.
+There are many more things you can do with statistical comparisons. Just check out the documentation of `add_test_pvalue()` and the underlying function `ggpubr::geom_pwc()`.
 
 # Annotation
 
@@ -556,7 +556,7 @@ Sometimes you wish to add annotations to provide the reader with important addit
 study %>% 
   tidyplot(x = treatment, y = score, color = treatment) %>% 
   add_mean_dash() %>% 
-  add_sem_bar() %>% 
+  add_sem_errorbar() %>% 
   add_data_points() %>% 
   add_title("Interesting study") %>% 
   add_caption("Here is some more detail how the study was performed")
