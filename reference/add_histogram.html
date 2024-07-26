@@ -45,15 +45,9 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_histogram</span><span class="op">(</span><span class="va">plot</span>, binwidth <span class="op">=</span> <span class="cn">NULL</span>, bins <span class="op">=</span> <span class="cn">NULL</span>, color <span class="op">=</span> <span class="st">"#4DACD6"</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_histogram</span><span class="op">(</span><span class="va">plot</span>, binwidth <span class="op">=</span> <span class="cn">NULL</span>, bins <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">add_density_histogram</span><span class="op">(</span></span>
-<span>  <span class="va">plot</span>,</span>
-<span>  binwidth <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  bins <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  color <span class="op">=</span> <span class="st">"#4DACD6"</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span>
+<span><span class="fu">add_density_histogram</span><span class="op">(</span><span class="va">plot</span>, binwidth <span class="op">=</span> <span class="cn">NULL</span>, bins <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">add_density_curve</span><span class="op">(</span></span>
 <span>  <span class="va">plot</span>,</span>
@@ -61,9 +55,8 @@
 <span>  adjust <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  kernel <span class="op">=</span> <span class="st">"gaussian"</span>,</span>
 <span>  n <span class="op">=</span> <span class="fl">512</span>,</span>
-<span>  color <span class="op">=</span> <span class="st">"#E37D46"</span>,</span>
-<span>  fill <span class="op">=</span> <span class="st">"#E37D46"</span>,</span>
-<span>  alpha <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.4</span>,</span>
+<span>  color <span class="op">=</span> <span class="st">"#D55E00"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -94,10 +87,6 @@ bin width of a time variable is the number of seconds.</p></dd>
 <dd><p>Number of bins. Overridden by <code>binwidth</code>. Defaults to 30.</p></dd>
 
 
-<dt id="arg-color">color<a class="anchor" aria-label="anchor" href="#arg-color"></a></dt>
-<dd><p>A hex color for the stroke color. For example, <code>"#FFFFFF"</code> for white.</p></dd>
-
-
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
@@ -126,12 +115,12 @@ estimated, should be a power of two, see <code><a href="https://rdrr.io/r/stats/
 details</p></dd>
 
 
-<dt id="arg-fill">fill<a class="anchor" aria-label="anchor" href="#arg-fill"></a></dt>
-<dd><p>A hex color for the fill color. For example, <code>"#FFFFFF"</code> for white.</p></dd>
-
-
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
 <dd><p>A <code>number</code> between <code>0</code> and <code>1</code> for the opacity of an object. A value of <code>0</code> is completely transparent, <code>1</code> is completely opaque.</p></dd>
+
+
+<dt id="arg-color">color<a class="anchor" aria-label="anchor" href="#arg-color"></a></dt>
+<dd><p>A hex color for the stroke color. For example, <code>"#FFFFFF"</code> for white.</p></dd>
 
 </dl></div>
     <div class="section level2">
