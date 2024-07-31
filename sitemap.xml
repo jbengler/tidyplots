@@ -32,11 +32,11 @@
 <url><loc>https://jbengler.github.io/tidyplots/reference/add_title.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/add_violin.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/adjust_colors.html</loc></url>
-<url><loc>https://jbengler.github.io/tidyplots/reference/adjust_description.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/adjust_font.html</loc></url>
-<url><loc>https://jbengler.github.io/tidyplots/reference/adjust_legend.html</loc></url>
+<url><loc>https://jbengler.github.io/tidyplots/reference/adjust_legend_title.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/adjust_padding.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/adjust_size.html</loc></url>
+<url><loc>https://jbengler.github.io/tidyplots/reference/adjust_title.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/adjust_x_axis.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/all_rows.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/animals.html</loc></url>
@@ -59,6 +59,7 @@
 <url><loc>https://jbengler.github.io/tidyplots/reference/new_color_scheme.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/remove_legend.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/remove_padding.html</loc></url>
+<url><loc>https://jbengler.github.io/tidyplots/reference/remove_title.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/remove_x_axis.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/remove_y_axis.html</loc></url>
 <url><loc>https://jbengler.github.io/tidyplots/reference/rename_x_axis_labels.html</loc></url>

@@ -50,6 +50,7 @@
 <span>  new_colors <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  saturation <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  labels <span class="op">=</span> <span class="fu">tidyplot_parse_labels</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  downsample <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"evenly"</span>, <span class="st">"first"</span>, <span class="st">"last"</span>, <span class="st">"middle"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -80,6 +81,10 @@ transformation object</p></li>
 as output. Also accepts rlang <a href="https://rlang.r-lib.org/reference/as_function.html" class="external-link">lambda</a> function
 notation.</p></li>
 </ul></dd>
+
+
+<dt id="arg-downsample">downsample<a class="anchor" aria-label="anchor" href="#arg-downsample"></a></dt>
+<dd><p>If too many colors are provided, whether to downsample <code>evenly</code>, or use the <code>first</code>, the <code>last</code> or the <code>middle</code> colors of the color vector. Defaults to <code>evenly</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
