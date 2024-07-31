@@ -4,7 +4,7 @@ ff_adjust_axis <- function(axis) {
            labels = ggplot2::waiver(), limits = NULL, padding = c(NA, NA),
            rotate_labels = FALSE, transform = "identity",
            cut_short_scale = FALSE, force_continuous = FALSE, ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
   # Parse title
   if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
 
@@ -222,7 +222,7 @@ adjust_y_axis <- ff_adjust_axis("y")
 #'
 #' @export
 adjust_size <- function(plot, width = 50, height = 50, unit = "mm") {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   # cli::cli_alert_success("adjust_size: {.arg width} = {width} {unit}, {.arg height} = {height} {unit}")
   if (!is.na(width)) width <- ggplot2::unit(width, unit)
   if (!is.na(height)) height <- ggplot2::unit(height, unit)
@@ -268,7 +268,7 @@ adjust_size <- function(plot, width = 50, height = 50, unit = "mm") {
 #'
 #' @export
 adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = "black") {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot +
     ggplot2::theme(
       plot.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, hjust = 0.5, vjust = 0.5),
@@ -291,7 +291,7 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 #' @inherit common_arguments
 #'
 #' @details
-#' * The `title` argument of `adjust_legend()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
+#' * The `title` argument of `adjust_legend_title()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
 #' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
 #'
 #' @examples
@@ -308,7 +308,7 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 #'   add_data_points_beeswarm() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_legend(title = "My new legend title")
+#'   adjust_legend_title("My new legend title")
 #'
 #' # New title with plotmath expression
 #' study %>%
@@ -316,7 +316,7 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 #'   add_data_points_beeswarm() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_legend(title = "$E==m*c^{2}$")
+#'   adjust_legend_title("$E==m*c^{2}$")
 #'
 #' # Alternative legend positions
 #' study %>%
@@ -324,21 +324,21 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 #'   add_data_points_beeswarm() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_legend(position = "left")
+#'   adjust_legend_position("left")
 #'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_legend(position = "top")
+#'   adjust_legend_position("top")
 #'
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%
 #'   add_data_points_beeswarm() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_legend(position = "bottom")
+#'   adjust_legend_position("bottom")
 #'
 #' # `position = "none"` hides the legend
 #' study %>%
@@ -346,11 +346,20 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 #'   add_data_points_beeswarm() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_legend(position = "none")
+#'   adjust_legend_position("none")
 #'
 #' @export
+adjust_legend_title <- function(plot, title = ggplot2::waiver()) {
+  plot %>% adjust_legend(title = title)
+}
+#' @rdname adjust_legend_title
+#' @export
+adjust_legend_position <- function(plot, position = "right") {
+  plot %>% adjust_legend(position = position)
+}
+
 adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   # parse title
   if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
   plot +
@@ -402,7 +411,7 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 #'
 #' @export
 adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, all = NA, force_continuous = FALSE, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   if (!is.na(all) && is.numeric(all)) {
     top <- right <- bottom <- left <- all
   }
@@ -412,17 +421,15 @@ adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, a
 }
 
 
-#' Adjust description
-#' @param title Plot title.
-#' @param x_axis_title X axis title.
-#' @param y_axis_title Y axis title.
-#' @param legend_title Legend title.
-#' @param caption Plot caption text.
-#' @param ... Arguments passed on to `ggplot2::labs()`.
+#' Adjust titles and caption
+#' @param title Plot or axes title.
+#' @param caption Plot caption.
 #' @inherit common_arguments
 #'
 #' @details
-#' * `adjust_description()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
+#' Adjust the plot title, axis titles and caption
+#'
+#' * All functions support [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
 #' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
 #'
 #' @examples
@@ -439,12 +446,11 @@ adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, a
 #'   add_data_points() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_description(
-#'     title = "This is my fantastic plot title",
-#'     x_axis_title = "Treatment group",
-#'     y_axis_title = "Disease score",
-#'     legend_title = "Legend title",
-#'     caption = "Here goes the caption")
+#'   adjust_title("This is my fantastic plot title") %>%
+#'   adjust_x_axis_title("Treatment group") %>%
+#'   adjust_y_axis_title("Disease score") %>%
+#'   adjust_legend_title("Legend title") %>%
+#'   adjust_caption("Here goes the caption")
 #'
 #' # Plotmath expressions
 #' study %>%
@@ -452,18 +458,36 @@ adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, a
 #'   add_data_points() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   adjust_description(
-#'     title = "$H[2]*O$",
-#'     x_axis_title = "$H[2]*O$",
-#'     y_axis_title = "$H[2]*O$",
-#'     legend_title = "$H[2]*O$",
-#'     caption = "$H[2]*O$")
+#'   adjust_title("$H[2]*O$") %>%
+#'   adjust_x_axis_title("$H[2]*O$") %>%
+#'   adjust_y_axis_title("$H[2]*O$") %>%
+#'   adjust_legend_title("$H[2]*O$") %>%
+#'   adjust_caption("$H[2]*O$")
 #'
 #' @export
+adjust_title <- function(plot, title = ggplot2::waiver()) {
+  plot %>% adjust_description(title = title)
+}
+#' @rdname adjust_title
+#' @export
+adjust_x_axis_title <- function(plot, title = ggplot2::waiver()) {
+  plot %>% adjust_description(x_axis_title = title)
+}
+#' @rdname adjust_title
+#' @export
+adjust_y_axis_title <- function(plot, title = ggplot2::waiver()) {
+  plot %>% adjust_description(y_axis_title = title)
+}
+#' @rdname adjust_title
+#' @export
+adjust_caption <- function(plot, caption = ggplot2::waiver()) {
+  plot %>% adjust_description(caption = caption)
+}
+
 adjust_description <- function(plot, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
-                              y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),
-                              caption = ggplot2::waiver(), ...) {
-  check_tidyplot(plot)
+                               y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),
+                               caption = ggplot2::waiver(), ...) {
+  plot <- check_tidyplot(plot)
   if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
   if (!is_waiver(x_axis_title)) x_axis_title <- tidyplot_parser(as.character(x_axis_title))
   if (!is_waiver(y_axis_title)) y_axis_title <- tidyplot_parser(as.character(y_axis_title))
@@ -472,5 +496,5 @@ adjust_description <- function(plot, title = ggplot2::waiver(), x_axis_title = g
 
   colour <- fill <- legend_title
   plot + ggplot2::labs(x = x_axis_title, y = y_axis_title, colour = colour, fill = fill,
-                     title = title, caption = caption, ...)
+                       title = title, caption = caption, ...)
 }

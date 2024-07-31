@@ -35,7 +35,7 @@
 add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = TRUE,
                         box_width = 0.6, whiskers_width = 0.8, outlier.size = 0.5, coef = 1.5,
                         outlier.shape = 19, linewidth = 0.25, preserve = "total", ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
   if (saturation != 1) {
@@ -83,7 +83,7 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
 #' @export
 add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantiles = NULL, trim = FALSE,
                        linewidth = 0.25, scale = "width", ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width)
   plot <- plot %>% adjust_colors(saturation = saturation)
@@ -114,7 +114,7 @@ add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantile
 #'
 #' @export
 add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   mapping <- NULL
   if (is_missing(plot, "group")) {
     mapping <- ggplot2::aes()
@@ -130,7 +130,7 @@ add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve
 #' @rdname add_line
 #' @export
 add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 0.4, preserve = "total", ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   ptype <- get_plottype(plot)
 
   # detect orientation
@@ -192,7 +192,7 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 #' @export
 add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.4,
                           preserve = "total", ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   mapping <- ggplot2::aes()
   mapping$group <- plot$mapping$colour
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
@@ -219,7 +219,7 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #'
 #' @export
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot %>%
     remove_padding(force_continuous = TRUE) +
     ggplot2::geom_histogram(binwidth = binwidth, bins = bins, ...)
@@ -227,7 +227,7 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
 #' @rdname add_histogram
 #' @export
 add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot %>%
     remove_padding(force_continuous = TRUE) +
     ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)),
@@ -236,7 +236,7 @@ add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
 #' @rdname add_histogram
 #' @export
 add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, alpha = 0.4, color = "#D55E00",...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot %>%
     remove_padding(force_continuous = TRUE) +
     ggplot2::geom_density(bw = bw, adjust = adjust, kernel = kernel, n = n, color = color, fill = color, alpha = alpha, ...)
@@ -271,7 +271,7 @@ add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian"
 #'
 #' @export
 add_title <- function(plot, title = ggplot2::waiver()) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   # parse title
   if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
   plot + ggplot2::labs(title = title)
@@ -279,7 +279,7 @@ add_title <- function(plot, title = ggplot2::waiver()) {
 #' @rdname add_title
 #' @export
 add_caption <- function(plot, caption = ggplot2::waiver()) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   # parse caption
   if (!is_waiver(caption)) caption <- tidyplot_parser(as.character(caption))
   plot + ggplot2::labs(caption = caption)
@@ -306,7 +306,7 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 #'
 #' @export
 add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", linewidth = 0.25, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   out <- plot
   if(!is.null(x)) {
     out <- out + ggplot2::geom_vline(xintercept = x, linetype = linetype, linewidth = linewidth, ...)
@@ -377,7 +377,7 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
                             background = FALSE, background_color = "#FFFFFF", background_alpha = 0.6,
                             label_position = c("below", "above", "left", "right", "center"), ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   size <- fontsize/ggplot2::.pt
   if (!background) background_alpha <- 0
   label.padding <- ggplot2::unit(0.1, "lines")
@@ -414,7 +414,7 @@ add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
 add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
                                   segment.size = 0.2, box.padding = 0.2, max.overlaps = Inf,
                                   background = FALSE, background_color = "#FFFFFF", background_alpha = 0.6, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   size <- fontsize/ggplot2::.pt
   if (!background) background_alpha <- 0
   label.padding <- ggplot2::unit(0.1, "lines")

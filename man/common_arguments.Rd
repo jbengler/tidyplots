@@ -19,7 +19,7 @@
 a position, or the width of a \code{"single"} element?}
 
 \item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
-vector shapes. If \code{TRUE} the layer will be rastered to a pixel image. This can
+vector shapes. If \code{TRUE} the layer will be rasterized to a pixel image. This can
 be useful when plotting many individual objects (1,000 or more) compromises
 the performance of the generated PDF file.}
 
@@ -49,6 +49,8 @@ values range between \code{1} and \code{3}.}
 \item{group}{Variable in the dataset to be used for grouping.}
 
 \item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
+
+\item{.reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 
 \item{scale_cut}{Scale cut function to be applied. See \code{scales::cut_short_scale()} and friends.}
 

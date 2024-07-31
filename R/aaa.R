@@ -1,5 +1,5 @@
 #' @importFrom grDevices col2rgb rgb dev.off pdf
-#' @importFrom stats density sd setNames
+#' @importFrom stats density sd setNames median
 #' @importFrom utils tail
 #' @importFrom rlang := .data
 NULL

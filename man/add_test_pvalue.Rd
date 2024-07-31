@@ -3,7 +3,7 @@
 \name{add_test_pvalue}
 \alias{add_test_pvalue}
 \alias{add_test_asterisks}
-\title{Add statistics}
+\title{Add statistical test}
 \usage{
 add_test_pvalue(
   plot,
@@ -130,7 +130,7 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
 A \code{tidyplot} object
 }
 \description{
-Add statistics
+Add statistical test
 }
 \details{
 \itemize{

@@ -40,7 +40,7 @@
 #'
 #' @export
 theme_tidyplot <- function(plot, fontsize = 7) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot %>%
     style_just_xy() %>%
     adjust_font(fontsize)
@@ -48,7 +48,7 @@ theme_tidyplot <- function(plot, fontsize = 7) {
 #' @rdname theme_tidyplot
 #' @export
 theme_ggplot2 <- function(plot, fontsize = 7) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_gray()
   if (get_variable(plot, "colour") == ".single_color")
     plot <- plot %>% remove_legend()
@@ -57,7 +57,7 @@ theme_ggplot2 <- function(plot, fontsize = 7) {
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_xy <- function(plot, fontsize = 7) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
   if (get_variable(plot, "colour") == ".single_color")
     plot <- plot %>% remove_legend()
@@ -73,7 +73,7 @@ theme_minimal_xy <- function(plot, fontsize = 7) {
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_x <- function(plot, fontsize = 7) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
   if (get_variable(plot, "colour") == ".single_color")
     plot <- plot %>% remove_legend()
@@ -89,7 +89,7 @@ theme_minimal_x <- function(plot, fontsize = 7) {
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_y <- function(plot, fontsize = 7) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
   if (get_variable(plot, "colour") == ".single_color")
     plot <- plot %>% remove_legend()

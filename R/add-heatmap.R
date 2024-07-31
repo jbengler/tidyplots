@@ -4,7 +4,7 @@
 #' @inherit common_arguments
 #'
 #' @details
-#' * `add_heatmap()` supports rasterizing. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing).
+#' * `add_heatmap()` supports rasterization. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterization).
 #'
 #' @examples
 #' climate %>%
@@ -29,7 +29,7 @@
 #' @export
 add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels = 90,
                         rasterize = FALSE, rasterize_dpi = 300, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   mapping <- NULL
   scale <- match.arg(scale)
 

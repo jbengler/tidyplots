@@ -71,9 +71,10 @@ test_that("adjust legend works", {
     add_sem_errorbar() %>%
     add_data_points_beeswarm()
 
-  p %>% adjust_legend(title = "My legend title") %>%
+  p %>% adjust_legend_title("My legend title") %>%
     vdiffr::expect_doppelganger("adjust legend title", .)
-  p %>% adjust_legend(title = "My legend title", position = "top") %>%
+  p %>% adjust_legend_title("My legend title") %>%
+    adjust_legend_position("top") %>%
     vdiffr::expect_doppelganger("adjust legend title and position", .)
 })
 
@@ -89,11 +90,11 @@ test_that("plotmath expressions work", {
     vdiffr::expect_doppelganger("plotmath expression title", .)
   p %>% add_caption(caption = "$E==m*c^{2}~H[2]*O$") %>%
     vdiffr::expect_doppelganger("plotmath expression caption", .)
-  p %>% adjust_legend(title = "$E==m*c^{2}~H[2]*O$") %>%
+  p %>% adjust_legend_title("$E==m*c^{2}~H[2]*O$") %>%
     vdiffr::expect_doppelganger("plotmath expression legend title", .)
-  p %>% adjust_x_axis(title = "$Domino~E==m*c^{2}$") %>%
+  p %>% adjust_x_axis_title("$Domino~E==m*c^{2}$") %>%
     vdiffr::expect_doppelganger("plotmath expression x axis title", .)
-  p %>% adjust_y_axis(title = "$Domino~E==m*c^{2}$") %>%
+  p %>% adjust_y_axis_title("$Domino~E==m*c^{2}$") %>%
     vdiffr::expect_doppelganger("plotmath expression y axis title", .)
 
   new_labels <-

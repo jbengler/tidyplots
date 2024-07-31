@@ -11,38 +11,4 @@ study <-
                 sex = rep(c("female", "male", "female", "male", "female"), 4),
                 score = c(2,4,5,4,6,9,8,12,15,16,32,35,24,45,56,23,25,21,22,23))
 
-study %>%
-  tidyplot(treatment, score, color = treatment) %>%
-  add_mean_bar(alpha = 0.4) %>%
-  add_sem_errorbar() %>%
-  add_data_points_beeswarm()
-
-study %>%
-  tidyplot(treatment, score) %>%
-  add_mean_bar(alpha = 0.4) %>%
-  add_sem_errorbar() %>%
-  add_data_points() %>%
-  add_line()
-
-study %>%
-  tidyplot(treatment, score) %>%
-  add_mean_bar(alpha = 0.4) %>%
-  add_sem_errorbar() %>%
-  add_data_points() %>%
-  add_line(group = participant)
-
-study %>%
-  tidyplot(dose, score, color = group) %>%
-  add_mean_bar(alpha = 0.4) %>%
-  add_sem_errorbar() %>%
-  add_data_points_beeswarm()
-
-study %>%
-  tidyplot(treatment, score, color = group) %>%
-  add_mean_bar(alpha = 0.4) %>%
-  add_sem_errorbar() %>%
-  add_data_points() %>%
-  add_line(group = participant) %>%
-  adjust_data_labels(treatment, sort_by = dose)
-
 usethis::use_data(study, overwrite = TRUE)

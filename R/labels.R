@@ -1,7 +1,7 @@
 
 ff_rename_axis_labels <- function(axis) {
   function(plot, new_names) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
     if (scale_type != "discrete")
       cli::cli_abort("Axis must be discrete not {scale_type}!")
@@ -103,7 +103,7 @@ rename_color_labels <- ff_rename_axis_labels(axis = "colour")
 
 ff_reorder_axis_labels <- function(axis) {
   function(plot, ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
     if (scale_type != "discrete")
       cli::cli_abort("Axis must be discrete not {scale_type}!")
@@ -176,17 +176,52 @@ reorder_y_axis_labels <- ff_reorder_axis_labels(axis = "y")
 reorder_color_labels <- ff_reorder_axis_labels(axis = "colour")
 
 
-ff_sort_axis_labels <- function(axis) {
-  function(plot, ...) {
-    check_tidyplot(plot)
+ff_sort_labels <- function(axis) {
+  function(plot, ..., .fun = NULL, .reverse = FALSE) {
+    plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
     if (scale_type != "discrete")
       cli::cli_abort("Axis must be discrete not {scale_type}!")
-    var <- get_variable(plot, axis)
-    new_data <-
-      plot$data %>%
-      dplyr::arrange(...) %>%
-      dplyr::mutate("{var}" := forcats::fct_reorder(.data[[var]], dplyr::row_number()))
+
+    var_a <- get_variable(plot, axis)
+
+    if (!missing(..1)) {
+      # sort by variables passed into '...'
+      new_data <-
+        plot$data %>%
+        dplyr::arrange(...) %>%
+        dplyr::mutate("{var_a}" := forcats::fct_reorder(.f = .data[[var_a]],
+                                                        .x = dplyr::row_number(),
+                                                        .desc = .reverse))
+    } else {
+      # sort by statistic entity (mean, median, sum, count) used in plot
+      if (any(stringr::str_detect(plot$tidyplot$history, "count")))
+        auto_fun <- length
+      else if (any(stringr::str_detect(plot$tidyplot$history, "mean")))
+        auto_fun <- mean
+      else if (any(stringr::str_detect(plot$tidyplot$history, "sum")))
+        auto_fun <- sum
+      else
+        auto_fun <- median
+
+      .fun <- .fun %||% auto_fun
+
+      if (get_scale_type(plot, "x") == "continuous")
+        var_b <- get_variable(plot, "x")
+      else if (get_scale_type(plot, "y") == "continuous")
+        var_b <- get_variable(plot, "y")
+      else if (get_scale_type(plot, "colour") == "continuous")
+        var_b <- get_variable(plot, "colour")
+      else
+        var_b <- get_variable(plot, axis)
+
+      new_data <-
+        plot$data %>%
+        dplyr::mutate("{var_a}" := forcats::fct_reorder(.f = .data[[var_a]],
+                                                        .x = .data[[var_b]],
+                                                        .fun = .fun,
+                                                        .desc = .reverse))
+    }
     plot %+% new_data
   }
 }
@@ -206,7 +241,7 @@ ff_sort_axis_labels <- function(axis) {
 #'   add_data_points() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   sort_x_axis_labels(score)
+#'   sort_x_axis_labels()
 #'
 #' # Before adjustments
 #' study %>%
@@ -221,7 +256,7 @@ ff_sort_axis_labels <- function(axis) {
 #'   add_data_points() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   sort_y_axis_labels(score)
+#'   sort_y_axis_labels()
 #'
 #' # Before adjustment
 #' study %>%
@@ -236,23 +271,24 @@ ff_sort_axis_labels <- function(axis) {
 #'   add_data_points() %>%
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar() %>%
-#'   sort_color_labels(score)
+#'   sort_color_labels()
 #'
 #' @inherit common_arguments
-#' @param ... Arguments passed on to `forcats::fct_reorder()`.
+#' @param ... Optional variables to use for sorting.
+#' @param .fun Override the function used for sorting. Is automatically determined from the plot.
 #' @export
-sort_x_axis_labels <- ff_sort_axis_labels(axis = "x")
+sort_x_axis_labels <- ff_sort_labels(axis = "x")
 #' @rdname sort_x_axis_labels
 #' @export
-sort_y_axis_labels <- ff_sort_axis_labels(axis = "y")
+sort_y_axis_labels <- ff_sort_labels(axis = "y")
 #' @rdname sort_x_axis_labels
 #' @export
-sort_color_labels <- ff_sort_axis_labels(axis = "colour")
+sort_color_labels <- ff_sort_labels(axis = "colour")
 
 
 ff_reverse_axis_labels <- function(axis) {
   function(plot) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
     if (scale_type != "discrete")
       cli::cli_abort("Axis must be discrete not {scale_type}!")

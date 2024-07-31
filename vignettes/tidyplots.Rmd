@@ -182,7 +182,7 @@ study %>%
   adjust_size(width = 20, height = 20)
 ```
 
-Another common adjustment is to change the titles of the plot, axes, or legend. For this we will use the function `adjust_description()`.
+Another common adjustment is to change the titles of the plot, axes, or legend. For this we will use the function `adjust_title()` and friends.
 
 ```{r}
 study %>% 
@@ -190,13 +190,14 @@ study %>%
   add_data_points() %>% 
   add_mean_bar(alpha = 0.4) %>% 
   add_sem_errorbar() %>% 
-  adjust_description(title = "This is my fantastic plot",
-                     x_axis_title = "Treatment group",
-                     y_axis_title = "Disease score",
-                     legend_title = "")
+  adjust_title("This is my fantastic plot title") %>%
+  adjust_x_axis_title("Treatment group") %>%
+  adjust_y_axis_title("Disease score") %>%
+  adjust_legend_title("") %>%
+  adjust_caption("Here goes the caption")
 ```
 
-Note that I removed the legend title by setting it to an empty string `legend_title = ""`. This is alternative to `remove_legend_title()`, however the result is not exactly the same. I am sure you will figure out the difference.
+Note that I removed the legend title by setting it to an empty string `adjust_legend_title("")`. This is alternative to `remove_legend_title()`, however the result is not exactly the same. I am sure you will figure out the difference.
 
 Another common task is to adjust the colors in your plot. You can do this using the `adjust_colors()` function.
 
@@ -261,7 +262,7 @@ study %>%
   add_data_points() %>% 
   add_mean_bar(alpha = 0.4) %>% 
   add_sem_errorbar() %>% 
-  sort_x_axis_labels(score)
+  sort_x_axis_labels()
 ```
 
 Or simply reverse the order of the labels.

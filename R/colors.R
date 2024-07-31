@@ -1,5 +1,6 @@
 #' Adjust colors
 #' @param new_colors A character vector of new hex colors to use. Can be a named character vector of hex colors to assign certain data labels to specific colors.
+#' @param downsample If too many colors are provided, whether to downsample `evenly`, or use the `first`, the `last` or the `middle` colors of the color vector. Defaults to `evenly`.
 #' @param ... Arguments passed on to the ggplot2 `scale` function.
 #' @inherit common_arguments
 #' @inheritParams ggplot2::scale_x_continuous
@@ -51,8 +52,10 @@
 #' @export
 adjust_colors <- function(plot, new_colors = NULL,
                           saturation = 1,
-                          labels = tidyplot_parse_labels(), ...) {
-  check_tidyplot(plot)
+                          labels = tidyplot_parse_labels(),
+                          downsample = c("evenly", "first", "last", "middle"),
+                          ...) {
+  plot <- check_tidyplot(plot)
   out <- plot
 
   if (is_discrete(plot, "colour")) {
@@ -82,7 +85,7 @@ adjust_colors <- function(plot, new_colors = NULL,
       # Too many colors
       if (n_ratio > 1) {
         # cli::cli_alert_info("adjust_colors: Too many colors. {n_provided} colors provided, but only {n_requested} needed.")
-        new_colors <- downsample_vector(new_colors, n_requested)
+        new_colors <- downsample_vector(new_colors, n_requested, downsample = downsample)
       }
 
       suppressMessages(out <- out + ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...))

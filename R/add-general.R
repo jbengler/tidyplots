@@ -12,7 +12,7 @@
 #' @param preserve Should dodging preserve the `"total"` width of all elements at
 #'   a position, or the width of a `"single"` element?
 #' @param rasterize If `FALSE` (the default) the layer will be constructed of
-#'   vector shapes. If `TRUE` the layer will be rastered to a pixel image. This can
+#'   vector shapes. If `TRUE` the layer will be rasterized to a pixel image. This can
 #'   be useful when plotting many individual objects (1,000 or more) compromises
 #'   the performance of the generated PDF file.
 #' @param rasterize_dpi The resolution in dots per inch (dpi) used for rastering
@@ -45,6 +45,7 @@
 #' @param saturation A `number` between `0` and `1` for the color saturation of an object. A value of `0` is completely desaturated (white), `1` is the original color.
 #' @param group Variable in the dataset to be used for grouping.
 #' @param reverse Whether the order should be reversed or not. Defaults to `FALSE`, meaning not reversed.
+#' @param .reverse Whether the order should be reversed or not. Defaults to `FALSE`, meaning not reversed.
 #' @param scale_cut Scale cut function to be applied. See `scales::cut_short_scale()` and friends.
 #' @param fontsize Font size in points. Defaults to `7`.
 #' @param replace_na Whether to replace `count = NA` with `count = 0`.
@@ -61,7 +62,7 @@ NULL
 ## Error bar function factory
 ff_errorbar <- function(.fun.data) {
   function(plot, dodge_width = NULL, width = 0.4, linewidth = 0.25, preserve = "total", ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     plot + ggplot2::stat_summary(fun.data = .fun.data, geom = "errorbar",
@@ -130,7 +131,7 @@ add_ci95_errorbar <- ff_errorbar(.fun.data = mean_cl_boot)
 ## Ribbon function factory
 ff_ribbon <- function(.fun.data) {
   function(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     mapping <- ggplot2::aes()
     mapping$group <- plot$mapping$colour
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
@@ -195,7 +196,7 @@ add_ci95_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_cl_boot)
 ## Bar function factory
 ff_bar <- function(.fun, .count = FALSE) {
   function(plot, dodge_width = NULL, width = 0.6, saturation = 1, preserve = "total", ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     if (saturation != 1) {
@@ -221,7 +222,7 @@ ff_bar <- function(.fun, .count = FALSE) {
 ## Dash function factory
 ff_dash <- function(.fun, .count = FALSE) {
   function(plot, dodge_width = NULL, width = 0.6, linewidth = 0.25, preserve = "total", ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     if (.count) {
@@ -237,7 +238,7 @@ ff_dash <- function(.fun, .count = FALSE) {
 ## Dot function factory
 ff_dot <- function(.fun, .count = FALSE) {
   function(plot, dodge_width = NULL, size = 2, preserve = "total", ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
     if (.count) {
@@ -251,7 +252,7 @@ ff_dot <- function(.fun, .count = FALSE) {
 ff_value <- function(.fun, .count = FALSE) {
   function(plot, dodge_width = NULL, accuracy = 0.1, scale_cut = NULL, fontsize = 7,
            extra_padding = 0.15, vjust = NULL, hjust = NULL, preserve = "total", ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
     if ((stringr::str_sub(ptype, 2, 2) == "c" || .count)) {
@@ -290,7 +291,7 @@ ff_value <- function(.fun, .count = FALSE) {
 ## Line function factory
 ff_line <- function(.fun, .count = FALSE, .geom) {
   function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     if(.geom == "area") linewidth = NA
     mapping <- NULL
     if (is_missing(plot, "group")) {

@@ -106,7 +106,7 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
 #'
 #' @export
 flip_plot <- function(plot, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   plot + ggplot2::coord_flip(...)
 }
 
@@ -391,15 +391,18 @@ get_plottype <- function(plot) {
   pt
 }
 
-check_tidyplot <- function(x, arg = rlang::caller_arg(x), call = rlang::caller_env()) {
-  if (!inherits(x, "tidyplot")) {
+check_tidyplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::caller_env()) {
+  if (!inherits(plot, "tidyplot")) {
     msg <- c("{.arg {arg}} must be a tidyplot.")
-    if (inherits(x, "list") || inherits(x, "patchwork"))
+    if (inherits(plot, "list") || inherits(plot, "patchwork"))
       msg <- c(msg, "i" = "After using `split_plot()`, only `save_plot()` is allowed.")
     else
       msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")
     cli::cli_abort(msg, call = call)
   }
+  # message(parent_function(-1))
+  plot$tidyplot$history <- c(plot$tidyplot$history, parent_function())
+  plot
 }
 
 # check_tidyplot(c(22,22))

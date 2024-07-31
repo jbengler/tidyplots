@@ -9,6 +9,7 @@ adjust_colors(
   new_colors = NULL,
   saturation = 1,
   labels = tidyplot_parse_labels(),
+  downsample = c("evenly", "first", "last", "middle"),
   ...
 )
 }
@@ -30,6 +31,8 @@ transformation object
 as output. Also accepts rlang \link[rlang:as_function]{lambda} function
 notation.
 }}
+
+\item{downsample}{If too many colors are provided, whether to downsample \code{evenly}, or use the \code{first}, the \code{last} or the \code{middle} colors of the color vector. Defaults to \code{evenly}.}
 
 \item{...}{Arguments passed on to the ggplot2 \code{scale} function.}
 }

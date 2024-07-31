@@ -14,7 +14,7 @@
 #' * `add_data_points_beeswarm()` is based on `ggbeeswarm::geom_beeswarm()`.
 #' Check there for additional arguments.
 #'
-#' * `add_data_points()` and friends support rasterizing. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing).
+#' * `add_data_points()` and friends support rasterization. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterization).
 #'
 #' * `add_data_points()` and friends support data subsetting. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting).
 #'
@@ -44,7 +44,7 @@
 #'   tidyplot(x = weight, y = size) %>%
 #'   add_data_points(alpha = 0.4)
 #'
-#' # Rasterizing
+#' # Rasterization
 #' animals %>%
 #'   tidyplot(x = weight, y = size) %>%
 #'   add_data_points(rasterize = TRUE, rasterize_dpi = 50)
@@ -61,7 +61,7 @@ add_data_points <- function(plot, data = all_rows(),
                             dodge_width = NULL,
                             preserve = "total",
                             rasterize = FALSE, rasterize_dpi = 300, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   f_points(plot = plot, data = data,
            shape = shape, size = size, white_border = white_border,
            dodge_width = dodge_width,
@@ -75,7 +75,7 @@ add_data_points_jitter <- function(plot, data = all_rows(),
                                    dodge_width = NULL,
                                    jitter_width = 0.2, jitter_height = 0, preserve = "total",
                                    rasterize = FALSE, rasterize_dpi = 300, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   f_points(plot = plot, data = data,
            shape = shape, size = size, white_border = white_border,
            dodge_width = dodge_width,
@@ -90,7 +90,7 @@ add_data_points_beeswarm <- function(plot, data = all_rows(),
                                      dodge_width = NULL,
                                      preserve = "total",
                                      rasterize = FALSE, rasterize_dpi = 300, ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   f_points(beeswarm = TRUE,
            plot = plot, data = data,
            shape = shape, size = size, white_border = white_border,

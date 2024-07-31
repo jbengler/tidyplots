@@ -53,7 +53,7 @@ reference:
   - starts_with("add_barstack")
   - starts_with("add_areastack")
   - starts_with("add_pie")
-- subtitle: Statistical comparison
+- subtitle: Statistical test
 - contents:
   - starts_with("add_test")
 - subtitle: Annotation
@@ -72,7 +72,7 @@ reference:
   - starts_with("adjust_colors")
   - starts_with("adjust_font")
   - starts_with("adjust_legend")
-  - starts_with("adjust_description")
+  - starts_with("adjust_title")
   - starts_with("adjust_size")
   - starts_with("adjust_padding")
   - starts_with("adjust_x_axis")

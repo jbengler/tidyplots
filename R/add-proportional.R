@@ -1,7 +1,7 @@
 ## Pie function factory
 ff_pie <- function(.type = "pie") {
   function(plot, width = 1, reverse = FALSE, ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     plot <-
       plot %>%
       remove_padding() %>%
@@ -64,7 +64,7 @@ add_donut <- ff_pie(.type = "donut")
 ## Barstack function factory
 ff_barstack <- function(.position_fun) {
   function(plot, width = 0.8, reverse = FALSE, ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
     if (is_missing(plot, "colour")) cli::cli_abort("Argument {.arg color} missing without default")
@@ -159,7 +159,7 @@ add_barstack_relative <- ff_barstack(.position_fun = ggplot2::position_fill)
 ## Areastack function factory
 ff_areastack <- function(.position_fun) {
   function(plot, linewidth = 0.25, alpha = 0.4, reverse = FALSE, replace_na = FALSE, ...) {
-    check_tidyplot(plot)
+    plot <- check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
     # overwrite group aesthetic

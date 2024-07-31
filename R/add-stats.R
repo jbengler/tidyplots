@@ -1,4 +1,4 @@
-#' Add statistics
+#' Add statistical test
 #' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
 #' @param hide_info Whether to hide details about the statistical testing as caption. Defaults to `FALSE`.
 #' @param ... Arguments passed on to `ggpubr::geom_pwc()`.
@@ -79,7 +79,7 @@ add_test_pvalue <- function(plot,
                       ),
                       hide_info = FALSE,
                       ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   # cli::cli_alert_success("add_test: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
 
   plot <- plot  %>%
@@ -125,7 +125,7 @@ add_test_asterisks <- function(plot,
                              ),
                              hide_info = FALSE,
                              ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   add_test_pvalue(plot,
             padding_top = padding_top,
             method = method,

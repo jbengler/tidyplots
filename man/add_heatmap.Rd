@@ -21,7 +21,7 @@ add_heatmap(
 \item{rotate_labels}{Degree to rotate the x axis labels. Defaults to \code{90}.}
 
 \item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
-vector shapes. If \code{TRUE} the layer will be rastered to a pixel image. This can
+vector shapes. If \code{TRUE} the layer will be rasterized to a pixel image. This can
 be useful when plotting many individual objects (1,000 or more) compromises
 the performance of the generated PDF file.}
 
@@ -38,7 +38,7 @@ Add heatmap
 }
 \details{
 \itemize{
-\item \code{add_heatmap()} supports rasterizing. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing}{Advanced plotting}.
+\item \code{add_heatmap()} supports rasterization. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterization}{Advanced plotting}.
 }
 }
 \examples{

@@ -44,6 +44,8 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 
   plot$tidyplot$mapping <- extract_mapping(plot)
 
+  plot$tidyplot$history <- c("tidyplot")
+
   plot$tidyplot$padding_x <- c(0.05, 0.05)
   plot$tidyplot$padding_y <- c(0.05, 0.05)
 
@@ -107,7 +109,7 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = 0.8) {
 split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
                        widths = 30, heights = 25, guides = "collect",
                        tag_level = NULL, design = NULL, unit = "mm") {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   if(missing(by))
     cli::cli_abort("Argument {.arg by} missing without default.")
 
@@ -187,7 +189,7 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 #'
 #' @export
 view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
-  check_tidyplot(plot)
+  plot <- check_tidyplot(plot)
   input <- plot
   if (inherits(data, "function")) plot <- plot %+% (plot$data %>% data()) + ggplot2::ggtitle(title)
   if (inherits(data, "data.frame")) plot <- plot %+% data + ggplot2::ggtitle(title)
@@ -262,15 +264,6 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
     dimensions <- get_layout_size(plot, units)$max
   else
     dimensions <- list(width = NA, height = NA)
-
-  # width_defined_by <- dplyr::case_when(is.na(width) && is.na(dimensions[["width"]]) ~ "was not defined - system default used",
-  #                                      !is.na(width) ~ "was provided as argument 'width'",
-  #                                      TRUE ~ "was inferred from plot dimensions")
-  # height_defined_by <- dplyr::case_when(is.na(height) && is.na(dimensions[["height"]]) ~ "was not defined - system default used",
-  #                                       !is.na(height) ~ "was provided as argument 'height'",
-  #                                       TRUE ~ "was inferred from plot dimensions")
-  # cli::cli_alert_success("save_plot: {.pkg page width} {width_defined_by}")
-  # cli::cli_alert_success("save_plot: {.pkg page height} {height_defined_by}")
 
   if (is.na(width)) width <- dimensions[["width"]] * 1.1
   if (is.na(height)) height <- dimensions[["height"]] * 1.1

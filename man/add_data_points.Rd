@@ -76,7 +76,7 @@ values range between \code{1} and \code{3}.}
 a position, or the width of a \code{"single"} element?}
 
 \item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
-vector shapes. If \code{TRUE} the layer will be rastered to a pixel image. This can
+vector shapes. If \code{TRUE} the layer will be rasterized to a pixel image. This can
 be useful when plotting many individual objects (1,000 or more) compromises
 the performance of the generated PDF file.}
 
@@ -111,7 +111,7 @@ Add data points
 \itemize{
 \item \code{add_data_points_beeswarm()} is based on \code{ggbeeswarm::geom_beeswarm()}.
 Check there for additional arguments.
-\item \code{add_data_points()} and friends support rasterizing. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterizing}{Advanced plotting}.
+\item \code{add_data_points()} and friends support rasterization. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterization}{Advanced plotting}.
 \item \code{add_data_points()} and friends support data subsetting. See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting}{Advanced plotting}.
 }
 }
@@ -141,7 +141,7 @@ animals \%>\%
   tidyplot(x = weight, y = size) \%>\%
   add_data_points(alpha = 0.4)
 
-# Rasterizing
+# Rasterization
 animals \%>\%
   tidyplot(x = weight, y = size) \%>\%
   add_data_points(rasterize = TRUE, rasterize_dpi = 50)

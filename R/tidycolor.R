@@ -211,12 +211,33 @@ colors_diverging_icefire <- new_color_scheme(
 
 
 # not exported
-downsample_vector <- function(x, n) {
+downsample_vector <- function(x, n, downsample = c("evenly", "first", "last", "middle")) {
   if (length(x) <= n) return(x)
-  by <- (length(x) / (n-1)) - (1 / (n-1))
-  i <- floor(cumsum(c(1, rep(by, n-1))))
-  x[i]
+  downsample <- match.arg(downsample)
+  if (downsample == "evenly") {
+    by <- (length(x) / (n-1)) - (1 / (n-1))
+    i <- floor(cumsum(c(1, rep(by, n-1))))
+    x[i]
+  } else if (downsample == "first") {
+    x[1:n]
+  } else if (downsample == "last") {
+    x[(length(x) - n + 1):length(x)]
+  } else {
+    start_index <- ceiling((length(x) - n) / 2) + 1
+    end_index <- start_index + n - 1
+    x[start_index:end_index]
+  }
 }
+
+# downsample_vector(1:11, 6, downsample = "evenly")
+# downsample_vector(1:11, 6, downsample = "first")
+# downsample_vector(1:11, 6, downsample = "last")
+# downsample_vector(1:11, 6, downsample = "middle")
+# downsample_vector(1:5, 4, downsample = "evenly")
+# downsample_vector(1:5, 4, downsample = "first")
+# downsample_vector(1:5, 4, downsample = "last")
+# downsample_vector(1:5, 4, downsample = "middle")
+
 
 generate_html <- function(x, max_colors) {
   name <- attr(x, "tidycolor.name")

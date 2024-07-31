@@ -6,16 +6,20 @@
 \alias{sort_color_labels}
 \title{Sort axis or color labels}
 \usage{
-sort_x_axis_labels(plot, ...)
+sort_x_axis_labels(plot, ..., .fun = NULL, .reverse = FALSE)
 
-sort_y_axis_labels(plot, ...)
+sort_y_axis_labels(plot, ..., .fun = NULL, .reverse = FALSE)
 
-sort_color_labels(plot, ...)
+sort_color_labels(plot, ..., .fun = NULL, .reverse = FALSE)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{...}{Arguments passed on to \code{forcats::fct_reorder()}.}
+\item{...}{Optional variables to use for sorting.}
+
+\item{.fun}{Override the function used for sorting. Is automatically determined from the plot.}
+
+\item{.reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 }
 \value{
 A \code{tidyplot} object
@@ -37,7 +41,7 @@ study \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.4) \%>\%
   add_sem_errorbar() \%>\%
-  sort_x_axis_labels(score)
+  sort_x_axis_labels()
 
 # Before adjustments
 study \%>\%
@@ -52,7 +56,7 @@ study \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.4) \%>\%
   add_sem_errorbar() \%>\%
-  sort_y_axis_labels(score)
+  sort_y_axis_labels()
 
 # Before adjustment
 study \%>\%
@@ -67,6 +71,6 @@ study \%>\%
   add_data_points() \%>\%
   add_mean_bar(alpha = 0.4) \%>\%
   add_sem_errorbar() \%>\%
-  sort_color_labels(score)
+  sort_color_labels()
 
 }
