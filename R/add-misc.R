@@ -6,6 +6,7 @@
 #' @param whiskers_width Width of the whiskers. Defaults to `0.8`.
 #' @param outlier.shape Shape of the outliers. Defaults to `19`.
 #' @param outlier.size Size of the outliers. Defaults to `0.5`.
+#' @param outlier.alpha Opacity of the outliers. Defaults to `1`.
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_boxplot
 #'
@@ -32,9 +33,9 @@
 #'   add_boxplot(whiskers_width = 0.2)
 #'
 #' @export
-add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whiskers = TRUE, show_outliers = TRUE,
+add_boxplot <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, show_whiskers = TRUE, show_outliers = TRUE,
                         box_width = 0.6, whiskers_width = 0.8, outlier.size = 0.5, coef = 1.5,
-                        outlier.shape = 19, linewidth = 0.25, preserve = "total", ...) {
+                        outlier.shape = 19, outlier.alpha = 1, linewidth = 0.25, preserve = "total", ...) {
   plot <- check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
@@ -46,7 +47,8 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
     whiskers_width = box_width
   }
   plot +
-    ggplot2::geom_boxplot(staplewidth = whiskers_width, outliers = show_outliers, outlier.shape = outlier.shape, outlier.size = outlier.size,
+    ggplot2::geom_boxplot(alpha = alpha, staplewidth = whiskers_width, outliers = show_outliers,
+                          outlier.shape = outlier.shape, outlier.alpha = outlier.alpha, outlier.size = outlier.size,
                           width = box_width, position = position, linewidth = linewidth, coef = coef, ...)
 }
 
@@ -81,13 +83,15 @@ add_boxplot <- function(plot, dodge_width = NULL, saturation = 0.3, show_whisker
 #'   add_violin(linewidth = 1)
 #'
 #' @export
-add_violin <- function(plot, dodge_width = NULL, saturation = 0.3, draw_quantiles = NULL, trim = FALSE,
+add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, draw_quantiles = NULL, trim = FALSE,
                        linewidth = 0.25, scale = "width", ...) {
   plot <- check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width)
-  plot <- plot %>% adjust_colors(saturation = saturation)
-  plot + ggplot2::geom_violin(draw_quantiles = draw_quantiles, trim = trim, linewidth = linewidth,
+  if (saturation != 1) {
+    plot <- plot %>% adjust_colors(saturation = saturation)
+  }
+  plot + ggplot2::geom_violin(alpha = alpha, draw_quantiles = draw_quantiles, trim = trim, linewidth = linewidth,
                               scale = scale, position = position, ...)
 }
 
@@ -202,10 +206,9 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 }
 
 
-#' Add histogram or density
+#' Add histogram
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_histogram
-#' @inheritParams ggplot2::geom_density
 #'
 #' @examples
 #' energy %>%
@@ -213,33 +216,22 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #'   add_histogram()
 #'
 #' energy %>%
-#'   tidyplot(x = power) %>%
-#'    add_density_histogram() %>%
-#'    add_density_curve()
+#'   tidyplot(x = power, color = energy_type) %>%
+#'   add_histogram()
 #'
 #' @export
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
   plot <- check_tidyplot(plot)
-  plot %>%
-    remove_padding(force_continuous = TRUE) +
-    ggplot2::geom_histogram(binwidth = binwidth, bins = bins, ...)
-}
-#' @rdname add_histogram
-#' @export
-add_density_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
-  plot <- check_tidyplot(plot)
-  plot %>%
-    remove_padding(force_continuous = TRUE) +
-    ggplot2::geom_histogram(ggplot2::aes(y = ggplot2::after_stat(density)),
-                            binwidth = binwidth, bins = bins, ...)
-}
-#' @rdname add_histogram
-#' @export
-add_density_curve <- function(plot, bw = "nrd0", adjust = 1, kernel = "gaussian", n = 512, alpha = 0.4, color = "#D55E00",...) {
-  plot <- check_tidyplot(plot)
-  plot %>%
-    remove_padding(force_continuous = TRUE) +
-    ggplot2::geom_density(bw = bw, adjust = adjust, kernel = kernel, n = n, color = color, fill = color, alpha = alpha, ...)
+  plot <-
+    plot +
+    ggplot2::geom_histogram(color = NA, binwidth = binwidth, bins = bins, ...)
+  # remove padding between bar and axis
+  if (is_flipped(plot)) {
+    plot <- plot %>% adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+  } else {
+    plot <- plot %>% adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+  }
+  plot
 }
 
 

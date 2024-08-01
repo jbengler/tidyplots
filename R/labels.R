@@ -206,11 +206,11 @@ ff_sort_labels <- function(axis) {
 
       .fun <- .fun %||% auto_fun
 
-      if (get_scale_type(plot, "x") == "continuous")
-        var_b <- get_variable(plot, "x")
-      else if (get_scale_type(plot, "y") == "continuous")
+      if (is_continuous(plot, "y"))
         var_b <- get_variable(plot, "y")
-      else if (get_scale_type(plot, "colour") == "continuous")
+      else if (is_continuous(plot, "x"))
+        var_b <- get_variable(plot, "x")
+      else if (is_continuous(plot, "colour"))
         var_b <- get_variable(plot, "colour")
       else
         var_b <- get_variable(plot, axis)

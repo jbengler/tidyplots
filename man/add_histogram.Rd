@@ -2,24 +2,9 @@
 % Please edit documentation in R/add-misc.R
 \name{add_histogram}
 \alias{add_histogram}
-\alias{add_density_histogram}
-\alias{add_density_curve}
-\title{Add histogram or density}
+\title{Add histogram}
 \usage{
 add_histogram(plot, binwidth = NULL, bins = NULL, ...)
-
-add_density_histogram(plot, binwidth = NULL, bins = NULL, ...)
-
-add_density_curve(
-  plot,
-  bw = "nrd0",
-  adjust = 1,
-  kernel = "gaussian",
-  n = 512,
-  alpha = 0.4,
-  color = "#D55E00",
-  ...
-)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
@@ -40,32 +25,12 @@ bin width of a time variable is the number of seconds.}
 \item{bins}{Number of bins. Overridden by \code{binwidth}. Defaults to 30.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
-
-\item{bw}{The smoothing bandwidth to be used.
-If numeric, the standard deviation of the smoothing kernel.
-If character, a rule to choose the bandwidth, as listed in
-\code{\link[stats:bandwidth]{stats::bw.nrd()}}. Note that automatic calculation of the bandwidth does
-not take weights into account.}
-
-\item{adjust}{A multiplicate bandwidth adjustment. This makes it possible
-to adjust the bandwidth while still using the a bandwidth estimator.
-For example, \code{adjust = 1/2} means use half of the default bandwidth.}
-
-\item{kernel}{Kernel. See list of available kernels in \code{\link[=density]{density()}}.}
-
-\item{n}{number of equally spaced points at which the density is to be
-estimated, should be a power of two, see \code{\link[=density]{density()}} for
-details}
-
-\item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
-
-\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 }
 \value{
 A \code{tidyplot} object
 }
 \description{
-Add histogram or density
+Add histogram
 }
 \examples{
 energy \%>\%
@@ -73,8 +38,7 @@ energy \%>\%
   add_histogram()
 
 energy \%>\%
-  tidyplot(x = power) \%>\%
-   add_density_histogram() \%>\%
-   add_density_curve()
+  tidyplot(x = power, color = energy_type) \%>\%
+  add_histogram()
 
 }

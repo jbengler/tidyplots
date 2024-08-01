@@ -40,11 +40,9 @@ reference:
   - starts_with("add_mean")
   - starts_with("add_median")
   - starts_with("add_curve_fit")
-- subtitle: Distribution
+- subtitle: Distribution & uncertainty
 - contents:
   - starts_with("add_histogram")
-- subtitle: Dispersion & uncertainty
-- contents:
   - starts_with("add_boxplot")
   - starts_with("add_violin")
   - starts_with("add_sem")
@@ -53,7 +51,7 @@ reference:
   - starts_with("add_barstack")
   - starts_with("add_areastack")
   - starts_with("add_pie")
-- subtitle: Statistical test
+- subtitle: Statistical testing
 - contents:
   - starts_with("add_test")
 - subtitle: Annotation

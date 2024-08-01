@@ -7,7 +7,8 @@
 add_boxplot(
   plot,
   dodge_width = NULL,
-  saturation = 0.3,
+  alpha = 0.3,
+  saturation = 1,
   show_whiskers = TRUE,
   show_outliers = TRUE,
   box_width = 0.6,
@@ -15,6 +16,7 @@ add_boxplot(
   outlier.size = 0.5,
   coef = 1.5,
   outlier.shape = 19,
+  outlier.alpha = 1,
   linewidth = 0.25,
   preserve = "total",
   ...
@@ -24,6 +26,8 @@ add_boxplot(
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+
+\item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 
 \item{saturation}{A \code{number} between \code{0} and \code{1} for the color saturation of an object. A value of \code{0} is completely desaturated (white), \code{1} is the original color.}
 
@@ -40,6 +44,8 @@ add_boxplot(
 \item{coef}{Length of the whiskers as multiple of IQR. Defaults to 1.5.}
 
 \item{outlier.shape}{Shape of the outliers. Defaults to \code{19}.}
+
+\item{outlier.alpha}{Opacity of the outliers. Defaults to \code{1}.}
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 

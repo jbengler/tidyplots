@@ -323,15 +323,6 @@ energy %>%
   add_histogram()
 ```
 
-To represent the density of values along the x axis another approach is a `density_histogram` or `density_curve`, which also can be combined in one plot.
-
-```{r}
-energy %>% 
-  tidyplot(x = power) %>% 
-  add_density_histogram() %>% 
-  add_density_curve()
-```
-
 If you want to compare multiple distributions, `violin` or `boxplot` are two potential solutions.
 
 ```{r}

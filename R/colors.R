@@ -73,8 +73,9 @@ adjust_colors <- function(plot, new_colors = NULL,
     } else {
       out$tidyplot$named_colors <- NULL
       n_provided <- length(new_colors)
+      color_var <- get_variable(plot, "colour")
       n_requested <-
-        dplyr::pull(plot$data, get_variable(plot, "colour")) %>%
+        dplyr::pull(plot$data, color_var) %>%
         unique() %>%
         length
       n_ratio <- n_provided / n_requested
