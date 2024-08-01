@@ -437,23 +437,14 @@ for visualization is a <code>histogram</code>.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">power</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_histogram.html">add_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-32-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>To represent the density of values along the x axis another approach
-is a <code>density_histogram</code> or <code>density_curve</code>, which
-also can be combined in one plot.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">power</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_histogram.html">add_density_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_histogram.html">add_density_curve</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-33-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>If you want to compare multiple distributions, <code>violin</code> or
 <code>boxplot</code> are two potential solutions.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">distributions</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">name</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_violin.html">add_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-34-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-33-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="proportion">Proportion<a class="anchor" aria-label="anchor" href="#proportion"></a>
@@ -462,7 +453,7 @@ also can be combined in one plot.</p>
 that each individual category contributes to the total. To explore the
 visualization of proportional data in tidyplots, let’s introduce the
 <code>energy</code> dataset.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 242</span></span>
@@ -476,11 +467,11 @@ visualization of proportional data in tidyplots, let’s introduce the
 in gigawatt produced per <code>energy_source</code> in Germany between
 <code>year</code> 2002 and 2023. Let’s start with a <code>pie</code>
 plot.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_pie</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-36-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-35-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>The above plot represents the <code>count</code> of values across the
 different <code>energy_type</code> categories.</p>
 <p>However, we might be more interested, in the <code>sum</code>
@@ -488,11 +479,11 @@ contribution of each <code>energy_type</code> to the total
 <code>power</code> production. Therefore, we have to provide the
 variable <code>power</code> as a <code>y</code> argument to the
 <code><a href="../reference/tidyplots-package.html">tidyplots()</a></code> function.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-37-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-36-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Now we can appreciate the contribution of each energy type. Note that
 I also changed the <code>pie</code> for a <code>donut</code> plot, which
 is basically a pie chart with a white hole in the center.</p>
@@ -501,50 +492,50 @@ is that the human brain struggles to accurately interpret the
 proportions represented. For example, it’s challenging to determine
 whether fossil or renewable power has a larger share in the plot.</p>
 <p>Another graphical representation is a <code>barstack</code> plot.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-38-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-37-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Here it might be slightly easier to compare the energy types.
 However, to really pinpoint this, we probably need to go back to a
 classical bar plot.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy_type</span>, y <span class="op">=</span> <span class="va">power</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_value</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/reorder_x_axis_labels.html">reorder_x_axis_labels</a></span><span class="op">(</span><span class="st">"Renewable"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-38-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Now we can see that renewable power production had a slightly larger
 overall share than fossil power production in the period between 2002
 and 2023.</p>
 <p>However, if we want to visualize proportional data across time or
 another variable, <code>barstack</code> plots can still be
 informative.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-40-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Moreover, to see the relative instead of the absolute contribution,
 we can use the <code><a href="../reference/add_barstack_absolute.html">add_barstack_relative()</a></code> function.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-41-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-40-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>A similar plot can be achieved using an <code>areastack</code>.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-42-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-41-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In both plots, the increasing contribution of renewable energy to the
 total energy production over time becomes apparent.</p>
 <p>This can also be shown using donut plots. However, we need to
 downsample the dataset to 4 representative years.</p>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># downsample to 4 representative years</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -556,22 +547,22 @@ downsample the dataset to 4 representative years.</p>
 <span>                               <span class="st">"Renewable"</span> <span class="op">=</span> <span class="st">"#4FAE62"</span>,</span>
 <span>                               <span class="st">"Other"</span> <span class="op">=</span> <span class="st">"#C02D45"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span>  </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-43-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-42-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Now, let’s examine a related dataset that presents one week of energy
 data with higher time resolution.</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-44-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-43-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In this plot, one can appreciate the higher contribution of solar
 power during day time in comparison to night time.</p>
 <p>Also this plot can be shown as a relative areastack.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy_week</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-45-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-44-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>This illustrates nicely how wind energy compensates for the lack of
 solar power during the night. However, when wind is weak, as on
 September 10, fossil energy sources need to step in to fill the gap.</p>
@@ -583,24 +574,24 @@ September 10, fossil energy sources need to step in to fill the gap.</p>
 the functions <code><a href="../reference/add_test_pvalue.html">add_test_asterisks()</a></code> and
 <code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code>. While the first one includes asterisks
 for symbolizing significance.</p>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dose</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_asterisks</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-46-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-45-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p><code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> provides the computed <em>p</em>
 value.</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dose</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-47-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-46-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>As you might have noted, when using these functions, a caption is
 automatically included that provides details about the statistical
 testing performed. The default is a Student’s <em>t</em> test without
@@ -609,27 +600,40 @@ multiple comparison adjustment.</p>
 <code>p.adjust.method</code> arguments.</p>
 <p>For example, let’s perform a Wilcoxon signed-rank test with
 Benjamini–Hochberg adjustment.</p>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dose</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"wilcoxon"</span>, p.adjust.method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-48-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-47-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>It often makes sense to compare all experimental conditions to a
 control condition. For example, let’s say treatment “A” is our
 control.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>ref.group <span class="op">=</span> <span class="st">"A"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-49-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-48-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In some scenarios you have a mixture of significant and
 non-significant <em>p</em> values.</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># filter to one gene</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">external_gene_name</span> <span class="op">==</span> <span class="st">"Apol6"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="co"># start plotting</span></span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">condition</span>, y <span class="op">=</span> <span class="va">expression</span>, color <span class="op">=</span> <span class="va">sample_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-49-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p>Here you can choose to hide the non-significant <em>p</em> value
+using <code>hide.ns = TRUE</code>.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># filter to one gene</span></span>
@@ -639,10 +643,10 @@ non-significant <em>p</em> values.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-50-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Here you can choose to hide the non-significant <em>p</em> value
-using <code>hide.ns = TRUE</code>.</p>
+<p>Finally, if you want to hide the caption with statistical information
+you can do this by providing <code>hide_info = TRUE</code>.</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># filter to one gene</span></span>
@@ -652,21 +656,8 @@ using <code>hide.ns = TRUE</code>.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-51-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Finally, if you want to hide the caption with statistical information
-you can do this by providing <code>hide_info = TRUE</code>.</p>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="co"># filter to one gene</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">external_gene_name</span> <span class="op">==</span> <span class="st">"Apol6"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="co"># start plotting</span></span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">condition</span>, y <span class="op">=</span> <span class="va">expression</span>, color <span class="op">=</span> <span class="va">sample_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span>, hide_info <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-52-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-51-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>There are many more things you can do with statistical comparisons.
 Just check out the documentation of <code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> and
 the underlying function <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/geom_pwc.html" class="external-link">ggpubr::geom_pwc()</a></code>.</p>
@@ -677,7 +668,7 @@ the underlying function <code><a href="https://rpkgs.datanovia.com/ggpubr/refere
 <p>Sometimes you wish to add annotations to provide the reader with
 important additional information. For example, tidyplots let’s you add a
 <code>title</code> and a <code>caption</code>.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -685,54 +676,54 @@ important additional information. For example, tidyplots let’s you add a
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_title.html">add_title</a></span><span class="op">(</span><span class="st">"Interesting study"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_title.html">add_caption</a></span><span class="op">(</span><span class="st">"Here is some more detail how the study was performed"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-53-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-52-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In other cases you might want to highlight specific data points or
 reference values in the plot. Let’s take the <code>animals</code>
 dataset and plot <code>speed</code> versus <code>weight</code>.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-54-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-53-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Here it might be interesting to have closer at the extreme values.
 First, let’s highlight the heaviest and the fastest animal.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">weight</span>, <span class="fl">1</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, shape <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">speed</span>, <span class="fl">1</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, shape <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-55-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-54-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Now it would interesting to know the names of these animals. We can
 plot the names of all animals.</p>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-56-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-55-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that I provided the <code>label</code> argument to the
 <code><a href="../reference/add_data_labels.html">add_data_labels()</a></code> function to indicate the variable in the
 dataset that should be used for the text labels.</p>
 <p>Another thing to note is that there is quite some overlap of labels
 in the lower left of the plot. Let’s try to separate the data labels
 using the <code><a href="../reference/add_data_labels.html">add_data_labels_repel()</a></code> function.</p>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-57-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-56-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>While the general idea might have been good, there are still too many
 labels to be plotted. So let’s restrict the labels to the 3 heaviest and
 the 3 fastest animals.</p>
-<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">weight</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">speed</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-58-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-57-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>There is lot tweaking that can be done with repelling data labels.
 For more details have a look at the documentation of
 <code><a href="../reference/add_data_labels.html">add_data_labels_repel()</a></code>, the underlying function
@@ -740,14 +731,14 @@ For more details have a look at the documentation of
 examples</a>.</p>
 <p>As one last thing, let’s add some reference lines, to highlight
 specific values on the x and y axis.</p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_reference_lines.html">add_reference_lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">4000</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">200</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">weight</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">speed</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-59-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-58-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="whats-more">What’s more?<a class="anchor" aria-label="anchor" href="#whats-more"></a>

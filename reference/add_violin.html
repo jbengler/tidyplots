@@ -48,7 +48,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_violin</span><span class="op">(</span></span>
 <span>  <span class="va">plot</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  saturation <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  saturation <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  draw_quantiles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  trim <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  linewidth <span class="op">=</span> <span class="fl">0.25</span>,</span>
@@ -67,6 +68,10 @@
 
 <dt id="arg-dodge-width">dodge_width<a class="anchor" aria-label="anchor" href="#arg-dodge-width"></a></dt>
 <dd><p>For adjusting the distance between grouped objects. Defaults to <code>0.8</code>.</p></dd>
+
+
+<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
+<dd><p>A <code>number</code> between <code>0</code> and <code>1</code> for the opacity of an object. A value of <code>0</code> is completely transparent, <code>1</code> is completely opaque.</p></dd>
 
 
 <dt id="arg-saturation">saturation<a class="anchor" aria-label="anchor" href="#arg-saturation"></a></dt>

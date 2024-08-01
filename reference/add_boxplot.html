@@ -48,7 +48,8 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_boxplot</span><span class="op">(</span></span>
 <span>  <span class="va">plot</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  saturation <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.3</span>,</span>
+<span>  saturation <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  show_whiskers <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  show_outliers <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  box_width <span class="op">=</span> <span class="fl">0.6</span>,</span>
@@ -56,6 +57,7 @@
 <span>  outlier.size <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  coef <span class="op">=</span> <span class="fl">1.5</span>,</span>
 <span>  outlier.shape <span class="op">=</span> <span class="fl">19</span>,</span>
+<span>  outlier.alpha <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  linewidth <span class="op">=</span> <span class="fl">0.25</span>,</span>
 <span>  preserve <span class="op">=</span> <span class="st">"total"</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -72,6 +74,10 @@
 
 <dt id="arg-dodge-width">dodge_width<a class="anchor" aria-label="anchor" href="#arg-dodge-width"></a></dt>
 <dd><p>For adjusting the distance between grouped objects. Defaults to <code>0.8</code>.</p></dd>
+
+
+<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
+<dd><p>A <code>number</code> between <code>0</code> and <code>1</code> for the opacity of an object. A value of <code>0</code> is completely transparent, <code>1</code> is completely opaque.</p></dd>
 
 
 <dt id="arg-saturation">saturation<a class="anchor" aria-label="anchor" href="#arg-saturation"></a></dt>
@@ -104,6 +110,10 @@
 
 <dt id="arg-outlier-shape">outlier.shape<a class="anchor" aria-label="anchor" href="#arg-outlier-shape"></a></dt>
 <dd><p>Shape of the outliers. Defaults to <code>19</code>.</p></dd>
+
+
+<dt id="arg-outlier-alpha">outlier.alpha<a class="anchor" aria-label="anchor" href="#arg-outlier-alpha"></a></dt>
+<dd><p>Opacity of the outliers. Defaults to <code>1</code>.</p></dd>
 
 
 <dt id="arg-linewidth">linewidth<a class="anchor" aria-label="anchor" href="#arg-linewidth"></a></dt>
