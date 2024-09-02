@@ -1,10 +1,10 @@
 Package: tidyplots
-Title: Tidy Plots Using the Pipe
+Title: Tidy Plots for Scientific Papers
 Version: 0.0.2.9000
 Authors@R: 
     person("Jan Broder", "Engler", , "broder.engler@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-3169-2076"))
-Description: The goal of `tidyplots` is to streamline the creation of publication-ready plots for scientific papers, by making it easy to gradually add and refine plot elements. It allows precise control over composition, style, and absolute sizes, while its utilization of the pipe `%>%` simplifies the construction of advanced plotting pipelines.
+Description: The goal of 'tidyplots' is to streamline the creation of publication-ready plots for scientific papers. It allows to gradually add, remove and adjust plot components using a consistent and intuitive syntax.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

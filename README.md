@@ -10,9 +10,8 @@
 
 The goal of `tidyplots` is to streamline the creation of
 publication-ready plots for scientific papers. It allows to gradually
-add and refine plot elements, and provides precise control over
-composition, style, and absolute sizes. By consistent use of the pipe
-`%>%` it simplifies the construction of advanced plotting pipelines.
+add, remove and adjust plot components using a consistent and intuitive
+syntax.
 
 ## Installation
 

@@ -4,9 +4,9 @@
 \name{tidyplots-package}
 \alias{tidyplots}
 \alias{tidyplots-package}
-\title{tidyplots: Tidy Plots Using the Pipe}
+\title{tidyplots: Tidy Plots for Scientific Papers}
 \description{
-The goal of `tidyplots` is to streamline the creation of publication-ready plots for scientific papers, by making it easy to gradually add and refine plot elements. It allows precise control over composition, style, and absolute sizes, while its utilization of the pipe `%>%` simplifies the construction of advanced plotting pipelines.
+The goal of 'tidyplots' is to streamline the creation of publication-ready plots for scientific papers. It allows to gradually add, remove and adjust plot components using a consistent and intuitive syntax.
 }
 \seealso{
 Useful links:
