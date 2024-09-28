@@ -30,7 +30,7 @@ The goal of `tidyplots` is to streamline the creation of publication-ready plots
 ## Installation
 
 ``` r
-# install.packages("devtools")
+install.packages("devtools")
 devtools::install_github("jbengler/tidyplots")
 ```
 
