@@ -1,12 +1,12 @@
 pandoc: 3.1.11
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   articles/Advanced-plotting: Advanced-plotting.html
   articles/Color-schemes: Color-schemes.html
   tidyplots: tidyplots.html
   articles/Visualizing-data: Visualizing-data.html
-last_built: 2024-09-02T10:59Z
+last_built: 2024-09-28T21:13Z
 urls:
   reference: https://jbengler.github.io/tidyplots/reference
   article: https://jbengler.github.io/tidyplots/articles
