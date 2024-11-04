@@ -41,7 +41,7 @@ a position, or the width of a \code{"single"} element?}
 \item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 \code{add_line()} and \code{add_area()} connect individual data points, which is rarely needed.

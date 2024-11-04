@@ -24,7 +24,7 @@ theme_minimal_y(plot, fontsize = 7)
 \item{fontsize}{Font size in points. Defaults to \code{7}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Themes

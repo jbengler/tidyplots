@@ -53,7 +53,7 @@ See the examples for further information on use.}
 \item{unit}{Unit of length. Defaults to \code{"mm"}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Split plot into multiple subplots

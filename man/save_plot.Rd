@@ -33,7 +33,7 @@ from the plot theme.}
 as specified by \code{device}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 This function takes a plot or list of plots and writes them to a (multipage) file.

@@ -58,7 +58,7 @@ a position, or the width of a \code{"single"} element?}
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 \itemize{

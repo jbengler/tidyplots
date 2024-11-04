@@ -16,7 +16,7 @@ adjust_size(plot, width = 50, height = 50, unit = "mm")
 \item{unit}{Unit of the plot area width and height. Defaults to \code{mm}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Adjust plot area size

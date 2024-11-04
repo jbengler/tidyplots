@@ -12,7 +12,7 @@ remove_padding(plot, force_continuous = FALSE)
 \item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Remove plot area padding

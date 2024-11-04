@@ -420,6 +420,8 @@ add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
 
 #' Add ggplot2 code to a tidyplot
 #'
+#' @return A `tidyplot` object.
+#'
 #' @examples
 #' study %>%
 #'   tidyplot(x = treatment, y = score, color = treatment) %>%

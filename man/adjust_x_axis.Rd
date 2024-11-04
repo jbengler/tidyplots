@@ -88,7 +88,7 @@ You can create your own transformation with \code{\link[scales:new_transform]{sc
 \item{...}{Arguments passed on to ggplot2 \code{scale} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Adjust axes

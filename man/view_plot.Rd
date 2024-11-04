@@ -21,7 +21,7 @@ view_plot(plot, data = all_rows(), title = ggplot2::waiver(), ...)
 \item{...}{Arguments passed on to \code{print()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 View plot on screen

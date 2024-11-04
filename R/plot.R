@@ -1,5 +1,6 @@
 #' Create a new tidyplot
 #'
+#' @param data A tidy `data.frame` to use for plotting.
 #' @param ... Mappings for the `x` axis, `y` axis and `color`, see examples. Additional argument are passed to `ggplot2::aes()`.
 #' @inherit common_arguments
 #'

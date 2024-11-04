@@ -13,7 +13,7 @@ remove_caption(plot)
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Remove plot title or caption

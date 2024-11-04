@@ -16,7 +16,7 @@ reverse_color_labels(plot)
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Reverse axis or color labels

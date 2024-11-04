@@ -31,7 +31,7 @@ the layer if \code{rasterize} is \code{TRUE}. The default is \code{300} dpi.}
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add heatmap

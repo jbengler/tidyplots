@@ -22,7 +22,7 @@ sort_color_labels(plot, ..., .fun = NULL, .reverse = FALSE)
 \item{.reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Sort axis or color labels

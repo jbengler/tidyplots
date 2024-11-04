@@ -18,7 +18,7 @@ rename_color_labels(plot, new_names)
 \item{new_names}{Named character vector in the format c("old1" = "new1", "old2" = "new2").}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Rename axis or color labels

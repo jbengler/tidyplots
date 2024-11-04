@@ -46,7 +46,7 @@ a position, or the width of a \code{"single"} element?}
 \item{...}{Arguments passed on to \code{ggplot2::geom_smooth()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add curve fit

@@ -33,7 +33,7 @@ adjust_padding(
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Adjust plot area padding

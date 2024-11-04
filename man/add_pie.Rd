@@ -19,7 +19,7 @@ add_donut(plot, width = 1, reverse = FALSE, ...)
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add pie or donut chart

@@ -23,7 +23,7 @@ adjust_caption(plot, caption = ggplot2::waiver())
 \item{caption}{Plot caption.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Adjust titles and caption

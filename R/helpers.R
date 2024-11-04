@@ -111,6 +111,7 @@ flip_plot <- function(plot, ...) {
 }
 
 #' Subset data rows
+#' @return A `function` to achieve the desired data subsetting.
 #' @export
 all_rows <- function(){
   function(x) { x }
@@ -130,7 +131,7 @@ filter_rows <- function(..., .by = NULL){
 #'   size. For example, `n = -2` with a group of 5 rows will select 5 - 2 = 3
 #'   rows.
 #' @param na_rm Should missing values in `order_by` be removed from the result?
-#'   If `FALSE`, `NA` values are sorted to the end (like in [arrange()]), so
+#'   If `FALSE`, `NA` values are sorted to the end (like in [dplyr::arrange()]), so
 #'   they will only be included if there are insufficient non-missing values to
 #'   reach `n`.
 #' @inheritParams dplyr::slice_max
@@ -209,10 +210,11 @@ sample_rows <- function(n, by = NULL){
 
 
 #' Format numbers or p values
-#' @param x Number to format.
+#' @param x A `number` to format.
 #' @param ... Arguments passed on to `scales::number()`.
 #' @inheritParams scales::number
 #' @inheritDotParams scales::number scale style_positive style_negative
+#' @return Formatted number as `character` string.
 #'
 #' @examples
 #' format_number(232342.3443)

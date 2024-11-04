@@ -40,7 +40,7 @@ observations. If "width", all violins have the same maximum width.}
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add violin plot

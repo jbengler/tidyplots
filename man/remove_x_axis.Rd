@@ -22,7 +22,7 @@ remove_x_axis_title(plot)
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Remove x axis or parts of it

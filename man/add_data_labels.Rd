@@ -67,7 +67,7 @@ data points it overlaps, and exclude the text label if it has too many overlaps.
 Defaults to 10.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add data labels

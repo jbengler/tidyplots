@@ -14,7 +14,7 @@ new_color_scheme(x, name = "Untitled color scheme", reverse = FALSE)
 \item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 For more information about the use of color schemes in tidyplots, check out this article:

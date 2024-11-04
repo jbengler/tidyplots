@@ -53,7 +53,7 @@
 #' @param height Height of the plot area. Defaults to `50`.
 #' @param unit Unit of the plot area width and height. Defaults to `mm`.
 #' @param force_continuous Whether to force the axis to be continuous. Defaults to `FALSE`.
-#' @return A `tidyplot` object
+#' @return A `tidyplot` object.
 #' @keywords internal
 #' @name common_arguments
 NULL

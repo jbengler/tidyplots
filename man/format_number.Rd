@@ -10,7 +10,7 @@ format_number(x, accuracy = 0.1, big.mark = ",", scale_cut = NULL, ...)
 format_p_value(x, accuracy = 1e-04)
 }
 \arguments{
-\item{x}{Number to format.}
+\item{x}{A \code{number} to format.}
 
 \item{accuracy}{A number to round to. Use (e.g.) \code{0.01} to show 2 decimal
 places of precision. If \code{NULL}, the default, uses a heuristic that should
@@ -61,6 +61,9 @@ the horizontal bar of \code{+}.
 \item \code{"parens"}, wrapped in parentheses, e.g. \code{(1)}.
 }}
   }}
+}
+\value{
+Formatted number as \code{character} string.
 }
 \description{
 Format numbers or p values

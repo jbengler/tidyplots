@@ -19,7 +19,7 @@ add_barstack_relative(plot, width = 0.8, reverse = FALSE, ...)
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add bar stack

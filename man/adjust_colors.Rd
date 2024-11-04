@@ -37,7 +37,7 @@ notation.
 \item{...}{Arguments passed on to the ggplot2 \code{scale} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Adjust colors

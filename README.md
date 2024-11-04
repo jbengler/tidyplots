@@ -15,8 +15,17 @@ syntax.
 
 ## Installation
 
+You can install the released version of tidyplots from
+[CRAN](https://cran.r-project.org/) with:
+
 ``` r
-install.packages("devtools")
+install.packages("tidyplots")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
 devtools::install_github("jbengler/tidyplots")
 ```
 
@@ -25,7 +34,7 @@ devtools::install_github("jbengler/tidyplots")
 Here are some examples. Also have a look at the [getting started
 guide](https://jbengler.github.io/tidyplots/articles/tidyplots.html) and
 the [full
-documentation](https://jbengler.github.io/tidyplots/reference).
+documentation](https://jbengler.github.io/tidyplots/reference/).
 
 ``` r
 library(tidyplots)
@@ -139,8 +148,7 @@ study %>%
 
 ## Documentation
 
-- [Package
-  index](https://jbengler.github.io/tidyplots/reference/index.html)  
+- [Package index](https://jbengler.github.io/tidyplots/reference/)  
   Overview of all tidyplots functions
 
 - [Get

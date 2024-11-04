@@ -99,7 +99,7 @@ Applied to rescaled data.}
 \item{group}{Variable in the dataset to be used for grouping.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add sum

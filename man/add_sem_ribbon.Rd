@@ -27,7 +27,7 @@ add_ci95_ribbon(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...)
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 \itemize{

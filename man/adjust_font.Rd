@@ -18,7 +18,7 @@ adjust_font(plot, fontsize = 7, family = NULL, face = NULL, color = "black")
 \item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Adjust font

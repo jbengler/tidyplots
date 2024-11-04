@@ -44,7 +44,7 @@
 #' Animals data
 #' @format A data frame.
 #' @source
-#' [ChatGPT-3.5](https://chatgpt.com), *Caution: The accuracy of the data has not been verified.*
+#' ChatGPT-3.5, *Caution: The accuracy of the data has not been verified.*
 #' @examples
 #' dplyr::glimpse(animals)
 "animals"
@@ -68,7 +68,7 @@
 #' Dinosaurs data
 #' @format A data frame.
 #' @source
-#' [ChatGPT-3.5](https://chatgpt.com), *Caution: The accuracy of the data has not been verified.*
+#' ChatGPT-3.5, *Caution: The accuracy of the data has not been verified.*
 #' @examples
 #' dplyr::glimpse(dinosaurs)
 "dinosaurs"
@@ -76,7 +76,7 @@
 #' EU countries data
 #' @format A data frame.
 #' @source
-#' [ChatGPT-3.5](https://chatgpt.com), *Caution: The accuracy of the data has not been verified.*
+#' ChatGPT-3.5, *Caution: The accuracy of the data has not been verified.*
 #' @examples
 #' dplyr::glimpse(eu_countries)
 "eu_countries"

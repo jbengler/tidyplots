@@ -8,7 +8,7 @@
 A data frame.
 }
 \source{
-\href{https://chatgpt.com}{ChatGPT-3.5}, \emph{Caution: The accuracy of the data has not been verified.}
+ChatGPT-3.5, \emph{Caution: The accuracy of the data has not been verified.}
 }
 \usage{
 eu_countries

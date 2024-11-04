@@ -12,7 +12,7 @@ flip_plot(plot, ...)
 \item{...}{Arguments passed on to \code{ggplot2::coord_flip()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#superseded}{\figure{lifecycle-superseded.svg}{options: alt='[Superseded]'}}}{\strong{[Superseded]}}

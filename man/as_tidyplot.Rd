@@ -16,7 +16,7 @@ as_tidyplot(gg, width = 50, height = 50, dodge_width = 0.8)
 \item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Convert ggplot to tidyplot

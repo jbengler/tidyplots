@@ -127,7 +127,7 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
 \item{...}{Arguments passed on to \code{ggpubr::geom_pwc()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add statistical test

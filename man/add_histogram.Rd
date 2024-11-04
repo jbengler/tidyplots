@@ -27,7 +27,7 @@ bin width of a time variable is the number of seconds.}
 \item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add histogram

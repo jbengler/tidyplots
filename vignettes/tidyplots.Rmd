@@ -33,7 +33,7 @@ You never generated code-based scientific plots? Great to have you here! To get 
 
 We will be using the programming language R and the software RStudio Desktop, which serves as an editor for your code but also comes with a bunch of additional features.
 
-1. Download and install [R](https://ftp.gwdg.de/pub/misc/cran/) for your operating system. On Windows, choose the _base_ version.
+1. Download and install [R](https://cran.r-project.org) for your operating system. On Windows, choose the _base_ version.
 2. Download and install [RStudio Desktop](https://posit.co/download/rstudio-desktop/)
 
 For more information about R programming have a look at the free online book [Hands-On Programming with R](https://rstudio-education.github.io/hopr/) by Garrett Grolemund, which has a chapter with detailed [installation instructions](https://rstudio-education.github.io/hopr/starting.html). For a quick video tour of the RStudio Desktop user interface check out [RStudio for the Total Beginner](https://www.youtube.com/watch?v=FIrsOBy5k58).

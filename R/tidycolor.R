@@ -41,17 +41,54 @@ new_color_scheme <- function(x, name = "Untitled color scheme", reverse = FALSE)
 #'
 #' @details
 #' Color schemes can be conveniently previewed by using the print method of the
-#' `tidycolor` class. This will send a html preview to the RStudio Viewer pane
-#' that looks like this:
+#' `tidycolor` class. This will send a html preview to the RStudio Viewer pane.
 #'
-#' ```{r results="asis", echo=FALSE, message=FALSE}
+#' ```{r eval=FALSE}
+#' colors_discrete_friendly
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_friendly, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_seaside
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_seaside, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_apple
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_apple, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_friendly_long
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_friendly_long, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_okabeito
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_okabeito, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_ibm
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_ibm, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_metro
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_metro, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_candy
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_discrete_candy, return_html = TRUE)
 #' ```
 #'
@@ -91,18 +128,60 @@ colors_discrete_candy <- new_color_scheme(c("#9b5de5", "#f15bb5", "#fee440", "#0
 #'
 #' @details
 #' Color schemes can be conveniently previewed by using the print method of the
-#' `tidycolor` class. This will send a html preview to the RStudio Viewer pane
-#' that looks like this:
+#' `tidycolor` class. This will send a html preview to the RStudio Viewer pane.
 #'
-#' ```{r results="asis", echo=FALSE, message=FALSE}
+#' ```{r eval=FALSE}
+#' colors_continuous_viridis
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_viridis, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_magma
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_magma, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_inferno
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_inferno, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_plasma
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_plasma, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_cividis
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_cividis, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_rocket
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_rocket, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_mako
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_mako, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_turbo
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_turbo, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_continuous_bluepinkyellow
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_continuous_bluepinkyellow, return_html = TRUE)
 #' ```
 #'
@@ -144,15 +223,42 @@ colors_continuous_bluepinkyellow <- new_color_scheme(c(
 #'
 #' @details
 #' Color schemes can be conveniently previewed by using the print method of the
-#' `tidycolor` class. This will send a html preview to the RStudio Viewer pane
-#' that looks like this:
+#' `tidycolor` class. This will send a html preview to the RStudio Viewer pane.
 #'
-#' ```{r results="asis", echo=FALSE, message=FALSE}
+#' ```{r eval=FALSE}
+#' colors_diverging_blue2red
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_diverging_blue2red, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_diverging_blue2brown
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_diverging_blue2brown, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_diverging_BuRd
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_diverging_BuRd, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_diverging_BuYlRd
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_diverging_BuYlRd, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_diverging_spectral
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_diverging_spectral, return_html = TRUE)
+#' ```
+#' ```{r eval=FALSE}
+#' colors_diverging_icefire
+#' ```
+#' ```{r echo=FALSE}
 #' print(colors_diverging_icefire, return_html = TRUE)
 #' ```
 #'
@@ -254,15 +360,7 @@ generate_html <- function(x, max_colors) {
   color_bar <- color_vector <- paste0("<span style='background-color:",x,"; display: inline-block; width:30px; height:20px;'></span>", collapse = "")
   color_vector <- paste0("<span style='background-color:",x,"; display: inline-block; padding: 2px 10px 2px 10px;'>\"",x,"\"</span>", collapse = ",")
 
-  paste0("
-  <div style='margin-bottom: 80px;'>
-  <h4 style=\"font-family: 'Courier New', monospace;\">", name, "</h4>
-  <small style=\"font-family: 'Courier New', monospace;\">A tidyplots color scheme with ",size," colors",downsample_text,".</small>
-  <p>
-  ",color_bar,"
-  <p><p style=\"font-family: 'Courier New', monospace;\">
-  c(<br>", color_vector ,")
-  </div>")
+  paste0("<div style=\"margin-top: 60px; margin-bottom: 60px;\"><h4 style=\"font-family: 'Courier New', monospace;\">", name, "</h4><small style=\"font-family: 'Courier New', monospace;\">A tidyplots color scheme with ",size," colors",downsample_text,".</small><br>",color_bar,"<br><span style=\"font-family: 'Courier New', monospace;\">c(<br>", color_vector ,")</span></div>")
 }
 
 print_tidycolor <- function(x, max_colors, return_html = FALSE) {

@@ -67,7 +67,7 @@ values range between \code{1} and \code{3}.}
 \item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Common arguments

@@ -18,7 +18,7 @@ reorder_color_labels(plot, ...)
 \item{...}{Arguments passed on to \code{forcats::fct_relevel()}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Reorder axis or color labels

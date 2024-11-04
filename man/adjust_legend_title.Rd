@@ -18,7 +18,7 @@ adjust_legend_position(plot, position = "right")
 \code{c("right", "left", "bottom", "top", "none")}. Defaults to \code{"right"}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Adjust legend

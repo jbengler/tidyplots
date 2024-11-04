@@ -17,7 +17,7 @@ add_caption(plot, caption = ggplot2::waiver())
 \item{caption}{Caption of the plot.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add plot title or caption

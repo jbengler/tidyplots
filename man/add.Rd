@@ -6,6 +6,9 @@
 \usage{
 add()
 }
+\value{
+A \code{tidyplot} object.
+}
 \description{
 Add ggplot2 code to a tidyplot
 }

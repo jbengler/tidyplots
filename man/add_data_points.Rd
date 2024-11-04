@@ -102,7 +102,7 @@ wide horizontally, default is \code{"none"}. See details below.}
 \item{corral.width}{\code{numeric}. Width of the corral, default is \code{0.9}.}
 }
 \value{
-A \code{tidyplot} object
+A \code{tidyplot} object.
 }
 \description{
 Add data points
