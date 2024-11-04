@@ -102,11 +102,15 @@ and return the first <code>n</code> rows.</p></dd>
 
 <dt id="arg-na-rm">na_rm<a class="anchor" aria-label="anchor" href="#arg-na-rm"></a></dt>
 <dd><p>Should missing values in <code>order_by</code> be removed from the result?
-If <code>FALSE</code>, <code>NA</code> values are sorted to the end (like in <code>arrange()</code>), so
+If <code>FALSE</code>, <code>NA</code> values are sorted to the end (like in <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">dplyr::arrange()</a></code>), so
 they will only be included if there are insufficient non-missing values to
 reach <code>n</code>.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A <code>function</code> to achieve the desired data subsetting.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
