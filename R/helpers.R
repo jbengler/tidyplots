@@ -6,6 +6,7 @@ is_waiver <- function(x) inherits(x, "waiver")
 #' The pipe
 #' @param lhs A value.
 #' @param rhs A function call.
+#' @return The result of the calling the function `rhs` with the parameter `lhs`.
 #' @keywords internal
 #' @export
 `%>%` <- dplyr::`%>%`

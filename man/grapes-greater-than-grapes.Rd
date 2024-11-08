@@ -11,6 +11,9 @@ lhs \%>\% rhs
 
 \item{rhs}{A function call.}
 }
+\value{
+The result of the calling the function \code{rhs} with the parameter \code{lhs}.
+}
 \description{
 The pipe
 }

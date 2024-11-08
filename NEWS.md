@@ -1,5 +1,6 @@
-# tidyplots 0.1.0
+# tidyplots 0.1.2
 
+* Initial CRAN release
 * New S3 class `tidycolor` for color schemes. The print method of `tidycolor` sends a html preview of the color scheme to the RStudio viewer panel.
 * New `new_color_scheme()` to create custom color schemes.
 * New build-in color schemes using the prefix `colors_discrete_`, `colors_continuous_` and `colors_diverging_`. 
