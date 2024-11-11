@@ -1,0 +1,9 @@
+bibentry(
+  bibtype   = "Article",
+  title     = "Tidyplots empowers life scientists with easy code-based data visualization",
+  author    = "Jan Broder Engler",
+  publisher = "Cold Spring Harbor Laboratory",
+  journal   = "bioRxiv",
+  year      = 2024,
+  doi       = "10.1101/2024.11.08.621836"
+)
