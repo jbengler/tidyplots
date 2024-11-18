@@ -264,7 +264,7 @@ A classical representation of dispersion is an `errorbar`.
 
 ```{r}
 time_course %>% 
-  tidyplot(x = day, y = score, color = treatment) %>% 
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
   add_mean_line() %>% 
   add_mean_dot() %>% 
   add_sem_errorbar(width = 2)
@@ -274,7 +274,7 @@ Or the use of a semitransparent `ribbon`.
 
 ```{r}
 time_course %>% 
-  tidyplot(x = day, y = score, color = treatment) %>% 
+  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
   add_mean_line() %>% 
   add_mean_dot() %>% 
   add_sem_ribbon()
@@ -375,7 +375,7 @@ Here it might be slightly easier to compare the energy types. However, to really
 
 ```{r}
 energy %>% 
-  tidyplot(x = energy_type, y = power) %>% 
+  tidyplot(x = energy_type, y = power, color = energy_type) %>% 
   add_sum_bar() %>% 
   add_sum_value() %>% 
   reorder_x_axis_labels("Renewable")
@@ -383,7 +383,7 @@ energy %>%
 
 Now we can see that renewable power production had a slightly larger overall share than fossil power production in the period between 2002 and 2023.
 
-However, if we want to visualize proportional data across time or another variable, `barstack` plots can still be informative.
+If we want to visualize proportional data across time or another variable, `barstack` plots are a great way to.
 
 ```{r}
 energy %>% 

@@ -44,8 +44,7 @@ After opening RStudio, you will find your R console in the lower left corner. Al
 
 ```{r eval=FALSE}
 install.packages("tidyverse")
-install.packages("devtools")
-devtools::install_github("jbengler/tidyplots")
+install.packages("tidyplots")
 ```
 
 # Data preparation
