@@ -18,7 +18,7 @@ add_heatmap(
 
 \item{scale}{Whether to compute row z scores for \code{"row"} or \code{"column"}. Defaults to \code{"none"}.}
 
-\item{rotate_labels}{Degree to rotate the x axis labels. Defaults to \code{90}.}
+\item{rotate_labels}{Degree to rotate the x-axis labels. Defaults to \code{90}.}
 
 \item{rasterize}{If \code{FALSE} (the default) the layer will be constructed of
 vector shapes. If \code{TRUE} the layer will be rasterized to a pixel image. This can

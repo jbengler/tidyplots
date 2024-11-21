@@ -63,7 +63,7 @@ energy \%>\%
   tidyplot(x = year, y = power, color = energy_type) \%>\%
   add_areastack_relative()
 
-# Flip x and y axis
+# Flip x and y-axis
 energy \%>\%
   tidyplot(x = power, y = year, color = energy_type) \%>\%
   add_areastack_absolute(orientation = "y")

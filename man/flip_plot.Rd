@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{flip_plot}
 \alias{flip_plot}
-\title{Flip x and y axis}
+\title{Flip x and y-axis}
 \usage{
 flip_plot(plot, ...)
 }

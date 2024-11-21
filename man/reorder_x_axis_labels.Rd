@@ -31,7 +31,7 @@ study \%>\%
   add_mean_bar(alpha = 0.4) \%>\%
   add_sem_errorbar()
 
-# Reorder x axis labels
+# Reorder x-axis labels
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
@@ -46,7 +46,7 @@ study \%>\%
   add_mean_bar(alpha = 0.4) \%>\%
   add_sem_errorbar()
 
-# Reorder y axis labels
+# Reorder y-axis labels
 study \%>\%
   tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%

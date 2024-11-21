@@ -279,8 +279,8 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 
 
 #' Add reference lines
-#' @param x Numeric values where the reference lines should meet the x axis. For example, `x = 4` or `x = c(2,3,4)`.
-#' @param y Numeric values where the reference lines should meet the y axis. For example, `y = 4` or `y = c(2,3,4)`.
+#' @param x Numeric values where the reference lines should meet the x-axis. For example, `x = 4` or `x = c(2,3,4)`.
+#' @param y Numeric values where the reference lines should meet the y-axis. For example, `y = 4` or `y = c(2,3,4)`.
 #' @param linetype Either an integer (0-6) or a name (0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash).
 #' @inherit common_arguments
 #' @inheritParams ggplot2::geom_vline

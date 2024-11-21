@@ -32,7 +32,7 @@ remove_legend_title <- function(plot) {
   plot + ggplot2::theme(legend.title = ggplot2::element_blank())
 }
 
-#' Remove x axis or parts of it
+#' Remove x-axis or parts of it
 #' @inherit common_arguments
 #'
 #' @examples
@@ -106,7 +106,7 @@ remove_x_axis_title <- function(plot) {
 }
 
 
-#' Remove y axis or parts of it
+#' Remove y-axis or parts of it
 #' @inherit common_arguments
 #'
 #' @examples

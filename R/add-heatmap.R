@@ -1,6 +1,6 @@
 #' Add heatmap
 #' @param scale Whether to compute row z scores for `"row"` or `"column"`. Defaults to `"none"`.
-#' @param rotate_labels Degree to rotate the x axis labels. Defaults to `90`.
+#' @param rotate_labels Degree to rotate the x-axis labels. Defaults to `90`.
 #' @inherit common_arguments
 #'
 #' @details

@@ -97,7 +97,7 @@ spendings %>%
   add_count_bar()
 ```
 
-One thing to note here is that the x axis labels are overlapping and are thus unreadable. There are at least two possible solutions for this. One is to swap the x and y axis.
+One thing to note here is that the x-axis labels are overlapping and are thus unreadable. There are at least two possible solutions for this. One is to swap the x and y-axis.
 
 ```{r}
 spendings %>% 
@@ -105,7 +105,7 @@ spendings %>%
   add_count_bar()
 ```
 
-The other one is to rotate the x axis labels.
+The other one is to rotate the x-axis labels.
 
 ```{r}
 spendings %>% 
@@ -129,7 +129,7 @@ Note that we had to introduce the argument `y = amount` in the `tidyplot()` func
 
 I also added `color = category` in the `tidyplot()` function to have the variable `category` encoded by different colors.
 
-Since the labels for the variable `category` are now duplicated in the plot, one could argue that it would be justified to remove the duplicated information on the x axis.
+Since the labels for the variable `category` are now duplicated in the plot, one could argue that it would be justified to remove the duplicated information on the x-axis.
 
 ```{r}
 spendings %>% 
@@ -141,7 +141,7 @@ spendings %>%
   remove_x_axis_ticks()
 ```
 
-Note that besides the x axis labels, I also removed the x axis ticks and x axis title to achieve a cleaner look.
+Note that besides the x-axis labels, I also removed the x-axis ticks and x-axis title to achieve a cleaner look.
 
 Of course you are free to play around with different graphical representations of the sum values. Here is an example of a lollipop plot constructed from a thin `bar` and a `dot`.
 
@@ -176,7 +176,7 @@ gene_expression %>%
   add_heatmap()
 ```
 
-One thing to note here is that the y axis labels are overlapping. So let's increase the height of the plot area from 50 to 100 mm.
+One thing to note here is that the y-axis labels are overlapping. So let's increase the height of the plot area from 50 to 100 mm.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 
@@ -194,9 +194,9 @@ gene_expression %>%
   adjust_size(height = 100)
 ```
 
-Now it much easier to appreciate the dynamics of individual genes across the samples on the x axis.
+Now it much easier to appreciate the dynamics of individual genes across the samples on the x-axis.
 
-However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, there is a variable called `direction` in the dataset, which classifies genes as being either "up" or "down" regulated. Let's use this variable to sort our y axis.
+However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, there is a variable called `direction` in the dataset, which classifies genes as being either "up" or "down" regulated. Let's use this variable to sort our y-axis.
 
 ```{r, fig.asp=0.9}
 gene_expression %>% 
@@ -603,7 +603,7 @@ animals %>%
 
 There is lot tweaking that can be done with repelling data labels. For more details have a look at the documentation of `add_data_labels_repel()`, the underlying function `ggrepel::geom_text_repel()` and [ggrepel examples](https://ggrepel.slowkow.com/articles/examples).
 
-As one last thing, let's add some reference lines, to highlight specific values on the x and y axis.
+As one last thing, let's add some reference lines, to highlight specific values on the x and y-axis.
 
 ```{r}
 animals %>% 

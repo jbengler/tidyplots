@@ -83,7 +83,7 @@ study %>%
 
 And here it is, your first tidyplot! Admittedly, it still looks a little bit empty. We will take care of this in a second. But first let's have a closer look at the code above.
 
-In the first line we start with the `study` dataset. The `%>%` is called a _pipe_ and makes sure, that the output of the first line is handed over as input to the next line. In the second line, we generate the tidyplot and specify which variables we want to use for the x and y axis using the `x` and `y` arguments of the `tidyplot()` function.
+In the first line we start with the `study` dataset. The `%>%` is called a _pipe_ and makes sure, that the output of the first line is handed over as input to the next line. In the second line, we generate the tidyplot and specify which variables we want to use for the x and y-axis using the `x` and `y` arguments of the `tidyplot()` function.
 
 _Tip: The keyboard shortcut for the pipe is `Cmd` + `Shift` + `M` on the Mac and `Ctrl` + `Shift` + `M` on Windows._
 
@@ -140,7 +140,7 @@ Although there are many more `add_*()` functions available, I will stop here and
 
 ## Remove
 
-Besides adding plot elements, you might want to remove certain parts of the plot. This can be achieved with the `remove_*()` family of functions. For example, you might want to remove the color legend title, or in some rare cases even the entire y axis.
+Besides adding plot elements, you might want to remove certain parts of the plot. This can be achieved with the `remove_*()` family of functions. For example, you might want to remove the color legend title, or in some rare cases even the entire y-axis.
 
 ```{r}
 study %>% 
@@ -168,9 +168,9 @@ study %>%
   add_sem_errorbar()
 ```
 
-When preparing figures for a paper, you might want ensure, that all plots have a consistent size. The default in tidyplots is a width of 50 mm and a height of 50 mm. Please note that these values refer to size of the _plot area_, which is the area enclosed by the x and y axis. Therefore labels, titles, and legends are not counting towards the _plot area size_.
+When preparing figures for a paper, you might want ensure, that all plots have a consistent size. The default in tidyplots is a width of 50 mm and a height of 50 mm. Please note that these values refer to size of the _plot area_, which is the area enclosed by the x and y-axis. Therefore labels, titles, and legends are not counting towards the _plot area size_.
 
-This is perfect to achieve a consistent look, which is most easily done by selecting a consistent `height` across plots, while the `width` can vary depending on the number of categories in the x axis.
+This is perfect to achieve a consistent look, which is most easily done by selecting a consistent `height` across plots, while the `width` can vary depending on the number of categories in the x-axis.
 
 ```{r}
 study %>% 
@@ -224,7 +224,7 @@ study %>%
 
 A special group of adjust functions deals with the _data labels_ in your plot. These function are special because they need to modify the underlying data of the plot. Moreover, they do not start with `adjust_` but with `rename_`, `reorder_`, `sort_`, and `reverse_`.
 
-For example, to rename the data labels for the `treatment` variable on the x axis, you can do this.
+For example, to rename the data labels for the `treatment` variable on the x-axis, you can do this.
 
 ```{r}
 study %>% 

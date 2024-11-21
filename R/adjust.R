@@ -112,7 +112,7 @@ ff_adjust_axis <- function(axis) {
   }
 
   # Catch the rest
-  # cli::cli_alert_warning("adjust_{axis}_axis: {.pkg x axis} was not changed.")
+  # cli::cli_alert_warning("adjust_{axis}_axis: {.pkg x-axis} was not changed.")
   return(plot)
   }
 }
@@ -140,8 +140,8 @@ ff_adjust_axis <- function(axis) {
 #' animals %>%
 #'   tidyplot(x = weight, y = size, color = family) %>%
 #'   add_data_points() %>%
-#'   adjust_x_axis(title = "My new x axis title") %>%
-#'   adjust_y_axis(title = "My new y axis title")
+#'   adjust_x_axis(title = "My new x-axis title") %>%
+#'   adjust_y_axis(title = "My new y-axis title")
 #'
 #' # New titles with plotmath expressions
 #' animals %>%

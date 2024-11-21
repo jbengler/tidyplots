@@ -43,7 +43,7 @@ ff_rename_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Rename x axis labels
+#' # Rename x-axis labels
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
 #'   add_data_points() %>%
@@ -62,7 +62,7 @@ ff_rename_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Rename y axis labels
+#' # Rename y-axis labels
 #' study %>%
 #'   tidyplot(x = score, y = treatment) %>%
 #'   add_data_points() %>%
@@ -128,7 +128,7 @@ ff_reorder_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Reorder x axis labels
+#' # Reorder x-axis labels
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
 #'   add_data_points() %>%
@@ -143,7 +143,7 @@ ff_reorder_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Reorder y axis labels
+#' # Reorder y-axis labels
 #' study %>%
 #'   tidyplot(x = score, y = treatment) %>%
 #'   add_data_points() %>%
@@ -235,7 +235,7 @@ ff_sort_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Sort x axis labels by score
+#' # Sort x-axis labels by score
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
 #'   add_data_points() %>%
@@ -250,7 +250,7 @@ ff_sort_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Sort y axis labels by score
+#' # Sort y-axis labels by score
 #' study %>%
 #'   tidyplot(x = score, y = treatment) %>%
 #'   add_data_points() %>%
@@ -309,7 +309,7 @@ ff_reverse_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Reverse x axis labels
+#' # Reverse x-axis labels
 #' study %>%
 #'   tidyplot(x = treatment, y = score) %>%
 #'   add_data_points() %>%
@@ -324,7 +324,7 @@ ff_reverse_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) %>%
 #'   add_sem_errorbar()
 #'
-#' # Reverse y axis labels
+#' # Reverse y-axis labels
 #' study %>%
 #'   tidyplot(x = score, y = treatment) %>%
 #'   add_data_points() %>%

@@ -109,8 +109,8 @@ animals \%>\%
 animals \%>\%
   tidyplot(x = weight, y = size, color = family) \%>\%
   add_data_points() \%>\%
-  adjust_x_axis(title = "My new x axis title") \%>\%
-  adjust_y_axis(title = "My new y axis title")
+  adjust_x_axis(title = "My new x-axis title") \%>\%
+  adjust_y_axis(title = "My new y-axis title")
 
 # New titles with plotmath expressions
 animals \%>\%

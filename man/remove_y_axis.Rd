@@ -6,7 +6,7 @@
 \alias{remove_y_axis_ticks}
 \alias{remove_y_axis_labels}
 \alias{remove_y_axis_title}
-\title{Remove y axis or parts of it}
+\title{Remove y-axis or parts of it}
 \usage{
 remove_y_axis(plot)
 
@@ -25,7 +25,7 @@ remove_y_axis_title(plot)
 A \code{tidyplot} object.
 }
 \description{
-Remove y axis or parts of it
+Remove y-axis or parts of it
 }
 \examples{
 # Before removing

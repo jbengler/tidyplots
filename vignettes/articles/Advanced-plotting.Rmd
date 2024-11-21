@@ -166,7 +166,7 @@ study %>%
   add_data_points()
 ```
 
-As a final step, you might want to rearrange the order of the x axis labels to have grouped data points side by side.
+As a final step, you might want to rearrange the order of the x-axis labels to have grouped data points side by side.
 
 ```{r}
 study %>%
@@ -198,7 +198,7 @@ animals %>%
   add_areastack_absolute()
 ```
 
-What happened? Because all insects have six legs, the function could not find another point on the x axis to draw a connecting line and plot the area underneath. As a result, insects completely disappeared. The same happened to fish and birds, which always have zero and two legs, respectively.
+What happened? Because all insects have six legs, the function could not find another point on the x-axis to draw a connecting line and plot the area underneath. As a result, insects completely disappeared. The same happened to fish and birds, which always have zero and two legs, respectively.
 
 What the function needs is the information that insects with less than six legs are missing in the dataset because they do not exist. Thus it is save to replace the information `count = NA` with the information `count = 0`.
 

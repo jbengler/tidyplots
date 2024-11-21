@@ -16,9 +16,9 @@ add_reference_lines(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{x}{Numeric values where the reference lines should meet the x axis. For example, \code{x = 4} or \code{x = c(2,3,4)}.}
+\item{x}{Numeric values where the reference lines should meet the x-axis. For example, \code{x = 4} or \code{x = c(2,3,4)}.}
 
-\item{y}{Numeric values where the reference lines should meet the y axis. For example, \code{y = 4} or \code{y = c(2,3,4)}.}
+\item{y}{Numeric values where the reference lines should meet the y-axis. For example, \code{y = 4} or \code{y = c(2,3,4)}.}
 
 \item{linetype}{Either an integer (0-6) or a name (0 = blank, 1 = solid, 2 = dashed, 3 = dotted, 4 = dotdash, 5 = longdash, 6 = twodash).}
 

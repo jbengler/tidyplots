@@ -71,7 +71,7 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
   plot
 }
 
-#' Flip x and y axis
+#' Flip x and y-axis
 #' @param ... Arguments passed on to `ggplot2::coord_flip()`.
 #' @inherit common_arguments
 #' @description

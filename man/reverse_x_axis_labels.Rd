@@ -29,7 +29,7 @@ study \%>\%
   add_mean_bar(alpha = 0.4) \%>\%
   add_sem_errorbar()
 
-# Reverse x axis labels
+# Reverse x-axis labels
 study \%>\%
   tidyplot(x = treatment, y = score) \%>\%
   add_data_points() \%>\%
@@ -44,7 +44,7 @@ study \%>\%
   add_mean_bar(alpha = 0.4) \%>\%
   add_sem_errorbar()
 
-# Reverse y axis labels
+# Reverse y-axis labels
 study \%>\%
   tidyplot(x = score, y = treatment) \%>\%
   add_data_points() \%>\%
