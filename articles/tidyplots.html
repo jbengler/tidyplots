@@ -188,7 +188,7 @@ have a closer look at the code above.</p>
 <code>%&gt;%</code> is called a <em>pipe</em> and makes sure, that the
 output of the first line is handed over as input to the next line. In
 the second line, we generate the tidyplot and specify which variables we
-want to use for the x and y axis using the <code>x</code> and
+want to use for the x and y-axis using the <code>x</code> and
 <code>y</code> arguments of the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function.</p>
 <p><em>Tip: The keyboard shortcut for the pipe is <code>Cmd</code> +
 <code>Shift</code> + <code>M</code> on the Mac and <code>Ctrl</code> +
@@ -272,7 +272,7 @@ data</a> for further inspiration.</p>
 <p>Besides adding plot elements, you might want to remove certain parts
 of the plot. This can be achieved with the <code>remove_*()</code>
 family of functions. For example, you might want to remove the color
-legend title, or in some rare cases even the entire y axis.</p>
+legend title, or in some rare cases even the entire y-axis.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -303,13 +303,13 @@ functions.</p>
 <p>When preparing figures for a paper, you might want ensure, that all
 plots have a consistent size. The default in tidyplots is a width of 50
 mm and a height of 50 mm. Please note that these values refer to size of
-the <em>plot area</em>, which is the area enclosed by the x and y axis.
+the <em>plot area</em>, which is the area enclosed by the x and y-axis.
 Therefore labels, titles, and legends are not counting towards the
 <em>plot area size</em>.</p>
 <p>This is perfect to achieve a consistent look, which is most easily
 done by selecting a consistent <code>height</code> across plots, while
 the <code>width</code> can vary depending on the number of categories in
-the x axis.</p>
+the x-axis.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -366,7 +366,7 @@ with <code>adjust_</code> but with <code>rename_</code>,
 <code>reorder_</code>, <code>sort_</code>, and
 <code>reverse_</code>.</p>
 <p>For example, to rename the data labels for the <code>treatment</code>
-variable on the x axis, you can do this.</p>
+variable on the x-axis, you can do this.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>

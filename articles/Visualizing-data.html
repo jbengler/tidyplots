@@ -180,15 +180,15 @@ spendings.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_count_bar.html">add_count_bar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-10-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>One thing to note here is that the x axis labels are overlapping and
+<p>One thing to note here is that the x-axis labels are overlapping and
 are thus unreadable. There are at least two possible solutions for this.
-One is to swap the x and y axis.</p>
+One is to swap the x and y-axis.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spendings</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_count_bar.html">add_count_bar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-11-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>The other one is to rotate the x axis labels.</p>
+<p>The other one is to rotate the x-axis labels.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spendings</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -213,7 +213,7 @@ should be summed up.</p>
 <code>category</code> encoded by different colors.</p>
 <p>Since the labels for the variable <code>category</code> are now
 duplicated in the plot, one could argue that it would be justified to
-remove the duplicated information on the x axis.</p>
+remove the duplicated information on the x-axis.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spendings</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span>, y <span class="op">=</span> <span class="va">amount</span>, color <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -223,8 +223,8 @@ remove the duplicated information on the x axis.</p>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_title</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_ticks</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-14-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Note that besides the x axis labels, I also removed the x axis ticks
-and x axis title to achieve a cleaner look.</p>
+<p>Note that besides the x-axis labels, I also removed the x-axis ticks
+and x-axis title to achieve a cleaner look.</p>
 <p>Of course you are free to play around with different graphical
 representations of the sum values. Here is an example of a lollipop plot
 constructed from a thin <code>bar</code> and a <code>dot</code>.</p>
@@ -272,7 +272,7 @@ variable.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-17-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>One thing to note here is that the y axis labels are overlapping. So
+<p>One thing to note here is that the y-axis labels are overlapping. So
 let’s increase the height of the plot area from 50 to 100 mm.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -294,13 +294,13 @@ the <code><a href="../reference/add_heatmap.html">add_heatmap()</a></code> funct
 <span>  <span class="fu"><a href="../reference/adjust_size.html">adjust_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-19-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Now it much easier to appreciate the dynamics of individual genes
-across the samples on the x axis.</p>
+across the samples on the x-axis.</p>
 <p>However, the rows appear to be mixed. Some having rather high
 expression in the “Eip” samples while others have high value in the
 “Hip” samples. Conveniently, there is a variable called
 <code>direction</code> in the dataset, which classifies genes as being
-either “up” or “down” regulated. Let’s use this variable to sort our y
-axis.</p>
+either “up” or “down” regulated. Let’s use this variable to sort our
+y-axis.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -729,7 +729,7 @@ For more details have a look at the documentation of
 <code><a href="https://ggrepel.slowkow.com/reference/geom_text_repel.html" class="external-link">ggrepel::geom_text_repel()</a></code> and <a href="https://ggrepel.slowkow.com/articles/examples" class="external-link">ggrepel
 examples</a>.</p>
 <p>As one last thing, let’s add some reference lines, to highlight
-specific values on the x and y axis.</p>
+specific values on the x and y-axis.</p>
 <div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
