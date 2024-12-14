@@ -116,7 +116,7 @@ ff_errorbar <- function(.fun.data) {
 #'   add_sem_errorbar(linewidth = 1)
 #'
 #' @export
-add_sem_errorbar <- ff_errorbar(.fun.data = ggplot2::mean_se)
+add_sem_errorbar <- ff_errorbar(.fun.data = mean_se)
 #' @rdname add_sem_errorbar
 #' @export
 add_range_errorbar <- ff_errorbar(.fun.data = min_max)
@@ -181,16 +181,16 @@ ff_ribbon <- function(.fun.data) {
 #'   add_sem_ribbon(alpha = 0.7)
 #'
 #' @export
-add_sem_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_se)
+add_sem_ribbon <- ff_ribbon(.fun.data = mean_se)
 #' @rdname add_sem_ribbon
 #' @export
 add_range_ribbon <- ff_ribbon(.fun.data = min_max)
 #' @rdname add_sem_ribbon
 #' @export
-add_sd_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_sdl)
+add_sd_ribbon <- ff_ribbon(.fun.data = mean_sdl)
 #' @rdname add_sem_ribbon
 #' @export
-add_ci95_ribbon <- ff_ribbon(.fun.data = ggplot2::mean_cl_boot)
+add_ci95_ribbon <- ff_ribbon(.fun.data = mean_cl_boot)
 
 
 ## Bar function factory

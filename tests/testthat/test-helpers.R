@@ -40,7 +40,7 @@ test_that("as_tidyplot works", {
     study %>%
     ggplot2::ggplot(ggplot2::aes(x = treatment, y = score, color = treatment, fill = treatment)) +
     ggplot2::stat_summary(fun = mean, geom = "bar", color = NA, width = 0.6, alpha = 0.4) +
-    ggplot2::stat_summary(fun.data = ggplot2::mean_se, geom = "errorbar", linewidth = 0.25, width = 0.4) +
+    ggplot2::stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = 0.25, width = 0.4) +
     ggplot2::geom_point(position = ggplot2::position_jitterdodge(jitter.width = 0.2, seed = 42))
 
   tp <- as_tidyplot(gg)

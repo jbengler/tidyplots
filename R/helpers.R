@@ -244,6 +244,8 @@ format_p_value <- function(x, accuracy = 0.0001) {
 
 # internal helpers
 
+mean_se <- ggplot2::mean_se
+
 min_max <- function(x) {
   x <- stats::na.omit(x)
   data.frame(ymin = min(x), ymax = max(x))
