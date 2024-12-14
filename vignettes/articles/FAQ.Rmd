@@ -1,0 +1,122 @@
+---
+title: "FAQ"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  results = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 5,
+  fig.height = 2.5,
+  dpi = 300
+)
+
+```
+
+::: {.lead}
+In this article, we will explore common surprises and potential challenges when working with tidyplots. These are presented as a curated collection of frequently asked questions (FAQs). If you do not find the answer to your question here, be sure to check the tidyplots [GitHub issues](https://github.com/jbengler/tidyplots/issues). Only if your query remains unresolved, consider opening a new issue.
+:::
+
+```{r echo=FALSE}
+library(tidyplots)
+```
+
+# General
+
+## Why is my tidyplot in the RStudio Viewer pane so small?
+
+Unlike ggplot2, tidyplots uses absolute sizes in millimeter (mm) for plot dimensions. The default plot size is 50 mm by 50 mm. This can be quite small depending on the machine you are working on.
+
+There are several ways to address this.
+
+1. In RStudio you can increase the zoom. `View` > `Zoom In`. Or alternatively `Ctrl` + `+`. However, this will also increase the font size in RStudio.
+
+2. You can increase the size of the tidyplot by providing an alternative `width` and `height` in mm either to the `tidyplot()` or `adjust_size()` function.
+
+```{r eval=FALSE}
+# using the tidyplot() function
+study %>%
+  tidyplot(x = treatment, y = score, color = treatment, width = 80, height = 80) %>%
+  add_mean_dash() %>%
+  add_sem_errorbar() %>%
+  add_data_points_beeswarm()
+
+# using the adjust_size() function
+study %>%
+  tidyplot(x = treatment, y = score, color = treatment) %>%
+  add_mean_dash() %>%
+  add_sem_errorbar() %>%
+  add_data_points_beeswarm() %>% 
+  adjust_size(80, 80)
+```
+
+3. You can let the tidyplot fill all available space (ggplot2 default). However with this solution the proportions of font size and plot size area will become arbitrary.
+
+```{r eval=FALSE}
+# using the tidyplot() function
+study %>%
+  tidyplot(x = treatment, y = score, color = treatment, width = NA, height = NA) %>%
+  add_mean_dash() %>%
+  add_sem_errorbar() %>%
+  add_data_points_beeswarm()
+
+# using the adjust_size() function
+study %>%
+  tidyplot(x = treatment, y = score, color = treatment) %>%
+  add_mean_dash() %>%
+  add_sem_errorbar() %>%
+  add_data_points_beeswarm() %>% 
+  adjust_size(NA, NA)
+```
+
+## Can I add ggplot2 code to my tidyplot?
+
+Yes, you can. Have a look at the `add()` function.
+
+```{r eval=FALSE}
+study %>%
+  tidyplot(x = treatment, y = score, color = treatment) %>%
+  add(ggplot2::geom_point())
+```
+
+# Errors
+
+## Error in ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels, : unused argument (transform = transform)
+
+Tidyplots requires ggplot2 version 3.5.0 or newer. Updating ggplot2 will fix this error.
+
+# What's more?
+
+To dive deeper into code-based plotting, here a couple of resources.
+
+## tidyplots documentation
+
+- [Package index](https://jbengler.github.io/tidyplots/reference/index.html)  
+Overview of all tidyplots functions
+
+- [Get started](https://jbengler.github.io/tidyplots/articles/tidyplots.html)  
+Getting started guide
+
+- [Visualizing data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
+Article with examples for common data visualizations
+
+- [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
+Article about advanced plotting techniques and workflows
+
+- [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
+Article about the use of color schemes
+
+## Other resources
+
+- [Hands-On Programming with R](https://rstudio-education.github.io/hopr/)   
+Free online book by Garrett Grolemund
+
+- [R for Data Science](https://r4ds.hadley.nz)  
+Free online book by Hadley Wickham
+
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)  
+Free online book by Claus O. Wilke
