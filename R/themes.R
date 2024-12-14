@@ -67,7 +67,9 @@ theme_minimal_xy <- function(plot, fontsize = 7) {
       panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.x = ggplot2::element_blank(),
       panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.minor.y = ggplot2::element_blank()
+      panel.grid.minor.y = ggplot2::element_blank(),
+      axis.ticks.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
+      axis.ticks.y = ggplot2::element_line(colour = "grey", linewidth = 0.15)
     )
 }
 #' @rdname theme_tidyplot
@@ -83,7 +85,9 @@ theme_minimal_x <- function(plot, fontsize = 7) {
       panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.minor.x = ggplot2::element_blank(),
       panel.grid.major.y = ggplot2::element_blank(),
-      panel.grid.minor.y = ggplot2::element_blank()
+      panel.grid.minor.y = ggplot2::element_blank(),
+      axis.ticks.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
+      axis.ticks.y = ggplot2::element_line(colour = "grey", linewidth = 0.15)
     )
 }
 #' @rdname theme_tidyplot
@@ -99,7 +103,9 @@ theme_minimal_y <- function(plot, fontsize = 7) {
       panel.grid.major.x = ggplot2::element_blank(),
       panel.grid.minor.x = ggplot2::element_blank(),
       panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.minor.y = ggplot2::element_blank()
+      panel.grid.minor.y = ggplot2::element_blank(),
+      axis.ticks.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
+      axis.ticks.y = ggplot2::element_line(colour = "grey", linewidth = 0.15)
     )
 }
 
