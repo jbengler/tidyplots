@@ -82,12 +82,12 @@ reference:
   - starts_with("sort")
   - starts_with("reverse")
 - title: Themes
-  desc: Finetune the appearance of the plot with themes and color schemes.
-- subtitle: Themes
+  desc: Finetune the look of the plot.
 - contents:
   - starts_with("theme")
   - starts_with("adjust_theme")
-- subtitle: Color schemes
+- title: Color schemes
+  desc: Choose from a wide range of color schemes.
 - contents:
   - starts_with("colors_discrete")
   - starts_with("colors_continuous")
