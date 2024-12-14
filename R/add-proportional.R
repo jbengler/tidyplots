@@ -10,12 +10,12 @@ ff_pie <- function(.type = "pie") {
     if (!is_missing(plot, "x")) cli::cli_abort("{.fun add_pie} and {.fun add_donut} accept {.arg color} and {.arg y}, but not {.arg x}.")
 
     if (is_missing(plot, "y")) {
-      plot <- plot + ggplot2::geom_bar(ggplot2::aes(x = NA), position = ggplot2::position_fill(reverse = reverse),
+      plot <- plot + ggplot2::geom_bar(ggplot2::aes(x = NA), position = ggplot2::position_stack(reverse = reverse),
                                        width = width, color = NA, ...) +
         ggplot2::ggtitle("count")
     } else {
       plot <- plot + ggplot2::stat_summary(ggplot2::aes(x = NA), geom = "bar", fun = sum,
-                                           position = ggplot2::position_fill(reverse = reverse),
+                                           position = ggplot2::position_stack(reverse = reverse),
                                            width = width, color = NA, ...) +
         ggplot2::ggtitle(get_variable(plot, "y"))
     }
