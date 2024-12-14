@@ -20,7 +20,9 @@ save_plot(
 
 \item{filename}{File name to create on disk.}
 
-\item{width, height}{Dimensions of the saved plot. Defaults to \code{NA}.}
+\item{width, height}{Dimensions of the graphic device to save the plot.
+Defaults to \code{NA}. In case of \code{NA}, the dimensions are inferred from the
+incoming \code{plot} object (see Details).}
 
 \item{units}{Units of length. Defaults to \code{"mm"}.}
 
@@ -43,7 +45,7 @@ This function takes a plot or list of plots and writes them to a (multipage) fil
 Output file dimensions are determined according the the following precedence.
 \enumerate{
 \item The \code{width} and \code{height} arguments.
-\item Dimensions inferred from an incoming \code{plot} object with absolute dimensions.
+\item Dimensions inferred from the incoming \code{plot} object with absolute dimensions.
 \item System default device dimensions.
 }
 }
