@@ -229,6 +229,29 @@ adjust_size <- function(plot, width = 50, height = 50, unit = "mm") {
   plot + patchwork::plot_layout(widths = width, heights = height)
 }
 
+#' Adjust theme details
+#'
+#' This function is a wrapper around `ggplot2::theme()`. To use the required theme
+#' helper functions `ggplot2::element_blank()`, `ggplot2::element_rect()`,
+#' `ggplot2::element_line()`, and `ggplot2::element_text()` you need to either load
+#' the ggplot2 package via `library(ggplot2)` or use the `ggplot2::` prefix as shown above.
+#'
+#' @inherit common_arguments
+#' @inheritParams ggplot2::theme
+#'
+#' @examples
+#' study %>%
+#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#'   add_data_points_beeswarm() %>%
+#'   add_mean_bar(alpha = 0.4) %>%
+#'   adjust_theme_details(plot.background = ggplot2::element_rect(fill = "#FFEBFF"))
+#'
+#' @export
+adjust_theme_details <- function(plot, ...) {
+  plot +
+    ggplot2::theme(...)
+}
+
 
 #' Adjust font
 #' @inherit common_arguments
@@ -282,6 +305,7 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
       legend.key.size = ggplot2::unit(4, "mm")
     )
 }
+
 
 
 #' Adjust legend

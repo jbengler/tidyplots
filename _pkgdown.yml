@@ -86,6 +86,7 @@ reference:
 - subtitle: Themes
 - contents:
   - starts_with("theme")
+  - starts_with("adjust_theme")
 - subtitle: Color schemes
 - contents:
   - starts_with("colors_discrete")
