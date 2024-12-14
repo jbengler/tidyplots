@@ -251,7 +251,7 @@ min_max <- function(x) {
   data.frame(ymin = min(x), ymax = max(x))
 }
 
-mean_sdl <- function(x) {
+mean_sd <- function(x) {
   dplyr::rename(data.frame(as.list(Hmisc::smean.sdl(x, mult = 1))),
                 y = Mean, ymin = Lower, ymax = Upper)
 }

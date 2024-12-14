@@ -122,7 +122,7 @@ add_sem_errorbar <- ff_errorbar(.fun.data = mean_se)
 add_range_errorbar <- ff_errorbar(.fun.data = min_max)
 #' @rdname add_sem_errorbar
 #' @export
-add_sd_errorbar <- ff_errorbar(.fun.data = mean_sdl)
+add_sd_errorbar <- ff_errorbar(.fun.data = mean_sd)
 #' @rdname add_sem_errorbar
 #' @export
 add_ci95_errorbar <- ff_errorbar(.fun.data = mean_cl_boot)
@@ -187,7 +187,7 @@ add_sem_ribbon <- ff_ribbon(.fun.data = mean_se)
 add_range_ribbon <- ff_ribbon(.fun.data = min_max)
 #' @rdname add_sem_ribbon
 #' @export
-add_sd_ribbon <- ff_ribbon(.fun.data = mean_sdl)
+add_sd_ribbon <- ff_ribbon(.fun.data = mean_sd)
 #' @rdname add_sem_ribbon
 #' @export
 add_ci95_ribbon <- ff_ribbon(.fun.data = mean_cl_boot)
