@@ -7,18 +7,60 @@
 \alias{adjust_caption}
 \title{Adjust titles and caption}
 \usage{
-adjust_title(plot, title = ggplot2::waiver())
+adjust_title(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = "black",
+  ...
+)
 
-adjust_x_axis_title(plot, title = ggplot2::waiver())
+adjust_x_axis_title(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = "black",
+  ...
+)
 
-adjust_y_axis_title(plot, title = ggplot2::waiver())
+adjust_y_axis_title(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = "black",
+  ...
+)
 
-adjust_caption(plot, caption = ggplot2::waiver())
+adjust_caption(
+  plot,
+  caption = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = "black",
+  ...
+)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{title}{Plot or axes title.}
+
+\item{fontsize}{Font size in points. Defaults to \code{7}.}
+
+\item{family}{Font family}
+
+\item{face}{Font face ("plain", "italic", "bold", "bold.italic")}
+
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
+
+\item{...}{Arguments passed on to \code{ggplot2::element_text()}.}
 
 \item{caption}{Plot caption.}
 }

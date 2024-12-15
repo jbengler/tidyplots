@@ -126,3 +126,32 @@ test_that("adjust plot area size work", {
     adjust_size(width = NA, height = NA) %>%
     vdiffr::expect_doppelganger("plot area size NA", .)
 })
+
+test_that("adjust title font works", {
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    add_title("hoppla") %>%
+    adjust_title(face = "bold", family = "courier", fontsize = 20, angle = 15) %>%
+    vdiffr::expect_doppelganger("plot title font", .)
+
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    adjust_x_axis_title(title = "bla", face = "bold", family = "courier", fontsize = 20) %>%
+    vdiffr::expect_doppelganger("x axis title font", .)
+
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    adjust_y_axis_title(title = "bla", face = "bold", family = "courier", fontsize = 20) %>%
+    vdiffr::expect_doppelganger("y axis title font", .)
+
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    adjust_caption(caption = "bla", face = "bold", family = "courier", fontsize = 20) %>%
+    vdiffr::expect_doppelganger("caption font", .)
+
+  study %>%
+    tidyplot(x = dose, y = score, color = group) %>%
+    add_mean_bar() %>%
+    adjust_legend_title(face = "bold", family = "courier", fontsize = 20, angle = -15) %>%
+    vdiffr::expect_doppelganger("legend title font", .)
+})

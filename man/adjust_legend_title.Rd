@@ -5,7 +5,15 @@
 \alias{adjust_legend_position}
 \title{Adjust legend}
 \usage{
-adjust_legend_title(plot, title = ggplot2::waiver())
+adjust_legend_title(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = "black",
+  ...
+)
 
 adjust_legend_position(plot, position = "right")
 }
@@ -13,6 +21,16 @@ adjust_legend_position(plot, position = "right")
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
 \item{title}{Legend title.}
+
+\item{fontsize}{Font size in points. Defaults to \code{7}.}
+
+\item{family}{Font family}
+
+\item{face}{Font face ("plain", "italic", "bold", "bold.italic")}
+
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
+
+\item{...}{Arguments passed on to \code{ggplot2::element_text()}.}
 
 \item{position}{The position of the legend. Can be one of
 \code{c("right", "left", "bottom", "top", "none")}. Defaults to \code{"right"}.}
