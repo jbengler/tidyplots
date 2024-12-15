@@ -260,7 +260,7 @@ labels to have grouped data points side by side.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/add_line.html">add_line</a></span><span class="op">(</span>group <span class="op">=</span> <span class="va">participant</span>, color <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/sort_x_axis_labels.html">sort_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/reorder_x_axis_labels.html">reorder_x_axis_labels</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"C"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-13-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
@@ -431,8 +431,8 @@ adapts the padding to improve the look of the plot. For example, in
 <div class="section level2">
 <h2 id="dodging">Dodging<a class="anchor" aria-label="anchor" href="#dodging"></a>
 </h2>
-<p>Dodging refers to the distance between grouped objects. The default
-in tidyplots is 0.8 and looks like this.</p>
+<p>Dodging refers to the distance between grouped objects. In plots with
+at least one discrete axis the default is 0.8 and looks like this.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -459,26 +459,16 @@ overlapping positions.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-29-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>This does not make too much sense for bars. But it makes a lot of
-sense for <code>lines</code> and <code>areas</code>, which otherwise are
-not aligned. Here is an example with <code>dodge_width = 0</code>.</p>
+<p>In plots with two continuous axes the default
+<code>dodge_width</code> is zero. However, you can always override the
+default using the <code>dodge_width</code> argument of the
+<code><a href="../reference/tidyplot.html">tidyplot()</a></code> function.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">time_course</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span>, dodge_width <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dot</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_reference_lines.html">add_reference_lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-30-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>And here with the default <code>dodge_width = 0.8</code>. I added a
-reference line at day 10 to make it easier to appreciate the
-difference.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">time_course</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dot</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_reference_lines.html">add_reference_lines</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-31-1.png" width="1500" style="display: block; margin: auto;"></p>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-30-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="coloring">Coloring<a class="anchor" aria-label="anchor" href="#coloring"></a>
@@ -487,13 +477,13 @@ difference.</p>
 with color. The variable that should be encoded by colors is passed via
 the <code>color</code> argument to the <code><a href="../reference/tidyplot.html">tidyplot()</a></code>
 function.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-32-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-31-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In ggplot2, the plotting package that underlies tidyplots, colors are
 little more complicated. ggplot2 distinguishes between the fill color of
 an object <code>fill</code> and the stroke color of an object
@@ -509,54 +499,54 @@ function.</p>
 <code>fill</code> and stroke <code>color</code> of specific objects.</p>
 <p>For example, you want to plot a boxplot without the <code>fill</code>
 color.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_boxplot.html">add_boxplot</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-33-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-32-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Or with a black stroke <code>color</code>.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_boxplot.html">add_boxplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-34-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-33-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Or you want to have black text labels.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_value</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-35-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-34-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="alpha-versus-saturation">Alpha versus saturation<a class="anchor" aria-label="anchor" href="#alpha-versus-saturation"></a>
 </h2>
 <p>Sometimes you want to decrease the intensity of your colors.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_minimal_y</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-36-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-35-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>One way to do this is to reduce the opacity by decreasing the alpha
 argument. Note how the horizontal lines start to shine through the
 bars.</p>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_minimal_y</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-37-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-36-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In the <code><a href="../reference/add_mean_bar.html">add_mean_bar()</a></code> family of functions, in
 <code><a href="../reference/add_violin.html">add_violin()</a></code> and in <code>add_boxplots()</code> functions,
 tidyplots offers one additional method using the <code>saturation</code>
 argument.</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>saturation <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_minimal_y</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-38-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-37-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Note how here the saturation is decreased without making the bars
 transparent. Thus, the horizontal lines do not shine through the
 bars.</p>
@@ -573,7 +563,7 @@ expressions need to start and end with a <code>$</code> character.
 Moreover, you can not mix plotmath with plain text in one string,
 instead the entire string needs to be a valid plotmath expression that
 includes the plain text.</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -582,7 +572,7 @@ includes the plain text.</p>
 <span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_title</a></span><span class="op">(</span><span class="st">"$H[2]*O$"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_x_axis_title</a></span><span class="op">(</span><span class="st">"$E==m*c^{2}$"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_y_axis_title</a></span><span class="op">(</span><span class="st">"$TNF*alpha~level$"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-38-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="ggplot2-compatibiliy">ggplot2 compatibiliy<a class="anchor" aria-label="anchor" href="#ggplot2-compatibiliy"></a>
@@ -596,12 +586,12 @@ you can transform a ggplot to tidyplot using the
 <code><a href="../reference/as_tidyplot.html">as_tidyplot()</a></code> function.</p>
 <p>Also, you can add ggplot code to a tidyplot using the
 <code><a href="../reference/add.html">add()</a></code> helper function.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add.html">add</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-40-1.png" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Advanced-plotting_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>However, be ready to experience unexpected hiccups, when mixing
 ggplot and tidyplots, since ensuring compatibility in every edge case
 was not a priority when developing the tidyplots package.</p>

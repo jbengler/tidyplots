@@ -71,7 +71,9 @@
 
 
 <dt id="arg-width-height">width, height<a class="anchor" aria-label="anchor" href="#arg-width-height"></a></dt>
-<dd><p>Dimensions of the saved plot. Defaults to <code>NA</code>.</p></dd>
+<dd><p>Dimensions of the graphic device to save the plot.
+Defaults to <code>NA</code>. In case of <code>NA</code>, the dimensions are inferred from the
+incoming <code>plot</code> object (see Details).</p></dd>
 
 
 <dt id="arg-units">units<a class="anchor" aria-label="anchor" href="#arg-units"></a></dt>
@@ -100,7 +102,7 @@ as specified by <code>device</code>.</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><strong>Handling of file dimensions.</strong>
 Output file dimensions are determined according the the following precedence.</p><ol><li><p>The <code>width</code> and <code>height</code> arguments.</p></li>
-<li><p>Dimensions inferred from an incoming <code>plot</code> object with absolute dimensions.</p></li>
+<li><p>Dimensions inferred from the incoming <code>plot</code> object with absolute dimensions.</p></li>
 <li><p>System default device dimensions.</p></li>
 </ol></div>
 
