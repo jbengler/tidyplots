@@ -1,5 +1,21 @@
 # tidyplots (development version)
 
+## Bug fixes
+
+* The standard deviation (SD) in `add_sd_errorbar()` and `add_sd_ribbon()` is now shown as
+one time SD, not 2 times SD as before. Thanks to @awata25 spotting (#25).
+
+## Improvements
+
+* Improved documentation (#6).
+* The default `dodge_width` is now determined by a heuristic (#13).
+* The minimal themes `theme_minimal_*()` now have axis ticks.
+* New color scheme `colors_discrete_alger` suggested by @loukesio (#18).
+* New function `adjust_theme_details()` (#23)
+* New arguments `fontsize`, `family`, `face`, and `color` in 
+`adjust_title()`, `adjust_caption()`, `adjust_x_axis_title()`,  `adjust_y_axis_title()`, 
+and `adjust_legend_title()` for more detailed control over fonts (#24).
+
 # tidyplots 0.1.2
 
 * Initial CRAN release
