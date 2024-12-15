@@ -62,10 +62,6 @@ energy %>%
 energy %>% 
   tidyplot(year, power, color = energy_source) %>% 
   add_barstack_absolute() %>% 
-  adjust_colors(colors_discrete_alger)
-energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_friendly_long)
 energy %>% 
   tidyplot(year, power, color = energy_source) %>% 
@@ -79,6 +75,10 @@ energy %>%
   tidyplot(year, power, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_candy)
+energy %>% 
+  tidyplot(year, power, color = energy_source) %>% 
+  add_barstack_absolute() %>% 
+  adjust_colors(colors_discrete_alger)
 
 ```
 

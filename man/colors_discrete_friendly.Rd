@@ -4,26 +4,26 @@
 \name{colors_discrete_friendly}
 \alias{colors_discrete_friendly}
 \alias{colors_discrete_seaside}
-\alias{colors_discrete_alger}
 \alias{colors_discrete_apple}
 \alias{colors_discrete_friendly_long}
 \alias{colors_discrete_okabeito}
 \alias{colors_discrete_ibm}
 \alias{colors_discrete_metro}
 \alias{colors_discrete_candy}
+\alias{colors_discrete_alger}
 \title{Discrete color schemes}
 \format{
 An object of class \code{tidycolor} (inherits from \code{character}) of length 6.
 
 An object of class \code{tidycolor} (inherits from \code{character}) of length 5.
 
+An object of class \code{tidycolor} (inherits from \code{character}) of length 7.
+
+An object of class \code{tidycolor} (inherits from \code{character}) of length 7.
+
+An object of class \code{tidycolor} (inherits from \code{character}) of length 7.
+
 An object of class \code{tidycolor} (inherits from \code{character}) of length 5.
-
-An object of class \code{tidycolor} (inherits from \code{character}) of length 7.
-
-An object of class \code{tidycolor} (inherits from \code{character}) of length 7.
-
-An object of class \code{tidycolor} (inherits from \code{character}) of length 7.
 
 An object of class \code{tidycolor} (inherits from \code{character}) of length 5.
 
@@ -36,8 +36,6 @@ colors_discrete_friendly
 
 colors_discrete_seaside
 
-colors_discrete_alger
-
 colors_discrete_apple
 
 colors_discrete_friendly_long
@@ -49,6 +47,8 @@ colors_discrete_ibm
 colors_discrete_metro
 
 colors_discrete_candy
+
+colors_discrete_alger
 }
 \description{
 For more information about the use of color schemes in tidyplots, check out this article:
@@ -71,12 +71,6 @@ Color schemes can be conveniently previewed by using the print method of the
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{colors_discrete_seaside
 }\if{html}{\out{</div>}}\if{html}{\out{
 <!--html_preserve--><div style="margin-top: 60px; margin-bottom: 60px;"><h4 style="font-family: 'Courier New', monospace;">colors_discrete_seaside</h4><small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 5 colors.</small><br><span style='background-color:#8ecae6; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#219ebc; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#023047; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#ffb703; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#fb8500; display: inline-block; width:30px; height:20px;'></span><br><span style="font-family: 'Courier New', monospace;">c(<br><span style='background-color:#8ecae6; display: inline-block; padding: 2px 10px 2px 10px;'>"#8ecae6"</span>,<span style='background-color:#219ebc; display: inline-block; padding: 2px 10px 2px 10px;'>"#219ebc"</span>,<span style='background-color:#023047; display: inline-block; padding: 2px 10px 2px 10px;'>"#023047"</span>,<span style='background-color:#ffb703; display: inline-block; padding: 2px 10px 2px 10px;'>"#ffb703"</span>,<span style='background-color:#fb8500; display: inline-block; padding: 2px 10px 2px 10px;'>"#fb8500"</span>)</span></div><!--/html_preserve-->
-}}
-
-
-\if{html}{\out{<div class="sourceCode r">}}\preformatted{colors_discrete_alger
-}\if{html}{\out{</div>}}\if{html}{\out{
-<!--html_preserve--><div style="margin-top: 60px; margin-bottom: 60px;"><h4 style="font-family: 'Courier New', monospace;">colors_discrete_alger</h4><small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 5 colors.</small><br><span style='background-color:#000000; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#1A5B5B; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#ACC8BE; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#F4AB5C; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#D1422F; display: inline-block; width:30px; height:20px;'></span><br><span style="font-family: 'Courier New', monospace;">c(<br><span style='background-color:#000000; display: inline-block; padding: 2px 10px 2px 10px;'>"#000000"</span>,<span style='background-color:#1A5B5B; display: inline-block; padding: 2px 10px 2px 10px;'>"#1A5B5B"</span>,<span style='background-color:#ACC8BE; display: inline-block; padding: 2px 10px 2px 10px;'>"#ACC8BE"</span>,<span style='background-color:#F4AB5C; display: inline-block; padding: 2px 10px 2px 10px;'>"#F4AB5C"</span>,<span style='background-color:#D1422F; display: inline-block; padding: 2px 10px 2px 10px;'>"#D1422F"</span>)</span></div><!--/html_preserve-->
 }}
 
 
@@ -113,6 +107,12 @@ Color schemes can be conveniently previewed by using the print method of the
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{colors_discrete_candy
 }\if{html}{\out{</div>}}\if{html}{\out{
 <!--html_preserve--><div style="margin-top: 60px; margin-bottom: 60px;"><h4 style="font-family: 'Courier New', monospace;">colors_discrete_candy</h4><small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 5 colors.</small><br><span style='background-color:#9b5de5; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#f15bb5; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#fee440; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#00bbf9; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#00f5d4; display: inline-block; width:30px; height:20px;'></span><br><span style="font-family: 'Courier New', monospace;">c(<br><span style='background-color:#9b5de5; display: inline-block; padding: 2px 10px 2px 10px;'>"#9b5de5"</span>,<span style='background-color:#f15bb5; display: inline-block; padding: 2px 10px 2px 10px;'>"#f15bb5"</span>,<span style='background-color:#fee440; display: inline-block; padding: 2px 10px 2px 10px;'>"#fee440"</span>,<span style='background-color:#00bbf9; display: inline-block; padding: 2px 10px 2px 10px;'>"#00bbf9"</span>,<span style='background-color:#00f5d4; display: inline-block; padding: 2px 10px 2px 10px;'>"#00f5d4"</span>)</span></div><!--/html_preserve-->
+}}
+
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{colors_discrete_alger
+}\if{html}{\out{</div>}}\if{html}{\out{
+<!--html_preserve--><div style="margin-top: 60px; margin-bottom: 60px;"><h4 style="font-family: 'Courier New', monospace;">colors_discrete_alger</h4><small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 5 colors.</small><br><span style='background-color:#000000; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#1A5B5B; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#ACC8BE; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#F4AB5C; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#D1422F; display: inline-block; width:30px; height:20px;'></span><br><span style="font-family: 'Courier New', monospace;">c(<br><span style='background-color:#000000; display: inline-block; padding: 2px 10px 2px 10px;'>"#000000"</span>,<span style='background-color:#1A5B5B; display: inline-block; padding: 2px 10px 2px 10px;'>"#1A5B5B"</span>,<span style='background-color:#ACC8BE; display: inline-block; padding: 2px 10px 2px 10px;'>"#ACC8BE"</span>,<span style='background-color:#F4AB5C; display: inline-block; padding: 2px 10px 2px 10px;'>"#F4AB5C"</span>,<span style='background-color:#D1422F; display: inline-block; padding: 2px 10px 2px 10px;'>"#D1422F"</span>)</span></div><!--/html_preserve-->
 }}
 }
 \keyword{datasets}
