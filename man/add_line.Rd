@@ -29,7 +29,9 @@ add_area(
 
 \item{group}{Variable in the dataset to be used for grouping.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults
+to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
+continuous axes.}
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 

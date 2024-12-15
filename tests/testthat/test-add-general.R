@@ -198,6 +198,79 @@ test_that("grouped plots work", {
     vdiffr::expect_doppelganger("change dodge width and bar width", .)
 })
 
+test_that("dodge_width heuristic works", {
+  time_course %>%
+    dplyr::filter(!is.na(score)) %>%
+    tidyplot(x = day, y = score, color = treatment) %>%
+    add_mean_line() %>%
+    add_mean_dot() %>%
+    add_sem_ribbon() %>%
+    vdiffr::expect_doppelganger("no discrete axis, no provided dodge_width", .)
+
+  time_course %>%
+    dplyr::filter(!is.na(score)) %>%
+    tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+    add_mean_line() %>%
+    add_mean_dot() %>%
+    add_sem_ribbon() %>%
+    vdiffr::expect_doppelganger("no discrete axis, dodge_width = 0", .)
+
+  time_course %>%
+    dplyr::filter(!is.na(score)) %>%
+    tidyplot(x = day, y = score, color = treatment, dodge_width = 0.8) %>%
+    add_mean_line() %>%
+    add_mean_dot() %>%
+    add_sem_ribbon() %>%
+    vdiffr::expect_doppelganger("no discrete axis, dodge_width = 0.8", .)
+
+  study %>%
+    tidyplot(x = group, y = score, color = dose, dodge_width = 0) %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_mean_dash() %>%
+    add_mean_value() %>%
+    vdiffr::expect_doppelganger("ONE discrete axis, no provided dodge_width", .)
+
+  study %>%
+    tidyplot(x = group, y = score, color = dose, dodge_width = 0.8) %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_mean_dash() %>%
+    add_mean_value() %>%
+    vdiffr::expect_doppelganger("ONE discrete axis, dodge_width = 0", .)
+
+  study %>%
+    tidyplot(x = group, y = score, color = dose) %>%
+    add_mean_bar(alpha = 0.4) %>%
+    add_mean_dash() %>%
+    add_mean_value() %>%
+    vdiffr::expect_doppelganger("ONE discrete axis, dodge_width = 0.8", .)
+
+  animals %>%
+    tidyplot(x = number_of_legs, y = speed, color = activity) %>%
+    add_mean_dot() %>%
+    add_sem_errorbar() %>%
+    vdiffr::expect_doppelganger("ONE discrete axis", .)
+
+  animals %>%
+    tidyplot(x = number_of_legs, y = speed, color = activity, dodge_width = 0.4) %>%
+    add_mean_dot() %>%
+    add_sem_errorbar() %>%
+    vdiffr::expect_doppelganger("ONE discrete axis, override", .)
+
+  animals %>%
+    dplyr::mutate(number_of_legs = as.numeric(number_of_legs)) %>%
+    tidyplot(x = number_of_legs, y = speed, color = activity) %>%
+    add_mean_dot() %>%
+    add_sem_errorbar() %>%
+    vdiffr::expect_doppelganger("NO discrete axis", .)
+
+  animals %>%
+    dplyr::mutate(number_of_legs = as.numeric(number_of_legs)) %>%
+    tidyplot(x = number_of_legs, y = speed, color = activity, dodge_width = 0.4) %>%
+    add_mean_dot() %>%
+    add_sem_errorbar() %>%
+    vdiffr::expect_doppelganger("NO discrete axis, override", .)
+})
+
 # causes spurious warnings
 # test_that("add curve fit works", {
 #   time_course %>%

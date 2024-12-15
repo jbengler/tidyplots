@@ -27,7 +27,7 @@ is_waiver <- function(x) inherits(x, "waiver")
 #' gg %>% as_tidyplot()
 #'
 #' @export
-as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
+as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = NULL) {
   mapping <- gg$mapping
   plot <- gg
 
@@ -54,6 +54,13 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = 0.8) {
   plot$tidyplot$limits_x <- c(NULL, NULL)
   plot$tidyplot$limits_y <- c(NULL, NULL)
 
+  # dodge_width_heuristic
+  if (is_discrete(plot, "x") || is_discrete(plot, "y")) {
+    dodge_width_heuristic <- 0.8
+  } else {
+    dodge_width_heuristic <- 0
+  }
+  dodge_width <- dodge_width %||% dodge_width_heuristic
   plot$tidyplot$dodge_width <- dodge_width
 
   plot$tidyplot$named_colors <- NULL

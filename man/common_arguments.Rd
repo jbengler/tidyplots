@@ -13,7 +13,9 @@
 \item A \code{data.frame} to override the plot data.
 }}
 
-\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults
+to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
+continuous axes.}
 
 \item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
 a position, or the width of a \code{"single"} element?}

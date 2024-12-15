@@ -4,7 +4,7 @@
 \alias{tidyplot}
 \title{Create a new tidyplot}
 \usage{
-tidyplot(data, ..., width = 50, height = 50, dodge_width = 0.8)
+tidyplot(data, ..., width = 50, height = 50, dodge_width = NULL)
 }
 \arguments{
 \item{data}{A tidy \code{data.frame} to use for plotting.}
@@ -15,7 +15,9 @@ tidyplot(data, ..., width = 50, height = 50, dodge_width = 0.8)
 
 \item{height}{Height of the plot area. Defaults to \code{50}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults
+to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
+continuous axes.}
 }
 \value{
 A \code{tidyplot} object.

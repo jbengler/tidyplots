@@ -8,7 +8,7 @@ time_course <-
 usethis::use_data(time_course, overwrite = TRUE)
 
 time_course %>%
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+  tidyplot(x = day, y = score, color = treatment) %>%
   add_mean_line() %>%
   add_mean_dot() %>%
   add_sem_ribbon()

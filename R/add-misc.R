@@ -176,21 +176,21 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 #'
 #' @examples
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_curve_fit()
 #'
 #' # Changing arguments
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_curve_fit(linewidth = 1)
 #'
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_curve_fit(alpha = 0.8)
 #'
 #' # Remove confidence interval
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_curve_fit(se = FALSE)
 #'
 #' @export

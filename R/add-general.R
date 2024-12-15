@@ -8,7 +8,9 @@
 #'   * A `function` to subset the plot data. See `filter_rows()` and friends.
 #'
 #'   * A `data.frame` to override the plot data.
-#' @param dodge_width For adjusting the distance between grouped objects. Defaults to `0.8`.
+#' @param dodge_width For adjusting the distance between grouped objects. Defaults
+#' to `0.8` for plots with at least one discrete axis and `0` for plots with two
+#' continuous axes.
 #' @param preserve Should dodging preserve the `"total"` width of all elements at
 #'   a position, or the width of a `"single"` element?
 #' @param rasterize If `FALSE` (the default) the layer will be constructed of
@@ -152,31 +154,31 @@ ff_ribbon <- function(.fun.data) {
 #' @examples
 #' # Standard error of the mean
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_mean_line() %>%
 #'   add_sem_ribbon()
 #'
 #' # Range from minimum to maximum value
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_mean_line() %>%
 #'   add_range_ribbon()
 #'
 #' # Standard deviation
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_mean_line() %>%
 #'   add_sd_ribbon()
 #'
 #' # 95% confidence interval
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_mean_line() %>%
 #'   add_ci95_ribbon()
 #'
 #' # Changing arguments: alpha
 #' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>%
+#'   tidyplot(x = day, y = score, color = treatment) %>%
 #'   add_mean_line() %>%
 #'   add_sem_ribbon(alpha = 0.7)
 #'

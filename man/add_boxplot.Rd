@@ -25,7 +25,9 @@ add_boxplot(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults
+to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
+continuous axes.}
 
 \item{alpha}{A \code{number} between \code{0} and \code{1} for the opacity of an object. A value of \code{0} is completely transparent, \code{1} is completely opaque.}
 

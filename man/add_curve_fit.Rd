@@ -17,7 +17,9 @@ add_curve_fit(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects. Defaults to \code{0.8}.}
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults
+to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
+continuous axes.}
 
 \item{method}{Smoothing method (function) to use, accepts either
 \code{NULL} or a character vector, e.g. \code{"lm"}, \code{"glm"}, \code{"gam"}, \code{"loess"}
@@ -53,21 +55,21 @@ Add curve fit
 }
 \examples{
 time_course \%>\%
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  tidyplot(x = day, y = score, color = treatment) \%>\%
   add_curve_fit()
 
 # Changing arguments
 time_course \%>\%
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  tidyplot(x = day, y = score, color = treatment) \%>\%
   add_curve_fit(linewidth = 1)
 
 time_course \%>\%
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  tidyplot(x = day, y = score, color = treatment) \%>\%
   add_curve_fit(alpha = 0.8)
 
 # Remove confidence interval
 time_course \%>\%
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) \%>\%
+  tidyplot(x = day, y = score, color = treatment) \%>\%
   add_curve_fit(se = FALSE)
 
 }

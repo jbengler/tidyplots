@@ -221,7 +221,7 @@ The second part of the function name is dedicated to the graphical representatio
 
 ```{r}
 time_course %>% 
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  tidyplot(x = day, y = score, color = treatment) %>% 
   add_mean_line() %>% 
   add_mean_dot()
 ```
@@ -230,14 +230,12 @@ Or in this case `line` and `area`.
 
 ```{r}
 time_course %>% 
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  tidyplot(x = day, y = score, color = treatment) %>% 
   add_mean_line(linewidth = 1) %>% 
   add_mean_area(alpha = 0.2)
 ```
 
-In case you ask yourself why I included `dodge_width = 0` in all `tidyplot()` calls used to show a `line` or `area`, you might want to learn more about dodging in the article about [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#dodging).
-
-Back to central tendency measures, here is one more example using `bar` and `value`.
+Here is one more example using `bar` and `value`.
 
 ```{r}
 study %>% 
@@ -264,7 +262,7 @@ A classical representation of dispersion is an `errorbar`.
 
 ```{r}
 time_course %>% 
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  tidyplot(x = day, y = score, color = treatment) %>% 
   add_mean_line() %>% 
   add_mean_dot() %>% 
   add_sem_errorbar(width = 2)
@@ -274,7 +272,7 @@ Or the use of a semitransparent `ribbon`.
 
 ```{r}
 time_course %>% 
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  tidyplot(x = day, y = score, color = treatment) %>% 
   add_mean_line() %>% 
   add_mean_dot() %>% 
   add_sem_ribbon()
@@ -309,7 +307,7 @@ Finally, although it is not strictly a measure of central tendency, you can fit 
 
 ```{r}
 time_course %>% 
-  tidyplot(x = day, y = score, color = treatment, dodge_width = 0) %>% 
+  tidyplot(x = day, y = score, color = treatment) %>% 
   add_curve_fit()
 ```
 
