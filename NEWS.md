@@ -9,6 +9,7 @@ one time SD, not 2 times SD as before. Thanks to @awata25 for spotting this (#25
 
 * Improved documentation (#6).
 * The default `dodge_width` is now determined by a heuristic (#13).
+* Tidyplots now requires ggplot2 (>= 3.5.0) (#16).
 * The minimal themes `theme_minimal_*()` now have axis ticks.
 * New color scheme `colors_discrete_alger` suggested by @loukesio (#18).
 * New function `adjust_theme_details()` (#23)
