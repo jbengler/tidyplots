@@ -259,8 +259,10 @@ min_max <- function(x) {
 }
 
 mean_sd <- function(x) {
-  dplyr::rename(data.frame(as.list(Hmisc::smean.sdl(x, mult = 1))),
-                y = Mean, ymin = Lower, ymax = Upper)
+  x <- stats::na.omit(x)
+  data.frame(y = mean(x),
+             ymin = mean(x) - stats::sd(x),
+             ymax = mean(x) + stats::sd(x))
 }
 
 mean_cl_boot <- function(x) {
