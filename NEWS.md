@@ -3,7 +3,7 @@
 ## Bug fixes
 
 * The standard deviation (SD) in `add_sd_errorbar()` and `add_sd_ribbon()` is now shown as
-one time SD, not 2 times SD as before. Thanks to @awata25 spotting (#25).
+one time SD, not 2 times SD as before. Thanks to @awata25 for spotting this (#25).
 
 ## Improvements
 
