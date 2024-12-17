@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question
+    url: https://github.com/jbengler/tidyplots/discussions/categories/ask-a-question
+    about: Ask the community for help
+  - name: Propose a feature
+    url: https://github.com/jbengler/tidyplots/discussions/categories/propose-a-feature
+    about: Share ideas for new features
+  - name: Showcase a tidyplot
+    url: https://github.com/jbengler/tidyplots/discussions/categories/showcase-a-tidyplot
+    about: Share the tidyplots code for a great plot
