@@ -1,5 +1,7 @@
 # tidyplots (development version)
 
+* New color scheme `colors_discrete_rainbow` (@electrolars, #35).
+
 # tidyplots 0.2.0
 
 ## Bug fixes

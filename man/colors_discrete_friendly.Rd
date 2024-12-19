@@ -11,6 +11,7 @@
 \alias{colors_discrete_metro}
 \alias{colors_discrete_candy}
 \alias{colors_discrete_alger}
+\alias{colors_discrete_rainbow}
 \title{Discrete color schemes}
 \format{
 An object of class \code{tidycolor} (inherits from \code{character}) of length 6.
@@ -30,6 +31,8 @@ An object of class \code{tidycolor} (inherits from \code{character}) of length 5
 An object of class \code{tidycolor} (inherits from \code{character}) of length 5.
 
 An object of class \code{tidycolor} (inherits from \code{character}) of length 5.
+
+An object of class \code{tidycolor} (inherits from \code{character}) of length 9.
 }
 \usage{
 colors_discrete_friendly
@@ -49,6 +52,8 @@ colors_discrete_metro
 colors_discrete_candy
 
 colors_discrete_alger
+
+colors_discrete_rainbow
 }
 \description{
 For more information about the use of color schemes in tidyplots, check out this article:
@@ -113,6 +118,12 @@ Color schemes can be conveniently previewed by using the print method of the
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{colors_discrete_alger
 }\if{html}{\out{</div>}}\if{html}{\out{
 <!--html_preserve--><div style="margin-top: 60px; margin-bottom: 60px;"><h4 style="font-family: 'Courier New', monospace;">colors_discrete_alger</h4><small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 5 colors.</small><br><span style='background-color:#000000; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#1A5B5B; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#ACC8BE; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#F4AB5C; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#D1422F; display: inline-block; width:30px; height:20px;'></span><br><span style="font-family: 'Courier New', monospace;">c(<br><span style='background-color:#000000; display: inline-block; padding: 2px 10px 2px 10px;'>"#000000"</span>,<span style='background-color:#1A5B5B; display: inline-block; padding: 2px 10px 2px 10px;'>"#1A5B5B"</span>,<span style='background-color:#ACC8BE; display: inline-block; padding: 2px 10px 2px 10px;'>"#ACC8BE"</span>,<span style='background-color:#F4AB5C; display: inline-block; padding: 2px 10px 2px 10px;'>"#F4AB5C"</span>,<span style='background-color:#D1422F; display: inline-block; padding: 2px 10px 2px 10px;'>"#D1422F"</span>)</span></div><!--/html_preserve-->
+}}
+
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{colors_discrete_rainbow
+}\if{html}{\out{</div>}}\if{html}{\out{
+<!--html_preserve--><div style="margin-top: 60px; margin-bottom: 60px;"><h4 style="font-family: 'Courier New', monospace;">colors_discrete_rainbow</h4><small style="font-family: 'Courier New', monospace;">A tidyplots color scheme with 9 colors.</small><br><span style='background-color:#FF7777; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#FFAB74; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#FFE577; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#DBF47B; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#91E480; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#7CC9E5; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#7DA8E6; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#887DE6; display: inline-block; width:30px; height:20px;'></span><span style='background-color:#BC7BE4; display: inline-block; width:30px; height:20px;'></span><br><span style="font-family: 'Courier New', monospace;">c(<br><span style='background-color:#FF7777; display: inline-block; padding: 2px 10px 2px 10px;'>"#FF7777"</span>,<span style='background-color:#FFAB74; display: inline-block; padding: 2px 10px 2px 10px;'>"#FFAB74"</span>,<span style='background-color:#FFE577; display: inline-block; padding: 2px 10px 2px 10px;'>"#FFE577"</span>,<span style='background-color:#DBF47B; display: inline-block; padding: 2px 10px 2px 10px;'>"#DBF47B"</span>,<span style='background-color:#91E480; display: inline-block; padding: 2px 10px 2px 10px;'>"#91E480"</span>,<span style='background-color:#7CC9E5; display: inline-block; padding: 2px 10px 2px 10px;'>"#7CC9E5"</span>,<span style='background-color:#7DA8E6; display: inline-block; padding: 2px 10px 2px 10px;'>"#7DA8E6"</span>,<span style='background-color:#887DE6; display: inline-block; padding: 2px 10px 2px 10px;'>"#887DE6"</span>,<span style='background-color:#BC7BE4; display: inline-block; padding: 2px 10px 2px 10px;'>"#BC7BE4"</span>)</span></div><!--/html_preserve-->
 }}
 }
 \keyword{datasets}

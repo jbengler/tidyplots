@@ -97,6 +97,12 @@ new_color_scheme <- function(x, name = "Untitled color scheme", reverse = FALSE)
 #' ```{r echo=FALSE}
 #' print(colors_discrete_alger, return_html = TRUE)
 #' ```
+#' ```{r eval=FALSE}
+#' colors_discrete_rainbow
+#' ```
+#' ```{r echo=FALSE}
+#' print(colors_discrete_rainbow, return_html = TRUE)
+#' ```
 #'
 #' @md
 #' @export
