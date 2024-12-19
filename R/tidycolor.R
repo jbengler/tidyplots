@@ -128,6 +128,9 @@ colors_discrete_candy <- new_color_scheme(c("#9b5de5", "#f15bb5", "#fee440", "#0
 #' @rdname colors_discrete_friendly
 #' @export
 colors_discrete_alger <- new_color_scheme(c("#000000", "#1A5B5B", "#ACC8BE", "#F4AB5C", "#D1422F"), "colors_discrete_alger")
+#' @rdname colors_discrete_friendly
+#' @export
+colors_discrete_rainbow <- new_color_scheme(c("#FF7777", "#FFAB74", "#FFE577", "#DBF47B", "#91E480", "#7CC9E5", "#7DA8E6", "#887DE6", "#BC7BE4"), "colors_discrete_rainbow")
 
 
 
