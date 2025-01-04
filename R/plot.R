@@ -221,6 +221,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' incoming `plot` object (see Details).
 #' @param units Units of length. Defaults to `"mm"`.
 #' @param multiple_files Whether to save multiple pages as individual files.
+#' @param view_plot Whether to view the plot on screen after saving.
 #' @inheritParams ggplot2::ggsave
 #' @inherit common_arguments
 #'
@@ -270,7 +271,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' @export
 save_plot <- function(plot = ggplot2::last_plot(), filename,
                       width = NA, height = NA, units = c("mm", "cm", "in"),
-                      multiple_files = FALSE, bg = "transparent", ...) {
+                      multiple_files = FALSE, view_plot = TRUE, bg = "transparent", ...) {
   if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
 
@@ -318,6 +319,6 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
       cli::cli_alert_success("save_plot: saved multiple plots to {.file {filenames}}")
     }
   }
-  print(input)
+  if (view_plot) print(input)
   invisible(input)
 }

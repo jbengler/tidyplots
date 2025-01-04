@@ -11,6 +11,7 @@ save_plot(
   height = NA,
   units = c("mm", "cm", "in"),
   multiple_files = FALSE,
+  view_plot = TRUE,
   bg = "transparent",
   ...
 )
@@ -27,6 +28,8 @@ incoming \code{plot} object (see Details).}
 \item{units}{Units of length. Defaults to \code{"mm"}.}
 
 \item{multiple_files}{Whether to save multiple pages as individual files.}
+
+\item{view_plot}{Whether to view the plot on screen after saving.}
 
 \item{bg}{Background colour. If \code{NULL}, uses the \code{plot.background} fill value
 from the plot theme.}

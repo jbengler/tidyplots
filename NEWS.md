@@ -1,6 +1,8 @@
 # tidyplots (development version)
 
 * New color scheme `colors_discrete_rainbow` (@electrolars, #35).
+* The function `save_plot()` gains the new argument `view_plot` 
+to control whether to view the plot on screen after saving (#40).
 
 # tidyplots 0.2.0
 
