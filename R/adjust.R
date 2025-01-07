@@ -89,11 +89,10 @@ ff_adjust_axis <- function(axis) {
       }
     })
 
-    # Set limits
-    if (!is.null(plot$tidyplot$limits_x) && is_continuous(plot, "x")) xlim <- plot$tidyplot$limits_x else xlim <- NULL
-    if (!is.null(plot$tidyplot$limits_y) && is_continuous(plot, "y")) ylim <- plot$tidyplot$limits_y else ylim <- NULL
-    if (!is.null(xlim) || !is.null(ylim))
-      suppressMessages(plot <- plot + ggplot2::coord_cartesian(xlim = xlim, ylim = ylim))
+    # Set limits via coord_cartesian
+    if (!is.null(plot$tidyplot$limits_x) || !is.null(plot$tidyplot$limits_y)) {
+      suppressMessages(plot <- plot + ggplot2::coord_cartesian(xlim = plot$tidyplot$limits_x, ylim = plot$tidyplot$limits_y))
+    }
     return(plot)
   }
 
