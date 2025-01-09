@@ -429,7 +429,7 @@ representation.</p>
 for visualization is a <code>histogram</code>.</p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">power</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_histogram.html">add_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-32-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>If you want to compare multiple distributions, <code>violin</code> or
@@ -451,17 +451,17 @@ visualization of proportional data in tidyplots, let’s introduce the
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Rows: 242</span></span>
+<span><span class="co">#&gt; Rows: 344</span></span>
 <span><span class="co">#&gt; Columns: 5</span></span>
 <span><span class="co">#&gt; $ year          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2002, 2002, 2002, 2002, 2002, 2002, 2002, 2002, 2002, 20…</span></span>
-<span><span class="co">#&gt; $ energy_source <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> "Nuclear", "Fossil brown coal / lignite", "Fossil hard c…</span></span>
-<span><span class="co">#&gt; $ energy_type   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Nuclear, Fossil, Fossil, Fossil, Fossil, Other, Renewabl…</span></span>
-<span><span class="co">#&gt; $ power         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 23.538, 20.304, 28.294, 20.300, 5.300, 0.000, 4.937, 0.9…</span></span>
-<span><span class="co">#&gt; $ power_unit    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "GW", "GW", "GW", "GW", "GW", "GW", "GW", "GW", "GW", "G…</span></span></code></pre></div>
-<p>As you might appreciate, this dataset contains the <code>power</code>
-in gigawatt produced per <code>energy_source</code> in Germany between
-<code>year</code> 2002 and 2023. Let’s start with a <code>pie</code>
-plot.</p>
+<span><span class="co">#&gt; $ energy_source <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Biomass, Fossil brown coal / lignite, Fossil gas, Fossil…</span></span>
+<span><span class="co">#&gt; $ energy_type   <span style="color: #949494; font-style: italic;">&lt;fct&gt;</span> Renewable, Fossil, Fossil, Fossil, Fossil, Renewable, Re…</span></span>
+<span><span class="co">#&gt; $ energy        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.723, 140.544, 39.983, 111.427, 1.755, 0.000, 23.377, 1…</span></span>
+<span><span class="co">#&gt; $ energy_unit   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "TWh", "TWh", "TWh", "TWh", "TWh", "TWh", "TWh", "TWh", …</span></span></code></pre></div>
+<p>As you might appreciate, this dataset contains the
+<code>energy</code> in terawatt hours (TWh) produced per
+<code>energy_source</code> in Germany between <code>year</code> 2002 and
+2024. Let’s start with a <code>pie</code> plot.</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
@@ -471,12 +471,12 @@ plot.</p>
 different <code>energy_type</code> categories.</p>
 <p>However, we might be more interested, in the <code>sum</code>
 contribution of each <code>energy_type</code> to the total
-<code>power</code> production. Therefore, we have to provide the
-variable <code>power</code> as a <code>y</code> argument to the
+<code>energy</code> production. Therefore, we have to provide the
+variable <code>energy</code> as a <code>y</code> argument to the
 <code><a href="../reference/tidyplots-package.html">tidyplots()</a></code> function.</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-36-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Now we can appreciate the contribution of each energy type. Note that
@@ -484,45 +484,41 @@ I also changed the <code>pie</code> for a <code>donut</code> plot, which
 is basically a pie chart with a white hole in the center.</p>
 <p>The main criticism of <code>pie</code> and <code>donut</code> plots
 is that the human brain struggles to accurately interpret the
-proportions represented. For example, it’s challenging to determine
-whether fossil or renewable power has a larger share in the plot.</p>
-<p>Another graphical representation is a <code>barstack</code> plot.</p>
+proportions represented. A slightly better option might be a
+<code>barstack</code> plot.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-37-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Here it might be slightly easier to compare the energy types.
-However, to really pinpoint this, we probably need to go back to a
-classical bar plot.</p>
+<p>However, for a direct comparison, a classical bar plot is probably
+still the best option.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy_type</span>, y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy_type</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_value</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/reorder_x_axis_labels.html">reorder_x_axis_labels</a></span><span class="op">(</span><span class="st">"Renewable"</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/sort_x_axis_labels.html">sort_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-38-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Now we can see that renewable power production had a slightly larger
-overall share than fossil power production in the period between 2002
-and 2023.</p>
-<p>If we want to visualize proportional data across time or another
-variable, <code>barstack</code> plots are a great way to.</p>
+<p>Nevertheless, to visualize proportional data across time or another
+variable, <code>barstack</code> plots are the way to go.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-39-1.png" width="1500" style="display: block; margin: auto;"></p>
-<p>Moreover, to see the relative instead of the absolute contribution,
-we can use the <code><a href="../reference/add_barstack_absolute.html">add_barstack_relative()</a></code> function.</p>
+<p>If we want to focus more on the relative instead of the absolute
+contribution, we can use the <code><a href="../reference/add_barstack_absolute.html">add_barstack_relative()</a></code>
+function.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-40-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>A similar plot can be achieved using an <code>areastack</code>.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-41-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>In both plots, the increasing contribution of renewable energy to the
@@ -534,7 +530,7 @@ downsample the dataset to 4 representative years.</p>
 <span>  <span class="co"># downsample to 4 representative years</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="co"># start plotting</span></span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Fossil"</span> <span class="op">=</span> <span class="st">"grey"</span>,</span>
 <span>                               <span class="st">"Nuclear"</span> <span class="op">=</span> <span class="st">"#F6C54D"</span>,</span>
