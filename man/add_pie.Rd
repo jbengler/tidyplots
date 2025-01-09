@@ -36,13 +36,13 @@ energy \%>\%
   add_donut()
 
 # for a `sum` provide `color` and `y`
-# `sum` of `power` in each `energy_type` category
+# `sum` of `energy` in each `energy_type` category
 energy \%>\%
-  tidyplot(y = power, color = energy_type) \%>\%
+  tidyplot(y = energy, color = energy_type) \%>\%
   add_pie()
 
 energy \%>\%
-  tidyplot(y = power, color = energy_type) \%>\%
+  tidyplot(y = energy, color = energy_type) \%>\%
   add_donut()
 
 }

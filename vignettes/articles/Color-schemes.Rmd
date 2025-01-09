@@ -48,7 +48,7 @@ Similarly, when more colors are provided than needed, tidyplots will select the 
 
 ```{r}
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute()
 ```
 
@@ -56,31 +56,31 @@ And here are some alternative color schemes.
 
 ```{r}
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_seaside)
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_friendly_long)
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_apple)
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_ibm)
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_candy)
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_alger)
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(colors_discrete_rainbow)
 
@@ -191,7 +191,7 @@ Than you can use your scheme as input to the `adjust_colors()` function.
 
 ```{r}
 energy %>% 
-  tidyplot(year, power, color = energy_source) %>% 
+  tidyplot(year, energy, color = energy_source) %>% 
   add_barstack_absolute() %>% 
   adjust_colors(new_colors = my_colors)
 ```

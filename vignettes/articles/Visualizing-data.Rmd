@@ -317,7 +317,7 @@ When looking at a single distribution of values, a classical approach for visual
 
 ```{r}
 energy %>% 
-  tidyplot(x = power) %>% 
+  tidyplot(x = energy) %>% 
   add_histogram()
 ```
 
@@ -339,7 +339,7 @@ energy %>%
   dplyr::glimpse()
 ```
 
-As you might appreciate, this dataset contains the `power` in gigawatt produced per `energy_source` in Germany between `year` 2002 and 2023. Let's start with a `pie` plot.
+As you might appreciate, this dataset contains the `energy` in terawatt hours (TWh) produced per `energy_source` in Germany between `year` 2002 and 2024. Let's start with a `pie` plot.
 
 ```{r}
 energy %>% 
@@ -349,51 +349,47 @@ energy %>%
 
 The above plot represents the `count` of values across the different `energy_type` categories.
 
-However, we might be more interested, in the `sum` contribution of each `energy_type` to the total `power` production. Therefore, we have to provide the variable `power` as a `y` argument to the `tidyplots()` function.
+However, we might be more interested, in the `sum` contribution of each `energy_type` to the total `energy` production. Therefore, we have to provide the variable `energy` as a `y` argument to the `tidyplots()` function.
 
 ```{r}
 energy %>% 
-  tidyplot(y = power, color = energy_type) %>% 
+  tidyplot(y = energy, color = energy_type) %>% 
   add_donut()
 ```
 
 Now we can appreciate the contribution of each energy type. Note that I also changed the `pie` for a `donut` plot, which is basically a pie chart with a white hole in the center.
 
-The main criticism of `pie` and `donut` plots is that the human brain struggles to accurately interpret the proportions represented. For example, it's challenging to determine whether fossil or renewable power has a larger share in the plot.
-
-Another graphical representation is a `barstack` plot.
+The main criticism of `pie` and `donut` plots is that the human brain struggles to accurately interpret the proportions represented. A slightly better option might be a `barstack` plot.
 
 ```{r}
 energy %>% 
-  tidyplot(y = power, color = energy_type) %>% 
+  tidyplot(y = energy, color = energy_type) %>% 
   add_barstack_absolute()
 ```
 
-Here it might be slightly easier to compare the energy types. However, to really pinpoint this, we probably need to go back to a classical bar plot.
+However, for a direct comparison, a classical bar plot is probably still the best option.
 
 ```{r}
 energy %>% 
-  tidyplot(x = energy_type, y = power, color = energy_type) %>% 
+  tidyplot(x = energy_type, y = energy, color = energy_type) %>% 
   add_sum_bar() %>% 
   add_sum_value() %>% 
-  reorder_x_axis_labels("Renewable")
+  sort_x_axis_labels()
 ```
 
-Now we can see that renewable power production had a slightly larger overall share than fossil power production in the period between 2002 and 2023.
-
-If we want to visualize proportional data across time or another variable, `barstack` plots are a great way to.
+Nevertheless, to visualize proportional data across time or another variable, `barstack` plots are the way to go.
 
 ```{r}
 energy %>% 
-  tidyplot(x = year, y = power, color = energy_type) %>% 
+  tidyplot(x = year, y = energy, color = energy_type) %>% 
   add_barstack_absolute()
 ```
 
-Moreover, to see the relative instead of the absolute contribution, we can use the `add_barstack_relative()` function.
+If we want to focus more on the relative instead of the absolute contribution, we can use the `add_barstack_relative()` function.
 
 ```{r}
 energy %>% 
-  tidyplot(x = year, y = power, color = energy_type) %>% 
+  tidyplot(x = year, y = energy, color = energy_type) %>% 
   add_barstack_relative()
 ```
 
@@ -401,7 +397,7 @@ A similar plot can be achieved using an `areastack`.
 
 ```{r}
 energy %>% 
-  tidyplot(x = year, y = power, color = energy_type) %>% 
+  tidyplot(x = year, y = energy, color = energy_type) %>% 
   add_areastack_relative()
 ```
 
@@ -414,7 +410,7 @@ energy %>%
   # downsample to 4 representative years
   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
   # start plotting
-  tidyplot(y = power, color = energy_type) %>% 
+  tidyplot(y = energy, color = energy_type) %>% 
   add_donut() %>% 
   adjust_colors(new_colors = c("Fossil" = "grey",
                                "Nuclear" = "#F6C54D",
@@ -423,7 +419,7 @@ energy %>%
   split_plot(by = year)
 ```
 
-Now, let’s examine a related dataset that presents one week of energy data with higher time resolution.
+Now, let's examine a related dataset that presents one week of energy data with higher time resolution.
 
 ```{r}
 energy_week %>% 

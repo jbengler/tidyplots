@@ -1,0 +1,3 @@
+﻿Year,Nuclear,Hydro Run-of-River,Biomass,Fossil brown coal / lignite,Fossil hard coal,Fossil oil,Fossil gas,Geothermal,Hydro water reservoir,Others,Waste renewable,Waste non-renewable,Wind offshore,Wind onshore,Solar EEG grid feed-in,Solar other grid feed-in
+#,Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh),Energy (TWh)
+2021,65.444,18.305,40.575,99.37,46.662,3.214,51.796,0.174,1.178,2.892,4.575,5.261,24.015,88.034,44.206,1.105

@@ -1,9 +1,17 @@
 # tidyplots (development version)
 
+## Breaking changes
+
+* The `energy` dataset has been updated to contain the correct energy values in TWh. The variable `power` has been renamed to `energy`. This change will affect all code that uses the `energy` dataset.
+
+## Bug fixes
+
+* Fixed bug when combining `add_count_*()` with axis `limits` (#41).
+
+## Improvements
+
 * New color scheme `colors_discrete_rainbow` (@electrolars, #35).
-* The function `save_plot()` gains the new argument `view_plot` 
-to control whether to view the plot on screen after saving (#40).
-* Fixed a bug when combining counts with axis limits (#41).
+* `save_plot()` gains `view_plot` argument to control whether to view the plot on screen after saving (#40).
 
 # tidyplots 0.2.0
 

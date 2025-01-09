@@ -52,7 +52,7 @@ study %>%
 
 ``` r
 energy %>% 
-  tidyplot(x = year, y = power, color = energy_source) %>% 
+  tidyplot(x = year, y = energy, color = energy_source) %>% 
   add_barstack_absolute()
 ```
 
@@ -61,7 +61,7 @@ energy %>%
 ``` r
 energy %>% 
   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
-  tidyplot(y = power, color = energy_source) %>% 
+  tidyplot(y = energy, color = energy_source) %>% 
   add_donut() %>% 
   split_plot(by = year)
 ```

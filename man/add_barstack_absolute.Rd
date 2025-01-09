@@ -36,31 +36,31 @@ energy \%>\%
   add_barstack_relative()
 
 # for a `sum` provide `color` and `y`
-# `sum` of `power` in each `energy_type` category
+# `sum` of `energy` in each `energy_type` category
 energy \%>\%
-  tidyplot(y = power, color = energy_type) \%>\%
+  tidyplot(y = energy, color = energy_type) \%>\%
   add_barstack_absolute()
 
 energy \%>\%
-  tidyplot(y = power, color = energy_type) \%>\%
+  tidyplot(y = energy, color = energy_type) \%>\%
   add_barstack_relative()
 
 # Include variable on second axis
 energy \%>\%
-  tidyplot(x = year, y = power, color = energy_type) \%>\%
+  tidyplot(x = year, y = energy, color = energy_type) \%>\%
   add_barstack_absolute()
 
 energy \%>\%
-  tidyplot(x = year, y = power, color = energy_type) \%>\%
+  tidyplot(x = year, y = energy, color = energy_type) \%>\%
   add_barstack_relative()
 
 # Flip x and y-axis
 energy \%>\%
-  tidyplot(x = power, y = year, color = energy_type) \%>\%
+  tidyplot(x = energy, y = year, color = energy_type) \%>\%
   add_barstack_absolute(orientation = "y")
 
 energy \%>\%
-  tidyplot(x = power, y = year, color = energy_type) \%>\%
+  tidyplot(x = energy, y = year, color = energy_type) \%>\%
   add_barstack_relative(orientation = "y")
 
 }

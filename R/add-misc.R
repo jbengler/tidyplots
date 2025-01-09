@@ -212,11 +212,11 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #'
 #' @examples
 #' energy %>%
-#'   tidyplot(x = power) %>%
+#'   tidyplot(x = energy) %>%
 #'   add_histogram()
 #'
 #' energy %>%
-#'   tidyplot(x = power, color = energy_type) %>%
+#'   tidyplot(x = energy, color = energy_type) %>%
 #'   add_histogram()
 #'
 #' @export

@@ -97,7 +97,7 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = NULL) {
 #'   flip_plot()
 #'
 #' energy %>%
-#'   tidyplot(x = year, y = power, color = energy_type) %>%
+#'   tidyplot(x = year, y = energy, color = energy_type) %>%
 #'   add_barstack_absolute() %>%
 #'   flip_plot()
 #'
@@ -109,7 +109,7 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = NULL) {
 #'   add_sem_errorbar()
 #'
 #' energy %>%
-#'   tidyplot(x = power, y = year, color = energy_type) %>%
+#'   tidyplot(x = energy, y = year, color = energy_type) %>%
 #'   add_barstack_absolute(orientation = "y")
 #'
 #' @export
