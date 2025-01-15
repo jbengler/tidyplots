@@ -59,6 +59,7 @@ reference:
   - starts_with("add_title")
   - starts_with("add_data_labels")
   - starts_with("add_reference")
+  - starts_with("add_annotation")
 - title: Remove
   desc: Remove plot components.
 - contents:

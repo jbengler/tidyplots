@@ -6,12 +6,13 @@
 
 ## Bug fixes
 
-* Fixed bug when combining `add_count_*()` with axis `limits` (#41).
+* The `limits` parameter of `adjust_x_axis()` and `adjust_y_axis()` had no effect when combined with `add_count_*()` (#41).
 
 ## Improvements
 
 * New color scheme `colors_discrete_rainbow` (@electrolars, #35).
 * `save_plot()` gains `view_plot` argument to control whether to view the plot on screen after saving (#40).
+* New `add_annotation_text()`, `add_annotation_rectangle()`, `add_annotation_segment()` for including annotation at specific coordinates (#38).
 
 # tidyplots 0.2.0
 
