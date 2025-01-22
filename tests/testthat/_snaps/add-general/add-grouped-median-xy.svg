@@ -77,7 +77,11 @@
 <polyline points='299.78,348.61 364.21,280.38 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
 <polyline points='325.55,331.00 389.98,306.79 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
 <polygon points='299.78,348.61 364.21,280.38 364.21,357.41 299.78,357.41 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #0072B2; fill-opacity: 0.50;' />
+<polyline points='299.78,348.61 364.21,280.38 ' style='stroke-width: 0.00; stroke: #0072B2; stroke-linecap: butt;' />
+<polyline points='364.21,357.41 299.78,357.41 ' style='stroke-width: 0.00; stroke: #0072B2; stroke-linecap: butt;' />
 <polygon points='325.55,331.00 389.98,306.79 389.98,357.41 325.55,357.41 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #D55E00; fill-opacity: 0.50;' />
+<polyline points='325.55,331.00 389.98,306.79 ' style='stroke-width: 0.00; stroke: #D55E00; stroke-linecap: butt;' />
+<polyline points='389.98,357.41 325.55,357.41 ' style='stroke-width: 0.00; stroke: #D55E00; stroke-linecap: butt;' />
 <circle cx='299.78' cy='353.01' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <circle cx='299.78' cy='348.61' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <circle cx='299.78' cy='346.41' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
@@ -123,12 +127,14 @@
 <line x1='433.32' y1='286.75' x2='442.39' y2='286.75' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
 <circle cx='437.85' cy='286.75' r='2.49' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <line x1='433.32' y1='286.75' x2='442.39' y2='286.75' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
+<rect x='432.18' y='281.08' width='11.34' height='11.34' style='stroke-width: 0.00; stroke: #0072B2; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2; fill-opacity: 0.50;' />
 <circle cx='437.85' cy='286.75' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <rect x='432.18' y='292.42' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
 <rect x='432.89' y='293.13' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00; fill-opacity: 0.40;' />
 <line x1='433.32' y1='298.09' x2='442.39' y2='298.09' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
 <circle cx='437.85' cy='298.09' r='2.49' style='stroke-width: 0.71; stroke: #D55E00; fill: #D55E00;' />
 <line x1='433.32' y1='298.09' x2='442.39' y2='298.09' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
+<rect x='432.18' y='292.42' width='11.34' height='11.34' style='stroke-width: 0.00; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00; fill-opacity: 0.50;' />
 <circle cx='437.85' cy='298.09' r='1.42' style='stroke-width: 0.71; stroke: #D55E00; fill: #D55E00;' />
 <text x='449.00' y='289.16' style='font-size: 7.00px; font-family: sans;' textLength='13.23px' lengthAdjust='spacingAndGlyphs'>high</text>
 <text x='449.00' y='300.50' style='font-size: 7.00px; font-family: sans;' textLength='10.50px' lengthAdjust='spacingAndGlyphs'>low</text>

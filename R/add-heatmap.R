@@ -55,9 +55,12 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
     remove_y_axis_line() +
     ggplot2::coord_cartesian(expand = FALSE)
 
-  if (scale %in% c("row", "column"))
-    plot <- plot %>% adjust_colors(c("blue", "white", "red"))
-
-  add_geom(plot, ggplot2::geom_raster(mapping = mapping, ...),
+  plot <- add_geom(plot, ggplot2::geom_raster(mapping = mapping, ...),
            rasterize = rasterize, rasterize_dpi = rasterize_dpi)
+
+  if (scale %in% c("row", "column")) {
+    plot <- plot %>% adjust_colors(c("blue", "white", "red")) %>%
+      adjust_legend_title(color)
+  }
+  plot
 }

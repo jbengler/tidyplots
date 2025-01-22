@@ -76,6 +76,8 @@
 <text x='423.43' y='279.42' text-anchor='middle' style='font-size: 7.00px; fill: #0072B2; font-family: sans;' textLength='17.52px' lengthAdjust='spacingAndGlyphs'>114.0</text>
 <polyline points='322.19,343.93 355.94,318.90 389.68,234.17 423.43,284.23 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
 <polygon points='322.19,343.93 355.94,318.90 389.68,234.17 423.43,284.23 423.43,357.41 389.68,357.41 355.94,357.41 322.19,357.41 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #00FF00; fill-opacity: 0.20;' />
+<polyline points='322.19,343.93 355.94,318.90 389.68,234.17 423.43,284.23 ' style='stroke-width: 0.00; stroke: #0072B2; stroke-linecap: butt;' />
+<polyline points='423.43,357.41 389.68,357.41 355.94,357.41 322.19,357.41 ' style='stroke-width: 0.00; stroke: #0072B2; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <polyline points='301.94,357.41 301.94,215.68 ' style='stroke-width: 0.53; stroke-linecap: butt;' />

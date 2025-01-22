@@ -76,6 +76,8 @@
 <text x='421.48' y='301.98' text-anchor='middle' style='font-size: 7.00px; fill: #0072B2; font-family: sans;' textLength='13.62px' lengthAdjust='spacingAndGlyphs'>23.0</text>
 <polyline points='320.25,348.61 353.99,331.00 387.74,280.38 421.48,306.79 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
 <polygon points='320.25,348.61 353.99,331.00 387.74,280.38 421.48,306.79 421.48,357.41 387.74,357.41 353.99,357.41 320.25,357.41 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #00FF00; fill-opacity: 0.20;' />
+<polyline points='320.25,348.61 353.99,331.00 387.74,280.38 421.48,306.79 ' style='stroke-width: 0.00; stroke: #0072B2; stroke-linecap: butt;' />
+<polyline points='421.48,357.41 387.74,357.41 353.99,357.41 320.25,357.41 ' style='stroke-width: 0.00; stroke: #0072B2; stroke-linecap: butt;' />
 <circle cx='320.25' cy='353.01' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <circle cx='320.25' cy='348.61' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <circle cx='320.25' cy='346.41' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
