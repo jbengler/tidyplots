@@ -422,6 +422,8 @@ check_tidyplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::ca
 # check_tidyplot(c(22,22))
 
 is_hex_vector <- function(x) {
+  # allow NA values
+  x <- x[!is.na(x)]
   all(
     is.character(x),
     stringr::str_detect(x, "[#]"),

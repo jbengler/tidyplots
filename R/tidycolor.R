@@ -405,3 +405,9 @@ print_tidycolor <- function(x, max_colors, return_html = FALSE) {
     print(as.character(x))
   }
 }
+
+strip_tidycolor_class <- function(x) {
+  class(x) <- class(x)[class(x) != "tidycolor"]
+  attr(x, "tidycolor.name") <- NULL
+  x
+}

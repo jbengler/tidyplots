@@ -10,6 +10,7 @@ test_that("is_hex_vector works", {
   expect_equal(is_hex_vector(c("#889098","#89f987", "#ff99ffff")), TRUE)
   expect_equal(is_hex_vector(c("#889098","#89f987", "#ff99ffff0")), FALSE)
   expect_equal(is_hex_vector(c("#889098","#89f987", "#fff")), TRUE)
+  expect_equal(is_hex_vector(c("#889098","#89f987", "#fff", NA)), TRUE)
 })
 
 test_that("check_input works", {

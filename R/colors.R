@@ -63,6 +63,9 @@ adjust_colors <- function(plot, new_colors = NULL,
     # Default colors
     if (is.null(new_colors)) new_colors <- colors_discrete_friendly
 
+    # Strip tidycolor class
+    new_colors <- strip_tidycolor_class(new_colors)
+
     # Are enough new_colors provided?
     named_vector <- FALSE
     n_ratio <- 0
