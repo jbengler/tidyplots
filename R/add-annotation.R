@@ -9,20 +9,20 @@
 #' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points_beeswarm() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points_beeswarm() |>
 #'   add_title("This is my title")
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points_beeswarm() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points_beeswarm() |>
 #'   add_caption("This is the fine print in the caption")
 #'
 #' # Plotmath expression
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points_beeswarm() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points_beeswarm() |>
 #'   add_title("$H[2]*O~and~E==m*c^{2}$")
 #'
 #' @export
@@ -50,14 +50,14 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 #' @inheritParams ggplot2::geom_vline
 #'
 #' @examples
-#' animals %>%
-#'   tidyplot(x = weight, y = speed) %>%
-#'    add_reference_lines(x = 4000, y = c(100, 200)) %>%
+#' animals |>
+#'   tidyplot(x = weight, y = speed) |>
+#'    add_reference_lines(x = 4000, y = c(100, 200)) |>
 #'    add_data_points()
 #'
-#' animals %>%
-#'   tidyplot(x = weight, y = speed) %>%
-#'    add_reference_lines(x = 4000, y = c(100, 200), linetype = "dotdash") %>%
+#' animals |>
+#'   tidyplot(x = weight, y = speed) |>
+#'    add_reference_lines(x = 4000, y = c(100, 200), linetype = "dotdash") |>
 #'    add_data_points()
 #'
 #' @export
@@ -94,39 +94,39 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 #' @examples
 #' # Create plot and increase padding to make more space for labels
 #' p <-
-#'   animals %>%
-#'   dplyr::slice_head(n = 5) %>%
-#'   tidyplot(x = weight, y = speed) %>%
-#'   theme_ggplot2() %>%
-#'   add_data_points() %>%
+#'   animals |>
+#'   dplyr::slice_head(n = 5) |>
+#'   tidyplot(x = weight, y = speed) |>
+#'   theme_ggplot2() |>
+#'   add_data_points() |>
 #'   adjust_padding(all = 0.3)
 #'
 #' # Default label position is `below` the data point
-#' p %>% add_data_labels(label = animal)
+#' p |> add_data_labels(label = animal)
 #'
 #' # Alternative label positions
-#' p %>% add_data_labels(label = animal, label_position = "above")
+#' p |> add_data_labels(label = animal, label_position = "above")
 #'
-#' p %>% add_data_labels(label = animal, label_position = "right")
+#' p |> add_data_labels(label = animal, label_position = "right")
 #'
-#' p %>% add_data_labels(label = animal, label_position = "left")
+#' p |> add_data_labels(label = animal, label_position = "left")
 #'
 #' # Include white background box
-#' p %>% add_data_labels(label = animal, background = TRUE)
+#' p |> add_data_labels(label = animal, background = TRUE)
 #'
-#' p %>% add_data_labels(label = animal, background = TRUE,
+#' p |> add_data_labels(label = animal, background = TRUE,
 #'   background_color = "pink")
 #'
 #' # Black labels
-#' p %>% add_data_labels(label = animal, color = "black")
+#' p |> add_data_labels(label = animal, color = "black")
 #'
 #' # Use repelling data labels
-#' p %>% add_data_labels_repel(label = animal, color = "black")
+#' p |> add_data_labels_repel(label = animal, color = "black")
 #'
-#' p %>% add_data_labels_repel(label = animal, color = "black",
+#' p |> add_data_labels_repel(label = animal, color = "black",
 #'   background = TRUE)
 #'
-#' p %>% add_data_labels_repel(label = animal, color = "black",
+#' p |> add_data_labels_repel(label = animal, color = "black",
 #'   background = TRUE, min.segment.length = 0)
 #'
 #' @export
@@ -188,25 +188,25 @@ add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
 #' @inherit common_arguments
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_boxplot() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_boxplot() |>
 #'   add_annotation_text("Look here!", x = 2, y = 25)
 #'
-#' eu_countries %>%
-#'   tidyplot(x = area, y = population) %>%
-#'   add_data_points() %>%
+#' eu_countries |>
+#'   tidyplot(x = area, y = population) |>
+#'   add_data_points() |>
 #'   add_annotation_rectangle(xmin = 2.5e5, xmax = Inf, ymin = 42, ymax = Inf)
 #'
-#' eu_countries %>%
-#'   tidyplot(x = area, y = population) %>%
-#'   add_data_points() %>%
+#' eu_countries |>
+#'   tidyplot(x = area, y = population) |>
+#'   add_data_points() |>
 #'   add_annotation_rectangle(xmin = 2.5e5, xmax = 6e5, ymin = 42, ymax = 90,
 #'                            color = "#E69F00", fill = NA)
 #'
-#' eu_countries %>%
-#'   tidyplot(x = area, y = population) %>%
-#'   add_data_points() %>%
+#' eu_countries |>
+#'   tidyplot(x = area, y = population) |>
+#'   add_data_points() |>
 #'   add_annotation_line(x = 0, xend = Inf, y = 0, yend = Inf)
 #'
 #' @export

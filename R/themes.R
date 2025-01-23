@@ -3,46 +3,46 @@
 #' @inherit common_arguments
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_sem_errorbar() %>%
-#'   add_mean_dash() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_sem_errorbar() |>
+#'   add_mean_dash() |>
 #'   theme_tidyplot()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_sem_errorbar() %>%
-#'   add_mean_dash() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_sem_errorbar() |>
+#'   add_mean_dash() |>
 #'   theme_ggplot2()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_sem_errorbar() %>%
-#'   add_mean_dash() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_sem_errorbar() |>
+#'   add_mean_dash() |>
 #'   theme_minimal_xy()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_sem_errorbar() %>%
-#'   add_mean_dash() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_sem_errorbar() |>
+#'   add_mean_dash() |>
 #'   theme_minimal_x()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_sem_errorbar() %>%
-#'   add_mean_dash() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_sem_errorbar() |>
+#'   add_mean_dash() |>
 #'   theme_minimal_y()
 #'
 #' @export
 theme_tidyplot <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
-  plot %>%
-    style_just_xy() %>%
+  plot |>
+    style_just_xy() |>
     adjust_font(fontsize)
 }
 #' @rdname theme_tidyplot
@@ -51,8 +51,8 @@ theme_ggplot2 <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_gray()
   if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot %>% remove_legend()
-  plot %>% adjust_font(fontsize)
+    plot <- plot |> remove_legend()
+  plot |> adjust_font(fontsize)
 }
 #' @rdname theme_tidyplot
 #' @export
@@ -60,8 +60,8 @@ theme_minimal_xy <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
   if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot %>% remove_legend()
-  plot %>% adjust_font(fontsize) +
+    plot <- plot |> remove_legend()
+  plot |> adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
@@ -78,8 +78,8 @@ theme_minimal_x <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
   if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot %>% remove_legend()
-  plot %>% adjust_font(fontsize) +
+    plot <- plot |> remove_legend()
+  plot |> adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
@@ -96,8 +96,8 @@ theme_minimal_y <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
   plot <- plot + ggplot2::theme_minimal()
   if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot %>% remove_legend()
-  plot %>% adjust_font(fontsize) +
+    plot <- plot |> remove_legend()
+  plot |> adjust_font(fontsize) +
     ggplot2::theme(
       axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
       panel.grid.major.x = ggplot2::element_blank(),
@@ -123,7 +123,7 @@ style_void <- function(plot) {
 }
 
 style_just_xy <- function(plot) {
-  plot %>%
+  plot |>
     style_white_bg() +
     ggplot2::theme(
       panel.border = ggplot2::element_blank(),

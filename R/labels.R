@@ -11,7 +11,7 @@ ff_rename_axis_labels <- function(axis) {
 
     new_factors <- setNames(names(new_names), new_names)
     new_data <-
-      plot$data %>%
+      plot$data |>
       dplyr::mutate("{var}" := forcats::fct_recode(.data[[var]], !!!new_factors))
 
     # if named color vector needs to be updated
@@ -22,7 +22,7 @@ ff_rename_axis_labels <- function(axis) {
 
       #print(new_named_colors)
       plot$tidyplot$named_colors <- new_named_colors
-      plot <- plot %>% adjust_colors(new_named_colors)
+      plot <- plot |> adjust_colors(new_named_colors)
     }
 
     # cli::cli_alert_danger("Warning: rename_*_labels() changes labels across the entire the pipe!
@@ -37,18 +37,18 @@ ff_rename_axis_labels <- function(axis) {
 #'
 #' @examples
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Rename x-axis labels
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   rename_x_axis_labels(new_names = c(
 #'     "A" = "This",
 #'     "B" = "is",
@@ -56,18 +56,18 @@ ff_rename_axis_labels <- function(axis) {
 #'     "D" = "new"))
 #'
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Rename y-axis labels
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   rename_y_axis_labels(new_names = c(
 #'     "A" = "This",
 #'     "B" = "is",
@@ -75,18 +75,18 @@ ff_rename_axis_labels <- function(axis) {
 #'     "D" = "new"))
 #'
 #' # Before adjustment
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Rename color labels
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   rename_color_labels(new_names = c(
 #'     "high" = "Sky high",
 #'     "low" = "Deep low"))
@@ -110,7 +110,7 @@ ff_reorder_axis_labels <- function(axis) {
     var <- get_variable(plot, axis)
 
     new_data <-
-      plot$data %>%
+      plot$data |>
       dplyr::mutate("{var}" := forcats::fct_relevel(.data[[var]], ...))
     plot %+% new_data
   }
@@ -122,48 +122,48 @@ ff_reorder_axis_labels <- function(axis) {
 #'
 #' @examples
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Reorder x-axis labels
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   reorder_x_axis_labels("D", "B", "A")
 #'
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Reorder y-axis labels
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   reorder_y_axis_labels("D", "B", "A")
 #'
 #' # Before adjustment
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Reorder color labels
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   reorder_color_labels("low")
 #'
 #' @export
@@ -188,8 +188,8 @@ ff_sort_labels <- function(axis) {
     if (!missing(..1)) {
       # sort by variables passed into '...'
       new_data <-
-        plot$data %>%
-        dplyr::arrange(...) %>%
+        plot$data |>
+        dplyr::arrange(...) |>
         dplyr::mutate("{var_a}" := forcats::fct_reorder(.f = .data[[var_a]],
                                                         .x = dplyr::row_number(),
                                                         .desc = .reverse))
@@ -216,7 +216,7 @@ ff_sort_labels <- function(axis) {
         var_b <- get_variable(plot, axis)
 
       new_data <-
-        plot$data %>%
+        plot$data |>
         dplyr::mutate("{var_a}" := forcats::fct_reorder(.f = .data[[var_a]],
                                                         .x = .data[[var_b]],
                                                         .fun = .fun,
@@ -229,48 +229,48 @@ ff_sort_labels <- function(axis) {
 #'
 #' @examples
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Sort x-axis labels by score
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   sort_x_axis_labels()
 #'
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Sort y-axis labels by score
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   sort_y_axis_labels()
 #'
 #' # Before adjustment
-#' study %>%
-#'   tidyplot(x = group, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Sort color labels by score
-#' study %>%
-#'   tidyplot(x = group, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   sort_color_labels()
 #'
 #' @inherit common_arguments
@@ -294,7 +294,7 @@ ff_reverse_axis_labels <- function(axis) {
       cli::cli_abort("Axis must be discrete not {scale_type}!")
     var <- get_variable(plot, axis)
     new_data <-
-      plot$data %>%
+      plot$data |>
       dplyr::mutate("{var}" := forcats::fct_rev(.data[[var]]))
     plot %+% new_data
   }
@@ -303,48 +303,48 @@ ff_reverse_axis_labels <- function(axis) {
 #'
 #' @examples
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Reverse x-axis labels
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   reverse_x_axis_labels()
 #'
 #' # Before adjustments
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Reverse y-axis labels
-#' study %>%
-#'   tidyplot(x = score, y = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   reverse_y_axis_labels()
 #'
 #' # Before adjustment
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
 #' # Reverse color labels
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   reverse_color_labels()
 #'
 #' @inherit common_arguments

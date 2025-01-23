@@ -18,13 +18,13 @@ is_waiver <- function(x) inherits(x, "waiver")
 #'
 #' @examples
 #' gg <-
-#'   study %>%
+#'   study |>
 #'   ggplot2::ggplot(ggplot2::aes(x = treatment, y = score, color = treatment)) +
 #'   ggplot2::geom_point()
 #'
 #' gg
 #'
-#' gg %>% as_tidyplot()
+#' gg |> as_tidyplot()
 #'
 #' @export
 as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = NULL) {
@@ -65,15 +65,15 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = NULL) {
 
   plot$tidyplot$named_colors <- NULL
 
-  plot <- plot %>%
-    theme_tidyplot() %>%
-    adjust_x_axis() %>%
-    adjust_y_axis() %>%
-    adjust_colors() %>%
+  plot <- plot |>
+    theme_tidyplot() |>
+    adjust_x_axis() |>
+    adjust_y_axis() |>
+    adjust_colors() |>
     adjust_size(width = width, height = height)
 
   if (single_color_plot)
-    plot <- plot %>% remove_legend()
+    plot <- plot |> remove_legend()
 
   plot
 }
@@ -89,27 +89,27 @@ as_tidyplot <- function(gg, width = 50, height = 50, dodge_width = NULL) {
 #' require to set the `orientation` argument to `"y"`.
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
 #'   flip_plot()
 #'
-#' energy %>%
-#'   tidyplot(x = year, y = energy, color = energy_type) %>%
-#'   add_barstack_absolute() %>%
+#' energy |>
+#'   tidyplot(x = year, y = energy, color = energy_type) |>
+#'   add_barstack_absolute() |>
 #'   flip_plot()
 #'
 #' # Better solutions without `flip_plot()`
-#' study %>%
-#'   tidyplot(x = score, y = treatment, color = treatment) %>%
-#'   add_data_points() %>%
-#'   add_mean_bar(alpha = 0.4) %>%
+#' study |>
+#'   tidyplot(x = score, y = treatment, color = treatment) |>
+#'   add_data_points() |>
+#'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' energy %>%
-#'   tidyplot(x = energy, y = year, color = energy_type) %>%
+#' energy |>
+#'   tidyplot(x = energy, y = year, color = energy_type) |>
 #'   add_barstack_absolute(orientation = "y")
 #'
 #' @export
@@ -127,8 +127,8 @@ all_rows <- function(){
 #' @rdname all_rows
 #' @inheritParams dplyr::filter
 #' @export
-filter_rows <- function(..., .by = NULL){
-  . %>% dplyr::filter(..., .by = {{.by}}, .preserve = FALSE)
+filter_rows <- function(..., .by = NULL) {
+  function(x) { x |> dplyr::filter(..., .by = {{.by}}, .preserve = FALSE) }
 }
 #' @rdname all_rows
 #' @param n The number of rows to select. If not are supplied, `n = 1` will be
@@ -146,74 +146,74 @@ filter_rows <- function(..., .by = NULL){
 #'
 #' @examples
 #' # Highlight all animals
-#' animals %>%
-#'  tidyplot(x = weight, y = size) %>%
-#'  add_data_points() %>%
+#' animals |>
+#'  tidyplot(x = weight, y = size) |>
+#'  add_data_points() |>
 #'  add_data_points(data = all_rows(),
 #'   color = "red", shape = 1, size = 3)
 #'
 #' # Highlight 3 animals with the highest weight
-#' animals %>%
-#'  tidyplot(x = weight, y = size) %>%
-#'  add_data_points() %>%
+#' animals |>
+#'  tidyplot(x = weight, y = size) |>
+#'  add_data_points() |>
 #'  add_data_points(data = max_rows(weight, n = 3),
 #'   color = "red", shape = 1, size = 3)
 #'
 #' # Highlight 3 animals with the lowest weight
-#' animals %>%
-#'  tidyplot(x = weight, y = size) %>%
-#'  add_data_points() %>%
+#' animals |>
+#'  tidyplot(x = weight, y = size) |>
+#'  add_data_points() |>
 #'  add_data_points(data = min_rows(weight, n = 3),
 #'   color = "red", shape = 1, size = 3)
 #'
 #' # Highlight the first 3 animals in the dataset
-#' animals %>%
-#'  tidyplot(x = weight, y = size) %>%
-#'  add_data_points() %>%
+#' animals |>
+#'  tidyplot(x = weight, y = size) |>
+#'  add_data_points() |>
 #'  add_data_points(data = first_rows(n = 3),
 #'   color = "red", shape = 1, size = 3)
 #'
 #' # Highlight the last 3 animals in the dataset
-#' animals %>%
-#'  tidyplot(x = weight, y = size) %>%
-#'  add_data_points() %>%
+#' animals |>
+#'  tidyplot(x = weight, y = size) |>
+#'  add_data_points() |>
 #'  add_data_points(data = last_rows(n = 3),
 #'   color = "red", shape = 1, size = 3)
 #'
 #' # Highlight 3 random animals
-#' animals %>%
-#'  tidyplot(x = weight, y = size) %>%
-#'  add_data_points() %>%
+#' animals |>
+#'  tidyplot(x = weight, y = size) |>
+#'  add_data_points() |>
 #'  add_data_points(data = sample_rows(n = 3),
 #'   color = "red", shape = 1, size = 3)
 #'
 #' @export
-max_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE){
-  . %>% dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm)
+max_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE) {
+  function(x) { x |> dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm) }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_min
 #' @export
-min_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE){
-  . %>% dplyr::slice_min(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm)
+min_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE) {
+  function(x) { x |> dplyr::slice_min(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm) }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_head
 #' @export
-first_rows <- function(n, by = NULL){
-  . %>% dplyr::slice_head(n = n, by = {{by}})
+first_rows <- function(n, by = NULL) {
+  function(x) { x |> dplyr::slice_head(n = n, by = {{by}}) }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_tail
 #' @export
-last_rows <- function(n, by = NULL){
-  . %>% dplyr::slice_tail(n = n, by = {{by}})
+last_rows <- function(n, by = NULL) {
+  function(x) { x |> dplyr::slice_tail(n = n, by = {{by}}) }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_sample
 #' @export
-sample_rows <- function(n, by = NULL){
-  . %>% dplyr::slice_sample(n = n, by = {{by}})
+sample_rows <- function(n, by = NULL) {
+  function(x) { x |> dplyr::slice_sample(n = n, by = {{by}}) }
 }
 
 
@@ -298,7 +298,7 @@ tidyplot_parse_labels <- function() {
 }
 
 parent_function <- function(level = 0){
-  deparse(sys.call(-2 + level)) %>%
+  deparse(sys.call(-2 + level)) |>
     stringr::str_extract(pattern = "^[A-Z_a-z]*")
 }
 
@@ -328,10 +328,10 @@ extract_mapping <- function(plot) {
       if (x == "!!NA") return("!!NA")
       if (!x %in% colnames(plot$data)) cli::cli_abort("Variable '{x}' not found in supplied dataset")
       if (stringr::str_detect(x, "after_stat|after_scale|stage\\(")) return("continuous")
-      plot$data[[x]] %>% ggplot2::scale_type() %>% .[[1]]
+      plot$data[[x]] |> ggplot2::scale_type() |> _[[1]]
     })
   }
-  dplyr::tibble(aesthetic = c("x", "y", "colour", "fill", "group")) %>%
+  dplyr::tibble(aesthetic = c("x", "y", "colour", "fill", "group")) |>
     dplyr::mutate(
       variable = my_variable(aesthetic),
       scale_type = my_scale_type(variable)
@@ -454,7 +454,7 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
         height <- grid::convertHeight(sum(gtab$heights) + ggplot2::unit(1, "mm"), unitTo = units, valueOnly = TRUE)
 
       dplyr::tibble(width = width, height = height)
-    }) %>%
+    }) |>
     dplyr::bind_rows()
 
   overall_width<- NA

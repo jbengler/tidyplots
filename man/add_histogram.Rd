@@ -33,12 +33,12 @@ A \code{tidyplot} object.
 Add histogram
 }
 \examples{
-energy \%>\%
-  tidyplot(x = energy) \%>\%
+energy |>
+  tidyplot(x = energy) |>
   add_histogram()
 
-energy \%>\%
-  tidyplot(x = energy, color = energy_type) \%>\%
+energy |>
+  tidyplot(x = energy, color = energy_type) |>
   add_histogram()
 
 }

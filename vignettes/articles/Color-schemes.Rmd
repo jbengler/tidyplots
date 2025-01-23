@@ -47,41 +47,41 @@ Discrete color schemes are meant for categorical variables. The default schemes 
 Similarly, when more colors are provided than needed, tidyplots will select the required number of colors by attempting to evenly sample from the supplied color vector.
 
 ```{r}
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute()
 ```
 
 And here are some alternative color schemes.
 
 ```{r}
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(colors_discrete_seaside)
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(colors_discrete_friendly_long)
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(colors_discrete_apple)
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(colors_discrete_ibm)
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(colors_discrete_candy)
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(colors_discrete_alger)
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(colors_discrete_rainbow)
 
 ```
@@ -101,29 +101,29 @@ print(colors_continuous_viridis, return_html = TRUE)
 Here is a use case for a continuous color scheme.
 
 ```{r}
-climate %>% 
-  tidyplot(x = month, y = year, color = max_temperature) %>% 
+climate |> 
+  tidyplot(x = month, y = year, color = max_temperature) |> 
   add_heatmap()
 ```
 
 And here are some alternative color schemes.
 
 ```{r}
-climate %>% 
-  tidyplot(x = month, y = year, color = max_temperature) %>% 
-  add_heatmap() %>% 
+climate |> 
+  tidyplot(x = month, y = year, color = max_temperature) |> 
+  add_heatmap() |> 
   adjust_colors(new_colors = colors_continuous_inferno)
-climate %>% 
-  tidyplot(x = month, y = year, color = max_temperature) %>% 
-  add_heatmap() %>% 
+climate |> 
+  tidyplot(x = month, y = year, color = max_temperature) |> 
+  add_heatmap() |> 
   adjust_colors(new_colors = colors_continuous_mako)
-climate %>% 
-  tidyplot(x = month, y = year, color = max_temperature) %>% 
-  add_heatmap() %>% 
+climate |> 
+  tidyplot(x = month, y = year, color = max_temperature) |> 
+  add_heatmap() |> 
   adjust_colors(new_colors = colors_continuous_turbo)
-climate %>% 
-  tidyplot(x = month, y = year, color = max_temperature) %>% 
-  add_heatmap() %>% 
+climate |> 
+  tidyplot(x = month, y = year, color = max_temperature) |> 
+  add_heatmap() |> 
   adjust_colors(new_colors = colors_continuous_rocket)
 ```
 
@@ -142,33 +142,33 @@ print(colors_diverging_blue2red, return_html = TRUE)
 Here is a use case for a diverging color scheme.
 
 ```{r, fig.asp=0.9}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap(scale = "row") %>%
-  sort_y_axis_labels(direction) %>% 
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
+  add_heatmap(scale = "row") |>
+  sort_y_axis_labels(direction) |> 
   adjust_size(height = 100)
 ```
 
 And here are some alternative color schemes.
 
 ```{r, fig.asp=0.9}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap(scale = "row") %>%
-  sort_y_axis_labels(direction) %>% 
-  adjust_size(height = 100) %>% 
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
+  add_heatmap(scale = "row") |>
+  sort_y_axis_labels(direction) |> 
+  adjust_size(height = 100) |> 
   adjust_colors(new_colors = colors_diverging_blue2brown)
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap(scale = "row") %>%
-  sort_y_axis_labels(direction) %>% 
-  adjust_size(height = 100) %>% 
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
+  add_heatmap(scale = "row") |>
+  sort_y_axis_labels(direction) |> 
+  adjust_size(height = 100) |> 
   adjust_colors(new_colors = colors_diverging_spectral)
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap(scale = "row") %>%
-  sort_y_axis_labels(direction) %>% 
-  adjust_size(height = 100) %>% 
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
+  add_heatmap(scale = "row") |>
+  sort_y_axis_labels(direction) |> 
+  adjust_size(height = 100) |> 
   adjust_colors(new_colors = colors_diverging_icefire)
 ```
 
@@ -190,9 +190,9 @@ print(my_colors, return_html = TRUE)
 Than you can use your scheme as input to the `adjust_colors()` function.
 
 ```{r}
-energy %>% 
-  tidyplot(year, energy, color = energy_source) %>% 
-  add_barstack_absolute() %>% 
+energy |> 
+  tidyplot(year, energy, color = energy_source) |> 
+  add_barstack_absolute() |> 
   adjust_colors(new_colors = my_colors)
 ```
 

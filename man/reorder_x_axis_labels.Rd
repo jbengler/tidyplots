@@ -25,48 +25,48 @@ Reorder axis or color labels
 }
 \examples{
 # Before adjustments
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Reorder x-axis labels
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   reorder_x_axis_labels("D", "B", "A")
 
 # Before adjustments
-study \%>\%
-  tidyplot(x = score, y = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = score, y = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Reorder y-axis labels
-study \%>\%
-  tidyplot(x = score, y = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = score, y = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   reorder_y_axis_labels("D", "B", "A")
 
 # Before adjustment
-study \%>\%
-  tidyplot(x = group, y = score, color = dose) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = group, y = score, color = dose) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Reorder color labels
-study \%>\%
-  tidyplot(x = group, y = score, color = dose) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = group, y = score, color = dose) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   reorder_color_labels("low")
 
 }

@@ -51,16 +51,16 @@ In most cases, you are probably looking for \code{add_sum_line()}, \code{add_mea
 }
 \examples{
 # Paired data points
-study \%>\%
-  tidyplot(x = treatment, y = score, color = group) \%>\%
-  reorder_x_axis_labels("A", "C", "B", "D") \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = group) |>
+  reorder_x_axis_labels("A", "C", "B", "D") |>
+  add_data_points() |>
   add_line(group = participant, color = "grey")
 
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  reorder_x_axis_labels("A", "C", "B", "D") \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  reorder_x_axis_labels("A", "C", "B", "D") |>
+  add_data_points() |>
   add_area(group = participant)
 
 }

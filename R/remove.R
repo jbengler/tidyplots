@@ -4,19 +4,19 @@
 #'
 #' @examples
 #' # Before removing
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_mean_bar()
 #'
 #' # After removing
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_legend_title()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_legend()
 #'
 #' @export
@@ -37,43 +37,43 @@ remove_legend_title <- function(plot) {
 #'
 #' @examples
 #' # Before removing
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_mean_bar()
 #'
 #' # After removing
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_x_axis_line()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_x_axis_ticks()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_x_axis_labels()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_x_axis_title()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_x_axis()
 #'
 #' @export
 remove_x_axis <- function(plot) {
   plot <- check_tidyplot(plot)
-  plot %>%
-    remove_x_axis_line() %>%
-    remove_x_axis_ticks() %>%
-    remove_x_axis_labels() %>%
+  plot |>
+    remove_x_axis_line() |>
+    remove_x_axis_ticks() |>
+    remove_x_axis_labels() |>
     remove_x_axis_title()
 }
 
@@ -111,43 +111,43 @@ remove_x_axis_title <- function(plot) {
 #'
 #' @examples
 #' # Before removing
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_mean_bar()
 #'
 #' # After removing
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_y_axis_line()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_y_axis_ticks()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_y_axis_labels()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_y_axis_title()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar() |>
 #'   remove_y_axis()
 #'
 #' @export
 remove_y_axis <- function(plot) {
   plot <- check_tidyplot(plot)
-  plot %>%
-    remove_y_axis_line() %>%
-    remove_y_axis_ticks() %>%
-    remove_y_axis_labels() %>%
+  plot |>
+    remove_y_axis_line() |>
+    remove_y_axis_ticks() |>
+    remove_y_axis_labels() |>
     remove_y_axis_title()
 }
 
@@ -184,21 +184,21 @@ remove_y_axis_title <- function(plot) {
 #'
 #' @examples
 #' # Before removing
-#' animals %>%
-#'   tidyplot(x = weight, y = speed, color = family) %>%
+#' animals |>
+#'   tidyplot(x = weight, y = speed, color = family) |>
 #'   add_data_points()
 #'
 #' # After removing
-#' animals %>%
-#'   tidyplot(x = weight, y = speed, color = family) %>%
-#'   add_data_points() %>%
+#' animals |>
+#'   tidyplot(x = weight, y = speed, color = family) |>
+#'   add_data_points() |>
 #'   remove_padding()
 #'
 #' @export
 remove_padding <- function(plot, force_continuous = FALSE) {
   plot <- check_tidyplot(plot)
-  plot %>%
-    adjust_x_axis(padding = c(0, 0), force_continuous = force_continuous) %>%
+  plot |>
+    adjust_x_axis(padding = c(0, 0), force_continuous = force_continuous) |>
     adjust_y_axis(padding = c(0, 0), force_continuous = force_continuous)
 }
 
@@ -207,25 +207,25 @@ remove_padding <- function(plot, force_continuous = FALSE) {
 #'
 #' @examples
 #' # Before removing
-#' animals %>%
-#'   tidyplot(x = weight, y = speed, color = family) %>%
-#'   add_data_points() %>%
-#'   add_title("Name of the plot") %>%
+#' animals |>
+#'   tidyplot(x = weight, y = speed, color = family) |>
+#'   add_data_points() |>
+#'   add_title("Name of the plot") |>
 #'   add_caption("This is the caption")
 #'
 #' # After removing
-#' animals %>%
-#'   tidyplot(x = weight, y = speed, color = family) %>%
-#'   add_data_points() %>%
-#'   add_title("Name of the plot") %>%
-#'   add_caption("This is the caption") %>%
+#' animals |>
+#'   tidyplot(x = weight, y = speed, color = family) |>
+#'   add_data_points() |>
+#'   add_title("Name of the plot") |>
+#'   add_caption("This is the caption") |>
 #'   remove_title()
 #'
-#' animals %>%
-#'   tidyplot(x = weight, y = speed, color = family) %>%
-#'   add_data_points() %>%
-#'   add_title("Name of the plot") %>%
-#'   add_caption("This is the caption") %>%
+#' animals |>
+#'   tidyplot(x = weight, y = speed, color = family) |>
+#'   add_data_points() |>
+#'   add_title("Name of the plot") |>
+#'   add_caption("This is the caption") |>
 #'   remove_caption()
 #'
 #' @export

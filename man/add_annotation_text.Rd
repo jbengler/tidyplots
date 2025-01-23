@@ -43,25 +43,25 @@ A \code{tidyplot} object.
 Add annotation
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_boxplot() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_boxplot() |>
   add_annotation_text("Look here!", x = 2, y = 25)
 
-eu_countries \%>\%
-  tidyplot(x = area, y = population) \%>\%
-  add_data_points() \%>\%
+eu_countries |>
+  tidyplot(x = area, y = population) |>
+  add_data_points() |>
   add_annotation_rectangle(xmin = 2.5e5, xmax = Inf, ymin = 42, ymax = Inf)
 
-eu_countries \%>\%
-  tidyplot(x = area, y = population) \%>\%
-  add_data_points() \%>\%
+eu_countries |>
+  tidyplot(x = area, y = population) |>
+  add_data_points() |>
   add_annotation_rectangle(xmin = 2.5e5, xmax = 6e5, ymin = 42, ymax = 90,
                            color = "#E69F00", fill = NA)
 
-eu_countries \%>\%
-  tidyplot(x = area, y = population) \%>\%
-  add_data_points() \%>\%
+eu_countries |>
+  tidyplot(x = area, y = population) |>
+  add_data_points() |>
   add_annotation_line(x = 0, xend = Inf, y = 0, yend = Inf)
 
 }

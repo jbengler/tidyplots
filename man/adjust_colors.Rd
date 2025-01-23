@@ -44,34 +44,34 @@ Adjust colors
 }
 \examples{
 # Plot without adjustments
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Provide hex colors
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_colors(new_colors = c("#644296","#F08533","#3B78B0", "#D1352C"))
 
 # Provide discrete color scheme
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_colors(new_colors = colors_discrete_seaside)
 
 # Provide named vector
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_colors(new_colors = c(
     "A" = "pink",
     "B" = "purple",
@@ -79,9 +79,9 @@ study \%>\%
     "D" = "blue"))
 
 # Provide continuous color scheme
-climate \%>\%
-  tidyplot(x = month, y = year, color = max_temperature) \%>\%
-  add_heatmap() \%>\%
+climate |>
+  tidyplot(x = month, y = year, color = max_temperature) |>
+  add_heatmap() |>
   adjust_colors(new_colors = colors_continuous_turbo)
 
 }

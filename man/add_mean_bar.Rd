@@ -107,66 +107,66 @@ A \code{tidyplot} object.
 Add mean
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_bar()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_dash()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_dot()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_value()
 
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
   add_mean_line()
 
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
   add_mean_area()
 
 # Combination
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_mean_dash() \%>\%
-  add_mean_dot() \%>\%
-  add_mean_value() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_mean_bar(alpha = 0.4) |>
+  add_mean_dash() |>
+  add_mean_dot() |>
+  add_mean_value() |>
   add_mean_line()
 
 # Changing arguments: alpha
 # Makes objects transparent
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  theme_minimal_y() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  theme_minimal_y() |>
   add_mean_bar(alpha = 0.4)
 
 # Changing arguments: saturation
 # Reduces fill color saturation without making the object transparent
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  theme_minimal_y() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  theme_minimal_y() |>
   add_mean_bar(saturation = 0.3)
 
 # Changing arguments: accuracy
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_value(accuracy = 0.01)
 
 # Changing arguments: fontsize
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_value(fontsize = 10)
 
 # Changing arguments: color
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_value(color = "black")
 
 }

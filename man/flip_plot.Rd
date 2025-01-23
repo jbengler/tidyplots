@@ -22,27 +22,27 @@ be replaced by swapping the \code{x} and \code{y} axis. Some plot components add
 require to set the \code{orientation} argument to \code{"y"}.
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   flip_plot()
 
-energy \%>\%
-  tidyplot(x = year, y = energy, color = energy_type) \%>\%
-  add_barstack_absolute() \%>\%
+energy |>
+  tidyplot(x = year, y = energy, color = energy_type) |>
+  add_barstack_absolute() |>
   flip_plot()
 
 # Better solutions without `flip_plot()`
-study \%>\%
-  tidyplot(x = score, y = treatment, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = score, y = treatment, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
-energy \%>\%
-  tidyplot(x = energy, y = year, color = energy_type) \%>\%
+energy |>
+  tidyplot(x = energy, y = year, color = energy_type) |>
   add_barstack_absolute(orientation = "y")
 
 }

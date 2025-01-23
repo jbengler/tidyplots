@@ -21,10 +21,10 @@ helper functions \code{ggplot2::element_blank()}, \code{ggplot2::element_rect()}
 the ggplot2 package via \code{library(ggplot2)} or use the \verb{ggplot2::} prefix as shown above.
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
   adjust_theme_details(plot.background = ggplot2::element_rect(fill = "#FFEBFF"))
 
 }

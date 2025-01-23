@@ -11,25 +11,25 @@
 #' @inheritParams ggplot2::geom_boxplot
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_boxplot()
 #'
 #' # Changing arguments:
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_boxplot(show_whiskers = FALSE)
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_boxplot(show_outliers = FALSE)
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_boxplot(box_width = 0.2)
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_boxplot(whiskers_width = 0.2)
 #'
 #' @export
@@ -40,7 +40,7 @@ add_boxplot <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, s
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
   if (saturation != 1) {
-    plot <- plot %>% adjust_colors(saturation = saturation)
+    plot <- plot |> adjust_colors(saturation = saturation)
   }
   if (show_whiskers == FALSE) {
     coef = 0
@@ -61,25 +61,25 @@ add_boxplot <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, s
 #' @inheritParams ggplot2::geom_violin
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_violin()
 #'
 #' # Changing arguments:
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_violin(saturation = 0.6)
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_violin(draw_quantiles = c(0.25, 0.5, 0.75))
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_violin(trim = TRUE)
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_violin(linewidth = 1)
 #'
 #' @export
@@ -89,7 +89,7 @@ add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, dr
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width)
   if (saturation != 1) {
-    plot <- plot %>% adjust_colors(saturation = saturation)
+    plot <- plot |> adjust_colors(saturation = saturation)
   }
   plot + ggplot2::geom_violin(alpha = alpha, draw_quantiles = draw_quantiles, trim = trim, linewidth = linewidth,
                               scale = scale, position = position, ...)
@@ -104,16 +104,16 @@ add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, dr
 #'
 #' @examples
 #' # Paired data points
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = group) %>%
-#'   reorder_x_axis_labels("A", "C", "B", "D") %>%
-#'   add_data_points() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = group) |>
+#'   reorder_x_axis_labels("A", "C", "B", "D") |>
+#'   add_data_points() |>
 #'   add_line(group = participant, color = "grey")
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score) %>%
-#'   reorder_x_axis_labels("A", "C", "B", "D") %>%
-#'   add_data_points() %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score) |>
+#'   reorder_x_axis_labels("A", "C", "B", "D") |>
+#'   add_data_points() |>
 #'   add_area(group = participant)
 #'
 #' @export
@@ -161,9 +161,9 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 
   # remove padding between area and axis
   if (is_flipped(plot)) {
-    plot <- plot %>% adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+    plot <- plot |> adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
   } else {
-    plot <- plot %>% adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+    plot <- plot |> adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
   }
   plot
 }
@@ -175,22 +175,22 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 #' @inheritParams ggplot2::geom_smooth
 #'
 #' @examples
-#' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment) %>%
+#' time_course |>
+#'   tidyplot(x = day, y = score, color = treatment) |>
 #'   add_curve_fit()
 #'
 #' # Changing arguments
-#' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment) %>%
+#' time_course |>
+#'   tidyplot(x = day, y = score, color = treatment) |>
 #'   add_curve_fit(linewidth = 1)
 #'
-#' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment) %>%
+#' time_course |>
+#'   tidyplot(x = day, y = score, color = treatment) |>
 #'   add_curve_fit(alpha = 0.8)
 #'
 #' # Remove confidence interval
-#' time_course %>%
-#'   tidyplot(x = day, y = score, color = treatment) %>%
+#' time_course |>
+#'   tidyplot(x = day, y = score, color = treatment) |>
 #'   add_curve_fit(se = FALSE)
 #'
 #' @export
@@ -211,12 +211,12 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #' @inheritParams ggplot2::geom_histogram
 #'
 #' @examples
-#' energy %>%
-#'   tidyplot(x = energy) %>%
+#' energy |>
+#'   tidyplot(x = energy) |>
 #'   add_histogram()
 #'
-#' energy %>%
-#'   tidyplot(x = energy, color = energy_type) %>%
+#' energy |>
+#'   tidyplot(x = energy, color = energy_type) |>
 #'   add_histogram()
 #'
 #' @export
@@ -227,9 +227,9 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
     ggplot2::geom_histogram(color = NA, binwidth = binwidth, bins = bins, ...)
   # remove padding between bar and axis
   if (is_flipped(plot)) {
-    plot <- plot %>% adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+    plot <- plot |> adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
   } else {
-    plot <- plot %>% adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+    plot <- plot |> adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
   }
   plot
 }
@@ -240,8 +240,8 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
 #' @return A `tidyplot` object.
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add(ggplot2::geom_point())
 #'
 #' @export

@@ -40,35 +40,35 @@ Adjust plot area padding
 }
 \examples{
 # Plot without adjustments
-animals \%>\%
-  tidyplot(x = weight, y = size, color = family) \%>\%
-  add_data_points() \%>\%
+animals |>
+  tidyplot(x = weight, y = size, color = family) |>
+  add_data_points() |>
   adjust_padding()
 
 # Increase plot area padding
-animals \%>\%
-  tidyplot(x = weight, y = size, color = family) \%>\%
-  add_data_points() \%>\%
+animals |>
+  tidyplot(x = weight, y = size, color = family) |>
+  add_data_points() |>
   adjust_padding(all = 0.2)
 
-animals \%>\%
-  tidyplot(x = weight, y = size, color = family) \%>\%
-  add_data_points() \%>\%
+animals |>
+  tidyplot(x = weight, y = size, color = family) |>
+  add_data_points() |>
   adjust_padding(top = 0.8)
 
-animals \%>\%
-  tidyplot(x = weight, y = size, color = family) \%>\%
-  add_data_points() \%>\%
+animals |>
+  tidyplot(x = weight, y = size, color = family) |>
+  add_data_points() |>
   adjust_padding(bottom = 0.8)
 
-animals \%>\%
-  tidyplot(x = weight, y = size, color = family) \%>\%
-  add_data_points() \%>\%
+animals |>
+  tidyplot(x = weight, y = size, color = family) |>
+  add_data_points() |>
   adjust_padding(right = 0.8)
 
-animals \%>\%
-  tidyplot(x = weight, y = size, color = family) \%>\%
-  add_data_points() \%>\%
+animals |>
+  tidyplot(x = weight, y = size, color = family) |>
+  add_data_points() |>
   adjust_padding(left = 0.8)
 
 }

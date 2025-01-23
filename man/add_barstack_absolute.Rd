@@ -27,40 +27,40 @@ Add bar stack
 \examples{
 # for a `count` only provide `color`
 # `count` of the data points in each `energy_type` category
-energy \%>\%
-  tidyplot(color = energy_type) \%>\%
+energy |>
+  tidyplot(color = energy_type) |>
   add_barstack_absolute()
 
-energy \%>\%
-  tidyplot(color = energy_type) \%>\%
+energy |>
+  tidyplot(color = energy_type) |>
   add_barstack_relative()
 
 # for a `sum` provide `color` and `y`
 # `sum` of `energy` in each `energy_type` category
-energy \%>\%
-  tidyplot(y = energy, color = energy_type) \%>\%
+energy |>
+  tidyplot(y = energy, color = energy_type) |>
   add_barstack_absolute()
 
-energy \%>\%
-  tidyplot(y = energy, color = energy_type) \%>\%
+energy |>
+  tidyplot(y = energy, color = energy_type) |>
   add_barstack_relative()
 
 # Include variable on second axis
-energy \%>\%
-  tidyplot(x = year, y = energy, color = energy_type) \%>\%
+energy |>
+  tidyplot(x = year, y = energy, color = energy_type) |>
   add_barstack_absolute()
 
-energy \%>\%
-  tidyplot(x = year, y = energy, color = energy_type) \%>\%
+energy |>
+  tidyplot(x = year, y = energy, color = energy_type) |>
   add_barstack_relative()
 
 # Flip x and y-axis
-energy \%>\%
-  tidyplot(x = energy, y = year, color = energy_type) \%>\%
+energy |>
+  tidyplot(x = energy, y = year, color = energy_type) |>
   add_barstack_absolute(orientation = "y")
 
-energy \%>\%
-  tidyplot(x = energy, y = year, color = energy_type) \%>\%
+energy |>
+  tidyplot(x = energy, y = year, color = energy_type) |>
   add_barstack_relative(orientation = "y")
 
 }

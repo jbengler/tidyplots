@@ -15,12 +15,12 @@ test_that("is_hex_vector works", {
 
 test_that("check_input works", {
   p1 <-
-    study %>%
+    study |>
     ggplot2::ggplot(ggplot2::aes(treatment, score, color = treatment)) +
     ggplot2::geom_point()
   tp <-
-    study %>%
-    tidyplot(treatment, score, color = treatment) %>%
+    study |>
+    tidyplot(treatment, score, color = treatment) |>
     add_data_points_beeswarm()
   p2 <- p1
   pw <- patchwork::wrap_plots(p1, p2)
@@ -36,9 +36,55 @@ test_that("check_input works", {
   expect_equal(check_input(c("hello")), "none")
 })
 
+test_that("*_rows() functions work", {
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points() |>
+    add_data_points(data = all_rows(),
+                    color = "red", shape = 1, size = 3) |>
+    vdiffr::expect_doppelganger("All rows", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points() |>
+    add_data_points(data = max_rows(weight, n = 3),
+                    color = "red", shape = 1, size = 3) |>
+    vdiffr::expect_doppelganger("Highlight 3 animals with the highest weight", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points() |>
+    add_data_points(data = min_rows(weight, n = 3),
+                    color = "red", shape = 1, size = 3) |>
+    vdiffr::expect_doppelganger("Highlight 3 animals with the lowest weight", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points() |>
+    add_data_points(data = first_rows(n = 3),
+                    color = "red", shape = 1, size = 3) |>
+    vdiffr::expect_doppelganger("Highlight the first 3 animals in the dataset", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points() |>
+    add_data_points(data = last_rows(n = 3),
+                    color = "red", shape = 1, size = 3) |>
+    vdiffr::expect_doppelganger("Highlight the last 3 animals in the dataset", fig = _)
+
+  set.seed(42)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points() |>
+    add_data_points(data = sample_rows(n = 3),
+                    color = "red", shape = 1, size = 3) |>
+    vdiffr::expect_doppelganger("Highlight 3 random animals", fig = _)
+})
+
 test_that("as_tidyplot works", {
   gg <-
-    study %>%
+    study |>
     ggplot2::ggplot(ggplot2::aes(x = treatment, y = score, color = treatment, fill = treatment)) +
     ggplot2::stat_summary(fun = mean, geom = "bar", color = NA, width = 0.6, alpha = 0.4) +
     ggplot2::stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = 0.25, width = 0.4) +
@@ -47,9 +93,9 @@ test_that("as_tidyplot works", {
   tp <- as_tidyplot(gg)
 
   tp_modified <-
-    tp %>%
-    adjust_colors(new_colors = c("C" = "#766123")) %>%
-    reorder_x_axis_labels(c("C")) %>%
+    tp |>
+    adjust_colors(new_colors = c("C" = "#766123")) |>
+    reorder_x_axis_labels(c("C")) |>
     rename_x_axis_labels(c("C" = "control"))
 
   vdiffr::expect_doppelganger("before tidyplot conversion", gg)

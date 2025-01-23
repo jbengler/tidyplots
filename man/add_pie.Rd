@@ -27,22 +27,22 @@ Add pie or donut chart
 \examples{
 # for a `count` only provide `color`
 # `count` of the data points in each `energy_type` category
-energy \%>\%
-  tidyplot(color = energy_type) \%>\%
+energy |>
+  tidyplot(color = energy_type) |>
   add_pie()
 
-energy \%>\%
-  tidyplot(color = energy_type) \%>\%
+energy |>
+  tidyplot(color = energy_type) |>
   add_donut()
 
 # for a `sum` provide `color` and `y`
 # `sum` of `energy` in each `energy_type` category
-energy \%>\%
-  tidyplot(y = energy, color = energy_type) \%>\%
+energy |>
+  tidyplot(y = energy, color = energy_type) |>
   add_pie()
 
-energy \%>\%
-  tidyplot(y = energy, color = energy_type) \%>\%
+energy |>
+  tidyplot(y = energy, color = energy_type) |>
   add_donut()
 
 }

@@ -83,39 +83,39 @@ additional arguments.
 \examples{
 # Create plot and increase padding to make more space for labels
 p <-
-  animals \%>\%
-  dplyr::slice_head(n = 5) \%>\%
-  tidyplot(x = weight, y = speed) \%>\%
-  theme_ggplot2() \%>\%
-  add_data_points() \%>\%
+  animals |>
+  dplyr::slice_head(n = 5) |>
+  tidyplot(x = weight, y = speed) |>
+  theme_ggplot2() |>
+  add_data_points() |>
   adjust_padding(all = 0.3)
 
 # Default label position is `below` the data point
-p \%>\% add_data_labels(label = animal)
+p |> add_data_labels(label = animal)
 
 # Alternative label positions
-p \%>\% add_data_labels(label = animal, label_position = "above")
+p |> add_data_labels(label = animal, label_position = "above")
 
-p \%>\% add_data_labels(label = animal, label_position = "right")
+p |> add_data_labels(label = animal, label_position = "right")
 
-p \%>\% add_data_labels(label = animal, label_position = "left")
+p |> add_data_labels(label = animal, label_position = "left")
 
 # Include white background box
-p \%>\% add_data_labels(label = animal, background = TRUE)
+p |> add_data_labels(label = animal, background = TRUE)
 
-p \%>\% add_data_labels(label = animal, background = TRUE,
+p |> add_data_labels(label = animal, background = TRUE,
   background_color = "pink")
 
 # Black labels
-p \%>\% add_data_labels(label = animal, color = "black")
+p |> add_data_labels(label = animal, color = "black")
 
 # Use repelling data labels
-p \%>\% add_data_labels_repel(label = animal, color = "black")
+p |> add_data_labels_repel(label = animal, color = "black")
 
-p \%>\% add_data_labels_repel(label = animal, color = "black",
+p |> add_data_labels_repel(label = animal, color = "black",
   background = TRUE)
 
-p \%>\% add_data_labels_repel(label = animal, color = "black",
+p |> add_data_labels_repel(label = animal, color = "black",
   background = TRUE, min.segment.length = 0)
 
 }

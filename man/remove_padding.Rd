@@ -19,14 +19,14 @@ Remove plot area padding
 }
 \examples{
 # Before removing
-animals \%>\%
-  tidyplot(x = weight, y = speed, color = family) \%>\%
+animals |>
+  tidyplot(x = weight, y = speed, color = family) |>
   add_data_points()
 
 # After removing
-animals \%>\%
-  tidyplot(x = weight, y = speed, color = family) \%>\%
-  add_data_points() \%>\%
+animals |>
+  tidyplot(x = weight, y = speed, color = family) |>
+  add_data_points() |>
   remove_padding()
 
 }

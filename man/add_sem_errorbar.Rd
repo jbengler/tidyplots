@@ -72,39 +72,39 @@ A \code{tidyplot} object.
 }
 \examples{
 # Standard error of the mean
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
   add_sem_errorbar()
 
 # Range from minimum to maximum value
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
   add_range_errorbar()
 
 # Standard deviation
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
   add_sd_errorbar()
 
 # 95\% confidence interval
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
   add_ci95_errorbar()
 
 # Changing arguments: error bar width
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
   add_sem_errorbar(width = 0.8)
 
 # Changing arguments: error bar line width
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
   add_sem_errorbar(linewidth = 1)
 
 }

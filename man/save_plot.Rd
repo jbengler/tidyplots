@@ -57,37 +57,37 @@ Output file dimensions are determined according the the following precedence.
 .old_wd <- setwd(tempdir())
 }
 # Save plot to file
-study \%>\%
-  tidyplot(treatment, score) \%>\%
-  add_data_points() \%>\%
+study |>
+  tidyplot(treatment, score) |>
+  add_data_points() |>
   save_plot("single_plot.pdf")
 
 # Save intermediate stages to file
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
-  add_data_points_beeswarm() \%>\%
-  save_plot("before.pdf") \%>\%
-  adjust_colors(colors_discrete_seaside) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
+  add_data_points_beeswarm() |>
+  save_plot("before.pdf") |>
+  adjust_colors(colors_discrete_seaside) |>
   save_plot("after.pdf")
 
 \donttest{
 
 # Save multipage PDF file
-gene_expression \%>\%
-  .[1:160,] \%>\%
-  tidyplot(group, expression, color = sample_type) \%>\%
-  add_data_points() \%>\%
-  split_plot(by = external_gene_name, nrow = 2, ncol = 2) \%>\%
+gene_expression |>
+  _[1:160,] |>
+  tidyplot(group, expression, color = sample_type) |>
+  add_data_points() |>
+  split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
   save_plot("multipage_plot.pdf")
 
 # Save multiple PDF files
-gene_expression \%>\%
-  .[1:160,] \%>\%
-  tidyplot(group, expression, color = sample_type) \%>\%
-  add_data_points() \%>\%
-  split_plot(by = external_gene_name, nrow = 2, ncol = 2) \%>\%
+gene_expression |>
+  _[1:160,] |>
+  tidyplot(group, expression, color = sample_type) |>
+  add_data_points() |>
+  split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
   save_plot("plot.pdf", multiple_files = TRUE)
 
 }

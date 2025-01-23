@@ -79,34 +79,34 @@ See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-pl
 }
 \examples{
 # Plot without adjustments
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Adjust description
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
-  adjust_title("This is my fantastic plot title") \%>\%
-  adjust_x_axis_title("Treatment group") \%>\%
-  adjust_y_axis_title("Disease score") \%>\%
-  adjust_legend_title("Legend title") \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
+  adjust_title("This is my fantastic plot title") |>
+  adjust_x_axis_title("Treatment group") |>
+  adjust_y_axis_title("Disease score") |>
+  adjust_legend_title("Legend title") |>
   adjust_caption("Here goes the caption")
 
 # Plotmath expressions
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
-  adjust_title("$H[2]*O$") \%>\%
-  adjust_x_axis_title("$H[2]*O$") \%>\%
-  adjust_y_axis_title("$H[2]*O$") \%>\%
-  adjust_legend_title("$H[2]*O$") \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
+  adjust_title("$H[2]*O$") |>
+  adjust_x_axis_title("$H[2]*O$") |>
+  adjust_y_axis_title("$H[2]*O$") |>
+  adjust_legend_title("$H[2]*O$") |>
   adjust_caption("$H[2]*O$")
 
 }

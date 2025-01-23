@@ -29,20 +29,20 @@ See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-pl
 }
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_data_points_beeswarm() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_data_points_beeswarm() |>
   add_title("This is my title")
 
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_data_points_beeswarm() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_data_points_beeswarm() |>
   add_caption("This is the fine print in the caption")
 
 # Plotmath expression
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_data_points_beeswarm() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_data_points_beeswarm() |>
   add_title("$H[2]*O~and~E==m*c^{2}$")
 
 }

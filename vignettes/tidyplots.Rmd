@@ -77,23 +77,23 @@ library(tidyplots)
 Then we start with the `study` dataset and pipe it into the `tidyplot()` function.
 
 ```{r}
-study %>% 
+study |> 
   tidyplot(x = treatment, y = score)
 ```
 
 And here it is, your first tidyplot! Admittedly, it still looks a little bit empty. We will take care of this in a second. But first let's have a closer look at the code above.
 
-In the first line we start with the `study` dataset. The `%>%` is called a _pipe_ and makes sure, that the output of the first line is handed over as input to the next line. In the second line, we generate the tidyplot and specify which variables we want to use for the x and y-axis using the `x` and `y` arguments of the `tidyplot()` function.
+In the first line we start with the `study` dataset. The `|>` is called a _pipe_ and makes sure, that the output of the first line is handed over as input to the next line. In the second line, we generate the tidyplot and specify which variables we want to use for the x and y-axis using the `x` and `y` arguments of the `tidyplot()` function.
 
 _Tip: The keyboard shortcut for the pipe is `Cmd` + `Shift` + `M` on the Mac and `Ctrl` + `Shift` + `M` on Windows._
 
 ## Add
 
-Next, let's add some more elements to the plot. This is done by using a family of functions that all start with `add_`. For example, we can add the data points by adding one more line to the code. Note, that we need a `%>%` at the end of each line, where the output should be piped into the next line. When you combine multiple lines like this, you have generated a _pipeline_.
+Next, let's add some more elements to the plot. This is done by using a family of functions that all start with `add_`. For example, we can add the data points by adding one more line to the code. Note, that we need a `|>` at the end of each line, where the output should be piped into the next line. When you combine multiple lines like this, you have generated a _pipeline_.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
   add_data_points()
 ```
 
@@ -104,9 +104,9 @@ For now, let's add some bars to the plot. As soon as you start typing "add" in R
 In tidyplots, function names that start with `add_` usually continue with the statistical entity to plot, e.g. `mean`, `median`, `count`, etc. As a next piece, you decide which graphical representation to use, e.g. `bar`, `dash`, `line` etc. In our example we choose `add_mean_bar()` to show the mean value of each treatment group represented as a bar.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
-  add_data_points() %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
+  add_data_points() |> 
   add_mean_bar(alpha = 0.4)
 ```
 
@@ -115,10 +115,10 @@ One thing to note here is that I added `alpha = 0.4` as a argument to the `add_m
 Some people might do not like bars so much. So let's exchange the `bar` for a `dash`. And while we are on it, let's add the standard error of the mean `sem`, represented as error bar.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
-  add_data_points() %>% 
-  add_mean_dash() %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
+  add_data_points() |> 
+  add_mean_dash() |> 
   add_sem_errorbar()
 ```
 
@@ -127,10 +127,10 @@ I think by now you got the principle. You can just keep adding layers until your
 But there is one more building block that we need to cover and that is color. Color is a very powerful way to encode information in a plot. As colors can encode _variables_ in a similar way as axes, the argument `color` needs to be to provided in the initial call of the `tidyplot()` function.
 
 ```{r}
-study %>% 
-  tidyplot(x = group, y = score, color = dose) %>% 
-  add_data_points() %>% 
-  add_mean_dash() %>% 
+study |> 
+  tidyplot(x = group, y = score, color = dose) |> 
+  add_data_points() |> 
+  add_mean_dash() |> 
   add_sem_errorbar()
 ```
 
@@ -143,12 +143,12 @@ Although there are many more `add_*()` functions available, I will stop here and
 Besides adding plot elements, you might want to remove certain parts of the plot. This can be achieved with the `remove_*()` family of functions. For example, you might want to remove the color legend title, or in some rare cases even the entire y-axis.
 
 ```{r}
-study %>% 
-  tidyplot(x = group, y = score, color = dose) %>% 
-  add_data_points() %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  remove_legend_title() %>% 
+study |> 
+  tidyplot(x = group, y = score, color = dose) |> 
+  add_data_points() |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  remove_legend_title() |> 
   remove_y_axis()
 ```
 
@@ -161,10 +161,10 @@ After you have assembled your plot, you often want to tweak some details about h
 Let's start with this plot.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
   add_sem_errorbar()
 ```
 
@@ -173,26 +173,26 @@ When preparing figures for a paper, you might want ensure, that all plots have a
 This is perfect to achieve a consistent look, which is most easily done by selecting a consistent `height` across plots, while the `width` can vary depending on the number of categories in the x-axis.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points_beeswarm(shape = 1) %>%
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points_beeswarm(shape = 1) |>
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
   adjust_size(width = 20, height = 20)
 ```
 
 Another common adjustment is to change the titles of the plot, axes, or legend. For this we will use the function `adjust_title()` and friends.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
-  adjust_title("This is my fantastic plot title") %>%
-  adjust_x_axis_title("Treatment group") %>%
-  adjust_y_axis_title("Disease score") %>%
-  adjust_legend_title("") %>%
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
+  adjust_title("This is my fantastic plot title") |>
+  adjust_x_axis_title("Treatment group") |>
+  adjust_y_axis_title("Disease score") |>
+  adjust_legend_title("") |>
   adjust_caption("Here goes the caption")
 ```
 
@@ -201,22 +201,22 @@ Note that I removed the legend title by setting it to an empty string `adjust_le
 Another common task is to adjust the colors in your plot. You can do this using the `adjust_colors()` function.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
   adjust_colors(new_colors = c("#644296","#F08533","#3B78B0", "#D1352C"))
 ```
 
 You can also use the color schemes, that are built into tidyplots. To learn more about these color schemes have a look at the article [Color schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html).
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
   adjust_colors(new_colors = colors_discrete_seaside)
 ```
 
@@ -227,11 +227,11 @@ A special group of adjust functions deals with the _data labels_ in your plot. T
 For example, to rename the data labels for the `treatment` variable on the x-axis, you can do this.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
   rename_x_axis_labels(new_names = c("A" = "This",
                                      "B" = "is",
                                      "C" = "totally",
@@ -245,33 +245,33 @@ The remaining functions, starting with `reorder_`, `sort_`, and `reverse_`, do n
 For example, you can bring the treatment "D" and "C" to the front.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
   reorder_x_axis_labels("D", "C")
 ```
 
 Sort the treatments by their score.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
   sort_x_axis_labels()
 ```
 
 Or simply reverse the order of the labels.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_mean_bar(alpha = 0.4) %>% 
-  add_sem_errorbar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
   reverse_x_axis_labels()
 ```
 
@@ -282,34 +282,34 @@ Of course, there are many more `adjust_` functions that you can find in the [Pac
 Themes are a great way to modify the look an feel of your plot without changing the representation of the data. You can stay with the default tidyplots theme.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_sem_errorbar() %>% 
-  add_mean_dash() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_sem_errorbar() |> 
+  add_mean_dash() |> 
   theme_tidyplot()
 ```
 
 Or try something more like ggplot2.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_sem_errorbar() %>% 
-  add_mean_dash() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_sem_errorbar() |> 
+  add_mean_dash() |> 
   theme_ggplot2()
 ```
 
 Or something more minimal.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_data_points() %>% 
-  add_sem_errorbar() %>% 
-  add_mean_dash() %>% 
-  theme_minimal_y() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_data_points() |> 
+  add_sem_errorbar() |> 
+  add_mean_dash() |> 
+  theme_minimal_y() |> 
   remove_x_axis_line()
 ```
 
@@ -320,11 +320,11 @@ When you have a complex dataset, you might want split the plot into multiple sub
 Starting with the `study` dataset, you could plot the `score` against the treatment `group` and split this plot by `dose` into a high dose and a low dose plot.
 
 ```{r}
-study %>% 
-  tidyplot(x = group, y = score, color = group) %>% 
-  add_data_points() %>% 
-  add_sem_errorbar() %>% 
-  add_mean_dash() %>% 
+study |> 
+  tidyplot(x = group, y = score, color = group) |> 
+  add_data_points() |> 
+  add_sem_errorbar() |> 
+  add_mean_dash() |> 
   split_plot(by = dose)
 ```
 
@@ -333,11 +333,11 @@ study %>%
 The classical way to output a plot is to write it to a PDF or PNG file. This can be easily done by piping the plot into the function `save_plot()`.
 
 ```{r eval=FALSE}
-study %>% 
-  tidyplot(x = group, y = score, color = group) %>% 
-  add_data_points() %>% 
-  add_sem_errorbar() %>% 
-  add_mean_dash() %>% 
+study |> 
+  tidyplot(x = group, y = score, color = group) |> 
+  add_data_points() |> 
+  add_sem_errorbar() |> 
+  add_mean_dash() |> 
   save_plot("my_plot.pdf")
 ```
 

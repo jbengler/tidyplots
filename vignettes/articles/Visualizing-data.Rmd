@@ -28,56 +28,56 @@ Plotting the raw data points is probably the most bare bone way to visualize a d
 ```{r}
 library(tidyplots)
 
-animals %>% 
-  tidyplot(x = weight, y = size) %>% 
+animals |> 
+  tidyplot(x = weight, y = size) |> 
   add_data_points()
 ```
 
 In the above example some data points appear to overlap other points. To account for this so called _overplotting_, you might want to add a thin white border around the points. This is achieved by setting the argument `white_border = TRUE`.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = size) %>% 
+animals |> 
+  tidyplot(x = weight, y = size) |> 
   add_data_points(white_border = TRUE)
 ```
 
 Another way is to make the points transparent using the `alpha` argument.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = size) %>% 
+animals |> 
+  tidyplot(x = weight, y = size) |> 
   add_data_points(alpha = 0.4)
 ```
 
 Or to change the plotting symbol to an open `shape`.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = size) %>% 
+animals |> 
+  tidyplot(x = weight, y = size) |> 
   add_data_points(shape = 1)
 ```
 
 However, data points can also be used to plot a _discrete variable_ against a _continuous variable_.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
   add_data_points()
 ```
 
 To avoid overplotting in this scenario, there are two additional options. You can add some random noise to the y position, also known as _jitter_.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
   add_data_points_jitter()
 ```
 
 Alternatively, you can use an algorithm that keeps the points centered and just moves potentially overlapping points to the sides.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
   add_data_points_beeswarm()
 ```
 
@@ -92,25 +92,25 @@ spendings
 As you can see, this dataset contains family spendings over a time period of 15 days in October. Here, it might be informative to see which spending categories are reoccurring and which are just one time spendings.
 
 ```{r}
-spendings %>% 
-  tidyplot(x = category) %>% 
+spendings |> 
+  tidyplot(x = category) |> 
   add_count_bar()
 ```
 
 One thing to note here is that the x-axis labels are overlapping and are thus unreadable. There are at least two possible solutions for this. One is to swap the x and y-axis.
 
 ```{r}
-spendings %>% 
-  tidyplot(y = category) %>% 
+spendings |> 
+  tidyplot(y = category) |> 
   add_count_bar()
 ```
 
 The other one is to rotate the x-axis labels.
 
 ```{r}
-spendings %>% 
-  tidyplot(x = category) %>% 
-  add_count_bar() %>% 
+spendings |> 
+  tidyplot(x = category) |> 
+  add_count_bar() |> 
   adjust_x_axis(rotate_labels = TRUE)
 ```
 
@@ -119,9 +119,9 @@ Now we can appreciate that this family had reoccurring spendings for _Food_ but 
 Next, we ask the question _how much_ was spend on each of the categories by plotting the `sum` amount.
 
 ```{r}
-spendings %>% 
-  tidyplot(x = category, y = amount, color = category) %>% 
-  add_sum_bar() %>% 
+spendings |> 
+  tidyplot(x = category, y = amount, color = category) |> 
+  add_sum_bar() |> 
   adjust_x_axis(rotate_labels = TRUE)
 ```
 
@@ -132,12 +132,12 @@ I also added `color = category` in the `tidyplot()` function to have the variabl
 Since the labels for the variable `category` are now duplicated in the plot, one could argue that it would be justified to remove the duplicated information on the x-axis.
 
 ```{r}
-spendings %>% 
-  tidyplot(x = category, y = amount, color = category) %>% 
-  add_sum_bar() %>% 
-  adjust_x_axis(rotate_labels = TRUE) %>% 
-  remove_x_axis_labels() %>% 
-  remove_x_axis_title() %>% 
+spendings |> 
+  tidyplot(x = category, y = amount, color = category) |> 
+  add_sum_bar() |> 
+  adjust_x_axis(rotate_labels = TRUE) |> 
+  remove_x_axis_labels() |> 
+  remove_x_axis_title() |> 
   remove_x_axis_ticks()
 ```
 
@@ -146,14 +146,14 @@ Note that besides the x-axis labels, I also removed the x-axis ticks and x-axis 
 Of course you are free to play around with different graphical representations of the sum values. Here is an example of a lollipop plot constructed from a thin `bar` and a `dot`.
 
 ```{r}
-spendings %>% 
-  tidyplot(x = category, y = amount, color = category) %>% 
-  add_sum_bar(width = 0.03) %>% 
-  add_sum_dot() %>% 
-  add_sum_value(accuracy = 1) %>% 
-  adjust_x_axis(rotate_labels = TRUE) %>% 
-  remove_x_axis_labels() %>% 
-  remove_x_axis_title() %>% 
+spendings |> 
+  tidyplot(x = category, y = amount, color = category) |> 
+  add_sum_bar(width = 0.03) |> 
+  add_sum_dot() |> 
+  add_sum_value(accuracy = 1) |> 
+  adjust_x_axis(rotate_labels = TRUE) |> 
+  remove_x_axis_labels() |> 
+  remove_x_axis_title() |> 
   remove_x_axis_ticks()
 ```
 
@@ -164,33 +164,33 @@ I also added the sum value as text label using the `add_sum_value()` function.
 Heatmaps are a great way to plot a _continuous variable_ across two additional _variables_. To exemplify this, we will have a look at the `gene_expression` dataset.
 
 ```{r, results='markup'}
-gene_expression %>% 
+gene_expression |> 
   dplyr::glimpse()
 ```
 
 We will start by plotting the `expression` values of each `external_gene_name` across the `sample` variable.
 
 ```{r}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
   add_heatmap()
 ```
 
 One thing to note here is that the y-axis labels are overlapping. So let's increase the height of the plot area from 50 to 100 mm.
 
 ```{r, fig.asp=0.9}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap() %>%
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
+  add_heatmap() |>
   adjust_size(height = 100)
 ```
 
 The next thing to note is that some of the rows like _Map1a_ and _Kif1a_ show very high values while other rows show much lower values. Let's apply a classical technique to reserve the color range for differences within each row. This is done by calculating _row z scores_ for each row individually. Luckily, tidyplots does this for us when setting the argument `scale = "row"` within the `add_heatmap()` function call.
 
 ```{r, fig.asp=0.9}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap(scale = "row") %>%
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
+  add_heatmap(scale = "row") |>
   adjust_size(height = 100)
 ```
 
@@ -199,10 +199,10 @@ Now it much easier to appreciate the dynamics of individual genes across the sam
 However, the rows appear to be mixed. Some having rather high expression in the "Eip" samples while others have high value in the "Hip" samples. Conveniently, there is a variable called `direction` in the dataset, which classifies genes as being either "up" or "down" regulated. Let's use this variable to sort our y-axis.
 
 ```{r, fig.asp=0.9}
-gene_expression %>% 
-  tidyplot(x = sample, y = external_gene_name, color = expression) %>% 
-  add_heatmap(scale = "row") %>%
-  adjust_size(height = 100) %>% 
+gene_expression |> 
+  tidyplot(x = sample, y = external_gene_name, color = expression) |> 
+  add_heatmap(scale = "row") |>
+  adjust_size(height = 100) |> 
   sort_y_axis_labels(direction)
 ```
 
@@ -211,46 +211,46 @@ gene_expression %>%
 In cases with multiple data points per experimental group, the `mean` and the `median` are a great way to compute a typical center value for the group, also known as central tendency measure. In tidyplots, these function start with `add_mean_` or `add_median_`.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
-  add_data_points_beeswarm() %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
+  add_data_points_beeswarm() |> 
   add_mean_dash()
 ```
 
 The second part of the function name is dedicated to the graphical representation. These include the representation as `bar`, `dash`, `dot`, `value`, `line` or `area`. Of course, these different representations can also be combined. Like in this case `line` and `dot`.
 
 ```{r}
-time_course %>% 
-  tidyplot(x = day, y = score, color = treatment) %>% 
-  add_mean_line() %>% 
+time_course |> 
+  tidyplot(x = day, y = score, color = treatment) |> 
+  add_mean_line() |> 
   add_mean_dot()
 ```
 
 Or in this case `line` and `area`.
 
 ```{r}
-time_course %>% 
-  tidyplot(x = day, y = score, color = treatment) %>% 
-  add_mean_line(linewidth = 1) %>% 
+time_course |> 
+  tidyplot(x = day, y = score, color = treatment) |> 
+  add_mean_line(linewidth = 1) |> 
   add_mean_area(alpha = 0.2)
 ```
 
 Here is one more example using `bar` and `value`.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
-  add_mean_bar() %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
+  add_mean_bar() |> 
   add_mean_value()
 ```
 
 You could also plot the `mean` and the `median` together to explore in which cases they diverge. In the example below the `mean` is shown in orange and the `median` in purple.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score) %>% 
-  add_data_points_beeswarm(color = "grey") %>% 
-  add_mean_dash(color = "orange") %>% 
+study |> 
+  tidyplot(x = treatment, y = score) |> 
+  add_data_points_beeswarm(color = "grey") |> 
+  add_mean_dash(color = "orange") |> 
   add_median_dash(color = "purple")
 ```
 
@@ -261,53 +261,53 @@ To complement the central tendency measure, it is often helpful to provide infor
 A classical representation of dispersion is an `errorbar`.
 
 ```{r}
-time_course %>% 
-  tidyplot(x = day, y = score, color = treatment) %>% 
-  add_mean_line() %>% 
-  add_mean_dot() %>% 
+time_course |> 
+  tidyplot(x = day, y = score, color = treatment) |> 
+  add_mean_line() |> 
+  add_mean_dot() |> 
   add_sem_errorbar(width = 2)
 ```
 
 Or the use of a semitransparent `ribbon`.
 
 ```{r}
-time_course %>% 
-  tidyplot(x = day, y = score, color = treatment) %>% 
-  add_mean_line() %>% 
-  add_mean_dot() %>% 
+time_course |> 
+  tidyplot(x = day, y = score, color = treatment) |> 
+  add_mean_line() |> 
+  add_mean_dot() |> 
   add_sem_ribbon()
 ```
 
 Another widely used alternative, especially for not normally distributed data is the use of `violin` or `boxplot`. Starting with the `violin`, the shape of these plots resembles the underlying distribution of the data points.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
   add_violin()
 ```
 
 These can be further augmented by adding, for example, the 0.5 quantile and the underlying data points.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_violin(draw_quantiles = 0.5) %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_violin(draw_quantiles = 0.5) |> 
   add_data_points_beeswarm()
 ```
 
 The `boxplot` is the more classical approach, in which the quantiles are visualized by a box and whiskers.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
   add_boxplot()
 ```
 
 Finally, although it is not strictly a measure of central tendency, you can fit a curve through your data to derive an abstracted representation.
 
 ```{r}
-time_course %>% 
-  tidyplot(x = day, y = score, color = treatment) %>% 
+time_course |> 
+  tidyplot(x = day, y = score, color = treatment) |> 
   add_curve_fit()
 ```
 
@@ -316,17 +316,17 @@ time_course %>%
 When looking at a single distribution of values, a classical approach for visualization is a `histogram`.
 
 ```{r}
-energy %>% 
-  tidyplot(x = energy) %>% 
+energy |> 
+  tidyplot(x = energy) |> 
   add_histogram()
 ```
 
 If you want to compare multiple distributions, `violin` or `boxplot` are two potential solutions.
 
 ```{r}
-distributions %>% 
-  tidyplot(x = name, y = value) %>% 
-  add_violin() %>% 
+distributions |> 
+  tidyplot(x = name, y = value) |> 
+  add_violin() |> 
   add_data_points_beeswarm()
 ```
 
@@ -335,15 +335,15 @@ distributions %>%
 Proportional data provides insights into the proportion or percentage that each individual category contributes to the total. To explore the visualization of proportional data in tidyplots, let's introduce the `energy` dataset.
 
 ```{r, results='markup'}
-energy %>% 
+energy |> 
   dplyr::glimpse()
 ```
 
 As you might appreciate, this dataset contains the `energy` in terawatt hours (TWh) produced per `energy_source` in Germany between `year` 2002 and 2024. Let's start with a `pie` plot.
 
 ```{r}
-energy %>% 
-  tidyplot(color = energy_type) %>% 
+energy |> 
+  tidyplot(color = energy_type) |> 
   add_pie()
 ```
 
@@ -352,8 +352,8 @@ The above plot represents the `count` of values across the different `energy_typ
 However, we might be more interested, in the `sum` contribution of each `energy_type` to the total `energy` production. Therefore, we have to provide the variable `energy` as a `y` argument to the `tidyplots()` function.
 
 ```{r}
-energy %>% 
-  tidyplot(y = energy, color = energy_type) %>% 
+energy |> 
+  tidyplot(y = energy, color = energy_type) |> 
   add_donut()
 ```
 
@@ -362,42 +362,42 @@ Now we can appreciate the contribution of each energy type. Note that I also cha
 The main criticism of `pie` and `donut` plots is that the human brain struggles to accurately interpret the proportions represented. A slightly better option might be a `barstack` plot.
 
 ```{r}
-energy %>% 
-  tidyplot(y = energy, color = energy_type) %>% 
+energy |> 
+  tidyplot(y = energy, color = energy_type) |> 
   add_barstack_absolute()
 ```
 
 However, for a direct comparison, a classical bar plot is probably still the best option.
 
 ```{r}
-energy %>% 
-  tidyplot(x = energy_type, y = energy, color = energy_type) %>% 
-  add_sum_bar() %>% 
-  add_sum_value() %>% 
+energy |> 
+  tidyplot(x = energy_type, y = energy, color = energy_type) |> 
+  add_sum_bar() |> 
+  add_sum_value() |> 
   sort_x_axis_labels()
 ```
 
 Nevertheless, to visualize proportional data across time or another variable, `barstack` plots are the way to go.
 
 ```{r}
-energy %>% 
-  tidyplot(x = year, y = energy, color = energy_type) %>% 
+energy |> 
+  tidyplot(x = year, y = energy, color = energy_type) |> 
   add_barstack_absolute()
 ```
 
 If we want to focus more on the relative instead of the absolute contribution, we can use the `add_barstack_relative()` function.
 
 ```{r}
-energy %>% 
-  tidyplot(x = year, y = energy, color = energy_type) %>% 
+energy |> 
+  tidyplot(x = year, y = energy, color = energy_type) |> 
   add_barstack_relative()
 ```
 
 A similar plot can be achieved using an `areastack`.
 
 ```{r}
-energy %>% 
-  tidyplot(x = year, y = energy, color = energy_type) %>% 
+energy |> 
+  tidyplot(x = year, y = energy, color = energy_type) |> 
   add_areastack_relative()
 ```
 
@@ -406,24 +406,24 @@ In both plots, the increasing contribution of renewable energy to the total ener
 This can also be shown using donut plots. However, we need to downsample the dataset to 4 representative years.
 
 ```{r}
-energy %>% 
+energy |> 
   # downsample to 4 representative years
-  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>% 
+  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |> 
   # start plotting
-  tidyplot(y = energy, color = energy_type) %>% 
-  add_donut() %>% 
+  tidyplot(y = energy, color = energy_type) |> 
+  add_donut() |> 
   adjust_colors(new_colors = c("Fossil" = "grey",
                                "Nuclear" = "#F6C54D",
                                "Renewable" = "#4FAE62",
-                               "Other" = "#C02D45")) %>%  
+                               "Other" = "#C02D45")) |>  
   split_plot(by = year)
 ```
 
 Now, let's examine a related dataset that presents one week of energy data with higher time resolution.
 
 ```{r}
-energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
+energy_week |> 
+  tidyplot(date, power, color = energy_source) |> 
   add_areastack_absolute()
 ```
 
@@ -432,8 +432,8 @@ In this plot, one can appreciate the higher contribution of solar power during d
 Also this plot can be shown as a relative areastack.
 
 ```{r}
-energy_week %>% 
-  tidyplot(date, power, color = energy_source) %>% 
+energy_week |> 
+  tidyplot(date, power, color = energy_source) |> 
   add_areastack_relative()
 ```
 
@@ -444,22 +444,22 @@ This illustrates nicely how wind energy compensates for the lack of solar power 
 To test for differences between experimental groups, tidyplots offers the functions `add_test_asterisks()` and `add_test_pvalue()`. While the first one includes asterisks for symbolizing significance.
 
 ```{r}
-study %>% 
-  tidyplot(x = dose, y = score, color = group) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
+study |> 
+  tidyplot(x = dose, y = score, color = group) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
   add_test_asterisks()
 ```
 
 `add_test_pvalue()` provides the computed _p_ value.
 
 ```{r}
-study %>% 
-  tidyplot(x = dose, y = score, color = group) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
+study |> 
+  tidyplot(x = dose, y = score, color = group) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
   add_test_pvalue()
 ```
 
@@ -470,64 +470,64 @@ Both can be changed by providing the `method` and `p.adjust.method` arguments.
 For example, let's perform a Wilcoxon signed-rank test with Benjamini--Hochberg adjustment.
 
 ```{r}
-study %>% 
-  tidyplot(x = dose, y = score, color = group) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
+study |> 
+  tidyplot(x = dose, y = score, color = group) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
   add_test_pvalue(method = "wilcoxon", p.adjust.method = "BH")
 ```
 
 It often makes sense to compare all experimental conditions to a control condition. For example, let's say treatment "A" is our control.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
   add_test_pvalue(ref.group = "A")
 ```
 
 In some scenarios you have a mixture of significant and non-significant _p_ values.
 
 ```{r}
-gene_expression %>% 
+gene_expression |> 
   # filter to one gene
-  dplyr::filter(external_gene_name == "Apol6") %>% 
+  dplyr::filter(external_gene_name == "Apol6") |> 
   # start plotting
-  tidyplot(x = condition, y = expression, color = sample_type) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
+  tidyplot(x = condition, y = expression, color = sample_type) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
   add_test_pvalue()
 ```
 
 Here you can choose to hide the non-significant _p_ value using `hide.ns = TRUE`.
 
 ```{r}
-gene_expression %>% 
+gene_expression |> 
   # filter to one gene
-  dplyr::filter(external_gene_name == "Apol6") %>% 
+  dplyr::filter(external_gene_name == "Apol6") |> 
   # start plotting
-  tidyplot(x = condition, y = expression, color = sample_type) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
+  tidyplot(x = condition, y = expression, color = sample_type) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
   add_test_pvalue(hide.ns = TRUE)
 ```
 
 Finally, if you want to hide the caption with statistical information you can do this by providing `hide_info = TRUE`.
 
 ```{r}
-gene_expression %>% 
+gene_expression |> 
   # filter to one gene
-  dplyr::filter(external_gene_name == "Apol6") %>% 
+  dplyr::filter(external_gene_name == "Apol6") |> 
   # start plotting
-  tidyplot(x = condition, y = expression, color = sample_type) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
+  tidyplot(x = condition, y = expression, color = sample_type) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
   add_test_pvalue(hide.ns = TRUE, hide_info = TRUE)
 ```
 
@@ -538,39 +538,39 @@ There are many more things you can do with statistical comparisons. Just check o
 Sometimes you wish to add annotations to provide the reader with important additional information. For example, tidyplots let's you add a `title` and a `caption`.
 
 ```{r}
-study %>% 
-  tidyplot(x = treatment, y = score, color = treatment) %>% 
-  add_mean_dash() %>% 
-  add_sem_errorbar() %>% 
-  add_data_points() %>% 
-  add_title("Interesting study") %>% 
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points() |> 
+  add_title("Interesting study") |> 
   add_caption("Here is some more detail how the study was performed")
 ```
 
 In other cases you might want to highlight specific data points or reference values in the plot. Let's take the `animals` dataset and plot `speed` versus `weight`.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = speed) %>% 
+animals |> 
+  tidyplot(x = weight, y = speed) |> 
   add_data_points()
 ```
 
 Here it might be interesting to have closer at the extreme values. First, let's highlight the heaviest and the fastest animal.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = speed) %>% 
-  add_data_points() %>% 
-  add_data_points(data = max_rows(weight, 1), color = "red", shape = 1, size = 2) %>% 
+animals |> 
+  tidyplot(x = weight, y = speed) |> 
+  add_data_points() |> 
+  add_data_points(data = max_rows(weight, 1), color = "red", shape = 1, size = 2) |> 
   add_data_points(data = max_rows(speed, 1), color = "red", shape = 1, size = 2)
 ```
 
 Now it would interesting to know the names of these animals. We can plot the names of all animals.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = speed) %>% 
-  add_data_points() %>% 
+animals |> 
+  tidyplot(x = weight, y = speed) |> 
+  add_data_points() |> 
   add_data_labels(label = animal)
 ```
 
@@ -579,19 +579,19 @@ Note that I provided the `label` argument to the `add_data_labels()` function to
 Another thing to note is that there is quite some overlap of labels in the lower left of the plot. Let's try to separate the data labels using the `add_data_labels_repel()` function.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = speed) %>% 
-  add_data_points() %>% 
+animals |> 
+  tidyplot(x = weight, y = speed) |> 
+  add_data_points() |> 
   add_data_labels_repel(label = animal)
 ```
 
 While the general idea might have been good, there are still too many labels to be plotted. So let's restrict the labels to the 3 heaviest and the 3 fastest animals.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = speed) %>% 
-  add_data_points() %>% 
-  add_data_labels_repel(data = max_rows(weight, 3), animal) %>% 
+animals |> 
+  tidyplot(x = weight, y = speed) |> 
+  add_data_points() |> 
+  add_data_labels_repel(data = max_rows(weight, 3), animal) |> 
   add_data_labels_repel(data = max_rows(speed, 3), animal)
 ```
 
@@ -600,11 +600,11 @@ There is lot tweaking that can be done with repelling data labels. For more deta
 As one last thing, let's add some reference lines, to highlight specific values on the x and y-axis.
 
 ```{r}
-animals %>% 
-  tidyplot(x = weight, y = speed) %>% 
-  add_reference_lines(x = 4000, y = c(100, 200)) %>% 
-  add_data_points() %>% 
-  add_data_labels_repel(data = max_rows(weight, 3), animal) %>% 
+animals |> 
+  tidyplot(x = weight, y = speed) |> 
+  add_reference_lines(x = 4000, y = c(100, 200)) |> 
+  add_data_points() |> 
+  add_data_labels_repel(data = max_rows(weight, 3), animal) |> 
   add_data_labels_repel(data = max_rows(speed, 3), animal)
 ```
 

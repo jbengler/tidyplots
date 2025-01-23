@@ -25,18 +25,18 @@ Rename axis or color labels
 }
 \examples{
 # Before adjustments
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Rename x-axis labels
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   rename_x_axis_labels(new_names = c(
     "A" = "This",
     "B" = "is",
@@ -44,18 +44,18 @@ study \%>\%
     "D" = "new"))
 
 # Before adjustments
-study \%>\%
-  tidyplot(x = score, y = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = score, y = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Rename y-axis labels
-study \%>\%
-  tidyplot(x = score, y = treatment) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = score, y = treatment) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   rename_y_axis_labels(new_names = c(
     "A" = "This",
     "B" = "is",
@@ -63,18 +63,18 @@ study \%>\%
     "D" = "new"))
 
 # Before adjustment
-study \%>\%
-  tidyplot(x = group, y = score, color = dose) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = group, y = score, color = dose) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Rename color labels
-study \%>\%
-  tidyplot(x = group, y = score, color = dose) \%>\%
-  add_data_points() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = group, y = score, color = dose) |>
+  add_data_points() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   rename_color_labels(new_names = c(
     "high" = "Sky high",
     "low" = "Deep low"))

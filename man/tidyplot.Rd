@@ -26,23 +26,23 @@ A \code{tidyplot} object.
 Create a new tidyplot
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_data_points_beeswarm()
 
-study \%>\%
-  tidyplot(x = group, y = score, color = dose) \%>\%
+study |>
+  tidyplot(x = group, y = score, color = dose) |>
   add_mean_bar()
 
 # Change plot area size
-study \%>\%
+study |>
   tidyplot(x = treatment, y = score, color = treatment,
-    width = 35, height = 35) \%>\%
+    width = 35, height = 35) |>
   add_data_points_beeswarm()
 
 # Change dodge_width
-study \%>\%
-  tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) \%>\%
+study |>
+  tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) |>
   add_mean_bar()
 
 }

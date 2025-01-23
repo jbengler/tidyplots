@@ -49,56 +49,56 @@ See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-pl
 }
 \examples{
 # Plot without adjustments
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # New title
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_legend_title("My new legend title")
 
 # New title with plotmath expression
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_legend_title("$E==m*c^{2}$")
 
 # Alternative legend positions
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_legend_position("left")
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_legend_position("top")
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_legend_position("bottom")
 
 # `position = "none"` hides the legend
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm() \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm() |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_legend_position("none")
 
 }

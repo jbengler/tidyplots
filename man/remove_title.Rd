@@ -20,25 +20,25 @@ Remove plot title or caption
 }
 \examples{
 # Before removing
-animals \%>\%
-  tidyplot(x = weight, y = speed, color = family) \%>\%
-  add_data_points() \%>\%
-  add_title("Name of the plot") \%>\%
+animals |>
+  tidyplot(x = weight, y = speed, color = family) |>
+  add_data_points() |>
+  add_title("Name of the plot") |>
   add_caption("This is the caption")
 
 # After removing
-animals \%>\%
-  tidyplot(x = weight, y = speed, color = family) \%>\%
-  add_data_points() \%>\%
-  add_title("Name of the plot") \%>\%
-  add_caption("This is the caption") \%>\%
+animals |>
+  tidyplot(x = weight, y = speed, color = family) |>
+  add_data_points() |>
+  add_title("Name of the plot") |>
+  add_caption("This is the caption") |>
   remove_title()
 
-animals \%>\%
-  tidyplot(x = weight, y = speed, color = family) \%>\%
-  add_data_points() \%>\%
-  add_title("Name of the plot") \%>\%
-  add_caption("This is the caption") \%>\%
+animals |>
+  tidyplot(x = weight, y = speed, color = family) |>
+  add_data_points() |>
+  add_title("Name of the plot") |>
+  add_caption("This is the caption") |>
   remove_caption()
 
 }

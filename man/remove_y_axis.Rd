@@ -29,34 +29,34 @@ Remove y-axis or parts of it
 }
 \examples{
 # Before removing
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_bar()
 
 # After removing
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_bar() |>
   remove_y_axis_line()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_bar() |>
   remove_y_axis_ticks()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_bar() |>
   remove_y_axis_labels()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_bar() |>
   remove_y_axis_title()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_mean_bar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_bar() |>
   remove_y_axis()
 
 }

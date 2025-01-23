@@ -7,23 +7,23 @@
 #' * `add_heatmap()` supports rasterization. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#rasterization).
 #'
 #' @examples
-#' climate %>%
-#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#' climate |>
+#'   tidyplot(x = month, y = year, color = max_temperature) |>
 #'   add_heatmap()
 #'
 #' # Calculate row-wise z score
-#' climate %>%
-#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#' climate |>
+#'   tidyplot(x = month, y = year, color = max_temperature) |>
 #'   add_heatmap(scale = "row")
 #'
 #' # Calculate column-wise z score
-#' climate %>%
-#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#' climate |>
+#'   tidyplot(x = month, y = year, color = max_temperature) |>
 #'   add_heatmap(scale = "column")
 #'
 #' # Rasterize heatmap
-#' climate %>%
-#'   tidyplot(x = month, y = year, color = max_temperature) %>%
+#' climate |>
+#'   tidyplot(x = month, y = year, color = max_temperature) |>
 #'   add_heatmap(rasterize = TRUE, rasterize_dpi = 20)
 #'
 #' @export
@@ -38,8 +38,8 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
     x <- get_variable(plot, "x")
     y <- get_variable(plot, "y")
     out <-
-      plot$data %>%
-      dplyr::mutate(row_zscore = (.data[[color]] - mean(.data[[color]])) / sd(.data[[color]]), .by = tidyselect::all_of(y)) %>%
+      plot$data |>
+      dplyr::mutate(row_zscore = (.data[[color]] - mean(.data[[color]])) / sd(.data[[color]]), .by = tidyselect::all_of(y)) |>
       dplyr::mutate(col_zscore = (.data[[color]] - mean(.data[[color]])) / sd(.data[[color]]), .by = tidyselect::all_of(x))
     plot <- plot %+% out
     if (scale == "row")
@@ -49,9 +49,9 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
   }
 
   plot <-
-    plot %>%
-    adjust_x_axis(rotate_labels = rotate_labels) %>%
-    remove_x_axis_line() %>%
+    plot |>
+    adjust_x_axis(rotate_labels = rotate_labels) |>
+    remove_x_axis_line() |>
     remove_y_axis_line() +
     ggplot2::coord_cartesian(expand = FALSE)
 
@@ -59,7 +59,7 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
            rasterize = rasterize, rasterize_dpi = rasterize_dpi)
 
   if (scale %in% c("row", "column")) {
-    plot <- plot %>% adjust_colors(c("blue", "white", "red")) %>%
+    plot <- plot |> adjust_colors(c("blue", "white", "red")) |>
       adjust_legend_title(color)
   }
   plot

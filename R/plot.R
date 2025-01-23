@@ -5,23 +5,23 @@
 #' @inherit common_arguments
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_data_points_beeswarm()
 #'
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose) %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
 #'   add_mean_bar()
 #'
 #' # Change plot area size
-#' study %>%
+#' study |>
 #'   tidyplot(x = treatment, y = score, color = treatment,
-#'     width = 35, height = 35) %>%
+#'     width = 35, height = 35) |>
 #'   add_data_points_beeswarm()
 #'
 #' # Change dodge_width
-#' study %>%
-#'   tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) %>%
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) |>
 #'   add_mean_bar()
 #'
 #' @export
@@ -64,15 +64,15 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
 
   plot$tidyplot$named_colors <- NULL
 
-  plot <- plot %>%
-    theme_tidyplot() %>%
-    adjust_x_axis() %>%
-    adjust_y_axis() %>%
-    adjust_colors() %>%
+  plot <- plot |>
+    theme_tidyplot() |>
+    adjust_x_axis() |>
+    adjust_y_axis() |>
+    adjust_colors() |>
     adjust_size(width = width, height = height)
 
   if (single_color_plot)
-    plot <- plot %>% remove_legend()
+    plot <- plot |> remove_legend()
 
   plot
 }
@@ -87,30 +87,30 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
 #'
 #' @examples
 #' # Before splitting
-#' energy %>%
-#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
-#'   tidyplot(y = energy, color = energy_source) %>%
+#' energy |>
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
+#'   tidyplot(y = energy, color = energy_source) |>
 #'   add_donut()
 #'
 #' # Split by year
-#' energy %>%
-#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
-#'   tidyplot(y = energy, color = energy_source) %>%
-#'   add_donut() %>%
+#' energy |>
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
+#'   tidyplot(y = energy, color = energy_source) |>
+#'   add_donut() |>
 #'   split_plot(by = year)
 #'
 #' # Change dimensions of subplots
-#' energy %>%
-#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
-#'   tidyplot(y = energy, color = energy_source) %>%
-#'   add_donut() %>%
+#' energy |>
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
+#'   tidyplot(y = energy, color = energy_source) |>
+#'   add_donut() |>
 #'   split_plot(by = year, widths = 15, heights = 15)
 #'
 #' # Spread plots across multiple pages
-#' energy %>%
-#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) %>%
-#'   tidyplot(y = energy, color = energy_source) %>%
-#'   add_donut() %>%
+#' energy |>
+#'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
+#'   tidyplot(y = energy, color = energy_source) |>
+#'   add_donut() |>
 #'   split_plot(by = year, ncol = 2, nrow = 1)
 #'
 #' @export
@@ -123,16 +123,16 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 
   # free plot dimensions
   plot <-
-    plot %>%
+    plot |>
     adjust_size(width = NA, height = NA)
 
   df <-
-    plot$data %>%
-    tidyr::nest(data = -{{by}}) %>%
+    plot$data |>
+    tidyr::nest(data = -{{by}}) |>
     dplyr::arrange({{by}})
 
   plots <-
-    purrr::map2(df$data, df %>% dplyr::pull({{by}}),
+    purrr::map2(df$data, df |> dplyr::pull({{by}}),
          function(data, facet_title) {
            plot %+% data + ggplot2::ggtitle(facet_title)
          })
@@ -151,8 +151,8 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
   }
 
   pages <-
-    split(plots, ceiling(seq_along(plots)/plots_per_page)) %>%
-    purrr::map(., ~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths,
+    split(plots, ceiling(seq_along(plots)/plots_per_page)) |>
+    purrr::map(~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths,
                                          heights = heights, guides = guides, byrow = byrow,
                                          tag_level = tag_level, design = design))
 
@@ -175,23 +175,23 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 #'
 #' @examples
 #' # View intermediate stages on screen
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
-#'   add_data_points_beeswarm() %>%
-#'   view_plot(title = "Before changing color scheme") %>%
-#'   adjust_colors(colors_discrete_seaside) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
+#'   add_data_points_beeswarm() |>
+#'   view_plot(title = "Before changing color scheme") |>
+#'   adjust_colors(colors_discrete_seaside) |>
 #'   view_plot(title = "After changing color scheme")
 #'
 #' # View data subsets on screen
-#' gene_expression %>%
-#'   tidyplot(x = condition, y = expression, color = sample_type) %>%
-#'   add_mean_dash() %>%
-#'   add_sem_errorbar() %>%
-#'   add_data_points_beeswarm() %>%
+#' gene_expression |>
+#'   tidyplot(x = condition, y = expression, color = sample_type) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points_beeswarm() |>
 #'   view_plot(data = filter_rows(external_gene_name == "Apol6"),
-#'     title = "Apol6") %>%
+#'     title = "Apol6") |>
 #'   view_plot(data = filter_rows(external_gene_name == "Bsn"),
 #'     title = "Bsn")
 #'
@@ -199,7 +199,10 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
 view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
   plot <- check_tidyplot(plot)
   input <- plot
-  if (inherits(data, "function")) plot <- plot %+% (plot$data %>% data()) + ggplot2::ggtitle(title)
+  if (inherits(data, "function")) {
+    my_fun <- data
+    plot <- plot %+% (my_fun(plot$data)) + ggplot2::ggtitle(title)
+  }
   if (inherits(data, "data.frame")) plot <- plot %+% data + ggplot2::ggtitle(title)
   print(plot, ...)
   invisible(input)
@@ -230,37 +233,37 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' .old_wd <- setwd(tempdir())
 #' }
 #' # Save plot to file
-#' study %>%
-#'   tidyplot(treatment, score) %>%
-#'   add_data_points() %>%
+#' study |>
+#'   tidyplot(treatment, score) |>
+#'   add_data_points() |>
 #'   save_plot("single_plot.pdf")
 #'
 #' # Save intermediate stages to file
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
-#'   add_mean_bar(alpha = 0.4) %>%
-#'   add_sem_errorbar() %>%
-#'   add_data_points_beeswarm() %>%
-#'   save_plot("before.pdf") %>%
-#'   adjust_colors(colors_discrete_seaside) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_bar(alpha = 0.4) |>
+#'   add_sem_errorbar() |>
+#'   add_data_points_beeswarm() |>
+#'   save_plot("before.pdf") |>
+#'   adjust_colors(colors_discrete_seaside) |>
 #'   save_plot("after.pdf")
 #'
 #' \donttest{
 #'
 #' # Save multipage PDF file
-#' gene_expression %>%
-#'   .[1:160,] %>%
-#'   tidyplot(group, expression, color = sample_type) %>%
-#'   add_data_points() %>%
-#'   split_plot(by = external_gene_name, nrow = 2, ncol = 2) %>%
+#' gene_expression |>
+#'   _[1:160,] |>
+#'   tidyplot(group, expression, color = sample_type) |>
+#'   add_data_points() |>
+#'   split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
 #'   save_plot("multipage_plot.pdf")
 #'
 #' # Save multiple PDF files
-#' gene_expression %>%
-#'   .[1:160,] %>%
-#'   tidyplot(group, expression, color = sample_type) %>%
-#'   add_data_points() %>%
-#'   split_plot(by = external_gene_name, nrow = 2, ncol = 2) %>%
+#' gene_expression |>
+#'   _[1:160,] |>
+#'   tidyplot(group, expression, color = sample_type) |>
+#'   add_data_points() |>
+#'   split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
 #'   save_plot("plot.pdf", multiple_files = TRUE)
 #'
 #' }

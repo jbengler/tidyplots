@@ -19,40 +19,40 @@
 #' * `add_data_points()` and friends support data subsetting. See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#data-subsetting).
 #'
 #' @examples
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_data_points()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_data_points_jitter()
 #'
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_data_points_beeswarm()
 #'
 #' # Changing arguments
-#' study %>%
-#'   tidyplot(x = treatment, y = score, color = treatment) %>%
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_data_points_jitter(jitter_width = 1)
 #'
-#' animals %>%
-#'   tidyplot(x = weight, y = size) %>%
+#' animals |>
+#'   tidyplot(x = weight, y = size) |>
 #'   add_data_points(white_border = TRUE)
 #'
-#' animals %>%
-#'   tidyplot(x = weight, y = size) %>%
+#' animals |>
+#'   tidyplot(x = weight, y = size) |>
 #'   add_data_points(alpha = 0.4)
 #'
 #' # Rasterization
-#' animals %>%
-#'   tidyplot(x = weight, y = size) %>%
+#' animals |>
+#'   tidyplot(x = weight, y = size) |>
 #'   add_data_points(rasterize = TRUE, rasterize_dpi = 50)
 #'
 #' # Data subsetting
-#' animals %>%
-#'   tidyplot(x = weight, y = size) %>%
-#'   add_data_points() %>%
+#' animals |>
+#'   tidyplot(x = weight, y = size) |>
+#'   add_data_points() |>
 #'   add_data_points(data = filter_rows(size > 300), color = "red")
 #'
 #' @export

@@ -23,34 +23,34 @@ Adjust plot area size
 }
 \examples{
 # Plot without adjustments
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm(shape = 1) \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm(shape = 1) |>
+  add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
 # Resize to 20 x 20 mm
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm(shape = 1) \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm(shape = 1) |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_size(width = 20, height = 20)
 
 # Resize to 4 x 4 cm
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm(shape = 1) \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm(shape = 1) |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_size(width = 4, height = 4, unit = "cm")
 
 # Remove absolute dimensions and take all available space. This is the ggplot2 default.
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  add_data_points_beeswarm(shape = 1) \%>\%
-  add_mean_bar(alpha = 0.4) \%>\%
-  add_sem_errorbar() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_data_points_beeswarm(shape = 1) |>
+  add_mean_bar(alpha = 0.4) |>
+  add_sem_errorbar() |>
   adjust_size(width = NA, height = NA)
 
 }

@@ -25,12 +25,12 @@ Convert ggplot to tidyplot
 }
 \examples{
 gg <-
-  study \%>\%
+  study |>
   ggplot2::ggplot(ggplot2::aes(x = treatment, y = score, color = treatment)) +
   ggplot2::geom_point()
 
 gg
 
-gg \%>\% as_tidyplot()
+gg |> as_tidyplot()
 
 }

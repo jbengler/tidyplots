@@ -107,66 +107,66 @@ A \code{tidyplot} object.
 Add median
 }
 \examples{
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_median_bar()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_median_dash()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_median_dot()
 
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_median_value()
 
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
   add_median_line()
 
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
   add_median_area()
 
 # Combination
-study \%>\%
-  tidyplot(x = treatment, y = score) \%>\%
-  add_median_bar(alpha = 0.4) \%>\%
-  add_median_dash() \%>\%
-  add_median_dot() \%>\%
-  add_median_value() \%>\%
+study |>
+  tidyplot(x = treatment, y = score) |>
+  add_median_bar(alpha = 0.4) |>
+  add_median_dash() |>
+  add_median_dot() |>
+  add_median_value() |>
   add_median_line()
 
 # Changing arguments: alpha
 # Makes objects transparent
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  theme_minimal_y() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  theme_minimal_y() |>
   add_median_bar(alpha = 0.4)
 
 # Changing arguments: saturation
 # Reduces fill color saturation without making the object transparent
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
-  theme_minimal_y() \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  theme_minimal_y() |>
   add_median_bar(saturation = 0.3)
 
 # Changing arguments: accuracy
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_median_value(accuracy = 0.01)
 
 # Changing arguments: fontsize
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_median_value(fontsize = 10)
 
 # Changing arguments: color
-study \%>\%
-  tidyplot(x = treatment, y = score, color = treatment) \%>\%
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
   add_median_value(color = "black")
 
 }
