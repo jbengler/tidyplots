@@ -1,5 +1,13 @@
 # tidyplots (development version)
 
+## Breaking changes
+
+* Hard deprecation of `as_tidyplot()`. Converting a ggplot to a tidyplot was probably never a good idea.
+
+## Improvements
+
+* Switch from the magrittr pipe `%>%` to the base R pipe `|>` in both the documentation and code (#55, #56)
+
 # tidyplots 0.2.1
 
 ## Breaking changes
