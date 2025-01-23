@@ -26,6 +26,16 @@ test_that("adjust_color works", {
     vdiffr::expect_doppelganger("adjust_colors before reorder", .)
   p %>% adjust_colors(new_colors) %>% rename_x_axis_labels(new_names) %>%
     vdiffr::expect_doppelganger("adjust_colors before rename", .)
+
+  energy_week %>%
+    tidyplot(x = date, y = power, color = energy_source) %>%
+    add_mean_line() %>%
+    vdiffr::expect_doppelganger("adjust_colors with factor levels", .)
+  energy_week %>%
+    dplyr::filter(energy_source %in% c("Wind onshore", "Wind offshore")) %>%
+    tidyplot(x = date, y = power, color = energy_source) %>%
+    add_mean_line() %>%
+    vdiffr::expect_doppelganger("adjust_colors with unused factor levels", .)
 })
 
 test_that("adjust axes works", {
