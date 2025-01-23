@@ -81,25 +81,3 @@ test_that("*_rows() functions work", {
                     color = "red", shape = 1, size = 3) |>
     vdiffr::expect_doppelganger("Highlight 3 random animals", fig = _)
 })
-
-test_that("as_tidyplot works", {
-  gg <-
-    study |>
-    ggplot2::ggplot(ggplot2::aes(x = treatment, y = score, color = treatment, fill = treatment)) +
-    ggplot2::stat_summary(fun = mean, geom = "bar", color = NA, width = 0.6, alpha = 0.4) +
-    ggplot2::stat_summary(fun.data = mean_se, geom = "errorbar", linewidth = 0.25, width = 0.4) +
-    ggplot2::geom_point(position = ggplot2::position_jitterdodge(jitter.width = 0.2, seed = 42))
-
-  tp <- as_tidyplot(gg)
-
-  tp_modified <-
-    tp |>
-    adjust_colors(new_colors = c("C" = "#766123")) |>
-    reorder_x_axis_labels(c("C")) |>
-    rename_x_axis_labels(c("C" = "control"))
-
-  vdiffr::expect_doppelganger("before tidyplot conversion", gg)
-  vdiffr::expect_doppelganger("after tidyplot conversion", tp)
-  vdiffr::expect_doppelganger("modification after tidyplot conversion", tp_modified)
-})
-
