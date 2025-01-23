@@ -178,14 +178,14 @@ tidyplots package. This needs to be done once for every R session.</p>
 <p>Then we start with the <code>study</code> dataset and pipe it into
 the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-5-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>And here it is, your first tidyplot! Admittedly, it still looks a
 little bit empty. We will take care of this in a second. But first let’s
 have a closer look at the code above.</p>
 <p>In the first line we start with the <code>study</code> dataset. The
-<code>%&gt;%</code> is called a <em>pipe</em> and makes sure, that the
+<code>|&gt;</code> is called a <em>pipe</em> and makes sure, that the
 output of the first line is handed over as input to the next line. In
 the second line, we generate the tidyplot and specify which variables we
 want to use for the x and y-axis using the <code>x</code> and
@@ -199,12 +199,12 @@ want to use for the x and y-axis using the <code>x</code> and
 <p>Next, let’s add some more elements to the plot. This is done by using
 a family of functions that all start with <code>add_</code>. For
 example, we can add the data points by adding one more line to the code.
-Note, that we need a <code>%&gt;%</code> at the end of each line, where
+Note, that we need a <code>|&gt;</code> at the end of each line, where
 the output should be piped into the next line. When you combine multiple
 lines like this, you have generated a <em>pipeline</em>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-6-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Of course, you do not have to stop here. There are many
@@ -224,9 +224,9 @@ e.g. <code>bar</code>, <code>dash</code>, <code>line</code> etc. In our
 example we choose <code><a href="../reference/add_mean_bar.html">add_mean_bar()</a></code> to show the mean value of
 each treatment group represented as a bar.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-7-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>One thing to note here is that I added <code>alpha = 0.4</code> as a
@@ -238,10 +238,10 @@ comparison to the data points.</p>
 add the standard error of the mean <code>sem</code>, represented as
 error bar.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-8-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>I think by now you got the principle. You can just keep adding layers
@@ -252,10 +252,10 @@ As colors can encode <em>variables</em> in a similar way as axes, the
 argument <code>color</code> needs to be to provided in the initial call
 of the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-9-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>As you can see, <code>color</code> acts as a way to group the data by
@@ -274,12 +274,12 @@ of the plot. This can be achieved with the <code>remove_*()</code>
 family of functions. For example, you might want to remove the color
 legend title, or in some rare cases even the entire y-axis.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/remove_legend.html">remove_legend_title</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">dose</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/remove_legend.html">remove_legend_title</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/remove_y_axis.html">remove_y_axis</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-10-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>More <code>remove_*()</code> functions can be found in the <a href="https://jbengler.github.io/tidyplots/reference/index.html">Package
@@ -294,10 +294,10 @@ task, tidyplots provides a number of <code>adjust_*()</code>
 functions.</p>
 <p>Let’s start with this plot.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-11-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>When preparing figures for a paper, you might want ensure, that all
@@ -311,26 +311,26 @@ done by selecting a consistent <code>height</code> across plots, while
 the <code>width</code> can vary depending on the number of categories in
 the x-axis.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_size.html">adjust_size</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">20</span>, height <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-12-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Another common adjustment is to change the titles of the plot, axes,
 or legend. For this we will use the function <code><a href="../reference/adjust_title.html">adjust_title()</a></code>
 and friends.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_title</a></span><span class="op">(</span><span class="st">"This is my fantastic plot title"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_x_axis_title</a></span><span class="op">(</span><span class="st">"Treatment group"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_y_axis_title</a></span><span class="op">(</span><span class="st">"Disease score"</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/adjust_legend_title.html">adjust_legend_title</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_title</a></span><span class="op">(</span><span class="st">"This is my fantastic plot title"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_x_axis_title</a></span><span class="op">(</span><span class="st">"Treatment group"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_y_axis_title</a></span><span class="op">(</span><span class="st">"Disease score"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/adjust_legend_title.html">adjust_legend_title</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/adjust_title.html">adjust_caption</a></span><span class="op">(</span><span class="st">"Here goes the caption"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-13-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that I removed the legend title by setting it to an empty string
@@ -340,22 +340,22 @@ the same. I am sure you will figure out the difference.</p>
 <p>Another common task is to adjust the colors in your plot. You can do
 this using the <code><a href="../reference/adjust_colors.html">adjust_colors()</a></code> function.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#644296"</span>,<span class="st">"#F08533"</span>,<span class="st">"#3B78B0"</span>, <span class="st">"#D1352C"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-14-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>You can also use the color schemes, that are built into tidyplots. To
 learn more about these color schemes have a look at the article <a href="https://jbengler.github.io/tidyplots/articles/Color-schemes.html">Color
 schemes</a>.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_colors.html">adjust_colors</a></span><span class="op">(</span>new_colors <span class="op">=</span> <span class="va">colors_discrete_seaside</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-15-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p><strong>Rename, reorder, sort, and reverse</strong></p>
@@ -368,11 +368,11 @@ with <code>adjust_</code> but with <code>rename_</code>,
 <p>For example, to rename the data labels for the <code>treatment</code>
 variable on the x-axis, you can do this.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/rename_x_axis_labels.html">rename_x_axis_labels</a></span><span class="op">(</span>new_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span> <span class="op">=</span> <span class="st">"This"</span>,</span>
 <span>                                     <span class="st">"B"</span> <span class="op">=</span> <span class="st">"is"</span>,</span>
 <span>                                     <span class="st">"C"</span> <span class="op">=</span> <span class="st">"totally"</span>,</span>
@@ -386,29 +386,29 @@ the label but their order in the plot.</p>
 <p>For example, you can bring the treatment “D” and “C” to the
 front.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/reorder_x_axis_labels.html">reorder_x_axis_labels</a></span><span class="op">(</span><span class="st">"D"</span>, <span class="st">"C"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-17-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Sort the treatments by their score.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/sort_x_axis_labels.html">sort_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-18-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Or simply reverse the order of the labels.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/reverse_x_axis_labels.html">reverse_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-19-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Of course, there are many more <code>adjust_</code> functions that
@@ -422,30 +422,30 @@ index</a>.</p>
 without changing the representation of the data. You can stay with the
 default tidyplots theme.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_tidyplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-20-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Or try something more like ggplot2.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_ggplot2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-21-1.png" width="1500" style="display: block; margin: auto;"></p>
 <p>Or something more minimal.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_minimal_y</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/theme_tidyplot.html">theme_minimal_y</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_line</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-22-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
@@ -459,11 +459,11 @@ multiple subplots. In tidyplots, this can be done with the function
 <code>score</code> against the treatment <code>group</code> and split
 this plot by <code>dose</code> into a high dose and a low dose plot.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">dose</span><span class="op">)</span></span></code></pre></div>
 <p><img src="tidyplots_files/figure-html/unnamed-chunk-23-1.png" width="1500" style="display: block; margin: auto;"></p>
 </div>
@@ -474,11 +474,11 @@ this plot by <code>dose</code> into a high dose and a low dose plot.</p>
 file. This can be easily done by piping the plot into the function
 <code><a href="../reference/save_plot.html">save_plot()</a></code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">study</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/grapes-greater-than-grapes.html">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">group</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">group</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/save_plot.html">save_plot</a></span><span class="op">(</span><span class="st">"my_plot.pdf"</span><span class="op">)</span></span></code></pre></div>
 <p>Conveniently, <code><a href="../reference/save_plot.html">save_plot()</a></code> also gives back the plot it
 received, allowing it to be used in the middle of a pipeline. If

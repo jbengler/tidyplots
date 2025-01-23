@@ -101,40 +101,40 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Plot without adjustments</span></span></span>
-<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">adjust_padding</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_padding-1.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Increase plot area padding</span></span></span>
-<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">adjust_padding</span><span class="op">(</span>all <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_padding-2.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">adjust_padding</span><span class="op">(</span>top <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_padding-3.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">adjust_padding</span><span class="op">(</span>bottom <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_padding-4.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">adjust_padding</span><span class="op">(</span>right <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_padding-5.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">animals</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">animals</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span>, color <span class="op">=</span> <span class="va">family</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">adjust_padding</span><span class="op">(</span>left <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_padding-6.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>

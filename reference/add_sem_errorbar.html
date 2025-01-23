@@ -139,44 +139,44 @@ a position, or the width of a <code>"single"</code> element?</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Standard error of the mean</span></span></span>
-<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_sem_errorbar</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_sem_errorbar-1.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Range from minimum to maximum value</span></span></span>
-<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_range_errorbar</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_sem_errorbar-2.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Standard deviation</span></span></span>
-<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_sd_errorbar</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_sem_errorbar-3.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># 95% confidence interval</span></span></span>
-<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_ci95_errorbar</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_sem_errorbar-4.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Changing arguments: error bar width</span></span></span>
-<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_sem_errorbar</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_sem_errorbar-5.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Changing arguments: error bar line width</span></span></span>
-<span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_sem_errorbar</span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_sem_errorbar-6.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>

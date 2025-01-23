@@ -79,47 +79,47 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># for a `count` only provide `color`</span></span></span>
 <span class="r-in"><span><span class="co"># `count` of the data points in each `energy_type` category</span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_absolute</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-1.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_relative</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-2.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># for a `sum` provide `color` and `y`</span></span></span>
 <span class="r-in"><span><span class="co"># `sum` of `energy` in each `energy_type` category</span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_absolute</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-3.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_relative</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-4.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Include variable on second axis</span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_absolute</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-5.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_relative</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-6.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Flip x and y-axis</span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy</span>, y <span class="op">=</span> <span class="va">year</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy</span>, y <span class="op">=</span> <span class="va">year</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_absolute</span><span class="op">(</span>orientation <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-7.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">energy</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy</span>, y <span class="op">=</span> <span class="va">year</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy</span>, y <span class="op">=</span> <span class="va">year</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_barstack_relative</span><span class="op">(</span>orientation <span class="op">=</span> <span class="st">"y"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_barstack_absolute-8.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>

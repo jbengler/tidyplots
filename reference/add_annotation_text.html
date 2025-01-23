@@ -100,28 +100,28 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">study</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_boxplot.html">add_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_boxplot.html">add_boxplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_annotation_text</span><span class="op">(</span><span class="st">"Look here!"</span>, x <span class="op">=</span> <span class="fl">2</span>, y <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_annotation_text-1.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">eu_countries</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">area</span>, y <span class="op">=</span> <span class="va">population</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">eu_countries</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">area</span>, y <span class="op">=</span> <span class="va">population</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_annotation_rectangle</span><span class="op">(</span>xmin <span class="op">=</span> <span class="fl">2.5e5</span>, xmax <span class="op">=</span> <span class="cn">Inf</span>, ymin <span class="op">=</span> <span class="fl">42</span>, ymax <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_annotation_text-2.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">eu_countries</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">area</span>, y <span class="op">=</span> <span class="va">population</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">eu_countries</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">area</span>, y <span class="op">=</span> <span class="va">population</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_annotation_rectangle</span><span class="op">(</span>xmin <span class="op">=</span> <span class="fl">2.5e5</span>, xmax <span class="op">=</span> <span class="fl">6e5</span>, ymin <span class="op">=</span> <span class="fl">42</span>, ymax <span class="op">=</span> <span class="fl">90</span>,</span></span>
 <span class="r-in"><span>                           color <span class="op">=</span> <span class="st">"#E69F00"</span>, fill <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_annotation_text-3.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">eu_countries</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">area</span>, y <span class="op">=</span> <span class="va">population</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="grapes-greater-than-grapes.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">eu_countries</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">area</span>, y <span class="op">=</span> <span class="va">population</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_annotation_line</span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0</span>, xend <span class="op">=</span> <span class="cn">Inf</span>, y <span class="op">=</span> <span class="fl">0</span>, yend <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_annotation_text-4.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
