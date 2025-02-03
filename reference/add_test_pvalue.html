@@ -48,7 +48,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_test_pvalue</span><span class="op">(</span></span>
 <span>  <span class="va">plot</span>,</span>
 <span>  padding_top <span class="op">=</span> <span class="fl">0.15</span>,</span>
-<span>  method <span class="op">=</span> <span class="st">"t.test"</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"t_test"</span>,</span>
 <span>  p.adjust.method <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>  ref.group <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  label <span class="op">=</span> <span class="st">"{format_p_value(p.adj, 0.0001)}"</span>,</span>
@@ -67,7 +67,7 @@
 <span><span class="fu">add_test_asterisks</span><span class="op">(</span></span>
 <span>  <span class="va">plot</span>,</span>
 <span>  padding_top <span class="op">=</span> <span class="fl">0.1</span>,</span>
-<span>  method <span class="op">=</span> <span class="st">"t.test"</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"t_test"</span>,</span>
 <span>  p.adjust.method <span class="op">=</span> <span class="st">"none"</span>,</span>
 <span>  ref.group <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  label <span class="op">=</span> <span class="st">"p.adj.signif"</span>,</span>
@@ -98,10 +98,10 @@
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
 <dd><p>a character string indicating which method to be used for
-pairwise comparisons. Default is <code>"wilcox_test"</code>. Allowed methods
+pairwise comparisons. Default is <code>"t_test"</code>. Allowed methods
 include pairwise comparisons methods implemented in the <code>rstatix</code> R
 package. These methods are: <code>"wilcox_test", "t_test", "sign_test",
-"dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"</code>.</p></dd>
+ "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"</code>.</p></dd>
 
 
 <dt id="arg-p-adjust-method">p.adjust.method<a class="anchor" aria-label="anchor" href="#arg-p-adjust-method"></a></dt>
