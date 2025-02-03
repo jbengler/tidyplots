@@ -3,6 +3,7 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 ^usethis\.R
+^playground\.R
 ^todo\.R
 ^_pkgdown\.yml$
 ^docs$

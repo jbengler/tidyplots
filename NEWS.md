@@ -2,7 +2,7 @@
 
 ## Breaking changes
 
-* Hard deprecation of `as_tidyplot()`. Converting a ggplot to a tidyplot was probably never a good idea.
+* Hard deprecation of `as_tidyplot()`. Converting a ggplot to a tidyplot probably never was a good idea.
 
 ## Improvements
 
