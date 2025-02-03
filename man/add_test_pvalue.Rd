@@ -8,7 +8,7 @@
 add_test_pvalue(
   plot,
   padding_top = 0.15,
-  method = "t.test",
+  method = "t_test",
   p.adjust.method = "none",
   ref.group = NULL,
   label = "{format_p_value(p.adj, 0.0001)}",
@@ -27,7 +27,7 @@ add_test_pvalue(
 add_test_asterisks(
   plot,
   padding_top = 0.1,
-  method = "t.test",
+  method = "t_test",
   p.adjust.method = "none",
   ref.group = NULL,
   label = "p.adj.signif",
@@ -49,10 +49,10 @@ add_test_asterisks(
 \item{padding_top}{Extra padding above the data points to accommodate the statistical comparisons.}
 
 \item{method}{a character string indicating which method to be used for
-pairwise comparisons. Default is \code{"wilcox_test"}. Allowed methods
+pairwise comparisons. Default is \code{"t_test"}. Allowed methods
 include pairwise comparisons methods implemented in the \code{rstatix} R
 package. These methods are: \code{"wilcox_test", "t_test", "sign_test",
-"dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.}
+ "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.}
 
 \item{p.adjust.method}{method for adjusting p values (see
 \code{\link[stats]{p.adjust}}).  Has impact only in a situation, where

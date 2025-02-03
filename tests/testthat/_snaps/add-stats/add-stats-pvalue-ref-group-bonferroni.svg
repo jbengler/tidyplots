@@ -124,7 +124,7 @@
 <text x='449.24' y='271.82' style='font-size: 7.00px; font-family: sans;' textLength='4.67px' lengthAdjust='spacingAndGlyphs'>B</text>
 <text x='449.24' y='283.15' style='font-size: 7.00px; font-family: sans;' textLength='5.06px' lengthAdjust='spacingAndGlyphs'>C</text>
 <text x='449.24' y='294.49' style='font-size: 7.00px; font-family: sans;' textLength='5.06px' lengthAdjust='spacingAndGlyphs'>D</text>
-<text x='415.99' y='369.61' text-anchor='end' style='font-size: 5.60px; font-family: sans;' textLength='37.21px' lengthAdjust='spacingAndGlyphs'>method = t.test</text>
+<text x='415.99' y='369.61' text-anchor='end' style='font-size: 5.60px; font-family: sans;' textLength='38.76px' lengthAdjust='spacingAndGlyphs'>method = t_test</text>
 <text x='415.99' y='375.66' text-anchor='end' style='font-size: 5.60px; font-family: sans;' textLength='96.68px' lengthAdjust='spacingAndGlyphs'>label = {format_p_value(p.adj, 0.0001)}</text>
 <text x='415.99' y='381.71' text-anchor='end' style='font-size: 5.60px; font-family: sans;' textLength='71.45px' lengthAdjust='spacingAndGlyphs'>p.adjust.method = bonferroni</text>
 <text x='415.99' y='387.76' text-anchor='end' style='font-size: 5.60px; font-family: sans;' textLength='42.19px' lengthAdjust='spacingAndGlyphs'>hide.ns = FALSE</text>
