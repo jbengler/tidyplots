@@ -1,4 +1,9 @@
 #' Add statistical test
+#' @param method a character string indicating which method to be used for
+#'  pairwise comparisons. Default is \code{"t_test"}. Allowed methods
+#'  include pairwise comparisons methods implemented in the \code{rstatix} R
+#'  package. These methods are: \code{"wilcox_test", "t_test", "sign_test",
+#'  "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.
 #' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
 #' @param hide_info Whether to hide details about the statistical testing as caption. Defaults to `FALSE`.
 #' @param ... Arguments passed on to `ggpubr::geom_pwc()`.
@@ -63,7 +68,7 @@
 #' @export
 add_test_pvalue <- function(plot,
                       padding_top = 0.15,
-                      method = "t.test",
+                      method = "t_test",
                       p.adjust.method = "none",
                       ref.group = NULL,
                       label = "{format_p_value(p.adj, 0.0001)}",
@@ -109,7 +114,7 @@ add_test_pvalue <- function(plot,
 #' @export
 add_test_asterisks <- function(plot,
                              padding_top = 0.1,
-                             method = "t.test",
+                             method = "t_test",
                              p.adjust.method = "none",
                              ref.group = NULL,
                              label = "p.adj.signif",
