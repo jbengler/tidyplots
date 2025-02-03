@@ -114,7 +114,7 @@ add_test_pvalue <- function(plot,
 #' @export
 add_test_asterisks <- function(plot,
                              padding_top = 0.1,
-                             method = "t.test",
+                             method = "t_test",
                              p.adjust.method = "none",
                              ref.group = NULL,
                              label = "p.adj.signif",
