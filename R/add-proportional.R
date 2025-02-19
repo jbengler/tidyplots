@@ -192,7 +192,7 @@ ff_areastack <- function(.position_fun) {
           adjust_y_axis(title = "count") +
           rlang::inject(ggplot2::geom_area(mapping = mapping,
                                            position = .position_fun(reverse = reverse), linewidth = linewidth,
-                                           alpha = alpha, !!!args))
+                                           alpha = alpha, na.rm = TRUE, !!!args))
       } else {
         plot <- plot |>
           remove_padding(force_continuous = TRUE) +
@@ -216,7 +216,7 @@ ff_areastack <- function(.position_fun) {
           adjust_x_axis(title = "count") +
           rlang::inject(ggplot2::geom_area(mapping = mapping,
                                            position = .position_fun(reverse = reverse), linewidth = linewidth,
-                                           alpha = alpha, !!!args))
+                                           alpha = alpha, na.rm = TRUE, !!!args))
       } else {
         plot <- plot |>
           remove_padding(force_continuous = TRUE) +
@@ -248,7 +248,7 @@ ff_areastack <- function(.position_fun) {
           remove_padding(force_continuous = TRUE) +
           rlang::inject(ggplot2::geom_area(mapping = mapping,
                                            position = .position_fun(reverse = reverse), linewidth = linewidth,
-                                           alpha = alpha, !!!args))
+                                           alpha = alpha, na.rm = TRUE, !!!args))
       } else {
         plot <- plot |>
           remove_padding(force_continuous = TRUE) +
