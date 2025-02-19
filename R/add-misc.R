@@ -83,7 +83,7 @@ add_boxplot <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, s
 #'   add_violin(linewidth = 1)
 #'
 #' @export
-add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, draw_quantiles = NULL, trim = FALSE,
+add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, trim = FALSE,
                        linewidth = 0.25, scale = "width", ...) {
   plot <- check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
@@ -91,7 +91,7 @@ add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, dr
   if (saturation != 1) {
     plot <- plot |> adjust_colors(saturation = saturation)
   }
-  plot + ggplot2::geom_violin(alpha = alpha, draw_quantiles = draw_quantiles, trim = trim, linewidth = linewidth,
+  plot + ggplot2::geom_violin(alpha = alpha, trim = trim, linewidth = linewidth,
                               scale = scale, position = position, ...)
 }
 
