@@ -205,18 +205,29 @@ mean_cl_boot <- function(x) {
 
 tidyplot_parser <- function(text) {
   # detect expressions by a leading and trailing "$"
-  # message(text) # for debugging
   if(any(stringr::str_detect(text, "^\\$.*\\$$"), na.rm = TRUE)) {
     out <- vector("expression", length(text))
     for (i in seq_along(text)) {
       # get rid of leading and trailing "$"
-      if (stringr::str_detect(text[[i]], "^\\$.*\\$$"))
-        expr <- parse(text = stringr::str_sub(text[[i]], 2, -2))
-      else
+      if (stringr::str_detect(text[[i]], "^\\$.*\\$$")) {
+        # check for valid plotmath expression
+        expr <- tryCatch(parse(text = stringr::str_sub(text[[i]], 2, -2)),
+                         error = function(e) {
+                           msg <- c("Invalid plotmath expression",
+                                    "x" = conditionMessage(e),
+                                    "i" = "Run `?plotmath` in the console for help.")
+                           cli::cli_abort(msg, call = NULL)
+                         })
+      } else {
         expr <- text[[i]]
-      out[[i]] <- if (length(expr) == 0)
-        NA
-      else expr[[1]]
+      }
+
+      if (length(expr) == 0) {
+        out[[i]] <- NA
+      } else {
+        out[[i]] <- expr[[1]]
+      }
+
     }
   } else {
     out <- text
