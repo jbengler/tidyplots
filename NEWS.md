@@ -6,7 +6,10 @@
 
 ## Improvements
 
+* Prepare tidyplots for next ggplot2 release (#60)
 * Switch from the magrittr pipe `%>%` to the base R pipe `|>` in both the documentation and code (#55, #56)
+* More meaningful error for invalid plotmath expressions.
+* Update documentation (@mthulin, #62)
 
 # tidyplots 0.2.1
 
