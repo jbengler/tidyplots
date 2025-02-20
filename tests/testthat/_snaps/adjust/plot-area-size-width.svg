@@ -105,11 +105,15 @@
 <polyline points='458.03,283.92 458.03,282.22 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt; stroke-linejoin: miter;' />
 <rect x='453.78' y='283.92' width='8.50' height='5.67' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2; fill-opacity: 0.30;' />
 <polyline points='453.78,286.75 462.28,286.75 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt; stroke-linejoin: miter;' />
+<polyline points='461.43,291.29 454.63,291.29 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt; stroke-linejoin: miter;' />
+<polyline points='461.43,282.22 454.63,282.22 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt; stroke-linejoin: miter;' />
 <rect x='452.36' y='292.42' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
 <polyline points='458.03,302.63 458.03,300.92 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter;' />
 <polyline points='458.03,295.26 458.03,293.55 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter;' />
 <rect x='453.78' y='295.26' width='8.50' height='5.67' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00; fill-opacity: 0.30;' />
 <polyline points='453.78,298.09 462.28,298.09 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter;' />
+<polyline points='461.43,302.63 454.63,302.63 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter;' />
+<polyline points='461.43,293.55 454.63,293.55 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter;' />
 <text x='469.18' y='289.16' style='font-size: 7.00px; font-family: sans;' textLength='24.52px' lengthAdjust='spacingAndGlyphs'>placebo</text>
 <text x='469.18' y='300.50' style='font-size: 7.00px; font-family: sans;' textLength='29.57px' lengthAdjust='spacingAndGlyphs'>treatment</text>
 <text x='215.77' y='206.04' style='font-size: 13.20px; font-family: sans;' textLength='113.00px' lengthAdjust='spacingAndGlyphs'>plot area size width</text>
