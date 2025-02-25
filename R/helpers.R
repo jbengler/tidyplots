@@ -272,7 +272,8 @@ extract_mapping <- function(plot) {
       if (x == "!!NA") return("!!NA")
       if (!x %in% colnames(plot$data)) cli::cli_abort("Variable '{x}' not found in supplied dataset")
       if (stringr::str_detect(x, "after_stat|after_scale|stage\\(")) return("continuous")
-      plot$data[[x]] |> ggplot2::scale_type() |> _[[1]]
+      out <- plot$data[[x]] |> ggplot2::scale_type()
+      out[[1]]
     })
   }
   dplyr::tibble(aesthetic = c("x", "y", "colour", "fill", "group")) |>
