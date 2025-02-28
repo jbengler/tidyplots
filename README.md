@@ -27,8 +27,8 @@ install.packages("tidyplots")
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jbengler/tidyplots")
+# install.packages("pak")
+pak::pak("jbengler/tidyplots")
 ```
 
 ## Usage
