@@ -293,7 +293,7 @@ get_variable <- function(plot, aesthetic) {
   m$variable[m$aesthetic == aesthetic]
 }
 
-is_discrete <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "discrete" }
+is_discrete <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) %in% c("ordinal", "discrete") }
 is_continuous <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "continuous" }
 is_date <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "date" }
 is_time <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "time" }
