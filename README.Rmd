@@ -41,9 +41,17 @@ And the development version from [GitHub](https://github.com/) with:
 pak::pak("jbengler/tidyplots")
 ```
 
+## Cheatsheet
+
+This cheatsheet gives a high level overview of available functions.
+
+<a href="https://tidyplots.org/cheatsheet"><img src="man/figures/cheatsheet-v1.png" alt="tidyplots cheatsheet" /></a>
+
 ## Usage
 
-Here are some examples. Also have a look at the [getting started guide](https://jbengler.github.io/tidyplots/articles/tidyplots.html) and the [full documentation](https://jbengler.github.io/tidyplots/reference/).
+Here are some examples.
+
+Also have a look at the [getting started guide](https://jbengler.github.io/tidyplots/articles/tidyplots.html) and the [full documentation](https://jbengler.github.io/tidyplots/reference/). For more example plots, check out the [tidyplots use cases](https://tidyplots.org/use-cases) website.
 
 ```{r}
 library(tidyplots)
