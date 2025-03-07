@@ -1,4 +1,4 @@
-# tidyplots (development version)
+# tidyplots 0.2.2
 
 This is a patch release mainly focusing on preparing tidyplots for the upcoming release of ggplot2 3.6.0.
 
