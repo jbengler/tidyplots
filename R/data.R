@@ -84,7 +84,7 @@
 #' Climate data
 #' @format A data frame.
 #' @source
-#' [National Oceanic and Atmospheric Administration](https://www.noaa.gov), Temperature data, weather station Hamburg Fuhlsbüttel, Germany
+#' National Oceanic and Atmospheric Administration, Temperature data, weather station Hamburg Fuhlsbüttel, Germany
 #' @examples
 #' dplyr::glimpse(climate)
 "climate"

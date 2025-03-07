@@ -1,12 +1,15 @@
 # tidyplots (development version)
 
+This is a patch release mainly focusing on preparing tidyplots for the upcoming release of ggplot2 3.6.0.
+
 ## Breaking changes
 
 * Hard deprecation of `as_tidyplot()`. Converting a ggplot to a tidyplot probably never was a good idea.
 
 ## Improvements
 
-* Prepare tidyplots for next ggplot2 release (#60)
+* Support ordered factors provided to color (#75)
+* Prepare tidyplots for upcoming ggplot2 3.6.0 release (#60)
 * Switch from the magrittr pipe `%>%` to the base R pipe `|>` in both the documentation and code (#55, #56)
 * More meaningful error for invalid plotmath expressions.
 * Update documentation (@mthulin, #62)

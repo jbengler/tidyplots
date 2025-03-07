@@ -1,10 +1,9 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 0 note
+
+* This is a patch release preparing for ggplot2 3.6.0.
 
 ## revdepcheck results
 
-We checked 1 reverse dependency, comparing R CMD check results across CRAN and dev versions of this package.
-
- * We saw 0 new problems
- * We failed to check 0 packages
+This package has 0 reverse dependencies.

@@ -8,7 +8,7 @@
 A data frame.
 }
 \source{
-\href{https://www.noaa.gov}{National Oceanic and Atmospheric Administration}, Temperature data, weather station Hamburg Fuhlsbüttel, Germany
+National Oceanic and Atmospheric Administration, Temperature data, weather station Hamburg Fuhlsbüttel, Germany
 }
 \usage{
 climate

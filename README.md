@@ -35,7 +35,7 @@ pak::pak("jbengler/tidyplots")
 
 This cheatsheet gives a high level overview of available functions.
 
-<a href="https://tidyplots.org/cheatsheet"><img src="man/figures/cheatsheet-v1.png" alt="tidyplots cheatsheet" /></a>
+<a href="https://tidyplots.org/tidyplots-cheatsheet-v1.pdf"><img src="man/figures/cheatsheet-v1.png" alt="tidyplots cheatsheet" /></a>
 
 ## Usage
 
@@ -46,7 +46,7 @@ guide](https://jbengler.github.io/tidyplots/articles/tidyplots.html) and
 the [full
 documentation](https://jbengler.github.io/tidyplots/reference/). For
 more example plots, check out the [tidyplots use
-cases](https://tidyplots.org/use-cases) website.
+cases](https://tidyplots.org/use-cases/) website.
 
 ``` r
 library(tidyplots)
