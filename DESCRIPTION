@@ -1,6 +1,6 @@
 Package: tidyplots
 Title: Tidy Plots for Scientific Papers
-Version: 0.2.2
+Version: 0.2.2.9000
 Authors@R: 
     person("Jan Broder", "Engler", , "broder.engler@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-3169-2076"))
