@@ -11,6 +11,7 @@ add_test_pvalue(
   method = "t_test",
   p.adjust.method = "none",
   ref.group = NULL,
+  comparisons = NULL,
   label = "{format_p_value(p.adj, 0.0001)}",
   label.size = 7/ggplot2::.pt,
   step.increase = 0.15,
@@ -30,6 +31,7 @@ add_test_asterisks(
   method = "t_test",
   p.adjust.method = "none",
   ref.group = NULL,
+  comparisons = NULL,
   label = "p.adj.signif",
   label.size = 10/ggplot2::.pt,
   step.increase = 0.2,
@@ -80,6 +82,9 @@ recommended), use p.adjust.method = "none".}
  the numeric rank value of the "ctrl" group. \item \strong{"all"}: In this
  case, each of the grouping variable levels is compared to all (i.e.
  basemean). }}
+
+\item{comparisons}{A list of length-2 vectors. The entries in the vector are
+2 integers that correspond to the index of the groups of interest, to be compared.}
 
 \item{label}{character string specifying label. Can be: \itemize{ \item the
 column containing the label (e.g.: \code{label = "p"} or \code{label =
@@ -160,7 +165,23 @@ study |>
   add_mean_dash() |>
   add_sem_errorbar() |>
   add_data_points() |>
-  add_test_pvalue(ref.group = "A")
+  add_test_pvalue(ref.group = 1)
+
+# Define selected comparisons
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_pvalue(comparisons = list(c(1,3),c(2,4)))
+
+# Define selected comparisons
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_asterisks(comparisons = list(c(1,4),c(2,3)))
 
 # hide non-significant p values
 gene_expression |>

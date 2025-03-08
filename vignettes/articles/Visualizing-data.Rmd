@@ -486,7 +486,7 @@ study |>
   add_mean_dash() |> 
   add_sem_errorbar() |> 
   add_data_points() |> 
-  add_test_pvalue(ref.group = "A")
+  add_test_pvalue(ref.group = 1)
 ```
 
 In some scenarios you have a mixture of significant and non-significant _p_ values.

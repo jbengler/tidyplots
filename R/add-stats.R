@@ -4,6 +4,8 @@
 #'  include pairwise comparisons methods implemented in the \code{rstatix} R
 #'  package. These methods are: \code{"wilcox_test", "t_test", "sign_test",
 #'  "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.
+#' @param comparisons A list of length-2 vectors. The entries in the vector are
+#'  2 integers that correspond to the index of the groups of interest, to be compared.
 #' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
 #' @param hide_info Whether to hide details about the statistical testing as caption. Defaults to `FALSE`.
 #' @param ... Arguments passed on to `ggpubr::geom_pwc()`.
@@ -36,7 +38,23 @@
 #'   add_mean_dash() |>
 #'   add_sem_errorbar() |>
 #'   add_data_points() |>
-#'   add_test_pvalue(ref.group = "A")
+#'   add_test_pvalue(ref.group = 1)
+#'
+#' # Define selected comparisons
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_pvalue(comparisons = list(c(1,3),c(2,4)))
+#'
+#' # Define selected comparisons
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_asterisks(comparisons = list(c(1,4),c(2,3)))
 #'
 #' # hide non-significant p values
 #' gene_expression |>
@@ -71,6 +89,7 @@ add_test_pvalue <- function(plot,
                       method = "t_test",
                       p.adjust.method = "none",
                       ref.group = NULL,
+                      comparisons = NULL,
                       label = "{format_p_value(p.adj, 0.0001)}",
                       label.size = 7/ggplot2::.pt,
                       step.increase = 0.15,
@@ -86,6 +105,13 @@ add_test_pvalue <- function(plot,
                       ...) {
   plot <- check_tidyplot(plot)
   # cli::cli_alert_success("add_test: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
+
+  # method.args are not supplied in ellipses
+  if (!"method.args" %in% names(list(...))) method.args <- list()
+  # comparisons are supplied
+  if (!is.null(comparisons)) {
+    method.args$comparisons <- comparisons
+  }
 
   plot <- plot  |>
     adjust_y_axis(padding = c(NA, padding_top))
@@ -108,6 +134,7 @@ add_test_pvalue <- function(plot,
                        hide.ns = hide.ns,
                        p.adjust.by = p.adjust.by,
                        symnum.args = symnum.args,
+                       method.args = method.args,
                        ...)
 }
 #' @rdname add_test_pvalue
@@ -117,6 +144,7 @@ add_test_asterisks <- function(plot,
                              method = "t_test",
                              p.adjust.method = "none",
                              ref.group = NULL,
+                             comparisons = NULL,
                              label = "p.adj.signif",
                              label.size = 10/ggplot2::.pt,
                              step.increase = 0.2,
@@ -136,6 +164,7 @@ add_test_asterisks <- function(plot,
             method = method,
             p.adjust.method = p.adjust.method,
             ref.group = ref.group,
+            comparisons = comparisons,
             label = label,
             label.size = label.size,
             step.increase = step.increase,
