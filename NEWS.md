@@ -1,5 +1,7 @@
 # tidyplots (development version)
 
+* New parameter `comparisons` in `add_test_pvalue()` and `add_test_asterisks()` enables selected comparisons (#82)
+
 # tidyplots 0.2.2
 
 This is a patch release mainly focusing on preparing tidyplots for the upcoming release of ggplot2 3.6.0.

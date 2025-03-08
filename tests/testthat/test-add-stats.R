@@ -5,12 +5,19 @@ test_that("stats work", {
     add_mean_bar(alpha = 0.4) |>
     add_sem_errorbar()
 
+  p2 |> add_test_pvalue() |>
+    vdiffr::expect_doppelganger("add stats pvalue no ref.group", fig = _)
   p2 |> add_test_pvalue(ref.group = 1) |>
     vdiffr::expect_doppelganger("add stats pvalue ref.group", fig = _)
+  p2 |> add_test_pvalue(comparisons = list(c(1,4),c(2,3))) |>
+    vdiffr::expect_doppelganger("add stats pvalue comparisons", fig = _)
   p2 |> add_test_pvalue(ref.group = 1, p.adjust.method = "bonferroni") |>
     vdiffr::expect_doppelganger("add stats pvalue ref.group bonferroni", fig = _)
   p2 |> add_test_asterisks(ref.group = 1, p.adjust.method = "bonferroni") |>
     vdiffr::expect_doppelganger("add stats asterisks ref.group bonferroni", fig = _)
+  p2 |> add_test_asterisks(comparisons = list(c(1,4),c(2,3))) |>
+    vdiffr::expect_doppelganger("add stats asterisks comparisons", fig = _)
+
 
   p3 <-
     study |>
