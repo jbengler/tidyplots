@@ -1,6 +1,17 @@
 # tidyplots (development version)
 
-* New parameter `comparisons` in `add_test_pvalue()` and `add_test_asterisks()` enables selected comparisons (#82)
+## Breaking changes
+* Removed the parameters `widths` and `heights` from `split_plot()`. Use 
+`adjust_size()` before `split_plot()` instead.
+
+## Improvements
+
+* New parameter `my_style` in `tidyplot()` for providing a styling function.
+* Support for global `options()` taking affect on all tidyplots in the session. 
+Supported options include `tidyplots.width`, `tidyplots.height`, `tidyplots.unit`, 
+`tidyplots.dodge_width`, and `tidyplots.my_style`.
+* New parameter `comparisons` in `add_test_pvalue()` and `add_test_asterisks()` 
+enables selected comparisons (#82)
 
 # tidyplots 0.2.2
 
