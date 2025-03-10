@@ -69,4 +69,39 @@ study |>
   tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) |>
   add_mean_bar()
 
+# Use global options
+
+## Define custom style
+my_style <- function(x) x |>
+  adjust_colors(colors_discrete_candy) |>
+  adjust_font(family = "mono")
+
+## Set global options
+options(
+  tidyplots.width = 3,
+  tidyplots.height = 4,
+  tidyplots.unit = "cm",
+  tidyplots.dodge_width = 1,
+  tidyplots.my_style = my_style
+  )
+
+## Plot
+study |>
+  tidyplot(x = group, y = score, color = dose) |>
+  add_mean_bar()
+
+## Reset global options
+options(
+  tidyplots.width = NULL,
+  tidyplots.height = NULL,
+  tidyplots.unit = NULL,
+  tidyplots.dodge_width = NULL,
+  tidyplots.my_style = NULL
+  )
+
+## Same plot
+study |>
+  tidyplot(x = group, y = score, color = dose) |>
+  add_mean_bar()
+
 }
