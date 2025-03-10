@@ -325,6 +325,7 @@ study |>
   add_data_points() |> 
   add_sem_errorbar() |> 
   add_mean_dash() |> 
+  adjust_size(width = 30, height = 25) |> 
   split_plot(by = dose)
 ```
 

@@ -12,7 +12,7 @@ add_donut(plot, width = 1, reverse = FALSE, ...)
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{width}{Width of the plot area. Defaults to \code{50}.}
+\item{width}{Width of the donut ring.}
 
 \item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 
@@ -35,6 +35,10 @@ energy |>
   tidyplot(color = energy_type) |>
   add_donut()
 
+energy |>
+  tidyplot(color = energy_type) |>
+  add_donut(width = 0.5)
+
 # for a `sum` provide `color` and `y`
 # `sum` of `energy` in each `energy_type` category
 energy |>
@@ -44,5 +48,9 @@ energy |>
 energy |>
   tidyplot(y = energy, color = energy_type) |>
   add_donut()
+
+energy |>
+  tidyplot(y = energy, color = energy_type) |>
+  add_donut(width = 0.5)
 
 }

@@ -4,23 +4,47 @@
 \alias{tidyplot}
 \title{Create a new tidyplot}
 \usage{
-tidyplot(data, ..., width = 50, height = 50, dodge_width = NULL)
+tidyplot(
+  data,
+  ...,
+  width = NULL,
+  height = NULL,
+  unit = NULL,
+  dodge_width = NULL,
+  my_style = NULL
+)
 }
 \arguments{
 \item{data}{A tidy \code{data.frame} to use for plotting.}
 
-\item{...}{Mappings for the \code{x} axis, \code{y} axis and \code{color}, see examples. Additional argument are passed to \code{ggplot2::aes()}.}
+\item{...}{Mappings for the \code{x} axis, \code{y} axis and \code{color}, see examples.
+Additional argument are passed to \code{ggplot2::aes()}.}
 
-\item{width}{Width of the plot area. Defaults to \code{50}.}
+\item{width}{Width of the plot area. Defaults to the value \code{tidyplots.width}
+in the global \code{options()}.
+If neither the parameter \code{width} nor the global option \code{tidyplots.width}
+is provided, it falls back to \code{50}.}
 
-\item{height}{Height of the plot area. Defaults to \code{50}.}
+\item{height}{Height of the plot area. Defaults to the value \code{tidyplots.height}
+in the global \code{options()}.
+If neither the parameter \code{height} nor the global option \code{tidyplots.height}
+is provided, it falls back to \code{50}.}
 
-\item{dodge_width}{For adjusting the distance between grouped objects. Defaults
-to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
-continuous axes.}
-}
-\value{
-A \code{tidyplot} object.
+\item{unit}{Unit of the plot area width and height. Defaults to the value
+\code{tidyplots.unit} in the global \code{options()}.
+If neither the parameter \code{unit} nor the global option \code{tidyplots.unit}
+is provided, it falls back to \code{"mm"}.}
+
+\item{dodge_width}{For adjusting the distance between grouped objects.
+Defaults to the value \code{tidyplots.dodge_width} in the global \code{options()}.
+If neither the parameter \code{dodge_width} nor the global option
+\code{tidyplots.dodge_width} is provided, it falls back to \code{0.8} for plots with
+at least one discrete axis and to \code{0} for plots with two continuous axes.}
+
+\item{my_style}{Styling function to apply to the plot. Defaults to
+to the value \code{tidyplots.my_style} in the global \code{options()}. If neither
+the parameter \code{my_style} nor the global option \code{tidyplots.my_style} is
+provided, no styling function is applied}
 }
 \description{
 Create a new tidyplot
@@ -37,7 +61,7 @@ study |>
 # Change plot area size
 study |>
   tidyplot(x = treatment, y = score, color = treatment,
-    width = 35, height = 35) |>
+    width = 25, height = 25) |>
   add_data_points_beeswarm()
 
 # Change dodge_width

@@ -50,7 +50,7 @@ add_ci95_errorbar(
 to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
 continuous axes.}
 
-\item{width}{Width of the plot area. Defaults to \code{50}.}
+\item{width}{Width of the error bar.}
 
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 

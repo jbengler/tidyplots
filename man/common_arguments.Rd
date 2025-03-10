@@ -60,11 +60,7 @@ values range between \code{1} and \code{3}.}
 
 \item{replace_na}{Whether to replace \code{count = NA} with \code{count = 0}.}
 
-\item{width}{Width of the plot area. Defaults to \code{50}.}
-
-\item{height}{Height of the plot area. Defaults to \code{50}.}
-
-\item{unit}{Unit of the plot area width and height. Defaults to \code{mm}.}
+\item{width}{Width of the bar.}
 
 \item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 }

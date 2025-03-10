@@ -67,7 +67,7 @@ add_mean_area(
 to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
 continuous axes.}
 
-\item{width}{Width of the plot area. Defaults to \code{50}.}
+\item{width}{Width of the bar.}
 
 \item{saturation}{A \code{number} between \code{0} and \code{1} for the color saturation of an object. A value of \code{0} is completely desaturated (white), \code{1} is the original color.}
 
