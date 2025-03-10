@@ -1,8 +1,29 @@
 #' Create a new tidyplot
 #'
 #' @param data A tidy `data.frame` to use for plotting.
-#' @param ... Mappings for the `x` axis, `y` axis and `color`, see examples. Additional argument are passed to `ggplot2::aes()`.
-#' @inherit common_arguments
+#' @param width Width of the plot area. Defaults to the value `tidyplots.width`
+#' in the global `options()`.
+#' If neither the parameter `width` nor the global option `tidyplots.width`
+#' is provided, it falls back to `50`.
+#' @param height Height of the plot area. Defaults to the value `tidyplots.height`
+#' in the global `options()`.
+#' If neither the parameter `height` nor the global option `tidyplots.height`
+#' is provided, it falls back to `50`.
+#' @param unit Unit of the plot area width and height. Defaults to the value
+#' `tidyplots.unit` in the global `options()`.
+#' If neither the parameter `unit` nor the global option `tidyplots.unit`
+#' is provided, it falls back to `"mm"`.
+#' @param dodge_width For adjusting the distance between grouped objects.
+#' Defaults to the value `tidyplots.dodge_width` in the global `options()`.
+#' If neither the parameter `dodge_width` nor the global option
+#' `tidyplots.dodge_width` is provided, it falls back to `0.8` for plots with
+#' at least one discrete axis and to `0` for plots with two continuous axes.
+#' @param my_style Styling function to apply to the plot. Defaults to
+#' to the value `tidyplots.my_style` in the global `options()`. If neither
+#' the parameter `my_style` nor the global option `tidyplots.my_style` is
+#' provided, no styling function is applied
+#' @param ... Mappings for the `x` axis, `y` axis and `color`, see examples.
+#' Additional argument are passed to `ggplot2::aes()`.
 #'
 #' @examples
 #' study |>
@@ -16,7 +37,7 @@
 #' # Change plot area size
 #' study |>
 #'   tidyplot(x = treatment, y = score, color = treatment,
-#'     width = 35, height = 35) |>
+#'     width = 25, height = 25) |>
 #'   add_data_points_beeswarm()
 #'
 #' # Change dodge_width
@@ -25,7 +46,12 @@
 #'   add_mean_bar()
 #'
 #' @export
-tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
+tidyplot <- function(data, ...,
+                     width = NULL,
+                     height = NULL,
+                     unit = NULL,
+                     dodge_width = NULL,
+                     my_style = NULL) {
   mapping <- ggplot2::aes(...)
 
   # Add .single_color column to data if `colour` and `fill` mappings are missing
@@ -47,6 +73,10 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
 
   plot$tidyplot$history <- c("tidyplot")
 
+  plot$tidyplot$width <- width %||% getOption("tidyplots.width") %||% 50
+  plot$tidyplot$height <- height %||% getOption("tidyplots.height") %||% 50
+  plot$tidyplot$unit <- unit %||% getOption("tidyplots.unit") %||% "mm"
+
   plot$tidyplot$padding_x <- c(0.05, 0.05)
   plot$tidyplot$padding_y <- c(0.05, 0.05)
 
@@ -59,7 +89,7 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
   } else {
     dodge_width_heuristic <- 0
   }
-  dodge_width <- dodge_width %||% dodge_width_heuristic
+  dodge_width <- dodge_width %||% getOption("tidyplots.dodge_width") %||% dodge_width_heuristic
   plot$tidyplot$dodge_width <- dodge_width
 
   plot$tidyplot$named_colors <- NULL
@@ -69,7 +99,12 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
     adjust_x_axis() |>
     adjust_y_axis() |>
     adjust_colors() |>
-    adjust_size(width = width, height = height)
+    adjust_size()
+
+  my_style <- my_style %||% getOption("tidyplots.my_style")
+  if (!is.null(my_style)) {
+    plot <- plot |> my_style()
+  }
 
   if (single_color_plot)
     plot <- plot |> remove_legend()
@@ -81,7 +116,6 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
 #' Split plot into multiple subplots
 #' @param by Variable that should be used for splitting.
 #' @param ncol,nrow The number of columns and rows per page.
-#' @param unit Unit of length. Defaults to `"mm"`.
 #' @inheritParams patchwork::wrap_plots
 #' @inherit common_arguments
 #'
@@ -90,13 +124,15 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
 #' energy |>
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
 #'   tidyplot(y = energy, color = energy_source) |>
-#'   add_donut()
+#'   add_donut() |>
+#'   adjust_size(width = 25, height = 25)
 #'
 #' # Split by year
 #' energy |>
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
 #'   tidyplot(y = energy, color = energy_source) |>
 #'   add_donut() |>
+#'   adjust_size(width = 25, height = 25) |>
 #'   split_plot(by = year)
 #'
 #' # Change dimensions of subplots
@@ -104,22 +140,30 @@ tidyplot <- function(data, ..., width = 50, height = 50, dodge_width = NULL) {
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
 #'   tidyplot(y = energy, color = energy_source) |>
 #'   add_donut() |>
-#'   split_plot(by = year, widths = 15, heights = 15)
+#'   adjust_size(width = 15, height = 15) |>
+#'   split_plot(by = year)
 #'
 #' # Spread plots across multiple pages
 #' energy |>
 #'   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
 #'   tidyplot(y = energy, color = energy_source) |>
 #'   add_donut() |>
+#'   adjust_size(width = 25, height = 25) |>
 #'   split_plot(by = year, ncol = 2, nrow = 1)
 #'
 #' @export
 split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
-                       widths = 30, heights = 25, guides = "collect",
-                       tag_level = NULL, design = NULL, unit = "mm") {
+                       guides = "collect", tag_level = NULL, design = NULL) {
   plot <- check_tidyplot(plot)
   if(missing(by))
     cli::cli_abort("Argument {.arg by} missing without default.")
+
+  widths <- plot$tidyplot$width
+  heights <- plot$tidyplot$height
+  unit <- plot$tidyplot$unit
+
+  if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
+  if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
 
   # free plot dimensions
   plot <-
@@ -136,13 +180,6 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
          function(data, facet_title) {
            plot %+% data + ggplot2::ggtitle(facet_title)
          })
-
-  if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
-  if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
-
-  # if (!ggplot2::is.ggplot(plots) && !all(purrr::map_lgl(plots, ggplot2::is.ggplot)))
-  #   cli::cli_abort("{.arg plots} must be a single plot or a list of plots.")
-  # if (ggplot2::is.ggplot(plots)) plots <- list(plots)
 
   if (is.numeric(ncol) && is.numeric(nrow)) {
     plots_per_page <- nrow * ncol
@@ -255,6 +292,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #'   dplyr::slice_head(n = 160) |>
 #'   tidyplot(group, expression, color = sample_type) |>
 #'   add_data_points() |>
+#'   adjust_size(width = 30, height = 25) |>
 #'   split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
 #'   save_plot("multipage_plot.pdf")
 #'
@@ -263,6 +301,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #'   dplyr::slice_head(n = 160) |>
 #'   tidyplot(group, expression, color = sample_type) |>
 #'   add_data_points() |>
+#'   adjust_size(width = 30, height = 25) |>
 #'   split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
 #'   save_plot("plot.pdf", multiple_files = TRUE)
 #'

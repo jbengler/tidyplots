@@ -31,6 +31,8 @@ ff_pie <- function(.type = "pie") {
   }
 }
 #' Add pie or donut chart
+#'
+#' @param width Width of the donut ring.
 #' @inherit common_arguments
 #'
 #' @examples
@@ -44,6 +46,10 @@ ff_pie <- function(.type = "pie") {
 #'   tidyplot(color = energy_type) |>
 #'   add_donut()
 #'
+#' energy |>
+#'   tidyplot(color = energy_type) |>
+#'   add_donut(width = 0.5)
+#'
 #' # for a `sum` provide `color` and `y`
 #' # `sum` of `energy` in each `energy_type` category
 #' energy |>
@@ -53,6 +59,10 @@ ff_pie <- function(.type = "pie") {
 #' energy |>
 #'   tidyplot(y = energy, color = energy_type) |>
 #'   add_donut()
+#'
+#' energy |>
+#'   tidyplot(y = energy, color = energy_type) |>
+#'   add_donut(width = 0.5)
 #'
 #' @export
 add_pie <- ff_pie(.type = "pie")
