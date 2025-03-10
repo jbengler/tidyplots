@@ -121,8 +121,20 @@ test_that("adjust plot area size work", {
   study |>
     tidyplot(x = dose, y = score, color = group) |>
     add_boxplot() |>
+    adjust_size() |>
+    vdiffr::expect_doppelganger("plot area size nothing", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
     adjust_size(width = 70) |>
     vdiffr::expect_doppelganger("plot area size width", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
+    adjust_size(height = 70) |>
+    vdiffr::expect_doppelganger("plot area size height", fig = _)
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
@@ -133,8 +145,47 @@ test_that("adjust plot area size work", {
   study |>
     tidyplot(x = dose, y = score, color = group) |>
     add_boxplot() |>
+    adjust_size(width = 25) |>
+    adjust_size(height = 25) |>
+    vdiffr::expect_doppelganger("plot area size width and height sequentially", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
+    adjust_size(width = 25) |>
+    adjust_size(height = NA) |>
+    vdiffr::expect_doppelganger("plot area size width NA and height sequentially", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
+    adjust_size(width = NA) |>
+    adjust_size(height = 25) |>
+    vdiffr::expect_doppelganger("plot area size width and height NA sequentially", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
     adjust_size(width = NA, height = NA) |>
     vdiffr::expect_doppelganger("plot area size NA", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group, width = 25) |>
+    add_boxplot() |>
+    adjust_size(height = 25) |>
+    vdiffr::expect_doppelganger("plot area size tidyplot width adjust height", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group, height = 25) |>
+    add_boxplot() |>
+    adjust_size(width = 25) |>
+    vdiffr::expect_doppelganger("plot area size tidyplot height adjust width", fig = _)
+
+  study |>
+    tidyplot(x = dose, y = score, color = group, height = 1) |>
+    add_boxplot() |>
+    adjust_size(width = 1, unit = "inch") |>
+    vdiffr::expect_doppelganger("plot area size tidyplot height adjust width inch", fig = _)
 })
 
 test_that("adjust title font works", {

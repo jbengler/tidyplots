@@ -412,6 +412,7 @@ energy |>
   # start plotting
   tidyplot(y = energy, color = energy_type) |> 
   add_donut() |> 
+  adjust_size(width = 25, height = 25) |> 
   adjust_colors(new_colors = c("Fossil" = "grey",
                                "Nuclear" = "#F6C54D",
                                "Renewable" = "#4FAE62",

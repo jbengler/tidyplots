@@ -4,16 +4,16 @@
 \alias{adjust_size}
 \title{Adjust plot area size}
 \usage{
-adjust_size(plot, width = 50, height = 50, unit = "mm")
+adjust_size(plot, width = NULL, height = NULL, unit = NULL)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{width}{Width of the plot area. Defaults to \code{50}.}
+\item{width}{Width of the plot area.}
 
-\item{height}{Height of the plot area. Defaults to \code{50}.}
+\item{height}{Height of the plot area.}
 
-\item{unit}{Unit of the plot area width and height. Defaults to \code{mm}.}
+\item{unit}{Unit of the plot area width and height.}
 }
 \value{
 A \code{tidyplot} object.
@@ -29,13 +29,13 @@ study |>
   add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar()
 
-# Resize to 20 x 20 mm
+# Resize to 15 x 15 mm
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>
   add_data_points_beeswarm(shape = 1) |>
   add_mean_bar(alpha = 0.4) |>
   add_sem_errorbar() |>
-  adjust_size(width = 20, height = 20)
+  adjust_size(width = 15, height = 15)
 
 # Resize to 4 x 4 cm
 study |>
@@ -45,7 +45,8 @@ study |>
   add_sem_errorbar() |>
   adjust_size(width = 4, height = 4, unit = "cm")
 
-# Remove absolute dimensions and take all available space. This is the ggplot2 default.
+# Remove absolute dimensions and take all available space.
+# This is the ggplot2 default.
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>
   add_data_points_beeswarm(shape = 1) |>

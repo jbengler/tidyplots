@@ -227,6 +227,7 @@ gene_expression |>
   add_sem_errorbar() |> 
   add_data_points_beeswarm() |> 
   add_test_asterisks(hide_info = TRUE) |> 
+  adjust_size(width = 30, height = 25) |> 
   split_plot(by = external_gene_name, ncol = 2, nrow = 2)
 ```
 
@@ -239,6 +240,7 @@ gene_expression |>
   add_sem_errorbar() |> 
   add_data_points_beeswarm() |> 
   add_test_asterisks(hide_info = TRUE) |> 
+  adjust_size(width = 30, height = 25) |> 
   split_plot(by = external_gene_name, ncol = 3, nrow = 3) |> 
   save_plot("test.pdf")
 ```

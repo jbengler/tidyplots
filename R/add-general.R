@@ -51,9 +51,7 @@
 #' @param scale_cut Scale cut function to be applied. See `scales::cut_short_scale()` and friends.
 #' @param fontsize Font size in points. Defaults to `7`.
 #' @param replace_na Whether to replace `count = NA` with `count = 0`.
-#' @param width Width of the plot area. Defaults to `50`.
-#' @param height Height of the plot area. Defaults to `50`.
-#' @param unit Unit of the plot area width and height. Defaults to `mm`.
+#' @param width Width of the bar.
 #' @param force_continuous Whether to force the axis to be continuous. Defaults to `FALSE`.
 #' @return A `tidyplot` object.
 #' @keywords internal
@@ -78,6 +76,7 @@ ff_errorbar <- function(.fun.data) {
 #' * `add_sd_errorbar()` adds the standard deviation.
 #' * `add_ci95_errorbar()` adds the 95% confidence interval.
 #'
+#' @param width Width of the error bar.
 #' @inherit common_arguments
 #'
 #' @examples

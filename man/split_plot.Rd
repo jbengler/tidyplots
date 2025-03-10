@@ -10,12 +10,9 @@ split_plot(
   ncol = NULL,
   nrow = NULL,
   byrow = NULL,
-  widths = 30,
-  heights = 25,
   guides = "collect",
   tag_level = NULL,
-  design = NULL,
-  unit = "mm"
+  design = NULL
 )
 }
 \arguments{
@@ -27,12 +24,6 @@ split_plot(
 
 \item{byrow}{Analogous to \code{byrow} in \link[base:matrix]{matrix()}. If \code{FALSE} the
 plots will be filled in in column-major order}
-
-\item{widths, heights}{The relative widths and heights of each column and row
-in the grid. Will get repeated to match the dimensions of the grid. The
-special value of \code{NA}/\verb{-1null} will behave as \verb{1null} unless a fixed aspect
-plot is inserted in which case it will allow the dimension to expand or
-contract to match the aspect ratio of the content}
 
 \item{guides}{A string specifying how guides should be treated in the layout.
 \code{'collect'} will collect guides below to the given nesting level, removing
@@ -49,8 +40,6 @@ auto-tagging should behave. See \code{\link[patchwork:plot_annotation]{plot_anno
 \item{design}{Specification of the location of areas in the layout. Can either
 be specified as a text string or by concatenating calls to \code{\link[patchwork:area]{area()}} together.
 See the examples for further information on use.}
-
-\item{unit}{Unit of length. Defaults to \code{"mm"}.}
 }
 \value{
 A \code{tidyplot} object.
@@ -63,13 +52,15 @@ Split plot into multiple subplots
 energy |>
   dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) |>
   tidyplot(y = energy, color = energy_source) |>
-  add_donut()
+  add_donut() |>
+  adjust_size(width = 25, height = 25)
 
 # Split by year
 energy |>
   dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) |>
   tidyplot(y = energy, color = energy_source) |>
   add_donut() |>
+  adjust_size(width = 25, height = 25) |>
   split_plot(by = year)
 
 # Change dimensions of subplots
@@ -77,13 +68,15 @@ energy |>
   dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) |>
   tidyplot(y = energy, color = energy_source) |>
   add_donut() |>
-  split_plot(by = year, widths = 15, heights = 15)
+  adjust_size(width = 15, height = 15) |>
+  split_plot(by = year)
 
 # Spread plots across multiple pages
 energy |>
   dplyr::filter(year \%in\% c(2005, 2010, 2015, 2020)) |>
   tidyplot(y = energy, color = energy_source) |>
   add_donut() |>
+  adjust_size(width = 25, height = 25) |>
   split_plot(by = year, ncol = 2, nrow = 1)
 
 }

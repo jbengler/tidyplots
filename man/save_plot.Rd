@@ -79,6 +79,7 @@ gene_expression |>
   dplyr::slice_head(n = 160) |>
   tidyplot(group, expression, color = sample_type) |>
   add_data_points() |>
+  adjust_size(width = 30, height = 25) |>
   split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
   save_plot("multipage_plot.pdf")
 
@@ -87,6 +88,7 @@ gene_expression |>
   dplyr::slice_head(n = 160) |>
   tidyplot(group, expression, color = sample_type) |>
   add_data_points() |>
+  adjust_size(width = 30, height = 25) |>
   split_plot(by = external_gene_name, nrow = 2, ncol = 2) |>
   save_plot("plot.pdf", multiple_files = TRUE)
 
