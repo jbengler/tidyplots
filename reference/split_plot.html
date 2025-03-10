@@ -51,12 +51,9 @@
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  byrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  widths <span class="op">=</span> <span class="fl">30</span>,</span>
-<span>  heights <span class="op">=</span> <span class="fl">25</span>,</span>
 <span>  guides <span class="op">=</span> <span class="st">"collect"</span>,</span>
 <span>  tag_level <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  design <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  unit <span class="op">=</span> <span class="st">"mm"</span></span>
+<span>  design <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -81,14 +78,6 @@
 plots will be filled in in column-major order</p></dd>
 
 
-<dt id="arg-widths-heights">widths, heights<a class="anchor" aria-label="anchor" href="#arg-widths-heights"></a></dt>
-<dd><p>The relative widths and heights of each column and row
-in the grid. Will get repeated to match the dimensions of the grid. The
-special value of <code>NA</code>/<code>-1null</code> will behave as <code>1null</code> unless a fixed aspect
-plot is inserted in which case it will allow the dimension to expand or
-contract to match the aspect ratio of the content</p></dd>
-
-
 <dt id="arg-guides">guides<a class="anchor" aria-label="anchor" href="#arg-guides"></a></dt>
 <dd><p>A string specifying how guides should be treated in the layout.
 <code>'collect'</code> will collect guides below to the given nesting level, removing
@@ -110,10 +99,6 @@ auto-tagging should behave. See <code><a href="https://patchwork.data-imaginist.
 be specified as a text string or by concatenating calls to <code><a href="https://patchwork.data-imaginist.com/reference/area.html" class="external-link">area()</a></code> together.
 See the examples for further information on use.</p></dd>
 
-
-<dt id="arg-unit">unit<a class="anchor" aria-label="anchor" href="#arg-unit"></a></dt>
-<dd><p>Unit of length. Defaults to <code>"mm"</code>.</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -126,7 +111,8 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="adjust_size.html">adjust_size</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">25</span>, height <span class="op">=</span> <span class="fl">25</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="split_plot-1.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Split by year</span></span></span>
@@ -134,6 +120,7 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="adjust_size.html">adjust_size</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">25</span>, height <span class="op">=</span> <span class="fl">25</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">1 page</span></span>
 <span class="r-plt img"><img src="split_plot-2.png" alt="" width="800" height="600"></span>
@@ -143,7 +130,8 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span>, widths <span class="op">=</span> <span class="fl">15</span>, heights <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="adjust_size.html">adjust_size</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">1 page</span></span>
 <span class="r-plt img"><img src="split_plot-3.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
@@ -152,6 +140,7 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">year</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2010</span>, <span class="fl">2015</span>, <span class="fl">2020</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="adjust_size.html">adjust_size</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">25</span>, height <span class="op">=</span> <span class="fl">25</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span>, ncol <span class="op">=</span> <span class="fl">2</span>, nrow <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">2 pages</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>

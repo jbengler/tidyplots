@@ -45,7 +45,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_size</span><span class="op">(</span><span class="va">plot</span>, width <span class="op">=</span> <span class="fl">50</span>, height <span class="op">=</span> <span class="fl">50</span>, unit <span class="op">=</span> <span class="st">"mm"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_size</span><span class="op">(</span><span class="va">plot</span>, width <span class="op">=</span> <span class="cn">NULL</span>, height <span class="op">=</span> <span class="cn">NULL</span>, unit <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -57,15 +57,15 @@
 
 
 <dt id="arg-width">width<a class="anchor" aria-label="anchor" href="#arg-width"></a></dt>
-<dd><p>Width of the plot area. Defaults to <code>50</code>.</p></dd>
+<dd><p>Width of the plot area.</p></dd>
 
 
 <dt id="arg-height">height<a class="anchor" aria-label="anchor" href="#arg-height"></a></dt>
-<dd><p>Height of the plot area. Defaults to <code>50</code>.</p></dd>
+<dd><p>Height of the plot area.</p></dd>
 
 
 <dt id="arg-unit">unit<a class="anchor" aria-label="anchor" href="#arg-unit"></a></dt>
-<dd><p>Unit of the plot area width and height. Defaults to <code>mm</code>.</p></dd>
+<dd><p>Unit of the plot area width and height.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -83,13 +83,13 @@
 <span class="r-in"><span>  <span class="fu"><a href="add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_size-1.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Resize to 20 x 20 mm</span></span></span>
+<span class="r-in"><span><span class="co"># Resize to 15 x 15 mm</span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">adjust_size</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">20</span>, height <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">adjust_size</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_size-2.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Resize to 4 x 4 cm</span></span></span>
@@ -101,7 +101,8 @@
 <span class="r-in"><span>  <span class="fu">adjust_size</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">4</span>, height <span class="op">=</span> <span class="fl">4</span>, unit <span class="op">=</span> <span class="st">"cm"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="adjust_size-3.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Remove absolute dimensions and take all available space. This is the ggplot2 default.</span></span></span>
+<span class="r-in"><span><span class="co"># Remove absolute dimensions and take all available space.</span></span></span>
+<span class="r-in"><span><span class="co"># This is the ggplot2 default.</span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
