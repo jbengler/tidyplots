@@ -6,7 +6,7 @@
 \alias{add_annotation_line}
 \title{Add annotation}
 \usage{
-add_annotation_text(plot, text, x, y, fontsize = 7)
+add_annotation_text(plot, text, x, y, fontsize = 7, ...)
 
 add_annotation_rectangle(
   plot,
@@ -16,19 +16,22 @@ add_annotation_rectangle(
   ymax,
   fill = "#000000",
   color = NA,
-  alpha = 0.1
+  alpha = 0.1,
+  ...
 )
 
-add_annotation_line(plot, x, xend, y, yend, color = "#000000")
+add_annotation_line(plot, x, xend, y, yend, color = "#000000", ...)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{text}{Here goes the description.}
+\item{text}{String for annotation text.}
 
-\item{x, xmin, xmax, xend, y, ymin, ymax, yend}{Here goes the description.}
+\item{x, xmin, xmax, xend, y, ymin, ymax, yend}{Coordinates for the annotation.}
 
 \item{fontsize}{Font size in points. Defaults to \code{7}.}
+
+\item{...}{Arguments passed on to \code{ggplot2::annotate()}.}
 
 \item{fill}{A hex color for the fill color. For example, \code{"#FFFFFF"} for white.}
 

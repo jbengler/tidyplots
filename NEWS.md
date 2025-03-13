@@ -11,7 +11,8 @@
 Supported options include `tidyplots.width`, `tidyplots.height`, `tidyplots.unit`, 
 `tidyplots.dodge_width`, and `tidyplots.my_style`.
 * New parameter `comparisons` in `add_test_pvalue()` and `add_test_asterisks()` 
-enables selected comparisons (#82)
+enables selected comparisons (#82).
+* `add_annotation_text()` now supports colored text (#86).
 
 # tidyplots 0.2.2
 
