@@ -15,6 +15,12 @@ publication-ready plots for scientific papers. It allows to gradually
 add, remove and adjust plot components using a consistent and intuitive
 syntax.
 
+## Citation
+
+Engler, Jan Broder. 2025. “Tidyplots Empowers Life Scientists With Easy
+Code-Based Data Visualization.” *iMeta* e70018.
+<https://doi.org/10.1002/imt2.70018>
+
 ## Installation
 
 You can install the released version of tidyplots from
