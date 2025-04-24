@@ -13,6 +13,7 @@ enables selected comparisons (#82).
 Supported options include `tidyplots.width`, `tidyplots.height`, `tidyplots.unit`, 
 `tidyplots.dodge_width`, and `tidyplots.my_style` (#84, #85).
 * `add_annotation_text()` now supports colored text (#86).
+* Add support for axis `limits` when the axis is of type `date`, `time`, or `datetime` (#97).
 
 # tidyplots 0.2.2
 

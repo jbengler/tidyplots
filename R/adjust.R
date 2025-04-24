@@ -46,6 +46,10 @@ ff_adjust_axis <- function(axis) {
       else
         plot <- plot + ggplot2::scale_y_datetime(name = title, breaks = breaks, labels = labels, expand = expand_y, ...)
     )
+    # Set limits via coord_cartesian
+    if (!is.null(plot$tidyplot$limits_x) || !is.null(plot$tidyplot$limits_y)) {
+      suppressMessages(plot <- plot + ggplot2::coord_cartesian(xlim = plot$tidyplot$limits_x, ylim = plot$tidyplot$limits_y))
+    }
     return(plot)
   }
 
@@ -58,6 +62,10 @@ ff_adjust_axis <- function(axis) {
       else
         plot <- plot + ggplot2::scale_y_date(name = title, breaks = breaks, labels = labels, expand = expand_y, ...)
     )
+    # Set limits via coord_cartesian
+    if (!is.null(plot$tidyplot$limits_x) || !is.null(plot$tidyplot$limits_y)) {
+      suppressMessages(plot <- plot + ggplot2::coord_cartesian(xlim = plot$tidyplot$limits_x, ylim = plot$tidyplot$limits_y))
+    }
     return(plot)
   }
 
@@ -70,6 +78,10 @@ ff_adjust_axis <- function(axis) {
       else
         plot <- plot + ggplot2::scale_y_time(name = title, breaks = breaks, labels = labels, expand = expand_y, ...)
     )
+    # Set limits via coord_cartesian
+    if (!is.null(plot$tidyplot$limits_x) || !is.null(plot$tidyplot$limits_y)) {
+      suppressMessages(plot <- plot + ggplot2::coord_cartesian(xlim = plot$tidyplot$limits_x, ylim = plot$tidyplot$limits_y))
+    }
     return(plot)
   }
 
