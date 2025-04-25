@@ -67,7 +67,9 @@ difference between adjacent values.</p>
 
 
 <dt id="arg-big-mark">big.mark<a class="anchor" aria-label="anchor" href="#arg-big-mark"></a></dt>
-<dd><p>Character used between every 3 digits to separate thousands.</p></dd>
+<dd><p>Character used between every 3 digits to separate thousands.
+The default (<code>NULL</code>) retrieves the setting from the
+number options.</p></dd>
 
 
 <dt id="arg-scale-cut">scale_cut<a class="anchor" aria-label="anchor" href="#arg-scale-cut"></a></dt>
@@ -97,15 +99,17 @@ large.</p></dd>
 as wide as a number or <code>+</code>. Compared to <code>"none"</code>, adding a figure space
 can ensure numbers remain properly aligned when they are left- or
 right-justified.</p></li>
-</ul></dd>
+</ul><p>The default (<code>NULL</code>) retrieves the setting from the
+number options.</p></dd>
 
     <dt><code>style_negative</code></dt>
-<dd><p>A string that determines the style of negative numbers:</p><ul><li><p><code>"hyphen"</code> (the default): preceded by a standard hypen <code>-</code>, e.g. <code>-1</code>.</p></li>
+<dd><p>A string that determines the style of negative numbers:</p><ul><li><p><code>"hyphen"</code> (the default): preceded by a standard hyphen <code>-</code>, e.g. <code>-1</code>.</p></li>
 <li><p><code>"minus"</code>, uses a proper Unicode minus symbol. This is a typographical
 nicety that ensures <code>-</code> aligns with the horizontal bar of the
 the horizontal bar of <code>+</code>.</p></li>
 <li><p><code>"parens"</code>, wrapped in parentheses, e.g. <code>(1)</code>.</p></li>
-</ul></dd>
+</ul><p>The default (<code>NULL</code>) retrieves the setting from the
+number options.</p></dd>
 
 
 </dl></dd>
