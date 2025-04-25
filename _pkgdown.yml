@@ -86,6 +86,7 @@ reference:
 - contents:
   - starts_with("theme")
   - starts_with("adjust_theme")
+  - starts_with("tidyplots_options")
 - title: Color schemes
   desc: Choose from a wide range of color schemes.
 - contents:
@@ -106,7 +107,6 @@ reference:
 - contents:
   - ends_with("_rows")
   - add
-  - starts_with("as_tidyplot")
   - starts_with("flip_plot")
   - starts_with("format_")
 - title: Data

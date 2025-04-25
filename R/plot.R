@@ -1,27 +1,18 @@
 #' Create a new tidyplot
 #'
 #' @param data A tidy `data.frame` to use for plotting.
-#' @param width Width of the plot area. Defaults to the value `tidyplots.width`
-#' in the global `options()`.
-#' If neither the parameter `width` nor the global option `tidyplots.width`
-#' is provided, it falls back to `50`.
-#' @param height Height of the plot area. Defaults to the value `tidyplots.height`
-#' in the global `options()`.
-#' If neither the parameter `height` nor the global option `tidyplots.height`
-#' is provided, it falls back to `50`.
-#' @param unit Unit of the plot area width and height. Defaults to the value
-#' `tidyplots.unit` in the global `options()`.
-#' If neither the parameter `unit` nor the global option `tidyplots.unit`
-#' is provided, it falls back to `"mm"`.
+#' @param width Width of the plot area. The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which defaults to `50`.
+#' @param height Height of the plot area. The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which defaults to `50`.
+#' @param unit Unit of the plot area width and height. The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which defaults to `"mm"`.
 #' @param dodge_width For adjusting the distance between grouped objects.
-#' Defaults to the value `tidyplots.dodge_width` in the global `options()`.
-#' If neither the parameter `dodge_width` nor the global option
-#' `tidyplots.dodge_width` is provided, it falls back to `0.8` for plots with
+#' The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which defaults to `0.8` for plots with
 #' at least one discrete axis and to `0` for plots with two continuous axes.
-#' @param my_style Styling function to apply to the plot. Defaults to
-#' to the value `tidyplots.my_style` in the global `options()`. If neither
-#' the parameter `my_style` nor the global option `tidyplots.my_style` is
-#' provided, no styling function is applied
+#' @param my_style Styling function to apply to the plot. The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which default to no additional styling.
 #' @param ... Mappings for the `x` axis, `y` axis and `color`, see examples.
 #' Additional argument are passed to `ggplot2::aes()`.
 #'
@@ -43,41 +34,6 @@
 #' # Change dodge_width
 #' study |>
 #'   tidyplot(x = group, y = score, color = dose, dodge_width = 0.3) |>
-#'   add_mean_bar()
-#'
-#' # Use global options
-#'
-#' ## Define custom style
-#' my_style <- function(x) x |>
-#'   adjust_colors(colors_discrete_candy) |>
-#'   adjust_font(family = "mono")
-#'
-#' ## Set global options
-#' options(
-#'   tidyplots.width = 3,
-#'   tidyplots.height = 4,
-#'   tidyplots.unit = "cm",
-#'   tidyplots.dodge_width = 1,
-#'   tidyplots.my_style = my_style
-#'   )
-#'
-#' ## Plot
-#' study |>
-#'   tidyplot(x = group, y = score, color = dose) |>
-#'   add_mean_bar()
-#'
-#' ## Reset global options
-#' options(
-#'   tidyplots.width = NULL,
-#'   tidyplots.height = NULL,
-#'   tidyplots.unit = NULL,
-#'   tidyplots.dodge_width = NULL,
-#'   tidyplots.my_style = NULL
-#'   )
-#'
-#' ## Same plot
-#' study |>
-#'   tidyplot(x = group, y = score, color = dose) |>
 #'   add_mean_bar()
 #'
 #' @export
@@ -145,6 +101,61 @@ tidyplot <- function(data, ...,
     plot <- plot |> remove_legend()
 
   plot
+}
+
+
+#' Tidyplots options
+#'
+#' Control the settings for formatting tidyplots globally.
+#'
+#' @inheritParams tidyplot
+#' @return The old options invisibly
+#'
+#' @examples
+#'
+#' # Define custom style
+#' my_style <- function(x) x |>
+#'   adjust_colors(colors_discrete_candy) |>
+#'   adjust_font(family = "mono")
+#'
+#' # Set tidyplots options
+#' tidyplots_options(
+#'   width = 3,
+#'   height = 4,
+#'   unit = "cm",
+#'   dodge_width = 1,
+#'   my_style = my_style
+#'   )
+#'
+#' # Plot
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_mean_bar()
+#'
+#' # Reset tidyplots options
+#' tidyplots_options()
+#'
+#' # Same plot
+#' study |>
+#'   tidyplot(x = group, y = score, color = dose) |>
+#'   add_mean_bar()
+#'
+#' @export
+tidyplots_options <- function(
+  width = NULL,
+  height = NULL,
+  unit = NULL,
+  dodge_width = NULL,
+  my_style = NULL
+) {
+  opts <- options(
+    tidyplots.width = width,
+    tidyplots.height = height,
+    tidyplots.unit = unit,
+    tidyplots.dodge_width = dodge_width,
+    tidyplots.my_style = my_style
+  )
+  invisible(opts)
 }
 
 

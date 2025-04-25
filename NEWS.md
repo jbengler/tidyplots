@@ -9,11 +9,10 @@
 * New parameter `comparisons` in `add_test_pvalue()` and `add_test_asterisks()` 
 enables selected comparisons (#82).
 * New parameter `my_style` in `tidyplot()` for providing a styling function (#85).
-* Support for global `options()` taking affect on all tidyplots in the session. 
-Supported options include `tidyplots.width`, `tidyplots.height`, `tidyplots.unit`, 
-`tidyplots.dodge_width`, and `tidyplots.my_style` (#84, #85).
+* Support for global `tidyplots_options()` affecting all tidyplots in the current session. 
+Supported options include `width`, `height`, `unit`, `dodge_width`, and `my_style` (#84, #85).
 * `add_annotation_text()` now supports colored text (#86).
-* Add support for axis `limits` when the axis is of type `date`, `time`, or `datetime` (#97).
+* Support for axis `limits` when the axis is of type `date`, `time`, or `datetime` (#97).
 
 # tidyplots 0.2.2
 

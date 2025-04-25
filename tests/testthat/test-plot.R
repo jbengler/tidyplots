@@ -34,3 +34,30 @@ test_that("tidyplot works", {
     add_boxplot() |>
     vdiffr::expect_doppelganger("tidyplot width NA and height inch", fig = _)
 })
+
+test_that("tidyplots options work", {
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
+    vdiffr::expect_doppelganger("tidyplots.options before", fig = _)
+
+  tidyplots_options(
+    width = 3,
+    height = 4,
+    unit = "cm",
+    dodge_width = 1,
+    my_style = function(x) x |>
+      adjust_colors(colors_discrete_apple) |>
+      adjust_font(fontsize = 12)
+    )
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
+    vdiffr::expect_doppelganger("tidyplots.options after", fig = _)
+
+  tidyplots_options()
+  study |>
+    tidyplot(x = dose, y = score, color = group) |>
+    add_boxplot() |>
+    vdiffr::expect_doppelganger("tidyplots.options reset", fig = _)
+})

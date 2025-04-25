@@ -19,7 +19,9 @@ difference between adjacent values.
 
 Applied to rescaled data.}
 
-\item{big.mark}{Character used between every 3 digits to separate thousands.}
+\item{big.mark}{Character used between every 3 digits to separate thousands.
+The default (\code{NULL}) retrieves the setting from the
+\link[scales:number_options]{number options}.}
 
 \item{scale_cut}{Named numeric vector that allows you to rescale large
 (or small) numbers and add a prefix. Built-in helpers include:
@@ -51,15 +53,21 @@ large.}
 as wide as a number or \code{+}. Compared to \code{"none"}, adding a figure space
 can ensure numbers remain properly aligned when they are left- or
 right-justified.
-}}
+}
+
+The default (\code{NULL}) retrieves the setting from the
+\link[scales:number_options]{number options}.}
     \item{\code{style_negative}}{A string that determines the style of negative numbers:
 \itemize{
-\item \code{"hyphen"} (the default): preceded by a standard hypen \code{-}, e.g. \code{-1}.
+\item \code{"hyphen"} (the default): preceded by a standard hyphen \code{-}, e.g. \code{-1}.
 \item \code{"minus"}, uses a proper Unicode minus symbol. This is a typographical
 nicety that ensures \code{-} aligns with the horizontal bar of the
 the horizontal bar of \code{+}.
 \item \code{"parens"}, wrapped in parentheses, e.g. \code{(1)}.
-}}
+}
+
+The default (\code{NULL}) retrieves the setting from the
+\link[scales:number_options]{number options}.}
   }}
 }
 \value{
