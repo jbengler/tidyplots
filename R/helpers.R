@@ -150,31 +150,18 @@ sample_rows <- function(n, by = NULL) {
 }
 
 
-#' Format numbers or p values
+#' Format p values
 #' @param x A `number` to format.
-#' @param ... Arguments passed on to `scales::number()`.
-#' @inheritParams scales::number
-#' @inheritDotParams scales::number scale style_positive style_negative
+#' @param accuracy A number to round to. For example, use `0.01` to show 2 decimal
+#' places of precision. Defaults to `0.0001`, corresponding to 4 decimal
+#' places of precision.
 #' @return Formatted number as `character` string.
 #'
 #' @examples
-#' format_number(232342.3443)
-#'
-#' format_number(232342.3443, accuracy = 0.01)
-#'
-#' format_number(232342.3443, accuracy = 1, big.mark = "")
-#'
 #' format_p_value(0.03445553)
-#'
 #' format_p_value(0.0003445553)
-#'
 #' format_p_value(0.00003445553)
 #'
-#' @export
-format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = NULL, ...) {
-  scales::number(x = x, accuracy = accuracy, big.mark = big.mark, scale_cut = scale_cut, ...)
-}
-#' @rdname format_number
 #' @export
 format_p_value <- function(x, accuracy = 0.0001) {
   ifelse(x >= accuracy,
@@ -182,7 +169,12 @@ format_p_value <- function(x, accuracy = 0.0001) {
          glue::glue("< { format_number(accuracy, accuracy) }"))
 }
 
+
 # internal helpers
+
+format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = NULL, ...) {
+  scales::number(x = x, accuracy = accuracy, big.mark = big.mark, scale_cut = scale_cut, ...)
+}
 
 mean_se <- ggplot2::mean_se
 

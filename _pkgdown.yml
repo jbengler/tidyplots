@@ -108,7 +108,7 @@ reference:
   - ends_with("_rows")
   - add
   - starts_with("flip_plot")
-  - starts_with("format_")
+  - starts_with("format_p")
 - title: Data
 - contents:
   - starts_with("animals")

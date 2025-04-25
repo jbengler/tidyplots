@@ -3,6 +3,7 @@
 ## Breaking changes
 * Removed the parameters `widths` and `heights` from `split_plot()`. Use 
 `adjust_size()` before `split_plot()` instead.
+* Removed the function `format_number()`, which is available from the scales packages.
 
 ## Improvements
 
