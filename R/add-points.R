@@ -120,31 +120,46 @@ f_points <- function(plot, data = all_rows(),
                                                 seed = 42)
   }
 
-  if (white_border) {
-    size <- size * 1.5
-    shape = 21
-  }
+  params <- list(data = data, shape = shape, size = size, ...)
 
   if (beeswarm) {
-    if (white_border) {
-      add_geom(plot, ggbeeswarm::geom_beeswarm(data = data, size = size, shape = shape, dodge.width = dodge_width, color = "#FFFFFF",
-                                               cex = cex, corral = corral, corral.width = corral.width, ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
-    } else {
-      add_geom(plot, ggbeeswarm::geom_beeswarm(data = data, size = size, shape = shape, dodge.width = dodge_width,
-                                               cex = cex, corral = corral, corral.width = corral.width, ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
-    }
-
+    fun <- ggbeeswarm::geom_beeswarm
+    params$dodge.width <- dodge_width
+    params$cex <- cex
+    params$corral <- corral
+    params$corral.width <- corral.width
   } else {
+    fun <- ggplot2::geom_point
+    params$position <- position
+  }
 
-    # not beeswarm
-    if (white_border) {
-      add_geom(plot, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, color = "#FFFFFF", ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
-    } else {
-      add_geom(plot, ggplot2::geom_point(data = data, size = size, shape = shape, position = position, ...),
-               rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
+  if (white_border) {
+    params$shape <- shape_converter(params$shape)
+    if (params$shape %in% 21:24) {
+      params$size <- params$size * 1.5
+      params$color <- "#FFFFFF"
     }
   }
+
+  # Allow shape aesthetic to override shape
+  if("shape" %in% names(plot$mapping)) params$shape <- NULL
+  # Allow size aesthetic to override size
+  if("size" %in% names(plot$mapping)) params$size <- NULL
+
+  geom <- do.call(fun, params)
+  add_geom(plot, geom, rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)
 }
+
+# not exported
+shape_converter <-  function(x) {
+  dict <- c("0" = 22, "15" = 22,
+            "1" = 21, "16" = 21, "19" = 21, "20" = 21,
+            "2" = 24, "17" = 24,
+            "5" = 23, "18" = 23)
+  if (as.character(x) %in% names(dict)) {
+    dict[as.character(x)]
+  } else {
+    x
+  }
+}
+

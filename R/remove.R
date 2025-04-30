@@ -22,7 +22,7 @@
 #' @export
 remove_legend <- function(plot) {
   plot <- check_tidyplot(plot)
-  plot + ggplot2::theme(legend.position="none")
+  plot + ggplot2::theme(legend.position = "none")
 }
 
 #' @rdname remove_legend

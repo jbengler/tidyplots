@@ -98,7 +98,8 @@ tidyplot <- function(data, ...,
   }
 
   if (single_color_plot)
-    plot <- plot |> remove_legend()
+    plot <- plot +
+    ggplot2::guides(colour = "none", fill = "none")
 
   plot
 }
