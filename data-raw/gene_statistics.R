@@ -2,6 +2,9 @@
 
 library(tidyverse)
 
+# Dataset from Schattling et al.
+# https://www.nature.com/articles/s41593-019-0385-4
+
 gene_statistics <-
   read_tsv("../../projects/2015_Bactrap_Chat_EAE_acute_v2/deseq2/results/statResult_Eip_vs_Ein.txt") |>
   rename(log2_foldchange = log2FoldChange) |>
