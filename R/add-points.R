@@ -1,12 +1,6 @@
 #' Add data points
 #'
 #' @param white_border Whether to include a white border around data points. Defaults to `FALSE`.
-#' @param jitter_width Amount of random noise to be added to the
-#'  horizontal position of the of the data points. This can be useful to deal
-#'  with overplotting. Typical values range between `0` and `1`.
-#' @param jitter_height Amount of random noise to be added to the
-#'  vertical position of the of the data points. This can be useful to deal
-#'  with overplotting. Typical values range between `0` and `1`.
 #' @inherit common_arguments
 #' @inheritParams ggbeeswarm::geom_beeswarm
 #'
@@ -108,18 +102,11 @@ f_points <- function(plot, data = all_rows(),
                      rasterize = FALSE, rasterize_dpi = 300, ...) {
 
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
-  if (dodge_width == 0) {
-    position <- ggplot2::position_identity()
-  } else {
-    if (jitter_width == 0 && jitter_height == 0)
-      position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
-    else
-      position <- ggplot2::position_jitterdodge(jitter.width = jitter_width,
-                                                jitter.height = jitter_height,
-                                                dodge.width = dodge_width,
-                                                seed = 42)
-  }
-
+  position <- compute_position(plot = plot,
+                               dodge_width = dodge_width,
+                               jitter_width = jitter_width,
+                               jitter_height = jitter_height,
+                               preserve = preserve)
   params <- list(data = data, shape = shape, size = size, ...)
 
   if (beeswarm) {
@@ -161,5 +148,20 @@ shape_converter <-  function(x) {
   } else {
     x
   }
+}
+
+compute_position <- function(plot, dodge_width, jitter_width, jitter_height, preserve) {
+  if (dodge_width == 0) {
+    position <- ggplot2::position_identity()
+  } else {
+    if (jitter_width == 0 && jitter_height == 0)
+      position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
+    else
+      position <- ggplot2::position_jitterdodge(jitter.width = jitter_width,
+                                                jitter.height = jitter_height,
+                                                dodge.width = dodge_width,
+                                                seed = 42)
+  }
+  position
 }
 

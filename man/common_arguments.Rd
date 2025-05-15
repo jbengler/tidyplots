@@ -63,6 +63,14 @@ values range between \code{1} and \code{3}.}
 \item{width}{Width of the bar.}
 
 \item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
+
+\item{jitter_width}{Amount of random noise to be added to the
+horizontal position of the of the data points. This can be useful to deal
+with overplotting. Typical values range between \code{0} and \code{1}.}
+
+\item{jitter_height}{Amount of random noise to be added to the
+vertical position of the of the data points. This can be useful to deal
+with overplotting. Typical values range between \code{0} and \code{1}.}
 }
 \value{
 A \code{tidyplot} object.

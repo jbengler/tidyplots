@@ -10,6 +10,10 @@ add_data_labels(
   label,
   data = all_rows(),
   fontsize = 7,
+  dodge_width = NULL,
+  jitter_width = 0,
+  jitter_height = 0,
+  preserve = "total",
   background = FALSE,
   background_color = "#FFFFFF",
   background_alpha = 0.6,
@@ -22,6 +26,10 @@ add_data_labels_repel(
   label,
   data = all_rows(),
   fontsize = 7,
+  dodge_width = NULL,
+  jitter_width = 0,
+  jitter_height = 0,
+  preserve = "total",
   segment.size = 0.2,
   box.padding = 0.2,
   max.overlaps = Inf,
@@ -44,6 +52,21 @@ add_data_labels_repel(
 }}
 
 \item{fontsize}{Font size in points. Defaults to \code{7}.}
+
+\item{dodge_width}{For adjusting the distance between grouped objects. Defaults
+to \code{0.8} for plots with at least one discrete axis and \code{0} for plots with two
+continuous axes.}
+
+\item{jitter_width}{Amount of random noise to be added to the
+horizontal position of the of the data points. This can be useful to deal
+with overplotting. Typical values range between \code{0} and \code{1}.}
+
+\item{jitter_height}{Amount of random noise to be added to the
+vertical position of the of the data points. This can be useful to deal
+with overplotting. Typical values range between \code{0} and \code{1}.}
+
+\item{preserve}{Should dodging preserve the \code{"total"} width of all elements at
+a position, or the width of a \code{"single"} element?}
 
 \item{background}{Whether to include semitransparent background box behind the labels to improve legibility. Defaults to \code{FALSE}.}
 

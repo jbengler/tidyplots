@@ -37,3 +37,17 @@ test_that("add annotation works", {
     add_annotation_line(x = 0, xend = Inf, y = 0, yend = Inf) |>
     vdiffr::expect_doppelganger("add annotation line", fig = _)
 })
+
+test_that("jitter points and labels align", {
+  # tidyplot(study, x = group, y = score) |>
+  #   add_data_points(jitter_width = 0.5) |>
+  #   add_data_labels_repel(label = participant,
+  #                         jitter_width = 0.5,
+  #                         max.overlaps = Inf, min.segment.length = 0) |>
+  #   vdiffr::expect_doppelganger("label repel alignment", fig = _)
+
+  tidyplot(study, x = group, y = score) |>
+    add_data_points(jitter_width = 0.5) |>
+    add_data_labels(label = participant, jitter_width = 0.5) |>
+    vdiffr::expect_doppelganger("label alignment", fig = _)
+})

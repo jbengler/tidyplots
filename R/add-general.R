@@ -53,6 +53,12 @@
 #' @param replace_na Whether to replace `count = NA` with `count = 0`.
 #' @param width Width of the bar.
 #' @param force_continuous Whether to force the axis to be continuous. Defaults to `FALSE`.
+#' @param jitter_width Amount of random noise to be added to the
+#'  horizontal position of the of the data points. This can be useful to deal
+#'  with overplotting. Typical values range between `0` and `1`.
+#' @param jitter_height Amount of random noise to be added to the
+#'  vertical position of the of the data points. This can be useful to deal
+#'  with overplotting. Typical values range between `0` and `1`.
 #' @return A `tidyplot` object.
 #' @keywords internal
 #' @name common_arguments
