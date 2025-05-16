@@ -195,7 +195,8 @@ add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
   plot + ggrepel::geom_label_repel(data = data, ggplot2::aes(label = {{label}}), size = size,
                                    segment.size = segment.size, box.padding = box.padding, max.overlaps = max.overlaps,
                                    fill = scales::alpha(background_color, background_alpha),
-                                   label.size = NA, label.padding = label.padding, position = position, ...)
+                                   label.size = NA, label.padding = label.padding, position = position,
+                                   seed = 42, ...)
 }
 
 

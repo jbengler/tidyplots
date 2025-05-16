@@ -39,12 +39,12 @@ test_that("add annotation works", {
 })
 
 test_that("jitter points and labels align", {
-  # tidyplot(study, x = group, y = score) |>
-  #   add_data_points(jitter_width = 0.5) |>
-  #   add_data_labels_repel(label = participant,
-  #                         jitter_width = 0.5,
-  #                         max.overlaps = Inf, min.segment.length = 0) |>
-  #   vdiffr::expect_doppelganger("label repel alignment", fig = _)
+  tidyplot(study, x = group, y = score) |>
+    add_data_points(jitter_width = 0.5) |>
+    add_data_labels_repel(label = participant,
+                          jitter_width = 0.5,
+                          max.overlaps = Inf, min.segment.length = 0) |>
+    vdiffr::expect_doppelganger("label repel alignment", fig = _)
 
   tidyplot(study, x = group, y = score) |>
     add_data_points(jitter_width = 0.5) |>
