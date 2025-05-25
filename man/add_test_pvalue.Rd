@@ -12,6 +12,7 @@ add_test_pvalue(
   p.adjust.method = "none",
   ref.group = NULL,
   comparisons = NULL,
+  paired_by = NULL,
   label = "{format_p_value(p.adj, 0.0001)}",
   label.size = 7/ggplot2::.pt,
   step.increase = 0.15,
@@ -32,6 +33,7 @@ add_test_asterisks(
   p.adjust.method = "none",
   ref.group = NULL,
   comparisons = NULL,
+  paired_by = NULL,
   label = "p.adj.signif",
   label.size = 10/ggplot2::.pt,
   step.increase = 0.2,
@@ -85,6 +87,8 @@ recommended), use p.adjust.method = "none".}
 
 \item{comparisons}{A list of length-2 vectors. The entries in the vector are
 2 integers that correspond to the index of the groups of interest, to be compared.}
+
+\item{paired_by}{Variable to be used for paired analysis.}
 
 \item{label}{character string specifying label. Can be: \itemize{ \item the
 column containing the label (e.g.: \code{label = "p"} or \code{label =
@@ -141,6 +145,9 @@ Add statistical test
 \itemize{
 \item \code{add_test_pvalue()} and \code{add_test_asterisks()} use \code{ggpubr::geom_pwc()}.
 Check there for additional arguments.
+\item Known limitation: \code{add_test_pvalue()} and \code{add_test_asterisks()} expect a
+discrete variable on the x-axis and a continuous variable on the y-axis.
+To produce horizontal plots, use \code{flip_plot()}.
 }
 }
 \examples{
@@ -167,6 +174,13 @@ study |>
   add_data_points() |>
   add_test_pvalue(ref.group = 1)
 
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_asterisks(ref.group = 1)
+
 # Define selected comparisons
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>
@@ -175,13 +189,61 @@ study |>
   add_data_points() |>
   add_test_pvalue(comparisons = list(c(1,3),c(2,4)))
 
-# Define selected comparisons
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_dash() |>
   add_sem_errorbar() |>
   add_data_points() |>
   add_test_asterisks(comparisons = list(c(1,4),c(2,3)))
+
+# Paired analysis
+x <- c(2.3, 4.5, 6.3, 3.4, 7.8, 6.7)
+df <- data.frame(
+  x = c(x, x + c(0.8, 0.75)),
+  group = paste0("g", rep(c(1, 2), each = 6)),
+  batch = paste0("b", c(1:6, 1:6)),
+  shuffle = paste0("c", c(1:6, 6:1))
+)
+
+df |>
+  tidyplot(group, x, color = group) |>
+  add_boxplot() |>
+  add_data_points() |>
+  add_test_pvalue()
+
+df |>
+  tidyplot(group, x, color = group) |>
+  add_boxplot() |>
+  add_data_points() |>
+  add_test_pvalue(paired_by = shuffle) |>
+  add_line(group = shuffle, color = "black")
+
+df |>
+  tidyplot(group, x, color = group) |>
+  add_boxplot() |>
+  add_data_points() |>
+  add_test_pvalue(paired_by = batch) |>
+  add_line(group = batch, color = "black")
+
+df |>
+  tidyplot(group, x, color = group) |>
+  add_boxplot() |>
+  add_data_points() |>
+  add_test_asterisks()
+
+df |>
+  tidyplot(group, x, color = group) |>
+  add_boxplot() |>
+  add_data_points() |>
+  add_test_asterisks(paired_by = shuffle) |>
+  add_line(group = shuffle, color = "black")
+
+df |>
+  tidyplot(group, x, color = group) |>
+  add_boxplot() |>
+  add_data_points() |>
+  add_test_asterisks(paired_by = batch) |>
+  add_line(group = batch, color = "black")
 
 # hide non-significant p values
 gene_expression |>
@@ -193,6 +255,15 @@ gene_expression |>
   add_sem_errorbar() |>
   add_data_points() |>
   add_test_pvalue(hide.ns = TRUE)
+
+# Flip plot
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_asterisks(comparisons = list(c(1,4),c(2,3))) |>
+  flip_plot()
 
 # Adjust top padding for statistical comparisons
 study |>

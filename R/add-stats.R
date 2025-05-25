@@ -6,6 +6,7 @@
 #'  "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.
 #' @param comparisons A list of length-2 vectors. The entries in the vector are
 #'  2 integers that correspond to the index of the groups of interest, to be compared.
+#' @param paired_by Variable to be used for paired analysis.
 #' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
 #' @param hide_info Whether to hide details about the statistical testing as caption. Defaults to `FALSE`.
 #' @param ... Arguments passed on to `ggpubr::geom_pwc()`.
@@ -15,6 +16,9 @@
 #' @details
 #' * `add_test_pvalue()` and `add_test_asterisks()` use `ggpubr::geom_pwc()`.
 #' Check there for additional arguments.
+#' * Known limitation: `add_test_pvalue()` and `add_test_asterisks()` expect a
+#' discrete variable on the x-axis and a continuous variable on the y-axis.
+#' To produce horizontal plots, use `flip_plot()`.
 #'
 #' @examples
 #' study |>
@@ -40,6 +44,13 @@
 #'   add_data_points() |>
 #'   add_test_pvalue(ref.group = 1)
 #'
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_asterisks(ref.group = 1)
+#'
 #' # Define selected comparisons
 #' study |>
 #'   tidyplot(x = treatment, y = score, color = treatment) |>
@@ -48,13 +59,61 @@
 #'   add_data_points() |>
 #'   add_test_pvalue(comparisons = list(c(1,3),c(2,4)))
 #'
-#' # Define selected comparisons
 #' study |>
 #'   tidyplot(x = treatment, y = score, color = treatment) |>
 #'   add_mean_dash() |>
 #'   add_sem_errorbar() |>
 #'   add_data_points() |>
 #'   add_test_asterisks(comparisons = list(c(1,4),c(2,3)))
+#'
+#' # Paired analysis
+#' x <- c(2.3, 4.5, 6.3, 3.4, 7.8, 6.7)
+#' df <- data.frame(
+#'   x = c(x, x + c(0.8, 0.75)),
+#'   group = paste0("g", rep(c(1, 2), each = 6)),
+#'   batch = paste0("b", c(1:6, 1:6)),
+#'   shuffle = paste0("c", c(1:6, 6:1))
+#' )
+#'
+#' df |>
+#'   tidyplot(group, x, color = group) |>
+#'   add_boxplot() |>
+#'   add_data_points() |>
+#'   add_test_pvalue()
+#'
+#' df |>
+#'   tidyplot(group, x, color = group) |>
+#'   add_boxplot() |>
+#'   add_data_points() |>
+#'   add_test_pvalue(paired_by = shuffle) |>
+#'   add_line(group = shuffle, color = "black")
+#'
+#' df |>
+#'   tidyplot(group, x, color = group) |>
+#'   add_boxplot() |>
+#'   add_data_points() |>
+#'   add_test_pvalue(paired_by = batch) |>
+#'   add_line(group = batch, color = "black")
+#'
+#' df |>
+#'   tidyplot(group, x, color = group) |>
+#'   add_boxplot() |>
+#'   add_data_points() |>
+#'   add_test_asterisks()
+#'
+#' df |>
+#'   tidyplot(group, x, color = group) |>
+#'   add_boxplot() |>
+#'   add_data_points() |>
+#'   add_test_asterisks(paired_by = shuffle) |>
+#'   add_line(group = shuffle, color = "black")
+#'
+#' df |>
+#'   tidyplot(group, x, color = group) |>
+#'   add_boxplot() |>
+#'   add_data_points() |>
+#'   add_test_asterisks(paired_by = batch) |>
+#'   add_line(group = batch, color = "black")
 #'
 #' # hide non-significant p values
 #' gene_expression |>
@@ -66,6 +125,15 @@
 #'   add_sem_errorbar() |>
 #'   add_data_points() |>
 #'   add_test_pvalue(hide.ns = TRUE)
+#'
+#' # Flip plot
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_asterisks(comparisons = list(c(1,4),c(2,3))) |>
+#'   flip_plot()
 #'
 #' # Adjust top padding for statistical comparisons
 #' study |>
@@ -90,6 +158,7 @@ add_test_pvalue <- function(plot,
                       p.adjust.method = "none",
                       ref.group = NULL,
                       comparisons = NULL,
+                      paired_by = NULL,
                       label = "{format_p_value(p.adj, 0.0001)}",
                       label.size = 7/ggplot2::.pt,
                       step.increase = 0.15,
@@ -111,17 +180,31 @@ add_test_pvalue <- function(plot,
   # comparisons are supplied
   if (!is.null(comparisons)) {
     method.args$comparisons <- comparisons
+    comparisons <- paste0("list(",paste(comparisons, collapse = ", "),")")
+  }
+  # paired_by is supplied
+  quo_paired_by <- rlang::enquo(paired_by)
+  if (!rlang::quo_is_null(quo_paired_by)) {
+    method.args$paired <- TRUE
+    new_data <-
+      plot$data |>
+      dplyr::arrange({{ paired_by }})
+    plot <- plot %+% new_data
+    paired_by <- rlang::as_name(quo_paired_by)
   }
 
   plot <- plot  |>
     adjust_y_axis(padding = c(NA, padding_top))
 
-  if(!hide_info)
-    plot <- plot  |> add_caption(caption = glue::glue("method = {method}
-                                            label = {label}
-                                            p.adjust.method = {p.adjust.method}
-                                            hide.ns = {hide.ns}
-                                            ref.group = {ref.group}", .null = "NULL"))
+  if (!hide_info)
+    plot <- plot  |> add_caption(
+    caption = glue::glue("method = {method}
+    paired_by = {paired_by}
+    p.adjust.method = {p.adjust.method}
+    ref.group = {ref.group}
+    comparisons = {comparisons}
+    hide.ns = {hide.ns}",
+                         .null = "NULL"))
 
   plot + ggpubr::geom_pwc(method = method,
                        p.adjust.method = p.adjust.method,
@@ -145,6 +228,7 @@ add_test_asterisks <- function(plot,
                              p.adjust.method = "none",
                              ref.group = NULL,
                              comparisons = NULL,
+                             paired_by = NULL,
                              label = "p.adj.signif",
                              label.size = 10/ggplot2::.pt,
                              step.increase = 0.2,
@@ -165,6 +249,7 @@ add_test_asterisks <- function(plot,
             p.adjust.method = p.adjust.method,
             ref.group = ref.group,
             comparisons = comparisons,
+            paired_by = {{ paired_by }},
             label = label,
             label.size = label.size,
             step.increase = step.increase,
