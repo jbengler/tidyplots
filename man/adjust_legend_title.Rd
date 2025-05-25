@@ -24,7 +24,14 @@ adjust_legend_position(plot, position = "right")
 
 \item{fontsize}{Font size in points. Defaults to \code{7}.}
 
-\item{family}{Font family}
+\item{family}{The typeface to use. The validity of this value will depend on
+the graphics device being used for rendering the plot. See
+\href{https://systemfonts.r-lib.org/articles/systemfonts.html}{the systemfonts vignette}
+for guidance on the best way to access fonts installed on your computer.
+The values \code{"sans"}, \code{"serif"}, and \code{"mono"} should always be valid and
+will select the default typeface for the respective styles. However, what
+is considered default is dependant on the graphics device and the operating
+system.}
 
 \item{face}{Font face ("plain", "italic", "bold", "bold.italic")}
 

@@ -158,13 +158,28 @@ study |>
   add_data_points() |>
   add_test_pvalue()
 
-# Change stat methods
+# Change stat method
 study |>
   tidyplot(x = dose, y = score, color = group) |>
   add_mean_dash() |>
   add_sem_errorbar() |>
   add_data_points() |>
-  add_test_pvalue(method = "wilcoxon", p.adjust.method = "BH")
+  add_test_pvalue(method = "wilcoxon")
+
+# Change p.adjust method
+study |>
+  tidyplot(x = dose, y = score, color = group) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_pvalue()
+
+study |>
+  tidyplot(x = dose, y = score, color = group) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_pvalue(p.adjust.method = "bonferroni")
 
 # Define reference group to test against
 study |>
