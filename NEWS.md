@@ -7,13 +7,18 @@
 
 ## Improvements
 
+* New parameter `paired_by` in `add_test_pvalue()` and `add_test_asterisks()` 
+enables paired comparisons.
 * New parameter `comparisons` in `add_test_pvalue()` and `add_test_asterisks()` 
 enables selected comparisons (#82).
 * New parameter `my_style` in `tidyplot()` for providing a styling function (#85).
 * Support for global `tidyplots_options()` affecting all tidyplots in the current session. 
 Supported options include `width`, `height`, `unit`, `dodge_width`, and `my_style` (#84, #85).
 * `add_annotation_text()` now supports colored text (#86).
-* Support for axis `limits` when the axis is of type `date`, `time`, or `datetime` (#97).
+* Support for axis `limits` when the axis is of type `date`, `time`, or `datetime` (#97, #99).
+* A default jitter seed in `add_data_points_jitter()`, `add_data_labels()` and `add_data_labels_repel()` 
+now facilitates the alignment of jittered labels and points (#104).
+* Fixed `add_histogram()` now respects the `color` parameter (#106).
 
 # tidyplots 0.2.2
 

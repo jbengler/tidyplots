@@ -221,10 +221,14 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #'
 #' @export
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
+  args <- list(binwidth = binwidth, bins = bins, ...)
+  if (!is.null(args$color)) args$fill <- args$color
+  args$color <- NA
+
   plot <- check_tidyplot(plot)
   plot <-
     plot +
-    ggplot2::geom_histogram(color = NA, binwidth = binwidth, bins = bins, ...)
+    do.call(ggplot2::geom_histogram, args)
   # remove padding between bar and axis
   if (is_flipped(plot)) {
     plot <- plot |> adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
