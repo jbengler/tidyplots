@@ -231,12 +231,12 @@ remove_padding <- function(plot, force_continuous = FALSE) {
 #' @export
 remove_title <- function(plot) {
   plot <- check_tidyplot(plot)
-  plot + ggplot2::theme(plot.title = ggplot2::element_blank())
+  plot + ggplot2::labs(title = NULL)
 }
 #' @rdname remove_title
 #' @export
 remove_caption <- function(plot) {
   plot <- check_tidyplot(plot)
-  plot + ggplot2::theme(plot.caption = ggplot2::element_blank())
+  plot + ggplot2::labs(caption = NULL)
 }
 
