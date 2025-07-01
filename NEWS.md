@@ -22,6 +22,7 @@ Supported options include `width`, `height`, `unit`, `dodge_width`, and `my_styl
 now facilitates the alignment of jittered labels and points (#104).
 * Fixed `add_histogram()` now respects the `color` parameter (#106).
 * New dataset `pca` containing a principle component analysis.
+* New `add_ellipse()` function (#52).
 
 # tidyplots 0.2.2
 
