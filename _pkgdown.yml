@@ -46,6 +46,7 @@ reference:
   - starts_with("add_boxplot")
   - starts_with("add_violin")
   - starts_with("add_sem")
+  - starts_with("add_ellipse")
 - subtitle: Proportion
 - contents:
   - starts_with("add_barstack")

@@ -251,6 +251,36 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
 #' @export
 add <- .Primitive("+")
 
+
+#' Add ellipse
+#' @inherit common_arguments
+#' @param ... Arguments passed on to `ggplot2::stat_ellipse()`.
+#'
+#' @examples
+#' pca |>
+#'   tidyplot(x = pc1, y = pc2, color = group) |>
+#'   add_data_points() |>
+#'   add_ellipse()
+#'
+#' pca |>
+#'   tidyplot(x = pc1, y = pc2, color = group) |>
+#'   add_data_points() |>
+#'   add_ellipse(level = 0.75)
+#'
+#' pca |>
+#'   tidyplot(x = pc1, y = pc2, color = group) |>
+#'   add_data_points() |>
+#'   add_ellipse(type = "norm")
+#'
+#' @export
+add_ellipse <- function(plot, ...) {
+  plot <- check_tidyplot(plot)
+  plot <-
+    plot + ggplot2::stat_ellipse(...)
+  plot
+}
+
+
 # not exported
 add_geom <- function(plot, geom, rasterize = FALSE, rasterize_dpi = 300, level = 0) {
   pf <- parent_function(level = level)
