@@ -2,7 +2,7 @@
 #' RNA-Seq expression data
 #' @format A data frame.
 #' @source
-#' [Bassoon proteinopathy drives neurodegeneration in multiple sclerosis](https://www.nature.com/articles/s41593-019-0385-4), Nature Neuroscience
+#' [Bassoon proteinopathy drives neurodegeneration in multiple sclerosis](https://www.nature.com/articles/s41593-019-0385-4), Nature Neuroscience 2019
 #'
 #' [GSE104899](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE104899), Gene Expression Omnibus
 #' @examples
@@ -88,4 +88,12 @@
 #' @examples
 #' dplyr::glimpse(climate)
 "climate"
+
+#' Principle component analysis data
+#' @format A data frame.
+#' @source
+#' [Bassoon proteinopathy drives neurodegeneration in multiple sclerosis](https://www.nature.com/articles/s41593-019-0385-4), Nature Neuroscience 2019
+#' @examples
+#' dplyr::glimpse(pca)
+"pca"
 

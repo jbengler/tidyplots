@@ -21,6 +21,7 @@ Supported options include `width`, `height`, `unit`, `dodge_width`, and `my_styl
 * A default jitter seed in `add_data_points_jitter()`, `add_data_labels()` and `add_data_labels_repel()` 
 now facilitates the alignment of jittered labels and points (#104).
 * Fixed `add_histogram()` now respects the `color` parameter (#106).
+* New dataset `pca` containing a principle component analysis.
 
 # tidyplots 0.2.2
 
