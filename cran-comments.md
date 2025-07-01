@@ -1,8 +1,11 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 1 note
 
-* This is a patch release preparing for ggplot2 3.6.0.
+Found the following (possibly) invalid DOIs:
+    DOI: https://doi.org/10.1002/imt2.70018
+
+* This is a false positive, DOI and URL are indeed correct.
 
 ## revdepcheck results
 
