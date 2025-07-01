@@ -4,6 +4,8 @@
 * Removed the parameters `widths` and `heights` from `split_plot()`. Use 
 `adjust_size()` before `split_plot()` instead.
 * Removed the function `format_number()`, which is available from the scales packages.
+* Functions to rename, reorder, sort and reverse the levels of variables mapped to x, y, and color 
+now have the suffix `_levels()` instead of `_lables()`. For example, `rename_x_axis_levels()` (#113).
 
 ## Improvements
 

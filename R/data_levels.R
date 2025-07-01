@@ -1,5 +1,5 @@
 
-ff_rename_axis_labels <- function(axis) {
+ff_rename_axis_levels <- function(axis) {
   function(plot, new_names) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
@@ -24,13 +24,10 @@ ff_rename_axis_labels <- function(axis) {
       plot$tidyplot$named_colors <- new_named_colors
       plot <- plot |> adjust_colors(new_named_colors)
     }
-
-    # cli::cli_alert_danger("Warning: rename_*_labels() changes labels across the entire the pipe!
-    # This affects reorder_*_labels() and adjust_colors(), when used with label names.")
     plot %+% new_data
   }
 }
-#' Rename axis or color labels
+#' Rename axis or color levels
 #'
 #' @param new_names Named character vector in the format c("old1" = "new1", "old2" = "new2").
 #' @inherit common_arguments
@@ -43,13 +40,13 @@ ff_rename_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Rename x-axis labels
+#' # Rename x-axis levels
 #' study |>
 #'   tidyplot(x = treatment, y = score) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   rename_x_axis_labels(new_names = c(
+#'   rename_x_axis_levels(new_names = c(
 #'     "A" = "This",
 #'     "B" = "is",
 #'     "C" = "totally",
@@ -62,13 +59,13 @@ ff_rename_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Rename y-axis labels
+#' # Rename y-axis levels
 #' study |>
 #'   tidyplot(x = score, y = treatment) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   rename_y_axis_labels(new_names = c(
+#'   rename_y_axis_levels(new_names = c(
 #'     "A" = "This",
 #'     "B" = "is",
 #'     "C" = "totally",
@@ -81,27 +78,42 @@ ff_rename_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Rename color labels
+#' # Rename color levels
 #' study |>
 #'   tidyplot(x = group, y = score, color = dose) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   rename_color_labels(new_names = c(
+#'   rename_color_levels(new_names = c(
 #'     "high" = "Sky high",
 #'     "low" = "Deep low"))
 #'
 #' @export
-rename_x_axis_labels <- ff_rename_axis_labels(axis = "x")
-#' @rdname rename_x_axis_labels
+rename_x_axis_levels <- ff_rename_axis_levels(axis = "x")
+#' @rdname rename_x_axis_levels
 #' @export
-rename_y_axis_labels <- ff_rename_axis_labels(axis = "y")
-#' @rdname rename_x_axis_labels
+rename_y_axis_levels <- ff_rename_axis_levels(axis = "y")
+#' @rdname rename_x_axis_levels
 #' @export
-rename_color_labels <- ff_rename_axis_labels(axis = "colour")
+rename_color_levels <- ff_rename_axis_levels(axis = "colour")
+
+#' @export
+#' @rdname rename_x_axis_levels
+#' @usage NULL
+rename_x_axis_labels <- rename_x_axis_levels
+
+#' @export
+#' @rdname rename_x_axis_levels
+#' @usage NULL
+rename_y_axis_labels <- rename_y_axis_levels
+
+#' @export
+#' @rdname rename_x_axis_levels
+#' @usage NULL
+rename_color_labels <- rename_color_levels
 
 
-ff_reorder_axis_labels <- function(axis) {
+ff_reorder_axis_levels <- function(axis) {
   function(plot, ...) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
@@ -115,7 +127,7 @@ ff_reorder_axis_labels <- function(axis) {
     plot %+% new_data
   }
 }
-#' Reorder axis or color labels
+#' Reorder axis or color levels
 #'
 #' @inherit common_arguments
 #' @param ... Arguments passed on to `forcats::fct_relevel()`.
@@ -128,13 +140,13 @@ ff_reorder_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Reorder x-axis labels
+#' # Reorder x-axis levels
 #' study |>
 #'   tidyplot(x = treatment, y = score) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   reorder_x_axis_labels("D", "B", "A")
+#'   reorder_x_axis_levels("D", "B", "A")
 #'
 #' # Before adjustments
 #' study |>
@@ -143,13 +155,13 @@ ff_reorder_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Reorder y-axis labels
+#' # Reorder y-axis levels
 #' study |>
 #'   tidyplot(x = score, y = treatment) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   reorder_y_axis_labels("D", "B", "A")
+#'   reorder_y_axis_levels("D", "B", "A")
 #'
 #' # Before adjustment
 #' study |>
@@ -158,25 +170,40 @@ ff_reorder_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Reorder color labels
+#' # Reorder color levels
 #' study |>
 #'   tidyplot(x = group, y = score, color = dose) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   reorder_color_labels("low")
+#'   reorder_color_levels("low")
 #'
 #' @export
-reorder_x_axis_labels <- ff_reorder_axis_labels(axis = "x")
-#' @rdname reorder_x_axis_labels
+reorder_x_axis_levels <- ff_reorder_axis_levels(axis = "x")
+#' @rdname reorder_x_axis_levels
 #' @export
-reorder_y_axis_labels <- ff_reorder_axis_labels(axis = "y")
-#' @rdname reorder_x_axis_labels
+reorder_y_axis_levels <- ff_reorder_axis_levels(axis = "y")
+#' @rdname reorder_x_axis_levels
 #' @export
-reorder_color_labels <- ff_reorder_axis_labels(axis = "colour")
+reorder_color_levels <- ff_reorder_axis_levels(axis = "colour")
+
+#' @export
+#' @rdname reorder_x_axis_levels
+#' @usage NULL
+reorder_x_axis_labels <- reorder_x_axis_levels
+
+#' @export
+#' @rdname reorder_x_axis_levels
+#' @usage NULL
+reorder_y_axis_labels <- reorder_y_axis_levels
+
+#' @export
+#' @rdname reorder_x_axis_levels
+#' @usage NULL
+reorder_color_labels <- reorder_color_levels
 
 
-ff_sort_labels <- function(axis) {
+ff_sort_levels <- function(axis) {
   function(plot, ..., .fun = NULL, .reverse = FALSE) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
@@ -225,7 +252,7 @@ ff_sort_labels <- function(axis) {
     plot %+% new_data
   }
 }
-#' Sort axis or color labels
+#' Sort axis or color levels
 #'
 #' @examples
 #' # Before adjustments
@@ -235,13 +262,13 @@ ff_sort_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Sort x-axis labels by score
+#' # Sort x-axis levels by score
 #' study |>
 #'   tidyplot(x = treatment, y = score) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   sort_x_axis_labels()
+#'   sort_x_axis_levels()
 #'
 #' # Before adjustments
 #' study |>
@@ -250,13 +277,13 @@ ff_sort_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Sort y-axis labels by score
+#' # Sort y-axis levels by score
 #' study |>
 #'   tidyplot(x = score, y = treatment) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   sort_y_axis_labels()
+#'   sort_y_axis_levels()
 #'
 #' # Before adjustment
 #' study |>
@@ -265,28 +292,43 @@ ff_sort_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Sort color labels by score
+#' # Sort color levels by score
 #' study |>
 #'   tidyplot(x = group, y = score, color = treatment) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   sort_color_labels()
+#'   sort_color_levels()
 #'
 #' @inherit common_arguments
 #' @param ... Optional variables to use for sorting.
 #' @param .fun Override the function used for sorting. Is automatically determined from the plot.
 #' @export
-sort_x_axis_labels <- ff_sort_labels(axis = "x")
-#' @rdname sort_x_axis_labels
+sort_x_axis_levels <- ff_sort_levels(axis = "x")
+#' @rdname sort_x_axis_levels
 #' @export
-sort_y_axis_labels <- ff_sort_labels(axis = "y")
-#' @rdname sort_x_axis_labels
+sort_y_axis_levels <- ff_sort_levels(axis = "y")
+#' @rdname sort_x_axis_levels
 #' @export
-sort_color_labels <- ff_sort_labels(axis = "colour")
+sort_color_levels <- ff_sort_levels(axis = "colour")
+
+#' @export
+#' @rdname sort_x_axis_levels
+#' @usage NULL
+sort_x_axis_labels <- sort_x_axis_levels
+
+#' @export
+#' @rdname sort_x_axis_levels
+#' @usage NULL
+sort_y_axis_labels <- sort_y_axis_levels
+
+#' @export
+#' @rdname sort_x_axis_levels
+#' @usage NULL
+sort_color_labels <- sort_color_levels
 
 
-ff_reverse_axis_labels <- function(axis) {
+ff_reverse_axis_levels <- function(axis) {
   function(plot) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
@@ -299,7 +341,7 @@ ff_reverse_axis_labels <- function(axis) {
     plot %+% new_data
   }
 }
-#' Reverse axis or color labels
+#' Reverse axis or color levels
 #'
 #' @examples
 #' # Before adjustments
@@ -309,13 +351,13 @@ ff_reverse_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Reverse x-axis labels
+#' # Reverse x-axis levels
 #' study |>
 #'   tidyplot(x = treatment, y = score) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   reverse_x_axis_labels()
+#'   reverse_x_axis_levels()
 #'
 #' # Before adjustments
 #' study |>
@@ -324,13 +366,13 @@ ff_reverse_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Reverse y-axis labels
+#' # Reverse y-axis levels
 #' study |>
 #'   tidyplot(x = score, y = treatment) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   reverse_y_axis_labels()
+#'   reverse_y_axis_levels()
 #'
 #' # Before adjustment
 #' study |>
@@ -339,21 +381,36 @@ ff_reverse_axis_labels <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar()
 #'
-#' # Reverse color labels
+#' # Reverse color levels
 #' study |>
 #'   tidyplot(x = group, y = score, color = dose) |>
 #'   add_data_points() |>
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
-#'   reverse_color_labels()
+#'   reverse_color_levels()
 #'
 #' @inherit common_arguments
 #' @export
-reverse_x_axis_labels <- ff_reverse_axis_labels(axis = "x")
-#' @rdname reverse_x_axis_labels
+reverse_x_axis_levels <- ff_reverse_axis_levels(axis = "x")
+#' @rdname reverse_x_axis_levels
 #' @export
-reverse_y_axis_labels <- ff_reverse_axis_labels(axis = "y")
-#' @rdname reverse_x_axis_labels
+reverse_y_axis_levels <- ff_reverse_axis_levels(axis = "y")
+#' @rdname reverse_x_axis_levels
 #' @export
-reverse_color_labels <- ff_reverse_axis_labels(axis = "colour")
+reverse_color_levels <- ff_reverse_axis_levels(axis = "colour")
+
+#' @export
+#' @rdname reverse_x_axis_levels
+#' @usage NULL
+reverse_x_axis_labels <- reverse_x_axis_levels
+
+#' @export
+#' @rdname reverse_x_axis_levels
+#' @usage NULL
+reverse_y_axis_labels <- reverse_y_axis_levels
+
+#' @export
+#' @rdname reverse_x_axis_levels
+#' @usage NULL
+reverse_color_labels <- reverse_color_levels
 

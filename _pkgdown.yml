@@ -65,7 +65,7 @@ reference:
 - contents:
   - starts_with("remove")
 - title: Adjust
-  desc: Adjust plot components, properties, and data labels.
+  desc: Adjust plot components, properties, and data levels.
 - subtitle: Components & properties
 - contents:
   - starts_with("adjust_colors")
@@ -75,7 +75,7 @@ reference:
   - starts_with("adjust_size")
   - starts_with("adjust_padding")
   - starts_with("adjust_x_axis")
-- subtitle: Axis and color labels
+- subtitle: Axis and color levels
 - contents:
   - starts_with("rename")
   - starts_with("reorder")
