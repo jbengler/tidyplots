@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">tidyplots</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,19 +35,22 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jbengler/tidyplots/blob/v0.3.1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jbengler/tidyplots/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.0" id="tidyplots-030">tidyplots 0.3.0<a class="anchor" aria-label="anchor" href="#tidyplots-030"></a></h2>
+<h2 class="pkg-version" data-toc-text="development version" id="tidyplots-development-version">tidyplots (development version)<a class="anchor" aria-label="anchor" href="#tidyplots-development-version"></a></h2>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1" id="tidyplots-031">tidyplots 0.3.1<a class="anchor" aria-label="anchor" href="#tidyplots-031"></a></h2><p class="text-muted">CRAN release: 2025-07-02</p>
 <div class="section level3">
-<h3 id="breaking-changes-0-3-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-3-0"></a></h3>
+<h3 id="breaking-changes-0-3-1">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-3-1"></a></h3>
 <ul><li>Removed the parameters <code>widths</code> and <code>heights</code> from <code><a href="../reference/split_plot.html">split_plot()</a></code>. Use <code><a href="../reference/adjust_size.html">adjust_size()</a></code> before <code><a href="../reference/split_plot.html">split_plot()</a></code> instead.</li>
 <li>Removed the function <code>format_number()</code>, which is available from the scales packages.</li>
 <li>Functions to rename, reorder, sort and reverse the levels of variables mapped to x, y, and color now have the suffix <code>_levels()</code> instead of <code>_lables()</code>. For example, <code><a href="../reference/rename_x_axis_levels.html">rename_x_axis_levels()</a></code> (<a href="https://github.com/jbengler/tidyplots/issues/113" class="external-link">#113</a>).</li>
 </ul></div>
 <div class="section level3">
-<h3 id="improvements-0-3-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-3-0"></a></h3>
+<h3 id="improvements-0-3-1">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-3-1"></a></h3>
 <ul><li>New parameter <code>paired_by</code> in <code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> and <code><a href="../reference/add_test_pvalue.html">add_test_asterisks()</a></code> enables paired comparisons.</li>
 <li>New parameter <code>comparisons</code> in <code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> and <code><a href="../reference/add_test_pvalue.html">add_test_asterisks()</a></code> enables selected comparisons (<a href="https://github.com/jbengler/tidyplots/issues/82" class="external-link">#82</a>).</li>
 <li>New parameter <code>my_style</code> in <code><a href="../reference/tidyplot.html">tidyplot()</a></code> for providing a styling function (<a href="https://github.com/jbengler/tidyplots/issues/85" class="external-link">#85</a>).</li>
