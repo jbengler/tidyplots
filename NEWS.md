@@ -1,4 +1,4 @@
-# tidyplots 0.3.0
+# tidyplots 0.3.1
 
 ## Breaking changes
 * Removed the parameters `widths` and `heights` from `split_plot()`. Use 

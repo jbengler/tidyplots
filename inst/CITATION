@@ -5,5 +5,5 @@ bibentry(
   journal   = "iMeta",
   pages     = "e70018",
   year      = "2025",
-  doi       = "https://doi.org/10.1002/imt2.70018"
+  doi       = "10.1002/imt2.70018"
 )

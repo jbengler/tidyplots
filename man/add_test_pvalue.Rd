@@ -151,12 +151,21 @@ To produce horizontal plots, use \code{flip_plot()}.
 }
 }
 \examples{
+# Add p value
 study |>
   tidyplot(x = dose, y = score, color = group) |>
   add_mean_dash() |>
   add_sem_errorbar() |>
   add_data_points() |>
   add_test_pvalue()
+
+# Add asterisks
+study |>
+  tidyplot(x = dose, y = score, color = group) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_asterisks()
 
 # Change stat method
 study |>
@@ -172,23 +181,9 @@ study |>
   add_mean_dash() |>
   add_sem_errorbar() |>
   add_data_points() |>
-  add_test_pvalue()
-
-study |>
-  tidyplot(x = dose, y = score, color = group) |>
-  add_mean_dash() |>
-  add_sem_errorbar() |>
-  add_data_points() |>
   add_test_pvalue(p.adjust.method = "bonferroni")
 
 # Define reference group to test against
-study |>
-  tidyplot(x = treatment, y = score, color = treatment) |>
-  add_mean_dash() |>
-  add_sem_errorbar() |>
-  add_data_points() |>
-  add_test_pvalue(ref.group = 1)
-
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>
   add_mean_dash() |>
@@ -204,13 +199,6 @@ study |>
   add_data_points() |>
   add_test_pvalue(comparisons = list(c(1,3),c(2,4)))
 
-study |>
-  tidyplot(x = treatment, y = score, color = treatment) |>
-  add_mean_dash() |>
-  add_sem_errorbar() |>
-  add_data_points() |>
-  add_test_asterisks(comparisons = list(c(1,4),c(2,3)))
-
 # Paired analysis
 x <- c(2.3, 4.5, 6.3, 3.4, 7.8, 6.7)
 df <- data.frame(
@@ -224,12 +212,6 @@ df |>
   tidyplot(group, x, color = group) |>
   add_boxplot() |>
   add_data_points() |>
-  add_test_pvalue()
-
-df |>
-  tidyplot(group, x, color = group) |>
-  add_boxplot() |>
-  add_data_points() |>
   add_test_pvalue(paired_by = shuffle) |>
   add_line(group = shuffle, color = "black")
 
@@ -238,26 +220,6 @@ df |>
   add_boxplot() |>
   add_data_points() |>
   add_test_pvalue(paired_by = batch) |>
-  add_line(group = batch, color = "black")
-
-df |>
-  tidyplot(group, x, color = group) |>
-  add_boxplot() |>
-  add_data_points() |>
-  add_test_asterisks()
-
-df |>
-  tidyplot(group, x, color = group) |>
-  add_boxplot() |>
-  add_data_points() |>
-  add_test_asterisks(paired_by = shuffle) |>
-  add_line(group = shuffle, color = "black")
-
-df |>
-  tidyplot(group, x, color = group) |>
-  add_boxplot() |>
-  add_data_points() |>
-  add_test_asterisks(paired_by = batch) |>
   add_line(group = batch, color = "black")
 
 # hide non-significant p values
