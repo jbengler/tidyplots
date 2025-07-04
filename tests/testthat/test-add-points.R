@@ -28,6 +28,26 @@ test_that("add points works", {
     tidyplot(x = treatment, y = score, color = treatment) |>
     add_data_points_beeswarm(white_border = TRUE) |>
     vdiffr::expect_doppelganger("Add white_border data points beaswarm", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points() |>
+    vdiffr::expect_doppelganger("no white_border", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points(white_border = TRUE) |>
+    vdiffr::expect_doppelganger("white_border color from scale", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points(color = "red") |>
+    vdiffr::expect_doppelganger("no white_border fixed color", fig = _)
+
+  animals |>
+    tidyplot(x = weight, y = size) |>
+    add_data_points(color = "red", white_border = TRUE) |>
+    vdiffr::expect_doppelganger("white_border fixed color", fig = _)
 })
 
 test_that("rasterize works", {

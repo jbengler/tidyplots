@@ -124,6 +124,9 @@ f_points <- function(plot, data = all_rows(),
     params$shape <- shape_converter(params$shape)
     if (params$shape %in% 21:24) {
       params$size <- params$size * 1.5
+      if (("color" %in% names(params)) && !("fill" %in% names(params))) {
+        params$fill <- params$color
+      }
       params$color <- "#FFFFFF"
     }
   }

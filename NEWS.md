@@ -1,5 +1,9 @@
 # tidyplots (development version)
 
+## Improvements
+
+* Fixed `add_data_points()` to respect constant `color` when `white_border = TRUE` (#115)
+
 # tidyplots 0.3.1
 
 ## Breaking changes
