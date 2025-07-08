@@ -1,5 +1,4 @@
 
-`%+%` <- ggplot2::`%+%`
 `%||%` <- rlang::`%||%`
 is_waiver <- function(x) inherits(x, "waiver")
 
@@ -171,6 +170,15 @@ format_p_value <- function(x, accuracy = 0.0001) {
 
 
 # internal helpers
+
+# <ggplot> %+% x was deprecated in ggplot2 4.0.0.
+update_data <- function(plot, new_data) {
+  if (utils::packageVersion("ggplot2") > "3.5.2.9000") {
+    plot + new_data
+  } else {
+    ggplot2::`%+%`(plot, new_data)
+  }
+}
 
 format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = NULL, ...) {
   scales::number(x = x, accuracy = accuracy, big.mark = big.mark, scale_cut = scale_cut, ...)

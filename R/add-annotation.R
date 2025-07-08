@@ -168,7 +168,7 @@ add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
                                jitter_height = jitter_height,
                                preserve = preserve)
 
-  if (packageVersion("ggplot2") < "3.5.2.9000") {
+  if (utils::packageVersion("ggplot2") < "3.5.2.9000") {
     plot +
       ggplot2::geom_label(data = data, ggplot2::aes(label = {{label}}), size = size,
                           fill = scales::alpha(background_color, background_alpha),

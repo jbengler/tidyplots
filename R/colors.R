@@ -98,7 +98,7 @@ adjust_colors <- function(plot, new_colors = NULL,
         new_data <-
           out$data |>
           dplyr::mutate("{color_var}" := forcats::fct_drop(.data[[color_var]]))
-        out <- out %+% new_data
+        out <- update_data(out, new_data)
       }
 
       suppressMessages(out <- out + ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...))

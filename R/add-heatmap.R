@@ -41,7 +41,7 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
       plot$data |>
       dplyr::mutate(row_zscore = (.data[[color]] - mean(.data[[color]])) / sd(.data[[color]]), .by = tidyselect::all_of(y)) |>
       dplyr::mutate(col_zscore = (.data[[color]] - mean(.data[[color]])) / sd(.data[[color]]), .by = tidyselect::all_of(x))
-    plot <- plot %+% out
+    plot <- update_data(plot, out)
     if (scale == "row")
       mapping <- ggplot2::aes(fill = row_zscore)
     if (scale == "column")

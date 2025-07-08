@@ -225,7 +225,7 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
   plots <-
     purrr::map2(df$data, df |> dplyr::pull({{by}}),
          function(data, facet_title) {
-           plot %+% data + ggplot2::ggtitle(facet_title)
+           update_data(plot, data) + ggplot2::ggtitle(facet_title)
          })
 
   if (is.numeric(ncol) && is.numeric(nrow)) {
@@ -285,9 +285,9 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
   input <- plot
   if (inherits(data, "function")) {
     my_fun <- data
-    plot <- plot %+% (my_fun(plot$data)) + ggplot2::ggtitle(title)
+    plot <- update_data(plot, my_fun(plot$data)) + ggplot2::ggtitle(title)
   }
-  if (inherits(data, "data.frame")) plot <- plot %+% data + ggplot2::ggtitle(title)
+  if (inherits(data, "data.frame")) plot <- update_data(plot, data) + ggplot2::ggtitle(title)
   print(plot, ...)
   invisible(input)
 }

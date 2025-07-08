@@ -166,7 +166,7 @@ add_test_pvalue <- function(plot,
     new_data <-
       plot$data |>
       dplyr::arrange({{ paired_by }})
-    plot <- plot %+% new_data
+    plot <- update_data(plot, new_data)
     paired_by <- rlang::as_name(quo_paired_by)
   }
 

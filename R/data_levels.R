@@ -24,7 +24,7 @@ ff_rename_axis_levels <- function(axis) {
       plot$tidyplot$named_colors <- new_named_colors
       plot <- plot |> adjust_colors(new_named_colors)
     }
-    plot %+% new_data
+    update_data(plot, new_data)
   }
 }
 #' Rename axis or color levels
@@ -124,7 +124,7 @@ ff_reorder_axis_levels <- function(axis) {
     new_data <-
       plot$data |>
       dplyr::mutate("{var}" := forcats::fct_relevel(.data[[var]], ...))
-    plot %+% new_data
+    update_data(plot, new_data)
   }
 }
 #' Reorder axis or color levels
@@ -249,7 +249,7 @@ ff_sort_levels <- function(axis) {
                                                         .fun = .fun,
                                                         .desc = .reverse))
     }
-    plot %+% new_data
+    update_data(plot, new_data)
   }
 }
 #' Sort axis or color levels
@@ -338,7 +338,7 @@ ff_reverse_axis_levels <- function(axis) {
     new_data <-
       plot$data |>
       dplyr::mutate("{var}" := forcats::fct_rev(.data[[var]]))
-    plot %+% new_data
+    update_data(plot, new_data)
   }
 }
 #' Reverse axis or color levels
