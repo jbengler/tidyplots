@@ -3,6 +3,7 @@
 ## Improvements
 
 * Fixed `add_data_points()` to respect constant `color` when `white_border = TRUE` (#115)
+* Prepare for deprecation of `%+%` and `geom_label(label.size = NA)`
 
 # tidyplots 0.3.1
 
