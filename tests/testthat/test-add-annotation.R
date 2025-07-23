@@ -47,6 +47,18 @@ test_that("jitter points and labels align", {
     vdiffr::expect_doppelganger("label repel alignment", fig = _)
 
   tidyplot(study, x = group, y = score) |>
+    add_data_points() |>
+    add_data_labels_repel(label = participant,
+                          max.overlaps = Inf, min.segment.length = 0, nudge_x = 1) |>
+    vdiffr::expect_doppelganger("label alignment nudge_x", fig = _)
+
+  tidyplot(study, x = group, y = score) |>
+    add_data_points() |>
+    add_data_labels_repel(label = participant,
+                          max.overlaps = Inf, min.segment.length = 0, nudge_y = 30) |>
+    vdiffr::expect_doppelganger("label alignment nudge_y", fig = _)
+
+  tidyplot(study, x = group, y = score) |>
     add_data_points(jitter_width = 0.5) |>
     add_data_labels(label = participant, jitter_width = 0.5) |>
     vdiffr::expect_doppelganger("label alignment", fig = _)

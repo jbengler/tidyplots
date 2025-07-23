@@ -200,11 +200,18 @@ add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
                                jitter_height = jitter_height,
                                preserve = preserve)
 
-  plot + ggrepel::geom_label_repel(data = data, ggplot2::aes(label = {{label}}), size = size,
-                                   segment.size = segment.size, box.padding = box.padding, max.overlaps = max.overlaps,
-                                   fill = scales::alpha(background_color, background_alpha),
-                                   label.size = NA, label.padding = label.padding, position = position,
-                                   seed = 42, ...)
+  args <- list(data = data, ggplot2::aes(label = {{label}}), size = size,
+               segment.size = segment.size, box.padding = box.padding, max.overlaps = max.overlaps,
+               fill = scales::alpha(background_color, background_alpha),
+               label.size = NA, label.padding = label.padding, position = position,
+               seed = 42, ...)
+
+  # Specify either `position` or `nudge_x`/`nudge_y`
+  if (!is.null(args$nudge_x) | !is.null(args$nudge_y)) {
+    args$position <- NULL
+  }
+
+  plot + do.call(ggrepel::geom_label_repel, args)
 }
 
 
