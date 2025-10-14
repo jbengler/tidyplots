@@ -92,22 +92,13 @@ adjust_colors <- function(plot, new_colors = NULL,
         new_colors <- downsample_vector(new_colors, n_requested, downsample = downsample)
       }
 
-      # if the variable mapped to color is a factor, drop unused factor levels
-      # scale_*_manual() requires a color for each factor level, including unused ones
-      if (is.factor(out$data[[color_var]])) {
-        new_data <-
-          out$data |>
-          dplyr::mutate("{color_var}" := forcats::fct_drop(.data[[color_var]]))
-        out <- update_data(out, new_data)
-      }
-
-      suppressMessages(out <- out + ggplot2::scale_color_manual(values = new_colors, drop = FALSE, labels = labels, ...))
-      suppressMessages(out <- out + ggplot2::scale_fill_manual(values = apply_saturation(new_colors, saturation = saturation), drop = FALSE, labels = labels, ...))
+      suppressMessages(out <- out + ggplot2::scale_color_manual(values = new_colors, drop = TRUE, labels = labels, ...))
+      suppressMessages(out <- out + ggplot2::scale_fill_manual(values = apply_saturation(new_colors, saturation = saturation), drop = TRUE, labels = labels, ...))
       # cli::cli_alert_success("adjust_colors: applied discrete {.pkg color values}")
 
     } else {
-      suppressMessages(out <- out + scale_color_d(palette = new_colors, drop = FALSE, labels = labels, ...))
-      suppressMessages(out <- out + scale_fill_d(palette = new_colors, saturation = saturation, drop = FALSE, labels = labels, ...))
+      suppressMessages(out <- out + scale_color_d(palette = new_colors, drop = TRUE, labels = labels, ...))
+      suppressMessages(out <- out + scale_fill_d(palette = new_colors, saturation = saturation, drop = TRUE, labels = labels, ...))
       # cli::cli_alert_success("adjust_colors: applied discrete {.pkg color palette}")
 
       # Too few colors

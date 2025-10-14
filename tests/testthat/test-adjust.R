@@ -36,6 +36,18 @@ test_that("adjust_color works", {
     tidyplot(x = date, y = power, color = energy_source) |>
     add_mean_line() |>
     vdiffr::expect_doppelganger("adjust_colors with unused factor levels", fig = _)
+
+  data <- dplyr::tibble(
+    x = factor(c('a','b','c','d','e','f','g','h')),
+    y = c(10, 20, 30, 40, 50, 10, 20, 30),
+    z = factor(c('C1','C2','C3','C4','C5','C6','C7','C8')),
+  )
+
+  data|>
+    dplyr::filter(!z %in% c('C1')) |>
+    tidyplot(x = x, y = y, color = z) |>
+    add_boxplot() |>
+    vdiffr::expect_doppelganger("adjust_colors with unused factor levels 2", fig = _)
 })
 
 test_that("adjust axes works", {
