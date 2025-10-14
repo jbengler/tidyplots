@@ -1,5 +1,8 @@
 
-`%||%` <- rlang::`%||%`
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
 is_waiver <- function(x) inherits(x, "waiver")
 
 #' The pipe
