@@ -22,7 +22,7 @@ Imports:
     Hmisc,
     htmltools,
     lifecycle,
-    patchwork (>= 1.2.0),
+    patchwork (>= 1.3.2),
     purrr,
     rlang,
     scales,
