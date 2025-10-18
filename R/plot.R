@@ -208,47 +208,79 @@ split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
   if(missing(by))
     cli::cli_abort("Argument {.arg by} missing without default.")
 
-  widths <- plot$tidyplot$width
-  heights <- plot$tidyplot$height
-  unit <- plot$tidyplot$unit
-
-  if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
-  if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
-
-  # free plot dimensions
-  plot <-
-    plot |>
-    adjust_size(width = NA, height = NA)
-
-  df <-
-    plot$data |>
-    tidyr::nest(data = -{{by}}) |>
-    dplyr::arrange({{by}})
-
-  plots <-
-    purrr::map2(df$data, df |> dplyr::pull({{by}}),
-         function(data, facet_title) {
-           update_data(plot, data) + ggplot2::ggtitle(facet_title)
-         })
-
   if (is.numeric(ncol) && is.numeric(nrow)) {
     plots_per_page <- nrow * ncol
+
+    df <-
+      plot$data |>
+      tidyr::nest(data = -{{by}}) |>
+      dplyr::arrange({{by}})
+
+    dfs <- split(df, ceiling(seq_len(nrow(df)) / plots_per_page))
+
+    pages <-
+      dfs |>
+      purrr::map(function(x) {
+        new_data <- x |> tidyr::unnest(cols = data)
+        update_data(plot, new_data) +
+          ggplot2::facet_wrap(facets = ggplot2::vars({{ by }}), nrow = nrow, ncol = ncol)
+      })
+
+    cli::cli_alert_success("split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}")
+
+    unname(pages)
   } else {
-    plots_per_page <- length(plots)
+    plot + ggplot2::facet_wrap(facets = ggplot2::vars({{ by }}), nrow = nrow, ncol = ncol)
   }
-
-  pages <-
-    split(plots, ceiling(seq_along(plots)/plots_per_page)) |>
-    purrr::map(~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths,
-                                         heights = heights, guides = guides, byrow = byrow,
-                                         tag_level = tag_level, design = design))
-
-  cli::cli_alert_success("split_plot: split into {.pkg {length(plots)} plot{?s}} across {.pkg {ceiling(length(plots)/plots_per_page)} page{?s}}")
-
-  out <- unname(pages)
-  if (length(out) == 1) out <- out[[1]]
-  out
 }
+
+# split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
+#                        guides = "collect", tag_level = NULL, design = NULL) {
+#   plot <- check_tidyplot(plot)
+#   if(missing(by))
+#     cli::cli_abort("Argument {.arg by} missing without default.")
+#
+#   widths <- plot$tidyplot$width
+#   heights <- plot$tidyplot$height
+#   unit <- plot$tidyplot$unit
+#
+#   if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
+#   if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
+#
+#   # free plot dimensions
+#   plot <-
+#     plot |>
+#     adjust_size(width = NA, height = NA)
+#
+#   df <-
+#     plot$data |>
+#     tidyr::nest(data = -{{by}}) |>
+#     dplyr::arrange({{by}})
+#
+#   plots <-
+#     purrr::map2(df$data, df |> dplyr::pull({{by}}),
+#          function(data, facet_title) {
+#            update_data(plot, data) + ggplot2::ggtitle(facet_title)
+#          })
+#
+#   if (is.numeric(ncol) && is.numeric(nrow)) {
+#     plots_per_page <- nrow * ncol
+#   } else {
+#     plots_per_page <- length(plots)
+#   }
+#
+#   pages <-
+#     split(plots, ceiling(seq_along(plots)/plots_per_page)) |>
+#     purrr::map(~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths,
+#                                          heights = heights, guides = guides, byrow = byrow,
+#                                          tag_level = tag_level, design = design))
+#
+#   cli::cli_alert_success("split_plot: split into {.pkg {length(plots)} plot{?s}} across {.pkg {ceiling(length(plots)/plots_per_page)} page{?s}}")
+#
+#   out <- unname(pages)
+#   if (length(out) == 1) out <- out[[1]]
+#   out
+# }
 
 
 #' View plot on screen
