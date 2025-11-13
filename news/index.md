@@ -10,11 +10,14 @@
 
 ### Improvements
 
+- The `labels` parameter of `adjust_*_axis()` now survives repeated
+  calls changing the same scale
+  ([\#136](https://github.com/jbengler/tidyplots/issues/136)).
 - Fixed
   [`add_data_points()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md)
   to respect constant `color` when `white_border = TRUE`
-  ([\#115](https://github.com/jbengler/tidyplots/issues/115))
-- Prepare for deprecation of `%+%` and `geom_label(label.size = NA)`
+  ([\#115](https://github.com/jbengler/tidyplots/issues/115)).
+- Prepare for deprecation of `%+%` and `geom_label(label.size = NA)`.
 
 ## tidyplots 0.3.1
 
