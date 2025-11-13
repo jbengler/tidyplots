@@ -1,8 +1,8 @@
 
 ff_adjust_axis <- function(axis) {
   function(plot, title = ggplot2::waiver(), breaks = ggplot2::waiver(),
-           labels = ggplot2::waiver(), limits = NULL, padding = c(NA, NA),
-           rotate_labels = FALSE, transform = "identity",
+           labels = NULL, limits = NULL,
+           padding = c(NA, NA), rotate_labels = FALSE, transform = "identity",
            cut_short_scale = FALSE, force_continuous = FALSE, ...) {
     plot <- check_tidyplot(plot)
   # Parse title
@@ -17,6 +17,12 @@ ff_adjust_axis <- function(axis) {
     if (axis == "y")
       plot <- plot + ggplot2::theme(axis.text.y = ggplot2::element_text(angle = rotate_labels, hjust = vjust, vjust = 1))
   }
+
+  # Adjust labels
+  if (axis == "x") plot$tidyplot$labels_x <- labels %||% plot$tidyplot$labels_x
+  if (axis == "y") plot$tidyplot$labels_y <- labels %||% plot$tidyplot$labels_y
+  labels_x <- plot$tidyplot$labels_x
+  labels_y <- plot$tidyplot$labels_y
 
   # Adjust limits
   if (axis == "x") plot$tidyplot$limits_x <- limits %||% plot$tidyplot$limits_x
@@ -50,9 +56,9 @@ ff_adjust_axis <- function(axis) {
     # cli::cli_alert_success("adjust_{axis}_axis: {.pkg datetime}")
     suppressMessages(
       if (axis == "x")
-        plot <- plot + ggplot2::scale_x_datetime(name = title, breaks = breaks, labels = labels, expand = expand_x, ...)
+        plot <- plot + ggplot2::scale_x_datetime(name = title, breaks = breaks, labels = labels_x, expand = expand_x, ...)
       else
-        plot <- plot + ggplot2::scale_y_datetime(name = title, breaks = breaks, labels = labels, expand = expand_y, ...)
+        plot <- plot + ggplot2::scale_y_datetime(name = title, breaks = breaks, labels = labels_y, expand = expand_y, ...)
     )
     return(plot)
   }
@@ -62,9 +68,9 @@ ff_adjust_axis <- function(axis) {
     # cli::cli_alert_success("adjust_{axis}_axis: {.pkg date}")
     suppressMessages(
       if (axis == "x")
-        plot <- plot + ggplot2::scale_x_date(name = title, breaks = breaks, labels = labels, expand = expand_x, ...)
+        plot <- plot + ggplot2::scale_x_date(name = title, breaks = breaks, labels = labels_x, expand = expand_x, ...)
       else
-        plot <- plot + ggplot2::scale_y_date(name = title, breaks = breaks, labels = labels, expand = expand_y, ...)
+        plot <- plot + ggplot2::scale_y_date(name = title, breaks = breaks, labels = labels_y, expand = expand_y, ...)
     )
     return(plot)
   }
@@ -74,26 +80,26 @@ ff_adjust_axis <- function(axis) {
     # cli::cli_alert_success("adjust_{axis}_axis: {.pkg time}")
     suppressMessages(
       if (axis == "x")
-        plot <- plot + ggplot2::scale_x_time(name = title, breaks = breaks, labels = labels, expand = expand_x, ...)
+        plot <- plot + ggplot2::scale_x_time(name = title, breaks = breaks, labels = labels_x, expand = expand_x, ...)
       else
-        plot <- plot + ggplot2::scale_y_time(name = title, breaks = breaks, labels = labels, expand = expand_y, ...)
+        plot <- plot + ggplot2::scale_y_time(name = title, breaks = breaks, labels = labels_y, expand = expand_y, ...)
     )
     return(plot)
   }
 
   # Continuous
   if (is_continuous(plot, axis) || force_continuous) {
-    if (is_waiver(labels) && cut_short_scale)
-      labels <- scales::label_number(scale_cut = scales::cut_short_scale())
-    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg continuous}")
-
     suppressMessages({
       if (axis == "x") {
         if(!is_discrete(plot, "x")) {
-          plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_x, transform = transform, ...)}
+          if (is_waiver(labels_x) && cut_short_scale)
+            labels_x <- scales::label_number(scale_cut = scales::cut_short_scale())
+          plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels_x, limits = NULL, expand = expand_x, transform = transform, ...)}
       } else {
         if(!is_discrete(plot, "y")) {
-          plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels, limits = NULL, expand = expand_y, transform = transform, ...)}
+          if (is_waiver(labels_y) && cut_short_scale)
+            labels_y <- scales::label_number(scale_cut = scales::cut_short_scale())
+          plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels_y, limits = NULL, expand = expand_y, transform = transform, ...)}
       }
     })
     return(plot)
@@ -101,18 +107,19 @@ ff_adjust_axis <- function(axis) {
 
   # Discrete
   if (is_discrete(plot, axis)) {
-    if (is_waiver(labels))
-      labels <- tidyplot_parse_labels()
-    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg discrete}")
     suppressMessages(
-      if (axis == "x")
+      if (axis == "x") {
+        if (is_waiver(labels_x)) labels_x <- tidyplot_parse_labels()
         plot <- plot + ggplot2::scale_x_discrete(
-          name = title, breaks = breaks, labels = labels,
+          name = title, breaks = breaks, labels = labels_x,
           expand = ggplot2::waiver(), ...)
-      else
+      }
+      else {
+        if (is_waiver(labels_y)) labels_y <- tidyplot_parse_labels()
         plot <- plot + ggplot2::scale_y_discrete(
-          name = title, breaks = breaks, labels = labels,
+          name = title, breaks = breaks, labels = labels_y,
           expand = ggplot2::waiver(), ...)
+      }
     )
     return(plot)
   }
