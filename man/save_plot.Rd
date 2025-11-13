@@ -10,6 +10,7 @@ save_plot(
   width = NA,
   height = NA,
   units = c("mm", "cm", "in"),
+  padding = 0.1,
   multiple_files = FALSE,
   view_plot = TRUE,
   bg = "transparent",
@@ -26,6 +27,8 @@ Defaults to \code{NA}. In case of \code{NA}, the dimensions are inferred from th
 incoming \code{plot} object (see Details).}
 
 \item{units}{Units of length. Defaults to \code{"mm"}.}
+
+\item{padding}{Extra white space around the saved plot. Defaults to \code{0.1} meaning 10\%.}
 
 \item{multiple_files}{Whether to save multiple pages as individual files.}
 

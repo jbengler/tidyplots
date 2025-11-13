@@ -183,7 +183,6 @@ tidyplots relies on several fantastic packages that handle all the heavy lifting
     Hmisc,
     htmltools,
     lifecycle,
-    patchwork,
     purrr,
     rlang,
     scales,

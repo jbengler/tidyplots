@@ -61,3 +61,29 @@ test_that("tidyplots options work", {
     add_boxplot() |>
     vdiffr::expect_doppelganger("tidyplots.options reset", fig = _)
 })
+
+test_that("split plot works", {
+  study |>
+    tidyplot(x = group, y = score, color = group) |>
+    add_boxplot() |>
+    split_plot(by = dose) |>
+    vdiffr::expect_doppelganger("split plot treatment", fig = _)
+
+  gene_expression |>
+    head(20*9) |>
+    tidyplot(x = group, y = expression, color = group) |>
+    add_mean_dash() |>
+    add_data_points_beeswarm(white_border = TRUE) |>
+    add_test_asterisks(comparisons = list(c(1,3), c(2,4))) |>
+    adjust_size(25, 25) |>
+    split_plot(by = external_gene_name) |>
+    vdiffr::expect_doppelganger("split plot gene expression", fig = _)
+
+  energy |>
+    dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
+    tidyplot(y = energy, color = energy_source) |>
+    add_donut() |>
+    adjust_size(width = 25, height = 25) |>
+    split_plot(by = year) |>
+    vdiffr::expect_doppelganger("split plot energy", fig = _)
+})
