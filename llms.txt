@@ -1,0 +1,507 @@
+# tidyplots
+
+The goal of `tidyplots` is to streamline the creation of
+publication-ready plots for scientific papers. It allows to gradually
+add, remove and adjust plot components using a consistent and intuitive
+syntax.
+
+## Citation
+
+Engler, Jan Broder. 2025. “Tidyplots Empowers Life Scientists With Easy
+Code-Based Data Visualization.” *iMeta* e70018.
+<https://doi.org/10.1002/imt2.70018>
+
+## Installation
+
+You can install the released version of tidyplots from
+[CRAN](https://cran.r-project.org/) with:
+
+``` r
+install.packages("tidyplots")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("pak")
+pak::pak("jbengler/tidyplots")
+```
+
+## Cheatsheet
+
+This cheatsheet gives a high level overview of available functions.
+
+[![tidyplots
+cheatsheet](reference/figures/cheatsheet-v1.png)](https://tidyplots.org/tidyplots-cheatsheet-v1.pdf)
+
+## Usage
+
+Here are some examples.
+
+Also have a look at the [getting started
+guide](https://jbengler.github.io/tidyplots/articles/tidyplots.html) and
+the [full
+documentation](https://jbengler.github.io/tidyplots/reference/). For
+more example plots, check out the [tidyplots use
+cases](https://tidyplots.org/use-cases/) website.
+
+``` r
+library(tidyplots)
+
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
+  add_data_points_beeswarm()
+```
+
+![](reference/figures/README-unnamed-chunk-2-1.png)
+
+``` r
+energy |> 
+  tidyplot(x = year, y = energy, color = energy_source) |> 
+  add_barstack_absolute()
+```
+
+![](reference/figures/README-unnamed-chunk-3-1.png)
+
+``` r
+energy |> 
+  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |> 
+  tidyplot(y = energy, color = energy_source) |> 
+  add_donut() |> 
+  adjust_size(width = 25, height = 25) |>
+  split_plot(by = year)
+```
+
+![](reference/figures/README-unnamed-chunk-4-1.png)
+
+``` r
+energy_week |> 
+  tidyplot(x = date, y = power, color = energy_source) |> 
+  add_areastack_absolute()
+```
+
+![](reference/figures/README-unnamed-chunk-5-1.png)
+
+``` r
+energy_week |> 
+  tidyplot(x = date, y = power, color = energy_source) |> 
+  add_areastack_relative()
+```
+
+![](reference/figures/README-unnamed-chunk-6-1.png)
+
+``` r
+study |> 
+  tidyplot(x = group, y = score, color = dose) |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_mean_dash() |> 
+  add_mean_value()
+```
+
+![](reference/figures/README-unnamed-chunk-7-1.png)
+
+``` r
+time_course |>
+  tidyplot(x = day, y = score, color = treatment) |>
+  add_mean_line() |>
+  add_mean_dot() |>
+  add_sem_ribbon()
+```
+
+![](reference/figures/README-unnamed-chunk-8-1.png)
+
+``` r
+climate |>
+  tidyplot(x = month, y = year, color = max_temperature) |>
+  add_heatmap()
+```
+
+![](reference/figures/README-unnamed-chunk-9-1.png)
+
+``` r
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_boxplot() |> 
+  add_test_pvalue(ref.group = 1)
+```
+
+![](reference/figures/README-unnamed-chunk-10-1.png)
+
+``` r
+gene_expression |> 
+  dplyr::filter(external_gene_name %in% c("Apol6", "Col5a3", "Vgf", "Bsn")) |> 
+  tidyplot(x = condition, y = expression, color = sample_type) |> 
+  add_mean_dash() |> 
+  add_sem_errorbar() |> 
+  add_data_points_beeswarm() |> 
+  add_test_asterisks(hide_info = TRUE) |> 
+  remove_x_axis_title() |> 
+  adjust_size(width = 25, height = 25) |> 
+  split_plot(by = external_gene_name)
+```
+
+![](reference/figures/README-unnamed-chunk-11-1.png)
+
+``` r
+study |> 
+  tidyplot(x = treatment, y = score, color = treatment) |> 
+  add_mean_bar(alpha = 0.4) |> 
+  add_sem_errorbar() |> 
+  add_data_points_beeswarm() |> 
+  view_plot(title = "Default color scheme: 'friendly'") |> 
+  adjust_colors(colors_discrete_apple) |> 
+  view_plot(title = "Alternative color scheme: 'apple'")
+```
+
+![](reference/figures/README-unnamed-chunk-12-1.png)![](reference/figures/README-unnamed-chunk-12-2.png)
+
+## Documentation
+
+- [Package index](https://jbengler.github.io/tidyplots/reference/)  
+  Overview of all tidyplots functions
+
+- [Get
+  started](https://jbengler.github.io/tidyplots/articles/tidyplots.html)  
+  Getting started guide
+
+- [Visualizing
+  data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.html)  
+  Article with examples for common data visualizations
+
+- [Advanced
+  plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html)  
+  Article about advanced plotting techniques and workflows
+
+- [Color
+  schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html)  
+  Article about the use of color schemes
+
+## Acknowledgements
+
+I would like to thank Lars Binkle-Ladisch for our insightful discussions
+and for consistently challenging my decisions regarding the naming of
+functions and their arguments.
+
+Many thanks to the R and tidyverse communities. tidyplots is built upon
+their software and coding paradigms, and it would not have been possible
+without their contributions.
+
+tidyplots relies on several fantastic packages that handle all the heavy
+lifting behind the scenes. These include cli, dplyr, forcats,
+ggbeeswarm, ggplot2, ggpubr, ggrastr, ggrepel, glue, Hmisc, htmltools,
+lifecycle, patchwork, purrr, rlang, scales, stringr, tidyr, and
+tidyselect.
+
+# Package index
+
+To create a plot, start with the
+[`tidyplot()`](https://jbengler.github.io/tidyplots/reference/tidyplot.md)
+function. Build the plot by adding, removing, and adjusting plot
+components. The
+[`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md)
+function must be called last in this sequence and can only be followed
+by
+[`save_plot()`](https://jbengler.github.io/tidyplots/reference/save_plot.md).
+
+## Create
+
+- [`tidyplot()`](https://jbengler.github.io/tidyplots/reference/tidyplot.md)
+  : Create a new tidyplot
+
+## Add
+
+Add plot components to represent data points, central tendency measures,
+dispersion and more.
+
+### Data points & amounts
+
+- [`add_data_points()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md)
+  [`add_data_points_jitter()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md)
+  [`add_data_points_beeswarm()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md)
+  : Add data points
+- [`add_count_bar()`](https://jbengler.github.io/tidyplots/reference/add_count_bar.md)
+  [`add_count_dash()`](https://jbengler.github.io/tidyplots/reference/add_count_bar.md)
+  [`add_count_dot()`](https://jbengler.github.io/tidyplots/reference/add_count_bar.md)
+  [`add_count_value()`](https://jbengler.github.io/tidyplots/reference/add_count_bar.md)
+  [`add_count_line()`](https://jbengler.github.io/tidyplots/reference/add_count_bar.md)
+  [`add_count_area()`](https://jbengler.github.io/tidyplots/reference/add_count_bar.md)
+  : Add count
+- [`add_sum_bar()`](https://jbengler.github.io/tidyplots/reference/add_sum_bar.md)
+  [`add_sum_dash()`](https://jbengler.github.io/tidyplots/reference/add_sum_bar.md)
+  [`add_sum_dot()`](https://jbengler.github.io/tidyplots/reference/add_sum_bar.md)
+  [`add_sum_value()`](https://jbengler.github.io/tidyplots/reference/add_sum_bar.md)
+  [`add_sum_line()`](https://jbengler.github.io/tidyplots/reference/add_sum_bar.md)
+  [`add_sum_area()`](https://jbengler.github.io/tidyplots/reference/add_sum_bar.md)
+  : Add sum
+- [`add_heatmap()`](https://jbengler.github.io/tidyplots/reference/add_heatmap.md)
+  : Add heatmap
+- [`add_line()`](https://jbengler.github.io/tidyplots/reference/add_line.md)
+  [`add_area()`](https://jbengler.github.io/tidyplots/reference/add_line.md)
+  : Add line or area
+
+### Central tendency
+
+- [`add_mean_bar()`](https://jbengler.github.io/tidyplots/reference/add_mean_bar.md)
+  [`add_mean_dash()`](https://jbengler.github.io/tidyplots/reference/add_mean_bar.md)
+  [`add_mean_dot()`](https://jbengler.github.io/tidyplots/reference/add_mean_bar.md)
+  [`add_mean_value()`](https://jbengler.github.io/tidyplots/reference/add_mean_bar.md)
+  [`add_mean_line()`](https://jbengler.github.io/tidyplots/reference/add_mean_bar.md)
+  [`add_mean_area()`](https://jbengler.github.io/tidyplots/reference/add_mean_bar.md)
+  : Add mean
+- [`add_median_bar()`](https://jbengler.github.io/tidyplots/reference/add_median_bar.md)
+  [`add_median_dash()`](https://jbengler.github.io/tidyplots/reference/add_median_bar.md)
+  [`add_median_dot()`](https://jbengler.github.io/tidyplots/reference/add_median_bar.md)
+  [`add_median_value()`](https://jbengler.github.io/tidyplots/reference/add_median_bar.md)
+  [`add_median_line()`](https://jbengler.github.io/tidyplots/reference/add_median_bar.md)
+  [`add_median_area()`](https://jbengler.github.io/tidyplots/reference/add_median_bar.md)
+  : Add median
+- [`add_curve_fit()`](https://jbengler.github.io/tidyplots/reference/add_curve_fit.md)
+  : Add curve fit
+
+### Distribution & uncertainty
+
+- [`add_histogram()`](https://jbengler.github.io/tidyplots/reference/add_histogram.md)
+  : Add histogram
+- [`add_boxplot()`](https://jbengler.github.io/tidyplots/reference/add_boxplot.md)
+  : Add boxplot
+- [`add_violin()`](https://jbengler.github.io/tidyplots/reference/add_violin.md)
+  : Add violin plot
+- [`add_sem_errorbar()`](https://jbengler.github.io/tidyplots/reference/add_sem_errorbar.md)
+  [`add_range_errorbar()`](https://jbengler.github.io/tidyplots/reference/add_sem_errorbar.md)
+  [`add_sd_errorbar()`](https://jbengler.github.io/tidyplots/reference/add_sem_errorbar.md)
+  [`add_ci95_errorbar()`](https://jbengler.github.io/tidyplots/reference/add_sem_errorbar.md)
+  : Add error bar
+- [`add_sem_ribbon()`](https://jbengler.github.io/tidyplots/reference/add_sem_ribbon.md)
+  [`add_range_ribbon()`](https://jbengler.github.io/tidyplots/reference/add_sem_ribbon.md)
+  [`add_sd_ribbon()`](https://jbengler.github.io/tidyplots/reference/add_sem_ribbon.md)
+  [`add_ci95_ribbon()`](https://jbengler.github.io/tidyplots/reference/add_sem_ribbon.md)
+  : Add ribbon
+- [`add_ellipse()`](https://jbengler.github.io/tidyplots/reference/add_ellipse.md)
+  : Add ellipse
+
+### Proportion
+
+- [`add_barstack_absolute()`](https://jbengler.github.io/tidyplots/reference/add_barstack_absolute.md)
+  [`add_barstack_relative()`](https://jbengler.github.io/tidyplots/reference/add_barstack_absolute.md)
+  : Add bar stack
+- [`add_areastack_absolute()`](https://jbengler.github.io/tidyplots/reference/add_areastack_absolute.md)
+  [`add_areastack_relative()`](https://jbengler.github.io/tidyplots/reference/add_areastack_absolute.md)
+  : Add area stack
+- [`add_pie()`](https://jbengler.github.io/tidyplots/reference/add_pie.md)
+  [`add_donut()`](https://jbengler.github.io/tidyplots/reference/add_pie.md)
+  : Add pie or donut chart
+
+### Statistical testing
+
+- [`add_test_pvalue()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
+  [`add_test_asterisks()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
+  : Add statistical test
+
+### Annotation
+
+- [`add_title()`](https://jbengler.github.io/tidyplots/reference/add_title.md)
+  [`add_caption()`](https://jbengler.github.io/tidyplots/reference/add_title.md)
+  : Add plot title or caption
+- [`add_data_labels()`](https://jbengler.github.io/tidyplots/reference/add_data_labels.md)
+  [`add_data_labels_repel()`](https://jbengler.github.io/tidyplots/reference/add_data_labels.md)
+  : Add data labels
+- [`add_reference_lines()`](https://jbengler.github.io/tidyplots/reference/add_reference_lines.md)
+  : Add reference lines
+- [`add_annotation_text()`](https://jbengler.github.io/tidyplots/reference/add_annotation_text.md)
+  [`add_annotation_rectangle()`](https://jbengler.github.io/tidyplots/reference/add_annotation_text.md)
+  [`add_annotation_line()`](https://jbengler.github.io/tidyplots/reference/add_annotation_text.md)
+  : Add annotation
+
+## Remove
+
+Remove plot components.
+
+- [`remove_legend()`](https://jbengler.github.io/tidyplots/reference/remove_legend.md)
+  [`remove_legend_title()`](https://jbengler.github.io/tidyplots/reference/remove_legend.md)
+  : Remove legend or legend title
+- [`remove_padding()`](https://jbengler.github.io/tidyplots/reference/remove_padding.md)
+  : Remove plot area padding
+- [`remove_title()`](https://jbengler.github.io/tidyplots/reference/remove_title.md)
+  [`remove_caption()`](https://jbengler.github.io/tidyplots/reference/remove_title.md)
+  : Remove plot title or caption
+- [`remove_x_axis()`](https://jbengler.github.io/tidyplots/reference/remove_x_axis.md)
+  [`remove_x_axis_line()`](https://jbengler.github.io/tidyplots/reference/remove_x_axis.md)
+  [`remove_x_axis_ticks()`](https://jbengler.github.io/tidyplots/reference/remove_x_axis.md)
+  [`remove_x_axis_labels()`](https://jbengler.github.io/tidyplots/reference/remove_x_axis.md)
+  [`remove_x_axis_title()`](https://jbengler.github.io/tidyplots/reference/remove_x_axis.md)
+  : Remove x-axis or parts of it
+- [`remove_y_axis()`](https://jbengler.github.io/tidyplots/reference/remove_y_axis.md)
+  [`remove_y_axis_line()`](https://jbengler.github.io/tidyplots/reference/remove_y_axis.md)
+  [`remove_y_axis_ticks()`](https://jbengler.github.io/tidyplots/reference/remove_y_axis.md)
+  [`remove_y_axis_labels()`](https://jbengler.github.io/tidyplots/reference/remove_y_axis.md)
+  [`remove_y_axis_title()`](https://jbengler.github.io/tidyplots/reference/remove_y_axis.md)
+  : Remove y-axis or parts of it
+
+## Adjust
+
+Adjust plot components, properties, and data levels.
+
+### Components & properties
+
+- [`adjust_colors()`](https://jbengler.github.io/tidyplots/reference/adjust_colors.md)
+  : Adjust colors
+- [`adjust_font()`](https://jbengler.github.io/tidyplots/reference/adjust_font.md)
+  : Adjust font
+- [`adjust_legend_title()`](https://jbengler.github.io/tidyplots/reference/adjust_legend_title.md)
+  [`adjust_legend_position()`](https://jbengler.github.io/tidyplots/reference/adjust_legend_title.md)
+  : Adjust legend
+- [`adjust_title()`](https://jbengler.github.io/tidyplots/reference/adjust_title.md)
+  [`adjust_x_axis_title()`](https://jbengler.github.io/tidyplots/reference/adjust_title.md)
+  [`adjust_y_axis_title()`](https://jbengler.github.io/tidyplots/reference/adjust_title.md)
+  [`adjust_caption()`](https://jbengler.github.io/tidyplots/reference/adjust_title.md)
+  : Adjust titles and caption
+- [`adjust_size()`](https://jbengler.github.io/tidyplots/reference/adjust_size.md)
+  : Adjust plot area size
+- [`adjust_padding()`](https://jbengler.github.io/tidyplots/reference/adjust_padding.md)
+  : Adjust plot area padding
+- [`adjust_x_axis()`](https://jbengler.github.io/tidyplots/reference/adjust_x_axis.md)
+  [`adjust_y_axis()`](https://jbengler.github.io/tidyplots/reference/adjust_x_axis.md)
+  : Adjust axes
+
+### Axis and color levels
+
+- [`rename_x_axis_levels()`](https://jbengler.github.io/tidyplots/reference/rename_x_axis_levels.md)
+  [`rename_y_axis_levels()`](https://jbengler.github.io/tidyplots/reference/rename_x_axis_levels.md)
+  [`rename_color_levels()`](https://jbengler.github.io/tidyplots/reference/rename_x_axis_levels.md)
+  : Rename axis or color levels
+- [`reorder_x_axis_levels()`](https://jbengler.github.io/tidyplots/reference/reorder_x_axis_levels.md)
+  [`reorder_y_axis_levels()`](https://jbengler.github.io/tidyplots/reference/reorder_x_axis_levels.md)
+  [`reorder_color_levels()`](https://jbengler.github.io/tidyplots/reference/reorder_x_axis_levels.md)
+  : Reorder axis or color levels
+- [`sort_x_axis_levels()`](https://jbengler.github.io/tidyplots/reference/sort_x_axis_levels.md)
+  [`sort_y_axis_levels()`](https://jbengler.github.io/tidyplots/reference/sort_x_axis_levels.md)
+  [`sort_color_levels()`](https://jbengler.github.io/tidyplots/reference/sort_x_axis_levels.md)
+  : Sort axis or color levels
+- [`reverse_x_axis_levels()`](https://jbengler.github.io/tidyplots/reference/reverse_x_axis_levels.md)
+  [`reverse_y_axis_levels()`](https://jbengler.github.io/tidyplots/reference/reverse_x_axis_levels.md)
+  [`reverse_color_levels()`](https://jbengler.github.io/tidyplots/reference/reverse_x_axis_levels.md)
+  : Reverse axis or color levels
+
+## Themes
+
+Finetune the look of the plot.
+
+- [`theme_tidyplot()`](https://jbengler.github.io/tidyplots/reference/theme_tidyplot.md)
+  [`theme_ggplot2()`](https://jbengler.github.io/tidyplots/reference/theme_tidyplot.md)
+  [`theme_minimal_xy()`](https://jbengler.github.io/tidyplots/reference/theme_tidyplot.md)
+  [`theme_minimal_x()`](https://jbengler.github.io/tidyplots/reference/theme_tidyplot.md)
+  [`theme_minimal_y()`](https://jbengler.github.io/tidyplots/reference/theme_tidyplot.md)
+  : Themes
+- [`adjust_theme_details()`](https://jbengler.github.io/tidyplots/reference/adjust_theme_details.md)
+  : Adjust theme details
+- [`tidyplots_options()`](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md)
+  : Tidyplots options
+
+## Color schemes
+
+Choose from a wide range of color schemes.
+
+- [`colors_discrete_friendly`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_seaside`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_apple`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_friendly_long`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_okabeito`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_ibm`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_metro`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_candy`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_alger`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  [`colors_discrete_rainbow`](https://jbengler.github.io/tidyplots/reference/colors_discrete_friendly.md)
+  : Discrete color schemes
+- [`colors_continuous_viridis`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_magma`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_inferno`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_plasma`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_cividis`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_rocket`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_mako`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_turbo`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  [`colors_continuous_bluepinkyellow`](https://jbengler.github.io/tidyplots/reference/colors_continuous_viridis.md)
+  : Continuous color schemes
+- [`colors_diverging_blue2red`](https://jbengler.github.io/tidyplots/reference/colors_diverging_blue2red.md)
+  [`colors_diverging_blue2brown`](https://jbengler.github.io/tidyplots/reference/colors_diverging_blue2red.md)
+  [`colors_diverging_BuRd`](https://jbengler.github.io/tidyplots/reference/colors_diverging_blue2red.md)
+  [`colors_diverging_BuYlRd`](https://jbengler.github.io/tidyplots/reference/colors_diverging_blue2red.md)
+  [`colors_diverging_spectral`](https://jbengler.github.io/tidyplots/reference/colors_diverging_blue2red.md)
+  [`colors_diverging_icefire`](https://jbengler.github.io/tidyplots/reference/colors_diverging_blue2red.md)
+  : Diverging color schemes
+- [`new_color_scheme()`](https://jbengler.github.io/tidyplots/reference/new_color_scheme.md)
+  : New color scheme
+
+## Split
+
+Split the plot into a multi plot layout, eventually across multiple
+pages.
+
+- [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md)
+  : Split plot into multiple subplots
+
+## Output
+
+Output the final plot or intermediate stages to the screen or to a file.
+
+- [`view_plot()`](https://jbengler.github.io/tidyplots/reference/view_plot.md)
+  : View plot on screen
+- [`save_plot()`](https://jbengler.github.io/tidyplots/reference/save_plot.md)
+  : Save plots to file
+
+## Helpers
+
+- [`all_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
+  [`filter_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
+  [`max_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
+  [`min_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
+  [`first_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
+  [`last_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
+  [`sample_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
+  : Subset data rows
+- [`add()`](https://jbengler.github.io/tidyplots/reference/add.md) : Add
+  ggplot2 code to a tidyplot
+- [`flip_plot()`](https://jbengler.github.io/tidyplots/reference/flip_plot.md)
+  **\[superseded\]** : Flip x and y-axis
+- [`format_p_value()`](https://jbengler.github.io/tidyplots/reference/format_p_value.md)
+  : Format p values
+
+## Data
+
+- [`animals`](https://jbengler.github.io/tidyplots/reference/animals.md)
+  : Animals data
+- [`climate`](https://jbengler.github.io/tidyplots/reference/climate.md)
+  : Climate data
+- [`dinosaurs`](https://jbengler.github.io/tidyplots/reference/dinosaurs.md)
+  : Dinosaurs data
+- [`distributions`](https://jbengler.github.io/tidyplots/reference/distributions.md)
+  : Distributions data
+- [`energy`](https://jbengler.github.io/tidyplots/reference/energy.md) :
+  Energy data
+- [`energy_week`](https://jbengler.github.io/tidyplots/reference/energy_week.md)
+  : Energy week data
+- [`eu_countries`](https://jbengler.github.io/tidyplots/reference/eu_countries.md)
+  : EU countries data
+- [`gene_expression`](https://jbengler.github.io/tidyplots/reference/gene_expression.md)
+  : RNA-Seq expression data
+- [`spendings`](https://jbengler.github.io/tidyplots/reference/spendings.md)
+  : Spending data
+- [`study`](https://jbengler.github.io/tidyplots/reference/study.md) :
+  Study data
+- [`time_course`](https://jbengler.github.io/tidyplots/reference/time_course.md)
+  : Time course data
+- [`pca`](https://jbengler.github.io/tidyplots/reference/pca.md) :
+  Principle component analysis data
+
+# Articles
+
+### Articles
+
+- [Visualizing
+  data](https://jbengler.github.io/tidyplots/articles/Visualizing-data.md):
+- [Advanced
+  plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.md):
+- [Color
+  schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.md):
