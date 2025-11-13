@@ -150,7 +150,6 @@ add_test_pvalue <- function(plot,
                       hide_info = FALSE,
                       ...) {
   plot <- check_tidyplot(plot)
-  # cli::cli_alert_success("add_test: {.pkg method} = {method}, {.pkg label} = {label}, {.pkg p.adjust.method} = {p.adjust.method}, {.pkg hide.ns} = {hide.ns}")
 
   # method.args are not supplied in ellipses
   if (!"method.args" %in% names(list(...))) method.args <- list()
@@ -170,6 +169,13 @@ add_test_pvalue <- function(plot,
     paired_by <- rlang::as_name(quo_paired_by)
   }
 
+  # aes(color) is supplied, also make it aes(group). See #142
+  color_var <- get_variable(plot, "colour")
+  if (color_var != ".single_color")
+    mapping = ggplot2::aes(group = .data[[color_var]])
+  else
+    mapping = NULL
+
   plot <- plot  |>
     adjust_y_axis(padding = c(NA, padding_top))
 
@@ -183,7 +189,8 @@ add_test_pvalue <- function(plot,
     hide.ns = {hide.ns}",
                          .null = "NULL"))
 
-  plot + ggpubr::geom_pwc(method = method,
+  plot + ggpubr::geom_pwc(mapping = mapping,
+                       method = method,
                        p.adjust.method = p.adjust.method,
                        ref.group = ref.group,
                        label = label,

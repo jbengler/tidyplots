@@ -1,5 +1,8 @@
 # tidyplots (development version)
 
+## Breaking changes
+* Avoid rounding errors of _p_ values in `add_test_pvalue()` (#142).
+
 ## Improvements
 
 * Fixed `add_data_points()` to respect constant `color` when `white_border = TRUE` (#115)

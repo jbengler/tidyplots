@@ -86,8 +86,8 @@
 <circle cx='381.81' cy='294.89' r='1.42' style='stroke-width: 0.71; stroke: #D55E00; fill: #D55E00;' />
 <circle cx='384.85' cy='292.88' r='1.42' style='stroke-width: 0.71; stroke: #D55E00; fill: #D55E00;' />
 <circle cx='377.94' cy='290.88' r='1.42' style='stroke-width: 0.71; stroke: #D55E00; fill: #D55E00;' />
-<text x='304.50' y='211.18' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0060</text>
-<text x='368.92' y='211.18' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0020</text>
+<text x='304.50' y='211.18' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0065</text>
+<text x='368.92' y='211.18' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0023</text>
 <line x1='291.61' y1='217.05' x2='291.61' y2='213.80' style='stroke-width: 0.64;' />
 <line x1='356.04' y1='217.05' x2='356.04' y2='213.80' style='stroke-width: 0.64;' />
 <line x1='291.61' y1='213.80' x2='317.38' y2='213.80' style='stroke-width: 0.64;' />
