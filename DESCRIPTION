@@ -14,7 +14,7 @@ Imports:
     dplyr,
     forcats,
     ggbeeswarm,
-    ggplot2 (>= 3.5.0),
+    ggplot2 (>= 4.0.1),
     ggpubr,
     ggrastr,
     ggrepel,
