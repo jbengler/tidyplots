@@ -98,10 +98,11 @@ with overplotting. Typical values range between \code{0} and \code{1}.}
 \item{cex}{Scaling for adjusting point spacing (see \code{\link[beeswarm:swarmx]{beeswarm::swarmx()}}).
 Values between 1 (default) and 3 tend to work best.}
 
-\item{corral}{\code{string}. Method used to adjust points that would be placed to
-wide horizontally, default is \code{"none"}. See details below.}
+\item{corral}{Method used to adjust points that would be placed too wide
+horizontally. Options are \code{"none"} (default), \code{"gutter"}, \code{"wrap"}, \code{"random"}, and \code{"omit"}.
+See Details below.}
 
-\item{corral.width}{\code{numeric}. Width of the corral, default is \code{0.9}.}
+\item{corral.width}{Width of the corral, if not \code{"none"}. Default is \code{0.9}.}
 }
 \value{
 A \code{tidyplot} object.
