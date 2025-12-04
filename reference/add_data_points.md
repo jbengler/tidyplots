@@ -135,12 +135,13 @@ add_data_points_beeswarm(
 
 - corral:
 
-  `string`. Method used to adjust points that would be placed to wide
-  horizontally, default is `"none"`. See details below.
+  Method used to adjust points that would be placed too wide
+  horizontally. Options are `"none"` (default), `"gutter"`, `"wrap"`,
+  `"random"`, and `"omit"`. See Details below.
 
 - corral.width:
 
-  `numeric`. Width of the corral, default is `0.9`.
+  Width of the corral, if not `"none"`. Default is `0.9`.
 
 ## Value
 
