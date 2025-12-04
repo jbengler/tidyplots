@@ -111,15 +111,14 @@ theme_minimal_y <- function(plot, fontsize = 7) {
 
 # non-exported helpers
 
-style_void <- function(plot) {
-  plot +
-    ggplot2::theme_void() +
+style_void <- function(plot, fontsize = 7) {
+  plot |>
+    remove_x_axis() |>
+    remove_y_axis() +
     ggplot2::theme(
-    plot.title = ggplot2::element_text(size = 7, colour = "black", hjust = 0.5, vjust = 0.5),
-    legend.title = ggplot2::element_text(size = 7, colour = "black"),
-    legend.text = ggplot2::element_text(size = 7, colour = "black"),
-    legend.key.size = ggplot2::unit(4, "mm")
-  )
+      panel.spacing = ggplot2::unit(0, "mm"),
+      strip.text = ggplot2::element_text(margin = ggplot2::margin(7,0,0,0))
+    )
 }
 
 style_just_xy <- function(plot) {

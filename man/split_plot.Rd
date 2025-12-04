@@ -9,10 +9,9 @@ split_plot(
   by,
   ncol = NULL,
   nrow = NULL,
-  byrow = NULL,
-  guides = "collect",
-  tag_level = NULL,
-  design = NULL
+  axes = "all",
+  scales = "free",
+  ...
 )
 }
 \arguments{
@@ -22,24 +21,16 @@ split_plot(
 
 \item{ncol, nrow}{The number of columns and rows per page.}
 
-\item{byrow}{Analogous to \code{byrow} in \link[base:matrix]{matrix()}. If \code{FALSE} the
-plots will be filled in in column-major order}
+\item{axes}{Determines which axes will be drawn in case of fixed scales.
+When \code{"margins"} (default), axes will be drawn at the exterior margins.
+\code{"all_x"} and \code{"all_y"} will draw the respective axes at the interior
+panels too, whereas \code{"all"} will draw all axes at all panels.}
 
-\item{guides}{A string specifying how guides should be treated in the layout.
-\code{'collect'} will collect guides below to the given nesting level, removing
-duplicates. \code{'keep'} will stop collection at this level and let guides be
-placed alongside their plot. \code{auto} will allow guides to be collected if a
-upper level tries, but place them alongside the plot if not.  If you modify
-default guide "position" with \link[ggplot2:theme]{theme(legend.position=...)}
-while also collecting guides you must apply that change to the overall
-patchwork (see example).}
+\item{scales}{Should scales be fixed (\code{"fixed"}, the default),
+free (\code{"free"}), or free in one dimension (\code{"free_x"},
+\code{"free_y"})?}
 
-\item{tag_level}{A string (\code{'keep'} or \code{'new'}) to indicate how
-auto-tagging should behave. See \code{\link[patchwork:plot_annotation]{plot_annotation()}}.}
-
-\item{design}{Specification of the location of areas in the layout. Can either
-be specified as a text string or by concatenating calls to \code{\link[patchwork:area]{area()}} together.
-See the examples for further information on use.}
+\item{...}{Arguments passed on to the \code{geom} function.}
 }
 \value{
 A \code{tidyplot} object.

@@ -10,20 +10,29 @@ ff_pie <- function(.type = "pie") {
     if (!is_missing(plot, "x")) cli::cli_abort("{.fun add_pie} and {.fun add_donut} accept {.arg color} and {.arg y}, but not {.arg x}.")
 
     if (is_missing(plot, "y")) {
-      plot <- plot + ggplot2::geom_bar(ggplot2::aes(x = NA), position = ggplot2::position_stack(reverse = reverse),
+      plot <- plot + ggplot2::geom_bar(ggplot2::aes(x = NA), position = ggplot2::position_fill(reverse = reverse),
                                        width = width, color = NA, ...) +
         ggplot2::ggtitle("count")
     } else {
       plot <- plot + ggplot2::stat_summary(ggplot2::aes(x = NA), geom = "bar", fun = sum,
-                                           position = ggplot2::position_stack(reverse = reverse),
+                                           position = ggplot2::position_fill(reverse = reverse),
                                            width = width, color = NA, ...) +
         ggplot2::ggtitle(get_variable(plot, "y"))
     }
     suppressMessages(
       plot <- plot +
-        ggplot2::coord_polar("y") +
+        ggplot2::coord_radial(theta = "y", expand = FALSE) +
         ggplot2::guides()
     )
+
+    # TODO: This warning is generated, when coord_radial() is combined with absolute dimension:
+    # Aspect ratios are overruled by `panel.widths` and `panel.heights` theme elements.
+    # It cannot be suppressed
+    # Not sure how to fix this
+    suppressWarnings(
+      plot <- plot |> adjust_size()
+    )
+
     if (.type == "donut")
       suppressMessages(plot + ggplot2::scale_x_discrete(limits = function(x) c("", "", x)))
     else

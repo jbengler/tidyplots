@@ -166,7 +166,7 @@ tidyplots_options <- function(
 #' Split plot into multiple subplots
 #' @param by Variable that should be used for splitting.
 #' @param ncol,nrow The number of columns and rows per page.
-#' @inheritParams patchwork::wrap_plots
+#' @inheritParams ggplot2::facet_wrap
 #' @inherit common_arguments
 #'
 #' @examples
@@ -202,52 +202,40 @@ tidyplots_options <- function(
 #'   split_plot(by = year, ncol = 2, nrow = 1)
 #'
 #' @export
-split_plot <- function(plot, by, ncol = NULL, nrow = NULL, byrow = NULL,
-                       guides = "collect", tag_level = NULL, design = NULL) {
+split_plot <- function(plot, by, ncol = NULL, nrow = NULL,
+                       axes = "all", scales = "free", ...) {
   plot <- check_tidyplot(plot)
   if(missing(by))
     cli::cli_abort("Argument {.arg by} missing without default.")
 
-  widths <- plot$tidyplot$width
-  heights <- plot$tidyplot$height
-  unit <- plot$tidyplot$unit
-
-  if (!is.na(widths)) widths <- ggplot2::unit(widths, unit)
-  if (!is.na(heights)) heights <- ggplot2::unit(heights, unit)
-
-  # free plot dimensions
-  plot <-
-    plot |>
-    adjust_size(width = NA, height = NA)
-
-  df <-
-    plot$data |>
-    tidyr::nest(data = -{{by}}) |>
-    dplyr::arrange({{by}})
-
-  plots <-
-    purrr::map2(df$data, df |> dplyr::pull({{by}}),
-         function(data, facet_title) {
-           update_data(plot, data) + ggplot2::ggtitle(facet_title)
-         })
-
   if (is.numeric(ncol) && is.numeric(nrow)) {
     plots_per_page <- nrow * ncol
+
+    df <-
+      plot$data |>
+      tidyr::nest(data = -{{by}}) |>
+      dplyr::arrange({{by}})
+
+    dfs <- split(df, ceiling(seq_len(nrow(df)) / plots_per_page))
+
+    pages <-
+      dfs |>
+      purrr::map(function(x) {
+        new_data <- x |> tidyr::unnest(cols = data)
+        update_data(plot, new_data) +
+          ggplot2::facet_wrap(
+            facets = ggplot2::vars({{ by }}),
+            nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
+      })
+
+    cli::cli_alert_success("split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}")
+
+    unname(pages)
   } else {
-    plots_per_page <- length(plots)
+    plot + ggplot2::facet_wrap(
+      facets = ggplot2::vars({{ by }}),
+      nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
   }
-
-  pages <-
-    split(plots, ceiling(seq_along(plots)/plots_per_page)) |>
-    purrr::map(~patchwork::wrap_plots(.x, ncol = ncol, nrow = nrow, widths = widths,
-                                         heights = heights, guides = guides, byrow = byrow,
-                                         tag_level = tag_level, design = design))
-
-  cli::cli_alert_success("split_plot: split into {.pkg {length(plots)} plot{?s}} across {.pkg {ceiling(length(plots)/plots_per_page)} page{?s}}")
-
-  out <- unname(pages)
-  if (length(out) == 1) out <- out[[1]]
-  out
 }
 
 
@@ -310,6 +298,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' Defaults to `NA`. In case of `NA`, the dimensions are inferred from the
 #' incoming `plot` object (see Details).
 #' @param units Units of length. Defaults to `"mm"`.
+#' @param padding Extra white space around the saved plot. Defaults to `0.1` meaning 10%.
 #' @param multiple_files Whether to save multiple pages as individual files.
 #' @param view_plot Whether to view the plot on screen after saving.
 #' @inheritParams ggplot2::ggsave
@@ -362,7 +351,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #'
 #' @export
 save_plot <- function(plot = ggplot2::last_plot(), filename,
-                      width = NA, height = NA, units = c("mm", "cm", "in"),
+                      width = NA, height = NA, units = c("mm", "cm", "in"), padding = 0.1,
                       multiple_files = FALSE, view_plot = TRUE, bg = "transparent", ...) {
   if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
@@ -371,13 +360,13 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
   if (ggplot2::is.ggplot(plot)) plot <- list(plot)
   units <- match.arg(units)
 
-  if (check_input(plot) %in% c("pw_list", "tp_list"))
+  if (check_input(plot) %in% c("pw_list", "tp_list", "gg_list"))
     dimensions <- get_layout_size(plot, units)$max
   else
     dimensions <- list(width = NA, height = NA)
 
-  if (is.na(width)) width <- dimensions[["width"]] * 1.1
-  if (is.na(height)) height <- dimensions[["height"]] * 1.1
+  if (is.na(width)) width <- dimensions[["width"]] * (1 + padding)
+  if (is.na(height)) height <- dimensions[["height"]] * (1 + padding)
 
   if (length(plot) == 1) {
     # single plot

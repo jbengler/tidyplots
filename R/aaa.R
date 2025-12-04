@@ -5,4 +5,4 @@
 NULL
 
 utils::globalVariables(c(".", ".single_color", "Lower", "Mean", "Upper", "aesthetic",
-                         "col_zscore", "count", "row_zscore", "variable", "x", "y"))
+                         "col_zscore", "count", "row_zscore", "variable", "x", "y", "data"))

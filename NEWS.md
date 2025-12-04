@@ -2,6 +2,9 @@
 
 ## Breaking changes
 * Avoid rounding errors of _p_ values in `add_test_pvalue()` (#142).
+* `split_plot()` is now powered by ggplot2 faceting and not anymore by `patchwork::wrap_plots()`, which 
+led to unexpected glitches in figure legends. However, this change will eventually break code, that uses 
+`patchwork::wrap_plots()` arguments like `guides = "collect"` (#95, #141).
 
 ## Improvements
 

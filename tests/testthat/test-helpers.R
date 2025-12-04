@@ -22,16 +22,11 @@ test_that("check_input works", {
     study |>
     tidyplot(treatment, score, color = treatment) |>
     add_data_points_beeswarm()
-  p2 <- p1
-  pw <- patchwork::wrap_plots(p1, p2)
-  gg_list <- list(p1, p2)
-  pw_list <- list(pw, pw)
+  gg_list <- list(p1, p1)
   tp_list <- list(tp, tp)
   expect_equal(check_input(p1), "gg")
-  expect_equal(check_input(pw), "pw")
   expect_equal(check_input(tp), "tp")
   expect_equal(check_input(gg_list), "gg_list")
-  expect_equal(check_input(pw_list), "pw_list")
   expect_equal(check_input(tp_list), "tp_list")
   expect_equal(check_input(c("hello")), "none")
 })

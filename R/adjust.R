@@ -249,10 +249,11 @@ adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL) {
   height <- plot$tidyplot$height
   unit <- plot$tidyplot$unit
 
-  if (!is.na(width)) width <- ggplot2::unit(width, unit)
-  if (!is.na(height)) height <- ggplot2::unit(height, unit)
+  if (!is.na(width)) width <- ggplot2::unit(c(width, width), unit) else width <- NULL
+  if (!is.na(height)) height <- ggplot2::unit(c(height, height), unit) else height <- NULL
 
-  plot + patchwork::plot_layout(widths = width, heights = height)
+  #plot + patchwork::plot_layout(widths = width, heights = height)
+  plot + ggplot2::theme(panel.widths = width, panel.heights = height)
 }
 
 #' Adjust theme details
