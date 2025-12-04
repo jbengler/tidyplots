@@ -12,6 +12,7 @@ save_plot(
   width = NA,
   height = NA,
   units = c("mm", "cm", "in"),
+  padding = 0.1,
   multiple_files = FALSE,
   view_plot = TRUE,
   bg = "transparent",
@@ -38,6 +39,11 @@ save_plot(
 - units:
 
   Units of length. Defaults to `"mm"`.
+
+- padding:
+
+  Extra white space around the saved plot. Defaults to `0.1` meaning
+  10%.
 
 - multiple_files:
 

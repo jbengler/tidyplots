@@ -43,6 +43,8 @@
 <div class="section level3">
 <h3 id="breaking-changes-development-version">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
 <ul><li>Avoid rounding errors of <em>p</em> values in <code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> (<a href="https://github.com/jbengler/tidyplots/issues/142" class="external-link">#142</a>).</li>
+<li>
+<code><a href="../reference/split_plot.html">split_plot()</a></code> is now powered by ggplot2 faceting and not anymore by <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>, which led to unexpected glitches in figure legends. However, this change will eventually break code, that uses <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code> arguments like <code>guides = "collect"</code> (<a href="https://github.com/jbengler/tidyplots/issues/95" class="external-link">#95</a>, <a href="https://github.com/jbengler/tidyplots/issues/141" class="external-link">#141</a>).</li>
 </ul></div>
 <div class="section level3">
 <h3 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h3>

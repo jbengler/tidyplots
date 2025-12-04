@@ -50,10 +50,9 @@
 <span>  <span class="va">by</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  byrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  guides <span class="op">=</span> <span class="st">"collect"</span>,</span>
-<span>  tag_level <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  design <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  axes <span class="op">=</span> <span class="st">"all"</span>,</span>
+<span>  scales <span class="op">=</span> <span class="st">"free"</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -73,31 +72,21 @@
 <dd><p>The number of columns and rows per page.</p></dd>
 
 
-<dt id="arg-byrow">byrow<a class="anchor" aria-label="anchor" href="#arg-byrow"></a></dt>
-<dd><p>Analogous to <code>byrow</code> in <a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix()</a>. If <code>FALSE</code> the
-plots will be filled in in column-major order</p></dd>
+<dt id="arg-axes">axes<a class="anchor" aria-label="anchor" href="#arg-axes"></a></dt>
+<dd><p>Determines which axes will be drawn in case of fixed scales.
+When <code>"margins"</code> (default), axes will be drawn at the exterior margins.
+<code>"all_x"</code> and <code>"all_y"</code> will draw the respective axes at the interior
+panels too, whereas <code>"all"</code> will draw all axes at all panels.</p></dd>
 
 
-<dt id="arg-guides">guides<a class="anchor" aria-label="anchor" href="#arg-guides"></a></dt>
-<dd><p>A string specifying how guides should be treated in the layout.
-<code>'collect'</code> will collect guides below to the given nesting level, removing
-duplicates. <code>'keep'</code> will stop collection at this level and let guides be
-placed alongside their plot. <code>auto</code> will allow guides to be collected if a
-upper level tries, but place them alongside the plot if not.  If you modify
-default guide "position" with <a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme(legend.position=...)</a>
-while also collecting guides you must apply that change to the overall
-patchwork (see example).</p></dd>
+<dt id="arg-scales">scales<a class="anchor" aria-label="anchor" href="#arg-scales"></a></dt>
+<dd><p>Should scales be fixed (<code>"fixed"</code>, the default),
+free (<code>"free"</code>), or free in one dimension (<code>"free_x"</code>,
+<code>"free_y"</code>)?</p></dd>
 
 
-<dt id="arg-tag-level">tag_level<a class="anchor" aria-label="anchor" href="#arg-tag-level"></a></dt>
-<dd><p>A string (<code>'keep'</code> or <code>'new'</code>) to indicate how
-auto-tagging should behave. See <code><a href="https://patchwork.data-imaginist.com/reference/plot_annotation.html" class="external-link">plot_annotation()</a></code>.</p></dd>
-
-
-<dt id="arg-design">design<a class="anchor" aria-label="anchor" href="#arg-design"></a></dt>
-<dd><p>Specification of the location of areas in the layout. Can either
-be specified as a text string or by concatenating calls to <code><a href="https://patchwork.data-imaginist.com/reference/area.html" class="external-link">area()</a></code> together.
-See the examples for further information on use.</p></dd>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Arguments passed on to the <code>geom</code> function.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -122,7 +111,6 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="adjust_size.html">adjust_size</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">25</span>, height <span class="op">=</span> <span class="fl">25</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">1 page</span></span>
 <span class="r-plt img"><img src="split_plot-2.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Change dimensions of subplots</span></span></span>
@@ -132,7 +120,6 @@ See the examples for further information on use.</p></dd>
 <span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="adjust_size.html">adjust_size</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">15</span>, height <span class="op">=</span> <span class="fl">15</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">✔</span> split_plot: split into <span style="color: #0000BB;">4 plots</span> across <span style="color: #0000BB;">1 page</span></span>
 <span class="r-plt img"><img src="split_plot-3.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Spread plots across multiple pages</span></span></span>

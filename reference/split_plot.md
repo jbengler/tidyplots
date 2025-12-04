@@ -10,10 +10,9 @@ split_plot(
   by,
   ncol = NULL,
   nrow = NULL,
-  byrow = NULL,
-  guides = "collect",
-  tag_level = NULL,
-  design = NULL
+  axes = "all",
+  scales = "free",
+  ...
 )
 ```
 
@@ -32,36 +31,21 @@ split_plot(
 
   The number of columns and rows per page.
 
-- byrow:
+- axes:
 
-  Analogous to `byrow` in
-  [matrix()](https://rdrr.io/r/base/matrix.html). If `FALSE` the plots
-  will be filled in in column-major order
+  Determines which axes will be drawn in case of fixed scales. When
+  `"margins"` (default), axes will be drawn at the exterior margins.
+  `"all_x"` and `"all_y"` will draw the respective axes at the interior
+  panels too, whereas `"all"` will draw all axes at all panels.
 
-- guides:
+- scales:
 
-  A string specifying how guides should be treated in the layout.
-  `'collect'` will collect guides below to the given nesting level,
-  removing duplicates. `'keep'` will stop collection at this level and
-  let guides be placed alongside their plot. `auto` will allow guides to
-  be collected if a upper level tries, but place them alongside the plot
-  if not. If you modify default guide "position" with
-  [theme(legend.position=...)](https://ggplot2.tidyverse.org/reference/theme.html)
-  while also collecting guides you must apply that change to the overall
-  patchwork (see example).
+  Should scales be fixed (`"fixed"`, the default), free (`"free"`), or
+  free in one dimension (`"free_x"`, `"free_y"`)?
 
-- tag_level:
+- ...:
 
-  A string (`'keep'` or `'new'`) to indicate how auto-tagging should
-  behave. See
-  [`plot_annotation()`](https://patchwork.data-imaginist.com/reference/plot_annotation.html).
-
-- design:
-
-  Specification of the location of areas in the layout. Can either be
-  specified as a text string or by concatenating calls to
-  [`area()`](https://patchwork.data-imaginist.com/reference/area.html)
-  together. See the examples for further information on use.
+  Arguments passed on to the `geom` function.
 
 ## Value
 
@@ -85,7 +69,6 @@ energy |>
   add_donut() |>
   adjust_size(width = 25, height = 25) |>
   split_plot(by = year)
-#> ✔ split_plot: split into 4 plots across 1 page
 
 
 # Change dimensions of subplots
@@ -95,7 +78,6 @@ energy |>
   add_donut() |>
   adjust_size(width = 15, height = 15) |>
   split_plot(by = year)
-#> ✔ split_plot: split into 4 plots across 1 page
 
 
 # Spread plots across multiple pages

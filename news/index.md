@@ -7,6 +7,15 @@
 - Avoid rounding errors of *p* values in
   [`add_test_pvalue()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
   ([\#142](https://github.com/jbengler/tidyplots/issues/142)).
+- [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md)
+  is now powered by ggplot2 faceting and not anymore by
+  [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html),
+  which led to unexpected glitches in figure legends. However, this
+  change will eventually break code, that uses
+  [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html)
+  arguments like `guides = "collect"`
+  ([\#95](https://github.com/jbengler/tidyplots/issues/95),
+  [\#141](https://github.com/jbengler/tidyplots/issues/141)).
 
 ### Improvements
 
