@@ -22,6 +22,7 @@ add_test_pvalue(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
 )
@@ -43,6 +44,7 @@ add_test_asterisks(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
 )
@@ -170,7 +172,7 @@ add_test_asterisks(
   a list of arguments to pass to the function
   [`symnum`](https://rdrr.io/r/stats/symnum.html) for symbolic number
   coding of p-values. For example,
-  `symnum.args <- list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, Inf), symbols = c("****", "***", "**", "*", "ns"))`.
+  `symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01, 0.05, Inf), symbols = c("****", "***", "**", "*", "ns"))`.
 
   In other words, we use the following convention for symbols indicating
   statistical significance:
@@ -184,6 +186,10 @@ add_test_asterisks(
   - `***`: p \<= 0.001
 
   - `****`: p \<= 0.0001
+
+- color:
+
+  A hex color for the stroke color. For example, `"#FFFFFF"` for white.
 
 - hide_info:
 

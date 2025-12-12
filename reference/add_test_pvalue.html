@@ -62,6 +62,7 @@
 <span>  p.adjust.by <span class="op">=</span> <span class="st">"panel"</span>,</span>
 <span>  symnum.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cutpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="cn">Inf</span><span class="op">)</span>, symbols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"***"</span>, <span class="st">"**"</span>,</span>
 <span>    <span class="st">"*"</span>, <span class="st">"ns"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="va">plot</span><span class="op">$</span><span class="va">tidyplot</span><span class="op">$</span><span class="va">ink</span>,</span>
 <span>  hide_info <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
@@ -83,6 +84,7 @@
 <span>  p.adjust.by <span class="op">=</span> <span class="st">"panel"</span>,</span>
 <span>  symnum.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cutpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="cn">Inf</span><span class="op">)</span>, symbols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"***"</span>, <span class="st">"**"</span>,</span>
 <span>    <span class="st">"*"</span>, <span class="st">"ns"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  color <span class="op">=</span> <span class="va">plot</span><span class="op">$</span><span class="va">tidyplot</span><span class="op">$</span><span class="va">ink</span>,</span>
 <span>  hide_info <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -200,7 +202,7 @@ independently. P-values are adjusted by panel when <code>p.adjust.by =
 <dt id="arg-symnum-args">symnum.args<a class="anchor" aria-label="anchor" href="#arg-symnum-args"></a></dt>
 <dd><p>a list of arguments to pass to the function
  <code><a href="https://rdrr.io/r/stats/symnum.html" class="external-link">symnum</a></code> for symbolic number coding of p-values. For
- example, <code>symnum.args &lt;- list(cutpoints = c(0, 0.0001, 0.001, 0.01,
+ example, <code>symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01,
  0.05, Inf), symbols = c("****", "***", "**", "*",  "ns"))</code>.</p>
 <p>In other words, we use the following convention for symbols indicating
  statistical significance:</p><ul><li><p><code>ns</code>: p &gt; 0.05</p></li>
@@ -209,6 +211,10 @@ independently. P-values are adjusted by panel when <code>p.adjust.by =
 <li><p><code>***</code>: p &lt;= 0.001</p></li>
 <li><p><code>****</code>:  p &lt;= 0.0001</p></li>
 </ul></dd>
+
+
+<dt id="arg-color">color<a class="anchor" aria-label="anchor" href="#arg-color"></a></dt>
+<dd><p>A hex color for the stroke color. For example, <code>"#FFFFFF"</code> for white.</p></dd>
 
 
 <dt id="arg-hide-info">hide_info<a class="anchor" aria-label="anchor" href="#arg-hide-info"></a></dt>

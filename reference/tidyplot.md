@@ -12,7 +12,9 @@ tidyplot(
   height = NULL,
   unit = NULL,
   dodge_width = NULL,
-  my_style = NULL
+  my_style = NULL,
+  paper = NULL,
+  ink = NULL
 )
 ```
 
@@ -63,6 +65,20 @@ tidyplot(
   the setting from the [tidyplots
   options](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md),
   which default to no additional styling.
+
+- paper:
+
+  Background color. The default (`NULL`) retrieves the setting from the
+  [tidyplots
+  options](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md),
+  which defaults to `"#FFFFFF"`.
+
+- ink:
+
+  Foreground color. The default (`NULL`) retrieves the setting from the
+  [tidyplots
+  options](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md),
+  which defaults to `"#000000"`.
 
 ## Examples
 

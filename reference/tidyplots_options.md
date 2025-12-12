@@ -10,7 +10,9 @@ tidyplots_options(
   height = NULL,
   unit = NULL,
   dodge_width = NULL,
-  my_style = NULL
+  my_style = NULL,
+  paper = NULL,
+  ink = NULL
 )
 ```
 
@@ -43,6 +45,16 @@ tidyplots_options(
   Styling function to apply to the plot. The default (`NULL`) retrieves
   the setting from the tidyplots options, which default to no additional
   styling.
+
+- paper:
+
+  Background color. The default (`NULL`) retrieves the setting from the
+  tidyplots options, which defaults to `"#FFFFFF"`.
+
+- ink:
+
+  Foreground color. The default (`NULL`) retrieves the setting from the
+  tidyplots options, which defaults to `"#000000"`.
 
 ## Value
 

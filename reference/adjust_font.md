@@ -5,7 +5,7 @@ Adjust font
 ## Usage
 
 ``` r
-adjust_font(plot, fontsize = 7, family = NULL, face = NULL, color = "black")
+adjust_font(plot, fontsize = 7, family = NULL, face = NULL)
 ```
 
 ## Arguments
@@ -34,10 +34,6 @@ adjust_font(plot, fontsize = 7, family = NULL, face = NULL, color = "black")
 - face:
 
   Font face ("plain", "italic", "bold", "bold.italic")
-
-- color:
-
-  A hex color for the stroke color. For example, `"#FFFFFF"` for white.
 
 ## Value
 

@@ -50,7 +50,9 @@
 <span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  unit <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  dodge_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  my_style <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  my_style <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  paper <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ink <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -83,6 +85,16 @@ at least one discrete axis and to <code>0</code> for plots with two continuous a
 <dt id="arg-my-style">my_style<a class="anchor" aria-label="anchor" href="#arg-my-style"></a></dt>
 <dd><p>Styling function to apply to the plot. The default (<code>NULL</code>) retrieves the setting from the
 tidyplots options, which default to no additional styling.</p></dd>
+
+
+<dt id="arg-paper">paper<a class="anchor" aria-label="anchor" href="#arg-paper"></a></dt>
+<dd><p>Background color. The default (<code>NULL</code>) retrieves the setting from the
+tidyplots options, which defaults to <code>"#FFFFFF"</code>.</p></dd>
+
+
+<dt id="arg-ink">ink<a class="anchor" aria-label="anchor" href="#arg-ink"></a></dt>
+<dd><p>Foreground color. The default (<code>NULL</code>) retrieves the setting from the
+tidyplots options, which defaults to <code>"#000000"</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

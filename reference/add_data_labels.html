@@ -55,7 +55,7 @@
 <span>  jitter_height <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  preserve <span class="op">=</span> <span class="st">"total"</span>,</span>
 <span>  background <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  background_color <span class="op">=</span> <span class="st">"#FFFFFF"</span>,</span>
+<span>  background_color <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  background_alpha <span class="op">=</span> <span class="fl">0.6</span>,</span>
 <span>  label_position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"below"</span>, <span class="st">"above"</span>, <span class="st">"left"</span>, <span class="st">"right"</span>, <span class="st">"center"</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -74,7 +74,7 @@
 <span>  box.padding <span class="op">=</span> <span class="fl">0.2</span>,</span>
 <span>  max.overlaps <span class="op">=</span> <span class="cn">Inf</span>,</span>
 <span>  background <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  background_color <span class="op">=</span> <span class="st">"#FFFFFF"</span>,</span>
+<span>  background_color <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  background_alpha <span class="op">=</span> <span class="fl">0.6</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -131,7 +131,7 @@ a position, or the width of a <code>"single"</code> element?</p></dd>
 
 
 <dt id="arg-background-color">background_color<a class="anchor" aria-label="anchor" href="#arg-background-color"></a></dt>
-<dd><p>Hex color of the background box. Defaults to <code>"#FFFFFF"</code> for white.</p></dd>
+<dd><p>Hex color of the background box. The default (<code>NULL</code>) retrieves the setting from the <code>paper</code> color of the plot, which defaults to <code>"#FFFFFF"</code>.</p></dd>
 
 
 <dt id="arg-background-alpha">background_alpha<a class="anchor" aria-label="anchor" href="#arg-background-alpha"></a></dt>

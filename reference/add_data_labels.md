@@ -15,7 +15,7 @@ add_data_labels(
   jitter_height = 0,
   preserve = "total",
   background = FALSE,
-  background_color = "#FFFFFF",
+  background_color = NULL,
   background_alpha = 0.6,
   label_position = c("below", "above", "left", "right", "center"),
   ...
@@ -34,7 +34,7 @@ add_data_labels_repel(
   box.padding = 0.2,
   max.overlaps = Inf,
   background = FALSE,
-  background_color = "#FFFFFF",
+  background_color = NULL,
   background_alpha = 0.6,
   ...
 )
@@ -99,7 +99,9 @@ add_data_labels_repel(
 
 - background_color:
 
-  Hex color of the background box. Defaults to `"#FFFFFF"` for white.
+  Hex color of the background box. The default (`NULL`) retrieves the
+  setting from the `paper` color of the plot, which defaults to
+  `"#FFFFFF"`.
 
 - background_alpha:
 
