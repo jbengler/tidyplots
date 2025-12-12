@@ -11,7 +11,7 @@ adjust_legend_title(
   fontsize = NULL,
   family = NULL,
   face = NULL,
-  color = "black",
+  color = NULL,
   ...
 )
 

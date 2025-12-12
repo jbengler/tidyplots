@@ -15,7 +15,7 @@ add_data_labels(
   jitter_height = 0,
   preserve = "total",
   background = FALSE,
-  background_color = "#FFFFFF",
+  background_color = NULL,
   background_alpha = 0.6,
   label_position = c("below", "above", "left", "right", "center"),
   ...
@@ -34,7 +34,7 @@ add_data_labels_repel(
   box.padding = 0.2,
   max.overlaps = Inf,
   background = FALSE,
-  background_color = "#FFFFFF",
+  background_color = NULL,
   background_alpha = 0.6,
   ...
 )
@@ -70,7 +70,7 @@ a position, or the width of a \code{"single"} element?}
 
 \item{background}{Whether to include semitransparent background box behind the labels to improve legibility. Defaults to \code{FALSE}.}
 
-\item{background_color}{Hex color of the background box. Defaults to \code{"#FFFFFF"} for white.}
+\item{background_color}{Hex color of the background box. The default (\code{NULL}) retrieves the setting from the \code{paper} color of the plot, which defaults to \code{"#FFFFFF"}.}
 
 \item{background_alpha}{Opacity of the background box. Defaults to \code{0.6}.}
 

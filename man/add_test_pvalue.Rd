@@ -22,6 +22,7 @@ add_test_pvalue(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
 )
@@ -43,6 +44,7 @@ add_test_asterisks(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
 )
@@ -123,13 +125,15 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
 
 \item{symnum.args}{a list of arguments to pass to the function
  \code{\link[stats]{symnum}} for symbolic number coding of p-values. For
- example, \code{symnum.args <- list(cutpoints = c(0, 0.0001, 0.001, 0.01,
+ example, \code{symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01,
  0.05, Inf), symbols = c("****", "***", "**", "*",  "ns"))}.
 
  In other words, we use the following convention for symbols indicating
  statistical significance: \itemize{ \item \code{ns}: p > 0.05 \item
  \code{*}: p <= 0.05 \item \code{**}: p <= 0.01 \item \code{***}: p <= 0.001
  \item \code{****}:  p <= 0.0001 }}
+
+\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 
 \item{hide_info}{Whether to hide details about the statistical testing as caption. Defaults to \code{FALSE}.}
 

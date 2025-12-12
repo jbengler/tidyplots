@@ -13,7 +13,7 @@ adjust_title(
   fontsize = NULL,
   family = NULL,
   face = NULL,
-  color = "black",
+  color = NULL,
   ...
 )
 
@@ -23,7 +23,7 @@ adjust_x_axis_title(
   fontsize = NULL,
   family = NULL,
   face = NULL,
-  color = "black",
+  color = NULL,
   ...
 )
 
@@ -33,7 +33,7 @@ adjust_y_axis_title(
   fontsize = NULL,
   family = NULL,
   face = NULL,
-  color = "black",
+  color = NULL,
   ...
 )
 
@@ -43,7 +43,7 @@ adjust_caption(
   fontsize = NULL,
   family = NULL,
   face = NULL,
-  color = "black",
+  color = NULL,
   ...
 )
 }

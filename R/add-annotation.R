@@ -77,7 +77,7 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 #' Add data labels
 #' @param label Variable in the dataset to be used for the text label.
 #' @param background Whether to include semitransparent background box behind the labels to improve legibility. Defaults to `FALSE`.
-#' @param background_color Hex color of the background box. Defaults to `"#FFFFFF"` for white.
+#' @param background_color Hex color of the background box. The default (`NULL`) retrieves the setting from the `paper` color of the plot, which defaults to `"#FFFFFF"`.
 #' @param background_alpha Opacity of the background box. Defaults to `0.6`.
 #' @param label_position Position of the label in relation to the data point. Can be one of `c("below", "above", "left", "right", "center")`.
 #' @param segment.size Thickness of the line connecting the label with the data point. Defaults to `0.2`.
@@ -132,10 +132,11 @@ add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", l
 #' @export
 add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
                             dodge_width = NULL, jitter_width = 0, jitter_height = 0, preserve = "total",
-                            background = FALSE, background_color = "#FFFFFF", background_alpha = 0.6,
+                            background = FALSE, background_color = NULL, background_alpha = 0.6,
                             label_position = c("below", "above", "left", "right", "center"), ...) {
   plot <- check_tidyplot(plot)
   size <- fontsize/ggplot2::.pt
+  background_color <- background_color %||% plot$tidyplot$paper
   if (!background) background_alpha <- 0
   label.padding <- ggplot2::unit(0.1, "lines")
 
@@ -187,9 +188,10 @@ add_data_labels <- function(plot, label, data = all_rows(), fontsize = 7,
 add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
                                   dodge_width = NULL, jitter_width = 0, jitter_height = 0, preserve = "total",
                                   segment.size = 0.2, box.padding = 0.2, max.overlaps = Inf,
-                                  background = FALSE, background_color = "#FFFFFF", background_alpha = 0.6, ...) {
+                                  background = FALSE, background_color = NULL, background_alpha = 0.6, ...) {
   plot <- check_tidyplot(plot)
   size <- fontsize/ggplot2::.pt
+  background_color <- background_color %||% plot$tidyplot$paper
   if (!background) background_alpha <- 0
   label.padding <- ggplot2::unit(0.1, "lines")
 
@@ -254,7 +256,7 @@ add_annotation_text <- function(plot, text, x, y, fontsize = 7, ...) {
 #' @rdname add_annotation_text
 #' @export
 add_annotation_rectangle <- function(plot, xmin, xmax, ymin, ymax,
-                                     fill = "#000000", color = NA, alpha = 0.1, ...) {
+                                     fill = plot$tidyplot$ink, color = NA, alpha = 0.1, ...) {
   plot <- check_tidyplot(plot)
   plot + ggplot2::annotate("rect", xmin = xmin, xmax = xmax,
                            ymin = ymin, ymax = ymax,
@@ -262,7 +264,7 @@ add_annotation_rectangle <- function(plot, xmin, xmax, ymin, ymax,
 }
 #' @rdname add_annotation_text
 #' @export
-add_annotation_line <- function(plot, x, xend, y, yend, color = "#000000", ...) {
+add_annotation_line <- function(plot, x, xend, y, yend, color = plot$tidyplot$ink, ...) {
   plot <- check_tidyplot(plot)
   plot + ggplot2::annotate("segment", x = x, xend = xend, y = y, yend = yend, color = color, ...)
 }

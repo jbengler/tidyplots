@@ -147,6 +147,7 @@ add_test_pvalue <- function(plot,
                         cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
                         symbols = c("***", "**", "*", "ns")
                       ),
+                      color = plot$tidyplot$ink,
                       hide_info = FALSE,
                       ...) {
   plot <- check_tidyplot(plot)
@@ -202,6 +203,7 @@ add_test_pvalue <- function(plot,
                        p.adjust.by = p.adjust.by,
                        symnum.args = symnum.args,
                        method.args = method.args,
+                       color = color,
                        ...)
 }
 #' @rdname add_test_pvalue
@@ -224,6 +226,7 @@ add_test_asterisks <- function(plot,
                                cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
                                symbols = c("***", "**", "*", "ns")
                              ),
+                             color = plot$tidyplot$ink,
                              hide_info = FALSE,
                              ...) {
   plot <- check_tidyplot(plot)
@@ -242,6 +245,7 @@ add_test_asterisks <- function(plot,
             hide.ns = hide.ns,
             p.adjust.by = p.adjust.by,
             symnum.args = symnum.args,
+            color = color,
             hide_info = hide_info,
             ...)
 }

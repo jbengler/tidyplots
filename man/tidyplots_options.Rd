@@ -9,7 +9,9 @@ tidyplots_options(
   height = NULL,
   unit = NULL,
   dodge_width = NULL,
-  my_style = NULL
+  my_style = NULL,
+  paper = NULL,
+  ink = NULL
 )
 }
 \arguments{
@@ -29,6 +31,12 @@ at least one discrete axis and to \code{0} for plots with two continuous axes.}
 
 \item{my_style}{Styling function to apply to the plot. The default (\code{NULL}) retrieves the setting from the
 \link[=tidyplots_options]{tidyplots options}, which default to no additional styling.}
+
+\item{paper}{Background color. The default (\code{NULL}) retrieves the setting from the
+\link[=tidyplots_options]{tidyplots options}, which defaults to \code{"#FFFFFF"}.}
+
+\item{ink}{Foreground color. The default (\code{NULL}) retrieves the setting from the
+\link[=tidyplots_options]{tidyplots options}, which defaults to \code{"#000000"}.}
 }
 \value{
 The old options invisibly

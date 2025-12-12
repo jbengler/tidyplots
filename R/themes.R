@@ -41,71 +41,98 @@
 #' @export
 theme_tidyplot <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
+  paper <- plot$tidyplot$paper
+  ink <- plot$tidyplot$ink
+
+  plot <- plot + ggplot2::theme_classic(paper = paper, ink = ink)
+
+  if (get_variable(plot, "colour") == ".single_color")
+    plot <- plot |> remove_legend()
+
   plot |>
-    style_just_xy() |>
-    adjust_font(fontsize)
+    adjust_font(fontsize) |>
+    adjust_size() +
+    ggplot2::theme(
+      plot.background = ggplot2::element_rect(colour = NA),
+      panel.border = ggplot2::element_blank(),
+      axis.line = ggplot2::element_line(linewidth = 0.25),
+      axis.ticks = ggplot2::element_line(linewidth = 0.25),
+      strip.background = ggplot2::element_rect(colour = NA),
+      # plot.margin = ggplot2::unit(c(0.5, 0.5, 0.5, 0.5), "mm")
+    )
 }
 #' @rdname theme_tidyplot
 #' @export
 theme_ggplot2 <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
-  plot <- plot + ggplot2::theme_gray()
+  paper <- plot$tidyplot$paper
+  ink <- plot$tidyplot$ink
+
+  plot <- plot + ggplot2::theme_grey(paper = paper, ink = ink)
+
   if (get_variable(plot, "colour") == ".single_color")
     plot <- plot |> remove_legend()
-  plot |> adjust_font(fontsize)
+
+  plot |>
+    adjust_font(fontsize) |>
+    adjust_size()
 }
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_xy <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
-  plot <- plot + ggplot2::theme_minimal()
-  if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot |> remove_legend()
-  plot |> adjust_font(fontsize) +
+  paper <- plot$tidyplot$paper
+  ink <- plot$tidyplot$ink
+
+  plot |>
+    theme_tidyplot() |>
+    adjust_font(fontsize) |>
+    adjust_size() +
     ggplot2::theme(
-      axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.minor.x = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.minor.y = ggplot2::element_blank(),
-      axis.ticks.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      axis.ticks.y = ggplot2::element_line(colour = "grey", linewidth = 0.15)
+      axis.line.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      axis.line.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      panel.grid.major.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      panel.grid.major.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      axis.ticks.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      axis.ticks.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15)
     )
 }
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_x <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
-  plot <- plot + ggplot2::theme_minimal()
-  if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot |> remove_legend()
-  plot |> adjust_font(fontsize) +
+  paper <- plot$tidyplot$paper
+  ink <- plot$tidyplot$ink
+
+  plot |>
+    theme_tidyplot() |>
+    adjust_font(fontsize) |>
+    adjust_size() +
     ggplot2::theme(
-      axis.line.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.major.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.minor.x = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_blank(),
-      panel.grid.minor.y = ggplot2::element_blank(),
-      axis.ticks.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      axis.ticks.y = ggplot2::element_line(colour = "grey", linewidth = 0.15)
+      axis.line.x = ggplot2::element_blank(),
+      axis.line.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      panel.grid.major.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      axis.ticks.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      axis.ticks.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15)
     )
 }
 #' @rdname theme_tidyplot
 #' @export
 theme_minimal_y <- function(plot, fontsize = 7) {
   plot <- check_tidyplot(plot)
-  plot <- plot + ggplot2::theme_minimal()
-  if (get_variable(plot, "colour") == ".single_color")
-    plot <- plot |> remove_legend()
-  plot |> adjust_font(fontsize) +
+  paper <- plot$tidyplot$paper
+  ink <- plot$tidyplot$ink
+
+  plot |>
+    theme_tidyplot() |>
+    adjust_font(fontsize) |>
+    adjust_size() +
     ggplot2::theme(
-      axis.line.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.major.x = ggplot2::element_blank(),
-      panel.grid.minor.x = ggplot2::element_blank(),
-      panel.grid.major.y = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      panel.grid.minor.y = ggplot2::element_blank(),
-      axis.ticks.x = ggplot2::element_line(colour = "grey", linewidth = 0.15),
-      axis.ticks.y = ggplot2::element_line(colour = "grey", linewidth = 0.15)
+      axis.line.y = ggplot2::element_blank(),
+      axis.line.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      panel.grid.major.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      axis.ticks.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
+      axis.ticks.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15)
     )
 }
 
@@ -121,44 +148,3 @@ style_void <- function(plot, fontsize = 7) {
     )
 }
 
-style_just_xy <- function(plot) {
-  plot |>
-    style_white_bg() +
-    ggplot2::theme(
-      panel.border = ggplot2::element_blank(),
-      axis.line = ggplot2::element_line(linewidth = 0.25, colour = "black"),
-      axis.ticks = ggplot2::element_line(linewidth = 0.25, colour = "black")
-    )
-}
-
-style_white_bg <- function(plot) {
-  plot +
-    ggplot2::theme(
-      plot.margin = ggplot2::unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
-      plot.background = ggplot2::element_rect(fill = NA, colour = NA),
-      legend.background = ggplot2::element_rect(fill = NA, colour = NA),
-      legend.key = ggplot2::element_rect(fill = NA, colour = NA),
-      strip.background = ggplot2::element_rect(fill = NA, colour = NA),
-      panel.background = ggplot2::element_rect(fill = NA, colour = NA),
-      panel.border = ggplot2::element_rect(fill = NA, colour = "black", linewidth = 0.5),
-      panel.grid.major = ggplot2::element_blank(),
-      panel.grid.minor = ggplot2::element_blank(),
-      axis.ticks = ggplot2::element_line(colour = "black", linewidth = 0.25)
-    )
-}
-
-style_black_bg <- function(plot) {
-  plot +
-    ggplot2::theme(
-      plot.margin = ggplot2::unit(c(0.5, 0.5, 0.5, 0.5), "mm"),
-      plot.background = ggplot2::element_rect(fill = "black", colour = "black"),
-      legend.background = ggplot2::element_rect(fill = "black", colour = "black"),
-      legend.key = ggplot2::element_rect(fill = "black", colour = "black"),
-      strip.background = ggplot2::element_rect(fill = "black", colour = "black"),
-      panel.background = ggplot2::element_rect(fill = "black", colour = "black"),
-      panel.border = ggplot2::element_rect(fill = NA, colour = "grey", linewidth = 0.5),
-      panel.grid.major = ggplot2::element_blank(),
-      panel.grid.minor = ggplot2::element_blank(),
-      axis.ticks = ggplot2::element_line(colour = "grey", linewidth = 0.25)
-    )
-}

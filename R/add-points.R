@@ -127,7 +127,7 @@ f_points <- function(plot, data = all_rows(),
       if (("color" %in% names(params)) && !("fill" %in% names(params))) {
         params$fill <- params$color
       }
-      params$color <- "#FFFFFF"
+      params$color <- plot$tidyplot$paper
     }
   }
 

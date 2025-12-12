@@ -20,12 +20,12 @@
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMjMyLjc4fDQ4Ny4yMnwxOTkuNzR8Mzc2LjI2'>
-    <rect x='232.78' y='199.74' width='254.44' height='176.53' />
+  <clipPath id='cpMjI4LjcyfDQ5MS4yOHwxOTUuNjd8MzgwLjMz'>
+    <rect x='228.72' y='195.67' width='262.56' height='184.65' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMjMyLjc4fDQ4Ny4yMnwxOTkuNzR8Mzc2LjI2)'>
-<rect x='232.78' y='199.74' width='254.44' height='176.53' style='stroke-width: 1.07; stroke: none;' />
+<g clip-path='url(#cpMjI4LjcyfDQ5MS4yOHwxOTUuNjd8MzgwLjMz)'>
+<rect x='228.72' y='195.67' width='262.56' height='184.65' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
@@ -35,7 +35,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMjc4LjQ5fDQyMC4yMnwyMTIuOTB8MzU0LjYz)'>
-<rect x='278.49' y='212.90' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none;' />
+<rect x='278.49' y='212.90' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <polygon points='420.22,315.98 318.35,251.56 306.92,251.56 362.77,315.98 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt; fill: #0072B2; fill-opacity: 0.40;' />
 <polyline points='420.22,315.98 318.35,251.56 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
 <polyline points='306.92,251.56 362.77,315.98 ' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
@@ -51,12 +51,12 @@
 <polyline points='278.49,251.56 278.49,315.98 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<polyline points='278.49,354.63 278.49,212.90 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='278.49,354.63 278.49,212.90 ' style='stroke-width: 0.53; stroke-linecap: square;' />
 <text x='273.56' y='318.39' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='30.35px' lengthAdjust='spacingAndGlyphs'>Carnivore</text>
 <text x='273.56' y='253.97' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='30.35px' lengthAdjust='spacingAndGlyphs'>Herbivore</text>
 <polyline points='275.75,315.98 278.49,315.98 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='275.75,251.56 278.49,251.56 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
-<polyline points='278.49,354.63 420.22,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='278.49,354.63 420.22,354.63 ' style='stroke-width: 0.53; stroke-linecap: square;' />
 <polyline points='278.49,357.37 278.49,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='315.37,357.37 315.37,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='352.24,357.37 352.24,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
@@ -67,17 +67,17 @@
 <text x='389.12' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>1500</text>
 <text x='349.36' y='373.39' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='19.08px' lengthAdjust='spacingAndGlyphs'>speed</text>
 <text transform='translate(239.02,283.77) rotate(-90)' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='11.29px' lengthAdjust='spacingAndGlyphs'>diet</text>
-<rect x='431.18' y='244.07' width='54.62' height='79.40' style='stroke-width: 1.07; stroke: none;' />
+<rect x='431.18' y='244.07' width='54.62' height='79.40' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <text x='436.66' y='255.09' style='font-size: 7.00px; font-family: sans;' textLength='18.28px' lengthAdjust='spacingAndGlyphs'>family</text>
-<rect x='436.66' y='261.30' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
+<rect x='436.66' y='261.30' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='437.02' y='261.65' width='10.63' height='10.63' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2; fill-opacity: 0.40;' />
-<rect x='436.66' y='272.64' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
+<rect x='436.66' y='272.64' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='437.02' y='272.99' width='10.63' height='10.63' style='stroke-width: 0.53; stroke: #56B4E9; stroke-linecap: butt; stroke-linejoin: miter; fill: #56B4E9; fill-opacity: 0.40;' />
-<rect x='436.66' y='283.97' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
+<rect x='436.66' y='283.97' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='437.02' y='284.33' width='10.63' height='10.63' style='stroke-width: 0.53; stroke: #009E73; stroke-linecap: butt; stroke-linejoin: miter; fill: #009E73; fill-opacity: 0.40;' />
-<rect x='436.66' y='295.31' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
+<rect x='436.66' y='295.31' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='437.02' y='295.67' width='10.63' height='10.63' style='stroke-width: 0.53; stroke: #F5C710; stroke-linecap: butt; stroke-linejoin: miter; fill: #F5C710; fill-opacity: 0.40;' />
-<rect x='436.66' y='306.65' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
+<rect x='436.66' y='306.65' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='437.02' y='307.01' width='10.63' height='10.63' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00; fill-opacity: 0.40;' />
 <text x='453.48' y='269.38' style='font-size: 7.00px; font-family: sans;' textLength='12.45px' lengthAdjust='spacingAndGlyphs'>Bird</text>
 <text x='453.48' y='280.71' style='font-size: 7.00px; font-family: sans;' textLength='13.23px' lengthAdjust='spacingAndGlyphs'>Fish</text>

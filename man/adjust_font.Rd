@@ -4,7 +4,7 @@
 \alias{adjust_font}
 \title{Adjust font}
 \usage{
-adjust_font(plot, fontsize = 7, family = NULL, face = NULL, color = "black")
+adjust_font(plot, fontsize = 7, family = NULL, face = NULL)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
@@ -21,8 +21,6 @@ is considered default is dependant on the graphics device and the operating
 system.}
 
 \item{face}{Font face ("plain", "italic", "bold", "bold.italic")}
-
-\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 }
 \value{
 A \code{tidyplot} object.

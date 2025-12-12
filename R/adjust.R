@@ -317,18 +317,20 @@ adjust_theme_details <- function(plot, ...) {
 #'   adjust_font(face = "bold")
 #'
 #' @export
-adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = "black") {
+adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL) {
   plot <- check_tidyplot(plot)
   plot +
     ggplot2::theme(
-      plot.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, hjust = 0.5, vjust = 0.5),
-      plot.subtitle = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, hjust = 0.5, vjust = 0.5),
-      text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
-      axis.text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
-      axis.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
-      legend.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
-      legend.text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
-      strip.text = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color),
+      plot.title = ggplot2::element_text(size = fontsize, family = family, face = face,
+                                         hjust = 0.5, vjust = 0.5),
+      plot.subtitle = ggplot2::element_text(size = fontsize, family = family, face = face,
+                                            hjust = 0.5, vjust = 0.5),
+      text = ggplot2::element_text(size = fontsize, family = family, face = face),
+      axis.text = ggplot2::element_text(size = fontsize, family = family, face = face),
+      axis.title = ggplot2::element_text(size = fontsize, family = family, face = face),
+      legend.title = ggplot2::element_text(size = fontsize, family = family, face = face),
+      legend.text = ggplot2::element_text(size = fontsize, family = family, face = face),
+      strip.text = ggplot2::element_text(size = fontsize, family = family, face = face),
       legend.key.size = ggplot2::unit(4, "mm")
     )
 }
@@ -401,7 +403,7 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL, color = 
 #'   adjust_legend_position("none")
 #'
 #' @export
-adjust_legend_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = "black", ...) {
+adjust_legend_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
   plot |> adjust_legend(title = title) +
     ggplot2::theme(legend.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, ...))
 }
@@ -520,25 +522,25 @@ adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, a
 #'   adjust_caption("$H[2]*O$")
 #'
 #' @export
-adjust_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = "black", ...) {
+adjust_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
   plot |> adjust_description(title = title) +
     ggplot2::theme(plot.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, ...))
 }
 #' @rdname adjust_title
 #' @export
-adjust_x_axis_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = "black", ...) {
+adjust_x_axis_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
   plot |> adjust_description(x_axis_title = title) +
     ggplot2::theme(axis.title.x = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color))
 }
 #' @rdname adjust_title
 #' @export
-adjust_y_axis_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = "black", ...) {
+adjust_y_axis_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
   plot |> adjust_description(y_axis_title = title) +
     ggplot2::theme(axis.title.y = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color))
 }
 #' @rdname adjust_title
 #' @export
-adjust_caption <- function(plot, caption = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = "black", ...) {
+adjust_caption <- function(plot, caption = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
   plot |> adjust_description(caption = caption) +
     ggplot2::theme(plot.caption = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color))
 }

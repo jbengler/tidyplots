@@ -20,12 +20,12 @@
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMjc2Ljg1fDQ0My4xNXwxOTkuNzR8Mzc2LjI2'>
-    <rect x='276.85' y='199.74' width='166.30' height='176.53' />
+  <clipPath id='cpMjcyLjc5fDQ0Ny4yMXwxOTUuNjd8MzgwLjMz'>
+    <rect x='272.79' y='195.67' width='174.42' height='184.65' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMjc2Ljg1fDQ0My4xNXwxOTkuNzR8Mzc2LjI2)'>
-<rect x='276.85' y='199.74' width='166.30' height='176.53' style='stroke-width: 1.07; stroke: none;' />
+<g clip-path='url(#cpMjcyLjc5fDQ0Ny4yMXwxOTUuNjd8MzgwLjMz)'>
+<rect x='272.79' y='195.67' width='174.42' height='184.65' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
@@ -35,7 +35,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMzAwLjAwfDQ0MS43M3wyMTIuOTB8MzU0LjYz)'>
-<rect x='300.00' y='212.90' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none;' />
+<rect x='300.00' y='212.90' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <circle cx='347.56' cy='348.19' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <circle cx='348.04' cy='343.42' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
 <circle cx='334.06' cy='341.03' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
@@ -98,7 +98,7 @@
 <text x='404.37' y='305.90' text-anchor='middle' style='font-size: 7.00px; fill: #0072B2; font-family: sans;' textLength='11.68px' lengthAdjust='spacingAndGlyphs'>p10</text>
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<polyline points='300.00,354.63 300.00,212.90 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='300.00,354.63 300.00,212.90 ' style='stroke-width: 0.53; stroke-linecap: square;' />
 <text x='295.07' y='355.37' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>0</text>
 <text x='295.07' y='331.51' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='7.79px' lengthAdjust='spacingAndGlyphs'>10</text>
 <text x='295.07' y='307.65' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='7.79px' lengthAdjust='spacingAndGlyphs'>20</text>
@@ -111,7 +111,7 @@
 <polyline points='297.26,281.38 300.00,281.38 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='297.26,257.52 300.00,257.52 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='297.26,233.66 300.00,233.66 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
-<polyline points='300.00,354.63 441.73,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='300.00,354.63 441.73,354.63 ' style='stroke-width: 0.53; stroke-linecap: square;' />
 <polyline points='338.65,357.37 338.65,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='403.08,357.37 403.08,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <text x='338.65' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='24.52px' lengthAdjust='spacingAndGlyphs'>placebo</text>

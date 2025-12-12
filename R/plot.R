@@ -13,6 +13,10 @@
 #' at least one discrete axis and to `0` for plots with two continuous axes.
 #' @param my_style Styling function to apply to the plot. The default (`NULL`) retrieves the setting from the
 #'   [tidyplots options][tidyplots_options], which default to no additional styling.
+#' @param paper Background color. The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which defaults to `"#FFFFFF"`.
+#' @param ink Foreground color. The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which defaults to `"#000000"`.
 #' @param ... Mappings for the `x` axis, `y` axis and `color`, see examples.
 #' Additional argument are passed to `ggplot2::aes()`.
 #'
@@ -42,7 +46,9 @@ tidyplot <- function(data, ...,
                      height = NULL,
                      unit = NULL,
                      dodge_width = NULL,
-                     my_style = NULL) {
+                     my_style = NULL,
+                     paper = NULL,
+                     ink = NULL) {
   mapping <- ggplot2::aes(...)
 
   # Add .single_color column to data if `colour` and `fill` mappings are missing
@@ -67,6 +73,9 @@ tidyplot <- function(data, ...,
   plot$tidyplot$width <- width %||% getOption("tidyplots.width") %||% 50
   plot$tidyplot$height <- height %||% getOption("tidyplots.height") %||% 50
   plot$tidyplot$unit <- unit %||% getOption("tidyplots.unit") %||% "mm"
+
+  plot$tidyplot$paper <- paper %||% getOption("tidyplots.paper") %||% "#FFFFFF"
+  plot$tidyplot$ink <- ink %||% getOption("tidyplots.ink") %||% "#000000"
 
   plot$tidyplot$padding_x <- c(0.05, 0.05)
   plot$tidyplot$padding_y <- c(0.05, 0.05)
@@ -150,14 +159,18 @@ tidyplots_options <- function(
   height = NULL,
   unit = NULL,
   dodge_width = NULL,
-  my_style = NULL
+  my_style = NULL,
+  paper = NULL,
+  ink = NULL
 ) {
   opts <- options(
     tidyplots.width = width,
     tidyplots.height = height,
     tidyplots.unit = unit,
     tidyplots.dodge_width = dodge_width,
-    tidyplots.my_style = my_style
+    tidyplots.my_style = my_style,
+    tidyplots.paper = paper,
+    tidyplots.ink = ink
   )
   invisible(opts)
 }
@@ -298,7 +311,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' Defaults to `NA`. In case of `NA`, the dimensions are inferred from the
 #' incoming `plot` object (see Details).
 #' @param units Units of length. Defaults to `"mm"`.
-#' @param padding Extra white space around the saved plot. Defaults to `0.1` meaning 10%.
+#' @param padding Extra space around the saved plot. Defaults to `0.1` meaning 10%.
 #' @param multiple_files Whether to save multiple pages as individual files.
 #' @param view_plot Whether to view the plot on screen after saving.
 #' @inheritParams ggplot2::ggsave
@@ -352,7 +365,7 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' @export
 save_plot <- function(plot = ggplot2::last_plot(), filename,
                       width = NA, height = NA, units = c("mm", "cm", "in"), padding = 0.1,
-                      multiple_files = FALSE, view_plot = TRUE, bg = "transparent", ...) {
+                      multiple_files = FALSE, view_plot = TRUE, ...) {
   if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
 
@@ -371,7 +384,7 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
   if (length(plot) == 1) {
     # single plot
     ggplot2::ggsave(plot = plot[[1]], filename = filename, width = width,
-                    height = height, units = units, bg = bg, ...)
+                    height = height, units = units, ...)
     cli::cli_alert_success("save_plot: saved to {.file {filename}}")
   } else{
     # multiple plots
@@ -395,7 +408,7 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
       purrr::map2(plot, filenames,
                   function(x, y) {
                     ggplot2::ggsave(plot = x, filename = y, width = width,
-                                    height = height, units = units, bg = bg, ...)
+                                    height = height, units = units, ...)
                   })
       cli::cli_alert_success("save_plot: saved multiple plots to {.file {filenames}}")
     }

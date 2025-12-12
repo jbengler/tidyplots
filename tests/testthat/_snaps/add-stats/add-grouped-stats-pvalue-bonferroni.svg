@@ -20,12 +20,12 @@
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
 <defs>
-  <clipPath id='cpMjQyLjcwfDQ3Ny4zMHwxNzkuMzd8Mzk2LjYz'>
-    <rect x='242.70' y='179.37' width='234.60' height='217.27' />
+  <clipPath id='cpMjM4LjY0fDQ4MS4zNnwxNzUuMzF8NDAwLjY5'>
+    <rect x='238.64' y='175.31' width='242.73' height='225.39' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpMjQyLjcwfDQ3Ny4zMHwxNzkuMzd8Mzk2LjYz)'>
-<rect x='242.70' y='179.37' width='234.60' height='217.27' style='stroke-width: 1.07; stroke: none;' />
+<g clip-path='url(#cpMjM4LjY0fDQ4MS4zNnwxNzUuMzF8NDAwLjY5)'>
+<rect x='238.64' y='175.31' width='242.73' height='225.39' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 </g>
@@ -35,7 +35,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMjY1Ljg0fDQwNy41OHwxOTIuNTN8MzM0LjI3)'>
-<rect x='265.84' y='192.53' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none;' />
+<rect x='265.84' y='192.53' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='281.95' y='325.84' width='19.33' height='8.43' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2; fill-opacity: 0.40;' />
 <rect x='307.72' y='257.19' width='19.33' height='77.08' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00; fill-opacity: 0.40;' />
 <rect x='346.37' y='310.18' width='19.33' height='24.09' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2; fill-opacity: 0.40;' />
@@ -82,7 +82,7 @@
 <line x1='381.81' y1='211.02' x2='381.81' y2='214.27' style='stroke-width: 0.64;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<polyline points='265.84,334.27 265.84,192.53 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='265.84,334.27 265.84,192.53 ' style='stroke-width: 0.53; stroke-linecap: square;' />
 <text x='260.91' y='336.68' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>0</text>
 <text x='260.91' y='296.53' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='7.79px' lengthAdjust='spacingAndGlyphs'>20</text>
 <text x='260.91' y='256.39' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='7.79px' lengthAdjust='spacingAndGlyphs'>40</text>
@@ -91,25 +91,23 @@
 <polyline points='263.10,294.12 265.84,294.12 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='263.10,253.98 265.84,253.98 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='263.10,213.83 265.84,213.83 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
-<polyline points='265.84,334.27 407.58,334.27 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='265.84,334.27 407.58,334.27 ' style='stroke-width: 0.53; stroke-linecap: square;' />
 <polyline points='304.50,337.01 304.50,334.27 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <polyline points='368.92,337.01 368.92,334.27 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
 <text x='304.50' y='344.02' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='13.23px' lengthAdjust='spacingAndGlyphs'>high</text>
 <text x='368.92' y='344.02' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='10.50px' lengthAdjust='spacingAndGlyphs'>low</text>
 <text x='336.71' y='353.03' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='15.18px' lengthAdjust='spacingAndGlyphs'>dose</text>
 <text transform='translate(248.93,263.40) rotate(-90)' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='17.12px' lengthAdjust='spacingAndGlyphs'>score</text>
-<rect x='418.54' y='240.71' width='57.35' height='45.39' style='stroke-width: 1.07; stroke: none;' />
+<rect x='418.54' y='240.71' width='57.35' height='45.39' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <text x='424.01' y='251.73' style='font-size: 7.00px; font-family: sans;' textLength='17.90px' lengthAdjust='spacingAndGlyphs'>group</text>
-<rect x='424.01' y='257.94' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
+<rect x='424.01' y='257.94' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='424.72' y='258.65' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2; fill-opacity: 0.40;' />
 <line x1='425.15' y1='263.61' x2='434.22' y2='263.61' style='stroke-width: 0.53; stroke: #0072B2; stroke-linecap: butt;' />
 <circle cx='429.68' cy='263.61' r='1.42' style='stroke-width: 0.71; stroke: #0072B2; fill: #0072B2;' />
-<line x1='425.15' y1='263.61' x2='434.22' y2='263.61' style='stroke-width: 1.07; stroke: #0072B2; stroke-linecap: butt;' />
-<rect x='424.01' y='269.28' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none;' />
+<rect x='424.01' y='269.28' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <rect x='424.72' y='269.98' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00; fill-opacity: 0.40;' />
 <line x1='425.15' y1='274.95' x2='434.22' y2='274.95' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
 <circle cx='429.68' cy='274.95' r='1.42' style='stroke-width: 0.71; stroke: #D55E00; fill: #D55E00;' />
-<line x1='425.15' y1='274.95' x2='434.22' y2='274.95' style='stroke-width: 1.07; stroke: #D55E00; stroke-linecap: butt;' />
 <text x='440.83' y='266.02' style='font-size: 7.00px; font-family: sans;' textLength='24.52px' lengthAdjust='spacingAndGlyphs'>placebo</text>
 <text x='440.83' y='277.35' style='font-size: 7.00px; font-family: sans;' textLength='29.57px' lengthAdjust='spacingAndGlyphs'>treatment</text>
 <text x='336.71' y='186.33' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='112.09px' lengthAdjust='spacingAndGlyphs'>add grouped stats pvalue bonferroni</text>

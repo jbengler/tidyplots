@@ -86,4 +86,15 @@ test_that("split plot works", {
     adjust_size(width = 25, height = 25) |>
     split_plot(by = year) |>
     vdiffr::expect_doppelganger("split plot energy", fig = _)
+
+  p1 <-
+    energy |>
+    dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |>
+    tidyplot(y = energy, color = energy_source) |>
+    add_donut() |>
+    adjust_size(width = 25, height = 25) |>
+    split_plot(by = year, ncol = 1, nrow = 2)
+
+    p1[[1]] |> vdiffr::expect_doppelganger("split plot energy multipage 1", fig = _)
+    p1[[2]] |> vdiffr::expect_doppelganger("split plot energy multipage 2", fig = _)
 })

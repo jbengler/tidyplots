@@ -13,7 +13,6 @@ save_plot(
   padding = 0.1,
   multiple_files = FALSE,
   view_plot = TRUE,
-  bg = "transparent",
   ...
 )
 }
@@ -28,14 +27,11 @@ incoming \code{plot} object (see Details).}
 
 \item{units}{Units of length. Defaults to \code{"mm"}.}
 
-\item{padding}{Extra white space around the saved plot. Defaults to \code{0.1} meaning 10\%.}
+\item{padding}{Extra space around the saved plot. Defaults to \code{0.1} meaning 10\%.}
 
 \item{multiple_files}{Whether to save multiple pages as individual files.}
 
 \item{view_plot}{Whether to view the plot on screen after saving.}
-
-\item{bg}{Background colour. If \code{NULL}, uses the \code{plot.background} fill value
-from the plot theme.}
 
 \item{...}{Other arguments passed on to the graphics device function,
 as specified by \code{device}.}

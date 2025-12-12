@@ -14,13 +14,13 @@ add_annotation_rectangle(
   xmax,
   ymin,
   ymax,
-  fill = "#000000",
+  fill = plot$tidyplot$ink,
   color = NA,
   alpha = 0.1,
   ...
 )
 
-add_annotation_line(plot, x, xend, y, yend, color = "#000000", ...)
+add_annotation_line(plot, x, xend, y, yend, color = plot$tidyplot$ink, ...)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
