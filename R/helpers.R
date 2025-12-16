@@ -174,6 +174,16 @@ format_p_value <- function(x, accuracy = 0.0001) {
 
 # internal helpers
 
+var_is_null <- function(var) {
+  quo_var <- rlang::enquo(var)
+  rlang::quo_is_null(quo_var)
+}
+
+var_as_name <- function(var) {
+  quo_var <- rlang::enquo(var)
+  rlang::as_name(quo_var)
+}
+
 # <ggplot> %+% x was deprecated in ggplot2 4.0.0.
 update_data <- function(plot, new_data) {
   if (utils::packageVersion("ggplot2") > "3.5.2.9000") {

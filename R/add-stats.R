@@ -160,14 +160,13 @@ add_test_pvalue <- function(plot,
     comparisons <- paste0("list(",paste(comparisons, collapse = ", "),")")
   }
   # paired_by is supplied
-  quo_paired_by <- rlang::enquo(paired_by)
-  if (!rlang::quo_is_null(quo_paired_by)) {
+  if (!var_is_null({{ paired_by }})) {
     method.args$paired <- TRUE
     new_data <-
       plot$data |>
       dplyr::arrange({{ paired_by }})
     plot <- update_data(plot, new_data)
-    paired_by <- rlang::as_name(quo_paired_by)
+    paired_by <- var_as_name({{ paired_by }})
   }
 
   # aes(color) is supplied, also make it aes(group). See #142

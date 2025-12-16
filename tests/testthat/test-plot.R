@@ -97,4 +97,29 @@ test_that("split plot works", {
 
     p1[[1]] |> vdiffr::expect_doppelganger("split plot energy multipage 1", fig = _)
     p1[[2]] |> vdiffr::expect_doppelganger("split plot energy multipage 2", fig = _)
+
+    p <- energy |>
+      dplyr::mutate(decade = paste0(floor(year / 10) * 10, "s")) |>
+      tidyplot(x = year, y = energy, color = energy_source) |>
+      add_barstack_absolute() |>
+      adjust_x_axis(rotate_labels = TRUE) |>
+      adjust_size(20,20)
+
+    p |> split_plot(by = energy_type) |> vdiffr::expect_doppelganger("split plot by", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type) |> vdiffr::expect_doppelganger("split plot rows cols", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type, scales = "free") |> vdiffr::expect_doppelganger("split plot rows cols scales free", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type, axis = "margins") |> vdiffr::expect_doppelganger("split plot rows cols axis margins", fig = _)
+    p |> split_plot(rows = energy_type) |> vdiffr::expect_doppelganger("split plot rows", fig = _)
+    p |> split_plot(cols = energy_type) |> vdiffr::expect_doppelganger("split plot cols", fig = _)
+
+    p <- energy |>
+      dplyr::mutate(decade = paste0(floor(year / 10) * 10, "s")) |>
+      tidyplot(y = energy, color = energy_source) |>
+      add_donut() |>
+      adjust_size(20,20)
+
+    p |> split_plot(by = energy_type) |> vdiffr::expect_doppelganger("split plot donut by", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type) |> vdiffr::expect_doppelganger("split plot donut rows cols", fig = _)
+    p |> split_plot(rows = energy_type) |> vdiffr::expect_doppelganger("split plot donut rows", fig = _)
+    p |> split_plot(cols = energy_type) |> vdiffr::expect_doppelganger("split plot donut cols", fig = _)
 })

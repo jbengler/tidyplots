@@ -6,11 +6,13 @@
 \usage{
 split_plot(
   plot,
-  by,
+  by = NULL,
+  rows = NULL,
+  cols = NULL,
   ncol = NULL,
   nrow = NULL,
   axes = "all",
-  scales = "free",
+  scales = NULL,
   ...
 )
 }
@@ -69,5 +71,13 @@ energy |>
   add_donut() |>
   adjust_size(width = 25, height = 25) |>
   split_plot(by = year, ncol = 2, nrow = 1)
+
+# Split by two variables
+energy |>
+  dplyr::mutate(decade = paste0(floor(year / 10) * 10, "s")) |>
+  tidyplot(y = energy, color = energy_source) |>
+  add_donut() |>
+  adjust_size(14,14) |>
+  split_plot(rows = decade, cols = energy_type)
 
 }

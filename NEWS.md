@@ -1,13 +1,22 @@
 # tidyplots (development version)
 
 ## Breaking changes
+
+* `split_plot()` is now powered by the ggplot2 faceting functions `ggplot2::facet_wrap()` and `ggplot2::facet_grid()` 
+replacing the use of `patchwork::wrap_plots()`. While this improves consistency and solves glitches in figure legends, 
+it will eventually break code that relies on patchwork syntax (#95, #141).
+
+## Bug fixes
+
 * Avoid rounding errors of _p_ values in `add_test_pvalue()` (#142).
-* `split_plot()` is now powered by ggplot2 faceting and not anymore by `patchwork::wrap_plots()`, which 
-led to unexpected glitches in figure legends. However, this change will eventually break code, that uses 
-`patchwork::wrap_plots()` arguments like `guides = "collect"` (#95, #141).
 
 ## Improvements
 
+* `split_plot()` gains the parameters `rows` and `cols` allowing to split the plot by two variables. 
+This functionality is powered by `ggplot2::facet_grid()`.
+* `tidyplot()` gains the parameters `paper` and `ink` allowing to choose a color for the background (`paper`) and the 
+foreground elements like text and lines (`ink`). This is useful to generate plots for dark mode.
+* `tidyplots_options()` gains the parameters `paper` and `ink` allowing to set colors for `paper` and `ink` for all plots in the active R session.
 * The `labels` parameter of `adjust_*_axis()` now survives repeated calls changing the same scale (#136).
 * Fixed `add_data_points()` to respect constant `color` when `white_border = TRUE` (#115).
 * Prepare for deprecation of `%+%` and `geom_label(label.size = NA)`.
@@ -15,6 +24,7 @@ led to unexpected glitches in figure legends. However, this change will eventual
 # tidyplots 0.3.1
 
 ## Breaking changes
+
 * Removed the parameters `widths` and `heights` from `split_plot()`. Use 
 `adjust_size()` before `split_plot()` instead.
 * Removed the function `format_number()`, which is available from the scales packages.

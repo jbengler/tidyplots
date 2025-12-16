@@ -214,40 +214,78 @@ tidyplots_options <- function(
 #'   adjust_size(width = 25, height = 25) |>
 #'   split_plot(by = year, ncol = 2, nrow = 1)
 #'
+#' # Split by two variables
+#' energy |>
+#'   dplyr::mutate(decade = paste0(floor(year / 10) * 10, "s")) |>
+#'   tidyplot(y = energy, color = energy_source) |>
+#'   add_donut() |>
+#'   adjust_size(14,14) |>
+#'   split_plot(rows = decade, cols = energy_type)
+#'
 #' @export
-split_plot <- function(plot, by, ncol = NULL, nrow = NULL,
-                       axes = "all", scales = "free", ...) {
+split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, nrow = NULL,
+                       axes = "all", scales = NULL, ...) {
   plot <- check_tidyplot(plot)
-  if(missing(by))
-    cli::cli_abort("Argument {.arg by} missing without default.")
 
-  if (is.numeric(ncol) && is.numeric(nrow)) {
-    plots_per_page <- nrow * ncol
+  error_msg <- "Specify the argument {.arg by} to split the plot by one variable.
+  Alternatively, specify the arguments {.arg rows} and {.arg cols} to split the plot by two variables."
+  if(var_is_null({{ by }}) & var_is_null({{ rows }}) & var_is_null({{ cols }}))
+    cli::cli_abort(error_msg)
+  if(!var_is_null({{ by }}) & (!var_is_null({{ rows }}) | !var_is_null({{ cols }})))
+    cli::cli_abort(error_msg)
 
-    df <-
-      plot$data |>
-      tidyr::nest(data = -{{by}}) |>
-      dplyr::arrange({{by}})
+  do_facet_wrap <- do_facet_grid <- FALSE
+  if (!var_is_null({{ by }})) do_facet_wrap <- TRUE
+  if (!var_is_null({{ rows }}) | !var_is_null({{ cols }})) do_facet_grid <- TRUE
 
-    dfs <- split(df, ceiling(seq_len(nrow(df)) / plots_per_page))
+  # Facet wrap
+  if (do_facet_wrap) {
+    scales <- scales %||% "free"
 
-    pages <-
-      dfs |>
-      purrr::map(function(x) {
-        new_data <- x |> tidyr::unnest(cols = data)
-        update_data(plot, new_data) +
-          ggplot2::facet_wrap(
-            facets = ggplot2::vars({{ by }}),
-            nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
-      })
+    if (is.numeric(ncol) && is.numeric(nrow)) {
+      plots_per_page <- nrow * ncol
 
-    cli::cli_alert_success("split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}")
+      df <-
+        plot$data |>
+        tidyr::nest(data = -{{by}}) |>
+        dplyr::arrange({{by}})
 
-    unname(pages)
-  } else {
-    plot + ggplot2::facet_wrap(
-      facets = ggplot2::vars({{ by }}),
-      nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
+      dfs <- split(df, ceiling(seq_len(nrow(df)) / plots_per_page))
+
+      pages <-
+        dfs |>
+        purrr::map(function(x) {
+          new_data <- x |> tidyr::unnest(cols = data)
+          update_data(plot, new_data) +
+            ggplot2::facet_wrap(
+              facets = ggplot2::vars({{ by }}),
+              nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
+        })
+
+      cli::cli_alert_success("split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}")
+
+      return(unname(pages))
+    } else {
+      plot <- plot + ggplot2::facet_wrap(
+        facets = ggplot2::vars({{ by }}),
+        nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
+      return(plot)
+    }
+  }
+
+  # Facet grid
+  if(do_facet_grid) {
+    scales <- scales %||% "fixed"
+
+    plot <- plot +
+      ggplot2::facet_grid(rows = ggplot2::vars({{ rows }}),
+                          cols = ggplot2::vars({{ cols }}),
+                          axes = axes,
+                          scales = scales,
+                          switch = "y",
+                          ...) +
+      ggplot2::theme_sub_strip(placement = "outside")
+    return(plot)
   }
 }
 
