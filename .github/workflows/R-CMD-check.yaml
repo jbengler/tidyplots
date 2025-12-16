@@ -39,9 +39,13 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      - name: Force source installs on macOS
+        if: runner.os == 'macOS'
+        run: echo 'options(pkgType="source")' >> ~/.Rprofile
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::xfun, any::rcmdcheck, github::tidyverse/ggplot2
+          extra-packages: any::rcmdcheck, github::tidyverse/ggplot2
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
