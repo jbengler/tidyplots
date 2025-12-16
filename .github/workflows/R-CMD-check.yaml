@@ -39,16 +39,9 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
-      - name: Configure pak (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          echo "PAK_PKG_TYPE=source" >> $GITHUB_ENV
-          echo "PAK_IGNORE_BINARY_PACKAGES=xfun" >> $GITHUB_ENV
-
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          cache: false
-          extra-packages: any::rcmdcheck
+          extra-packages: any::rcmdcheck, github::tidyverse/ggplot2
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
