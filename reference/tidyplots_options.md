@@ -18,15 +18,11 @@ tidyplots_options(
 
 ## Arguments
 
-- width:
+- width, height:
 
-  Width of the plot area. The default (`NULL`) retrieves the setting
-  from the tidyplots options, which defaults to `50`.
-
-- height:
-
-  Height of the plot area. The default (`NULL`) retrieves the setting
-  from the tidyplots options, which defaults to `50`.
+  Dimensions of the plot area. The default (`NULL`) retrieves the
+  setting from the tidyplots options, which defaults to `50`. `NA`
+  results in taking all available space (ggplot2 default).
 
 - unit:
 

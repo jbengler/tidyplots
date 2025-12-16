@@ -30,19 +30,13 @@ tidyplot(
   Additional argument are passed to
   [`ggplot2::aes()`](https://ggplot2.tidyverse.org/reference/aes.html).
 
-- width:
+- width, height:
 
-  Width of the plot area. The default (`NULL`) retrieves the setting
-  from the [tidyplots
+  Dimensions of the plot area. The default (`NULL`) retrieves the
+  setting from the [tidyplots
   options](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md),
-  which defaults to `50`.
-
-- height:
-
-  Height of the plot area. The default (`NULL`) retrieves the setting
-  from the [tidyplots
-  options](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md),
-  which defaults to `50`.
+  which defaults to `50`. `NA` results in taking all available space
+  (ggplot2 default).
 
 - unit:
 

@@ -72,7 +72,8 @@ add_sum_area(
 
 - width:
 
-  Width of the bar.
+  Horizontal width of the plotted object (bar, error bar, boxplot,
+  violin plot, etc). Typical values range between `0` and `1`.
 
 - saturation:
 

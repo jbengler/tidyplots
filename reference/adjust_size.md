@@ -5,7 +5,14 @@ Adjust plot area size
 ## Usage
 
 ``` r
-adjust_size(plot, width = NULL, height = NULL, unit = NULL)
+adjust_size(
+  plot,
+  width = NULL,
+  height = NULL,
+  unit = NULL,
+  overall_width = NULL,
+  overall_height = NULL
+)
 ```
 
 ## Arguments
@@ -15,17 +22,25 @@ adjust_size(plot, width = NULL, height = NULL, unit = NULL)
   A `tidyplot` generated with the function
   [`tidyplot()`](https://jbengler.github.io/tidyplots/reference/tidyplot.md).
 
-- width:
+- width, height:
 
-  Width of the plot area.
-
-- height:
-
-  Height of the plot area.
+  Dimensions of the plot area. The default (`NULL`) retrieves the
+  setting from the [tidyplots
+  options](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md),
+  which defaults to `50`. `NA` results in taking all available space
+  (ggplot2 default).
 
 - unit:
 
-  Unit of the plot area width and height.
+  Unit of the plot area width and height. The default (`NULL`) retrieves
+  the setting from the [tidyplots
+  options](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md),
+  which defaults to `"mm"`.
+
+- overall_width, overall_height:
+
+  The overall dimensions of a multiplot layout generated with
+  [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md).
 
 ## Value
 

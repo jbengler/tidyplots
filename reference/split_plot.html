@@ -47,11 +47,13 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">split_plot</span><span class="op">(</span></span>
 <span>  <span class="va">plot</span>,</span>
-<span>  <span class="va">by</span>,</span>
+<span>  by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  rows <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cols <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  axes <span class="op">=</span> <span class="st">"all"</span>,</span>
-<span>  scales <span class="op">=</span> <span class="st">"free"</span>,</span>
+<span>  scales <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -65,24 +67,27 @@
 
 
 <dt id="arg-by">by<a class="anchor" aria-label="anchor" href="#arg-by"></a></dt>
-<dd><p>Variable that should be used for splitting.</p></dd>
+<dd><p>One variable that should be used for splitting.</p></dd>
+
+
+<dt id="arg-rows-cols">rows, cols<a class="anchor" aria-label="anchor" href="#arg-rows-cols"></a></dt>
+<dd><p>Two variables that should be used for splitting, representing rows and columns, respectively.</p></dd>
 
 
 <dt id="arg-ncol-nrow">ncol, nrow<a class="anchor" aria-label="anchor" href="#arg-ncol-nrow"></a></dt>
-<dd><p>The number of columns and rows per page.</p></dd>
+<dd><p>The number of columns and rows per page. Only takes effect when using <code>by</code> to split by a single variable.</p></dd>
 
 
 <dt id="arg-axes">axes<a class="anchor" aria-label="anchor" href="#arg-axes"></a></dt>
 <dd><p>Determines which axes will be drawn in case of fixed scales.
-When <code>"margins"</code> (default), axes will be drawn at the exterior margins.
-<code>"all_x"</code> and <code>"all_y"</code> will draw the respective axes at the interior
-panels too, whereas <code>"all"</code> will draw all axes at all panels.</p></dd>
+When <code>"margins"</code>, axes will be drawn at the exterior margins. <code>"all_x"</code> and <code>"all_y"</code> will draw
+the respective axes at the interior panels too, whereas <code>"all"</code> (the default) will draw all axes at all panels.</p></dd>
 
 
 <dt id="arg-scales">scales<a class="anchor" aria-label="anchor" href="#arg-scales"></a></dt>
-<dd><p>Should scales be fixed (<code>"fixed"</code>, the default),
-free (<code>"free"</code>), or free in one dimension (<code>"free_x"</code>,
-<code>"free_y"</code>)?</p></dd>
+<dd><p>Should scales be fixed <code>"fixed"</code>, free (<code>"free"</code>), or free in one dimension (<code>"free_x"</code>, <code>"free_y"</code>)?
+Defaults to <code>"free"</code> when providing one splitting variable via <code>by</code>.
+Defaults to <code>"fixed"</code> when providing two splitting variables via <code>rows</code> and <code>cols</code>.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -136,6 +141,15 @@ free (<code>"free"</code>), or free in one dimension (<code>"free_x"</code>,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-plt img"><img src="split_plot-5.png" alt="" width="800" height="600"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Split by two variables</span></span></span>
+<span class="r-in"><span><span class="va">energy</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>decade <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">floor</a></span><span class="op">(</span><span class="va">year</span> <span class="op">/</span> <span class="fl">10</span><span class="op">)</span> <span class="op">*</span> <span class="fl">10</span>, <span class="st">"s"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="adjust_size.html">adjust_size</a></span><span class="op">(</span><span class="fl">14</span>,<span class="fl">14</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">split_plot</span><span class="op">(</span>rows <span class="op">=</span> <span class="va">decade</span>, cols <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="split_plot-6.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -42,13 +42,24 @@
 <h2 class="pkg-version" data-toc-text="development version" id="tidyplots-development-version">tidyplots (development version)<a class="anchor" aria-label="anchor" href="#tidyplots-development-version"></a></h2>
 <div class="section level3">
 <h3 id="breaking-changes-development-version">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
+<ul><li>
+<code><a href="../reference/split_plot.html">split_plot()</a></code> is now powered by the ggplot2 faceting functions <code><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">ggplot2::facet_wrap()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">ggplot2::facet_grid()</a></code> replacing the use of <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>. While this improves consistency and solves glitches in figure legends, it will eventually break code that relies on patchwork syntax (<a href="https://github.com/jbengler/tidyplots/issues/95" class="external-link">#95</a>, <a href="https://github.com/jbengler/tidyplots/issues/141" class="external-link">#141</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
 <ul><li>Avoid rounding errors of <em>p</em> values in <code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> (<a href="https://github.com/jbengler/tidyplots/issues/142" class="external-link">#142</a>).</li>
-<li>
-<code><a href="../reference/split_plot.html">split_plot()</a></code> is now powered by ggplot2 faceting and not anymore by <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code>, which led to unexpected glitches in figure legends. However, this change will eventually break code, that uses <code><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">patchwork::wrap_plots()</a></code> arguments like <code>guides = "collect"</code> (<a href="https://github.com/jbengler/tidyplots/issues/95" class="external-link">#95</a>, <a href="https://github.com/jbengler/tidyplots/issues/141" class="external-link">#141</a>).</li>
 </ul></div>
 <div class="section level3">
 <h3 id="improvements-development-version">Improvements<a class="anchor" aria-label="anchor" href="#improvements-development-version"></a></h3>
-<ul><li>The <code>labels</code> parameter of <code>adjust_*_axis()</code> now survives repeated calls changing the same scale (<a href="https://github.com/jbengler/tidyplots/issues/136" class="external-link">#136</a>).</li>
+<ul><li>
+<code><a href="../reference/split_plot.html">split_plot()</a></code> gains the parameters <code>rows</code> and <code>cols</code> allowing to split the plot by two variables. This functionality is powered by <code><a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="external-link">ggplot2::facet_grid()</a></code>.</li>
+<li>
+<code><a href="../reference/adjust_size.html">adjust_size()</a></code> gains the parameters <code>overall_width</code> and <code>overall_height</code> allowing to set the overall dimensions of a multiplot layout generated with <code><a href="../reference/split_plot.html">split_plot()</a></code>.</li>
+<li>
+<code><a href="../reference/tidyplot.html">tidyplot()</a></code> gains the parameters <code>paper</code> and <code>ink</code> allowing to choose a color for the background (<code>paper</code>) and the foreground elements like text and lines (<code>ink</code>). This is useful to generate plots for dark mode.</li>
+<li>
+<code><a href="../reference/tidyplots_options.html">tidyplots_options()</a></code> gains the parameters <code>paper</code> and <code>ink</code> allowing to set these parameters once for all tidyplots in the active R session.</li>
+<li>The <code>labels</code> parameter of <code>adjust_*_axis()</code> now survives repeated calls changing the same scale (<a href="https://github.com/jbengler/tidyplots/issues/136" class="external-link">#136</a>).</li>
 <li>Fixed <code><a href="../reference/add_data_points.html">add_data_points()</a></code> to respect constant <code>color</code> when <code>white_border = TRUE</code> (<a href="https://github.com/jbengler/tidyplots/issues/115" class="external-link">#115</a>).</li>
 <li>Prepare for deprecation of <code>%+%</code> and <code>geom_label(label.size = NA)</code>.</li>
 </ul></div>

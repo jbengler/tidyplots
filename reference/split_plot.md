@@ -7,11 +7,13 @@ Split plot into multiple subplots
 ``` r
 split_plot(
   plot,
-  by,
+  by = NULL,
+  rows = NULL,
+  cols = NULL,
   ncol = NULL,
   nrow = NULL,
   axes = "all",
-  scales = "free",
+  scales = NULL,
   ...
 )
 ```
@@ -25,23 +27,31 @@ split_plot(
 
 - by:
 
-  Variable that should be used for splitting.
+  One variable that should be used for splitting.
+
+- rows, cols:
+
+  Two variables that should be used for splitting, representing rows and
+  columns, respectively.
 
 - ncol, nrow:
 
-  The number of columns and rows per page.
+  The number of columns and rows per page. Only takes effect when using
+  `by` to split by a single variable.
 
 - axes:
 
   Determines which axes will be drawn in case of fixed scales. When
-  `"margins"` (default), axes will be drawn at the exterior margins.
-  `"all_x"` and `"all_y"` will draw the respective axes at the interior
-  panels too, whereas `"all"` will draw all axes at all panels.
+  `"margins"`, axes will be drawn at the exterior margins. `"all_x"` and
+  `"all_y"` will draw the respective axes at the interior panels too,
+  whereas `"all"` (the default) will draw all axes at all panels.
 
 - scales:
 
-  Should scales be fixed (`"fixed"`, the default), free (`"free"`), or
-  free in one dimension (`"free_x"`, `"free_y"`)?
+  Should scales be fixed `"fixed"`, free (`"free"`), or free in one
+  dimension (`"free_x"`, `"free_y"`)? Defaults to `"free"` when
+  providing one splitting variable via `by`. Defaults to `"fixed"` when
+  providing two splitting variables via `rows` and `cols`.
 
 - ...:
 
@@ -94,4 +104,13 @@ energy |>
 #> [[2]]
 
 #> 
+
+# Split by two variables
+energy |>
+  dplyr::mutate(decade = paste0(floor(year / 10) * 10, "s")) |>
+  tidyplot(y = energy, color = energy_source) |>
+  add_donut() |>
+  adjust_size(14,14) |>
+  split_plot(rows = decade, cols = energy_type)
+
 ```

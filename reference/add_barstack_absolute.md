@@ -19,7 +19,8 @@ add_barstack_relative(plot, width = 0.8, reverse = FALSE, ...)
 
 - width:
 
-  Width of the bar.
+  Horizontal width of the plotted object (bar, error bar, boxplot,
+  violin plot, etc). Typical values range between `0` and `1`.
 
 - reverse:
 

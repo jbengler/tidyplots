@@ -58,6 +58,11 @@ Common arguments
   A `number` representing the size of the plot symbol. Typical values
   range between `1` and `3`.
 
+- width:
+
+  Horizontal width of the plotted object (bar, error bar, boxplot,
+  violin plot, etc). Typical values range between `0` and `1`.
+
 - linewidth:
 
   Thickness of the line in points (pt). Typical values range between
@@ -113,10 +118,6 @@ Common arguments
 - replace_na:
 
   Whether to replace `count = NA` with `count = 0`.
-
-- width:
-
-  Width of the bar.
 
 - force_continuous:
 

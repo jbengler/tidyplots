@@ -45,7 +45,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_size</span><span class="op">(</span><span class="va">plot</span>, width <span class="op">=</span> <span class="cn">NULL</span>, height <span class="op">=</span> <span class="cn">NULL</span>, unit <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">adjust_size</span><span class="op">(</span></span>
+<span>  <span class="va">plot</span>,</span>
+<span>  width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  height <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  unit <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  overall_width <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  overall_height <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -56,16 +63,18 @@
 <dd><p>A <code>tidyplot</code> generated with the function <code><a href="tidyplot.html">tidyplot()</a></code>.</p></dd>
 
 
-<dt id="arg-width">width<a class="anchor" aria-label="anchor" href="#arg-width"></a></dt>
-<dd><p>Width of the plot area.</p></dd>
-
-
-<dt id="arg-height">height<a class="anchor" aria-label="anchor" href="#arg-height"></a></dt>
-<dd><p>Height of the plot area.</p></dd>
+<dt id="arg-width-height">width, height<a class="anchor" aria-label="anchor" href="#arg-width-height"></a></dt>
+<dd><p>Dimensions of the plot area. The default (<code>NULL</code>) retrieves the setting from the
+<a href="tidyplots_options.html">tidyplots options</a>, which defaults to <code>50</code>. <code>NA</code> results in taking all available space (ggplot2 default).</p></dd>
 
 
 <dt id="arg-unit">unit<a class="anchor" aria-label="anchor" href="#arg-unit"></a></dt>
-<dd><p>Unit of the plot area width and height.</p></dd>
+<dd><p>Unit of the plot area width and height. The default (<code>NULL</code>) retrieves the setting from the
+<a href="tidyplots_options.html">tidyplots options</a>, which defaults to <code>"mm"</code>.</p></dd>
+
+
+<dt id="arg-overall-width-overall-height">overall_width, overall_height<a class="anchor" aria-label="anchor" href="#arg-overall-width-overall-height"></a></dt>
+<dd><p>The overall dimensions of a multiplot layout generated with <code><a href="split_plot.html">split_plot()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

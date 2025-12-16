@@ -4,21 +4,41 @@
 
 ### Breaking changes
 
-- Avoid rounding errors of *p* values in
-  [`add_test_pvalue()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
-  ([\#142](https://github.com/jbengler/tidyplots/issues/142)).
 - [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md)
-  is now powered by ggplot2 faceting and not anymore by
-  [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html),
-  which led to unexpected glitches in figure legends. However, this
-  change will eventually break code, that uses
-  [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html)
-  arguments like `guides = "collect"`
+  is now powered by the ggplot2 faceting functions
+  [`ggplot2::facet_wrap()`](https://ggplot2.tidyverse.org/reference/facet_wrap.html)
+  and
+  [`ggplot2::facet_grid()`](https://ggplot2.tidyverse.org/reference/facet_grid.html)
+  replacing the use of
+  [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html).
+  While this improves consistency and solves glitches in figure legends,
+  it will eventually break code that relies on patchwork syntax
   ([\#95](https://github.com/jbengler/tidyplots/issues/95),
   [\#141](https://github.com/jbengler/tidyplots/issues/141)).
 
+### Bug fixes
+
+- Avoid rounding errors of *p* values in
+  [`add_test_pvalue()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
+  ([\#142](https://github.com/jbengler/tidyplots/issues/142)).
+
 ### Improvements
 
+- [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md)
+  gains the parameters `rows` and `cols` allowing to split the plot by
+  two variables. This functionality is powered by
+  [`ggplot2::facet_grid()`](https://ggplot2.tidyverse.org/reference/facet_grid.html).
+- [`adjust_size()`](https://jbengler.github.io/tidyplots/reference/adjust_size.md)
+  gains the parameters `overall_width` and `overall_height` allowing to
+  set the overall dimensions of a multiplot layout generated with
+  [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md).
+- [`tidyplot()`](https://jbengler.github.io/tidyplots/reference/tidyplot.md)
+  gains the parameters `paper` and `ink` allowing to choose a color for
+  the background (`paper`) and the foreground elements like text and
+  lines (`ink`). This is useful to generate plots for dark mode.
+- [`tidyplots_options()`](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md)
+  gains the parameters `paper` and `ink` allowing to set these
+  parameters once for all tidyplots in the active R session.
 - The `labels` parameter of `adjust_*_axis()` now survives repeated
   calls changing the same scale
   ([\#136](https://github.com/jbengler/tidyplots/issues/136)).
