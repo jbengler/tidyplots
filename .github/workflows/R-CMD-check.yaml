@@ -39,8 +39,13 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
 
+      - name: Force pak to use source packages on macOS
+        if: runner.os == 'macOS'
+        run: echo "PAK_PKG_TYPE=source" >> $GITHUB_ENV
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          cache: false
           extra-packages: any::rcmdcheck
           needs: check
 
