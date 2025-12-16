@@ -36,6 +36,9 @@ plot symbol.
 \item{size}{A \code{number} representing the size of the plot symbol. Typical
 values range between \code{1} and \code{3}.}
 
+\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between \code{0} and \code{1}.}
+
 \item{linewidth}{Thickness of the line in points (pt). Typical values range between \code{0.25} and \code{1}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
@@ -59,8 +62,6 @@ values range between \code{1} and \code{3}.}
 \item{fontsize}{Font size in points. Defaults to \code{7}.}
 
 \item{replace_na}{Whether to replace \code{count = NA} with \code{count = 0}.}
-
-\item{width}{Width of the bar.}
 
 \item{force_continuous}{Whether to force the axis to be continuous. Defaults to \code{FALSE}.}
 

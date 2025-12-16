@@ -19,18 +19,19 @@ split_plot(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{by}{Variable that should be used for splitting.}
+\item{by}{One variable that should be used for splitting.}
 
-\item{ncol, nrow}{The number of columns and rows per page.}
+\item{rows, cols}{Two variables that should be used for splitting, representing rows and columns, respectively.}
+
+\item{ncol, nrow}{The number of columns and rows per page. Only takes effect when using \code{by} to split by a single variable.}
 
 \item{axes}{Determines which axes will be drawn in case of fixed scales.
-When \code{"margins"} (default), axes will be drawn at the exterior margins.
-\code{"all_x"} and \code{"all_y"} will draw the respective axes at the interior
-panels too, whereas \code{"all"} will draw all axes at all panels.}
+When \code{"margins"}, axes will be drawn at the exterior margins. \code{"all_x"} and \code{"all_y"} will draw
+the respective axes at the interior panels too, whereas \code{"all"} (the default) will draw all axes at all panels.}
 
-\item{scales}{Should scales be fixed (\code{"fixed"}, the default),
-free (\code{"free"}), or free in one dimension (\code{"free_x"},
-\code{"free_y"})?}
+\item{scales}{Should scales be fixed \code{"fixed"}, free (\code{"free"}), or free in one dimension (\code{"free_x"}, \code{"free_y"})?
+Defaults to \code{"free"} when providing one splitting variable via \code{by}.
+Defaults to \code{"fixed"} when providing two splitting variables via \code{rows} and \code{cols}.}
 
 \item{...}{Arguments passed on to the \code{geom} function.}
 }

@@ -12,7 +12,8 @@ add_barstack_relative(plot, width = 0.8, reverse = FALSE, ...)
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{width}{Width of the bar.}
+\item{width}{Horizontal width of the plotted object (bar, error bar, boxplot,
+violin plot, etc). Typical values range between \code{0} and \code{1}.}
 
 \item{reverse}{Whether the order should be reversed or not. Defaults to \code{FALSE}, meaning not reversed.}
 

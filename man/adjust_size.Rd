@@ -4,16 +4,25 @@
 \alias{adjust_size}
 \title{Adjust plot area size}
 \usage{
-adjust_size(plot, width = NULL, height = NULL, unit = NULL)
+adjust_size(
+  plot,
+  width = NULL,
+  height = NULL,
+  unit = NULL,
+  overall_width = NULL,
+  overall_height = NULL
+)
 }
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{width}{Width of the plot area.}
+\item{width, height}{Dimensions of the plot area. The default (\code{NULL}) retrieves the setting from the
+\link[=tidyplots_options]{tidyplots options}, which defaults to \code{50}. \code{NA} results in taking all available space (ggplot2 default).}
 
-\item{height}{Height of the plot area.}
+\item{unit}{Unit of the plot area width and height. The default (\code{NULL}) retrieves the setting from the
+\link[=tidyplots_options]{tidyplots options}, which defaults to \code{"mm"}.}
 
-\item{unit}{Unit of the plot area width and height.}
+\item{overall_width, overall_height}{The overall dimensions of a multiplot layout generated with \code{split_plot()}.}
 }
 \value{
 A \code{tidyplot} object.

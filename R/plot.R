@@ -1,10 +1,8 @@
 #' Create a new tidyplot
 #'
 #' @param data A tidy `data.frame` to use for plotting.
-#' @param width Width of the plot area. The default (`NULL`) retrieves the setting from the
-#'   [tidyplots options][tidyplots_options], which defaults to `50`.
-#' @param height Height of the plot area. The default (`NULL`) retrieves the setting from the
-#'   [tidyplots options][tidyplots_options], which defaults to `50`.
+#' @param width,height Dimensions of the plot area. The default (`NULL`) retrieves the setting from the
+#'   [tidyplots options][tidyplots_options], which defaults to `50`. `NA` results in taking all available space (ggplot2 default).
 #' @param unit Unit of the plot area width and height. The default (`NULL`) retrieves the setting from the
 #'   [tidyplots options][tidyplots_options], which defaults to `"mm"`.
 #' @param dodge_width For adjusting the distance between grouped objects.
@@ -177,9 +175,15 @@ tidyplots_options <- function(
 
 
 #' Split plot into multiple subplots
-#' @param by Variable that should be used for splitting.
-#' @param ncol,nrow The number of columns and rows per page.
-#' @inheritParams ggplot2::facet_wrap
+#' @param by One variable that should be used for splitting.
+#' @param ncol,nrow The number of columns and rows per page. Only takes effect when using `by` to split by a single variable.
+#' @param rows,cols Two variables that should be used for splitting, representing rows and columns, respectively.
+#' @param axes Determines which axes will be drawn in case of fixed scales.
+#' When `"margins"`, axes will be drawn at the exterior margins. `"all_x"` and `"all_y"` will draw
+#' the respective axes at the interior panels too, whereas `"all"` (the default) will draw all axes at all panels.
+#' @param scales Should scales be fixed `"fixed"`, free (`"free"`), or free in one dimension (`"free_x"`, `"free_y"`)?
+#' Defaults to `"free"` when providing one splitting variable via `by`.
+#' Defaults to `"fixed"` when providing two splitting variables via `rows` and `cols`.
 #' @inherit common_arguments
 #'
 #' @examples

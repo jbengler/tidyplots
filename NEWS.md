@@ -14,9 +14,10 @@ it will eventually break code that relies on patchwork syntax (#95, #141).
 
 * `split_plot()` gains the parameters `rows` and `cols` allowing to split the plot by two variables. 
 This functionality is powered by `ggplot2::facet_grid()`.
+* `adjust_size()` gains the parameters `overall_width` and `overall_height` allowing to set the overall dimensions of a multiplot layout generated with `split_plot()`.
 * `tidyplot()` gains the parameters `paper` and `ink` allowing to choose a color for the background (`paper`) and the 
 foreground elements like text and lines (`ink`). This is useful to generate plots for dark mode.
-* `tidyplots_options()` gains the parameters `paper` and `ink` allowing to set colors for `paper` and `ink` for all plots in the active R session.
+* `tidyplots_options()` gains the parameters `paper` and `ink` allowing to set these parameters once for all tidyplots in the active R session.
 * The `labels` parameter of `adjust_*_axis()` now survives repeated calls changing the same scale (#136).
 * Fixed `add_data_points()` to respect constant `color` when `white_border = TRUE` (#115).
 * Prepare for deprecation of `%+%` and `geom_label(label.size = NA)`.

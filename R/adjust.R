@@ -199,9 +199,8 @@ adjust_y_axis <- ff_adjust_axis("y")
 
 
 #' Adjust plot area size
-#' @param width Width of the plot area.
-#' @param height Height of the plot area.
-#' @param unit Unit of the plot area width and height.
+#' @param overall_width,overall_height The overall dimensions of a multiplot layout generated with `split_plot()`.
+#' @inheritParams tidyplot
 #' @inherit common_arguments
 #'
 #' @examples
@@ -238,8 +237,14 @@ adjust_y_axis <- ff_adjust_axis("y")
 #'   adjust_size(width = NA, height = NA)
 #'
 #' @export
-adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL) {
+adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL,
+                        overall_width = NULL, overall_height = NULL) {
   plot <- check_tidyplot(plot)
+
+  if(!is.null(width) & !is.null(overall_width))
+    cli::cli_alert_warning("Argument {.arg overall_width} overrules {.arg width} if both are specified.")
+  if(!is.null(height) & !is.null(overall_height))
+    cli::cli_alert_warning("Argument {.arg overall_height} overrules {.arg height} if both are specified.")
 
   plot$tidyplot$width <- width %||% plot$tidyplot$width
   plot$tidyplot$height <- height %||% plot$tidyplot$height
@@ -249,10 +254,18 @@ adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL) {
   height <- plot$tidyplot$height
   unit <- plot$tidyplot$unit
 
-  if (!is.na(width)) width <- ggplot2::unit(c(width, width), unit) else width <- NULL
-  if (!is.na(height)) height <- ggplot2::unit(c(height, height), unit) else height <- NULL
+  if (!is.null(overall_width)) {
+    if (!is.na(overall_width)) width <- ggplot2::unit(overall_width, unit) else width <- NULL
+  } else {
+    if (!is.na(width)) width <- ggplot2::unit(c(width, width), unit) else width <- NULL
+  }
 
-  #plot + patchwork::plot_layout(widths = width, heights = height)
+  if (!is.null(overall_height)) {
+    if (!is.na(overall_height)) height <- ggplot2::unit(overall_height, unit) else height <- NULL
+  } else {
+    if (!is.na(height)) height <- ggplot2::unit(c(height, height), unit) else height <- NULL
+  }
+
   plot + ggplot2::theme(panel.widths = width, panel.heights = height)
 }
 

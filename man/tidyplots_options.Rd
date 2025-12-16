@@ -15,11 +15,8 @@ tidyplots_options(
 )
 }
 \arguments{
-\item{width}{Width of the plot area. The default (\code{NULL}) retrieves the setting from the
-\link[=tidyplots_options]{tidyplots options}, which defaults to \code{50}.}
-
-\item{height}{Height of the plot area. The default (\code{NULL}) retrieves the setting from the
-\link[=tidyplots_options]{tidyplots options}, which defaults to \code{50}.}
+\item{width, height}{Dimensions of the plot area. The default (\code{NULL}) retrieves the setting from the
+\link[=tidyplots_options]{tidyplots options}, which defaults to \code{50}. \code{NA} results in taking all available space (ggplot2 default).}
 
 \item{unit}{Unit of the plot area width and height. The default (\code{NULL}) retrieves the setting from the
 \link[=tidyplots_options]{tidyplots options}, which defaults to \code{"mm"}.}

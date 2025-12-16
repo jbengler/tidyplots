@@ -402,7 +402,7 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
   pages <-
     purrr::map(plot, function(x) {
       if (!ggplot2::is.ggplot(x)) cli::cli_abort("Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}")
-      # gtab <- patchwork::patchworkGrob(x)
+
       gtab <- ggplot2::ggplotGrob(x)
 
       width <- NA
