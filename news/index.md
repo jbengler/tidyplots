@@ -9,7 +9,7 @@
   [`ggplot2::facet_wrap()`](https://ggplot2.tidyverse.org/reference/facet_wrap.html)
   and
   [`ggplot2::facet_grid()`](https://ggplot2.tidyverse.org/reference/facet_grid.html),
-  replacing the use of
+  thereby replacing
   [`patchwork::wrap_plots()`](https://patchwork.data-imaginist.com/reference/wrap_plots.html).
   While this improves consistency and solves glitches in figure legends,
   it will eventually break code that relies on patchwork syntax
