@@ -241,9 +241,9 @@ adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL,
                         overall_width = NULL, overall_height = NULL) {
   plot <- check_tidyplot(plot)
 
-  if(!is.null(width) & !is.null(overall_width))
+  if(!is.null(width) && !is.null(overall_width))
     cli::cli_alert_warning("Argument {.arg overall_width} overrules {.arg width} if both are specified.")
-  if(!is.null(height) & !is.null(overall_height))
+  if(!is.null(height) && !is.null(overall_height))
     cli::cli_alert_warning("Argument {.arg overall_height} overrules {.arg height} if both are specified.")
 
   plot$tidyplot$width <- width %||% plot$tidyplot$width

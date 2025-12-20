@@ -209,7 +209,7 @@ add_data_labels_repel <- function(plot, label, data = all_rows(), fontsize = 7,
                seed = 42, ...)
 
   # Specify either `position` or `nudge_x`/`nudge_y`
-  if (!is.null(args$nudge_x) | !is.null(args$nudge_y)) {
+  if (!is.null(args$nudge_x) || !is.null(args$nudge_y)) {
     args$position <- NULL
   }
 

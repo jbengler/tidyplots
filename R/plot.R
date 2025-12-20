@@ -233,14 +233,14 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
 
   error_msg <- "Specify the argument {.arg by} to split the plot by one variable.
   Alternatively, specify the arguments {.arg rows} and {.arg cols} to split the plot by two variables."
-  if(var_is_null({{ by }}) & var_is_null({{ rows }}) & var_is_null({{ cols }}))
+  if(var_is_null({{ by }}) && var_is_null({{ rows }}) && var_is_null({{ cols }}))
     cli::cli_abort(error_msg)
-  if(!var_is_null({{ by }}) & (!var_is_null({{ rows }}) | !var_is_null({{ cols }})))
+  if(!var_is_null({{ by }}) && (!var_is_null({{ rows }}) || !var_is_null({{ cols }})))
     cli::cli_abort(error_msg)
 
   do_facet_wrap <- do_facet_grid <- FALSE
   if (!var_is_null({{ by }})) do_facet_wrap <- TRUE
-  if (!var_is_null({{ rows }}) | !var_is_null({{ cols }})) do_facet_grid <- TRUE
+  if (!var_is_null({{ rows }}) || !var_is_null({{ cols }})) do_facet_grid <- TRUE
 
   # Facet wrap
   if (do_facet_wrap) {
