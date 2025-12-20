@@ -64,10 +64,10 @@ add_caption <- function(plot, caption = ggplot2::waiver()) {
 add_reference_lines <- function(plot, x = NULL, y = NULL, linetype = "dashed", linewidth = 0.25, ...) {
   plot <- check_tidyplot(plot)
   out <- plot
-  if(!is.null(x)) {
+  if (!is.null(x)) {
     out <- out + ggplot2::geom_vline(xintercept = x, linetype = linetype, linewidth = linewidth, ...)
   }
-  if(!is.null(y)) {
+  if (!is.null(y)) {
     out <- out + ggplot2::geom_hline(yintercept = y, linetype = linetype, linewidth = linewidth, ...)
   }
   out

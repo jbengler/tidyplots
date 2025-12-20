@@ -132,9 +132,9 @@ f_points <- function(plot, data = all_rows(),
   }
 
   # Allow shape aesthetic to override shape
-  if("shape" %in% names(plot$mapping)) params$shape <- NULL
+  if ("shape" %in% names(plot$mapping)) params$shape <- NULL
   # Allow size aesthetic to override size
-  if("size" %in% names(plot$mapping)) params$size <- NULL
+  if ("size" %in% names(plot$mapping)) params$size <- NULL
 
   geom <- do.call(fun, params)
   add_geom(plot, geom, rasterize = rasterize, rasterize_dpi = rasterize_dpi, level = -1)

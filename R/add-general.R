@@ -298,7 +298,7 @@ ff_value <- function(.fun, .count = FALSE) {
 ff_line <- function(.fun, .count = FALSE, .geom) {
   function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
     plot <- check_tidyplot(plot)
-    if(.geom == "area") linewidth <- 0
+    if (.geom == "area") linewidth <- 0
     mapping <- NULL
     if (is_missing(plot, "group")) {
       mapping <- ggplot2::aes()
@@ -316,7 +316,7 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
       plot <- plot + ggplot2::stat_summary(mapping = mapping, fun = .fun, geom = .geom,
                                  linewidth = linewidth, position = position, ...)
     }
-    if(.geom == "area") {
+    if (.geom == "area") {
       # remove padding between area and axis
       if (is_flipped(plot)) {
         plot <- plot |> adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)

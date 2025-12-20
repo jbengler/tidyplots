@@ -218,7 +218,7 @@ mean_cl_boot <- function(x) {
 
 tidyplot_parser <- function(text) {
   # detect expressions by a leading and trailing "$"
-  if(any(stringr::str_detect(text, "^\\$.*\\$$"), na.rm = TRUE)) {
+  if (any(stringr::str_detect(text, "^\\$.*\\$$"), na.rm = TRUE)) {
     out <- vector("expression", length(text))
     for (i in seq_along(text)) {
       # get rid of leading and trailing "$"

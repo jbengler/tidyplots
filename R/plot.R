@@ -51,15 +51,15 @@ tidyplot <- function(data, ...,
 
   # Add .single_color column to data if `colour` and `fill` mappings are missing
   single_color_plot <- FALSE
-  if(!"colour" %in% names(mapping) && !"fill" %in% names(mapping)) {
+  if (!"colour" %in% names(mapping) && !"fill" %in% names(mapping)) {
     data$.single_color <- TRUE
     mapping$colour <- ggplot2::aes(colour = .single_color)[[1]]
     single_color_plot <- TRUE
   }
 
   # Align `colour` and `fill` mappings
-  if("colour" %in% names(mapping) && !"fill" %in% names(mapping)) mapping$fill <- mapping$colour
-  if("fill" %in% names(mapping) && !"colour" %in% names(mapping)) mapping$colour <- mapping$fill
+  if ("colour" %in% names(mapping) && !"fill" %in% names(mapping)) mapping$fill <- mapping$colour
+  if ("fill" %in% names(mapping) && !"colour" %in% names(mapping)) mapping$colour <- mapping$fill
 
   plot <- ggplot2::ggplot(data = data, mapping = mapping)
   class(plot) <- c("tidyplot", class(plot))
@@ -233,9 +233,9 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
 
   error_msg <- "Specify the argument {.arg by} to split the plot by one variable.
   Alternatively, specify the arguments {.arg rows} and {.arg cols} to split the plot by two variables."
-  if(var_is_null({{ by }}) && var_is_null({{ rows }}) && var_is_null({{ cols }}))
+  if (var_is_null({{ by }}) && var_is_null({{ rows }}) && var_is_null({{ cols }}))
     cli::cli_abort(error_msg)
-  if(!var_is_null({{ by }}) && (!var_is_null({{ rows }}) || !var_is_null({{ cols }})))
+  if (!var_is_null({{ by }}) && (!var_is_null({{ rows }}) || !var_is_null({{ cols }})))
     cli::cli_abort(error_msg)
 
   do_facet_wrap <- do_facet_grid <- FALSE
@@ -278,7 +278,7 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
   }
 
   # Facet grid
-  if(do_facet_grid) {
+  if (do_facet_grid) {
     scales <- scales %||% "fixed"
 
     plot <- plot +

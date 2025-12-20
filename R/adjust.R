@@ -91,12 +91,12 @@ ff_adjust_axis <- function(axis) {
   if (is_continuous(plot, axis) || force_continuous) {
     suppressMessages({
       if (axis == "x") {
-        if(!is_discrete(plot, "x")) {
+        if (!is_discrete(plot, "x")) {
           if (is_waiver(labels_x) && cut_short_scale)
             labels_x <- scales::label_number(scale_cut = scales::cut_short_scale())
           plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels_x, limits = NULL, expand = expand_x, transform = transform, ...)}
       } else {
-        if(!is_discrete(plot, "y")) {
+        if (!is_discrete(plot, "y")) {
           if (is_waiver(labels_y) && cut_short_scale)
             labels_y <- scales::label_number(scale_cut = scales::cut_short_scale())
           plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels_y, limits = NULL, expand = expand_y, transform = transform, ...)}
@@ -241,9 +241,9 @@ adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL,
                         overall_width = NULL, overall_height = NULL) {
   plot <- check_tidyplot(plot)
 
-  if(!is.null(width) && !is.null(overall_width))
+  if (!is.null(width) && !is.null(overall_width))
     cli::cli_alert_warning("Argument {.arg overall_width} overrules {.arg width} if both are specified.")
-  if(!is.null(height) && !is.null(overall_height))
+  if (!is.null(height) && !is.null(overall_height))
     cli::cli_alert_warning("Argument {.arg overall_height} overrules {.arg height} if both are specified.")
 
   plot$tidyplot$width <- width %||% plot$tidyplot$width

@@ -15,7 +15,7 @@ ff_rename_axis_levels <- function(axis) {
       dplyr::mutate("{var}" := forcats::fct_recode(.data[[var]], !!!new_factors))
 
     # if named color vector needs to be updated
-    if(var == get_variable(plot, "colour") && !is.null(plot$tidyplot$named_colors)) {
+    if (var == get_variable(plot, "colour") && !is.null(plot$tidyplot$named_colors)) {
       new_named_colors <- plot$tidyplot$named_colors
 
       names(new_named_colors) <- stringr::str_replace_all(names(new_named_colors), new_names)
