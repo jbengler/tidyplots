@@ -13,6 +13,7 @@ split_plot(
   ncol = NULL,
   nrow = NULL,
   axes = "all",
+  axis.titles = "all",
   scales = NULL,
   ...
 )
@@ -45,6 +46,13 @@ split_plot(
   `"margins"`, axes will be drawn at the exterior margins. `"all_x"` and
   `"all_y"` will draw the respective axes at the interior panels too,
   whereas `"all"` (the default) will draw all axes at all panels.
+
+- axis.titles:
+
+  Determines which axis titles will be drawn. When `"margins"`, axis
+  titles will be drawn at the exterior margins. `"all"` (the default)
+  will draw all axis titles at all panels. `"single"` will draw a single
+  axis title per multiplot layout.
 
 - scales:
 

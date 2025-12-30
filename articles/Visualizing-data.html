@@ -93,7 +93,7 @@ visualize a dataset. The corresponding function in tidyplots is called
 <span><span class="va">animals</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>In the above example some data points appear to overlap other points.
 To account for this so called <em>overplotting</em>, you might want to
 add a thin white border around the points. This is achieved by setting
@@ -102,27 +102,27 @@ the argument <code>white_border = TRUE</code>.</p>
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>white_border <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Another way is to make the points transparent using the
 <code>alpha</code> argument.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Or to change the plotting symbol to an open <code>shape</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">size</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>However, data points can also be used to plot a <em>discrete
 variable</em> against a <em>continuous variable</em>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-6-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>To avoid overplotting in this scenario, there are two additional
 options. You can add some random noise to the y position, also known as
 <em>jitter</em>.</p>
@@ -130,14 +130,14 @@ options. You can add some random noise to the y position, also known as
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_jitter</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Alternatively, you can use an algorithm that keeps the points
 centered and just moves potentially overlapping points to the sides.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="amounts">Amounts<a class="anchor" aria-label="anchor" href="#amounts"></a>
@@ -178,7 +178,7 @@ spendings.</p>
 <code class="sourceCode R"><span><span class="va">spendings</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_count_bar.html">add_count_bar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-10-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>One thing to note here is that the x-axis labels are overlapping and
 are thus unreadable. There are at least two possible solutions for this.
 One is to swap the x and y-axis.</p>
@@ -186,14 +186,14 @@ One is to swap the x and y-axis.</p>
 <code class="sourceCode R"><span><span class="va">spendings</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_count_bar.html">add_count_bar</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-11-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>The other one is to rotate the x-axis labels.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">spendings</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_count_bar.html">add_count_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_x_axis.html">adjust_x_axis</a></span><span class="op">(</span>rotate_labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-12-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Now we can appreciate that this family had reoccurring spendings for
 <em>Food</em> but just one spending for <em>Housing</em>.</p>
 <p>Next, we ask the question <em>how much</em> was spend on each of the
@@ -203,7 +203,7 @@ categories by plotting the <code>sum</code> amount.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">category</span>, y <span class="op">=</span> <span class="va">amount</span>, color <span class="op">=</span> <span class="va">category</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/adjust_x_axis.html">adjust_x_axis</a></span><span class="op">(</span>rotate_labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-13-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that we had to introduce the argument <code>y = amount</code> in
 the <code><a href="../reference/tidyplot.html">tidyplot()</a></code> function to make it clear which variable
 should be summed up.</p>
@@ -221,7 +221,7 @@ remove the duplicated information on the x-axis.</p>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_title</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_ticks</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-14-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that besides the x-axis labels, I also removed the x-axis ticks
 and x-axis title to achieve a cleaner look.</p>
 <p>Of course you are free to play around with different graphical
@@ -237,7 +237,7 @@ constructed from a thin <code>bar</code> and a <code>dot</code>.</p>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_title</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/remove_x_axis.html">remove_x_axis_ticks</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-15-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>I also added the sum value as text label using the
 <code><a href="../reference/add_sum_bar.html">add_sum_value()</a></code> function.</p>
 </div>
@@ -270,7 +270,7 @@ variable.</p>
 <code class="sourceCode R"><span><span class="va">gene_expression</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-17-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>One thing to note here is that the y-axis labels are overlapping. So
 let’s increase the height of the plot area from 50 to 100 mm.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -278,7 +278,7 @@ let’s increase the height of the plot area from 50 to 100 mm.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/adjust_size.html">adjust_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-18-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>The next thing to note is that some of the rows like <em>Map1a</em>
 and <em>Kif1a</em> show very high values while other rows show much
 lower values. Let’s apply a classical technique to reserve the color
@@ -291,7 +291,7 @@ the <code><a href="../reference/add_heatmap.html">add_heatmap()</a></code> funct
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sample</span>, y <span class="op">=</span> <span class="va">external_gene_name</span>, color <span class="op">=</span> <span class="va">expression</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/adjust_size.html">adjust_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-19-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-19-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Now it much easier to appreciate the dynamics of individual genes
 across the samples on the x-axis.</p>
 <p>However, the rows appear to be mixed. Some having rather high
@@ -306,7 +306,7 @@ y-axis.</p>
 <span>  <span class="fu"><a href="../reference/add_heatmap.html">add_heatmap</a></span><span class="op">(</span>scale <span class="op">=</span> <span class="st">"row"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/adjust_size.html">adjust_size</a></span><span class="op">(</span>height <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/sort_x_axis_levels.html">sort_y_axis_labels</a></span><span class="op">(</span><span class="va">direction</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-20-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="central-tendency">Central tendency<a class="anchor" aria-label="anchor" href="#central-tendency"></a>
@@ -321,7 +321,7 @@ or <code>add_median_</code>.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>The second part of the function name is dedicated to the graphical
 representation. These include the representation as <code>bar</code>,
 <code>dash</code>, <code>dot</code>, <code>value</code>,
@@ -333,14 +333,14 @@ representations can also be combined. Like in this case
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-22-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Or in this case <code>line</code> and <code>area</code>.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">time_course</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span>linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_area</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-23-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-23-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Here is one more example using <code>bar</code> and
 <code>value</code>.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
@@ -348,7 +348,7 @@ representations can also be combined. Like in this case
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_value</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-24-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-24-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>You could also plot the <code>mean</code> and the <code>median</code>
 together to explore in which cases they diverge. In the example below
 the <code>mean</code> is shown in orange and the <code>median</code> in
@@ -359,7 +359,7 @@ purple.</p>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"orange"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_median_bar.html">add_median_dash</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"purple"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-25-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-25-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="dispersion-uncertainty">Dispersion &amp; uncertainty<a class="anchor" aria-label="anchor" href="#dispersion-uncertainty"></a>
@@ -378,7 +378,7 @@ confidence interval <code>ci95</code>.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-26-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-26-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Or the use of a semitransparent <code>ribbon</code>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">time_course</span> <span class="op">|&gt;</span> </span>
@@ -386,7 +386,7 @@ confidence interval <code>ci95</code>.</p>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_mean_bar.html">add_mean_dot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_sem_ribbon.html">add_sem_ribbon</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-27-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-27-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Another widely used alternative, especially for not normally
 distributed data is the use of <code>violin</code> or
 <code>boxplot</code>. Starting with the <code>violin</code>, the shape
@@ -396,7 +396,7 @@ points.</p>
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_violin.html">add_violin</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-28-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-28-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>These can be further augmented by adding, for example, the 0.5
 quantile and the underlying data points.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
@@ -404,14 +404,14 @@ quantile and the underlying data points.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_violin.html">add_violin</a></span><span class="op">(</span>draw_quantiles <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-29-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-29-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>The <code>boxplot</code> is the more classical approach, in which the
 quantiles are visualized by a box and whiskers.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_boxplot.html">add_boxplot</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-30-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-30-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Finally, although it is not strictly a measure of central tendency,
 you can fit a curve through your data to derive an abstracted
 representation.</p>
@@ -419,7 +419,7 @@ representation.</p>
 <code class="sourceCode R"><span><span class="va">time_course</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">day</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_curve_fit.html">add_curve_fit</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-31-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-31-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="distribution">Distribution<a class="anchor" aria-label="anchor" href="#distribution"></a>
@@ -430,7 +430,7 @@ for visualization is a <code>histogram</code>.</p>
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">energy</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_histogram.html">add_histogram</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-32-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-32-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>If you want to compare multiple distributions, <code>violin</code> or
 <code>boxplot</code> are two potential solutions.</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
@@ -438,7 +438,7 @@ for visualization is a <code>histogram</code>.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">name</span>, y <span class="op">=</span> <span class="va">value</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_violin.html">add_violin</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points_beeswarm</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-33-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-33-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="proportion">Proportion<a class="anchor" aria-label="anchor" href="#proportion"></a>
@@ -465,7 +465,7 @@ visualization of proportional data in tidyplots, let’s introduce the
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_pie</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-35-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-35-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>The above plot represents the <code>count</code> of values across the
 different <code>energy_type</code> categories.</p>
 <p>However, we might be more interested, in the <code>sum</code>
@@ -477,7 +477,7 @@ variable <code>energy</code> as a <code>y</code> argument to the
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_pie.html">add_donut</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-36-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-36-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Now we can appreciate the contribution of each energy type. Note that
 I also changed the <code>pie</code> for a <code>donut</code> plot, which
 is basically a pie chart with a white hole in the center.</p>
@@ -489,7 +489,7 @@ proportions represented. A slightly better option might be a
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-37-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-37-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>However, for a direct comparison, a classical bar plot is probably
 still the best option.</p>
 <div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
@@ -498,14 +498,14 @@ still the best option.</p>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_bar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_sum_bar.html">add_sum_value</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/sort_x_axis_levels.html">sort_x_axis_labels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-38-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-38-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Nevertheless, to visualize proportional data across time or another
 variable, <code>barstack</code> plots are the way to go.</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-39-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-39-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>If we want to focus more on the relative instead of the absolute
 contribution, we can use the <code><a href="../reference/add_barstack_absolute.html">add_barstack_relative()</a></code>
 function.</p>
@@ -513,13 +513,13 @@ function.</p>
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_barstack_absolute.html">add_barstack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-40-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-40-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>A similar plot can be achieved using an <code>areastack</code>.</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">year</span>, y <span class="op">=</span> <span class="va">energy</span>, color <span class="op">=</span> <span class="va">energy_type</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-41-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-41-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>In both plots, the increasing contribution of renewable energy to the
 total energy production over time becomes apparent.</p>
 <p>This can also be shown using donut plots. However, we need to
@@ -537,14 +537,14 @@ downsample the dataset to 4 representative years.</p>
 <span>                               <span class="st">"Renewable"</span> <span class="op">=</span> <span class="st">"#4FAE62"</span>,</span>
 <span>                               <span class="st">"Other"</span> <span class="op">=</span> <span class="st">"#C02D45"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="../reference/split_plot.html">split_plot</a></span><span class="op">(</span>by <span class="op">=</span> <span class="va">year</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-42-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-42-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Now, let’s examine a related dataset that presents one week of energy
 data with higher time resolution.</p>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">energy_week</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_absolute</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-43-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-43-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>In this plot, one can appreciate the higher contribution of solar
 power during day time in comparison to night time.</p>
 <p>Also this plot can be shown as a relative areastack.</p>
@@ -552,7 +552,7 @@ power during day time in comparison to night time.</p>
 <code class="sourceCode R"><span><span class="va">energy_week</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span><span class="va">date</span>, <span class="va">power</span>, color <span class="op">=</span> <span class="va">energy_source</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_areastack_absolute.html">add_areastack_relative</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-44-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-44-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>This illustrates nicely how wind energy compensates for the lack of
 solar power during the night. However, when wind is weak, as on
 September 10, fossil energy sources need to step in to fill the gap.</p>
@@ -571,7 +571,7 @@ for symbolizing significance.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_asterisks</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-45-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-45-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p><code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> provides the computed <em>p</em>
 value.</p>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
@@ -581,7 +581,7 @@ value.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-46-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-46-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>As you might have noted, when using these functions, a caption is
 automatically included that provides details about the statistical
 testing performed. The default is a Student’s <em>t</em> test without
@@ -597,7 +597,7 @@ Benjamini–Hochberg adjustment.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"wilcoxon"</span>, p.adjust.method <span class="op">=</span> <span class="st">"BH"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-47-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-47-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>It often makes sense to compare all experimental conditions to a
 control condition. For example, let’s say treatment “A” is our
 control.</p>
@@ -608,7 +608,7 @@ control.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>ref.group <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-48-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-48-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>In some scenarios you have a mixture of significant and
 non-significant <em>p</em> values.</p>
 <div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
@@ -621,7 +621,7 @@ non-significant <em>p</em> values.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-49-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-49-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Here you can choose to hide the non-significant <em>p</em> value
 using <code>hide.ns = TRUE</code>.</p>
 <div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
@@ -634,7 +634,7 @@ using <code>hide.ns = TRUE</code>.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-50-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-50-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Finally, if you want to hide the caption with statistical information
 you can do this by providing <code>hide_info = TRUE</code>.</p>
 <div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
@@ -647,7 +647,7 @@ you can do this by providing <code>hide_info = TRUE</code>.</p>
 <span>  <span class="fu"><a href="../reference/add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_test_pvalue.html">add_test_pvalue</a></span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span>, hide_info <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-51-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-51-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>There are many more things you can do with statistical comparisons.
 Just check out the documentation of <code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> and
 the underlying function <code><a href="https://rpkgs.datanovia.com/ggpubr/reference/geom_pwc.html" class="external-link">ggpubr::geom_pwc()</a></code>.</p>
@@ -666,7 +666,7 @@ important additional information. For example, tidyplots let’s you add a
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_title.html">add_title</a></span><span class="op">(</span><span class="st">"Interesting study"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_title.html">add_caption</a></span><span class="op">(</span><span class="st">"Here is some more detail how the study was performed"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-52-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-52-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>In other cases you might want to highlight specific data points or
 reference values in the plot. Let’s take the <code>animals</code>
 dataset and plot <code>speed</code> versus <code>weight</code>.</p>
@@ -674,7 +674,7 @@ dataset and plot <code>speed</code> versus <code>weight</code>.</p>
 <code class="sourceCode R"><span><span class="va">animals</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-53-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-53-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Here it might be interesting to have closer at the extreme values.
 First, let’s highlight the heaviest and the fastest animal.</p>
 <div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
@@ -683,7 +683,7 @@ First, let’s highlight the heaviest and the fastest animal.</p>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">weight</span>, <span class="fl">1</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, shape <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">speed</span>, <span class="fl">1</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"red"</span>, shape <span class="op">=</span> <span class="fl">1</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-54-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-54-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Now it would interesting to know the names of these animals. We can
 plot the names of all animals.</p>
 <div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
@@ -691,7 +691,7 @@ plot the names of all animals.</p>
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-55-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-55-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>Note that I provided the <code>label</code> argument to the
 <code><a href="../reference/add_data_labels.html">add_data_labels()</a></code> function to indicate the variable in the
 dataset that should be used for the text labels.</p>
@@ -703,7 +703,7 @@ using the <code><a href="../reference/add_data_labels.html">add_data_labels_repe
 <span>  <span class="fu"><a href="../reference/tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">weight</span>, y <span class="op">=</span> <span class="va">speed</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>label <span class="op">=</span> <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-56-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-56-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>While the general idea might have been good, there are still too many
 labels to be plotted. So let’s restrict the labels to the 3 heaviest and
 the 3 fastest animals.</p>
@@ -713,7 +713,7 @@ the 3 fastest animals.</p>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">weight</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">speed</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-57-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-57-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>There is lot tweaking that can be done with repelling data labels.
 For more details have a look at the documentation of
 <code><a href="../reference/add_data_labels.html">add_data_labels_repel()</a></code>, the underlying function
@@ -728,7 +728,7 @@ specific values on the x and y-axis.</p>
 <span>  <span class="fu"><a href="../reference/add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">weight</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/add_data_labels.html">add_data_labels_repel</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="../reference/all_rows.html">max_rows</a></span><span class="op">(</span><span class="va">speed</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">animal</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-58-1.png" class="r-plt" width="1500" style="display: block; margin: auto;"></p>
+<p><img src="Visualizing-data_files/figure-html/unnamed-chunk-58-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
 <h2 id="whats-more">What’s more?<a class="anchor" aria-label="anchor" href="#whats-more"></a>

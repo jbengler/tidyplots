@@ -53,6 +53,7 @@
 <span>  ncol <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  axes <span class="op">=</span> <span class="st">"all"</span>,</span>
+<span>  axis.titles <span class="op">=</span> <span class="st">"all"</span>,</span>
 <span>  scales <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -82,6 +83,12 @@
 <dd><p>Determines which axes will be drawn in case of fixed scales.
 When <code>"margins"</code>, axes will be drawn at the exterior margins. <code>"all_x"</code> and <code>"all_y"</code> will draw
 the respective axes at the interior panels too, whereas <code>"all"</code> (the default) will draw all axes at all panels.</p></dd>
+
+
+<dt id="arg-axis-titles">axis.titles<a class="anchor" aria-label="anchor" href="#arg-axis-titles"></a></dt>
+<dd><p>Determines which axis titles will be drawn.
+When <code>"margins"</code>, axis titles will be drawn at the exterior margins. <code>"all"</code> (the default) will draw all axis titles at all panels.
+<code>"single"</code> will draw a single axis title per multiplot layout.</p></dd>
 
 
 <dt id="arg-scales">scales<a class="anchor" aria-label="anchor" href="#arg-scales"></a></dt>
