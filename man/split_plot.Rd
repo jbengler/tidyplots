@@ -12,6 +12,7 @@ split_plot(
   ncol = NULL,
   nrow = NULL,
   axes = "all",
+  axis.titles = "all",
   scales = NULL,
   ...
 )
@@ -28,6 +29,10 @@ split_plot(
 \item{axes}{Determines which axes will be drawn in case of fixed scales.
 When \code{"margins"}, axes will be drawn at the exterior margins. \code{"all_x"} and \code{"all_y"} will draw
 the respective axes at the interior panels too, whereas \code{"all"} (the default) will draw all axes at all panels.}
+
+\item{axis.titles}{Determines which axis titles will be drawn.
+When \code{"margins"}, axis titles will be drawn at the exterior margins. \code{"all"} (the default) will draw all axis titles at all panels.
+\code{"single"} will draw a single axis title per multiplot layout.}
 
 \item{scales}{Should scales be fixed \code{"fixed"}, free (\code{"free"}), or free in one dimension (\code{"free_x"}, \code{"free_y"})?
 Defaults to \code{"free"} when providing one splitting variable via \code{by}.

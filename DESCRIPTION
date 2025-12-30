@@ -19,6 +19,7 @@ Imports:
     ggrastr,
     ggrepel,
     glue,
+    gtable,
     Hmisc,
     htmltools,
     lifecycle,

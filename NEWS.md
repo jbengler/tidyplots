@@ -14,6 +14,7 @@ it will eventually break code that relies on patchwork syntax (#95, #141).
 
 * `split_plot()` gains the parameters `rows` and `cols` allowing to split the plot by two variables. 
 This functionality is powered by `ggplot2::facet_grid()`.
+* `split_plot()` gains the parameter `axis.titles` allowing to draw a `"single"` axis title, `"all"` axis titles, or just those on the layout `"margins"`.
 * `adjust_size()` gains the parameters `overall_width` and `overall_height` allowing to set the overall dimensions of a multiplot layout generated with `split_plot()`.
 * `tidyplot()` gains the parameters `paper` and `ink` allowing to choose a color for the background (`paper`) and the 
 foreground elements like text and lines (`ink`). This is useful to generate plots for dark mode.

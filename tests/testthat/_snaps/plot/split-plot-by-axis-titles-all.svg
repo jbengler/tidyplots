@@ -548,6 +548,6 @@
 <text x='419.84' y='340.34' style='font-size: 7.00px; font-family: sans;' textLength='19.84px' lengthAdjust='spacingAndGlyphs'>Waste</text>
 <text x='419.84' y='351.68' style='font-size: 7.00px; font-family: sans;' textLength='43.19px' lengthAdjust='spacingAndGlyphs'>Wind offshore</text>
 <text x='419.84' y='363.02' style='font-size: 7.00px; font-family: sans;' textLength='43.19px' lengthAdjust='spacingAndGlyphs'>Wind onshore</text>
-<text x='314.34' y='183.81' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='35.02px' lengthAdjust='spacingAndGlyphs'>split plot by</text>
+<text x='314.34' y='183.81' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='74.70px' lengthAdjust='spacingAndGlyphs'>split plot by axis titles all</text>
 </g>
 </svg>

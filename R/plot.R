@@ -181,6 +181,9 @@ tidyplots_options <- function(
 #' @param axes Determines which axes will be drawn in case of fixed scales.
 #' When `"margins"`, axes will be drawn at the exterior margins. `"all_x"` and `"all_y"` will draw
 #' the respective axes at the interior panels too, whereas `"all"` (the default) will draw all axes at all panels.
+#' @param axis.titles Determines which axis titles will be drawn.
+#' When `"margins"`, axis titles will be drawn at the exterior margins. `"all"` (the default) will draw all axis titles at all panels.
+#' `"single"` will draw a single axis title per multiplot layout.
 #' @param scales Should scales be fixed `"fixed"`, free (`"free"`), or free in one dimension (`"free_x"`, `"free_y"`)?
 #' Defaults to `"free"` when providing one splitting variable via `by`.
 #' Defaults to `"fixed"` when providing two splitting variables via `rows` and `cols`.
@@ -228,7 +231,7 @@ tidyplots_options <- function(
 #'
 #' @export
 split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, nrow = NULL,
-                       axes = "all", scales = NULL, ...) {
+                       axes = "all", axis.titles = "all", scales = NULL, ...) {
   plot <- check_tidyplot(plot)
 
   error_msg <- "Specify the argument {.arg by} to split the plot by one variable.
@@ -261,18 +264,20 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
         purrr::map(function(x) {
           new_data <- x |> tidyr::unnest(cols = data)
           update_data(plot, new_data) +
-            ggplot2::facet_wrap(
+            facet_wrap_ext(
               facets = ggplot2::vars({{ by }}),
-              nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
+              nrow = nrow, ncol = ncol, scales = scales,
+              axes = axes, axis.titles = axis.titles, ...)
         })
 
       cli::cli_alert_success("split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}")
 
       return(unname(pages))
     } else {
-      plot <- plot + ggplot2::facet_wrap(
+      plot <- plot + facet_wrap_ext(
         facets = ggplot2::vars({{ by }}),
-        nrow = nrow, ncol = ncol, scales = scales, axes = axes, ...)
+        nrow = nrow, ncol = ncol, scales = scales, axes = axes,
+        axis.titles = axis.titles, ...)
       return(plot)
     }
   }
@@ -282,9 +287,10 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
     scales <- scales %||% "fixed"
 
     plot <- plot +
-      ggplot2::facet_grid(rows = ggplot2::vars({{ rows }}),
+      facet_grid_ext(rows = ggplot2::vars({{ rows }}),
                           cols = ggplot2::vars({{ cols }}),
                           axes = axes,
+                          axis.titles = axis.titles,
                           scales = scales,
                           switch = "y",
                           ...) +

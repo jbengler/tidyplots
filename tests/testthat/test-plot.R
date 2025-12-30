@@ -106,9 +106,15 @@ test_that("split plot works", {
       adjust_size(20,20)
 
     p |> split_plot(by = energy_type) |> vdiffr::expect_doppelganger("split plot by", fig = _)
+    p |> split_plot(by = energy_type, axis.titles = "margins") |> vdiffr::expect_doppelganger("split plot by axis titles margins", fig = _)
+    p |> split_plot(by = energy_type, axis.titles = "all") |> vdiffr::expect_doppelganger("split plot by axis titles all", fig = _)
+    p |> split_plot(by = energy_type, axis.titles = "single") |> vdiffr::expect_doppelganger("split plot by axis titles single", fig = _)
     p |> split_plot(rows = decade, cols = energy_type) |> vdiffr::expect_doppelganger("split plot rows cols", fig = _)
     p |> split_plot(rows = decade, cols = energy_type, scales = "free") |> vdiffr::expect_doppelganger("split plot rows cols scales free", fig = _)
-    p |> split_plot(rows = decade, cols = energy_type, axis = "margins") |> vdiffr::expect_doppelganger("split plot rows cols axis margins", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type, axes = "margins") |> vdiffr::expect_doppelganger("split plot rows cols axes margins", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type, axis.titles = "margins") |> vdiffr::expect_doppelganger("split plot rows cols axis titles margins", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type, axis.titles = "all") |> vdiffr::expect_doppelganger("split plot rows cols axis titles all", fig = _)
+    p |> split_plot(rows = decade, cols = energy_type, axis.titles = "single") |> vdiffr::expect_doppelganger("split plot rows cols axis titles single", fig = _)
     p |> split_plot(rows = energy_type) |> vdiffr::expect_doppelganger("split plot rows", fig = _)
     p |> split_plot(cols = energy_type) |> vdiffr::expect_doppelganger("split plot cols", fig = _)
 
