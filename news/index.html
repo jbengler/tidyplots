@@ -57,13 +57,13 @@
 <li>
 <code><a href="../reference/split_plot.html">split_plot()</a></code> gains the parameter <code>axis.titles</code> allowing to draw a <code>"single"</code> axis title, <code>"all"</code> axis titles, or just those on the layout <code>"margins"</code>.</li>
 <li>
-<code><a href="../reference/adjust_size.html">adjust_size()</a></code> gains the parameters <code>overall_width</code> and <code>overall_height</code> allowing to set the overall dimensions of a multiplot layout generated with <code><a href="../reference/split_plot.html">split_plot()</a></code>.</li>
+<code><a href="../reference/adjust_size.html">adjust_size()</a></code> gains the parameters <code>overall_width</code> and <code>overall_height</code> to set the dimensions of the entire multiplot layout generated with <code><a href="../reference/split_plot.html">split_plot()</a></code>. In contrast, the existing <code>width</code> and <code>height</code> parameters determine the size of each individual plot within the layout.</li>
 <li>
-<code><a href="../reference/tidyplot.html">tidyplot()</a></code> gains the parameters <code>paper</code> and <code>ink</code> allowing to choose a color for the background (<code>paper</code>) and the foreground elements like text and lines (<code>ink</code>). This is useful to generate plots for dark mode.</li>
+<code><a href="../reference/tidyplot.html">tidyplot()</a></code> gains the parameters <code>paper</code> and <code>ink</code> allowing to choose a color for the background (<code>paper</code>) and the foreground elements like text and lines (<code>ink</code>). This allows for global color customization, such as enabling dark-mode plots.</li>
 <li>
 <code><a href="../reference/tidyplots_options.html">tidyplots_options()</a></code> gains the parameters <code>paper</code> and <code>ink</code> allowing to set these parameters once for all tidyplots in the active R session.</li>
 <li>The <code>labels</code> parameter of <code>adjust_*_axis()</code> now survives repeated calls changing the same scale (<a href="https://github.com/jbengler/tidyplots/issues/136" class="external-link">#136</a>).</li>
-<li>Fixed <code><a href="../reference/add_data_points.html">add_data_points()</a></code> to respect constant <code>color</code> when <code>white_border = TRUE</code> (<a href="https://github.com/jbengler/tidyplots/issues/115" class="external-link">#115</a>).</li>
+<li>Fixed <code><a href="../reference/add_data_points.html">add_data_points()</a></code> does now respect constant <code>color</code> when <code>white_border = TRUE</code> (<a href="https://github.com/jbengler/tidyplots/issues/115" class="external-link">#115</a>).</li>
 <li>Prepare for deprecation of <code>%+%</code> and <code>geom_label(label.size = NA)</code>.</li>
 </ul></div>
 </div>

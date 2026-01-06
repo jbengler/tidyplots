@@ -38,13 +38,16 @@
   gains the parameter `axis.titles` allowing to draw a `"single"` axis
   title, `"all"` axis titles, or just those on the layout `"margins"`.
 - [`adjust_size()`](https://jbengler.github.io/tidyplots/reference/adjust_size.md)
-  gains the parameters `overall_width` and `overall_height` allowing to
-  set the overall dimensions of a multiplot layout generated with
+  gains the parameters `overall_width` and `overall_height` to set the
+  dimensions of the entire multiplot layout generated with
   [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md).
+  In contrast, the existing `width` and `height` parameters determine
+  the size of each individual plot within the layout.
 - [`tidyplot()`](https://jbengler.github.io/tidyplots/reference/tidyplot.md)
   gains the parameters `paper` and `ink` allowing to choose a color for
   the background (`paper`) and the foreground elements like text and
-  lines (`ink`). This is useful to generate plots for dark mode.
+  lines (`ink`). This allows for global color customization, such as
+  enabling dark-mode plots.
 - [`tidyplots_options()`](https://jbengler.github.io/tidyplots/reference/tidyplots_options.md)
   gains the parameters `paper` and `ink` allowing to set these
   parameters once for all tidyplots in the active R session.
@@ -53,7 +56,7 @@
   ([\#136](https://github.com/jbengler/tidyplots/issues/136)).
 - Fixed
   [`add_data_points()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md)
-  to respect constant `color` when `white_border = TRUE`
+  does now respect constant `color` when `white_border = TRUE`
   ([\#115](https://github.com/jbengler/tidyplots/issues/115)).
 - Prepare for deprecation of `%+%` and `geom_label(label.size = NA)`.
 
