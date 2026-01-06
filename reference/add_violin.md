@@ -10,7 +10,7 @@ add_violin(
   dodge_width = NULL,
   alpha = 0.3,
   saturation = 1,
-  trim = FALSE,
+  trim = TRUE,
   linewidth = 0.25,
   scale = "width",
   ...
@@ -86,7 +86,7 @@ study |>
 
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>
-  add_violin(trim = TRUE)
+  add_violin(trim = FALSE)
 
 
 study |>

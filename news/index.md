@@ -15,6 +15,12 @@
   it will eventually break code that relies on patchwork syntax
   ([\#95](https://github.com/jbengler/tidyplots/issues/95),
   [\#141](https://github.com/jbengler/tidyplots/issues/141)).
+- In
+  [`add_violin()`](https://jbengler.github.io/tidyplots/reference/add_violin.md),
+  `trim = TRUE` is now the default. This improves accuracy when plotting
+  small sample sizes and aligns the behavior with
+  [`ggplot2::geom_violin()`](https://ggplot2.tidyverse.org/reference/geom_violin.html)
+  ([\#151](https://github.com/jbengler/tidyplots/issues/151)).
 
 ### Bug fixes
 
