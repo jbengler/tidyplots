@@ -2,6 +2,10 @@
 
 ## tidyplots (development version)
 
+## tidyplots 0.4.0
+
+CRAN release: 2026-01-08
+
 ### Breaking changes
 
 - [`split_plot()`](https://jbengler.github.io/tidyplots/reference/split_plot.md)
