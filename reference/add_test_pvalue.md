@@ -310,16 +310,6 @@ gene_expression |>
   add_test_pvalue(hide.ns = TRUE)
 
 
-# Flip plot
-study |>
-  tidyplot(x = treatment, y = score, color = treatment) |>
-  add_mean_dash() |>
-  add_sem_errorbar() |>
-  add_data_points() |>
-  add_test_asterisks(comparisons = list(c(1,4),c(2,3))) |>
-  flip_plot()
-
-
 # Adjust top padding for statistical comparisons
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>

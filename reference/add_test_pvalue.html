@@ -332,16 +332,6 @@ To produce horizontal plots, use <code><a href="flip_plot.html">flip_plot()</a><
 <span class="r-in"><span>  <span class="fu">add_test_pvalue</span><span class="op">(</span>hide.ns <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="add_test_pvalue-9.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Flip plot</span></span></span>
-<span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_mean_bar.html">add_mean_dash</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">add_test_asterisks</span><span class="op">(</span>comparisons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">4</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="flip_plot.html">flip_plot</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="add_test_pvalue-10.png" alt="" width="800" height="600"></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Adjust top padding for statistical comparisons</span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="tidyplot.html">tidyplot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">treatment</span>, y <span class="op">=</span> <span class="va">score</span>, color <span class="op">=</span> <span class="va">treatment</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
@@ -349,7 +339,7 @@ To produce horizontal plots, use <code><a href="flip_plot.html">flip_plot()</a><
 <span class="r-in"><span>  <span class="fu"><a href="add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_test_pvalue</span><span class="op">(</span>padding_top <span class="op">=</span> <span class="fl">0.08</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="add_test_pvalue-11.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="add_test_pvalue-10.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Hide stats information</span></span></span>
 <span class="r-in"><span><span class="va">study</span> <span class="op">|&gt;</span></span></span>
@@ -358,7 +348,7 @@ To produce horizontal plots, use <code><a href="flip_plot.html">flip_plot()</a><
 <span class="r-in"><span>  <span class="fu"><a href="add_sem_errorbar.html">add_sem_errorbar</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="add_data_points.html">add_data_points</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">add_test_pvalue</span><span class="op">(</span>hide_info <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="add_test_pvalue-12.png" alt="" width="800" height="600"></span>
+<span class="r-plt img"><img src="add_test_pvalue-11.png" alt="" width="800" height="600"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
