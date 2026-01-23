@@ -30,6 +30,7 @@ add_data_points_jitter(
   preserve = "total",
   rasterize = FALSE,
   rasterize_dpi = 300,
+  seed = 42,
   ...
 )
 
@@ -126,6 +127,10 @@ add_data_points_beeswarm(
   Amount of random noise to be added to the vertical position of the of
   the data points. This can be useful to deal with overplotting. Typical
   values range between `0` and `1`.
+
+- seed:
+
+  Random seed controlling point and label jitter.
 
 - cex:
 

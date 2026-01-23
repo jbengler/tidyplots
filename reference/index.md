@@ -257,6 +257,8 @@ Output the final plot or intermediate stages to the screen or to a file.
 
 ## Helpers
 
+- [`add()`](https://jbengler.github.io/tidyplots/reference/add.md) : Add
+  ggplot2 code to a tidyplot
 - [`all_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
   [`filter_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
   [`max_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
@@ -265,8 +267,6 @@ Output the final plot or intermediate stages to the screen or to a file.
   [`last_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
   [`sample_rows()`](https://jbengler.github.io/tidyplots/reference/all_rows.md)
   : Subset data rows
-- [`add()`](https://jbengler.github.io/tidyplots/reference/add.md) : Add
-  ggplot2 code to a tidyplot
 - [`flip_plot()`](https://jbengler.github.io/tidyplots/reference/flip_plot.md)
   **\[superseded\]** : Flip x and y-axis
 - [`format_p_value()`](https://jbengler.github.io/tidyplots/reference/format_p_value.md)

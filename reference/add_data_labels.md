@@ -18,6 +18,7 @@ add_data_labels(
   background_color = NULL,
   background_alpha = 0.6,
   label_position = c("below", "above", "left", "right", "center"),
+  seed = 42,
   ...
 )
 
@@ -36,6 +37,7 @@ add_data_labels_repel(
   background = FALSE,
   background_color = NULL,
   background_alpha = 0.6,
+  seed = 42,
   ...
 )
 ```
@@ -111,6 +113,10 @@ add_data_labels_repel(
 
   Position of the label in relation to the data point. Can be one of
   `c("below", "above", "left", "right", "center")`.
+
+- seed:
+
+  Random seed controlling point and label jitter.
 
 - ...:
 

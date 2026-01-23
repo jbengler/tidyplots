@@ -2,6 +2,14 @@
 
 ## tidyplots (development version)
 
+### Improvements
+
+- [`add_data_points_jitter()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md),
+  [`add_data_labels()`](https://jbengler.github.io/tidyplots/reference/add_data_labels.md)
+  and
+  [`add_data_labels_repel()`](https://jbengler.github.io/tidyplots/reference/add_data_labels.md)
+  now expose the `seed` parameter.
+
 ## tidyplots 0.4.0
 
 CRAN release: 2026-01-08

@@ -115,6 +115,10 @@ Common arguments
 
   Font size in points. Defaults to `7`.
 
+- seed:
+
+  Random seed controlling point and label jitter.
+
 - replace_na:
 
   Whether to replace `count = NA` with `count = 0`.
