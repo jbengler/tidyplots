@@ -65,6 +65,8 @@ at the `study` dataset.
 
 ``` r
 library(tidyplots)
+#> tidyplots 0.4.0.9000
+#> In publications, please cite: https://doi.org/10.1002/imt2.70018
 study
 #>    treatment     group dose participant age    sex score
 #> 1          A   placebo high         p01  23 female     2
