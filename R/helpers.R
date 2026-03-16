@@ -254,11 +254,6 @@ tidyplot_parse_labels <- function() {
   }
 }
 
-parent_function <- function(level = 0){
-  deparse(sys.call(-2 + level)) |>
-    stringr::str_extract(pattern = "^[A-Z_a-z]*")
-}
-
 check_input <- function(input) {
   if (any(inherits(input, "tidyplot"))) return("tp")
   if (any(inherits(input, "patchwork"))) return("pw")
@@ -372,8 +367,19 @@ check_tidyplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::ca
       msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")
     cli::cli_abort(msg, call = call)
   }
-  # message(parent_function(-1))
-  plot$tidyplot$history <- c(plot$tidyplot$history, parent_function())
+
+  call_stack <- sys.call(sys.parent())
+  last_call <- as.character(call_stack[[1]])
+
+  if (is.null(plot$tidyplot$call_history)) {
+    call_history <- last_call
+  } else {
+    call_history <- c(plot$tidyplot$call_history, last_call)
+  }
+
+  plot$tidyplot$call_stack <- call_stack
+  plot$tidyplot$call_history <- call_history
+
   plot
 }
 

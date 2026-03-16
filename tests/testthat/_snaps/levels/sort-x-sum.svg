@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' data-engine-version='2.0' width='720.00pt' height='576.00pt' viewBox='0 0 720.00 576.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMjI2Ljk2fDQ5My4wNHwxOTUuNjd8MzgwLjMz'>
+    <rect x='226.96' y='195.67' width='266.08' height='184.65' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMjI2Ljk2fDQ5My4wNHwxOTUuNjd8MzgwLjMz)'>
+<rect x='226.96' y='195.67' width='266.08' height='184.65' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMjYxLjk1fDQwMy42OXwyMTIuOTB8MzU0LjYz'>
+    <rect x='261.95' y='212.90' width='141.73' height='141.73' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMjYxLjk1fDQwMy42OXwyMTIuOTB8MzU0LjYz)'>
+<rect x='261.95' y='212.90' width='141.73' height='141.73' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='267.14' y='351.26' width='10.37' height='3.37' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2;' />
+<rect x='284.42' y='346.20' width='10.37' height='8.44' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #3DA1D9;' />
+<rect x='301.71' y='337.76' width='10.37' height='16.87' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #31AAB6;' />
+<rect x='318.99' y='333.26' width='10.37' height='21.37' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #22A364;' />
+<rect x='336.28' y='327.64' width='10.37' height='27.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #D1C11E;' />
+<rect x='353.56' y='327.64' width='10.37' height='27.00' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #ECB006;' />
+<rect x='370.85' y='300.64' width='10.37' height='53.99' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #E18C00;' />
+<rect x='388.13' y='219.65' width='10.37' height='134.98' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00;' />
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<polyline points='261.95,354.63 261.95,212.90 ' style='stroke-width: 0.53; stroke-linecap: square;' />
+<text x='257.02' y='357.04' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='3.89px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='257.02' y='328.92' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='11.68px' lengthAdjust='spacingAndGlyphs'>250</text>
+<text x='257.02' y='300.80' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='11.68px' lengthAdjust='spacingAndGlyphs'>500</text>
+<text x='257.02' y='272.68' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='11.68px' lengthAdjust='spacingAndGlyphs'>750</text>
+<text x='257.02' y='244.56' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>1000</text>
+<text x='257.02' y='216.44' text-anchor='end' style='font-size: 7.00px; font-family: sans;' textLength='15.57px' lengthAdjust='spacingAndGlyphs'>1250</text>
+<polyline points='259.22,354.63 261.95,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='259.22,326.51 261.95,326.51 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='259.22,298.39 261.95,298.39 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='259.22,270.27 261.95,270.27 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='259.22,242.15 261.95,242.15 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='259.22,214.03 261.95,214.03 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='261.95,354.63 403.69,354.63 ' style='stroke-width: 0.53; stroke-linecap: square;' />
+<polyline points='272.33,357.37 272.33,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='289.61,357.37 289.61,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='306.89,357.37 306.89,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='324.18,357.37 324.18,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='341.46,357.37 341.46,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='358.75,357.37 358.75,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='376.03,357.37 376.03,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<polyline points='393.32,357.37 393.32,354.63 ' style='stroke-width: 0.53; stroke-linecap: butt;' />
+<text x='272.33' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='43.58px' lengthAdjust='spacingAndGlyphs'>Entertainment</text>
+<text x='289.61' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='31.14px' lengthAdjust='spacingAndGlyphs'>Education</text>
+<text x='306.89' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='45.14px' lengthAdjust='spacingAndGlyphs'>Transportation</text>
+<text x='324.18' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='22.56px' lengthAdjust='spacingAndGlyphs'>Utilities</text>
+<text x='341.46' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='20.24px' lengthAdjust='spacingAndGlyphs'>Health</text>
+<text x='358.75' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='30.75px' lengthAdjust='spacingAndGlyphs'>Insurance</text>
+<text x='376.03' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='15.96px' lengthAdjust='spacingAndGlyphs'>Food</text>
+<text x='393.32' y='364.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='25.69px' lengthAdjust='spacingAndGlyphs'>Housing</text>
+<text x='332.82' y='373.39' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='26.85px' lengthAdjust='spacingAndGlyphs'>category</text>
+<text transform='translate(237.26,283.77) rotate(-90)' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='23.35px' lengthAdjust='spacingAndGlyphs'>amount</text>
+<rect x='414.65' y='227.06' width='72.91' height='113.42' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<text x='420.13' y='238.08' style='font-size: 7.00px; font-family: sans;' textLength='26.85px' lengthAdjust='spacingAndGlyphs'>category</text>
+<rect x='420.13' y='244.29' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='245.00' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #0072B2;' />
+<rect x='420.13' y='255.63' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='256.34' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #3DA1D9;' />
+<rect x='420.13' y='266.97' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='267.68' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #31AAB6;' />
+<rect x='420.13' y='278.31' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='279.01' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #22A364;' />
+<rect x='420.13' y='289.64' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='290.35' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #D1C11E;' />
+<rect x='420.13' y='300.98' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='301.69' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #ECB006;' />
+<rect x='420.13' y='312.32' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='313.03' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #E18C00;' />
+<rect x='420.13' y='323.66' width='11.34' height='11.34' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='420.83' y='324.37' width='9.92' height='9.92' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #D55E00;' />
+<text x='436.94' y='252.37' style='font-size: 7.00px; font-family: sans;' textLength='43.58px' lengthAdjust='spacingAndGlyphs'>Entertainment</text>
+<text x='436.94' y='263.71' style='font-size: 7.00px; font-family: sans;' textLength='31.14px' lengthAdjust='spacingAndGlyphs'>Education</text>
+<text x='436.94' y='275.04' style='font-size: 7.00px; font-family: sans;' textLength='45.14px' lengthAdjust='spacingAndGlyphs'>Transportation</text>
+<text x='436.94' y='286.38' style='font-size: 7.00px; font-family: sans;' textLength='22.56px' lengthAdjust='spacingAndGlyphs'>Utilities</text>
+<text x='436.94' y='297.72' style='font-size: 7.00px; font-family: sans;' textLength='20.24px' lengthAdjust='spacingAndGlyphs'>Health</text>
+<text x='436.94' y='309.06' style='font-size: 7.00px; font-family: sans;' textLength='30.75px' lengthAdjust='spacingAndGlyphs'>Insurance</text>
+<text x='436.94' y='320.40' style='font-size: 7.00px; font-family: sans;' textLength='15.96px' lengthAdjust='spacingAndGlyphs'>Food</text>
+<text x='436.94' y='331.74' style='font-size: 7.00px; font-family: sans;' textLength='25.69px' lengthAdjust='spacingAndGlyphs'>Housing</text>
+<text x='332.82' y='206.70' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='32.29px' lengthAdjust='spacingAndGlyphs'>sort x sum</text>
+</g>
+</svg>

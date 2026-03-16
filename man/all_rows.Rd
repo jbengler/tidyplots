@@ -26,14 +26,13 @@ sample_rows(n, by = NULL)
 }
 \arguments{
 \item{...}{<\code{\link[rlang:args_data_masking]{data-masking}}> Expressions that
-return a logical value, and are defined in terms of the variables in
-\code{.data}. If multiple expressions are included, they are combined with the
-\code{&} operator. Only rows for which all conditions evaluate to \code{TRUE} are
-kept.}
+return a logical vector, defined in terms of the variables in \code{.data}. If
+multiple expressions are included, they are combined with the \code{&} operator.
+To combine expressions using \code{|} instead, wrap them in \code{\link[dplyr:when_any]{when_any()}}. Only
+rows for which all expressions evaluate to \code{TRUE} are kept (for \code{filter()})
+or dropped (for \code{filter_out()}).}
 
-\item{.by, by}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-
-<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Optionally, a selection of columns to
+\item{.by, by}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> Optionally, a selection of columns to
 group by for just this operation, functioning as an alternative to \code{\link[dplyr:group_by]{group_by()}}. For
 details and examples, see \link[dplyr:dplyr_by]{?dplyr_by}.}
 

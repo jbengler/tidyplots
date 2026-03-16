@@ -23,6 +23,18 @@ test_that("x levels work", {
     sort_x_axis_levels() |>
     vdiffr::expect_doppelganger("sort x 2", fig = _)
 
+  spendings |>
+    tidyplot(category, color = category) |>
+    add_count_bar() |>
+    sort_x_axis_levels() |>
+    vdiffr::expect_doppelganger("sort x count", fig = _)
+
+  spendings |>
+    tidyplot(category, amount, color = category) |>
+    add_sum_bar() |>
+    sort_x_axis_levels() |>
+    vdiffr::expect_doppelganger("sort x sum", fig = _)
+
   animals |>
     tidyplot(family, size, color = family) |>
     add_mean_bar() |>
@@ -64,6 +76,18 @@ test_that("y levels work", {
     sort_y_axis_levels() |>
     vdiffr::expect_doppelganger("sort y 2", fig = _)
 
+  spendings |>
+    tidyplot(y = category, color = category) |>
+    add_count_bar() |>
+    sort_y_axis_levels() |>
+    vdiffr::expect_doppelganger("sort y count", fig = _)
+
+  spendings |>
+    tidyplot(y = category, x = amount, color = category) |>
+    add_sum_bar() |>
+    sort_y_axis_levels() |>
+    vdiffr::expect_doppelganger("sort y sum", fig = _)
+
   animals |>
     tidyplot(size, family, color = family) |>
     add_mean_bar() |>
@@ -104,6 +128,18 @@ test_that("color levels work", {
     add_mean_bar() |>
     sort_color_levels() |>
     vdiffr::expect_doppelganger("sort color 2", fig = _)
+
+  spendings |>
+    tidyplot(y = category, color = category) |>
+    add_count_bar() |>
+    sort_color_levels() |>
+    vdiffr::expect_doppelganger("sort color count", fig = _)
+
+  spendings |>
+    tidyplot(y = category, x = amount, color = category) |>
+    add_sum_bar() |>
+    sort_color_levels() |>
+    vdiffr::expect_doppelganger("sort color sum", fig = _)
 
   animals |>
     tidyplot(family, size, color = family) |>

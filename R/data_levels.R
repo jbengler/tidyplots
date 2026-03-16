@@ -222,11 +222,11 @@ ff_sort_levels <- function(axis) {
                                                         .desc = .reverse))
     } else {
       # sort by statistic entity (mean, median, sum, count) used in plot
-      if (any(stringr::str_detect(plot$tidyplot$history, "count")))
+      if (any(stringr::str_detect(plot$tidyplot$call_history, "count")))
         auto_fun <- length
-      else if (any(stringr::str_detect(plot$tidyplot$history, "mean")))
+      else if (any(stringr::str_detect(plot$tidyplot$call_history, "mean")))
         auto_fun <- mean
-      else if (any(stringr::str_detect(plot$tidyplot$history, "sum")))
+      else if (any(stringr::str_detect(plot$tidyplot$call_history, "sum")))
         auto_fun <- sum
       else
         auto_fun <- median

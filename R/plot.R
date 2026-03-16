@@ -66,8 +66,6 @@ tidyplot <- function(data, ...,
 
   plot$tidyplot$mapping <- extract_mapping(plot)
 
-  plot$tidyplot$history <- c("tidyplot")
-
   plot$tidyplot$width <- width %||% getOption("tidyplots.width") %||% 50
   plot$tidyplot$height <- height %||% getOption("tidyplots.height") %||% 50
   plot$tidyplot$unit <- unit %||% getOption("tidyplots.unit") %||% "mm"
