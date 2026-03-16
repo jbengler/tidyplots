@@ -66,15 +66,15 @@
 
 <dl><dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; Expressions that
-return a logical value, and are defined in terms of the variables in
-<code>.data</code>. If multiple expressions are included, they are combined with the
-<code>&amp;</code> operator. Only rows for which all conditions evaluate to <code>TRUE</code> are
-kept.</p></dd>
+return a logical vector, defined in terms of the variables in <code>.data</code>. If
+multiple expressions are included, they are combined with the <code>&amp;</code> operator.
+To combine expressions using <code>|</code> instead, wrap them in <code><a href="https://dplyr.tidyverse.org/reference/when-any-all.html" class="external-link">when_any()</a></code>. Only
+rows for which all expressions evaluate to <code>TRUE</code> are kept (for <code><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter()</a></code>)
+or dropped (for <code>filter_out()</code>).</p></dd>
 
 
 <dt id="arg--by-by">.by, by<a class="anchor" aria-label="anchor" href="#arg--by-by"></a></dt>
-<dd><p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="figures/lifecycle-experimental.svg" alt="[Experimental]"></a></p>
-<p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; Optionally, a selection of columns to
+<dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; Optionally, a selection of columns to
 group by for just this operation, functioning as an alternative to <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code>. For
 details and examples, see <a href="https://dplyr.tidyverse.org/reference/dplyr_by.html" class="external-link">?dplyr_by</a>.</p></dd>
 
