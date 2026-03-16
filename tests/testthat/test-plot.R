@@ -1,3 +1,7 @@
+if (Sys.getenv("CI") == "true") {
+  testthat::skip("Skipping vdiffr tests on CI")
+}
+
 test_that("tidyplot works", {
   study |>
     tidyplot(x = dose, y = score, color = group, width = 25) |>

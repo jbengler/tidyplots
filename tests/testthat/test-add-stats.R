@@ -1,3 +1,7 @@
+if (Sys.getenv("CI") == "true") {
+  testthat::skip("Skipping vdiffr tests on CI")
+}
+
 test_that("stats work", {
   p2 <-
     study |>

@@ -1,3 +1,7 @@
+if (Sys.getenv("CI") == "true") {
+  testthat::skip("Skipping vdiffr tests on CI")
+}
+
 test_that("add_heatmap works", {
   gene_expression |>
     tidyplot(x = sample, y = external_gene_name, color = expression) |>

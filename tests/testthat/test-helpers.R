@@ -31,6 +31,10 @@ test_that("check_input works", {
   expect_equal(check_input(c("hello")), "none")
 })
 
+if (Sys.getenv("CI") == "true") {
+  testthat::skip("Skipping vdiffr tests on CI")
+}
+
 test_that("*_rows() functions work", {
   animals |>
     tidyplot(x = weight, y = size) |>

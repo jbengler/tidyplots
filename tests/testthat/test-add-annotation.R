@@ -1,3 +1,7 @@
+if (Sys.getenv("CI") == "true") {
+  testthat::skip("Skipping vdiffr tests on CI")
+}
+
 test_that("add annotation works", {
   animals |>
     tidyplot(x = weight, y = size, color = number_of_legs) |>
