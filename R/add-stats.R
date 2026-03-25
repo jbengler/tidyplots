@@ -16,6 +16,9 @@
 #' @details
 #' * `add_test_pvalue()` and `add_test_asterisks()` use `ggpubr::geom_pwc()`.
 #' Check there for additional arguments.
+#' * `add_test_pvalue_manual()` and `add_test_asterisks_manual()` use
+#' `ggpubr::stat_pvalue_manual()`. Check there for additional arguments.
+#' These functions take pre-computed statistics as input via the `data` parameter.
 #' * Known limitation: `add_test_pvalue()` and `add_test_asterisks()` expect a
 #' discrete variable on the x-axis and a continuous variable on the y-axis.
 #' To produce horizontal plots, use `flip_plot()`.
@@ -238,4 +241,110 @@ add_test_asterisks <- function(plot,
             color = color,
             hide_info = hide_info,
             ...)
+}
+#' @param data A data frame with pre-computed statistical test results.
+#'  Expected columns: \code{group1}, \code{group2} (compared groups),
+#'  \code{p} (p-values), and \code{y.position} (bracket y-position).
+#'  Optionally \code{p.signif} for significance symbols.
+#'
+#' @examples
+#' # Add manual p-values from pre-computed statistics
+#' stat_df <- data.frame(
+#'   group1 = "A", group2 = "B",
+#'   p = 0.025, p.signif = "*",
+#'   y.position = 50
+#' )
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_pvalue_manual(data = stat_df)
+#'
+#' # Add manual asterisks
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_asterisks_manual(data = stat_df)
+#'
+#' @rdname add_test_pvalue
+#' @export
+add_test_pvalue_manual <- function(plot,
+                                   data,
+                                   padding_top = 0.15,
+                                   label = "{tidyplots::format_p_value(p, 0.0001)}",
+                                   label.size = 7/ggplot2::.pt,
+                                   y.position = "y.position",
+                                   xmin = "group1",
+                                   xmax = "group2",
+                                   step.increase = 0.15,
+                                   vjust = -0.25,
+                                   bracket.nudge.y = 0.1,
+                                   bracket.size = 0.3,
+                                   tip.length = 0.03,
+                                   hide.ns = FALSE,
+                                   remove.bracket = FALSE,
+                                   color = plot$tidyplot$ink,
+                                   ...) {
+  plot <- check_tidyplot(plot)
+
+  plot <- plot |>
+    adjust_y_axis(padding = c(NA, padding_top))
+
+  plot + ggpubr::stat_pvalue_manual(
+    data = data,
+    label = label,
+    label.size = label.size,
+    y.position = y.position,
+    xmin = xmin,
+    xmax = xmax,
+    step.increase = step.increase,
+    vjust = vjust,
+    bracket.nudge.y = bracket.nudge.y,
+    bracket.size = bracket.size,
+    tip.length = tip.length,
+    hide.ns = hide.ns,
+    remove.bracket = remove.bracket,
+    color = color,
+    ...)
+}
+#' @rdname add_test_pvalue
+#' @export
+add_test_asterisks_manual <- function(plot,
+                                      data,
+                                      padding_top = 0.1,
+                                      label = "p.signif",
+                                      label.size = 10/ggplot2::.pt,
+                                      y.position = "y.position",
+                                      xmin = "group1",
+                                      xmax = "group2",
+                                      step.increase = 0.2,
+                                      vjust = 0.3,
+                                      bracket.nudge.y = 0.15,
+                                      bracket.size = 0.3,
+                                      tip.length = 0.03,
+                                      hide.ns = TRUE,
+                                      remove.bracket = FALSE,
+                                      color = plot$tidyplot$ink,
+                                      ...) {
+  plot <- check_tidyplot(plot)
+  add_test_pvalue_manual(plot,
+    data = data,
+    padding_top = padding_top,
+    label = label,
+    label.size = label.size,
+    y.position = y.position,
+    xmin = xmin,
+    xmax = xmax,
+    step.increase = step.increase,
+    vjust = vjust,
+    bracket.nudge.y = bracket.nudge.y,
+    bracket.size = bracket.size,
+    tip.length = tip.length,
+    hide.ns = hide.ns,
+    remove.bracket = remove.bracket,
+    color = color,
+    ...)
 }
