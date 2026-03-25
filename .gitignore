@@ -1,7 +1,4 @@
 .Rproj.user
-usethis.R
-playground.R
-todo.R
 docs
 .Rhistory
 .Rdata
@@ -9,3 +6,4 @@ docs
 .DS_Store
 .quarto
 inst/doc
+playground
