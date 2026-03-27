@@ -314,48 +314,47 @@ is_flipped <- function(plot) {
   tail(ggplot2::ggplot_build(plot)$data, n = 1)[[1]]$flipped_aes[1]
 }
 
+# Calling this function assumes that the scale type is not "!!MISSING"
+get_scale_acronym <- function(scale_type) {
+  switch(
+    scale_type,
+    "continuous" = "c",
+    "ordinal" = "d",
+    "discrete" = "d",
+    "time" = "t",
+    "date" = "t",
+    "datetime" = "t",
+    cli::cli_abort("Internal error: invalid scale type \"{scale_type}\".")
+  )
+}
+
 get_plottype <- function(plot) {
-  pt <- "none"
+  scale_type_x <- get_scale_type(plot, "x")
+  scale_type_y <- get_scale_type(plot, "y")
 
-  if (is_missing(plot, "x") && is_missing(plot, "y")) pt <- "__"
+  missing_x <- scale_type_x == "!!MISSING"
+  missing_y <- scale_type_y == "!!MISSING"
 
-  if (!is_missing(plot, "x") && is_missing(plot, "y")) {
-    if (is_time(plot, "x")) pt <- "t_"
-    if (is_date(plot, "x")) pt <- "t_"
-    if (is_datetime(plot, "x")) pt <- "t_"
-    if (is_continuous(plot, "x")) pt <- "c_"
-    if (is_discrete(plot, "x")) pt <- "d_"
+  if (missing_x && missing_y) {
+    return("__")
   }
 
-  if (!is_missing(plot, "y") && is_missing(plot, "x")) {
-    if (is_time(plot, "y")) pt <- "_t"
-    if (is_date(plot, "y")) pt <- "_t"
-    if (is_datetime(plot, "y")) pt <- "_t"
-    if (is_continuous(plot, "y")) pt <- "_c"
-    if (is_discrete(plot, "y")) pt <- "_d"
+  # "y" can't be missing at this point if "x" is, so the following is safe
+  if (missing_x) {
+    pt <- paste0("_", get_scale_acronym(scale_type_y))
+    return(pt)
   }
 
-  if (is_discrete(plot, "x") && is_continuous(plot, "y")) pt <- "dc"
-  if (is_continuous(plot, "x") && is_discrete(plot, "y")) pt <- "cd"
-  if (is_continuous(plot, "x") && is_continuous(plot, "y")) pt <- "cc"
-  if (is_discrete(plot, "x") && is_discrete(plot, "y")) pt <- "dd"
+  # This is safe by the same logic as above, and will be needed in any case
+  acronym_x <- get_scale_acronym(scale_type_x)
 
-  if (is_time(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
-  if (is_date(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
-  if (is_datetime(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
+  if (missing_y) {
+    pt <- paste0(acronym_x, "_")
+    return(pt)
+  }
 
-  if (is_continuous(plot, "x") && is_time(plot, "y")) pt <- "ct"
-  if (is_continuous(plot, "x") && is_date(plot, "y")) pt <- "ct"
-  if (is_continuous(plot, "x") && is_datetime(plot, "y")) pt <- "ct"
-
-  if (is_time(plot, "x") && is_discrete(plot, "y")) pt <- "td"
-  if (is_date(plot, "x") && is_discrete(plot, "y")) pt <- "td"
-  if (is_datetime(plot, "x") && is_discrete(plot, "y")) pt <- "td"
-
-  if (is_discrete(plot, "x") && is_time(plot, "y")) pt <- "dt"
-  if (is_discrete(plot, "x") && is_date(plot, "y")) pt <- "dt"
-  if (is_discrete(plot, "x") && is_datetime(plot, "y")) pt <- "dt"
-  pt
+  # Fallthrough if there is no early return
+  paste0(acronym_x, get_scale_acronym(scale_type_y))
 }
 
 check_tidyplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::caller_env()) {
