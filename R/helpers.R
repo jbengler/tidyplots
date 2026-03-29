@@ -431,7 +431,7 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
       if (all(as.character(gtab$heights) != "1null"))
         height <- grid::convertHeight(sum(gtab$heights) + ggplot2::unit(1, "mm"), unitTo = units, valueOnly = TRUE)
 
-      dplyr::tibble(width = width, height = height)
+      tibble::tibble(width = width, height = height)
     }) |>
     dplyr::bind_rows()
 
