@@ -16,9 +16,6 @@
 #' @details
 #' * `add_test_pvalue()` and `add_test_asterisks()` use `ggpubr::geom_pwc()`.
 #' Check there for additional arguments.
-#' * `add_test_pvalue_manual()` and `add_test_asterisks_manual()` use
-#' `ggpubr::stat_pvalue_manual()`. Check there for additional arguments.
-#' These functions take pre-computed statistics as input via the `data` parameter.
 #' * Known limitation: `add_test_pvalue()` and `add_test_asterisks()` expect a
 #' discrete variable on the x-axis and a continuous variable on the y-axis.
 #' To produce horizontal plots, use `flip_plot()`.
@@ -242,10 +239,22 @@ add_test_asterisks <- function(plot,
             hide_info = hide_info,
             ...)
 }
-#' @param data A data frame with pre-computed statistical test results.
-#'  Expected columns: \code{group1}, \code{group2} (compared groups),
-#'  \code{p} (p-values), and \code{y.position} (bracket y-position).
-#'  Optionally \code{p.signif} for significance symbols.
+
+
+#' Add pre-computed statistics
+#' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
+#' @param ... Arguments passed on to `ggpubr::stat_pvalue_manual()`.
+#' @param label.size Font size of label text.
+#' @inheritParams ggpubr::stat_pvalue_manual
+#' @inherit common_arguments
+#'
+#' @details
+#' * `add_test_pvalue_manual()` and `add_test_asterisks_manual()` use
+#' `ggpubr::stat_pvalue_manual()`. Check there for additional arguments.
+#' These functions take pre-computed statistics as input via the `data` parameter.
+#' * Known limitation: `add_test_pvalue_manual()` and `add_test_asterisks_manual()` expect a
+#' discrete variable on the x-axis and a continuous variable on the y-axis.
+#' To produce horizontal plots, use `flip_plot()`.
 #'
 #' @examples
 #' # Add manual p-values from pre-computed statistics
@@ -269,7 +278,6 @@ add_test_asterisks <- function(plot,
 #'   add_data_points() |>
 #'   add_test_asterisks_manual(data = stat_df)
 #'
-#' @rdname add_test_pvalue
 #' @export
 add_test_pvalue_manual <- function(plot,
                                    data,
@@ -310,7 +318,7 @@ add_test_pvalue_manual <- function(plot,
     color = color,
     ...)
 }
-#' @rdname add_test_pvalue
+#' @rdname add_test_pvalue_manual
 #' @export
 add_test_asterisks_manual <- function(plot,
                                       data,

@@ -3,8 +3,6 @@
 \name{add_test_pvalue}
 \alias{add_test_pvalue}
 \alias{add_test_asterisks}
-\alias{add_test_pvalue_manual}
-\alias{add_test_asterisks_manual}
 \title{Add statistical test}
 \usage{
 add_test_pvalue(
@@ -48,46 +46,6 @@ add_test_asterisks(
     "*", "ns")),
   color = plot$tidyplot$ink,
   hide_info = FALSE,
-  ...
-)
-
-add_test_pvalue_manual(
-  plot,
-  data,
-  padding_top = 0.15,
-  label = "{tidyplots::format_p_value(p, 0.0001)}",
-  label.size = 7/ggplot2::.pt,
-  y.position = "y.position",
-  xmin = "group1",
-  xmax = "group2",
-  step.increase = 0.15,
-  vjust = -0.25,
-  bracket.nudge.y = 0.1,
-  bracket.size = 0.3,
-  tip.length = 0.03,
-  hide.ns = FALSE,
-  remove.bracket = FALSE,
-  color = plot$tidyplot$ink,
-  ...
-)
-
-add_test_asterisks_manual(
-  plot,
-  data,
-  padding_top = 0.1,
-  label = "p.signif",
-  label.size = 10/ggplot2::.pt,
-  y.position = "y.position",
-  xmin = "group1",
-  xmax = "group2",
-  step.increase = 0.2,
-  vjust = 0.3,
-  bracket.nudge.y = 0.15,
-  bracket.size = 0.3,
-  tip.length = 0.03,
-  hide.ns = TRUE,
-  remove.bracket = FALSE,
-  color = plot$tidyplot$ink,
   ...
 )
 }
@@ -180,23 +138,6 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
 \item{hide_info}{Whether to hide details about the statistical testing as caption. Defaults to \code{FALSE}.}
 
 \item{...}{Arguments passed on to \code{ggpubr::geom_pwc()}.}
-
-\item{data}{A data frame with pre-computed statistical test results.
-Expected columns: \code{group1}, \code{group2} (compared groups),
-\code{p} (p-values), and \code{y.position} (bracket y-position).
-Optionally \code{p.signif} for significance symbols.}
-
-\item{y.position}{numeric vector with the y positions of the brackets}
-
-\item{tip.length}{numeric vector with the fraction of total height that the
-bar goes down to indicate the precise column/}
-
-\item{remove.bracket}{logical, if \code{TRUE}, brackets are removed from the
-plot. \itemize{ \item Case when logical value. If TRUE, hide ns symbol when
-displaying significance levels. Filter is done by checking the column
-\code{p.adj.signif}, \code{p.signif}, \code{p.adj} and \code{p}. \item Case
-when character value. Possible values are "p" or "p.adj", for filtering out
-non significant. }}
 }
 \value{
 A \code{tidyplot} object.
@@ -208,9 +149,6 @@ Add statistical test
 \itemize{
 \item \code{add_test_pvalue()} and \code{add_test_asterisks()} use \code{ggpubr::geom_pwc()}.
 Check there for additional arguments.
-\item \code{add_test_pvalue_manual()} and \code{add_test_asterisks_manual()} use
-\code{ggpubr::stat_pvalue_manual()}. Check there for additional arguments.
-These functions take pre-computed statistics as input via the \code{data} parameter.
 \item Known limitation: \code{add_test_pvalue()} and \code{add_test_asterisks()} expect a
 discrete variable on the x-axis and a continuous variable on the y-axis.
 To produce horizontal plots, use \code{flip_plot()}.
@@ -314,26 +252,5 @@ study |>
   add_sem_errorbar() |>
   add_data_points() |>
   add_test_pvalue(hide_info = TRUE)
-
-# Add manual p-values from pre-computed statistics
-stat_df <- data.frame(
-  group1 = "A", group2 = "B",
-  p = 0.025, p.signif = "*",
-  y.position = 50
-)
-study |>
-  tidyplot(x = treatment, y = score, color = treatment) |>
-  add_mean_dash() |>
-  add_sem_errorbar() |>
-  add_data_points() |>
-  add_test_pvalue_manual(data = stat_df)
-
-# Add manual asterisks
-study |>
-  tidyplot(x = treatment, y = score, color = treatment) |>
-  add_mean_dash() |>
-  add_sem_errorbar() |>
-  add_data_points() |>
-  add_test_asterisks_manual(data = stat_df)
 
 }
