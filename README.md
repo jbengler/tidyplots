@@ -64,7 +64,7 @@ study |>
   add_data_points_beeswarm()
 ```
 
-<img src="man/figures/README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-2-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 energy |> 
@@ -72,7 +72,7 @@ energy |>
   add_barstack_absolute()
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-3-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 energy |> 
@@ -83,7 +83,7 @@ energy |>
   split_plot(by = year)
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-4-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 energy_week |> 
@@ -91,7 +91,7 @@ energy_week |>
   add_areastack_absolute()
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 energy_week |> 
@@ -99,7 +99,7 @@ energy_week |>
   add_areastack_relative()
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 study |> 
@@ -109,7 +109,7 @@ study |>
   add_mean_value()
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 time_course |>
@@ -119,7 +119,7 @@ time_course |>
   add_sem_ribbon()
 ```
 
-<img src="man/figures/README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-8-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 climate |>
@@ -127,7 +127,7 @@ climate |>
   add_heatmap()
 ```
 
-<img src="man/figures/README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-9-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 study |> 
@@ -136,7 +136,7 @@ study |>
   add_test_pvalue(ref.group = 1)
 ```
 
-<img src="man/figures/README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-10-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 gene_expression |> 
@@ -151,7 +151,7 @@ gene_expression |>
   split_plot(by = external_gene_name)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-11-1.png" alt="" style="display: block; margin: auto;" />
 
 ``` r
 study |> 
@@ -164,7 +164,7 @@ study |>
   view_plot(title = "Alternative color scheme: 'apple'")
 ```
 
-<img src="man/figures/README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-12-2.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-unnamed-chunk-12-1.png" alt="" style="display: block; margin: auto;" /><img src="man/figures/README-unnamed-chunk-12-2.png" alt="" style="display: block; margin: auto;" />
 
 ## Documentation
 

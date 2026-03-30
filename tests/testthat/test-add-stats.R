@@ -82,3 +82,25 @@ test_that("paired stats work", {
     add_line(group = batch, color = "black") |>
     vdiffr::expect_doppelganger("add paired stats asterisks control", fig = _)
 })
+
+
+test_that("manual stats work", {
+  stat_df <- data.frame(
+    group1 = c("A", "A"),
+    group2 = c("B", "C"),
+    p = c(0.03, 0.001),
+    p.signif = c("*", "***"),
+    y.position = c(48, 52)
+  )
+
+  p <- study |>
+    tidyplot(treatment, score, color = treatment) |>
+    add_mean_bar(alpha = 0.4) |>
+    add_sem_errorbar()
+
+  p |> add_test_pvalue_manual(data = stat_df) |>
+    vdiffr::expect_doppelganger("add manual stats pvalue", fig = _)
+
+  p |> add_test_asterisks_manual(data = stat_df) |>
+    vdiffr::expect_doppelganger("add manual stats asterisks", fig = _)
+})
