@@ -41,7 +41,7 @@ test_that("adjust_color works", {
     add_mean_line() |>
     vdiffr::expect_doppelganger("adjust_colors with unused factor levels", fig = _)
 
-  data <- dplyr::tibble(
+  data <- tibble::tibble(
     x = factor(c('a','b','c','d','e','f','g','h')),
     y = c(10, 20, 30, 40, 50, 10, 20, 30),
     z = factor(c('C1','C2','C3','C4','C5','C6','C7','C8')),

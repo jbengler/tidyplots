@@ -3,7 +3,7 @@
 library(tidyverse)
 
 study <-
-  dplyr::tibble(treatment = rep(c("A", "B", "C", "D"), each = 5),
+  tibble::tibble(treatment = rep(c("A", "B", "C", "D"), each = 5),
                 group = rep(c("placebo", "treatment"), each = 10),
                 dose = rep(c("high", "low", "high", "low"), each = 5),
                 participant = rep(c("p01", "p02", "p03", "p04", "p05", "p06", "p07", "p08", "p09", "p10"), 2),

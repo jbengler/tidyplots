@@ -206,9 +206,12 @@ min_max <- function(x) {
 
 mean_sd <- function(x) {
   x <- stats::na.omit(x)
-  data.frame(y = mean(x),
-             ymin = mean(x) - stats::sd(x),
-             ymax = mean(x) + stats::sd(x))
+  mean_x <- mean(x)
+  sd_x <- stats::sd(x)
+
+  data.frame(y = mean_x,
+             ymin = mean_x - sd_x,
+             ymax = mean_x + sd_x)
 }
 
 mean_cl_boot <- function(x) {
@@ -218,33 +221,34 @@ mean_cl_boot <- function(x) {
 
 tidyplot_parser <- function(text) {
   # detect expressions by a leading and trailing "$"
-  if (any(stringr::str_detect(text, "^\\$.*\\$$"), na.rm = TRUE)) {
-    out <- vector("expression", length(text))
-    for (i in seq_along(text)) {
-      # get rid of leading and trailing "$"
-      if (stringr::str_detect(text[[i]], "^\\$.*\\$$")) {
-        # check for valid plotmath expression
-        expr <- tryCatch(parse(text = stringr::str_sub(text[[i]], 2, -2)),
-                         error = function(e) {
-                           msg <- c("Invalid plotmath expression",
-                                    "x" = conditionMessage(e),
-                                    "i" = "Run `?plotmath` in the console for help.")
-                           cli::cli_abort(msg, call = NULL)
-                         })
-      } else {
-        expr <- text[[i]]
-      }
-
-      if (length(expr) == 0) {
-        out[[i]] <- NA
-      } else {
-        out[[i]] <- expr[[1]]
-      }
-
-    }
-  } else {
-    out <- text
+  if (!any(stringr::str_detect(text, "^\\$.*\\$$"), na.rm = TRUE)) {
+    return(text)
   }
+
+  out <- vector("expression", length(text))
+
+  for (i in seq_along(text)) {
+    # get rid of leading and trailing "$"
+    if (stringr::str_detect(text[[i]], "^\\$.*\\$$")) {
+      # check for valid plotmath expression
+      expr <- tryCatch(parse(text = stringr::str_sub(text[[i]], 2, -2)),
+                       error = function(e) {
+                         msg <- c("Invalid plotmath expression",
+                                  "x" = conditionMessage(e),
+                                  "i" = "Run `?plotmath` in the console for help.")
+                         cli::cli_abort(msg, call = NULL)
+                       })
+    } else {
+      expr <- text[[i]]
+    }
+
+    if (length(expr) == 0) {
+      out[[i]] <- NA
+    } else {
+      out[[i]] <- expr[[1]]
+    }
+  }
+
   out
 }
 
@@ -258,12 +262,14 @@ check_input <- function(input) {
   if (any(inherits(input, "tidyplot"))) return("tp")
   if (any(inherits(input, "patchwork"))) return("pw")
   if (any(inherits(input, "gg"))) return("gg")
-  if (inherits(input, "list")) {
-    if (any(unlist(purrr::map(input, inherits, "tidyplot")))) return("tp_list")
-    if (any(unlist(purrr::map(input, inherits, "patchwork")))) return("pw_list")
-    if (any(unlist(purrr::map(input, inherits, "gg")))) return("gg_list")
+
+  if (is.list(input)) {
+    if (any(purrr::map_lgl(input, inherits, "tidyplot"))) return("tp_list")
+    if (any(purrr::map_lgl(input, inherits, "patchwork"))) return("pw_list")
+    if (any(purrr::map_lgl(input, inherits, "gg"))) return("gg_list")
   }
-  else return("none")
+
+  "none"
 }
 
 extract_mapping <- function(plot) {
@@ -274,6 +280,7 @@ extract_mapping <- function(plot) {
       rlang::quo_name(plot$mapping[[x]])
     })
   }
+
   my_scale_type <- function(inp) {
     purrr::map_chr(inp, function(x) {
       if (x == "!!MISSING") return("!!MISSING")
@@ -284,11 +291,18 @@ extract_mapping <- function(plot) {
       out[[1]]
     })
   }
-  dplyr::tibble(aesthetic = c("x", "y", "colour", "fill", "group")) |>
-    dplyr::mutate(
-      variable = my_variable(aesthetic),
+
+  aesthetic <- c("x", "y", "colour", "fill", "group")
+  variable <- my_variable(aesthetic)
+
+  tibble::new_tibble(
+    list(
+      aesthetic = aesthetic,
+      variable = variable,
       scale_type = my_scale_type(variable)
-    )
+    ),
+    nrow = length(aesthetic)
+  )
 }
 
 get_scale_type <- function(plot, aesthetic) {
@@ -314,48 +328,47 @@ is_flipped <- function(plot) {
   tail(ggplot2::ggplot_build(plot)$data, n = 1)[[1]]$flipped_aes[1]
 }
 
+# Calling this function assumes that the scale type is not "!!MISSING"
+get_scale_acronym <- function(scale_type) {
+  switch(
+    scale_type,
+    "continuous" = "c",
+    "ordinal" = "d",
+    "discrete" = "d",
+    "time" = "t",
+    "date" = "t",
+    "datetime" = "t",
+    cli::cli_abort("Internal error: invalid scale type \"{scale_type}\".")
+  )
+}
+
 get_plottype <- function(plot) {
-  pt <- "none"
+  scale_type_x <- get_scale_type(plot, "x")
+  scale_type_y <- get_scale_type(plot, "y")
 
-  if (is_missing(plot, "x") && is_missing(plot, "y")) pt <- "__"
+  missing_x <- scale_type_x == "!!MISSING"
+  missing_y <- scale_type_y == "!!MISSING"
 
-  if (!is_missing(plot, "x") && is_missing(plot, "y")) {
-    if (is_time(plot, "x")) pt <- "t_"
-    if (is_date(plot, "x")) pt <- "t_"
-    if (is_datetime(plot, "x")) pt <- "t_"
-    if (is_continuous(plot, "x")) pt <- "c_"
-    if (is_discrete(plot, "x")) pt <- "d_"
+  if (missing_x && missing_y) {
+    return("__")
   }
 
-  if (!is_missing(plot, "y") && is_missing(plot, "x")) {
-    if (is_time(plot, "y")) pt <- "_t"
-    if (is_date(plot, "y")) pt <- "_t"
-    if (is_datetime(plot, "y")) pt <- "_t"
-    if (is_continuous(plot, "y")) pt <- "_c"
-    if (is_discrete(plot, "y")) pt <- "_d"
+  # "y" can't be missing at this point if "x" is, so the following is safe
+  if (missing_x) {
+    pt <- paste0("_", get_scale_acronym(scale_type_y))
+    return(pt)
   }
 
-  if (is_discrete(plot, "x") && is_continuous(plot, "y")) pt <- "dc"
-  if (is_continuous(plot, "x") && is_discrete(plot, "y")) pt <- "cd"
-  if (is_continuous(plot, "x") && is_continuous(plot, "y")) pt <- "cc"
-  if (is_discrete(plot, "x") && is_discrete(plot, "y")) pt <- "dd"
+  # This is safe by the same logic as above, and will be needed in any case
+  acronym_x <- get_scale_acronym(scale_type_x)
 
-  if (is_time(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
-  if (is_date(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
-  if (is_datetime(plot, "x") && is_continuous(plot, "y")) pt <- "tc"
+  if (missing_y) {
+    pt <- paste0(acronym_x, "_")
+    return(pt)
+  }
 
-  if (is_continuous(plot, "x") && is_time(plot, "y")) pt <- "ct"
-  if (is_continuous(plot, "x") && is_date(plot, "y")) pt <- "ct"
-  if (is_continuous(plot, "x") && is_datetime(plot, "y")) pt <- "ct"
-
-  if (is_time(plot, "x") && is_discrete(plot, "y")) pt <- "td"
-  if (is_date(plot, "x") && is_discrete(plot, "y")) pt <- "td"
-  if (is_datetime(plot, "x") && is_discrete(plot, "y")) pt <- "td"
-
-  if (is_discrete(plot, "x") && is_time(plot, "y")) pt <- "dt"
-  if (is_discrete(plot, "x") && is_date(plot, "y")) pt <- "dt"
-  if (is_discrete(plot, "x") && is_datetime(plot, "y")) pt <- "dt"
-  pt
+  # Fallthrough if there is no early return
+  paste0(acronym_x, get_scale_acronym(scale_type_y))
 }
 
 check_tidyplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::caller_env()) {
@@ -418,15 +431,15 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
       if (all(as.character(gtab$heights) != "1null"))
         height <- grid::convertHeight(sum(gtab$heights) + ggplot2::unit(1, "mm"), unitTo = units, valueOnly = TRUE)
 
-      dplyr::tibble(width = width, height = height)
+      tibble::tibble(width = width, height = height)
     }) |>
     dplyr::bind_rows()
 
   overall_width<- NA
   overall_height <- NA
-  if (all(!is.na(pages$width)))
+  if (!anyNA(pages$width))
     overall_width <- max(pages$width, na.rm = TRUE)
-  if (all(!is.na(pages$height)))
+  if (!anyNA(pages$height))
     overall_height <- max(pages$height, na.rm = TRUE)
 
   list(
