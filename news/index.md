@@ -4,6 +4,12 @@
 
 ### Improvements
 
+- New
+  [`add_test_pvalue_manual()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue_manual.md)
+  and
+  [`add_test_asterisks_manual()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue_manual.md)
+  for adding pre-computed statistical comparisons via
+  [`ggpubr::stat_pvalue_manual()`](https://rpkgs.datanovia.com/ggpubr/reference/stat_pvalue_manual.html).
 - [`add_data_points_jitter()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md),
   [`add_data_labels()`](https://jbengler.github.io/tidyplots/reference/add_data_labels.md)
   and

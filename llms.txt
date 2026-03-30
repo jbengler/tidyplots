@@ -297,6 +297,9 @@ dispersion and more.
 - [`add_test_pvalue()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
   [`add_test_asterisks()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
   : Add statistical test
+- [`add_test_pvalue_manual()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue_manual.md)
+  [`add_test_asterisks_manual()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue_manual.md)
+  : Add pre-computed statistics
 
 ### Annotation
 
