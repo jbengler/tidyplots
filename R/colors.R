@@ -50,18 +50,22 @@
 #'   adjust_colors(new_colors = colors_continuous_turbo)
 #'
 #' @export
-adjust_colors <- function(plot, new_colors = NULL,
-                          saturation = 1,
-                          labels = tidyplot_parse_labels(),
-                          downsample = c("evenly", "first", "last", "middle"),
-                          ...) {
+adjust_colors <- function(
+  plot,
+  new_colors = NULL,
+  saturation = 1,
+  labels = tidyplot_parse_labels(),
+  downsample = c("evenly", "first", "last", "middle"),
+  ...
+) {
   plot <- check_tidyplot(plot)
   out <- plot
 
   if (is_discrete(plot, "colour")) {
-
     # Default colors
-    if (is.null(new_colors)) new_colors <- colors_discrete_friendly
+    if (is.null(new_colors)) {
+      new_colors <- colors_discrete_friendly
+    }
 
     # Strip tidycolor class
     new_colors <- strip_tidycolor_class(new_colors)
@@ -85,20 +89,50 @@ adjust_colors <- function(plot, new_colors = NULL,
     }
 
     if (n_ratio >= 1) {
-
       # Too many colors
       if (n_ratio > 1) {
         # cli::cli_alert_info("adjust_colors: Too many colors. {n_provided} colors provided, but only {n_requested} needed.")
-        new_colors <- downsample_vector(new_colors, n_requested, downsample = downsample)
+        new_colors <- downsample_vector(
+          new_colors,
+          n_requested,
+          downsample = downsample
+        )
       }
 
-      suppressMessages(out <- out + ggplot2::scale_color_manual(values = new_colors, drop = TRUE, labels = labels, ...))
-      suppressMessages(out <- out + ggplot2::scale_fill_manual(values = apply_saturation(new_colors, saturation = saturation), drop = TRUE, labels = labels, ...))
+      suppressMessages(
+        out <- out +
+          ggplot2::scale_color_manual(
+            values = new_colors,
+            drop = TRUE,
+            labels = labels,
+            ...
+          )
+      )
+      suppressMessages(
+        out <- out +
+          ggplot2::scale_fill_manual(
+            values = apply_saturation(new_colors, saturation = saturation),
+            drop = TRUE,
+            labels = labels,
+            ...
+          )
+      )
       # cli::cli_alert_success("adjust_colors: applied discrete {.pkg color values}")
-
     } else {
-      suppressMessages(out <- out + scale_color_d(palette = new_colors, drop = TRUE, labels = labels, ...))
-      suppressMessages(out <- out + scale_fill_d(palette = new_colors, saturation = saturation, drop = TRUE, labels = labels, ...))
+      suppressMessages(
+        out <- out +
+          scale_color_d(palette = new_colors, drop = TRUE, labels = labels, ...)
+      )
+      suppressMessages(
+        out <- out +
+          scale_fill_d(
+            palette = new_colors,
+            saturation = saturation,
+            drop = TRUE,
+            labels = labels,
+            ...
+          )
+      )
       # cli::cli_alert_success("adjust_colors: applied discrete {.pkg color palette}")
 
       # Too few colors
@@ -107,12 +141,23 @@ adjust_colors <- function(plot, new_colors = NULL,
   }
 
   if (is_continuous(plot, "colour")) {
-
     # Default colors
-    if (is.null(new_colors)) new_colors <- colors_continuous_viridis
+    if (is.null(new_colors)) {
+      new_colors <- colors_continuous_viridis
+    }
 
-    suppressMessages(out <- out + scale_color_c(palette = new_colors, labels = labels, ...))
-    suppressMessages(out <- out + scale_fill_c(palette = new_colors, saturation = saturation, labels = labels, ...))
+    suppressMessages(
+      out <- out + scale_color_c(palette = new_colors, labels = labels, ...)
+    )
+    suppressMessages(
+      out <- out +
+        scale_fill_c(
+          palette = new_colors,
+          saturation = saturation,
+          labels = labels,
+          ...
+        )
+    )
     # cli::cli_alert_success("adjust_colors: applied continous {.pkg color palette}")
   }
   out
@@ -122,34 +167,62 @@ apply_saturation <- function(colors, saturation, background_color = "#FFFFFF") {
   purrr::map_chr(colors, function(color) {
     color <- col2rgb(color)
     background_color <- col2rgb(background_color)
-    new_color <- (1-saturation) * background_color + saturation * color
+    new_color <- (1 - saturation) * background_color + saturation * color
     rgb(t(new_color), maxColorValue = 255)
   })
 }
 
 make_palette <- function(palette, reverse = FALSE, saturation = 1, ...) {
   pal <- palette
-  if (reverse) pal <- rev(pal)
+  if (reverse) {
+    pal <- rev(pal)
+  }
   pal <- apply_saturation(pal, saturation = saturation)
   grDevices::colorRampPalette(pal, ...)
 }
 
-scale_color_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
+scale_color_d <- function(
+  palette = NULL,
+  saturation = 1,
+  reverse = FALSE,
+  ...
+) {
+  pal <- make_palette(
+    palette = palette,
+    saturation = saturation,
+    reverse = reverse
+  )
   ggplot2::discrete_scale("colour", palette = pal, ...)
 }
 
 scale_fill_d <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
+  pal <- make_palette(
+    palette = palette,
+    saturation = saturation,
+    reverse = reverse
+  )
   ggplot2::discrete_scale("fill", palette = pal, ...)
 }
 
-scale_color_c <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
+scale_color_c <- function(
+  palette = NULL,
+  saturation = 1,
+  reverse = FALSE,
+  ...
+) {
+  pal <- make_palette(
+    palette = palette,
+    saturation = saturation,
+    reverse = reverse
+  )
   ggplot2::scale_color_gradientn(colours = pal(256), ...)
 }
 
 scale_fill_c <- function(palette = NULL, saturation = 1, reverse = FALSE, ...) {
-  pal <- make_palette(palette = palette, saturation = saturation, reverse = reverse)
+  pal <- make_palette(
+    palette = palette,
+    saturation = saturation,
+    reverse = reverse
+  )
   ggplot2::scale_fill_gradientn(colours = pal(256), ...)
 }

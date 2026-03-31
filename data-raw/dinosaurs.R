@@ -14,5 +14,3 @@ dinosaurs <-
   relocate(dinosaur, size, size_unit, weight, weight_unit, speed, speed_unit)
 
 usethis::use_data(dinosaurs, overwrite = TRUE)
-
-

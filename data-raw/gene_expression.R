@@ -11,4 +11,3 @@ usethis::use_data(gene_expression, overwrite = TRUE)
 
 library(tidyplots)
 library(tidyverse)
-

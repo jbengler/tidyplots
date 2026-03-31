@@ -16,3 +16,5 @@
 ^revdep$
 ^playground$
 ^\.claude$
+^[.]?air[.]toml$
+^\.vscode$

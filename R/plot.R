@@ -39,14 +39,17 @@
 #'   add_mean_bar()
 #'
 #' @export
-tidyplot <- function(data, ...,
-                     width = NULL,
-                     height = NULL,
-                     unit = NULL,
-                     dodge_width = NULL,
-                     my_style = NULL,
-                     paper = NULL,
-                     ink = NULL) {
+tidyplot <- function(
+  data,
+  ...,
+  width = NULL,
+  height = NULL,
+  unit = NULL,
+  dodge_width = NULL,
+  my_style = NULL,
+  paper = NULL,
+  ink = NULL
+) {
   mapping <- ggplot2::aes(...)
 
   # Add .single_color column to data if `colour` and `fill` mappings are missing
@@ -58,8 +61,12 @@ tidyplot <- function(data, ...,
   }
 
   # Align `colour` and `fill` mappings
-  if ("colour" %in% names(mapping) && !"fill" %in% names(mapping)) mapping$fill <- mapping$colour
-  if ("fill" %in% names(mapping) && !"colour" %in% names(mapping)) mapping$colour <- mapping$fill
+  if ("colour" %in% names(mapping) && !"fill" %in% names(mapping)) {
+    mapping$fill <- mapping$colour
+  }
+  if ("fill" %in% names(mapping) && !"colour" %in% names(mapping)) {
+    mapping$colour <- mapping$fill
+  }
 
   plot <- ggplot2::ggplot(data = data, mapping = mapping)
   class(plot) <- c("tidyplot", class(plot))
@@ -88,7 +95,9 @@ tidyplot <- function(data, ...,
   } else {
     dodge_width_heuristic <- 0
   }
-  dodge_width <- dodge_width %||% getOption("tidyplots.dodge_width") %||% dodge_width_heuristic
+  dodge_width <- dodge_width %||%
+    getOption("tidyplots.dodge_width") %||%
+    dodge_width_heuristic
   plot$tidyplot$dodge_width <- dodge_width
 
   plot$tidyplot$named_colors <- NULL
@@ -105,9 +114,10 @@ tidyplot <- function(data, ...,
     plot <- plot |> my_style()
   }
 
-  if (single_color_plot)
+  if (single_color_plot) {
     plot <- plot +
-    ggplot2::guides(colour = "none", fill = "none")
+      ggplot2::guides(colour = "none", fill = "none")
+  }
 
   plot
 }
@@ -228,24 +238,46 @@ tidyplots_options <- function(
 #'   split_plot(rows = decade, cols = energy_type)
 #'
 #' @export
-split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, nrow = NULL,
-                       axes = "all", axis.titles = "all", scales = NULL, ...) {
+split_plot <- function(
+  plot,
+  by = NULL,
+  rows = NULL,
+  cols = NULL,
+  ncol = NULL,
+  nrow = NULL,
+  axes = "all",
+  axis.titles = "all",
+  scales = NULL,
+  ...
+) {
   plot <- check_tidyplot(plot)
 
   error_msg <- "Specify the argument {.arg by} to split the plot by one variable.
   Alternatively, specify the arguments {.arg rows} and {.arg cols} to split the plot by two variables."
-  if (var_is_null({{ by }}) && var_is_null({{ rows }}) && var_is_null({{ cols }}))
+  if (
+    var_is_null({{ by }}) && var_is_null({{ rows }}) && var_is_null({{ cols }})
+  ) {
     cli::cli_abort(error_msg)
-  if (!var_is_null({{ by }}) && (!var_is_null({{ rows }}) || !var_is_null({{ cols }})))
+  }
+  if (
+    !var_is_null({{ by }}) &&
+      (!var_is_null({{ rows }}) || !var_is_null({{ cols }}))
+  ) {
     cli::cli_abort(error_msg)
+  }
 
   do_facet_wrap <- do_facet_grid <- FALSE
-  if (!var_is_null({{ by }})) do_facet_wrap <- TRUE
-  if (!var_is_null({{ rows }}) || !var_is_null({{ cols }})) do_facet_grid <- TRUE
+  if (!var_is_null({{ by }})) {
+    do_facet_wrap <- TRUE
+  }
+  if (!var_is_null({{ rows }}) || !var_is_null({{ cols }})) {
+    do_facet_grid <- TRUE
+  }
 
   warning_msg <- "When splitting the plot by {.arg rows} and {.arg cols}, the arguments {.arg ncol} and {.arg nrow} are ignored."
-  if (do_facet_grid && (!var_is_null({{ ncol }}) || !var_is_null({{ nrow }})))
+  if (do_facet_grid && (!var_is_null({{ ncol }}) || !var_is_null({{ nrow }}))) {
     cli::cli_warn(warning_msg)
+  }
 
   # Facet wrap
   if (do_facet_wrap) {
@@ -256,8 +288,8 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
 
       df <-
         plot$data |>
-        tidyr::nest(data = -{{by}}) |>
-        dplyr::arrange({{by}})
+        tidyr::nest(data = -{{ by }}) |>
+        dplyr::arrange({{ by }})
 
       dfs <- split(df, ceiling(seq_len(nrow(df)) / plots_per_page))
 
@@ -268,18 +300,31 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
           update_data(plot, new_data) +
             facet_wrap_ext(
               facets = ggplot2::vars({{ by }}),
-              nrow = nrow, ncol = ncol, scales = scales,
-              axes = axes, axis.titles = axis.titles, ...)
+              nrow = nrow,
+              ncol = ncol,
+              scales = scales,
+              axes = axes,
+              axis.titles = axis.titles,
+              ...
+            )
         })
 
-      cli::cli_alert_success("split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}")
+      cli::cli_alert_success(
+        "split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}"
+      )
 
       return(unname(pages))
     } else {
-      plot <- plot + facet_wrap_ext(
-        facets = ggplot2::vars({{ by }}),
-        nrow = nrow, ncol = ncol, scales = scales, axes = axes,
-        axis.titles = axis.titles, ...)
+      plot <- plot +
+        facet_wrap_ext(
+          facets = ggplot2::vars({{ by }}),
+          nrow = nrow,
+          ncol = ncol,
+          scales = scales,
+          axes = axes,
+          axis.titles = axis.titles,
+          ...
+        )
       return(plot)
     }
   }
@@ -289,13 +334,15 @@ split_plot <- function(plot, by = NULL, rows = NULL, cols = NULL, ncol = NULL, n
     scales <- scales %||% "fixed"
 
     plot <- plot +
-      facet_grid_ext(rows = ggplot2::vars({{ rows }}),
-                          cols = ggplot2::vars({{ cols }}),
-                          axes = axes,
-                          axis.titles = axis.titles,
-                          scales = scales,
-                          switch = "y",
-                          ...) +
+      facet_grid_ext(
+        rows = ggplot2::vars({{ rows }}),
+        cols = ggplot2::vars({{ cols }}),
+        axes = axes,
+        axis.titles = axis.titles,
+        scales = scales,
+        switch = "y",
+        ...
+      ) +
       ggplot2::theme_sub_strip(placement = "outside")
     return(plot)
   }
@@ -341,7 +388,9 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
     my_fun <- data
     plot <- update_data(plot, my_fun(plot$data)) + ggplot2::ggtitle(title)
   }
-  if (inherits(data, "data.frame")) plot <- update_data(plot, data) + ggplot2::ggtitle(title)
+  if (inherits(data, "data.frame")) {
+    plot <- update_data(plot, data) + ggplot2::ggtitle(title)
+  }
   print(plot, ...)
   invisible(input)
 }
@@ -413,37 +462,58 @@ view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
 #' }
 #'
 #' @export
-save_plot <- function(plot = ggplot2::last_plot(), filename,
-                      width = NA, height = NA, units = c("mm", "cm", "in"), padding = 0.1,
-                      multiple_files = FALSE, view_plot = TRUE, ...) {
-  if (!ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot)))
+save_plot <- function(
+  plot = ggplot2::last_plot(),
+  filename,
+  width = NA,
+  height = NA,
+  units = c("mm", "cm", "in"),
+  padding = 0.1,
+  multiple_files = FALSE,
+  view_plot = TRUE,
+  ...
+) {
+  if (
+    !ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot))
+  ) {
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
+  }
 
   input <- plot
-  if (ggplot2::is.ggplot(plot)) plot <- list(plot)
+  if (ggplot2::is.ggplot(plot)) {
+    plot <- list(plot)
+  }
   units <- match.arg(units)
 
-  if (check_input(plot) %in% c("pw_list", "tp_list", "gg_list"))
+  if (check_input(plot) %in% c("pw_list", "tp_list", "gg_list")) {
     dimensions <- get_layout_size(plot, units)$max
-  else
+  } else {
     dimensions <- list(width = NA, height = NA)
+  }
 
-  if (is.na(width)) width <- dimensions[["width"]] * (1 + padding)
-  if (is.na(height)) height <- dimensions[["height"]] * (1 + padding)
+  if (is.na(width)) {
+    width <- dimensions[["width"]] * (1 + padding)
+  }
+  if (is.na(height)) {
+    height <- dimensions[["height"]] * (1 + padding)
+  }
 
   if (length(plot) == 1) {
     # single plot
-    ggplot2::ggsave(plot = plot[[1]], filename = filename, width = width,
-                    height = height, units = units, ...)
+    ggplot2::ggsave(
+      plot = plot[[1]],
+      filename = filename,
+      width = width,
+      height = height,
+      units = units,
+      ...
+    )
     cli::cli_alert_success("save_plot: saved to {.file {filename}}")
-  } else{
+  } else {
     # multiple plots
     if (toupper(tools::file_ext(filename)) == "PDF" && !multiple_files) {
       # save multipage pdf
-      unit_factor <- switch(units,
-                            "mm"= 25.4,
-                            "cm"= 2.54,
-                            "in"= 1)
+      unit_factor <- switch(units, "mm" = 25.4, "cm" = 2.54, "in" = 1)
 
       width <- width / unit_factor
       height <- height / unit_factor
@@ -451,18 +521,29 @@ save_plot <- function(plot = ggplot2::last_plot(), filename,
       pdf(file = filename, width = width, height = height)
       invisible(lapply(plot, print))
       dev.off()
-      cli::cli_alert_success("save_plot: saved multipage PDF to {.file {filename}}")
+      cli::cli_alert_success(
+        "save_plot: saved multipage PDF to {.file {filename}}"
+      )
     } else {
       # save to multiple files
       filenames <- burst_filename(filename, length(plot))
-      purrr::map2(plot, filenames,
-                  function(x, y) {
-                    ggplot2::ggsave(plot = x, filename = y, width = width,
-                                    height = height, units = units, ...)
-                  })
-      cli::cli_alert_success("save_plot: saved multiple plots to {.file {filenames}}")
+      purrr::map2(plot, filenames, function(x, y) {
+        ggplot2::ggsave(
+          plot = x,
+          filename = y,
+          width = width,
+          height = height,
+          units = units,
+          ...
+        )
+      })
+      cli::cli_alert_success(
+        "save_plot: saved multiple plots to {.file {filenames}}"
+      )
     }
   }
-  if (view_plot) print(input)
+  if (view_plot) {
+    print(input)
+  }
   invisible(input)
 }

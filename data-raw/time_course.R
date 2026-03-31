@@ -23,7 +23,8 @@ time_course |>
 time_course |>
   tidyplot(x = day, y = subject, color = score, height = 80) |>
   add_heatmap(rotate_labels = FALSE) |>
-  adjust_colors(new_colors = rev(RColorBrewer::brewer.pal(n = 7, name = "RdYlBu")),
-                na.value = "#DDDDDD") +
+  adjust_colors(
+    new_colors = rev(RColorBrewer::brewer.pal(n = 7, name = "RdYlBu")),
+    na.value = "#DDDDDD"
+  ) +
   facet_grid(vars(treatment), scales = "free")
-

@@ -39,4 +39,3 @@ test_that("histograms work", {
     add_histogram(color = "purple") |>
     vdiffr::expect_doppelganger("histogram custom color", fig = _)
 })
-

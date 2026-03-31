@@ -1,4 +1,3 @@
-
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }
@@ -56,14 +55,18 @@ flip_plot <- function(plot, ...) {
 #' Subset data rows
 #' @return A `function` to achieve the desired data subsetting.
 #' @export
-all_rows <- function(){
-  function(x) { x }
+all_rows <- function() {
+  function(x) {
+    x
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::filter
 #' @export
 filter_rows <- function(..., .by = NULL) {
-  function(x) { x |> dplyr::filter(..., .by = {{.by}}, .preserve = FALSE) }
+  function(x) {
+    x |> dplyr::filter(..., .by = {{ .by }}, .preserve = FALSE)
+  }
 }
 #' @rdname all_rows
 #' @param n The number of rows to select. If not are supplied, `n = 1` will be
@@ -124,31 +127,55 @@ filter_rows <- function(..., .by = NULL) {
 #'
 #' @export
 max_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE) {
-  function(x) { x |> dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm) }
+  function(x) {
+    x |>
+      dplyr::slice_max(
+        order_by = {{ order_by }},
+        n = n,
+        by = {{ by }},
+        with_ties = with_ties,
+        na_rm = na_rm
+      )
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_min
 #' @export
 min_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE) {
-  function(x) { x |> dplyr::slice_min(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm) }
+  function(x) {
+    x |>
+      dplyr::slice_min(
+        order_by = {{ order_by }},
+        n = n,
+        by = {{ by }},
+        with_ties = with_ties,
+        na_rm = na_rm
+      )
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_head
 #' @export
 first_rows <- function(n, by = NULL) {
-  function(x) { x |> dplyr::slice_head(n = n, by = {{by}}) }
+  function(x) {
+    x |> dplyr::slice_head(n = n, by = {{ by }})
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_tail
 #' @export
 last_rows <- function(n, by = NULL) {
-  function(x) { x |> dplyr::slice_tail(n = n, by = {{by}}) }
+  function(x) {
+    x |> dplyr::slice_tail(n = n, by = {{ by }})
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_sample
 #' @export
 sample_rows <- function(n, by = NULL) {
-  function(x) { x |> dplyr::slice_sample(n = n, by = {{by}}) }
+  function(x) {
+    x |> dplyr::slice_sample(n = n, by = {{ by }})
+  }
 }
 
 
@@ -166,9 +193,11 @@ sample_rows <- function(n, by = NULL) {
 #'
 #' @export
 format_p_value <- function(x, accuracy = 0.0001) {
-  ifelse(x >= accuracy,
-         format_number(x, accuracy),
-         glue::glue("< { format_number(accuracy, accuracy) }"))
+  ifelse(
+    x >= accuracy,
+    format_number(x, accuracy),
+    glue::glue("< { format_number(accuracy, accuracy) }")
+  )
 }
 
 
@@ -193,8 +222,20 @@ update_data <- function(plot, new_data) {
   }
 }
 
-format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = NULL, ...) {
-  scales::number(x = x, accuracy = accuracy, big.mark = big.mark, scale_cut = scale_cut, ...)
+format_number <- function(
+  x,
+  accuracy = 0.1,
+  big.mark = ",",
+  scale_cut = NULL,
+  ...
+) {
+  scales::number(
+    x = x,
+    accuracy = accuracy,
+    big.mark = big.mark,
+    scale_cut = scale_cut,
+    ...
+  )
 }
 
 mean_se <- ggplot2::mean_se
@@ -209,14 +250,16 @@ mean_sd <- function(x) {
   mean_x <- mean(x)
   sd_x <- stats::sd(x)
 
-  data.frame(y = mean_x,
-             ymin = mean_x - sd_x,
-             ymax = mean_x + sd_x)
+  data.frame(y = mean_x, ymin = mean_x - sd_x, ymax = mean_x + sd_x)
 }
 
 mean_cl_boot <- function(x) {
-  dplyr::rename(data.frame(as.list(Hmisc::smean.cl.boot(x))),
-                y = Mean, ymin = Lower, ymax = Upper)
+  dplyr::rename(
+    data.frame(as.list(Hmisc::smean.cl.boot(x))),
+    y = Mean,
+    ymin = Lower,
+    ymax = Upper
+  )
 }
 
 tidyplot_parser <- function(text) {
@@ -231,13 +274,17 @@ tidyplot_parser <- function(text) {
     # get rid of leading and trailing "$"
     if (stringr::str_detect(text[[i]], "^\\$.*\\$$")) {
       # check for valid plotmath expression
-      expr <- tryCatch(parse(text = stringr::str_sub(text[[i]], 2, -2)),
-                       error = function(e) {
-                         msg <- c("Invalid plotmath expression",
-                                  "x" = conditionMessage(e),
-                                  "i" = "Run `?plotmath` in the console for help.")
-                         cli::cli_abort(msg, call = NULL)
-                       })
+      expr <- tryCatch(
+        parse(text = stringr::str_sub(text[[i]], 2, -2)),
+        error = function(e) {
+          msg <- c(
+            "Invalid plotmath expression",
+            "x" = conditionMessage(e),
+            "i" = "Run `?plotmath` in the console for help."
+          )
+          cli::cli_abort(msg, call = NULL)
+        }
+      )
     } else {
       expr <- text[[i]]
     }
@@ -259,13 +306,23 @@ tidyplot_parse_labels <- function() {
 }
 
 check_input <- function(input) {
-  if (any(inherits(input, "tidyplot"))) return("tp")
-  if (any(inherits(input, "patchwork"))) return("pw")
-  if (any(inherits(input, "gg"))) return("gg")
+  if (any(inherits(input, "tidyplot"))) {
+    return("tp")
+  }
+  if (any(inherits(input, "patchwork"))) {
+    return("pw")
+  }
+  if (any(inherits(input, "gg"))) {
+    return("gg")
+  }
 
   if (is.list(input)) {
-    if (any(purrr::map_lgl(input, inherits, "tidyplot"))) return("tp_list")
-    if (any(purrr::map_lgl(input, inherits, "patchwork"))) return("pw_list")
+    if (any(purrr::map_lgl(input, inherits, "tidyplot"))) {
+      return("tp_list")
+    }
+    if (any(purrr::map_lgl(input, inherits, "patchwork"))) {
+      return("pw_list")
+    }
     if (any(purrr::map_lgl(input, inherits, "gg"))) return("gg_list")
   }
 
@@ -275,18 +332,30 @@ check_input <- function(input) {
 extract_mapping <- function(plot) {
   my_variable <- function(inp) {
     purrr::map_chr(inp, function(x) {
-      if (is.null(plot$mapping[[x]])) return("!!MISSING")
-      if (is.na(rlang::quo_name(plot$mapping[[x]]))) return("!!NA")
+      if (is.null(plot$mapping[[x]])) {
+        return("!!MISSING")
+      }
+      if (is.na(rlang::quo_name(plot$mapping[[x]]))) {
+        return("!!NA")
+      }
       rlang::quo_name(plot$mapping[[x]])
     })
   }
 
   my_scale_type <- function(inp) {
     purrr::map_chr(inp, function(x) {
-      if (x == "!!MISSING") return("!!MISSING")
-      if (x == "!!NA") return("!!NA")
-      if (!x %in% colnames(plot$data)) cli::cli_abort("Variable '{x}' not found in supplied dataset")
-      if (stringr::str_detect(x, "after_stat|after_scale|stage\\(")) return("continuous")
+      if (x == "!!MISSING") {
+        return("!!MISSING")
+      }
+      if (x == "!!NA") {
+        return("!!NA")
+      }
+      if (!x %in% colnames(plot$data)) {
+        cli::cli_abort("Variable '{x}' not found in supplied dataset")
+      }
+      if (stringr::str_detect(x, "after_stat|after_scale|stage\\(")) {
+        return("continuous")
+      }
       out <- plot$data[[x]] |> ggplot2::scale_type()
       out[[1]]
     })
@@ -315,13 +384,27 @@ get_variable <- function(plot, aesthetic) {
   m$variable[m$aesthetic == aesthetic]
 }
 
-is_discrete <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) %in% c("ordinal", "discrete") }
-is_continuous <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "continuous" }
-is_date <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "date" }
-is_time <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "time" }
-is_datetime <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "datetime" }
-is_missing <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!MISSING" }
-is_na <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!NA" }
+is_discrete <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) %in% c("ordinal", "discrete")
+}
+is_continuous <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "continuous"
+}
+is_date <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "date"
+}
+is_time <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "time"
+}
+is_datetime <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "datetime"
+}
+is_missing <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "!!MISSING"
+}
+is_na <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "!!NA"
+}
 
 is_flipped <- function(plot) {
   # this will only inspect the last geom
@@ -371,13 +454,21 @@ get_plottype <- function(plot) {
   paste0(acronym_x, get_scale_acronym(scale_type_y))
 }
 
-check_tidyplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::caller_env()) {
+check_tidyplot <- function(
+  plot,
+  arg = rlang::caller_arg(plot),
+  call = rlang::caller_env()
+) {
   if (!inherits(plot, "tidyplot")) {
     msg <- c("{.arg {arg}} must be a tidyplot.")
-    if (inherits(plot, "list") || inherits(plot, "patchwork"))
-      msg <- c(msg, "i" = "After using `split_plot()`, only `save_plot()` is allowed.")
-    else
+    if (inherits(plot, "list") || inherits(plot, "patchwork")) {
+      msg <- c(
+        msg,
+        "i" = "After using `split_plot()`, only `save_plot()` is allowed."
+      )
+    } else {
       msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")
+    }
     cli::cli_abort(msg, call = call)
   }
 
@@ -410,37 +501,61 @@ is_hex_vector <- function(x) {
 }
 
 burst_filename <- function(filename, n) {
-  digits <- ceiling(log10(n+1))
-  paste0(tools::file_path_sans_ext(filename), "_", sprintf(paste0("%0",digits,"d"), 1:n), ".", tools::file_ext(filename))
+  digits <- ceiling(log10(n + 1))
+  paste0(
+    tools::file_path_sans_ext(filename),
+    "_",
+    sprintf(paste0("%0", digits, "d"), 1:n),
+    ".",
+    tools::file_ext(filename)
+  )
 }
 
 get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
-  if (ggplot2::is.ggplot(plot)) plot <- list(plot)
+  if (ggplot2::is.ggplot(plot)) {
+    plot <- list(plot)
+  }
   units <- match.arg(units)
 
   pages <-
     purrr::map(plot, function(x) {
-      if (!ggplot2::is.ggplot(x)) cli::cli_abort("Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}")
+      if (!ggplot2::is.ggplot(x)) {
+        cli::cli_abort(
+          "Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}"
+        )
+      }
 
       gtab <- ggplot2::ggplotGrob(x)
 
       width <- NA
       height <- NA
-      if (all(as.character(gtab$widths) != "1null"))
-        width <- grid::convertWidth(sum(gtab$widths) + ggplot2::unit(1, "mm"), unitTo = units, valueOnly = TRUE)
-      if (all(as.character(gtab$heights) != "1null"))
-        height <- grid::convertHeight(sum(gtab$heights) + ggplot2::unit(1, "mm"), unitTo = units, valueOnly = TRUE)
+      if (all(as.character(gtab$widths) != "1null")) {
+        width <- grid::convertWidth(
+          sum(gtab$widths) + ggplot2::unit(1, "mm"),
+          unitTo = units,
+          valueOnly = TRUE
+        )
+      }
+      if (all(as.character(gtab$heights) != "1null")) {
+        height <- grid::convertHeight(
+          sum(gtab$heights) + ggplot2::unit(1, "mm"),
+          unitTo = units,
+          valueOnly = TRUE
+        )
+      }
 
       tibble::tibble(width = width, height = height)
     }) |>
     dplyr::bind_rows()
 
-  overall_width<- NA
+  overall_width <- NA
   overall_height <- NA
-  if (!anyNA(pages$width))
+  if (!anyNA(pages$width)) {
     overall_width <- max(pages$width, na.rm = TRUE)
-  if (!anyNA(pages$height))
+  }
+  if (!anyNA(pages$height)) {
     overall_height <- max(pages$height, na.rm = TRUE)
+  }
 
   list(
     units = units,
@@ -448,4 +563,3 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
     max = c(width = overall_width, height = overall_height)
   )
 }
-

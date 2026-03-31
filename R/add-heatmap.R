@@ -27,8 +27,14 @@
 #'   add_heatmap(rasterize = TRUE, rasterize_dpi = 20)
 #'
 #' @export
-add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels = 90,
-                        rasterize = FALSE, rasterize_dpi = 300, ...) {
+add_heatmap <- function(
+  plot,
+  scale = c("none", "row", "column"),
+  rotate_labels = 90,
+  rasterize = FALSE,
+  rasterize_dpi = 300,
+  ...
+) {
   plot <- check_tidyplot(plot)
   mapping <- NULL
   scale <- match.arg(scale)
@@ -39,13 +45,23 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
     y <- get_variable(plot, "y")
     out <-
       plot$data |>
-      dplyr::mutate(row_zscore = (.data[[color]] - mean(.data[[color]])) / sd(.data[[color]]), .by = tidyselect::all_of(y)) |>
-      dplyr::mutate(col_zscore = (.data[[color]] - mean(.data[[color]])) / sd(.data[[color]]), .by = tidyselect::all_of(x))
+      dplyr::mutate(
+        row_zscore = (.data[[color]] - mean(.data[[color]])) /
+          sd(.data[[color]]),
+        .by = tidyselect::all_of(y)
+      ) |>
+      dplyr::mutate(
+        col_zscore = (.data[[color]] - mean(.data[[color]])) /
+          sd(.data[[color]]),
+        .by = tidyselect::all_of(x)
+      )
     plot <- update_data(plot, out)
-    if (scale == "row")
+    if (scale == "row") {
       mapping <- ggplot2::aes(fill = row_zscore)
-    if (scale == "column")
+    }
+    if (scale == "column") {
       mapping <- ggplot2::aes(fill = col_zscore)
+    }
   }
 
   plot <-
@@ -55,11 +71,16 @@ add_heatmap <- function(plot, scale = c("none", "row", "column"), rotate_labels 
     remove_y_axis_line() +
     ggplot2::coord_cartesian(expand = FALSE)
 
-  plot <- add_geom(plot, ggplot2::geom_raster(mapping = mapping, ...),
-           rasterize = rasterize, rasterize_dpi = rasterize_dpi)
+  plot <- add_geom(
+    plot,
+    ggplot2::geom_raster(mapping = mapping, ...),
+    rasterize = rasterize,
+    rasterize_dpi = rasterize_dpi
+  )
 
   if (scale %in% c("row", "column")) {
-    plot <- plot |> adjust_colors(c("blue", "white", "red")) |>
+    plot <- plot |>
+      adjust_colors(c("blue", "white", "red")) |>
       adjust_legend_title(color)
   }
   plot

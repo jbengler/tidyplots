@@ -1,4 +1,3 @@
-
 #' Remove legend or legend title
 #' @inherit common_arguments
 #'
@@ -239,4 +238,3 @@ remove_caption <- function(plot) {
   plot <- check_tidyplot(plot)
   plot + ggplot2::labs(caption = NULL)
 }
-

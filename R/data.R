@@ -1,4 +1,3 @@
-
 #' RNA-Seq expression data
 #' @format A data frame.
 #' @source
@@ -96,4 +95,3 @@
 #' @examples
 #' dplyr::glimpse(pca)
 "pca"
-

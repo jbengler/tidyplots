@@ -1,24 +1,33 @@
-
 ff_rename_axis_levels <- function(axis) {
   function(plot, new_names) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
-    if (scale_type != "discrete")
+    if (scale_type != "discrete") {
       cli::cli_abort("Axis must be discrete not {scale_type}!")
-    if (is.null(names(new_names)))
+    }
+    if (is.null(names(new_names))) {
       cli::cli_abort("{.arg new_names} must be a named character vector!")
+    }
     var <- get_variable(plot, axis)
 
     new_factors <- setNames(names(new_names), new_names)
     new_data <-
       plot$data |>
-      dplyr::mutate("{var}" := forcats::fct_recode(.data[[var]], !!!new_factors))
+      dplyr::mutate(
+        "{var}" := forcats::fct_recode(.data[[var]], !!!new_factors)
+      )
 
     # if named color vector needs to be updated
-    if (var == get_variable(plot, "colour") && !is.null(plot$tidyplot$named_colors)) {
+    if (
+      var == get_variable(plot, "colour") &&
+        !is.null(plot$tidyplot$named_colors)
+    ) {
       new_named_colors <- plot$tidyplot$named_colors
 
-      names(new_named_colors) <- stringr::str_replace_all(names(new_named_colors), new_names)
+      names(new_named_colors) <- stringr::str_replace_all(
+        names(new_named_colors),
+        new_names
+      )
 
       #print(new_named_colors)
       plot$tidyplot$named_colors <- new_named_colors
@@ -117,8 +126,9 @@ ff_reorder_axis_levels <- function(axis) {
   function(plot, ...) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
-    if (scale_type != "discrete")
+    if (scale_type != "discrete") {
       cli::cli_abort("Axis must be discrete not {scale_type}!")
+    }
     var <- get_variable(plot, axis)
 
     new_data <-
@@ -207,8 +217,9 @@ ff_sort_levels <- function(axis) {
   function(plot, ..., .fun = NULL, .reverse = FALSE) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
-    if (scale_type != "discrete")
+    if (scale_type != "discrete") {
       cli::cli_abort("Axis must be discrete not {scale_type}!")
+    }
 
     var_a <- get_variable(plot, axis)
 
@@ -217,37 +228,47 @@ ff_sort_levels <- function(axis) {
       new_data <-
         plot$data |>
         dplyr::arrange(...) |>
-        dplyr::mutate("{var_a}" := forcats::fct_reorder(.f = .data[[var_a]],
-                                                        .x = dplyr::row_number(),
-                                                        .desc = .reverse))
+        dplyr::mutate(
+          "{var_a}" := forcats::fct_reorder(
+            .f = .data[[var_a]],
+            .x = dplyr::row_number(),
+            .desc = .reverse
+          )
+        )
     } else {
       # sort by statistic entity (mean, median, sum, count) used in plot
-      if (any(stringr::str_detect(plot$tidyplot$call_history, "count")))
+      if (any(stringr::str_detect(plot$tidyplot$call_history, "count"))) {
         auto_fun <- length
-      else if (any(stringr::str_detect(plot$tidyplot$call_history, "mean")))
+      } else if (any(stringr::str_detect(plot$tidyplot$call_history, "mean"))) {
         auto_fun <- mean
-      else if (any(stringr::str_detect(plot$tidyplot$call_history, "sum")))
+      } else if (any(stringr::str_detect(plot$tidyplot$call_history, "sum"))) {
         auto_fun <- sum
-      else
+      } else {
         auto_fun <- median
+      }
 
       .fun <- .fun %||% auto_fun
 
-      if (is_continuous(plot, "y"))
+      if (is_continuous(plot, "y")) {
         var_b <- get_variable(plot, "y")
-      else if (is_continuous(plot, "x"))
+      } else if (is_continuous(plot, "x")) {
         var_b <- get_variable(plot, "x")
-      else if (is_continuous(plot, "colour"))
+      } else if (is_continuous(plot, "colour")) {
         var_b <- get_variable(plot, "colour")
-      else
+      } else {
         var_b <- get_variable(plot, axis)
+      }
 
       new_data <-
         plot$data |>
-        dplyr::mutate("{var_a}" := forcats::fct_reorder(.f = .data[[var_a]],
-                                                        .x = .data[[var_b]],
-                                                        .fun = .fun,
-                                                        .desc = .reverse))
+        dplyr::mutate(
+          "{var_a}" := forcats::fct_reorder(
+            .f = .data[[var_a]],
+            .x = .data[[var_b]],
+            .fun = .fun,
+            .desc = .reverse
+          )
+        )
     }
     update_data(plot, new_data)
   }
@@ -332,8 +353,9 @@ ff_reverse_axis_levels <- function(axis) {
   function(plot) {
     plot <- check_tidyplot(plot)
     scale_type <- get_scale_type(plot, axis)
-    if (scale_type != "discrete")
+    if (scale_type != "discrete") {
       cli::cli_abort("Axis must be discrete not {scale_type}!")
+    }
     var <- get_variable(plot, axis)
     new_data <-
       plot$data |>
@@ -413,4 +435,3 @@ reverse_y_axis_labels <- reverse_y_axis_levels
 #' @rdname reverse_x_axis_levels
 #' @usage NULL
 reverse_color_labels <- reverse_color_levels
-

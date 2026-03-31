@@ -33,9 +33,23 @@
 #'   add_boxplot(whiskers_width = 0.2)
 #'
 #' @export
-add_boxplot <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, show_whiskers = TRUE, show_outliers = TRUE,
-                        box_width = 0.6, whiskers_width = 0.8, outlier.size = 0.5, coef = 1.5,
-                        outlier.shape = 19, outlier.alpha = 1, linewidth = 0.25, preserve = "total", ...) {
+add_boxplot <- function(
+  plot,
+  dodge_width = NULL,
+  alpha = 0.3,
+  saturation = 1,
+  show_whiskers = TRUE,
+  show_outliers = TRUE,
+  box_width = 0.6,
+  whiskers_width = 0.8,
+  outlier.size = 0.5,
+  coef = 1.5,
+  outlier.shape = 19,
+  outlier.alpha = 1,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+) {
   plot <- check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
@@ -47,9 +61,19 @@ add_boxplot <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, s
     whiskers_width = box_width
   }
   plot +
-    ggplot2::geom_boxplot(alpha = alpha, staplewidth = whiskers_width, outliers = show_outliers,
-                          outlier.shape = outlier.shape, outlier.alpha = outlier.alpha, outlier.size = outlier.size,
-                          width = box_width, position = position, linewidth = linewidth, coef = coef, ...)
+    ggplot2::geom_boxplot(
+      alpha = alpha,
+      staplewidth = whiskers_width,
+      outliers = show_outliers,
+      outlier.shape = outlier.shape,
+      outlier.alpha = outlier.alpha,
+      outlier.size = outlier.size,
+      width = box_width,
+      position = position,
+      linewidth = linewidth,
+      coef = coef,
+      ...
+    )
 }
 
 # boxplot median not the same as violin draw_quantiles = c(0.5)!
@@ -83,16 +107,31 @@ add_boxplot <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, s
 #'   add_violin(linewidth = 1)
 #'
 #' @export
-add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, trim = TRUE,
-                       linewidth = 0.25, scale = "width", ...) {
+add_violin <- function(
+  plot,
+  dodge_width = NULL,
+  alpha = 0.3,
+  saturation = 1,
+  trim = TRUE,
+  linewidth = 0.25,
+  scale = "width",
+  ...
+) {
   plot <- check_tidyplot(plot)
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width)
   if (saturation != 1) {
     plot <- plot |> adjust_colors(saturation = saturation)
   }
-  plot + ggplot2::geom_violin(alpha = alpha, trim = trim, linewidth = linewidth,
-                              scale = scale, position = position, ...)
+  plot +
+    ggplot2::geom_violin(
+      alpha = alpha,
+      trim = trim,
+      linewidth = linewidth,
+      scale = scale,
+      position = position,
+      ...
+    )
 }
 
 #' Add line or area
@@ -117,7 +156,14 @@ add_violin <- function(plot, dodge_width = NULL, alpha = 0.3, saturation = 1, tr
 #'   add_area(group = participant)
 #'
 #' @export
-add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
+add_line <- function(
+  plot,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  preserve = "total",
+  ...
+) {
   plot <- check_tidyplot(plot)
   mapping <- NULL
   if (is_missing(plot, "group")) {
@@ -125,15 +171,29 @@ add_line <- function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve
     mapping$group <- plot$mapping$colour
   }
   if (!missing(group)) {
-    mapping <- ggplot2::aes(group = {{group}})
+    mapping <- ggplot2::aes(group = {{ group }})
   }
   dodge_width <- dodge_width %||% 0
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
-  plot + ggplot2::geom_line(mapping = mapping, linewidth = linewidth, position = position, ...)
+  plot +
+    ggplot2::geom_line(
+      mapping = mapping,
+      linewidth = linewidth,
+      position = position,
+      ...
+    )
 }
 #' @rdname add_line
 #' @export
-add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 0.4, preserve = "total", ...) {
+add_area <- function(
+  plot,
+  group,
+  dodge_width = NULL,
+  linewidth = 0.25,
+  alpha = 0.4,
+  preserve = "total",
+  ...
+) {
   plot <- check_tidyplot(plot)
   ptype <- get_plottype(plot)
 
@@ -144,7 +204,9 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
   }
   # add orientation to args if not already present
   args <- list(...)
-  if (!"orientation" %in% names(args)) args$orientation <- orientation
+  if (!"orientation" %in% names(args)) {
+    args$orientation <- orientation
+  }
 
   mapping <- NULL
   if (is_missing(plot, "group")) {
@@ -152,12 +214,18 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
     mapping$group <- plot$mapping$colour
   }
   if (!missing(group)) {
-    mapping <- ggplot2::aes(group = {{group}})
+    mapping <- ggplot2::aes(group = {{ group }})
   }
   dodge_width <- dodge_width %||% 0
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
   plot <- plot +
-    rlang::inject(ggplot2::geom_area(mapping = mapping, linewidth = linewidth, alpha = alpha, position = position, !!!args))
+    rlang::inject(ggplot2::geom_area(
+      mapping = mapping,
+      linewidth = linewidth,
+      alpha = alpha,
+      position = position,
+      !!!args
+    ))
 
   # remove padding between area and axis
   if (is_flipped(plot)) {
@@ -194,15 +262,29 @@ add_area <- function(plot, group, dodge_width = NULL, linewidth = 0.25, alpha = 
 #'   add_curve_fit(se = FALSE)
 #'
 #' @export
-add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth = 0.25, alpha = 0.4,
-                          preserve = "total", ...) {
+add_curve_fit <- function(
+  plot,
+  dodge_width = NULL,
+  method = "loess",
+  linewidth = 0.25,
+  alpha = 0.4,
+  preserve = "total",
+  ...
+) {
   plot <- check_tidyplot(plot)
   mapping <- ggplot2::aes()
   mapping$group <- plot$mapping$colour
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
-    plot + ggplot2::geom_smooth(mapping = mapping, method = method, linewidth = linewidth,
-                                alpha = alpha, position = position, ...)
+  plot +
+    ggplot2::geom_smooth(
+      mapping = mapping,
+      method = method,
+      linewidth = linewidth,
+      alpha = alpha,
+      position = position,
+      ...
+    )
 }
 
 
@@ -222,7 +304,9 @@ add_curve_fit <- function(plot, dodge_width = NULL, method = "loess", linewidth 
 #' @export
 add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
   args <- list(binwidth = binwidth, bins = bins, ...)
-  if (!is.null(args$color)) args$fill <- args$color
+  if (!is.null(args$color)) {
+    args$fill <- args$color
+  }
   args$color <- NA
 
   plot <- check_tidyplot(plot)
@@ -282,7 +366,13 @@ add_ellipse <- function(plot, ...) {
 
 
 # not exported
-add_geom <- function(plot, geom, rasterize = FALSE, rasterize_dpi = 300, level = 0) {
+add_geom <- function(
+  plot,
+  geom,
+  rasterize = FALSE,
+  rasterize_dpi = 300,
+  level = 0
+) {
   if (rasterize) {
     plot + ggrastr::rasterise(geom, dpi = rasterize_dpi, dev = "ragg")
   } else {

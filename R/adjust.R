@@ -1,132 +1,267 @@
-
 ff_adjust_axis <- function(axis) {
-  function(plot, title = ggplot2::waiver(), breaks = ggplot2::waiver(),
-           labels = NULL, limits = NULL,
-           padding = c(NA, NA), rotate_labels = FALSE, transform = "identity",
-           cut_short_scale = FALSE, force_continuous = FALSE, ...) {
+  function(
+    plot,
+    title = ggplot2::waiver(),
+    breaks = ggplot2::waiver(),
+    labels = NULL,
+    limits = NULL,
+    padding = c(NA, NA),
+    rotate_labels = FALSE,
+    transform = "identity",
+    cut_short_scale = FALSE,
+    force_continuous = FALSE,
+    ...
+  ) {
     plot <- check_tidyplot(plot)
-  # Parse title
-  if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
+    # Parse title
+    if (!is_waiver(title)) {
+      title <- tidyplot_parser(as.character(title))
+    }
 
-  # Rotate labels
-  if (rotate_labels == TRUE) rotate_labels <- 45
-  if (is.numeric(rotate_labels) && rotate_labels != 0) {
-    if (rotate_labels >= 90) vjust <- 0.5 else vjust <- 1
-    if (axis == "x")
-      plot <- plot + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = rotate_labels, hjust = 1, vjust = vjust))
-    if (axis == "y")
-      plot <- plot + ggplot2::theme(axis.text.y = ggplot2::element_text(angle = rotate_labels, hjust = vjust, vjust = 1))
-  }
-
-  # Adjust labels
-  if (axis == "x") plot$tidyplot$labels_x <- labels %||% plot$tidyplot$labels_x
-  if (axis == "y") plot$tidyplot$labels_y <- labels %||% plot$tidyplot$labels_y
-  labels_x <- plot$tidyplot$labels_x
-  labels_y <- plot$tidyplot$labels_y
-
-  # Adjust limits
-  if (axis == "x") plot$tidyplot$limits_x <- limits %||% plot$tidyplot$limits_x
-  if (axis == "y") plot$tidyplot$limits_y <- limits %||% plot$tidyplot$limits_y
-  # Remove padding when limits are present
-  if (!is.null(plot$tidyplot$limits_x)) plot$tidyplot$padding_x <- c(0, 0)
-  if (!is.null(plot$tidyplot$limits_y)) plot$tidyplot$padding_y <- c(0, 0)
-
-  # Set limits via coord_cartesian
-  if (!is.null(plot$tidyplot$limits_x) || !is.null(plot$tidyplot$limits_y)) {
-    suppressMessages(plot <- plot + ggplot2::coord_cartesian(
-      xlim = plot$tidyplot$limits_x,
-      ylim = plot$tidyplot$limits_y)
-      )
-  }
-
-  # Adjust padding (aka expansion)
-  if (axis == "x") {
-    if (!is.na(padding[[1]])) plot$tidyplot$padding_x[[1]] <- padding[[1]]
-    if (!is.na(padding[[2]])) plot$tidyplot$padding_x[[2]] <- padding[[2]]
-  }
-  if (axis == "y") {
-    if (!is.na(padding[[1]])) plot$tidyplot$padding_y[[1]] <- padding[[1]]
-    if (!is.na(padding[[2]])) plot$tidyplot$padding_y[[2]] <- padding[[2]]
-  }
-  expand_x <- ggplot2::expansion(mult = plot$tidyplot$padding_x)
-  expand_y <- ggplot2::expansion(mult = plot$tidyplot$padding_y)
-
-  # Datetime
-  if (is_datetime(plot, axis)) {
-    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg datetime}")
-    suppressMessages(
-      if (axis == "x")
-        plot <- plot + ggplot2::scale_x_datetime(name = title, breaks = breaks, labels = labels_x, expand = expand_x, ...)
-      else
-        plot <- plot + ggplot2::scale_y_datetime(name = title, breaks = breaks, labels = labels_y, expand = expand_y, ...)
-    )
-    return(plot)
-  }
-
-  # Date
-  if (is_date(plot, axis)) {
-    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg date}")
-    suppressMessages(
-      if (axis == "x")
-        plot <- plot + ggplot2::scale_x_date(name = title, breaks = breaks, labels = labels_x, expand = expand_x, ...)
-      else
-        plot <- plot + ggplot2::scale_y_date(name = title, breaks = breaks, labels = labels_y, expand = expand_y, ...)
-    )
-    return(plot)
-  }
-
-  # Time
-  if (is_time(plot, axis)) {
-    # cli::cli_alert_success("adjust_{axis}_axis: {.pkg time}")
-    suppressMessages(
-      if (axis == "x")
-        plot <- plot + ggplot2::scale_x_time(name = title, breaks = breaks, labels = labels_x, expand = expand_x, ...)
-      else
-        plot <- plot + ggplot2::scale_y_time(name = title, breaks = breaks, labels = labels_y, expand = expand_y, ...)
-    )
-    return(plot)
-  }
-
-  # Continuous
-  if (is_continuous(plot, axis) || force_continuous) {
-    suppressMessages({
-      if (axis == "x") {
-        if (!is_discrete(plot, "x")) {
-          if (is_waiver(labels_x) && cut_short_scale)
-            labels_x <- scales::label_number(scale_cut = scales::cut_short_scale())
-          plot <- plot + ggplot2::scale_x_continuous(name = title, breaks = breaks, labels = labels_x, limits = NULL, expand = expand_x, transform = transform, ...)}
+    # Rotate labels
+    if (rotate_labels == TRUE) {
+      rotate_labels <- 45
+    }
+    if (is.numeric(rotate_labels) && rotate_labels != 0) {
+      if (rotate_labels >= 90) {
+        vjust <- 0.5
       } else {
-        if (!is_discrete(plot, "y")) {
-          if (is_waiver(labels_y) && cut_short_scale)
-            labels_y <- scales::label_number(scale_cut = scales::cut_short_scale())
-          plot <- plot + ggplot2::scale_y_continuous(name = title, breaks = breaks, labels = labels_y, limits = NULL, expand = expand_y, transform = transform, ...)}
+        vjust <- 1
       }
-    })
-    return(plot)
-  }
-
-  # Discrete
-  if (is_discrete(plot, axis)) {
-    suppressMessages(
       if (axis == "x") {
-        if (is_waiver(labels_x)) labels_x <- tidyplot_parse_labels()
-        plot <- plot + ggplot2::scale_x_discrete(
-          name = title, breaks = breaks, labels = labels_x,
-          expand = ggplot2::waiver(), ...)
+        plot <- plot +
+          ggplot2::theme(
+            axis.text.x = ggplot2::element_text(
+              angle = rotate_labels,
+              hjust = 1,
+              vjust = vjust
+            )
+          )
       }
-      else {
-        if (is_waiver(labels_y)) labels_y <- tidyplot_parse_labels()
-        plot <- plot + ggplot2::scale_y_discrete(
-          name = title, breaks = breaks, labels = labels_y,
-          expand = ggplot2::waiver(), ...)
+      if (axis == "y") {
+        plot <- plot +
+          ggplot2::theme(
+            axis.text.y = ggplot2::element_text(
+              angle = rotate_labels,
+              hjust = vjust,
+              vjust = 1
+            )
+          )
       }
-    )
-    return(plot)
-  }
+    }
 
-  # Catch the rest
-  # cli::cli_alert_warning("adjust_{axis}_axis: {.pkg x-axis} was not changed.")
-  return(plot)
+    # Adjust labels
+    if (axis == "x") {
+      plot$tidyplot$labels_x <- labels %||% plot$tidyplot$labels_x
+    }
+    if (axis == "y") {
+      plot$tidyplot$labels_y <- labels %||% plot$tidyplot$labels_y
+    }
+    labels_x <- plot$tidyplot$labels_x
+    labels_y <- plot$tidyplot$labels_y
+
+    # Adjust limits
+    if (axis == "x") {
+      plot$tidyplot$limits_x <- limits %||% plot$tidyplot$limits_x
+    }
+    if (axis == "y") {
+      plot$tidyplot$limits_y <- limits %||% plot$tidyplot$limits_y
+    }
+    # Remove padding when limits are present
+    if (!is.null(plot$tidyplot$limits_x)) {
+      plot$tidyplot$padding_x <- c(0, 0)
+    }
+    if (!is.null(plot$tidyplot$limits_y)) {
+      plot$tidyplot$padding_y <- c(0, 0)
+    }
+
+    # Set limits via coord_cartesian
+    if (!is.null(plot$tidyplot$limits_x) || !is.null(plot$tidyplot$limits_y)) {
+      suppressMessages(
+        plot <- plot +
+          ggplot2::coord_cartesian(
+            xlim = plot$tidyplot$limits_x,
+            ylim = plot$tidyplot$limits_y
+          )
+      )
+    }
+
+    # Adjust padding (aka expansion)
+    if (axis == "x") {
+      if (!is.na(padding[[1]])) {
+        plot$tidyplot$padding_x[[1]] <- padding[[1]]
+      }
+      if (!is.na(padding[[2]])) plot$tidyplot$padding_x[[2]] <- padding[[2]]
+    }
+    if (axis == "y") {
+      if (!is.na(padding[[1]])) {
+        plot$tidyplot$padding_y[[1]] <- padding[[1]]
+      }
+      if (!is.na(padding[[2]])) plot$tidyplot$padding_y[[2]] <- padding[[2]]
+    }
+    expand_x <- ggplot2::expansion(mult = plot$tidyplot$padding_x)
+    expand_y <- ggplot2::expansion(mult = plot$tidyplot$padding_y)
+
+    # Datetime
+    if (is_datetime(plot, axis)) {
+      # cli::cli_alert_success("adjust_{axis}_axis: {.pkg datetime}")
+      suppressMessages(
+        if (axis == "x") {
+          plot <- plot +
+            ggplot2::scale_x_datetime(
+              name = title,
+              breaks = breaks,
+              labels = labels_x,
+              expand = expand_x,
+              ...
+            )
+        } else {
+          plot <- plot +
+            ggplot2::scale_y_datetime(
+              name = title,
+              breaks = breaks,
+              labels = labels_y,
+              expand = expand_y,
+              ...
+            )
+        }
+      )
+      return(plot)
+    }
+
+    # Date
+    if (is_date(plot, axis)) {
+      # cli::cli_alert_success("adjust_{axis}_axis: {.pkg date}")
+      suppressMessages(
+        if (axis == "x") {
+          plot <- plot +
+            ggplot2::scale_x_date(
+              name = title,
+              breaks = breaks,
+              labels = labels_x,
+              expand = expand_x,
+              ...
+            )
+        } else {
+          plot <- plot +
+            ggplot2::scale_y_date(
+              name = title,
+              breaks = breaks,
+              labels = labels_y,
+              expand = expand_y,
+              ...
+            )
+        }
+      )
+      return(plot)
+    }
+
+    # Time
+    if (is_time(plot, axis)) {
+      # cli::cli_alert_success("adjust_{axis}_axis: {.pkg time}")
+      suppressMessages(
+        if (axis == "x") {
+          plot <- plot +
+            ggplot2::scale_x_time(
+              name = title,
+              breaks = breaks,
+              labels = labels_x,
+              expand = expand_x,
+              ...
+            )
+        } else {
+          plot <- plot +
+            ggplot2::scale_y_time(
+              name = title,
+              breaks = breaks,
+              labels = labels_y,
+              expand = expand_y,
+              ...
+            )
+        }
+      )
+      return(plot)
+    }
+
+    # Continuous
+    if (is_continuous(plot, axis) || force_continuous) {
+      suppressMessages({
+        if (axis == "x") {
+          if (!is_discrete(plot, "x")) {
+            if (is_waiver(labels_x) && cut_short_scale) {
+              labels_x <- scales::label_number(
+                scale_cut = scales::cut_short_scale()
+              )
+            }
+            plot <- plot +
+              ggplot2::scale_x_continuous(
+                name = title,
+                breaks = breaks,
+                labels = labels_x,
+                limits = NULL,
+                expand = expand_x,
+                transform = transform,
+                ...
+              )
+          }
+        } else {
+          if (!is_discrete(plot, "y")) {
+            if (is_waiver(labels_y) && cut_short_scale) {
+              labels_y <- scales::label_number(
+                scale_cut = scales::cut_short_scale()
+              )
+            }
+            plot <- plot +
+              ggplot2::scale_y_continuous(
+                name = title,
+                breaks = breaks,
+                labels = labels_y,
+                limits = NULL,
+                expand = expand_y,
+                transform = transform,
+                ...
+              )
+          }
+        }
+      })
+      return(plot)
+    }
+
+    # Discrete
+    if (is_discrete(plot, axis)) {
+      suppressMessages(
+        if (axis == "x") {
+          if (is_waiver(labels_x)) {
+            labels_x <- tidyplot_parse_labels()
+          }
+          plot <- plot +
+            ggplot2::scale_x_discrete(
+              name = title,
+              breaks = breaks,
+              labels = labels_x,
+              expand = ggplot2::waiver(),
+              ...
+            )
+        } else {
+          if (is_waiver(labels_y)) {
+            labels_y <- tidyplot_parse_labels()
+          }
+          plot <- plot +
+            ggplot2::scale_y_discrete(
+              name = title,
+              breaks = breaks,
+              labels = labels_y,
+              expand = ggplot2::waiver(),
+              ...
+            )
+        }
+      )
+      return(plot)
+    }
+
+    # Catch the rest
+    # cli::cli_alert_warning("adjust_{axis}_axis: {.pkg x-axis} was not changed.")
+    return(plot)
   }
 }
 #' Adjust axes
@@ -237,14 +372,26 @@ adjust_y_axis <- ff_adjust_axis("y")
 #'   adjust_size(width = NA, height = NA)
 #'
 #' @export
-adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL,
-                        overall_width = NULL, overall_height = NULL) {
+adjust_size <- function(
+  plot,
+  width = NULL,
+  height = NULL,
+  unit = NULL,
+  overall_width = NULL,
+  overall_height = NULL
+) {
   plot <- check_tidyplot(plot)
 
-  if (!is.null(width) && !is.null(overall_width))
-    cli::cli_alert_warning("Argument {.arg overall_width} overrules {.arg width} if both are specified.")
-  if (!is.null(height) && !is.null(overall_height))
-    cli::cli_alert_warning("Argument {.arg overall_height} overrules {.arg height} if both are specified.")
+  if (!is.null(width) && !is.null(overall_width)) {
+    cli::cli_alert_warning(
+      "Argument {.arg overall_width} overrules {.arg width} if both are specified."
+    )
+  }
+  if (!is.null(height) && !is.null(overall_height)) {
+    cli::cli_alert_warning(
+      "Argument {.arg overall_height} overrules {.arg height} if both are specified."
+    )
+  }
 
   plot$tidyplot$width <- width %||% plot$tidyplot$width
   plot$tidyplot$height <- height %||% plot$tidyplot$height
@@ -255,15 +402,31 @@ adjust_size <- function(plot, width = NULL, height = NULL, unit = NULL,
   unit <- plot$tidyplot$unit
 
   if (!is.null(overall_width)) {
-    if (!is.na(overall_width)) width <- ggplot2::unit(overall_width, unit) else width <- NULL
+    if (!is.na(overall_width)) {
+      width <- ggplot2::unit(overall_width, unit)
+    } else {
+      width <- NULL
+    }
   } else {
-    if (!is.na(width)) width <- ggplot2::unit(c(width, width), unit) else width <- NULL
+    if (!is.na(width)) {
+      width <- ggplot2::unit(c(width, width), unit)
+    } else {
+      width <- NULL
+    }
   }
 
   if (!is.null(overall_height)) {
-    if (!is.na(overall_height)) height <- ggplot2::unit(overall_height, unit) else height <- NULL
+    if (!is.na(overall_height)) {
+      height <- ggplot2::unit(overall_height, unit)
+    } else {
+      height <- NULL
+    }
   } else {
-    if (!is.na(height)) height <- ggplot2::unit(c(height, height), unit) else height <- NULL
+    if (!is.na(height)) {
+      height <- ggplot2::unit(c(height, height), unit)
+    } else {
+      height <- NULL
+    }
   }
 
   plot + ggplot2::theme(panel.widths = width, panel.heights = height)
@@ -334,16 +497,50 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL) {
   plot <- check_tidyplot(plot)
   plot +
     ggplot2::theme(
-      plot.title = ggplot2::element_text(size = fontsize, family = family, face = face,
-                                         hjust = 0.5, vjust = 0.5),
-      plot.subtitle = ggplot2::element_text(size = fontsize, family = family, face = face,
-                                            hjust = 0.5, vjust = 0.5),
-      text = ggplot2::element_text(size = fontsize, family = family, face = face),
-      axis.text = ggplot2::element_text(size = fontsize, family = family, face = face),
-      axis.title = ggplot2::element_text(size = fontsize, family = family, face = face),
-      legend.title = ggplot2::element_text(size = fontsize, family = family, face = face),
-      legend.text = ggplot2::element_text(size = fontsize, family = family, face = face),
-      strip.text = ggplot2::element_text(size = fontsize, family = family, face = face),
+      plot.title = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face,
+        hjust = 0.5,
+        vjust = 0.5
+      ),
+      plot.subtitle = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face,
+        hjust = 0.5,
+        vjust = 0.5
+      ),
+      text = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face
+      ),
+      axis.text = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face
+      ),
+      axis.title = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face
+      ),
+      legend.title = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face
+      ),
+      legend.text = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face
+      ),
+      strip.text = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face
+      ),
       legend.key.size = ggplot2::unit(4, "mm")
     )
 }
@@ -416,9 +613,26 @@ adjust_font <- function(plot, fontsize = 7, family = NULL, face = NULL) {
 #'   adjust_legend_position("none")
 #'
 #' @export
-adjust_legend_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
-  plot |> adjust_legend(title = title) +
-    ggplot2::theme(legend.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, ...))
+adjust_legend_title <- function(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = NULL,
+  ...
+) {
+  plot |>
+    adjust_legend(title = title) +
+    ggplot2::theme(
+      legend.title = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face,
+        colour = color,
+        ...
+      )
+    )
 }
 #' @rdname adjust_legend_title
 #' @export
@@ -429,7 +643,9 @@ adjust_legend_position <- function(plot, position = "right") {
 adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
   plot <- check_tidyplot(plot)
   # parse title
-  if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
+  if (!is_waiver(title)) {
+    title <- tidyplot_parser(as.character(title))
+  }
   plot +
     ggplot2::labs(colour = title, fill = title) +
     ggplot2::theme(legend.position = position)
@@ -478,14 +694,31 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
 #'   adjust_padding(left = 0.8)
 #'
 #' @export
-adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, all = NA, force_continuous = FALSE, ...) {
+adjust_padding <- function(
+  plot,
+  top = NA,
+  right = NA,
+  bottom = NA,
+  left = NA,
+  all = NA,
+  force_continuous = FALSE,
+  ...
+) {
   plot <- check_tidyplot(plot)
   if (!is.na(all) && is.numeric(all)) {
     top <- right <- bottom <- left <- all
   }
   plot |>
-    adjust_x_axis(padding = c(left, right), force_continuous = force_continuous, ...) |>
-    adjust_y_axis(padding = c(bottom, top), force_continuous = force_continuous, ...)
+    adjust_x_axis(
+      padding = c(left, right),
+      force_continuous = force_continuous,
+      ...
+    ) |>
+    adjust_y_axis(
+      padding = c(bottom, top),
+      force_continuous = force_continuous,
+      ...
+    )
 }
 
 
@@ -535,42 +768,131 @@ adjust_padding <- function(plot, top = NA, right = NA, bottom = NA, left = NA, a
 #'   adjust_caption("$H[2]*O$")
 #'
 #' @export
-adjust_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
-  plot |> adjust_description(title = title) +
-    ggplot2::theme(plot.title = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color, ...))
+adjust_title <- function(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = NULL,
+  ...
+) {
+  plot |>
+    adjust_description(title = title) +
+    ggplot2::theme(
+      plot.title = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face,
+        colour = color,
+        ...
+      )
+    )
 }
 #' @rdname adjust_title
 #' @export
-adjust_x_axis_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
-  plot |> adjust_description(x_axis_title = title) +
-    ggplot2::theme(axis.title.x = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color))
+adjust_x_axis_title <- function(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = NULL,
+  ...
+) {
+  plot |>
+    adjust_description(x_axis_title = title) +
+    ggplot2::theme(
+      axis.title.x = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face,
+        colour = color
+      )
+    )
 }
 #' @rdname adjust_title
 #' @export
-adjust_y_axis_title <- function(plot, title = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
-  plot |> adjust_description(y_axis_title = title) +
-    ggplot2::theme(axis.title.y = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color))
+adjust_y_axis_title <- function(
+  plot,
+  title = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = NULL,
+  ...
+) {
+  plot |>
+    adjust_description(y_axis_title = title) +
+    ggplot2::theme(
+      axis.title.y = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face,
+        colour = color
+      )
+    )
 }
 #' @rdname adjust_title
 #' @export
-adjust_caption <- function(plot, caption = ggplot2::waiver(), fontsize = NULL, family = NULL, face = NULL, color = NULL, ...) {
-  plot |> adjust_description(caption = caption) +
-    ggplot2::theme(plot.caption = ggplot2::element_text(size = fontsize, family = family, face = face, colour = color))
+adjust_caption <- function(
+  plot,
+  caption = ggplot2::waiver(),
+  fontsize = NULL,
+  family = NULL,
+  face = NULL,
+  color = NULL,
+  ...
+) {
+  plot |>
+    adjust_description(caption = caption) +
+    ggplot2::theme(
+      plot.caption = ggplot2::element_text(
+        size = fontsize,
+        family = family,
+        face = face,
+        colour = color
+      )
+    )
 }
 
 
 # not exported
-adjust_description <- function(plot, title = ggplot2::waiver(), x_axis_title = ggplot2::waiver(),
-                               y_axis_title = ggplot2::waiver(), legend_title = ggplot2::waiver(),
-                               caption = ggplot2::waiver(), ...) {
+adjust_description <- function(
+  plot,
+  title = ggplot2::waiver(),
+  x_axis_title = ggplot2::waiver(),
+  y_axis_title = ggplot2::waiver(),
+  legend_title = ggplot2::waiver(),
+  caption = ggplot2::waiver(),
+  ...
+) {
   plot <- check_tidyplot(plot)
-  if (!is_waiver(title)) title <- tidyplot_parser(as.character(title))
-  if (!is_waiver(x_axis_title)) x_axis_title <- tidyplot_parser(as.character(x_axis_title))
-  if (!is_waiver(y_axis_title)) y_axis_title <- tidyplot_parser(as.character(y_axis_title))
-  if (!is_waiver(legend_title)) legend_title <- tidyplot_parser(as.character(legend_title))
-  if (!is_waiver(caption)) caption <- tidyplot_parser(as.character(caption))
+  if (!is_waiver(title)) {
+    title <- tidyplot_parser(as.character(title))
+  }
+  if (!is_waiver(x_axis_title)) {
+    x_axis_title <- tidyplot_parser(as.character(x_axis_title))
+  }
+  if (!is_waiver(y_axis_title)) {
+    y_axis_title <- tidyplot_parser(as.character(y_axis_title))
+  }
+  if (!is_waiver(legend_title)) {
+    legend_title <- tidyplot_parser(as.character(legend_title))
+  }
+  if (!is_waiver(caption)) {
+    caption <- tidyplot_parser(as.character(caption))
+  }
 
   colour <- fill <- legend_title
-  plot + ggplot2::labs(x = x_axis_title, y = y_axis_title, colour = colour, fill = fill,
-                       title = title, caption = caption, ...)
+  plot +
+    ggplot2::labs(
+      x = x_axis_title,
+      y = y_axis_title,
+      colour = colour,
+      fill = fill,
+      title = title,
+      caption = caption,
+      ...
+    )
 }
