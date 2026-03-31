@@ -2,6 +2,7 @@
 
 ## Improvements
 
+* New `remove_clipping()` for disabling plot area clipping.
 * New `add_test_pvalue_manual()` and `add_test_asterisks_manual()` for adding pre-computed statistical comparisons via `ggpubr::stat_pvalue_manual()`.
 * `add_data_points_jitter()`, `add_data_labels()` and `add_data_labels_repel()` now expose the `seed` parameter.
 

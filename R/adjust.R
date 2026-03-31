@@ -81,7 +81,8 @@ ff_adjust_axis <- function(axis) {
         plot <- plot +
           ggplot2::coord_cartesian(
             xlim = plot$tidyplot$limits_x,
-            ylim = plot$tidyplot$limits_y
+            ylim = plot$tidyplot$limits_y,
+            clip = plot$tidyplot$clipping
           )
       )
     }

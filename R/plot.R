@@ -86,6 +86,8 @@ tidyplot <- function(
   plot$tidyplot$limits_x <- c(NULL, NULL)
   plot$tidyplot$limits_y <- c(NULL, NULL)
 
+  plot$tidyplot$clipping <- "on"
+
   plot$tidyplot$labels_x <- ggplot2::waiver()
   plot$tidyplot$labels_y <- ggplot2::waiver()
 
