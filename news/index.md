@@ -5,6 +5,9 @@
 ### Improvements
 
 - New
+  [`remove_clipping()`](https://jbengler.github.io/tidyplots/reference/remove_clipping.md)
+  for disabling plot area clipping.
+- New
   [`add_test_pvalue_manual()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue_manual.md)
   and
   [`add_test_asterisks_manual()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue_manual.md)

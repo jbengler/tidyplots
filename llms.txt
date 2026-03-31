@@ -320,6 +320,8 @@ dispersion and more.
 
 Remove plot components.
 
+- [`remove_clipping()`](https://jbengler.github.io/tidyplots/reference/remove_clipping.md)
+  : Remove plot area clipping
 - [`remove_legend()`](https://jbengler.github.io/tidyplots/reference/remove_legend.md)
   [`remove_legend_title()`](https://jbengler.github.io/tidyplots/reference/remove_legend.md)
   : Remove legend or legend title
