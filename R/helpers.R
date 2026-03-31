@@ -1,4 +1,3 @@
-
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }
@@ -56,14 +55,18 @@ flip_plot <- function(plot, ...) {
 #' Subset data rows
 #' @return A `function` to achieve the desired data subsetting.
 #' @export
-all_rows <- function(){
-  function(x) { x }
+all_rows <- function() {
+  function(x) {
+    x
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::filter
 #' @export
 filter_rows <- function(..., .by = NULL) {
-  function(x) { x |> dplyr::filter(..., .by = {{.by}}, .preserve = FALSE) }
+  function(x) {
+    x |> dplyr::filter(..., .by = {{ .by }}, .preserve = FALSE)
+  }
 }
 #' @rdname all_rows
 #' @param n The number of rows to select. If not are supplied, `n = 1` will be
@@ -124,31 +127,55 @@ filter_rows <- function(..., .by = NULL) {
 #'
 #' @export
 max_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE) {
-  function(x) { x |> dplyr::slice_max(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm) }
+  function(x) {
+    x |>
+      dplyr::slice_max(
+        order_by = {{ order_by }},
+        n = n,
+        by = {{ by }},
+        with_ties = with_ties,
+        na_rm = na_rm
+      )
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_min
 #' @export
 min_rows <- function(order_by, n, by = NULL, with_ties = TRUE, na_rm = FALSE) {
-  function(x) { x |> dplyr::slice_min(order_by = {{order_by}}, n = n, by = {{by}}, with_ties = with_ties, na_rm = na_rm) }
+  function(x) {
+    x |>
+      dplyr::slice_min(
+        order_by = {{ order_by }},
+        n = n,
+        by = {{ by }},
+        with_ties = with_ties,
+        na_rm = na_rm
+      )
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_head
 #' @export
 first_rows <- function(n, by = NULL) {
-  function(x) { x |> dplyr::slice_head(n = n, by = {{by}}) }
+  function(x) {
+    x |> dplyr::slice_head(n = n, by = {{ by }})
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_tail
 #' @export
 last_rows <- function(n, by = NULL) {
-  function(x) { x |> dplyr::slice_tail(n = n, by = {{by}}) }
+  function(x) {
+    x |> dplyr::slice_tail(n = n, by = {{ by }})
+  }
 }
 #' @rdname all_rows
 #' @inheritParams dplyr::slice_sample
 #' @export
 sample_rows <- function(n, by = NULL) {
-  function(x) { x |> dplyr::slice_sample(n = n, by = {{by}}) }
+  function(x) {
+    x |> dplyr::slice_sample(n = n, by = {{ by }})
+  }
 }
 
 
@@ -166,9 +193,11 @@ sample_rows <- function(n, by = NULL) {
 #'
 #' @export
 format_p_value <- function(x, accuracy = 0.0001) {
-  ifelse(x >= accuracy,
-         format_number(x, accuracy),
-         glue::glue("< { format_number(accuracy, accuracy) }"))
+  ifelse(
+    x >= accuracy,
+    format_number(x, accuracy),
+    glue::glue("< { format_number(accuracy, accuracy) }")
+  )
 }
 
 
@@ -193,8 +222,20 @@ update_data <- function(plot, new_data) {
   }
 }
 
-format_number <- function(x, accuracy = 0.1, big.mark =",", scale_cut = NULL, ...) {
-  scales::number(x = x, accuracy = accuracy, big.mark = big.mark, scale_cut = scale_cut, ...)
+format_number <- function(
+  x,
+  accuracy = 0.1,
+  big.mark = ",",
+  scale_cut = NULL,
+  ...
+) {
+  scales::number(
+    x = x,
+    accuracy = accuracy,
+    big.mark = big.mark,
+    scale_cut = scale_cut,
+    ...
+  )
 }
 
 mean_se <- ggplot2::mean_se
@@ -209,14 +250,16 @@ mean_sd <- function(x) {
   mean_x <- mean(x)
   sd_x <- stats::sd(x)
 
-  data.frame(y = mean_x,
-             ymin = mean_x - sd_x,
-             ymax = mean_x + sd_x)
+  data.frame(y = mean_x, ymin = mean_x - sd_x, ymax = mean_x + sd_x)
 }
 
 mean_cl_boot <- function(x) {
-  dplyr::rename(data.frame(as.list(Hmisc::smean.cl.boot(x))),
-                y = Mean, ymin = Lower, ymax = Upper)
+  dplyr::rename(
+    data.frame(as.list(Hmisc::smean.cl.boot(x))),
+    y = Mean,
+    ymin = Lower,
+    ymax = Upper
+  )
 }
 
 tidyplot_parser <- function(text) {
@@ -231,13 +274,17 @@ tidyplot_parser <- function(text) {
     # get rid of leading and trailing "$"
     if (stringr::str_detect(text[[i]], "^\\$.*\\$$")) {
       # check for valid plotmath expression
-      expr <- tryCatch(parse(text = stringr::str_sub(text[[i]], 2, -2)),
-                       error = function(e) {
-                         msg <- c("Invalid plotmath expression",
-                                  "x" = conditionMessage(e),
-                                  "i" = "Run `?plotmath` in the console for help.")
-                         cli::cli_abort(msg, call = NULL)
-                       })
+      expr <- tryCatch(
+        parse(text = stringr::str_sub(text[[i]], 2, -2)),
+        error = function(e) {
+          msg <- c(
+            "Invalid plotmath expression",
+            "x" = conditionMessage(e),
+            "i" = "Run `?plotmath` in the console for help."
+          )
+          cli::cli_abort(msg, call = NULL)
+        }
+      )
     } else {
       expr <- text[[i]]
     }
@@ -259,13 +306,23 @@ tidyplot_parse_labels <- function() {
 }
 
 check_input <- function(input) {
-  if (any(inherits(input, "tidyplot"))) return("tp")
-  if (any(inherits(input, "patchwork"))) return("pw")
-  if (any(inherits(input, "gg"))) return("gg")
+  if (any(inherits(input, "tidyplot"))) {
+    return("tp")
+  }
+  if (any(inherits(input, "patchwork"))) {
+    return("pw")
+  }
+  if (any(inherits(input, "gg"))) {
+    return("gg")
+  }
 
   if (is.list(input)) {
-    if (any(purrr::map_lgl(input, inherits, "tidyplot"))) return("tp_list")
-    if (any(purrr::map_lgl(input, inherits, "patchwork"))) return("pw_list")
+    if (any(purrr::map_lgl(input, inherits, "tidyplot"))) {
+      return("tp_list")
+    }
+    if (any(purrr::map_lgl(input, inherits, "patchwork"))) {
+      return("pw_list")
+    }
     if (any(purrr::map_lgl(input, inherits, "gg"))) return("gg_list")
   }
 
@@ -275,18 +332,30 @@ check_input <- function(input) {
 extract_mapping <- function(plot) {
   my_variable <- function(inp) {
     purrr::map_chr(inp, function(x) {
-      if (is.null(plot$mapping[[x]])) return("!!MISSING")
-      if (is.na(rlang::quo_name(plot$mapping[[x]]))) return("!!NA")
+      if (is.null(plot$mapping[[x]])) {
+        return("!!MISSING")
+      }
+      if (is.na(rlang::quo_name(plot$mapping[[x]]))) {
+        return("!!NA")
+      }
       rlang::quo_name(plot$mapping[[x]])
     })
   }
 
   my_scale_type <- function(inp) {
     purrr::map_chr(inp, function(x) {
-      if (x == "!!MISSING") return("!!MISSING")
-      if (x == "!!NA") return("!!NA")
-      if (!x %in% colnames(plot$data)) cli::cli_abort("Variable '{x}' not found in supplied dataset")
-      if (stringr::str_detect(x, "after_stat|after_scale|stage\\(")) return("continuous")
+      if (x == "!!MISSING") {
+        return("!!MISSING")
+      }
+      if (x == "!!NA") {
+        return("!!NA")
+      }
+      if (!x %in% colnames(plot$data)) {
+        cli::cli_abort("Variable '{x}' not found in supplied dataset")
+      }
+      if (stringr::str_detect(x, "after_stat|after_scale|stage\\(")) {
+        return("continuous")
+      }
       out <- plot$data[[x]] |> ggplot2::scale_type()
       out[[1]]
     })
@@ -315,13 +384,27 @@ get_variable <- function(plot, aesthetic) {
   m$variable[m$aesthetic == aesthetic]
 }
 
-is_discrete <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) %in% c("ordinal", "discrete") }
-is_continuous <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "continuous" }
-is_date <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "date" }
-is_time <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "time" }
-is_datetime <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "datetime" }
-is_missing <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!MISSING" }
-is_na <- function(plot, aesthetic) { get_scale_type(plot, aesthetic) == "!!NA" }
+is_discrete <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) %in% c("ordinal", "discrete")
+}
+is_continuous <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "continuous"
+}
+is_date <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "date"
+}
+is_time <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "time"
+}
+is_datetime <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "datetime"
+}
+is_missing <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "!!MISSING"
+}
+is_na <- function(plot, aesthetic) {
+  get_scale_type(plot, aesthetic) == "!!NA"
+}
 
 is_flipped <- function(plot) {
   # this will only inspect the last geom
@@ -371,13 +454,21 @@ get_plottype <- function(plot) {
   paste0(acronym_x, get_scale_acronym(scale_type_y))
 }
 
-check_tidyplot <- function(plot, arg = rlang::caller_arg(plot), call = rlang::caller_env()) {
+check_tidyplot <- function(
+  plot,
+  arg = rlang::caller_arg(plot),
+  call = rlang::caller_env()
+) {
   if (!inherits(plot, "tidyplot")) {
     msg <- c("{.arg {arg}} must be a tidyplot.")
-    if (inherits(plot, "list") || inherits(plot, "patchwork"))
-      msg <- c(msg, "i" = "After using `split_plot()`, only `save_plot()` is allowed.")
-    else
+    if (inherits(plot, "list") || inherits(plot, "patchwork")) {
+      msg <- c(
+        msg,
+        "i" = "After using `split_plot()`, only `save_plot()` is allowed."
+      )
+    } else {
       msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")
+    }
     cli::cli_abort(msg, call = call)
   }
 
@@ -410,37 +501,61 @@ is_hex_vector <- function(x) {
 }
 
 burst_filename <- function(filename, n) {
-  digits <- ceiling(log10(n+1))
-  paste0(tools::file_path_sans_ext(filename), "_", sprintf(paste0("%0",digits,"d"), 1:n), ".", tools::file_ext(filename))
+  digits <- ceiling(log10(n + 1))
+  paste0(
+    tools::file_path_sans_ext(filename),
+    "_",
+    sprintf(paste0("%0", digits, "d"), 1:n),
+    ".",
+    tools::file_ext(filename)
+  )
 }
 
 get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
-  if (ggplot2::is.ggplot(plot)) plot <- list(plot)
+  if (ggplot2::is.ggplot(plot)) {
+    plot <- list(plot)
+  }
   units <- match.arg(units)
 
   pages <-
     purrr::map(plot, function(x) {
-      if (!ggplot2::is.ggplot(x)) cli::cli_abort("Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}")
+      if (!ggplot2::is.ggplot(x)) {
+        cli::cli_abort(
+          "Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}"
+        )
+      }
 
       gtab <- ggplot2::ggplotGrob(x)
 
       width <- NA
       height <- NA
-      if (all(as.character(gtab$widths) != "1null"))
-        width <- grid::convertWidth(sum(gtab$widths) + ggplot2::unit(1, "mm"), unitTo = units, valueOnly = TRUE)
-      if (all(as.character(gtab$heights) != "1null"))
-        height <- grid::convertHeight(sum(gtab$heights) + ggplot2::unit(1, "mm"), unitTo = units, valueOnly = TRUE)
+      if (all(as.character(gtab$widths) != "1null")) {
+        width <- grid::convertWidth(
+          sum(gtab$widths) + ggplot2::unit(1, "mm"),
+          unitTo = units,
+          valueOnly = TRUE
+        )
+      }
+      if (all(as.character(gtab$heights) != "1null")) {
+        height <- grid::convertHeight(
+          sum(gtab$heights) + ggplot2::unit(1, "mm"),
+          unitTo = units,
+          valueOnly = TRUE
+        )
+      }
 
       tibble::tibble(width = width, height = height)
     }) |>
     dplyr::bind_rows()
 
-  overall_width<- NA
+  overall_width <- NA
   overall_height <- NA
-  if (!anyNA(pages$width))
+  if (!anyNA(pages$width)) {
     overall_width <- max(pages$width, na.rm = TRUE)
-  if (!anyNA(pages$height))
+  }
+  if (!anyNA(pages$height)) {
     overall_height <- max(pages$height, na.rm = TRUE)
+  }
 
   list(
     units = units,
@@ -449,3 +564,129 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
   )
 }
 
+# Helpers for proportional scaling during interactive display ----------------
+
+render_for_viewer <- function(plot, ...) {
+  unit_str <- plot$tidyplot$unit %||% "mm"
+
+  # Strip the tidyplot class so print() uses ggplot2's method.
+  plain <- plot
+  class(plain) <- class(plain)[class(plain) != "tidyplot"]
+
+  # Measure the FULL figure: panel + axes + legend + margins.
+  # plot$tidyplot$width/height are panel-only dimensions; rendering at that size
+  # clips the legend and axis labels.  get_layout_size() sums the gtable
+  # columns/rows exactly as save_plot() does.
+  layout <- get_layout_size(plain, unit_str)$max
+
+  fig_w <- layout[["width"]]
+  fig_h <- layout[["height"]]
+
+  if (is.na(fig_w)) {
+    fig_w <- plot$tidyplot$width
+  }
+  if (is.na(fig_h)) {
+    fig_h <- plot$tidyplot$height
+  }
+
+  tmp <- tempfile(fileext = ".png")
+  on.exit(unlink(tmp), add = TRUE)
+
+  # Render at the full figure dimensions.
+  # tryCatch/finally guarantees the device is always closed, even on error —
+  # without this guard an uncaught error leaves the PNG device open and all
+  # subsequent plots silently render into a temp file instead of the viewer.
+  prev_dev <- grDevices::dev.cur()
+
+  tryCatch(
+    {
+      grDevices::png(
+        tmp,
+        width = fig_w,
+        height = fig_h,
+        units = unit_str,
+        res = 300
+      )
+      print(plain, ...)
+    },
+    finally = {
+      if (grDevices::dev.cur() != prev_dev) {
+        grDevices::dev.off()
+      }
+    }
+  )
+
+  img <- png::readPNG(tmp)
+
+  in_per_unit <- switch(
+    unit_str,
+    "in" = 1,
+    "cm" = 1 / 2.54,
+    "mm" = 1 / 25.4,
+    "px" = 1 / 72,
+    1 / 25.4
+  )
+
+  fig_w_in <- fig_w * in_per_unit
+  fig_h_in <- fig_h * in_per_unit
+
+  # `recordGraphics()` executes the expression immediately AND re-executes it on
+  # every display-list replay (i.e. pane resize in RStudio/Positron). On each
+  # execution, `dev.size("in")` returns the *current* device dimensions, so the
+  # fractions are recomputed for the actual pane size and the raster always
+  # fills the pane while preserving the plot's aspect ratio — exactly like
+  # zooming in and out of a PNG. `img`, `fig_w_in`, and `fig_h_in` are bundled
+  # in `list` so they are available during replay without re-opening any
+  # devices.
+
+  # Note that `grid.newpage()` is called OUTSIDE `recordGraphics()` so it is
+  # recorded normally as a `[newpage]` entry.  This is important:
+  # `grid.newpage()` resets the device display list via `GEinitDisplayList()`.
+  # If it were called INSIDE the `recordGraphics()` expression, it would wipe
+  # the `[recordGraphics(expr)]` entry after the first replay, leaving only a
+  # static display list that stretches. With newpage outside, the display list
+  # is: `[newpage, recordGraphics(expr)]`. On every pane resize RStudio replays
+  # `[newpage]` (clears screen) then `[recordGraphics(expr)]`, so it
+  # re-evaluates `dev.size()` and draws correctly.
+  grid::grid.newpage()
+
+  grDevices::recordGraphics(
+    {
+      dw <- grDevices::dev.size("in")[1]
+      dh <- grDevices::dev.size("in")[2]
+      if (!is.finite(dw) || dw <= 0) {
+        dw <- fig_w_in
+      }
+      if (!is.finite(dh) || dh <= 0) {
+        dh <- fig_h_in
+      }
+      ar_target <- fig_h_in / fig_w_in
+      ar_device <- dh / dw
+      if (ar_target > ar_device) {
+        frac_w <- ar_device / ar_target
+        frac_h <- 1.0
+      } else {
+        frac_w <- 1.0
+        frac_h <- ar_target / ar_device
+      }
+      # recording = FALSE prevents this draw from being added to the display
+      # list as a static entry alongside [recordGraphics(expr)].  Without it,
+      # replay would run recordGraphics (correct fracs), then ALSO run the
+      # static grid.draw (baked-in fracs), overwriting the correct result.
+      grid::grid.draw(
+        grid::rasterGrob(
+          img,
+          x = grid::unit(0.5, "npc"),
+          y = grid::unit(0.5, "npc"),
+          just = "centre",
+          width = grid::unit(frac_w, "npc"),
+          height = grid::unit(frac_h, "npc")
+        ),
+        recording = FALSE
+      )
+    },
+
+    list(img = img, fig_w_in = fig_w_in, fig_h_in = fig_h_in),
+    asNamespace("tidyplots")
+  )
+}
