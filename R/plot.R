@@ -113,6 +113,31 @@ tidyplot <- function(data, ...,
 }
 
 
+#' @export
+print.tidyplot <- function(x, ...) {
+  device_interactive <-
+    grDevices::dev.interactive() ||
+    grDevices::dev.cur() == 1L
+
+  if (
+    device_interactive &&
+      !is.na(x$tidyplot$width) &&
+      !is.na(x$tidyplot$height)
+  ) {
+    # Render at exact target dimensions and display as a device-filling raster.
+    # When the pane is resized, the display list replays the raster scaled to
+    # fit, so every element -- bars, text, ticks, legend -- zooms together as if
+    # resizing a PNG.
+    render_for_viewer(x, ...)
+    ggplot2:::set_last_plot(x)
+  } else {
+    NextMethod()
+  }
+
+  invisible(x)
+}
+
+
 #' Tidyplots options
 #'
 #' Control the settings for formatting tidyplots globally.

@@ -436,3 +436,131 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
   )
 }
 
+
+# Helpers for proportional scaling during interactive display ----------------
+
+render_for_viewer <- function(plot, ...) {
+  unit_str <- plot$tidyplot$unit %||% "mm"
+
+  # Strip the tidyplot class so print() uses ggplot2's method.
+  plain <- plot
+  class(plain) <- class(plain)[class(plain) != "tidyplot"]
+
+  # Measure the FULL figure: panel + axes + legend + margins.
+  # plot$tidyplot$width/height are panel-only dimensions; rendering at that size
+  # clips the legend and axis labels.  get_layout_size() sums the gtable
+  # columns/rows exactly as save_plot() does.
+  layout <- get_layout_size(plain, unit_str)$max
+
+  fig_w <- layout[["width"]]
+  fig_h <- layout[["height"]]
+
+  if (is.na(fig_w)) {
+    fig_w <- plot$tidyplot$width
+  }
+  if (is.na(fig_h)) {
+    fig_h <- plot$tidyplot$height
+  }
+
+  tmp <- tempfile(fileext = ".png")
+  on.exit(unlink(tmp), add = TRUE)
+
+  # Render at the full figure dimensions.
+  # tryCatch/finally guarantees the device is always closed, even on error —
+  # without this guard an uncaught error leaves the PNG device open and all
+  # subsequent plots silently render into a temp file instead of the viewer.
+  prev_dev <- grDevices::dev.cur()
+
+  tryCatch(
+    {
+      grDevices::png(
+        tmp,
+        width = fig_w,
+        height = fig_h,
+        units = unit_str,
+        res = 300
+      )
+      print(plain, ...)
+    },
+    finally = {
+      if (grDevices::dev.cur() != prev_dev) {
+        grDevices::dev.off()
+      }
+    }
+  )
+
+  img <- png::readPNG(tmp)
+
+  in_per_unit <- switch(
+    unit_str,
+    "in" = 1,
+    "cm" = 1 / 2.54,
+    "mm" = 1 / 25.4,
+    "px" = 1 / 72,
+    1 / 25.4
+  )
+
+  fig_w_in <- fig_w * in_per_unit
+  fig_h_in <- fig_h * in_per_unit
+
+  # `recordGraphics()` executes the expression immediately AND re-executes it on
+  # every display-list replay (i.e. pane resize in RStudio/Positron). On each
+  # execution, `dev.size("in")` returns the *current* device dimensions, so the
+  # fractions are recomputed for the actual pane size and the raster always
+  # fills the pane while preserving the plot's aspect ratio — exactly like
+  # zooming in and out of a PNG. `img`, `fig_w_in`, and `fig_h_in` are bundled
+  # in `list` so they are available during replay without re-opening any
+  # devices.
+
+  # Note that `grid.newpage()` is called OUTSIDE `recordGraphics()` so it is
+  # recorded normally as a `[newpage]` entry.  This is important:
+  # `grid.newpage()` resets the device display list via `GEinitDisplayList()`.
+  # If it were called INSIDE the `recordGraphics()` expression, it would wipe
+  # the `[recordGraphics(expr)]` entry after the first replay, leaving only a
+  # static display list that stretches. With newpage outside, the display list
+  # is: `[newpage, recordGraphics(expr)]`. On every pane resize RStudio replays
+  # `[newpage]` (clears screen) then `[recordGraphics(expr)]`, so it
+  # re-evaluates `dev.size()` and draws correctly.
+  grid::grid.newpage()
+
+  grDevices::recordGraphics(
+    {
+      dw <- grDevices::dev.size("in")[1]
+      dh <- grDevices::dev.size("in")[2]
+      if (!is.finite(dw) || dw <= 0) {
+        dw <- fig_w_in
+      }
+      if (!is.finite(dh) || dh <= 0) {
+        dh <- fig_h_in
+      }
+      ar_target <- fig_h_in / fig_w_in
+      ar_device <- dh / dw
+      if (ar_target > ar_device) {
+        frac_w <- ar_device / ar_target
+        frac_h <- 1.0
+      } else {
+        frac_w <- 1.0
+        frac_h <- ar_target / ar_device
+      }
+      # recording = FALSE prevents this draw from being added to the display
+      # list as a static entry alongside [recordGraphics(expr)].  Without it,
+      # replay would run recordGraphics (correct fracs), then ALSO run the
+      # static grid.draw (baked-in fracs), overwriting the correct result.
+      grid::grid.draw(
+        grid::rasterGrob(
+          img,
+          x = grid::unit(0.5, "npc"),
+          y = grid::unit(0.5, "npc"),
+          just = "centre",
+          width = grid::unit(frac_w, "npc"),
+          height = grid::unit(frac_h, "npc")
+        ),
+        recording = FALSE
+      )
+    },
+
+    list(img = img, fig_w_in = fig_w_in, fig_h_in = fig_h_in),
+    asNamespace("tidyplots")
+  )
+}
+
