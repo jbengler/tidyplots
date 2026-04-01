@@ -13,6 +13,7 @@ Imports:
     cli,
     dplyr,
     forcats,
+    png,
     ggbeeswarm,
     ggplot2 (>= 4.0.1),
     ggpubr,
