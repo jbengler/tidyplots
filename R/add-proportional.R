@@ -7,16 +7,33 @@ ff_pie <- function(.type = "pie") {
       remove_padding() |>
       style_void()
 
-    if (!is_missing(plot, "x")) cli::cli_abort("{.fun add_pie} and {.fun add_donut} accept {.arg color} and {.arg y}, but not {.arg x}.")
+    if (!is_missing(plot, "x")) {
+      cli::cli_abort(
+        "{.fun add_pie} and {.fun add_donut} accept {.arg color} and {.arg y}, but not {.arg x}."
+      )
+    }
 
     if (is_missing(plot, "y")) {
-      plot <- plot + ggplot2::geom_bar(ggplot2::aes(x = NA), position = ggplot2::position_fill(reverse = reverse),
-                                       width = width, color = NA, ...) +
+      plot <- plot +
+        ggplot2::geom_bar(
+          ggplot2::aes(x = NA),
+          position = ggplot2::position_fill(reverse = reverse),
+          width = width,
+          color = NA,
+          ...
+        ) +
         ggplot2::ggtitle("count")
     } else {
-      plot <- plot + ggplot2::stat_summary(ggplot2::aes(x = NA), geom = "bar", fun = sum,
-                                           position = ggplot2::position_fill(reverse = reverse),
-                                           width = width, color = NA, ...) +
+      plot <- plot +
+        ggplot2::stat_summary(
+          ggplot2::aes(x = NA),
+          geom = "bar",
+          fun = sum,
+          position = ggplot2::position_fill(reverse = reverse),
+          width = width,
+          color = NA,
+          ...
+        ) +
         ggplot2::ggtitle(get_variable(plot, "y"))
     }
     suppressMessages(
@@ -33,10 +50,13 @@ ff_pie <- function(.type = "pie") {
       plot <- plot |> adjust_size()
     )
 
-    if (.type == "donut")
-      suppressMessages(plot + ggplot2::scale_x_discrete(limits = function(x) c("", "", x)))
-    else
+    if (.type == "donut") {
+      suppressMessages(
+        plot + ggplot2::scale_x_discrete(limits = function(x) c("", "", x))
+      )
+    } else {
       plot
+    }
   }
 }
 #' Add pie or donut chart
@@ -86,7 +106,9 @@ ff_barstack <- function(.position_fun) {
     plot <- check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
-    if (is_missing(plot, "colour")) cli::cli_abort("Argument {.arg color} missing without default")
+    if (is_missing(plot, "colour")) {
+      cli::cli_abort("Argument {.arg color} missing without default")
+    }
 
     # detect orientation
     orientation <- NA
@@ -95,7 +117,9 @@ ff_barstack <- function(.position_fun) {
     }
     # add orientation to args if not already present
     args <- list(...)
-    if (!"orientation" %in% names(args)) args$orientation <- orientation
+    if (!"orientation" %in% names(args)) {
+      args$orientation <- orientation
+    }
 
     mapping <- NULL
     if (ptype %in% c("_c", "__")) {
@@ -109,12 +133,25 @@ ff_barstack <- function(.position_fun) {
     }
 
     if (stringr::str_detect(ptype, "c")) {
-      plot <- plot + rlang::inject(ggplot2::stat_summary(mapping = mapping, geom = "bar", fun = sum,
-                                                         position = .position_fun(reverse = reverse), width = width,
-                                                         color = NA, !!!args))
+      plot <- plot +
+        rlang::inject(ggplot2::stat_summary(
+          mapping = mapping,
+          geom = "bar",
+          fun = sum,
+          position = .position_fun(reverse = reverse),
+          width = width,
+          color = NA,
+          !!!args
+        ))
     } else {
-      plot <- plot + rlang::inject(ggplot2::geom_bar(mapping = mapping, position = .position_fun(reverse = reverse),
-                                                     width = width, color = NA, !!!args))
+      plot <- plot +
+        rlang::inject(ggplot2::geom_bar(
+          mapping = mapping,
+          position = .position_fun(reverse = reverse),
+          width = width,
+          color = NA,
+          !!!args
+        ))
     }
 
     # remove padding between bar and axis
@@ -177,7 +214,14 @@ add_barstack_relative <- ff_barstack(.position_fun = ggplot2::position_fill)
 
 ## Areastack function factory
 ff_areastack <- function(.position_fun) {
-  function(plot, linewidth = 0.25, alpha = 0.4, reverse = FALSE, replace_na = FALSE, ...) {
+  function(
+    plot,
+    linewidth = 0.25,
+    alpha = 0.4,
+    reverse = FALSE,
+    replace_na = FALSE,
+    ...
+  ) {
     plot <- check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
@@ -196,29 +240,47 @@ ff_areastack <- function(.position_fun) {
     }
     # add orientation to args if not already present
     args <- list(...)
-    if (!"orientation" %in% names(args)) args$orientation <- orientation
+    if (!"orientation" %in% names(args)) {
+      args$orientation <- orientation
+    }
 
     if (is_missing(plot, "y")) {
       if (replace_na) {
         vars <- c(get_variable(plot, "x"), get_variable(plot, "colour"))
         plot$data <-
           plot$data |>
-          dplyr::summarize(count = dplyr::n(), .by = tidyselect::all_of(vars)) |>
-          tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
+          dplyr::summarize(
+            count = dplyr::n(),
+            .by = tidyselect::all_of(vars)
+          ) |>
+          tidyr::complete(
+            .data[[vars[1]]],
+            .data[[vars[2]]],
+            fill = list(count = 0)
+          )
         mapping$y <- ggplot2::aes(y = count)$y
         plot <- plot |>
           remove_padding(force_continuous = TRUE) |>
           adjust_y_axis(title = "count") +
-          rlang::inject(ggplot2::geom_area(mapping = mapping,
-                                           position = .position_fun(reverse = reverse), linewidth = linewidth,
-                                           alpha = alpha, na.rm = TRUE, !!!args))
+          rlang::inject(ggplot2::geom_area(
+            mapping = mapping,
+            position = .position_fun(reverse = reverse),
+            linewidth = linewidth,
+            alpha = alpha,
+            na.rm = TRUE,
+            !!!args
+          ))
       } else {
         plot <- plot |>
           remove_padding(force_continuous = TRUE) +
-          rlang::inject(ggplot2::stat_count(mapping = mapping, geom = "area",
-                                            position = .position_fun(reverse = reverse),
-                                            linewidth = linewidth, alpha = alpha, !!!args))
-
+          rlang::inject(ggplot2::stat_count(
+            mapping = mapping,
+            geom = "area",
+            position = .position_fun(reverse = reverse),
+            linewidth = linewidth,
+            alpha = alpha,
+            !!!args
+          ))
       }
     }
 
@@ -227,27 +289,42 @@ ff_areastack <- function(.position_fun) {
         vars <- c(get_variable(plot, "y"), get_variable(plot, "colour"))
         plot$data <-
           plot$data |>
-          dplyr::summarize(count = dplyr::n(), .by = tidyselect::all_of(vars)) |>
-          tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = list(count = 0))
+          dplyr::summarize(
+            count = dplyr::n(),
+            .by = tidyselect::all_of(vars)
+          ) |>
+          tidyr::complete(
+            .data[[vars[1]]],
+            .data[[vars[2]]],
+            fill = list(count = 0)
+          )
         mapping$x <- ggplot2::aes(x = count)$x
         plot <- plot |>
           remove_padding(force_continuous = TRUE) |>
           adjust_x_axis(title = "count") +
-          rlang::inject(ggplot2::geom_area(mapping = mapping,
-                                           position = .position_fun(reverse = reverse), linewidth = linewidth,
-                                           alpha = alpha, na.rm = TRUE, !!!args))
+          rlang::inject(ggplot2::geom_area(
+            mapping = mapping,
+            position = .position_fun(reverse = reverse),
+            linewidth = linewidth,
+            alpha = alpha,
+            na.rm = TRUE,
+            !!!args
+          ))
       } else {
         plot <- plot |>
           remove_padding(force_continuous = TRUE) +
-          rlang::inject(ggplot2::stat_count(mapping = mapping, geom = "area",
-                                            position = .position_fun(reverse = reverse),
-                                            linewidth = linewidth, alpha = alpha, !!!args))
-
+          rlang::inject(ggplot2::stat_count(
+            mapping = mapping,
+            geom = "area",
+            position = .position_fun(reverse = reverse),
+            linewidth = linewidth,
+            alpha = alpha,
+            !!!args
+          ))
       }
     }
 
     if (!is_missing(plot, "x") && !is_missing(plot, "y")) {
-
       if (is_discrete(plot, "y")) {
         vars <- c(get_variable(plot, "y"), get_variable(plot, "colour"))
         y_var <- get_variable(plot, "x")
@@ -261,19 +338,33 @@ ff_areastack <- function(.position_fun) {
         names(zero) <- y_var
         plot$data <-
           plot$data |>
-          dplyr::summarize("{y_var}" := sum(.data[[y_var]]), .by = tidyselect::all_of(vars)) |>
+          dplyr::summarize(
+            "{y_var}" := sum(.data[[y_var]]),
+            .by = tidyselect::all_of(vars)
+          ) |>
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = zero)
         plot <- plot |>
           remove_padding(force_continuous = TRUE) +
-          rlang::inject(ggplot2::geom_area(mapping = mapping,
-                                           position = .position_fun(reverse = reverse), linewidth = linewidth,
-                                           alpha = alpha, na.rm = TRUE, !!!args))
+          rlang::inject(ggplot2::geom_area(
+            mapping = mapping,
+            position = .position_fun(reverse = reverse),
+            linewidth = linewidth,
+            alpha = alpha,
+            na.rm = TRUE,
+            !!!args
+          ))
       } else {
         plot <- plot |>
           remove_padding(force_continuous = TRUE) +
-          rlang::inject(ggplot2::stat_summary(mapping = mapping, geom = "area", fun = sum,
-                                              position = .position_fun(reverse = reverse),
-                                              alpha = alpha, linewidth = linewidth, !!!args))
+          rlang::inject(ggplot2::stat_summary(
+            mapping = mapping,
+            geom = "area",
+            fun = sum,
+            position = .position_fun(reverse = reverse),
+            alpha = alpha,
+            linewidth = linewidth,
+            !!!args
+          ))
       }
     }
     plot

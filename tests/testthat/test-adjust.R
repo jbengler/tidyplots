@@ -11,24 +11,25 @@ test_that("adjust_color works", {
     add_data_points_beeswarm()
 
   new_colors <-
-    c("A" = "#B0B1B3",
-      "B" = "#F18823",
-      "C" = "#E23130",
-      "D" = "#1D5D83")
+    c("A" = "#B0B1B3", "B" = "#F18823", "C" = "#E23130", "D" = "#1D5D83")
 
   new_names <-
-    c("A" = "Regime A",
-      "B" = "Regime B",
-      "C" = "Regime C",
-      "D" = "Regime D")
+    c("A" = "Regime A", "B" = "Regime B", "C" = "Regime C", "D" = "Regime D")
 
-  p |> adjust_colors(new_colors) |>
+  p |>
+    adjust_colors(new_colors) |>
     vdiffr::expect_doppelganger("adjust_colors", fig = _)
-  p |> reorder_x_axis_labels("C") |> adjust_colors(new_colors) |>
+  p |>
+    reorder_x_axis_labels("C") |>
+    adjust_colors(new_colors) |>
     vdiffr::expect_doppelganger("adjust_colors after reorder", fig = _)
-  p |> adjust_colors(new_colors) |> reorder_x_axis_labels("C") |>
+  p |>
+    adjust_colors(new_colors) |>
+    reorder_x_axis_labels("C") |>
     vdiffr::expect_doppelganger("adjust_colors before reorder", fig = _)
-  p |> adjust_colors(new_colors) |> rename_x_axis_labels(new_names) |>
+  p |>
+    adjust_colors(new_colors) |>
+    rename_x_axis_labels(new_names) |>
     vdiffr::expect_doppelganger("adjust_colors before rename", fig = _)
 
   energy_week |>
@@ -39,19 +40,25 @@ test_that("adjust_color works", {
     dplyr::filter(energy_source %in% c("Wind onshore", "Wind offshore")) |>
     tidyplot(x = date, y = power, color = energy_source) |>
     add_mean_line() |>
-    vdiffr::expect_doppelganger("adjust_colors with unused factor levels", fig = _)
+    vdiffr::expect_doppelganger(
+      "adjust_colors with unused factor levels",
+      fig = _
+    )
 
-  data <- dplyr::tibble(
-    x = factor(c('a','b','c','d','e','f','g','h')),
+  data <- tibble::tibble(
+    x = factor(c('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')),
     y = c(10, 20, 30, 40, 50, 10, 20, 30),
-    z = factor(c('C1','C2','C3','C4','C5','C6','C7','C8')),
+    z = factor(c('C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8')),
   )
 
-  data|>
+  data |>
     dplyr::filter(!z %in% c('C1')) |>
     tidyplot(x = x, y = y, color = z) |>
     add_boxplot() |>
-    vdiffr::expect_doppelganger("adjust_colors with unused factor levels 2", fig = _)
+    vdiffr::expect_doppelganger(
+      "adjust_colors with unused factor levels 2",
+      fig = _
+    )
 })
 
 test_that("adjust axes works", {
@@ -82,10 +89,12 @@ test_that("adjust axes works", {
     adjust_y_axis(limits = c(1000, 5000)) |>
     vdiffr::expect_doppelganger("adjust axes limits 3", fig = _)
 
-  p |> adjust_x_axis("My X axis title") |>
+  p |>
+    adjust_x_axis("My X axis title") |>
     vdiffr::expect_doppelganger("adjust axes title x", fig = _)
 
-  p |> adjust_y_axis("My Y axis title") |>
+  p |>
+    adjust_y_axis("My Y axis title") |>
     vdiffr::expect_doppelganger("adjust axes title y", fig = _)
 })
 
@@ -97,9 +106,11 @@ test_that("adjust legend works", {
     add_sem_errorbar() |>
     add_data_points_beeswarm()
 
-  p |> adjust_legend_title("My legend title") |>
+  p |>
+    adjust_legend_title("My legend title") |>
     vdiffr::expect_doppelganger("adjust legend title", fig = _)
-  p |> adjust_legend_title("My legend title") |>
+  p |>
+    adjust_legend_title("My legend title") |>
     adjust_legend_position("top") |>
     vdiffr::expect_doppelganger("adjust legend title and position", fig = _)
 })
@@ -112,24 +123,32 @@ test_that("plotmath expressions work", {
     add_sem_errorbar() |>
     add_data_points_beeswarm()
 
-  p |> add_title(title = "$E==m*c^{2}~H[2]*O$") |>
+  p |>
+    add_title(title = "$E==m*c^{2}~H[2]*O$") |>
     vdiffr::expect_doppelganger("plotmath expression title", fig = _)
-  p |> add_caption(caption = "$E==m*c^{2}~H[2]*O$") |>
+  p |>
+    add_caption(caption = "$E==m*c^{2}~H[2]*O$") |>
     vdiffr::expect_doppelganger("plotmath expression caption", fig = _)
-  p |> adjust_legend_title("$E==m*c^{2}~H[2]*O$") |>
+  p |>
+    adjust_legend_title("$E==m*c^{2}~H[2]*O$") |>
     vdiffr::expect_doppelganger("plotmath expression legend title", fig = _)
-  p |> adjust_x_axis_title("$Domino~E==m*c^{2}$") |>
+  p |>
+    adjust_x_axis_title("$Domino~E==m*c^{2}$") |>
     vdiffr::expect_doppelganger("plotmath expression x axis title", fig = _)
-  p |> adjust_y_axis_title("$Domino~E==m*c^{2}$") |>
+  p |>
+    adjust_y_axis_title("$Domino~E==m*c^{2}$") |>
     vdiffr::expect_doppelganger("plotmath expression y axis title", fig = _)
 
   new_labels <-
-    c("A" = "$TNF*alpha$",
+    c(
+      "A" = "$TNF*alpha$",
       "B" = "$IFN*gamma$",
       "C" = "plain text",
-      "D" = "$H[2]*O$")
+      "D" = "$H[2]*O$"
+    )
 
-  p |> rename_x_axis_labels(new_labels) |>
+  p |>
+    rename_x_axis_labels(new_labels) |>
     vdiffr::expect_doppelganger("plotmath expression x axis labels", fig = _)
 })
 
@@ -163,21 +182,30 @@ test_that("adjust plot area size work", {
     add_boxplot() |>
     adjust_size(width = 25) |>
     adjust_size(height = 25) |>
-    vdiffr::expect_doppelganger("plot area size width and height sequentially", fig = _)
+    vdiffr::expect_doppelganger(
+      "plot area size width and height sequentially",
+      fig = _
+    )
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
     add_boxplot() |>
     adjust_size(width = 25) |>
     adjust_size(height = NA) |>
-    vdiffr::expect_doppelganger("plot area size width NA and height sequentially", fig = _)
+    vdiffr::expect_doppelganger(
+      "plot area size width NA and height sequentially",
+      fig = _
+    )
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
     add_boxplot() |>
     adjust_size(width = NA) |>
     adjust_size(height = 25) |>
-    vdiffr::expect_doppelganger("plot area size width and height NA sequentially", fig = _)
+    vdiffr::expect_doppelganger(
+      "plot area size width and height NA sequentially",
+      fig = _
+    )
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
@@ -189,46 +217,80 @@ test_that("adjust plot area size work", {
     tidyplot(x = dose, y = score, color = group, width = 25) |>
     add_boxplot() |>
     adjust_size(height = 25) |>
-    vdiffr::expect_doppelganger("plot area size tidyplot width adjust height", fig = _)
+    vdiffr::expect_doppelganger(
+      "plot area size tidyplot width adjust height",
+      fig = _
+    )
 
   study |>
     tidyplot(x = dose, y = score, color = group, height = 25) |>
     add_boxplot() |>
     adjust_size(width = 25) |>
-    vdiffr::expect_doppelganger("plot area size tidyplot height adjust width", fig = _)
+    vdiffr::expect_doppelganger(
+      "plot area size tidyplot height adjust width",
+      fig = _
+    )
 
   study |>
     tidyplot(x = dose, y = score, color = group, height = 1) |>
     add_boxplot() |>
     adjust_size(width = 1, unit = "inch") |>
-    vdiffr::expect_doppelganger("plot area size tidyplot height adjust width inch", fig = _)
+    vdiffr::expect_doppelganger(
+      "plot area size tidyplot height adjust width inch",
+      fig = _
+    )
 })
 
 test_that("adjust title font works", {
   study |>
     tidyplot(x = dose, y = score, color = group) |>
     add_title("hoppla") |>
-    adjust_title(face = "bold", family = "courier", fontsize = 20, angle = 15) |>
+    adjust_title(
+      face = "bold",
+      family = "courier",
+      fontsize = 20,
+      angle = 15
+    ) |>
     vdiffr::expect_doppelganger("plot title font", fig = _)
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
-    adjust_x_axis_title(title = "bla", face = "bold", family = "courier", fontsize = 20) |>
+    adjust_x_axis_title(
+      title = "bla",
+      face = "bold",
+      family = "courier",
+      fontsize = 20
+    ) |>
     vdiffr::expect_doppelganger("x axis title font", fig = _)
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
-    adjust_y_axis_title(title = "bla", face = "bold", family = "courier", fontsize = 20) |>
+    adjust_y_axis_title(
+      title = "bla",
+      face = "bold",
+      family = "courier",
+      fontsize = 20
+    ) |>
     vdiffr::expect_doppelganger("y axis title font", fig = _)
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
-    adjust_caption(caption = "bla", face = "bold", family = "courier", fontsize = 20) |>
+    adjust_caption(
+      caption = "bla",
+      face = "bold",
+      family = "courier",
+      fontsize = 20
+    ) |>
     vdiffr::expect_doppelganger("caption font", fig = _)
 
   study |>
     tidyplot(x = dose, y = score, color = group) |>
     add_mean_bar() |>
-    adjust_legend_title(face = "bold", family = "courier", fontsize = 20, angle = -15) |>
+    adjust_legend_title(
+      face = "bold",
+      family = "courier",
+      fontsize = 20,
+      angle = -15
+    ) |>
     vdiffr::expect_doppelganger("legend title font", fig = _)
 })

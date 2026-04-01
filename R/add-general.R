@@ -67,12 +67,29 @@ NULL
 
 ## Error bar function factory
 ff_errorbar <- function(.fun.data) {
-  function(plot, dodge_width = NULL, width = 0.4, linewidth = 0.25, preserve = "total", ...) {
+  function(
+    plot,
+    dodge_width = NULL,
+    width = 0.4,
+    linewidth = 0.25,
+    preserve = "total",
+    ...
+  ) {
     plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
-    plot + ggplot2::stat_summary(fun.data = .fun.data, geom = "errorbar",
-                               linewidth = linewidth, width = width, position = position, ...)
+    position <- ggplot2::position_dodge(
+      width = dodge_width,
+      preserve = preserve
+    )
+    plot +
+      ggplot2::stat_summary(
+        fun.data = .fun.data,
+        geom = "errorbar",
+        linewidth = linewidth,
+        width = width,
+        position = position,
+        ...
+      )
   }
 }
 #' Add error bar
@@ -143,8 +160,16 @@ ff_ribbon <- function(.fun.data) {
     mapping$group <- plot$mapping$colour
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(width = dodge_width)
-    plot + ggplot2::stat_summary(mapping = mapping, fun.data = .fun.data, geom = "ribbon",
-                               alpha = alpha, color = color, position = position, ...)
+    plot +
+      ggplot2::stat_summary(
+        mapping = mapping,
+        fun.data = .fun.data,
+        geom = "ribbon",
+        alpha = alpha,
+        color = color,
+        position = position,
+        ...
+      )
   }
 }
 #' Add ribbon
@@ -202,20 +227,42 @@ add_ci95_ribbon <- ff_ribbon(.fun.data = mean_cl_boot)
 
 ## Bar function factory
 ff_bar <- function(.fun, .count = FALSE) {
-  function(plot, dodge_width = NULL, width = 0.6, saturation = 1, preserve = "total", ...) {
+  function(
+    plot,
+    dodge_width = NULL,
+    width = 0.6,
+    saturation = 1,
+    preserve = "total",
+    ...
+  ) {
     plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
+    position <- ggplot2::position_dodge(
+      width = dodge_width,
+      preserve = preserve
+    )
     if (saturation != 1) {
       plot <- plot |> adjust_colors(saturation = saturation)
     }
     if (.count) {
       plot <- plot +
-        ggplot2::stat_count(geom = "bar", color = NA, width = width, position = position, ...)
+        ggplot2::stat_count(
+          geom = "bar",
+          color = NA,
+          width = width,
+          position = position,
+          ...
+        )
     } else {
       plot <- plot +
-        ggplot2::stat_summary(fun = .fun, geom = "bar", color = NA, width = width,
-                              position = position, ...)
+        ggplot2::stat_summary(
+          fun = .fun,
+          geom = "bar",
+          color = NA,
+          width = width,
+          position = position,
+          ...
+        )
     }
     # remove padding between bar and axis
     if (is_flipped(plot)) {
@@ -228,17 +275,44 @@ ff_bar <- function(.fun, .count = FALSE) {
 }
 ## Dash function factory
 ff_dash <- function(.fun, .count = FALSE) {
-  function(plot, dodge_width = NULL, width = 0.6, linewidth = 0.25, preserve = "total", ...) {
+  function(
+    plot,
+    dodge_width = NULL,
+    width = 0.6,
+    linewidth = 0.25,
+    preserve = "total",
+    ...
+  ) {
     plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
+    position <- ggplot2::position_dodge(
+      width = dodge_width,
+      preserve = preserve
+    )
     if (.count) {
-      plot + ggplot2::geom_errorbar(
-        ggplot2::aes(ymin = ggplot2::after_stat(count), ymax = ggplot2::after_stat(count)),
-        stat = "count", linewidth = linewidth, width = width, position = position, ...)
+      plot +
+        ggplot2::geom_errorbar(
+          ggplot2::aes(
+            ymin = ggplot2::after_stat(count),
+            ymax = ggplot2::after_stat(count)
+          ),
+          stat = "count",
+          linewidth = linewidth,
+          width = width,
+          position = position,
+          ...
+        )
     } else {
-      plot + ggplot2::stat_summary(fun.min = .fun, fun.max = .fun, geom = "errorbar",
-                                 linewidth = linewidth, width = width, position = position, ...)
+      plot +
+        ggplot2::stat_summary(
+          fun.min = .fun,
+          fun.max = .fun,
+          geom = "errorbar",
+          linewidth = linewidth,
+          width = width,
+          position = position,
+          ...
+        )
     }
   }
 }
@@ -247,49 +321,126 @@ ff_dot <- function(.fun, .count = FALSE) {
   function(plot, dodge_width = NULL, size = 2, preserve = "total", ...) {
     plot <- check_tidyplot(plot)
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
+    position <- ggplot2::position_dodge(
+      width = dodge_width,
+      preserve = preserve
+    )
     if (.count) {
-      plot + ggplot2::stat_count(geom = "point", size = size, position = position, ...)
+      plot +
+        ggplot2::stat_count(
+          geom = "point",
+          size = size,
+          position = position,
+          ...
+        )
     } else {
-      plot + ggplot2::stat_summary(fun = .fun, geom = "point", size = size, position = position, ...)
+      plot +
+        ggplot2::stat_summary(
+          fun = .fun,
+          geom = "point",
+          size = size,
+          position = position,
+          ...
+        )
     }
   }
 }
 ## Value function factory
 ff_value <- function(.fun, .count = FALSE) {
-  function(plot, dodge_width = NULL, accuracy = 0.1, scale_cut = NULL, fontsize = 7,
-           extra_padding = 0.15, vjust = NULL, hjust = NULL, preserve = "total", ...) {
+  function(
+    plot,
+    dodge_width = NULL,
+    accuracy = 0.1,
+    scale_cut = NULL,
+    fontsize = 7,
+    extra_padding = 0.15,
+    vjust = NULL,
+    hjust = NULL,
+    preserve = "total",
+    ...
+  ) {
     plot <- check_tidyplot(plot)
     ptype <- get_plottype(plot)
 
     if ((stringr::str_sub(ptype, 2, 2) == "c" || .count)) {
       vjust <- vjust %||% -1
       hjust <- hjust %||% 0.5
-      plot <- plot |> adjust_y_axis(padding = c(NA, extra_padding), force_continuous = TRUE)
+      plot <- plot |>
+        adjust_y_axis(padding = c(NA, extra_padding), force_continuous = TRUE)
     }
     if ((stringr::str_sub(ptype, 1, 1) == "c")) {
       vjust <- vjust %||% 0.5
       hjust <- hjust %||% -0.25
-      plot <- plot |> adjust_x_axis(padding = c(NA, extra_padding), force_continuous = TRUE)
+      plot <- plot |>
+        adjust_x_axis(padding = c(NA, extra_padding), force_continuous = TRUE)
     }
     vjust <- vjust %||% 0.5
     hjust <- hjust %||% 0.5
 
-    size <- fontsize/ggplot2::.pt
+    size <- fontsize / ggplot2::.pt
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
+    position <- ggplot2::position_dodge(
+      width = dodge_width,
+      preserve = preserve
+    )
     if (.count) {
       plot <- plot +
-        ggplot2::stat_count(ggplot2::aes(label = format_number(ggplot2::after_stat(count), accuracy = accuracy, scale_cut = scale_cut)),
-                            geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, show.legend = FALSE, ...)
+        ggplot2::stat_count(
+          ggplot2::aes(
+            label = format_number(
+              ggplot2::after_stat(count),
+              accuracy = accuracy,
+              scale_cut = scale_cut
+            )
+          ),
+          geom = "text",
+          vjust = vjust,
+          hjust = hjust,
+          size = size,
+          position = position,
+          show.legend = FALSE,
+          ...
+        )
     } else {
       if ((stringr::str_sub(ptype, 2, 2) == "c")) {
-        plot <- plot + ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(y), accuracy = accuracy, scale_cut = scale_cut)),
-                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, show.legend = FALSE, ...)
+        plot <- plot +
+          ggplot2::stat_summary(
+            ggplot2::aes(
+              label = format_number(
+                ggplot2::after_stat(y),
+                accuracy = accuracy,
+                scale_cut = scale_cut
+              )
+            ),
+            fun = .fun,
+            geom = "text",
+            vjust = vjust,
+            hjust = hjust,
+            size = size,
+            position = position,
+            show.legend = FALSE,
+            ...
+          )
       }
       if ((stringr::str_sub(ptype, 1, 1) == "c")) {
-          plot <- plot + ggplot2::stat_summary(ggplot2::aes(label = format_number(ggplot2::after_stat(x), accuracy = accuracy, scale_cut = scale_cut)),
-                              fun = .fun, geom = "text", vjust = vjust, hjust = hjust, size = size, position = position, show.legend = FALSE, ...)
+        plot <- plot +
+          ggplot2::stat_summary(
+            ggplot2::aes(
+              label = format_number(
+                ggplot2::after_stat(x),
+                accuracy = accuracy,
+                scale_cut = scale_cut
+              )
+            ),
+            fun = .fun,
+            geom = "text",
+            vjust = vjust,
+            hjust = hjust,
+            size = size,
+            position = position,
+            show.legend = FALSE,
+            ...
+          )
       }
     }
     plot
@@ -297,32 +448,59 @@ ff_value <- function(.fun, .count = FALSE) {
 }
 ## Line function factory
 ff_line <- function(.fun, .count = FALSE, .geom) {
-  function(plot, group, dodge_width = NULL, linewidth = 0.25, preserve = "total", ...) {
+  function(
+    plot,
+    group,
+    dodge_width = NULL,
+    linewidth = 0.25,
+    preserve = "total",
+    ...
+  ) {
     plot <- check_tidyplot(plot)
-    if (.geom == "area") linewidth <- 0
+    if (.geom == "area") {
+      linewidth <- 0
+    }
     mapping <- NULL
     if (is_missing(plot, "group")) {
       mapping <- ggplot2::aes()
       mapping$group <- plot$mapping$colour
     }
     if (!missing(group)) {
-      mapping <- ggplot2::aes(group = {{group}})
+      mapping <- ggplot2::aes(group = {{ group }})
     }
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
-    position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
+    position <- ggplot2::position_dodge(
+      width = dodge_width,
+      preserve = preserve
+    )
     if (.count) {
-      plot <- plot + ggplot2::stat_count(mapping = mapping, geom = .geom,
-                               linewidth = linewidth, position = position, ...)
+      plot <- plot +
+        ggplot2::stat_count(
+          mapping = mapping,
+          geom = .geom,
+          linewidth = linewidth,
+          position = position,
+          ...
+        )
     } else {
-      plot <- plot + ggplot2::stat_summary(mapping = mapping, fun = .fun, geom = .geom,
-                                 linewidth = linewidth, position = position, ...)
+      plot <- plot +
+        ggplot2::stat_summary(
+          mapping = mapping,
+          fun = .fun,
+          geom = .geom,
+          linewidth = linewidth,
+          position = position,
+          ...
+        )
     }
     if (.geom == "area") {
       # remove padding between area and axis
       if (is_flipped(plot)) {
-        plot <- plot |> adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
+        plot <- plot |>
+          adjust_x_axis(padding = c(0, NA), force_continuous = TRUE)
       } else {
-        plot <- plot |> adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
+        plot <- plot |>
+          adjust_y_axis(padding = c(0, NA), force_continuous = TRUE)
       }
     }
     plot

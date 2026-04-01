@@ -120,35 +120,39 @@
 #'   add_test_pvalue(hide_info = TRUE)
 #'
 #' @export
-add_test_pvalue <- function(plot,
-                      padding_top = 0.15,
-                      method = "t_test",
-                      p.adjust.method = "none",
-                      ref.group = NULL,
-                      comparisons = NULL,
-                      paired_by = NULL,
-                      label = "{tidyplots::format_p_value(p.adj, 0.0001)}",
-                      label.size = 7/ggplot2::.pt,
-                      step.increase = 0.15,
-                      vjust = -0.25,
-                      bracket.nudge.y = 0.1,
-                      hide.ns = FALSE,
-                      p.adjust.by = "panel",
-                      symnum.args = list(
-                        cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
-                        symbols = c("***", "**", "*", "ns")
-                      ),
-                      color = plot$tidyplot$ink,
-                      hide_info = FALSE,
-                      ...) {
+add_test_pvalue <- function(
+  plot,
+  padding_top = 0.15,
+  method = "t_test",
+  p.adjust.method = "none",
+  ref.group = NULL,
+  comparisons = NULL,
+  paired_by = NULL,
+  label = "{tidyplots::format_p_value(p.adj, 0.0001)}",
+  label.size = 7 / ggplot2::.pt,
+  step.increase = 0.15,
+  vjust = -0.25,
+  bracket.nudge.y = 0.1,
+  hide.ns = FALSE,
+  p.adjust.by = "panel",
+  symnum.args = list(
+    cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
+    symbols = c("***", "**", "*", "ns")
+  ),
+  color = plot$tidyplot$ink,
+  hide_info = FALSE,
+  ...
+) {
   plot <- check_tidyplot(plot)
 
   # method.args are not supplied in ellipses
-  if (!"method.args" %in% names(list(...))) method.args <- list()
+  if (!"method.args" %in% names(list(...))) {
+    method.args <- list()
+  }
   # comparisons are supplied
   if (!is.null(comparisons)) {
     method.args$comparisons <- comparisons
-    comparisons <- paste0("list(",paste(comparisons, collapse = ", "),")")
+    comparisons <- paste0("list(", paste(comparisons, collapse = ", "), ")")
   }
   # paired_by is supplied
   if (!var_is_null({{ paired_by }})) {
@@ -162,80 +166,218 @@ add_test_pvalue <- function(plot,
 
   # aes(color) is supplied, also make it aes(group). See #142
   color_var <- get_variable(plot, "colour")
-  if (color_var != ".single_color")
+  if (color_var != ".single_color") {
     mapping = ggplot2::aes(group = .data[[color_var]])
-  else
+  } else {
     mapping = NULL
+  }
 
-  plot <- plot  |>
+  plot <- plot |>
     adjust_y_axis(padding = c(NA, padding_top))
 
-  if (!hide_info)
-    plot <- plot  |> add_caption(
-    caption = glue::glue("method = {method}
+  if (!hide_info) {
+    plot <- plot |>
+      add_caption(
+        caption = glue::glue(
+          "method = {method}
     paired_by = {paired_by}
     p.adjust.method = {p.adjust.method}
     ref.group = {ref.group}
     comparisons = {comparisons}
     hide.ns = {hide.ns}",
-                         .null = "NULL"))
+          .null = "NULL"
+        )
+      )
+  }
 
-  plot + ggpubr::geom_pwc(mapping = mapping,
-                       method = method,
-                       p.adjust.method = p.adjust.method,
-                       ref.group = ref.group,
-                       label = label,
-                       label.size = label.size,
-                       step.increase = step.increase,
-                       vjust = vjust,
-                       bracket.nudge.y = bracket.nudge.y,
-                       hide.ns = hide.ns,
-                       p.adjust.by = p.adjust.by,
-                       symnum.args = symnum.args,
-                       method.args = method.args,
-                       color = color,
-                       ...)
+  plot +
+    ggpubr::geom_pwc(
+      mapping = mapping,
+      method = method,
+      p.adjust.method = p.adjust.method,
+      ref.group = ref.group,
+      label = label,
+      label.size = label.size,
+      step.increase = step.increase,
+      vjust = vjust,
+      bracket.nudge.y = bracket.nudge.y,
+      hide.ns = hide.ns,
+      p.adjust.by = p.adjust.by,
+      symnum.args = symnum.args,
+      method.args = method.args,
+      color = color,
+      ...
+    )
 }
 #' @rdname add_test_pvalue
 #' @export
-add_test_asterisks <- function(plot,
-                             padding_top = 0.1,
-                             method = "t_test",
-                             p.adjust.method = "none",
-                             ref.group = NULL,
-                             comparisons = NULL,
-                             paired_by = NULL,
-                             label = "p.adj.signif",
-                             label.size = 10/ggplot2::.pt,
-                             step.increase = 0.2,
-                             vjust = 0.3,
-                             bracket.nudge.y = 0.15,
-                             hide.ns = TRUE,
-                             p.adjust.by = "panel",
-                             symnum.args = list(
-                               cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
-                               symbols = c("***", "**", "*", "ns")
-                             ),
-                             color = plot$tidyplot$ink,
-                             hide_info = FALSE,
-                             ...) {
+add_test_asterisks <- function(
+  plot,
+  padding_top = 0.1,
+  method = "t_test",
+  p.adjust.method = "none",
+  ref.group = NULL,
+  comparisons = NULL,
+  paired_by = NULL,
+  label = "p.adj.signif",
+  label.size = 10 / ggplot2::.pt,
+  step.increase = 0.2,
+  vjust = 0.3,
+  bracket.nudge.y = 0.15,
+  hide.ns = TRUE,
+  p.adjust.by = "panel",
+  symnum.args = list(
+    cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
+    symbols = c("***", "**", "*", "ns")
+  ),
+  color = plot$tidyplot$ink,
+  hide_info = FALSE,
+  ...
+) {
   plot <- check_tidyplot(plot)
-  add_test_pvalue(plot,
-            padding_top = padding_top,
-            method = method,
-            p.adjust.method = p.adjust.method,
-            ref.group = ref.group,
-            comparisons = comparisons,
-            paired_by = {{ paired_by }},
-            label = label,
-            label.size = label.size,
-            step.increase = step.increase,
-            vjust = vjust,
-            bracket.nudge.y = bracket.nudge.y,
-            hide.ns = hide.ns,
-            p.adjust.by = p.adjust.by,
-            symnum.args = symnum.args,
-            color = color,
-            hide_info = hide_info,
-            ...)
+  add_test_pvalue(
+    plot,
+    padding_top = padding_top,
+    method = method,
+    p.adjust.method = p.adjust.method,
+    ref.group = ref.group,
+    comparisons = comparisons,
+    paired_by = {{ paired_by }},
+    label = label,
+    label.size = label.size,
+    step.increase = step.increase,
+    vjust = vjust,
+    bracket.nudge.y = bracket.nudge.y,
+    hide.ns = hide.ns,
+    p.adjust.by = p.adjust.by,
+    symnum.args = symnum.args,
+    color = color,
+    hide_info = hide_info,
+    ...
+  )
+}
+
+
+#' Add pre-computed statistics
+#' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
+#' @param ... Arguments passed on to `ggpubr::stat_pvalue_manual()`.
+#' @param label.size Font size of label text.
+#' @inheritParams ggpubr::stat_pvalue_manual
+#' @inherit common_arguments
+#'
+#' @details
+#' * `add_test_pvalue_manual()` and `add_test_asterisks_manual()` use
+#' `ggpubr::stat_pvalue_manual()`. Check there for additional arguments.
+#' These functions take pre-computed statistics as input via the `data` parameter.
+#' * Known limitation: `add_test_pvalue_manual()` and `add_test_asterisks_manual()` expect a
+#' discrete variable on the x-axis and a continuous variable on the y-axis.
+#' To produce horizontal plots, use `flip_plot()`.
+#'
+#' @examples
+#' # Add manual p-values from pre-computed statistics
+#' stat_df <- data.frame(
+#'   group1 = "A", group2 = "B",
+#'   p = 0.025, p.signif = "*",
+#'   y.position = 50
+#' )
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_pvalue_manual(data = stat_df)
+#'
+#' # Add manual asterisks
+#' study |>
+#'   tidyplot(x = treatment, y = score, color = treatment) |>
+#'   add_mean_dash() |>
+#'   add_sem_errorbar() |>
+#'   add_data_points() |>
+#'   add_test_asterisks_manual(data = stat_df)
+#'
+#' @export
+add_test_pvalue_manual <- function(
+  plot,
+  data,
+  padding_top = 0.15,
+  label = "{tidyplots::format_p_value(p, 0.0001)}",
+  label.size = 7 / ggplot2::.pt,
+  y.position = "y.position",
+  xmin = "group1",
+  xmax = "group2",
+  step.increase = 0.15,
+  vjust = -0.25,
+  bracket.nudge.y = 0.1,
+  bracket.size = 0.3,
+  tip.length = 0.03,
+  hide.ns = FALSE,
+  remove.bracket = FALSE,
+  color = plot$tidyplot$ink,
+  ...
+) {
+  plot <- check_tidyplot(plot)
+
+  plot <- plot |>
+    adjust_y_axis(padding = c(NA, padding_top))
+
+  plot +
+    ggpubr::stat_pvalue_manual(
+      data = data,
+      label = label,
+      label.size = label.size,
+      y.position = y.position,
+      xmin = xmin,
+      xmax = xmax,
+      step.increase = step.increase,
+      vjust = vjust,
+      bracket.nudge.y = bracket.nudge.y,
+      bracket.size = bracket.size,
+      tip.length = tip.length,
+      hide.ns = hide.ns,
+      remove.bracket = remove.bracket,
+      color = color,
+      ...
+    )
+}
+#' @rdname add_test_pvalue_manual
+#' @export
+add_test_asterisks_manual <- function(
+  plot,
+  data,
+  padding_top = 0.1,
+  label = "p.signif",
+  label.size = 10 / ggplot2::.pt,
+  y.position = "y.position",
+  xmin = "group1",
+  xmax = "group2",
+  step.increase = 0.2,
+  vjust = 0.3,
+  bracket.nudge.y = 0.15,
+  bracket.size = 0.3,
+  tip.length = 0.03,
+  hide.ns = TRUE,
+  remove.bracket = FALSE,
+  color = plot$tidyplot$ink,
+  ...
+) {
+  plot <- check_tidyplot(plot)
+  add_test_pvalue_manual(
+    plot,
+    data = data,
+    padding_top = padding_top,
+    label = label,
+    label.size = label.size,
+    y.position = y.position,
+    xmin = xmin,
+    xmax = xmax,
+    step.increase = step.increase,
+    vjust = vjust,
+    bracket.nudge.y = bracket.nudge.y,
+    bracket.size = bracket.size,
+    tip.length = tip.length,
+    hide.ns = hide.ns,
+    remove.bracket = remove.bracket,
+    color = color,
+    ...
+  )
 }

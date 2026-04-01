@@ -4,5 +4,20 @@
 #' @importFrom rlang := .data
 NULL
 
-utils::globalVariables(c(".", ".single_color", "Lower", "Mean", "Upper", "aesthetic",
-                         "col_zscore", "count", "row_zscore", "variable", "x", "y", "data", "name", "l"))
+utils::globalVariables(c(
+  ".",
+  ".single_color",
+  "Lower",
+  "Mean",
+  "Upper",
+  "aesthetic",
+  "col_zscore",
+  "count",
+  "row_zscore",
+  "variable",
+  "x",
+  "y",
+  "data",
+  "name",
+  "l"
+))

@@ -23,6 +23,8 @@ climate |>
 climate |>
   tidyplot(x = month, y = year, color = max_temperature) |>
   add_heatmap(scale = "col") |>
-  adjust_colors(colors_continuous_bluepinkyellow, limits = c(-2.5, 2.5), oob = scales::squish)
-
-
+  adjust_colors(
+    colors_continuous_bluepinkyellow,
+    limits = c(-2.5, 2.5),
+    oob = scales::squish
+  )

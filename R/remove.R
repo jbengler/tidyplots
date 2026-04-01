@@ -1,4 +1,3 @@
-
 #' Remove legend or legend title
 #' @inherit common_arguments
 #'
@@ -202,6 +201,41 @@ remove_padding <- function(plot, force_continuous = FALSE) {
     adjust_y_axis(padding = c(0, 0), force_continuous = force_continuous)
 }
 
+#' Remove plot area clipping
+#' @inherit common_arguments
+#'
+#' @examples
+#' # Before removing
+#' spendings |>
+#'   tidyplot(x = amount, y = category, color = category) |>
+#'   add_sum_bar(alpha = 0.2) |>
+#'   add_sum_dash() |>
+#'   add_sum_value(accuracy = 1, color = "black")
+#'
+#' # After removing
+#' spendings |>
+#'   tidyplot(x = amount, y = category, color = category) |>
+#'   add_sum_bar(alpha = 0.2) |>
+#'   add_sum_dash() |>
+#'   add_sum_value(accuracy = 1, color = "black") |>
+#'   remove_clipping()
+#'
+#' @export
+remove_clipping <- function(plot) {
+  plot <- check_tidyplot(plot)
+  plot$tidyplot$clipping <- "off"
+
+  # Preserve limits via coord_cartesian
+  suppressMessages(
+    plot +
+      ggplot2::coord_cartesian(
+        xlim = plot$tidyplot$limits_x,
+        ylim = plot$tidyplot$limits_y,
+        clip = plot$tidyplot$clipping
+      )
+  )
+}
+
 #' Remove plot title or caption
 #' @inherit common_arguments
 #'
@@ -239,4 +273,3 @@ remove_caption <- function(plot) {
   plot <- check_tidyplot(plot)
   plot + ggplot2::labs(caption = NULL)
 }
-

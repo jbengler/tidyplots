@@ -209,7 +209,10 @@ test_that("dodge_width heuristic works", {
     add_mean_line() |>
     add_mean_dot() |>
     add_sem_ribbon() |>
-    vdiffr::expect_doppelganger("no discrete axis, no provided dodge_width", fig = _)
+    vdiffr::expect_doppelganger(
+      "no discrete axis, no provided dodge_width",
+      fig = _
+    )
 
   time_course |>
     dplyr::filter(!is.na(score)) |>
@@ -232,7 +235,10 @@ test_that("dodge_width heuristic works", {
     add_mean_bar(alpha = 0.4) |>
     add_mean_dash() |>
     add_mean_value() |>
-    vdiffr::expect_doppelganger("ONE discrete axis, no provided dodge_width", fig = _)
+    vdiffr::expect_doppelganger(
+      "ONE discrete axis, no provided dodge_width",
+      fig = _
+    )
 
   study |>
     tidyplot(x = group, y = score, color = dose, dodge_width = 0.8) |>
@@ -255,7 +261,12 @@ test_that("dodge_width heuristic works", {
     vdiffr::expect_doppelganger("ONE discrete axis", fig = _)
 
   animals |>
-    tidyplot(x = number_of_legs, y = speed, color = activity, dodge_width = 0.4) |>
+    tidyplot(
+      x = number_of_legs,
+      y = speed,
+      color = activity,
+      dodge_width = 0.4
+    ) |>
     add_mean_dot() |>
     add_sem_errorbar() |>
     vdiffr::expect_doppelganger("ONE discrete axis, override", fig = _)
@@ -269,7 +280,12 @@ test_that("dodge_width heuristic works", {
 
   animals |>
     dplyr::mutate(number_of_legs = as.numeric(number_of_legs)) |>
-    tidyplot(x = number_of_legs, y = speed, color = activity, dodge_width = 0.4) |>
+    tidyplot(
+      x = number_of_legs,
+      y = speed,
+      color = activity,
+      dodge_width = 0.4
+    ) |>
     add_mean_dot() |>
     add_sem_errorbar() |>
     vdiffr::expect_doppelganger("NO discrete axis, override", fig = _)

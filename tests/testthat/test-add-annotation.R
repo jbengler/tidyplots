@@ -32,8 +32,18 @@ test_that("add annotation works", {
   eu_countries |>
     tidyplot(x = area, y = population) |>
     add_data_points() |>
-    add_annotation_rectangle(xmin = 2.5e5, xmax = 6e5, ymin = 42, ymax = 90, color = "#E69F00", fill = NA) |>
-    vdiffr::expect_doppelganger("add annotation rectangle orange border", fig = _)
+    add_annotation_rectangle(
+      xmin = 2.5e5,
+      xmax = 6e5,
+      ymin = 42,
+      ymax = 90,
+      color = "#E69F00",
+      fill = NA
+    ) |>
+    vdiffr::expect_doppelganger(
+      "add annotation rectangle orange border",
+      fig = _
+    )
 
   eu_countries |>
     tidyplot(x = area, y = population) |>
@@ -45,21 +55,32 @@ test_that("add annotation works", {
 test_that("jitter points and labels align", {
   tidyplot(study, x = group, y = score) |>
     add_data_points(jitter_width = 0.5) |>
-    add_data_labels_repel(label = participant,
-                          jitter_width = 0.5,
-                          max.overlaps = Inf, min.segment.length = 0) |>
+    add_data_labels_repel(
+      label = participant,
+      jitter_width = 0.5,
+      max.overlaps = Inf,
+      min.segment.length = 0
+    ) |>
     vdiffr::expect_doppelganger("label repel alignment", fig = _)
 
   tidyplot(study, x = group, y = score) |>
     add_data_points() |>
-    add_data_labels_repel(label = participant,
-                          max.overlaps = Inf, min.segment.length = 0, nudge_x = 1) |>
+    add_data_labels_repel(
+      label = participant,
+      max.overlaps = Inf,
+      min.segment.length = 0,
+      nudge_x = 1
+    ) |>
     vdiffr::expect_doppelganger("label alignment nudge_x", fig = _)
 
   tidyplot(study, x = group, y = score) |>
     add_data_points() |>
-    add_data_labels_repel(label = participant,
-                          max.overlaps = Inf, min.segment.length = 0, nudge_y = 30) |>
+    add_data_labels_repel(
+      label = participant,
+      max.overlaps = Inf,
+      min.segment.length = 0,
+      nudge_y = 30
+    ) |>
     vdiffr::expect_doppelganger("label alignment nudge_y", fig = _)
 
   tidyplot(study, x = group, y = score) |>

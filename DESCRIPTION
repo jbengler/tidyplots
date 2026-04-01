@@ -28,6 +28,7 @@ Imports:
     rlang,
     scales,
     stringr,
+    tibble,
     tidyr,
     tidyselect
 Depends: 

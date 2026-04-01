@@ -11,10 +11,11 @@ read_single_file <- function(x) {
 }
 
 energy <-
-  list.files(path = "data-raw/energy_charts_download",
-             pattern = "in_20",
-             full.names = TRUE
-             ) |>
+  list.files(
+    path = "data-raw/energy_charts_download",
+    pattern = "in_20",
+    full.names = TRUE
+  ) |>
   map(read_single_file) |>
   bind_rows() |>
   mutate(
@@ -24,12 +25,14 @@ energy <-
     energy_source = str_replace_all(energy_source, "Waste.*", "Waste")
   ) |>
   tidyr::complete(year, energy_source, fill = list(energy = 0)) |>
-  mutate(energy_type = case_when(
-    str_detect(energy_source, "Geo|Hydro|Wind|Bio|Solar") ~ "Renewable",
-    str_detect(energy_source, "Nuclear") ~ "Nuclear",
-    str_detect(energy_source, "Fossil") ~ "Fossil",
-    .default = "Other"
-  )) |>
+  mutate(
+    energy_type = case_when(
+      str_detect(energy_source, "Geo|Hydro|Wind|Bio|Solar") ~ "Renewable",
+      str_detect(energy_source, "Nuclear") ~ "Nuclear",
+      str_detect(energy_source, "Fossil") ~ "Fossil",
+      .default = "Other"
+    )
+  ) |>
   mutate(
     energy_unit = "TWh",
     energy_source = factor(energy_source),

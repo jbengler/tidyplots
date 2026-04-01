@@ -1,4 +1,3 @@
-
 #' Themes
 #' @inherit common_arguments
 #'
@@ -46,8 +45,9 @@ theme_tidyplot <- function(plot, fontsize = 7) {
 
   plot <- plot + ggplot2::theme_classic(paper = paper, ink = ink)
 
-  if (get_variable(plot, "colour") == ".single_color")
+  if (get_variable(plot, "colour") == ".single_color") {
     plot <- plot |> remove_legend()
+  }
 
   plot |>
     adjust_font(fontsize) |>
@@ -70,8 +70,9 @@ theme_ggplot2 <- function(plot, fontsize = 7) {
 
   plot <- plot + ggplot2::theme_grey(paper = paper, ink = ink)
 
-  if (get_variable(plot, "colour") == ".single_color")
+  if (get_variable(plot, "colour") == ".single_color") {
     plot <- plot |> remove_legend()
+  }
 
   plot |>
     adjust_font(fontsize) |>
@@ -89,12 +90,30 @@ theme_minimal_xy <- function(plot, fontsize = 7) {
     adjust_font(fontsize) |>
     adjust_size() +
     ggplot2::theme(
-      axis.line.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      axis.line.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      panel.grid.major.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      panel.grid.major.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      axis.ticks.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      axis.ticks.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15)
+      axis.line.x = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      axis.line.y = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      panel.grid.major.x = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      panel.grid.major.y = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      axis.ticks.x = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      axis.ticks.y = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      )
     )
 }
 #' @rdname theme_tidyplot
@@ -110,10 +129,22 @@ theme_minimal_x <- function(plot, fontsize = 7) {
     adjust_size() +
     ggplot2::theme(
       axis.line.x = ggplot2::element_blank(),
-      axis.line.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      panel.grid.major.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      axis.ticks.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      axis.ticks.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15)
+      axis.line.y = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      panel.grid.major.x = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      axis.ticks.y = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      axis.ticks.x = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      )
     )
 }
 #' @rdname theme_tidyplot
@@ -129,10 +160,22 @@ theme_minimal_y <- function(plot, fontsize = 7) {
     adjust_size() +
     ggplot2::theme(
       axis.line.y = ggplot2::element_blank(),
-      axis.line.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      panel.grid.major.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      axis.ticks.x = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15),
-      axis.ticks.y = ggplot2::element_line(colour = scales::col_mix(ink, paper, 0.8), linewidth = 0.15)
+      axis.line.x = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      panel.grid.major.y = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      axis.ticks.x = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      ),
+      axis.ticks.y = ggplot2::element_line(
+        colour = scales::col_mix(ink, paper, 0.8),
+        linewidth = 0.15
+      )
     )
 }
 
@@ -144,7 +187,6 @@ style_void <- function(plot, fontsize = 7) {
     remove_y_axis() +
     ggplot2::theme(
       panel.spacing = ggplot2::unit(0, "mm"),
-      strip.text = ggplot2::element_text(margin = ggplot2::margin(7,0,0,0))
+      strip.text = ggplot2::element_text(margin = ggplot2::margin(7, 0, 0, 0))
     )
 }
-

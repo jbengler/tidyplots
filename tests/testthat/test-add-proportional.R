@@ -101,24 +101,24 @@ test_that("relative areastacks work", {
 })
 
 test_that("barstacks with date work", {
-spendings |>
-  tidyplot(y = date, color = category) |>
-  add_barstack_absolute() |>
+  spendings |>
+    tidyplot(y = date, color = category) |>
+    add_barstack_absolute() |>
     vdiffr::expect_doppelganger("barstack with date y", fig = _)
 
-spendings |>
-  tidyplot(x = date, color = category) |>
-  add_barstack_absolute() |>
-  vdiffr::expect_doppelganger("barstack with date x", fig = _)
+  spendings |>
+    tidyplot(x = date, color = category) |>
+    add_barstack_absolute() |>
+    vdiffr::expect_doppelganger("barstack with date x", fig = _)
 
-spendings |>
-  tidyplot(x = date, y = amount, color = category) |>
-  add_barstack_absolute() |>
-  vdiffr::expect_doppelganger("barstack with date xy", fig = _)
+  spendings |>
+    tidyplot(x = date, y = amount, color = category) |>
+    add_barstack_absolute() |>
+    vdiffr::expect_doppelganger("barstack with date xy", fig = _)
 
-spendings |>
-  tidyplot(x = amount, y = date, color = category) |>
-  add_barstack_absolute() |>
+  spendings |>
+    tidyplot(x = amount, y = date, color = category) |>
+    add_barstack_absolute() |>
     vdiffr::expect_doppelganger("barstack with date yx", fig = _)
 })
 
