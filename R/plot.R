@@ -131,8 +131,11 @@ print.tidyplot <- function(x, ...) {
     grDevices::dev.interactive() ||
     grDevices::dev.cur() == 1L
 
+  viewer_scaling <- getOption("tidyplots.viewer_scaling", TRUE)
+
   if (
     device_interactive &&
+      viewer_scaling &&
       !is.na(x$tidyplot$width) &&
       !is.na(x$tidyplot$height)
   ) {
@@ -155,6 +158,10 @@ print.tidyplot <- function(x, ...) {
 #' Control the settings for formatting tidyplots globally.
 #'
 #' @inheritParams tidyplot
+#' @param viewer_scaling Whether to display tidyplots as proportionally scaled
+#'   rasters (`TRUE`, the default) in interactive viewers such as RStudio and
+#'   Positron. Set to `FALSE` to preview the real-world print size that will be
+#'   used when saving the plot to disk; see [save_plot()].
 #' @return The old options invisibly
 #'
 #' @examples
@@ -194,7 +201,8 @@ tidyplots_options <- function(
   dodge_width = NULL,
   my_style = NULL,
   paper = NULL,
-  ink = NULL
+  ink = NULL,
+  viewer_scaling = NULL
 ) {
   opts <- options(
     tidyplots.width = width,
@@ -203,7 +211,8 @@ tidyplots_options <- function(
     tidyplots.dodge_width = dodge_width,
     tidyplots.my_style = my_style,
     tidyplots.paper = paper,
-    tidyplots.ink = ink
+    tidyplots.ink = ink,
+    tidyplots.viewer_scaling = viewer_scaling
   )
   invisible(opts)
 }
