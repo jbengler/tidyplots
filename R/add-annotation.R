@@ -259,6 +259,7 @@ add_data_labels_repel <- function(
   seed = 42,
   ...
 ) {
+  rlang::check_installed("ggrepel")
   plot <- check_tidyplot(plot)
   size <- fontsize / ggplot2::.pt
   background_color <- background_color %||% plot$tidyplot$paper

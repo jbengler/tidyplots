@@ -127,6 +127,7 @@ add_data_points_beeswarm <- function(
   rasterize_dpi = 300,
   ...
 ) {
+  rlang::check_installed("ggbeeswarm")
   plot <- check_tidyplot(plot)
   f_points(
     beeswarm = TRUE,

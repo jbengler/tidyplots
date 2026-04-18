@@ -9,19 +9,13 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
-Imports: 
+Imports:
     cli,
     dplyr,
     forcats,
-    ggbeeswarm,
     ggplot2 (>= 4.0.1),
-    ggpubr,
-    ggrastr,
-    ggrepel,
     glue,
     gtable,
-    Hmisc,
-    htmltools,
     lifecycle,
     purrr,
     rlang,
@@ -35,7 +29,13 @@ Depends:
 LazyData: true
 URL: https://github.com/jbengler/tidyplots, https://jbengler.github.io/tidyplots/
 BugReports: https://github.com/jbengler/tidyplots/issues
-Suggests: 
+Suggests:
+    ggbeeswarm,
+    ggpubr,
+    ggrastr,
+    ggrepel,
+    Hmisc,
+    htmltools,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),

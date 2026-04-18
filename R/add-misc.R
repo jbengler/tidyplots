@@ -374,6 +374,7 @@ add_geom <- function(
   level = 0
 ) {
   if (rasterize) {
+    rlang::check_installed("ggrastr")
     plot + ggrastr::rasterise(geom, dpi = rasterize_dpi, dev = "ragg")
   } else {
     plot + geom
