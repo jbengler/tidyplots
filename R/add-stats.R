@@ -143,6 +143,7 @@ add_test_pvalue <- function(
   hide_info = FALSE,
   ...
 ) {
+  rlang::check_installed("ggpubr")
   plot <- check_tidyplot(plot)
 
   # method.args are not supplied in ellipses
@@ -314,6 +315,7 @@ add_test_pvalue_manual <- function(
   color = plot$tidyplot$ink,
   ...
 ) {
+  rlang::check_installed("ggpubr")
   plot <- check_tidyplot(plot)
 
   plot <- plot |>

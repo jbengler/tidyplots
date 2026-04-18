@@ -714,6 +714,7 @@ generate_html <- function(x, max_colors) {
 
 print_tidycolor <- function(x, max_colors, return_html = FALSE) {
   # cli::cli_alert_info(paste0("A tidyplots color scheme with ",length(x) ," colors."))
+  rlang::check_installed("htmltools")
 
   viewer <- getOption("viewer")
   if (!is.null(viewer) || return_html) {

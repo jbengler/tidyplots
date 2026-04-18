@@ -14,14 +14,8 @@ Imports:
     dplyr,
     forcats,
     png,
-    ggbeeswarm,
     ggplot2 (>= 4.0.1),
-    ggpubr,
-    ggrastr,
-    ggrepel,
     gtable,
-    Hmisc,
-    htmltools,
     lifecycle,
     purrr,
     rlang,
@@ -34,6 +28,12 @@ LazyData: true
 URL: https://github.com/jbengler/tidyplots, https://jbengler.github.io/tidyplots/
 BugReports: https://github.com/jbengler/tidyplots/issues
 Suggests:
+    ggbeeswarm,
+    ggpubr,
+    ggrastr,
+    ggrepel,
+    Hmisc,
+    htmltools,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
