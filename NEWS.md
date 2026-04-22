@@ -2,9 +2,11 @@
 
 ## Improvements
 
+* New printing method that scales tidyplots to perfectly fill the plot pane in Positron and RStudio (#168, @lhdjung).
 * New `remove_clipping()` for disabling plot area clipping.
 * New `add_test_pvalue_manual()` and `add_test_asterisks_manual()` for adding pre-computed statistical comparisons via `ggpubr::stat_pvalue_manual()`.
 * `add_data_points_jitter()`, `add_data_labels()` and `add_data_labels_repel()` now expose the `seed` parameter.
+* New `viewer_scaling` and `verbose` arguments in `tidyplots_options()` to control print behavior and logging.
 
 # tidyplots 0.4.0
 

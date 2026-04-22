@@ -11,7 +11,9 @@ tidyplots_options(
   dodge_width = NULL,
   my_style = NULL,
   paper = NULL,
-  ink = NULL
+  ink = NULL,
+  viewer_scaling = NULL,
+  verbose = NULL
 )
 }
 \arguments{
@@ -34,6 +36,14 @@ at least one discrete axis and to \code{0} for plots with two continuous axes.}
 
 \item{ink}{Foreground color. The default (\code{NULL}) retrieves the setting from the
 \link[=tidyplots_options]{tidyplots options}, which defaults to \code{"#000000"}.}
+
+\item{viewer_scaling}{Whether to display tidyplots as proportionally scaled
+rasters (\code{TRUE}, the default) in interactive viewers such as RStudio and
+Positron. Set to \code{FALSE} to preview the real-world print size that will be
+used when saving the plot to disk; see \code{\link[=save_plot]{save_plot()}}.}
+
+\item{verbose}{Whether to emit a message when the viewer rendering falls back
+to the default ggplot2 print method (default is \code{FALSE}).}
 }
 \value{
 The old options invisibly

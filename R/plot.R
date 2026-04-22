@@ -125,11 +125,77 @@ tidyplot <- function(
 }
 
 
+#' @export
+print.tidyplot <- function(x, ...) {
+  device_interactive <-
+    grDevices::dev.interactive() ||
+    (interactive() && grDevices::dev.cur() == 1L)
+
+  # On macOS, file-writing devices (quartz pdf/png/...) report `interactive =
+  # TRUE` via `dev.interactive()`. Calling `render_for_viewer()` inside any such
+  # save function would write an extra page to the output file. Guard against
+  # this by checking whether a known save function is on the call stack.
+  in_file_save <- sys.calls() |>
+    vapply(
+      function(call) {
+        tryCatch(
+          deparse(call[[1L]])[1L] %in%
+            c("ggsave", "ggplot2::ggsave"),
+          error = function(e) FALSE
+        )
+      },
+      logical(1L)
+    ) |>
+    any()
+
+  use_viewer <- device_interactive &&
+    !in_file_save &&
+    getOption("tidyplots.viewer_scaling", TRUE) &&
+    !is.na(x$tidyplot$width) &&
+    !is.na(x$tidyplot$height)
+
+  if (use_viewer) {
+    # Render at exact target dimensions and display as a device-filling raster.
+    # When the pane is resized, the display list replays the raster scaled to
+    # fit, so every element -- bars, text, ticks, legend -- zooms together as if
+    # resizing a PNG. Falls back to `NextMethod()` if `render_for_viewer()`
+    # fails for any reason.
+    rendered <- tryCatch(
+      {
+        render_for_viewer(x, ...)
+        ggplot2::set_last_plot(x)
+        TRUE
+      },
+      error = function(e) {
+        if (isTRUE(getOption("tidyplots.verbose", FALSE))) {
+          message(
+            "tidyplots: `render_for_viewer()` failed, falling back to default print: ",
+            conditionMessage(e)
+          )
+        }
+        FALSE
+      }
+    )
+    if (!rendered) NextMethod()
+  } else {
+    NextMethod()
+  }
+
+  invisible(x)
+}
+
+
 #' Tidyplots options
 #'
 #' Control the settings for formatting tidyplots globally.
 #'
 #' @inheritParams tidyplot
+#' @param viewer_scaling Whether to display tidyplots as proportionally scaled
+#'   rasters (`TRUE`, the default) in interactive viewers such as RStudio and
+#'   Positron. Set to `FALSE` to preview the real-world print size that will be
+#'   used when saving the plot to disk; see [save_plot()].
+#' @param verbose Whether to emit a message when the viewer rendering falls back
+#'   to the default ggplot2 print method (default is `FALSE`).
 #' @return The old options invisibly
 #'
 #' @examples
@@ -169,7 +235,9 @@ tidyplots_options <- function(
   dodge_width = NULL,
   my_style = NULL,
   paper = NULL,
-  ink = NULL
+  ink = NULL,
+  viewer_scaling = NULL,
+  verbose = NULL
 ) {
   opts <- options(
     tidyplots.width = width,
@@ -178,7 +246,9 @@ tidyplots_options <- function(
     tidyplots.dodge_width = dodge_width,
     tidyplots.my_style = my_style,
     tidyplots.paper = paper,
-    tidyplots.ink = ink
+    tidyplots.ink = ink,
+    tidyplots.viewer_scaling = viewer_scaling,
+    tidyplots.verbose = verbose
   )
   invisible(opts)
 }
@@ -476,13 +546,13 @@ save_plot <- function(
   ...
 ) {
   if (
-    !ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot))
+    !ggplot2::is_ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is_ggplot))
   ) {
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
   }
 
   input <- plot
-  if (ggplot2::is.ggplot(plot)) {
+  if (ggplot2::is_ggplot(plot)) {
     plot <- list(plot)
   }
   units <- match.arg(units)

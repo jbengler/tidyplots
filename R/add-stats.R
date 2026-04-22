@@ -178,14 +178,13 @@ add_test_pvalue <- function(
   if (!hide_info) {
     plot <- plot |>
       add_caption(
-        caption = glue::glue(
-          "method = {method}
-    paired_by = {paired_by}
-    p.adjust.method = {p.adjust.method}
-    ref.group = {ref.group}
-    comparisons = {comparisons}
-    hide.ns = {hide.ns}",
-          .null = "NULL"
+        caption = paste0(
+          "method = ", method, "\n",
+          "paired_by = ", if (is.null(paired_by)) "NULL" else paired_by, "\n",
+          "p.adjust.method = ", p.adjust.method, "\n",
+          "ref.group = ", if (is.null(ref.group)) "NULL" else ref.group, "\n",
+          "comparisons = ", if (is.null(comparisons)) "NULL" else comparisons, "\n",
+          "hide.ns = ", hide.ns
         )
       )
   }
