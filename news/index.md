@@ -24,6 +24,9 @@
 - Color saturation now persist multiple
   [`adjust_colors()`](https://jbengler.github.io/tidyplots/reference/adjust_colors.md)
   calls ([\#171](https://github.com/jbengler/tidyplots/issues/171)).
+- [`adjust_legend_title()`](https://jbengler.github.io/tidyplots/reference/adjust_legend_title.md)
+  now works across all mapped aesthetics
+  ([\#163](https://github.com/jbengler/tidyplots/issues/163)).
 
 ## tidyplots 0.4.0
 
