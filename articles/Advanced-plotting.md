@@ -37,6 +37,7 @@ In the examples below I intentionally chose a low resolution of of 30 to
 print would be 300 dpi.
 
 ``` r
+
 library(tidyplots)
 
 gene_expression |>
@@ -51,6 +52,7 @@ And here another example using
 [`add_data_points()`](https://jbengler.github.io/tidyplots/reference/add_data_points.md).
 
 ``` r
+
 study |>
   tidyplot(x = treatment, y = score, color = treatment) |>
   add_data_points(rasterize = TRUE, rasterize_dpi = 50)
@@ -68,6 +70,7 @@ In tidyplots you can create a custom style by defining a functional
 sequence like the one below, called `my_style()`.
 
 ``` r
+
 my_style <- function(x) {
   x |> 
   adjust_colors(colors_continuous_bluepinkyellow) |> 
@@ -81,6 +84,7 @@ Each individual plot can then be piped into `my_style()` as the final
 step.
 
 ``` r
+
 study |> 
   tidyplot(group, score, color = treatment) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -92,6 +96,7 @@ study |>
 ![](Advanced-plotting_files/figure-html/unnamed-chunk-5-1.png)
 
 ``` r
+
 energy_week |> 
   tidyplot(date, power, color = energy_source) |> 
   add_areastack_relative() |> 
@@ -116,6 +121,7 @@ Let’s say you have a scatter plot of animals displaying their weight and
 size, and you want to highlight in red all animals larger than 300 cm.
 
 ``` r
+
 animals |>
   tidyplot(x = weight, y = size) |>
   add_data_points() |> 
@@ -128,6 +134,7 @@ In addition, you might want to show the name of the three animals with
 the highest body weight.
 
 ``` r
+
 animals |>
   tidyplot(x = weight, y = size) |>
   add_data_points() |> 
@@ -140,6 +147,7 @@ animals |>
 You can also adjust the shape used for highlighting.
 
 ``` r
+
 animals |> 
   tidyplot(x = weight, y = size) |> 
   add_data_points() |> 
@@ -153,6 +161,7 @@ layers, you can choose to raster all data points, while keeping the
 highlight as a vector shape.
 
 ``` r
+
 animals |> 
   tidyplot(x = weight, y = size) |> 
   add_data_points(rasterize = TRUE, rasterize_dpi = 50) |> 
@@ -173,6 +182,7 @@ Let’s say you gradually build up a plot but want to save all
 intermediate stages as individual PDF files.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_mean_dash() |> 
@@ -187,6 +197,7 @@ Or you have a big data frame with multiple genes and you quickly want to
 generate plots for two of them.
 
 ``` r
+
 gene_expression |> 
   tidyplot(x = condition, y = expression, color = sample_type) |> 
   add_mean_dash() |> 
@@ -216,6 +227,7 @@ The connecting line can be added by using the `group` argument of
 to specify the grouping variable.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = group) |> 
   add_mean_dash() |> 
@@ -230,6 +242,7 @@ As a final step, you might want to rearrange the order of the x-axis
 labels to have grouped data points side by side.
 
 ``` r
+
 study |>
   tidyplot(x = treatment, y = score, color = group) |>
   add_mean_dash() |> 
@@ -254,6 +267,7 @@ animals,
 delivers some interesting insights.
 
 ``` r
+
 animals |>
   tidyplot(x = number_of_legs, color = family) |>
   add_barstack_absolute()
@@ -268,6 +282,7 @@ the same data with
 the picture becomes a little obscure.
 
 ``` r
+
 animals |>
   tidyplot(x = number_of_legs, color = family) |>
   add_areastack_absolute()
@@ -289,6 +304,7 @@ is save to replace the information `count = NA` with the information
 You can fix the plot by setting `replace_na = TRUE`.
 
 ``` r
+
 animals |>
   tidyplot(x = number_of_legs, color = family) |>
   add_areastack_absolute(replace_na = TRUE)
@@ -309,6 +325,7 @@ and then split the plot by the gene name using the
 function.
 
 ``` r
+
 gene_expression |> 
   # filter down to 4 genes for demonstration
   dplyr::filter(external_gene_name %in% c("Apol6","Bsn","Vgf","Mpc2")) |> 
@@ -329,6 +346,7 @@ them across a multipage PDF. To do so, just specify the maximum number
 of columns `ncol` and rows `nrow` you want to have on one page.
 
 ``` r
+
 gene_expression |> 
   tidyplot(x = condition, y = expression, color = sample_type) |> 
   add_mean_dash() |> 
@@ -347,6 +365,7 @@ that needs to be inferred from the variables mapped to the `x` and `y`
 axis. For example, the following code results in vertical bars.
 
 ``` r
+
 animals |> 
   tidyplot(x = diet, y = weight) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -359,6 +378,7 @@ As expected, swapping the `x` and `y` arguments results in horizontal
 bars.
 
 ``` r
+
 animals |> 
   tidyplot(x = weight, y = diet) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -372,6 +392,7 @@ it does not fit your needs, you can manually set the `orientation` to
 either `"x"` or `"y"`.
 
 ``` r
+
 time_course |> 
   tidyplot(x = score, y = day) |> 
   add_curve_fit(orientation = "x") |> 
@@ -381,6 +402,7 @@ time_course |>
 ![](Advanced-plotting_files/figure-html/unnamed-chunk-21-1.png)
 
 ``` r
+
 time_course |> 
   tidyplot(x = score, y = day) |> 
   add_curve_fit(orientation = "y") |> 
@@ -395,6 +417,7 @@ Per default, tidyplots gives the data points a little bit of extra space
 towards the border of the plot area.
 
 ``` r
+
 animals |> 
   tidyplot(x = weight, y = speed) |> 
   add_data_points()
@@ -408,6 +431,7 @@ and can be changes using the
 function.
 
 ``` r
+
 animals |> 
   tidyplot(x = weight, y = speed) |> 
   add_data_points() |> 
@@ -422,6 +446,7 @@ function. However, note that this will cause extreme values to fall onto
 the border of the plot area and be partially cut off.
 
 ``` r
+
 animals |> 
   tidyplot(x = weight, y = speed) |> 
   add_data_points() |> 
@@ -436,6 +461,7 @@ adapts the padding to improve the look of the plot. For example, in
 axis is removed.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -448,6 +474,7 @@ study |>
 You can re-introduce the bottom padding like so.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -464,6 +491,7 @@ Dodging refers to the distance between grouped objects. In plots with at
 least one discrete axis the default is 0.8 and looks like this.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -478,6 +506,7 @@ Decreasing the `dodge_width` in the
 function call decreases the spacing between grouped bars.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose, dodge_width = 0.4) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -490,6 +519,7 @@ study |>
 Setting `dodge_width = 0` results in completely overlapping positions.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose, dodge_width = 0) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -506,6 +536,7 @@ argument of the
 function.
 
 ``` r
+
 time_course |> 
   tidyplot(x = day, y = score, color = treatment) |> 
   add_mean_line() |> 
@@ -523,6 +554,7 @@ color. The variable that should be encoded by colors is passed via the
 function.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -550,6 +582,7 @@ In some cases though, you might want to take manual control over the
 For example, you want to plot a boxplot without the `fill` color.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_boxplot(fill = NA)
@@ -560,6 +593,7 @@ study |>
 Or with a black stroke `color`.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_boxplot(color = "black")
@@ -570,6 +604,7 @@ study |>
 Or you want to have black text labels.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -583,6 +618,7 @@ study |>
 Sometimes you want to decrease the intensity of your colors.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_mean_bar() |> 
@@ -595,6 +631,7 @@ One way to do this is to reduce the opacity by decreasing the alpha
 argument. Note how the horizontal lines start to shine through the bars.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -611,6 +648,7 @@ and in `add_boxplots()` functions, tidyplots offers one additional
 method using the `saturation` argument.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_mean_bar(saturation = 0.3) |> 
@@ -636,6 +674,7 @@ text in one string, instead the entire string needs to be a valid
 plotmath expression that includes the plain text.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -663,6 +702,7 @@ Also, you can add ggplot code to a tidyplot using the
 function.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_mean_bar(alpha = 0.4) |> 

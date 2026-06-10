@@ -19,6 +19,12 @@
   [`add_data_labels_repel()`](https://jbengler.github.io/tidyplots/reference/add_data_labels.md)
   now expose the `seed` parameter.
 
+### Bug fixes
+
+- Color saturation now persist multiple
+  [`adjust_colors()`](https://jbengler.github.io/tidyplots/reference/adjust_colors.md)
+  calls ([\#171](https://github.com/jbengler/tidyplots/issues/171)).
+
 ## tidyplots 0.4.0
 
 CRAN release: 2026-01-08

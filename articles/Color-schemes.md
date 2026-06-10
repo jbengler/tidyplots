@@ -26,6 +26,7 @@ colors with a special print method that sends a preview to the RStudio
 viewer pane.
 
 ``` r
+
 library(tidyplots)
 colors_discrete_friendly
 ```
@@ -53,6 +54,7 @@ select the required number of colors by attempting to evenly sample from
 the supplied color vector.
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute()
@@ -63,6 +65,7 @@ energy |>
 And here are some alternative color schemes.
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -72,6 +75,7 @@ energy |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-5-1.png)
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -81,6 +85,7 @@ energy |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-5-2.png)
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -90,6 +95,7 @@ energy |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-5-3.png)
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -99,6 +105,7 @@ energy |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-5-4.png)
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -108,6 +115,7 @@ energy |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-5-5.png)
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -117,6 +125,7 @@ energy |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-5-6.png)
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -131,6 +140,7 @@ Continuous color schemes are meant for continuous variables. The default
 schemes in tidyplots usually consist of 265 colors.
 
 ``` r
+
 colors_continuous_viridis
 ```
 
@@ -144,6 +154,7 @@ c(
 Here is a use case for a continuous color scheme.
 
 ``` r
+
 climate |> 
   tidyplot(x = month, y = year, color = max_temperature) |> 
   add_heatmap()
@@ -154,6 +165,7 @@ climate |>
 And here are some alternative color schemes.
 
 ``` r
+
 climate |> 
   tidyplot(x = month, y = year, color = max_temperature) |> 
   add_heatmap() |> 
@@ -163,6 +175,7 @@ climate |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-9-1.png)
 
 ``` r
+
 climate |> 
   tidyplot(x = month, y = year, color = max_temperature) |> 
   add_heatmap() |> 
@@ -172,6 +185,7 @@ climate |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-9-2.png)
 
 ``` r
+
 climate |> 
   tidyplot(x = month, y = year, color = max_temperature) |> 
   add_heatmap() |> 
@@ -181,6 +195,7 @@ climate |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-9-3.png)
 
 ``` r
+
 climate |> 
   tidyplot(x = month, y = year, color = max_temperature) |> 
   add_heatmap() |> 
@@ -196,6 +211,7 @@ central point in the middle. A classical example is the blue–white–red
 gradient used for gene expression heatmaps.
 
 ``` r
+
 colors_diverging_blue2red
 ```
 
@@ -209,6 +225,7 @@ c(
 Here is a use case for a diverging color scheme.
 
 ``` r
+
 gene_expression |> 
   tidyplot(x = sample, y = external_gene_name, color = expression) |> 
   add_heatmap(scale = "row") |>
@@ -221,6 +238,7 @@ gene_expression |>
 And here are some alternative color schemes.
 
 ``` r
+
 gene_expression |> 
   tidyplot(x = sample, y = external_gene_name, color = expression) |> 
   add_heatmap(scale = "row") |>
@@ -232,6 +250,7 @@ gene_expression |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-13-1.png)
 
 ``` r
+
 gene_expression |> 
   tidyplot(x = sample, y = external_gene_name, color = expression) |> 
   add_heatmap(scale = "row") |>
@@ -243,6 +262,7 @@ gene_expression |>
 ![](Color-schemes_files/figure-html/unnamed-chunk-13-2.png)
 
 ``` r
+
 gene_expression |> 
   tidyplot(x = sample, y = external_gene_name, color = expression) |> 
   add_heatmap(scale = "row") |>
@@ -260,6 +280,7 @@ Of course you can also construct custom color schemes using the
 function.
 
 ``` r
+
 my_colors <- 
   new_color_scheme(c("#ECA669","#E06681","#8087E2","#E2D269"),
                    name = "my_custom_color_scheme")
@@ -278,6 +299,7 @@ Than you can use your scheme as input to the
 function.
 
 ``` r
+
 energy |> 
   tidyplot(year, energy, color = energy_source) |> 
   add_barstack_absolute() |> 
@@ -291,6 +313,7 @@ existing schemes in the exact same way you would do with a regular
 character string.
 
 ``` r
+
 colors_discrete_metro[2]
 ```
 
@@ -302,6 +325,7 @@ c(
 "#4FAE62")
 
 ``` r
+
 colors_discrete_metro[2:4]
 ```
 
@@ -313,6 +337,7 @@ c(
 "#4FAE62","#F6C54D","#E37D46")
 
 ``` r
+
 c(colors_discrete_metro, colors_discrete_seaside)
 ```
 

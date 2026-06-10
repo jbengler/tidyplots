@@ -8,7 +8,7 @@ Adjust colors
 adjust_colors(
   plot,
   new_colors = NULL,
-  saturation = 1,
+  saturation = NULL,
   labels = tidyplot_parse_labels(),
   downsample = c("evenly", "first", "last", "middle"),
   ...

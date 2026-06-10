@@ -17,12 +17,14 @@ You can install the released version of tidyplots from
 [CRAN](https://cran.r-project.org/) with:
 
 ``` r
+
 install.packages("tidyplots")
 ```
 
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
+
 # install.packages("pak")
 pak::pak("jbengler/tidyplots")
 ```
@@ -46,6 +48,7 @@ more example plots, check out the [tidyplots use
 cases](https://tidyplots.org/use-cases/) website.
 
 ``` r
+
 library(tidyplots)
 
 study |> 
@@ -58,6 +61,7 @@ study |>
 ![](reference/figures/README-unnamed-chunk-2-1.png)
 
 ``` r
+
 energy |> 
   tidyplot(x = year, y = energy, color = energy_source) |> 
   add_barstack_absolute()
@@ -66,6 +70,7 @@ energy |>
 ![](reference/figures/README-unnamed-chunk-3-1.png)
 
 ``` r
+
 energy |> 
   dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |> 
   tidyplot(y = energy, color = energy_source) |> 
@@ -77,6 +82,7 @@ energy |>
 ![](reference/figures/README-unnamed-chunk-4-1.png)
 
 ``` r
+
 energy_week |> 
   tidyplot(x = date, y = power, color = energy_source) |> 
   add_areastack_absolute()
@@ -85,6 +91,7 @@ energy_week |>
 ![](reference/figures/README-unnamed-chunk-5-1.png)
 
 ``` r
+
 energy_week |> 
   tidyplot(x = date, y = power, color = energy_source) |> 
   add_areastack_relative()
@@ -93,6 +100,7 @@ energy_week |>
 ![](reference/figures/README-unnamed-chunk-6-1.png)
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_mean_bar(alpha = 0.4) |> 
@@ -103,6 +111,7 @@ study |>
 ![](reference/figures/README-unnamed-chunk-7-1.png)
 
 ``` r
+
 time_course |>
   tidyplot(x = day, y = score, color = treatment) |>
   add_mean_line() |>
@@ -113,6 +122,7 @@ time_course |>
 ![](reference/figures/README-unnamed-chunk-8-1.png)
 
 ``` r
+
 climate |>
   tidyplot(x = month, y = year, color = max_temperature) |>
   add_heatmap()
@@ -121,6 +131,7 @@ climate |>
 ![](reference/figures/README-unnamed-chunk-9-1.png)
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_boxplot() |> 
@@ -130,6 +141,7 @@ study |>
 ![](reference/figures/README-unnamed-chunk-10-1.png)
 
 ``` r
+
 gene_expression |> 
   dplyr::filter(external_gene_name %in% c("Apol6", "Col5a3", "Vgf", "Bsn")) |> 
   tidyplot(x = condition, y = expression, color = sample_type) |> 
@@ -145,6 +157,7 @@ gene_expression |>
 ![](reference/figures/README-unnamed-chunk-11-1.png)
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_mean_bar(alpha = 0.4) |> 

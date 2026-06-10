@@ -41,6 +41,7 @@ R. Let’s start by installing some essential packages. Packages deliver
 additional functionality that is not built into base R.
 
 ``` r
+
 install.packages("tidyverse")
 install.packages("tidyplots")
 ```
@@ -64,6 +65,7 @@ for plotting. We start by loading the tidyplots package and have a look
 at the `study` dataset.
 
 ``` r
+
 library(tidyplots)
 #> tidyplots 0.4.0.9000
 #> In publications, please cite: https://doi.org/10.1002/imt2.70018
@@ -102,6 +104,7 @@ Now it is time for the fun part! Make sure that you loaded the tidyplots
 package. This needs to be done once for every R session.
 
 ``` r
+
 library(tidyplots)
 ```
 
@@ -110,6 +113,7 @@ Then we start with the `study` dataset and pipe it into the
 function.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score)
 ```
@@ -141,6 +145,7 @@ the next line. When you combine multiple lines like this, you have
 generated a *pipeline*.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score) |> 
   add_data_points()
@@ -167,6 +172,7 @@ e.g. `bar`, `dash`, `line` etc. In our example we choose
 to show the mean value of each treatment group represented as a bar.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score) |> 
   add_data_points() |> 
@@ -186,6 +192,7 @@ for a `dash`. And while we are on it, let’s add the standard error of
 the mean `sem`, represented as error bar.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score) |> 
   add_data_points() |> 
@@ -206,6 +213,7 @@ colors can encode *variables* in a similar way as axes, the argument
 function.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_data_points() |> 
@@ -233,6 +241,7 @@ functions. For example, you might want to remove the color legend title,
 or in some rare cases even the entire y-axis.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = dose) |> 
   add_data_points() |> 
@@ -256,6 +265,7 @@ tidyplots provides a number of `adjust_*()` functions.
 Let’s start with this plot.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -277,6 +287,7 @@ by selecting a consistent `height` across plots, while the `width` can
 vary depending on the number of categories in the x-axis.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points_beeswarm(shape = 1) |>
@@ -293,6 +304,7 @@ legend. For this we will use the function
 and friends.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -319,6 +331,7 @@ this using the
 function.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -334,6 +347,7 @@ learn more about these color schemes have a look at the article [Color
 schemes](https://jbengler.github.io/tidyplots/articles/Color-schemes.html).
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -355,6 +369,7 @@ For example, to rename the data labels for the `treatment` variable on
 the x-axis, you can do this.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -378,6 +393,7 @@ plot.
 For example, you can bring the treatment “D” and “C” to the front.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -391,6 +407,7 @@ study |>
 Sort the treatments by their score.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -404,6 +421,7 @@ study |>
 Or simply reverse the order of the labels.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -425,6 +443,7 @@ changing the representation of the data. You can stay with the default
 tidyplots theme.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -438,6 +457,7 @@ study |>
 Or try something more like ggplot2.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -451,6 +471,7 @@ study |>
 Or something more minimal.
 
 ``` r
+
 study |> 
   tidyplot(x = treatment, y = score, color = treatment) |> 
   add_data_points() |> 
@@ -473,6 +494,7 @@ the treatment `group` and split this plot by `dose` into a high dose and
 a low dose plot.
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = group) |> 
   add_data_points() |> 
@@ -491,6 +513,7 @@ This can be easily done by piping the plot into the function
 [`save_plot()`](https://jbengler.github.io/tidyplots/reference/save_plot.md).
 
 ``` r
+
 study |> 
   tidyplot(x = group, y = score, color = group) |> 
   add_data_points() |> 

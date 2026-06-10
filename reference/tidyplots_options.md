@@ -59,6 +59,7 @@ The old options invisibly
 ## Examples
 
 ``` r
+
 # Define custom style
 my_style <- function(x) x |>
   adjust_colors(colors_discrete_candy) |>
