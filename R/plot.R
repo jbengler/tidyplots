@@ -103,6 +103,8 @@ tidyplot <- function(
   plot$tidyplot$dodge_width <- dodge_width
 
   plot$tidyplot$named_colors <- NULL
+  plot$tidyplot$colors <- NULL
+  plot$tidyplot$saturation <- NULL
 
   plot <- plot |>
     theme_tidyplot() |>

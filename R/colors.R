@@ -53,7 +53,7 @@
 adjust_colors <- function(
   plot,
   new_colors = NULL,
-  saturation = 1,
+  saturation = NULL,
   labels = tidyplot_parse_labels(),
   downsample = c("evenly", "first", "last", "middle"),
   ...
@@ -61,14 +61,20 @@ adjust_colors <- function(
   plot <- check_tidyplot(plot)
   out <- plot
 
+  effective_saturation <- saturation %||% plot$tidyplot$saturation %||% 1
+
   if (is_discrete(plot, "colour")) {
-    # Default colors
+    # Default colors: use previously stored colors if available
     if (is.null(new_colors)) {
-      new_colors <- colors_discrete_friendly
+      new_colors <- plot$tidyplot$colors %||% colors_discrete_friendly
     }
 
     # Strip tidycolor class
     new_colors <- strip_tidycolor_class(new_colors)
+
+    # Store colors and saturation for use by later adjust_colors() calls
+    out$tidyplot$colors <- new_colors
+    if (!is.null(saturation)) out$tidyplot$saturation <- saturation
 
     # Are enough new_colors provided?
     color_var <- get_variable(plot, "colour")
@@ -111,7 +117,7 @@ adjust_colors <- function(
       suppressMessages(
         out <- out +
           ggplot2::scale_fill_manual(
-            values = apply_saturation(new_colors, saturation = saturation),
+            values = apply_saturation(new_colors, saturation = effective_saturation),
             drop = TRUE,
             labels = labels,
             ...
@@ -127,7 +133,7 @@ adjust_colors <- function(
         out <- out +
           scale_fill_d(
             palette = new_colors,
-            saturation = saturation,
+            saturation = effective_saturation,
             drop = TRUE,
             labels = labels,
             ...
@@ -153,7 +159,7 @@ adjust_colors <- function(
       out <- out +
         scale_fill_c(
           palette = new_colors,
-          saturation = saturation,
+          saturation = effective_saturation,
           labels = labels,
           ...
         )

@@ -54,7 +54,8 @@ add_boxplot <- function(
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
   if (saturation != 1) {
-    plot <- plot |> adjust_colors(saturation = saturation)
+    plot$tidyplot$saturation <- saturation
+    plot <- plot |> adjust_colors()
   }
   if (show_whiskers == FALSE) {
     coef = 0
@@ -121,7 +122,8 @@ add_violin <- function(
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width)
   if (saturation != 1) {
-    plot <- plot |> adjust_colors(saturation = saturation)
+    plot$tidyplot$saturation <- saturation
+    plot <- plot |> adjust_colors()
   }
   plot +
     ggplot2::geom_violin(

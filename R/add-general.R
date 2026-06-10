@@ -242,7 +242,8 @@ ff_bar <- function(.fun, .count = FALSE) {
       preserve = preserve
     )
     if (saturation != 1) {
-      plot <- plot |> adjust_colors(saturation = saturation)
+      plot$tidyplot$saturation <- saturation
+      plot <- plot |> adjust_colors()
     }
     if (.count) {
       plot <- plot +
