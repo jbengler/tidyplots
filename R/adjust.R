@@ -647,8 +647,13 @@ adjust_legend <- function(plot, title = ggplot2::waiver(), position = "right") {
   if (!is_waiver(title)) {
     title <- tidyplot_parser(as.character(title))
   }
+  # collect all mapped aesthetics from plot-level and layer-level mappings
+  all_aes <- c(names(plot$mapping), unlist(lapply(plot$layers, function(l) names(l$mapping))))
+  legend_aes <- c("colour", "fill", "size", "shape", "linetype", "alpha")
+  used_aes <- intersect(legend_aes, all_aes)
+  labs_args <- stats::setNames(rep(list(title), length(used_aes)), used_aes)
   plot +
-    ggplot2::labs(colour = title, fill = title) +
+    do.call(ggplot2::labs, labs_args) +
     ggplot2::theme(legend.position = position)
 }
 

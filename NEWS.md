@@ -9,6 +9,7 @@
 ## Bug fixes
 
 * Color saturation now persist multiple `adjust_colors()` calls (#171).
+* `adjust_legend_title()` now works across all mapped aesthetics (#163).
 
 # tidyplots 0.4.0
 
