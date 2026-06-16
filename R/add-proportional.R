@@ -251,7 +251,7 @@ ff_areastack <- function(.position_fun) {
           plot$data |>
           dplyr::summarize(
             count = dplyr::n(),
-            .by = tidyselect::all_of(vars)
+            .by = dplyr::all_of(vars)
           ) |>
           tidyr::complete(
             .data[[vars[1]]],
@@ -291,7 +291,7 @@ ff_areastack <- function(.position_fun) {
           plot$data |>
           dplyr::summarize(
             count = dplyr::n(),
-            .by = tidyselect::all_of(vars)
+            .by = dplyr::all_of(vars)
           ) |>
           tidyr::complete(
             .data[[vars[1]]],
@@ -340,7 +340,7 @@ ff_areastack <- function(.position_fun) {
           plot$data |>
           dplyr::summarize(
             "{y_var}" := sum(.data[[y_var]]),
-            .by = tidyselect::all_of(vars)
+            .by = dplyr::all_of(vars)
           ) |>
           tidyr::complete(.data[[vars[1]]], .data[[vars[2]]], fill = zero)
         plot <- plot |>

@@ -196,7 +196,7 @@ format_p_value <- function(x, accuracy = 0.0001) {
   ifelse(
     x >= accuracy,
     format_number(x, accuracy),
-    glue::glue("< { format_number(accuracy, accuracy) }")
+    paste0("< ", format_number(accuracy, accuracy))
   )
 }
 
@@ -364,13 +364,10 @@ extract_mapping <- function(plot) {
   aesthetic <- c("x", "y", "colour", "fill", "group")
   variable <- my_variable(aesthetic)
 
-  tibble::new_tibble(
-    list(
-      aesthetic = aesthetic,
-      variable = variable,
-      scale_type = my_scale_type(variable)
-    ),
-    nrow = length(aesthetic)
+  data.frame(
+    aesthetic = aesthetic,
+    variable = variable,
+    scale_type = my_scale_type(variable)
   )
 }
 
@@ -511,55 +508,239 @@ burst_filename <- function(filename, n) {
   )
 }
 
+get_gtab_size <- function(gtab, units) {
+  width <- if (any(as.character(gtab$widths) == "1null")) {
+    NA_real_
+  } else {
+    grid::convertWidth(
+      sum(gtab$widths) + ggplot2::unit(1, "mm"),
+      unitTo = units,
+      valueOnly = TRUE
+    )
+  }
+
+  height <- if (any(as.character(gtab$heights) == "1null")) {
+    NA_real_
+  } else {
+    grid::convertHeight(
+      sum(gtab$heights) + ggplot2::unit(1, "mm"),
+      unitTo = units,
+      valueOnly = TRUE
+    )
+  }
+
+  # Adjust for legend overflow in the orthogonal direction.
+  # The legend shares the panel's row (left/right) or column (top/bottom) in
+  # the gtable, so sum(heights)/sum(widths) only reflects the panel size, not
+  # the legend size.  When the legend is taller/wider than the panel, we add
+  # the overflow to the figure dimensions.
+  tryCatch({
+    side_names <- c("guide-box-right", "guide-box-left")
+    tb_names   <- c("guide-box-top", "guide-box-bottom")
+
+    get_legend_content_size <- function(idx) {
+      grob <- gtab$grobs[[idx]]
+      if (inherits(grob, "zeroGrob")) return(NULL)
+      if (!inherits(grob, "gtable")) return(NULL)
+      guides_idx <- match("guides", grob$layout$name)
+      if (is.na(guides_idx)) return(NULL)
+      inner <- grob$grobs[[guides_idx]]
+      if (!inherits(inner, "gtable")) return(NULL)
+      list(
+        width  = grid::convertWidth(sum(inner$widths), unitTo = units, valueOnly = TRUE),
+        height = grid::convertHeight(sum(inner$heights), unitTo = units, valueOnly = TRUE)
+      )
+    }
+
+    for (nm in side_names) {
+      idx <- match(nm, gtab$layout$name)
+      if (!is.na(idx) && !is.na(height)) {
+        legend_size <- get_legend_content_size(idx)
+        if (!is.null(legend_size)) {
+          span_rows <- gtab$layout$t[idx]:gtab$layout$b[idx]
+          span_h <- sum(vapply(span_rows, function(r) {
+            grid::convertHeight(gtab$heights[r], unitTo = units, valueOnly = TRUE)
+          }, numeric(1)))
+          overflow <- legend_size$height - span_h
+          if (overflow > 0) height <- height + overflow
+        }
+      }
+    }
+
+    for (nm in tb_names) {
+      idx <- match(nm, gtab$layout$name)
+      if (!is.na(idx) && !is.na(width)) {
+        legend_size <- get_legend_content_size(idx)
+        if (!is.null(legend_size)) {
+          span_cols <- gtab$layout$l[idx]:gtab$layout$r[idx]
+          span_w <- sum(vapply(span_cols, function(c) {
+            grid::convertWidth(gtab$widths[c], unitTo = units, valueOnly = TRUE)
+          }, numeric(1)))
+          overflow <- legend_size$width - span_w
+          if (overflow > 0) width <- width + overflow
+        }
+      }
+    }
+  }, error = function(e) NULL)
+
+  c(width = width, height = height)
+}
+
 get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
-  if (ggplot2::is.ggplot(plot)) {
+  if (ggplot2::is_ggplot(plot)) {
     plot <- list(plot)
   }
   units <- match.arg(units)
 
-  pages <-
-    purrr::map(plot, function(x) {
-      if (!ggplot2::is.ggplot(x)) {
+  sizes <- plot |>
+    purrr::map(function(x) {
+      if (!ggplot2::is_ggplot(x)) {
         cli::cli_abort(
           "Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}"
         )
       }
+      get_gtab_size(ggplot2::ggplotGrob(x), units)
+    })
 
-      gtab <- ggplot2::ggplotGrob(x)
-
-      width <- NA
-      height <- NA
-      if (all(as.character(gtab$widths) != "1null")) {
-        width <- grid::convertWidth(
-          sum(gtab$widths) + ggplot2::unit(1, "mm"),
-          unitTo = units,
-          valueOnly = TRUE
-        )
-      }
-      if (all(as.character(gtab$heights) != "1null")) {
-        height <- grid::convertHeight(
-          sum(gtab$heights) + ggplot2::unit(1, "mm"),
-          unitTo = units,
-          valueOnly = TRUE
-        )
-      }
-
-      tibble::tibble(width = width, height = height)
-    }) |>
-    dplyr::bind_rows()
-
-  overall_width <- NA
-  overall_height <- NA
-  if (!anyNA(pages$width)) {
-    overall_width <- max(pages$width, na.rm = TRUE)
-  }
-  if (!anyNA(pages$height)) {
-    overall_height <- max(pages$height, na.rm = TRUE)
-  }
+  # Extract values implicitly by passing the strings as shorthands
+  pages <- data.frame(
+    width = purrr::map_dbl(sizes, "width"),
+    height = purrr::map_dbl(sizes, "height")
+  )
 
   list(
     units = units,
     pages = pages,
-    max = c(width = overall_width, height = overall_height)
+    max = c(width = max(pages$width), height = max(pages$height))
+  )
+}
+
+
+# Helpers for proportional scaling during interactive display ----------------
+
+render_for_viewer <- function(plot, ...) {
+  # Capture the original device first, before any operations that might
+  # interact with the device stack (including ggplotGrob/get_gtab_size).
+  prev_dev <- grDevices::dev.cur()
+
+  unit_str <- plot$tidyplot$unit %||% "mm"
+
+  # Strip the tidyplot class and build the grob once — reused for both layout
+  # measurement and rendering to avoid a double ggplotGrob() call.
+  plain <- plot
+  class(plain) <- class(plain)[class(plain) != "tidyplot"]
+  gtab <- ggplot2::ggplotGrob(plain)
+
+  # Measure the FULL figure: panel + axes + legend + margins.
+  # plot$tidyplot$width/height are panel-only dimensions; rendering at that size
+  # clips the legend and axis labels.
+  sizes <- get_gtab_size(gtab, unit_str)
+
+  fig_w <- if (is.na(sizes[["width"]])) {
+    plot$tidyplot$width
+  } else {
+    sizes[["width"]]
+  }
+
+  fig_h <- if (is.na(sizes[["height"]])) {
+    plot$tidyplot$height
+  } else {
+    sizes[["height"]]
+  }
+
+  # Render at the full figure dimensions to a temp PNG file.
+  # We track the PNG device number explicitly (png_dev) so it can be closed
+  # by identity rather than by dev.cur() comparison. grid.draw.gTree calls
+  # grDevices::recordGraphics() internally which can change dev.cur() back to
+  # prev_dev while the PNG device is still open, causing the conditional
+  # dev.cur() != prev_dev check to silently skip dev.off() and leak the device.
+  tmp <- tempfile(fileext = ".png")
+  on.exit(unlink(tmp), add = TRUE)
+  png_dev <- NA_integer_
+
+  tryCatch(
+    {
+      grDevices::png(tmp, width = fig_w, height = fig_h, units = unit_str, res = 300)
+      png_dev <- grDevices::dev.cur()
+      grid::grid.newpage()
+      grid::grid.draw(gtab)
+    },
+    finally = {
+      if (!is.na(png_dev) && png_dev %in% grDevices::dev.list()) {
+        grDevices::dev.off(png_dev)
+      }
+      if (grDevices::dev.cur() != prev_dev && prev_dev > 1L) {
+        tryCatch(grDevices::dev.set(prev_dev), error = function(e) NULL)
+      }
+    }
+  )
+
+  img <- png::readPNG(tmp)
+
+  in_per_unit <- switch(
+    unit_str,
+    "in" = 1,
+    "cm" = 1 / 2.54,
+    "mm" = 1 / 25.4,
+    "px" = 1 / 72,
+    1 / 25.4
+  )
+
+  fig_w_in <- fig_w * in_per_unit
+  fig_h_in <- fig_h * in_per_unit
+
+  # `recordGraphics()` executes the expression immediately AND re-executes it on
+  # every display-list replay (i.e. pane resize in RStudio/Positron). On each
+  # execution, `dev.size("in")` returns the *current* device dimensions, so the
+  # fractions are recomputed for the actual pane size and the raster always
+  # fills the pane while preserving the plot's aspect ratio — exactly like
+  # zooming in and out of a PNG. `img`, `fig_w_in`, and `fig_h_in` are bundled
+  # in `list` so they are available during replay without re-opening any
+  # devices.
+
+  # Note that `grid.newpage()` is called OUTSIDE `recordGraphics()` so it is
+  # recorded normally as a `[newpage]` entry.  This is important:
+  # `grid.newpage()` resets the device display list via `GEinitDisplayList()`.
+  # If it were called INSIDE the `recordGraphics()` expression, it would wipe
+  # the `[recordGraphics(expr)]` entry after the first replay, leaving only a
+  # static display list that stretches. With newpage outside, the display list
+  # is: `[newpage, recordGraphics(expr)]`. On every pane resize RStudio replays
+  # `[newpage]` (clears screen) then `[recordGraphics(expr)]`, so it
+  # re-evaluates `dev.size()` and draws correctly.
+  grid::grid.newpage()
+
+  grDevices::recordGraphics(
+    {
+      dw <- grDevices::dev.size("in")[1]
+      dh <- grDevices::dev.size("in")[2]
+      if (!is.finite(dw) || dw <= 0) {
+        dw <- fig_w_in
+      }
+      if (!is.finite(dh) || dh <= 0) {
+        dh <- fig_h_in
+      }
+      ar_target <- fig_h_in / fig_w_in
+      ar_device <- dh / dw
+      if (ar_target > ar_device) {
+        frac_w <- ar_device / ar_target
+        frac_h <- 1.0
+      } else {
+        frac_w <- 1.0
+        frac_h <- ar_target / ar_device
+      }
+      grid::grid.draw(
+        grid::rasterGrob(
+          img,
+          x = grid::unit(0.5, "npc"),
+          y = grid::unit(0.5, "npc"),
+          just = "centre",
+          width = grid::unit(frac_w, "npc"),
+          height = grid::unit(frac_h, "npc")
+        ),
+        recording = FALSE
+      )
+    },
+    list(img = img, fig_w_in = fig_w_in, fig_h_in = fig_h_in),
+    asNamespace("tidyplots")
   )
 }
