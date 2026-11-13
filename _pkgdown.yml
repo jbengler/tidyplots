@@ -82,6 +82,9 @@ reference:
   - starts_with("reorder")
   - starts_with("sort")
   - starts_with("reverse")
+- subtitle: Normalization
+- contents:
+  - starts_with("normalize")
 - title: Themes
   desc: Finetune the look of the plot.
 - contents:
