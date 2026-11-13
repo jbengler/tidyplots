@@ -18,3 +18,4 @@
 ^\.claude$
 ^[.]?air[.]toml$
 ^\.vscode$
+^\.positai$
