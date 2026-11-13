@@ -5,6 +5,13 @@
 ### Improvements
 
 - New
+  [`normalize_x()`](https://jbengler.github.io/tidyplots/reference/normalize_y.md),
+  [`normalize_y()`](https://jbengler.github.io/tidyplots/reference/normalize_y.md),
+  and
+  [`normalize_color()`](https://jbengler.github.io/tidyplots/reference/normalize_y.md)
+  for normalizing continuous values relative to reference rows, e.g. as
+  fold change, baseline subtraction, or scaling between two references.
+- New
   [`remove_clipping()`](https://jbengler.github.io/tidyplots/reference/remove_clipping.md)
   for disabling plot area clipping.
 - New

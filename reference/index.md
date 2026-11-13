@@ -193,6 +193,13 @@ Adjust plot components, properties, and data levels.
   [`reverse_color_levels()`](https://jbengler.github.io/tidyplots/reference/reverse_x_axis_levels.md)
   : Reverse axis or color levels
 
+### Normalization
+
+- [`normalize_y()`](https://jbengler.github.io/tidyplots/reference/normalize_y.md)
+  [`normalize_x()`](https://jbengler.github.io/tidyplots/reference/normalize_y.md)
+  [`normalize_color()`](https://jbengler.github.io/tidyplots/reference/normalize_y.md)
+  : Normalize x, y, or color values
+
 ## Themes
 
 Finetune the look of the plot.
