@@ -77,7 +77,7 @@ add_data_points_beeswarm(
   An `integer` between `0` and `24`, representing the shape of the plot
   symbol.
 
-  ![](figures/unnamed-chunk-1-1.png)
+  ![](figures/shapes.png)
 
 - size:
 
