@@ -1,3 +1,17 @@
+# man/figures/shapes.png (shown in the docs of the `shape` parameter) was created with:
+# shapes <- data.frame(
+#   shape = c(0:19, 22, 21, 24, 23, 20),
+#   x = 0:24 %/% 5,
+#   y = -(0:24 %% 5)
+# )
+# p <- ggplot2::ggplot(shapes, ggplot2::aes(x, y)) +
+#   ggplot2::geom_point(ggplot2::aes(shape = shape), size = 5, fill = "red") +
+#   ggplot2::geom_text(ggplot2::aes(label = shape), hjust = 0, nudge_x = 0.15) +
+#   ggplot2::scale_shape_identity() +
+#   ggplot2::expand_limits(x = 4.1) +
+#   ggplot2::theme_void()
+# ggplot2::ggsave("man/figures/shapes.png", p, width = 4, height = 4, dpi = 120)
+
 #' Common arguments
 #'
 #' @param plot A `tidyplot` generated with the function `tidyplot()`.
@@ -22,19 +36,7 @@
 #' @param shape An `integer` between `0` and `24`, representing the shape of the
 #'   plot symbol.
 #'
-#'   ```{r echo=FALSE, fig.width=4, fig.height=4, fig.dpi=120}
-#'   shapes <- data.frame(
-#'   shape = c(0:19, 22, 21, 24, 23, 20),
-#'   x = 0:24 %/% 5,
-#'   y = -(0:24 %% 5)
-#'   )
-#'   ggplot2::ggplot(shapes, ggplot2::aes(x, y)) +
-#'   ggplot2::geom_point(ggplot2::aes(shape = shape), size = 5, fill = "red") +
-#'   ggplot2::geom_text(ggplot2::aes(label = shape), hjust = 0, nudge_x = 0.15) +
-#'   ggplot2::scale_shape_identity() +
-#'   ggplot2::expand_limits(x = 4.1) +
-#'   ggplot2::theme_void()
-#'   ```
+#'   \figure{shapes.png}
 #' @param size A `number` representing the size of the plot symbol. Typical
 #'   values range between `1` and `3`.
 #' @param width Horizontal width of the plotted object (bar, error bar, boxplot,

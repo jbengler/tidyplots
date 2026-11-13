@@ -31,7 +31,7 @@ the layer if \code{rasterize} is \code{TRUE}. The default is \code{300} dpi.}
 \item{shape}{An \code{integer} between \code{0} and \code{24}, representing the shape of the
 plot symbol.
 
-\figure{unnamed-chunk-1-1.png}}
+\figure{shapes.png}}
 
 \item{size}{A \code{number} representing the size of the plot symbol. Typical
 values range between \code{1} and \code{3}.}
