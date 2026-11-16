@@ -52,12 +52,12 @@
 <polyline points='388.99,305.89 402.49,305.89 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
 <polyline points='395.74,305.89 395.74,307.49 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
 <polyline points='388.99,307.49 402.49,307.49 ' style='stroke-width: 0.53; stroke: #D55E00; stroke-linecap: butt;' />
-<text x='311.37' y='257.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0050</text>
-<text x='328.25' y='247.59' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0030</text>
+<text x='311.37' y='257.38' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0051</text>
+<text x='328.25' y='247.59' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0033</text>
 <text x='345.12' y='237.79' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='27.45px' lengthAdjust='spacingAndGlyphs'>&lt; 0.0001</text>
-<text x='345.12' y='227.99' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0070</text>
-<text x='361.99' y='218.20' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0010</text>
-<text x='378.87' y='208.40' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0470</text>
+<text x='345.12' y='227.99' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0071</text>
+<text x='361.99' y='218.20' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0011</text>
+<text x='378.87' y='208.40' text-anchor='middle' style='font-size: 7.00px; font-family: sans;' textLength='21.41px' lengthAdjust='spacingAndGlyphs'>0.0474</text>
 <line x1='294.50' y1='261.96' x2='294.50' y2='260.01' style='stroke-width: 0.64;' />
 <line x1='294.50' y1='252.17' x2='294.50' y2='250.21' style='stroke-width: 0.64;' />
 <line x1='294.50' y1='242.37' x2='294.50' y2='240.41' style='stroke-width: 0.64;' />
