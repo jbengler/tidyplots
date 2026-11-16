@@ -199,5 +199,5 @@ without their contributions.
 
 tidyplots relies on several fantastic packages that handle all the heavy
 lifting behind the scenes. These include cli, dplyr, forcats,
-ggbeeswarm, ggplot2, ggpubr, ggrastr, ggrepel, glue, Hmisc, htmltools,
+ggbeeswarm, ggplot2, ggrastr, ggrepel, glue, Hmisc, htmltools,
 lifecycle, purrr, rlang, scales, stringr, tidyr, and tidyselect.

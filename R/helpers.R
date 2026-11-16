@@ -49,6 +49,7 @@ is_waiver <- function(x) inherits(x, "waiver")
 #' @export
 flip_plot <- function(plot, ...) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(plot, "transform", operation = "swap x and y axes")
   plot + ggplot2::coord_flip(...)
 }
 
@@ -309,9 +310,6 @@ check_input <- function(input) {
   if (any(inherits(input, "tidyplot"))) {
     return("tp")
   }
-  if (any(inherits(input, "patchwork"))) {
-    return("pw")
-  }
   if (any(inherits(input, "gg"))) {
     return("gg")
   }
@@ -319,9 +317,6 @@ check_input <- function(input) {
   if (is.list(input)) {
     if (any(purrr::map_lgl(input, inherits, "tidyplot"))) {
       return("tp_list")
-    }
-    if (any(purrr::map_lgl(input, inherits, "patchwork"))) {
-      return("pw_list")
     }
     if (any(purrr::map_lgl(input, inherits, "gg"))) return("gg_list")
   }
@@ -457,14 +452,15 @@ get_plottype <- function(plot) {
 check_tidyplot <- function(
   plot,
   arg = rlang::caller_arg(plot),
-  call = rlang::caller_env()
+  call = rlang::caller_env(),
+  log = TRUE
 ) {
   if (!inherits(plot, "tidyplot")) {
     msg <- c("{.arg {arg}} must be a tidyplot.")
-    if (inherits(plot, "list") || inherits(plot, "patchwork")) {
+    if (inherits(plot, "list")) {
       msg <- c(
         msg,
-        "i" = "After using `split_plot()`, only `save_plot()` is allowed."
+        "i" = "After splitting a plot into several pages with `split_plot()`, only `save_plot()` is allowed."
       )
     } else {
       msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")
@@ -472,17 +468,9 @@ check_tidyplot <- function(
     cli::cli_abort(msg, call = call)
   }
 
-  call_stack <- sys.call(sys.parent())
-  last_call <- as.character(call_stack[[1]])
-
-  if (is.null(plot$tidyplot$call_history)) {
-    call_history <- last_call
-  } else {
-    call_history <- c(plot$tidyplot$call_history, last_call)
+  if (log) {
+    plot <- log_step(plot, frame = call)
   }
-
-  plot$tidyplot$call_stack <- call_stack
-  plot$tidyplot$call_history <- call_history
 
   plot
 }
@@ -512,14 +500,22 @@ burst_filename <- function(filename, n) {
 }
 
 get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
-  if (ggplot2::is.ggplot(plot)) {
+  if (ggplot2::is_ggplot(plot)) {
     plot <- list(plot)
   }
   units <- match.arg(units)
 
+  # Unit conversion needs a graphics device. Without an open device, R would
+  # open the default one, e.g. writing Rplots.pdf to the working directory.
+  if (grDevices::dev.cur() == 1) {
+    grDevices::pdf(NULL)
+    measuring_device <- grDevices::dev.cur()
+    on.exit(grDevices::dev.off(measuring_device), add = TRUE)
+  }
+
   pages <-
     purrr::map(plot, function(x) {
-      if (!ggplot2::is.ggplot(x)) {
+      if (!ggplot2::is_ggplot(x)) {
         cli::cli_abort(
           "Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}"
         )
@@ -562,4 +558,18 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
     pages = pages,
     max = c(width = overall_width, height = overall_height)
   )
+}
+
+check_single_string <- function(
+  x,
+  arg = rlang::caller_arg(x),
+  call = rlang::caller_env()
+) {
+  if (!rlang::is_string(x) || !nzchar(trimws(x))) {
+    cli::cli_abort(
+      "{.arg {arg}} must be a single, non-empty character string.",
+      call = call
+    )
+  }
+  invisible(x)
 }

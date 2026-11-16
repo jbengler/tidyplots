@@ -7,12 +7,28 @@ ff_adjust_axis <- function(axis) {
     limits = NULL,
     padding = c(NA, NA),
     rotate_labels = FALSE,
-    transform = "identity",
+    transform = NULL,
     cut_short_scale = FALSE,
     force_continuous = FALSE,
     ...
   ) {
     plot <- check_tidyplot(plot)
+    # Adjust transformation. Keep the current one unless a new one is given.
+    transform_field <- paste0("transform_", axis)
+    if (!is.null(transform)) {
+      plot$tidyplot[[transform_field]] <- transform
+      transform_name <- scales::as.transform(transform)$name
+      if (!identical(transform_name, "identity")) {
+        plot <- log_record(
+          plot,
+          "transform",
+          operation = "axis transformation",
+          axis = axis,
+          transform = transform_name
+        )
+      }
+    }
+    transform <- plot$tidyplot[[transform_field]] %||% "identity"
     # Parse title
     if (!is_waiver(title)) {
       title <- tidyplot_parser(as.character(title))
@@ -268,9 +284,16 @@ ff_adjust_axis <- function(axis) {
 #' Adjust axes
 #' @param title Axis title.
 #' @param limits Axis limits. For example, with `limits = c(20, 90)` the axis starts at 20 and ends at 90.
+#'  The limits zoom into the plot and do not remove data, see Details.
 #' @param rotate_labels Whether to rotate axis labels. If `TRUE` is set to 45 degrees. You can also provide custom degree values, for example, `rotate_labels = 90`. Defaults to `FALSE`.
 #' @param cut_short_scale Whether to shorten axis labels using `K` for thousand, `M` for million, and so on. Defaults to `FALSE`.
 #' @param padding Extra space between the data points and the axes. Defaults to `c(NA, NA)`, which does not change the padding.
+#' @param transform For continuous scales, the name of a transformation object
+#'   or the object itself, for example `"log10"`, `"log2"`, `"sqrt"`, or
+#'   `"reverse"`. See `ggplot2::scale_x_continuous()` for details. The
+#'   transformation persists when the axis is adjusted again or layers are
+#'   added. Defaults to `NULL`, which keeps the current transformation
+#'   (`"identity"` for a new plot).
 #' @param ... Arguments passed on to ggplot2 `scale` function.
 #' @inherit common_arguments
 #' @inheritParams ggplot2::scale_x_continuous
@@ -278,6 +301,17 @@ ff_adjust_axis <- function(axis) {
 #' @details
 #' * The `title` argument of `adjust_x_axis()` and `adjust_y_axis()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
 #' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
+#' * `limits` zoom into the plot, like `ggplot2::coord_cartesian()`. Values
+#' outside the limits are cut off at the edge of the plot, but they are kept
+#' in the data: summaries such as means, error bars, and boxplots, as well as
+#' statistical tests, still use all values.
+#' * In contrast, limits of a ggplot2 scale, e.g.
+#' `add(ggplot2::scale_y_continuous(limits = c(20, 90)))`, remove all values
+#' outside the limits before anything is computed. Summaries then describe
+#' only the remaining values, which can be misleading. Statistical tests of
+#' `add_test_pvalue()` and `add_test_asterisks()` still use all values, so
+#' they may no longer match the summaries shown. `view_log()` reports the
+#' removed values.
 #'
 #' @examples
 #' # Plot without adjustments
@@ -452,6 +486,7 @@ adjust_size <- function(
 #'
 #' @export
 adjust_theme_details <- function(plot, ...) {
+  plot <- check_tidyplot(plot)
   plot +
     ggplot2::theme(...)
 }
@@ -623,6 +658,7 @@ adjust_legend_title <- function(
   color = NULL,
   ...
 ) {
+  plot <- check_tidyplot(plot)
   plot |>
     adjust_legend(title = title) +
     ggplot2::theme(
@@ -638,6 +674,7 @@ adjust_legend_title <- function(
 #' @rdname adjust_legend_title
 #' @export
 adjust_legend_position <- function(plot, position = "right") {
+  plot <- check_tidyplot(plot)
   plot |> adjust_legend(position = position)
 }
 
@@ -783,6 +820,7 @@ adjust_title <- function(
   color = NULL,
   ...
 ) {
+  plot <- check_tidyplot(plot)
   plot |>
     adjust_description(title = title) +
     ggplot2::theme(
@@ -806,6 +844,7 @@ adjust_x_axis_title <- function(
   color = NULL,
   ...
 ) {
+  plot <- check_tidyplot(plot)
   plot |>
     adjust_description(x_axis_title = title) +
     ggplot2::theme(
@@ -828,6 +867,7 @@ adjust_y_axis_title <- function(
   color = NULL,
   ...
 ) {
+  plot <- check_tidyplot(plot)
   plot |>
     adjust_description(y_axis_title = title) +
     ggplot2::theme(
@@ -850,6 +890,7 @@ adjust_caption <- function(
   color = NULL,
   ...
 ) {
+  plot <- check_tidyplot(plot)
   plot |>
     adjust_description(caption = caption) +
     ggplot2::theme(

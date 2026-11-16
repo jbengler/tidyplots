@@ -13,7 +13,7 @@ adjust_x_axis(
   limits = NULL,
   padding = c(NA, NA),
   rotate_labels = FALSE,
-  transform = "identity",
+  transform = NULL,
   cut_short_scale = FALSE,
   force_continuous = FALSE,
   ...
@@ -27,7 +27,7 @@ adjust_y_axis(
   limits = NULL,
   padding = c(NA, NA),
   rotate_labels = FALSE,
-  transform = "identity",
+  transform = NULL,
   cut_short_scale = FALSE,
   force_continuous = FALSE,
   ...
@@ -64,24 +64,19 @@ as output. Also accepts rlang \link[rlang:as_function]{lambda} function
 notation.
 }}
 
-\item{limits}{Axis limits. For example, with \code{limits = c(20, 90)} the axis starts at 20 and ends at 90.}
+\item{limits}{Axis limits. For example, with \code{limits = c(20, 90)} the axis starts at 20 and ends at 90.
+The limits zoom into the plot and do not remove data, see Details.}
 
 \item{padding}{Extra space between the data points and the axes. Defaults to \code{c(NA, NA)}, which does not change the padding.}
 
 \item{rotate_labels}{Whether to rotate axis labels. If \code{TRUE} is set to 45 degrees. You can also provide custom degree values, for example, \code{rotate_labels = 90}. Defaults to \code{FALSE}.}
 
 \item{transform}{For continuous scales, the name of a transformation object
-or the object itself. Built-in transformations include "asn", "atanh",
-"boxcox", "date", "exp", "hms", "identity", "log", "log10", "log1p", "log2",
-"logit", "modulus", "probability", "probit", "pseudo_log", "reciprocal",
-"reverse", "sqrt" and "time".
-
-A transformation object bundles together a transform, its inverse,
-and methods for generating breaks and labels. Transformation objects
-are defined in the scales package, and are called \verb{transform_<name>}. If
-transformations require arguments, you can call them from the scales
-package, e.g. \code{\link[scales:transform_boxcox]{scales::transform_boxcox(p = 2)}}.
-You can create your own transformation with \code{\link[scales:new_transform]{scales::new_transform()}}.}
+or the object itself, for example \code{"log10"}, \code{"log2"}, \code{"sqrt"}, or
+\code{"reverse"}. See \code{ggplot2::scale_x_continuous()} for details. The
+transformation persists when the axis is adjusted again or layers are
+added. Defaults to \code{NULL}, which keeps the current transformation
+(\code{"identity"} for a new plot).}
 
 \item{cut_short_scale}{Whether to shorten axis labels using \code{K} for thousand, \code{M} for million, and so on. Defaults to \code{FALSE}.}
 
@@ -99,6 +94,17 @@ Adjust axes
 \itemize{
 \item The \code{title} argument of \code{adjust_x_axis()} and \code{adjust_y_axis()} supports \href{https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath}{plotmath expressions} to include special characters.
 See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters}{Advanced plotting}.
+\item \code{limits} zoom into the plot, like \code{ggplot2::coord_cartesian()}. Values
+outside the limits are cut off at the edge of the plot, but they are kept
+in the data: summaries such as means, error bars, and boxplots, as well as
+statistical tests, still use all values.
+\item In contrast, limits of a ggplot2 scale, e.g.
+\code{add(ggplot2::scale_y_continuous(limits = c(20, 90)))}, remove all values
+outside the limits before anything is computed. Summaries then describe
+only the remaining values, which can be misleading. Statistical tests of
+\code{add_test_pvalue()} and \code{add_test_asterisks()} still use all values, so
+they may no longer match the summaries shown. \code{view_log()} reports the
+removed values.
 }
 }
 \examples{

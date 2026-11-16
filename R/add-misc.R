@@ -51,6 +51,19 @@ add_boxplot <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "summary",
+    statistic = "median",
+    dispersion = "interquartile range",
+    whiskers = if (show_whiskers) {
+      paste0("most extreme values within ", coef, " x interquartile range")
+    },
+    outliers = if (show_whiskers) {
+      if (show_outliers) "shown" else "hidden"
+    },
+    geom = "boxplot"
+  )
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width, preserve = preserve)
   if (saturation != 1) {
@@ -119,6 +132,20 @@ add_violin <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "summary",
+    statistic = "kernel density",
+    trim = trim,
+    scaling = switch(
+      scale,
+      area = "equal area",
+      count = "area proportional to number of values",
+      width = "equal maximum width",
+      scale
+    ),
+    geom = "violin"
+  )
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
   position <- ggplot2::position_dodge(width = dodge_width)
   if (saturation != 1) {
@@ -167,6 +194,7 @@ add_line <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(plot, "layer", shows = "individual values", geom = "line")
   mapping <- NULL
   if (is_missing(plot, "group")) {
     mapping <- ggplot2::aes()
@@ -197,6 +225,7 @@ add_area <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(plot, "layer", shows = "individual values", geom = "area")
   ptype <- get_plottype(plot)
 
   # detect orientation
@@ -274,6 +303,18 @@ add_curve_fit <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  dots <- list(...)
+  plot <- log_record(
+    plot,
+    "summary",
+    statistic = "fitted curve",
+    method = method,
+    formula = if (!is.null(dots$formula)) deparse(dots$formula),
+    band = if (!isFALSE(dots$se)) {
+      paste0(100 * (dots$level %||% 0.95), "% confidence band")
+    },
+    geom = "curve"
+  )
   mapping <- ggplot2::aes()
   mapping$group <- plot$mapping$colour
   dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
@@ -312,6 +353,14 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
   args$color <- NA
 
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "summary",
+    statistic = "count",
+    bins = if (is.null(binwidth)) bins %||% 30,
+    binwidth = binwidth,
+    geom = "histogram"
+  )
   plot <-
     plot +
     do.call(ggplot2::geom_histogram, args)
@@ -327,6 +376,13 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
 
 #' Add ggplot2 code to a tidyplot
 #'
+#' Adds ggplot2 components such as geoms, stats, scales or theme elements to a
+#' tidyplot. `add(plot, object)` is equivalent to `plot + object`, except that
+#' the addition is recorded in the log as an external step, see [view_log()].
+#'
+#' @param plot A `tidyplot` generated with the function `tidyplot()`.
+#' @param object A ggplot2 component, for example `ggplot2::geom_point()`.
+#'
 #' @return A `tidyplot` object.
 #'
 #' @examples
@@ -335,7 +391,11 @@ add_histogram <- function(plot, binwidth = NULL, bins = NULL, ...) {
 #'   add(ggplot2::geom_point())
 #'
 #' @export
-add <- .Primitive("+")
+add <- function(plot, object) {
+  plot <- check_tidyplot(plot)
+  plot <- plot + object
+  log_record(plot, "external")
+}
 
 
 #' Add ellipse
@@ -361,6 +421,15 @@ add <- .Primitive("+")
 #' @export
 add_ellipse <- function(plot, ...) {
   plot <- check_tidyplot(plot)
+  dots <- list(...)
+  plot <- log_record(
+    plot,
+    "summary",
+    statistic = "confidence ellipse",
+    type = dots$type %||% "t",
+    level = dots$level %||% 0.95,
+    geom = "ellipse"
+  )
   plot <-
     plot + ggplot2::stat_ellipse(...)
   plot

@@ -63,6 +63,13 @@ add_data_points <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "layer",
+    shows = "individual values",
+    rows = log_rows_text(substitute(data)),
+    geom = "points"
+  )
   f_points(
     plot = plot,
     data = data,
@@ -94,6 +101,15 @@ add_data_points_jitter <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "layer",
+    shows = "individual values",
+    rows = log_rows_text(substitute(data)),
+    geom = "jittered points",
+    jitter = paste0("width ", jitter_width, ", height ", jitter_height),
+    seed = seed
+  )
   f_points(
     plot = plot,
     data = data,
@@ -128,6 +144,13 @@ add_data_points_beeswarm <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "layer",
+    shows = "individual values",
+    rows = log_rows_text(substitute(data)),
+    geom = "beeswarm points"
+  )
   f_points(
     beeswarm = TRUE,
     plot = plot,

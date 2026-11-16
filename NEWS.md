@@ -1,14 +1,41 @@
 # tidyplots (development version)
 
+## Breaking changes
+
+* tidyplots no longer depends on ggpubr. `add_test_pvalue()` and `add_test_asterisks()` now compute the tests themselves with base R, using `stats::t.test()` and `stats::wilcox.test()`. Supported methods are `"t_test"`, `"wilcox_test"`, `"tukey_hsd"`, `"games_howell_test"`, and `"dunn_test"`. Tukey's HSD, Games-Howell, and Dunn's test are computed by tidyplots and verified against `stats::TukeyHSD()` and rstatix. The p values of Tukey's HSD and Games-Howell are adjusted by the test itself, so `p.adjust.method` must be `"none"` for them. The methods `"sign_test"` and `"emmeans_test"` are no longer supported and give an error; use `add_test_pvalue_manual()` with statistics computed elsewhere instead. The appearance of the brackets is nearly unchanged.
+* `add_test_pvalue()` and `add_test_asterisks()` now also work in horizontal plots with a discrete y axis and a continuous x axis, e.g. `tidyplot(x = score, y = treatment)`. `add_test_pvalue_manual()` and `add_test_asterisks_manual()` detect the orientation the same way, or take it from the new argument `orientation`.
+* `add_test_pvalue()` and `add_test_asterisks()` test the values in the data, regardless of axis transformations and axis limits. Values that are tested but not shown in the plot are reported in a warning and in `view_log()`, and the log names the test as reported by R, e.g. "Wilcoxon rank sum test with continuity correction".
+* Arguments in `...` of `add_test_pvalue()`, `add_test_asterisks()`, `add_test_pvalue_manual()`, and `add_test_asterisks_manual()` are no longer passed on to ggpubr. Supported are `method.args` and the drawing arguments `tip.length`, `linewidth` (or `size`), `linetype`, `alpha`, `family`, and `fontface`. Other arguments are ignored with a warning.
+* `add_ellipse()` requires the MASS package, which is now listed in Suggests. Previously, it was installed as a dependency of ggpubr.
+
 ## Improvements
 
-* New `normalize_x()`, `normalize_y()`, and `normalize_color()` for normalizing continuous values relative to reference rows, e.g. as fold change, baseline subtraction, or scaling between two references.
+* Statistical tests are more accurate. p values are no longer rounded before they are shown, and adjusted p values are computed from the exact instead of the rounded p values. For example, a Holm-adjusted p value previously shown as 0.0060 is now correctly shown as 0.0065.
+* Statistical tests are computed separately for each panel on the final plot data. Comparisons in facets that previously failed silently are now computed, and comparisons that cannot be computed give a warning. Paired tests match values by `paired_by`, not by their order in the data.
+* Experimental: tidyplots now keep a log of what tidyplots did to make a figure. The log records the input data (name, hash, dimensions), the software versions, and every step of the pipeline from `tidyplot()` onward, including ggplot2 components added with `add()` (but not with `+`). Nested internal calls are not logged, and the log does not depend on how functions are invoked (pipe, `do.call()`, `Reduce()`, purrr, wrapper functions). Logging never breaks plotting: steps that cannot be recorded are marked as unrecorded. New `view_log()` prints the log. The log is a record, not a guarantee of reproducibility, and its format may still change.
+  * Summary layers record the statistic and dispersion they show (e.g. mean and standard error of the mean), data point and label layers record the rows they show and their jitter seed.
+  * Normalization, renaming, reordering and sorting of levels, axis transformations, `flip_plot()` and `split_plot()` record their resolved result, e.g. the reference values of a normalization or the final level order.
+  * `add_test_pvalue()` and friends record the test specification in standard terms, e.g. "Welch's t-test", together with the underlying base R function and arguments, the alternative, pairing, comparisons, and the p-value adjustment. The test names are verified by tests against base R, and arguments not reflected in the test name are reported. Pre-computed statistics are recorded as not verified.
+  * `view_log()` reports the results of all statistical comparisons: groups, n, test statistic, degrees of freedom, exact and adjusted p values, and significance, per panel. Comparisons hidden with `hide.ns` and comparisons that could not be computed are reported as such.
+  * `view_log()` also reports the number of rows plotted, rows dropped due to missing values or non-finite values after an axis transformation, and rows per group. With continuous x and y, summary layers compute their statistic per x value, and the range of rows per x value and group is reported as well.
+* Experimental: new `save_bundle()` saves a figure together with its data and log into a folder: a self-contained HTML report with the figure, all steps of the log, and the results of statistical tests, the figure as PNG and PDF, the input and plotted data as CSV with a data dictionary that keeps the order of factor levels, the test results, excluded rows, and the log as text. The log now keeps a reference to the input data.
+* New `add_note()` and `add_metadata()` record explanations and metadata such as data source, units, and what one row of the data is (`n_unit`, e.g. `"mice"`) in the log.
+* New `data_*()` family for changing the plot data within the pipeline. Changes are recorded in the log.
+  * `data_exclude()` excludes rows from the plot data with a required `reason`, following the logic of `dplyr::filter_out()`. The exclusion, its reason, and the excluded rows are recorded in the log.
+  * `data_normalize_x()`, `data_normalize_y()`, and `data_normalize_color()` normalize continuous values relative to reference rows, e.g. as fold change, baseline subtraction, or scaling between two references.
+* `add()` is now a regular function. Unlike `+`, its additions are recorded in the log.
 * New `remove_clipping()` for disabling plot area clipping.
-* New `add_test_pvalue_manual()` and `add_test_asterisks_manual()` for adding pre-computed statistical comparisons via `ggpubr::stat_pvalue_manual()`.
+* New `add_test_pvalue_manual()` and `add_test_asterisks_manual()` for adding pre-computed statistical comparisons.
 * `add_data_points_jitter()`, `add_data_labels()` and `add_data_labels_repel()` now expose the `seed` parameter.
 
 ## Bug fixes
 
+* `add_data_labels_repel()` no longer draws a border around labels with ggrepel 0.9.8 or later, where the border is controlled by `linewidth` instead of `label.size`.
+* Axis transformations set with `adjust_x_axis(transform = ...)` or `adjust_y_axis(transform = ...)` now persist. Previously, adding layers such as `add_mean_bar()` or adjusting the axis again silently reset the transformation to `"identity"`.
+* `sort_x_axis_levels()` and friends now sort by the summary statistic shown in the plot, as recorded in the log, with the most recent summary layer winning. Previously, the statistic was guessed from function names in the call history, so plots with only `add_sem_errorbar()`, `add_sd_errorbar()` or `add_ci95_errorbar()` were sorted by median instead of mean, and calls via `Reduce()` or purrr lost the statistic.
+* Calling tidyplots functions via `do.call()` no longer fails.
+* `add_test_pvalue()` and `add_test_asterisks()` no longer fail when `method.args` is supplied, e.g. `method.args = list(var.equal = TRUE)`.
+* `save_plot()` no longer uses the deprecated `ggplot2::is.ggplot()`, and no longer creates an `Rplots.pdf` file in the working directory when no graphics device is open, e.g. in scripts.
 * Color saturation now persist multiple `adjust_colors()` calls (#171).
 * `adjust_legend_title()` now works across all mapped aesthetics (#163).
 

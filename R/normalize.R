@@ -6,6 +6,7 @@ ff_normalize <- function(axis) {
       cli::cli_abort("The {label} must be continuous to be normalized.")
     }
     var <- get_variable(plot, axis)
+    fun_label <- rlang::expr_text(substitute(fun))
     fun <- rlang::as_function(fun)
 
     # Evaluate conditions; a NULL condition does not create a column
@@ -62,7 +63,38 @@ ff_normalize <- function(axis) {
 
     new_data <- plot$data
     new_data[[var]] <- (new_data[[var]] - x_zero) / denominator
-    update_data(plot, new_data)
+    plot <- update_data(plot, new_data)
+
+    # Log the normalization
+    log_record(
+      plot,
+      "transform",
+      .record = local({
+        by_vars <- names(tidyselect::eval_select(rlang::enquo(by), plot$data))
+        ref_cols <- c(if (has_zero) ".ref_zero", if (has_one) ".ref_one")
+        references <- unique(data[c(by_vars, ref_cols)])
+        names(references) <- c(by_vars, sub("^\\.ref_", "", ref_cols))
+        list(
+          operation = "normalization",
+          variable = var,
+          method = if (has_one && has_zero) {
+            "scaled between two references (zero -> 0, one -> 1)"
+          } else if (has_one) {
+            "fold change relative to reference (one -> 1)"
+          } else {
+            "difference from reference (zero -> 0)"
+          },
+          one = if (has_one) rlang::expr_text(rlang::enexpr(one)),
+          zero = if (has_zero) rlang::expr_text(rlang::enexpr(zero)),
+          by = if (length(by_vars) > 0) by_vars,
+          reference_function = fun_label,
+          references = tibble::as_tibble(references),
+          groups_without_reference = if (any(missing_ref)) {
+            length(unique(data$.ref_group[missing_ref]))
+          }
+        )
+      })
+    )
   }
 }
 
@@ -107,14 +139,14 @@ ff_normalize <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
 #'   add_data_points() |>
-#'   normalize_y(one = treatment == "A")
+#'   data_normalize_y(one = treatment == "A")
 #'
 #' # Temperature anomaly relative to 1961-1990, separately for each month
 #' climate |>
 #'   tidyplot(x = year, y = avg_temperature) |>
 #'   add_mean_line() |>
 #'   add_reference_lines(y = 0) |>
-#'   normalize_y(zero = year >= 1961 & year <= 1990, by = month)
+#'   data_normalize_y(zero = year >= 1961 & year <= 1990, by = month)
 #'
 #' # Scale each gene from healthy (0) to disease (1)
 #' gene_expression |>
@@ -124,7 +156,7 @@ ff_normalize <- function(axis) {
 #'   add_mean_dash() |>
 #'   add_data_points() |>
 #'   reorder_x_axis_levels("healthy") |>
-#'   normalize_y(
+#'   data_normalize_y(
 #'     zero = condition == "healthy",
 #'     one = condition == "disease",
 #'     by = external_gene_name
@@ -136,20 +168,20 @@ ff_normalize <- function(axis) {
 #'   add_mean_bar(alpha = 0.4) |>
 #'   add_sem_errorbar() |>
 #'   add_data_points() |>
-#'   normalize_x(one = treatment == "A")
+#'   data_normalize_x(one = treatment == "A")
 #'
 #' # Heatmap of temperature anomalies relative to 1961-1990
 #' climate |>
 #'   tidyplot(x = month, y = year, color = max_temperature) |>
 #'   add_heatmap() |>
 #'   adjust_colors(colors_diverging_blue2red) |>
-#'   normalize_color(zero = year >= 1961 & year <= 1990, by = month)
+#'   data_normalize_color(zero = year >= 1961 & year <= 1990, by = month)
 #'
 #' @export
-normalize_y <- ff_normalize(axis = "y")
-#' @rdname normalize_y
+data_normalize_y <- ff_normalize(axis = "y")
+#' @rdname data_normalize_y
 #' @export
-normalize_x <- ff_normalize(axis = "x")
-#' @rdname normalize_y
+data_normalize_x <- ff_normalize(axis = "x")
+#' @rdname data_normalize_y
 #' @export
-normalize_color <- ff_normalize(axis = "colour")
+data_normalize_color <- ff_normalize(axis = "colour")

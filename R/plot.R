@@ -51,6 +51,11 @@ tidyplot <- function(
   ink = NULL
 ) {
   mapping <- ggplot2::aes(...)
+  data_expr <- substitute(data)
+  log <- tryCatch(
+    log_new(data, log_data_name(data_expr)),
+    error = log_new_unrecorded
+  )
 
   # Add .single_color column to data if `colour` and `fill` mappings are missing
   single_color_plot <- FALSE
@@ -72,6 +77,21 @@ tidyplot <- function(
   class(plot) <- c("tidyplot", class(plot))
 
   plot$tidyplot$mapping <- extract_mapping(plot)
+
+  plot$tidyplot$log <- log
+  rlang::env_poke(rlang::current_env(), ".tp_top", TRUE)
+  plot <- log_append(
+    plot,
+    tryCatch(
+      new_log_entry(
+        fun = "tidyplot",
+        call = log_clean_call(sys.call(), sys.function(), "tidyplot"),
+        kind = "data",
+        record = list(mapping = plot$tidyplot$mapping)
+      ),
+      error = function(e) log_unrecorded_entry(e, fun = "tidyplot")
+    )
+  )
 
   plot$tidyplot$width <- width %||% getOption("tidyplots.width") %||% 50
   plot$tidyplot$height <- height %||% getOption("tidyplots.height") %||% 50
@@ -317,7 +337,25 @@ split_plot <- function(
         "split_plot: split into {.pkg {nrow(df)} plot{?s}} across {.pkg {ceiling(nrow(df)/plots_per_page)} page{?s}}"
       )
 
-      return(unname(pages))
+      by_quo <- rlang::enquo(by)
+      split_env <- rlang::current_env()
+      pages <- purrr::imap(unname(pages), function(page, k) {
+        log_record(
+          page,
+          "facet",
+          .record = local({
+            by_var <- rlang::as_label(by_quo)
+            list(
+              by = by_var,
+              levels = log_levels(page$data[[by_var]]),
+              page = paste(k, "of", length(pages)),
+              axis_ranges = log_axis_ranges(scales)
+            )
+          }),
+          frame = split_env
+        )
+      })
+      return(pages)
     } else {
       plot <- plot +
         facet_wrap_ext(
@@ -329,6 +367,19 @@ split_plot <- function(
           axis.titles = axis.titles,
           ...
         )
+      by_quo <- rlang::enquo(by)
+      plot <- log_record(
+        plot,
+        "facet",
+        .record = local({
+          by_var <- rlang::as_label(by_quo)
+          list(
+            by = by_var,
+            levels = log_levels(plot$data[[by_var]]),
+            axis_ranges = log_axis_ranges(scales)
+          )
+        })
+      )
       return(plot)
     }
   }
@@ -348,6 +399,27 @@ split_plot <- function(
         ...
       ) +
       ggplot2::theme_sub_strip(placement = "outside")
+    rows_quo <- rlang::enquo(rows)
+    cols_quo <- rlang::enquo(cols)
+    plot <- log_record(
+      plot,
+      "facet",
+      .record = local({
+        rows_var <- if (!rlang::quo_is_null(rows_quo)) rlang::as_label(rows_quo)
+        cols_var <- if (!rlang::quo_is_null(cols_quo)) rlang::as_label(cols_quo)
+        list(
+          rows = rows_var,
+          row_levels = if (!is.null(rows_var)) {
+            log_levels(plot$data[[rows_var]])
+          },
+          cols = cols_var,
+          col_levels = if (!is.null(cols_var)) {
+            log_levels(plot$data[[cols_var]])
+          },
+          axis_ranges = log_axis_ranges(scales)
+        )
+      })
+    )
     return(plot)
   }
 }
@@ -386,7 +458,7 @@ split_plot <- function(
 #'
 #' @export
 view_plot <- function(plot, data = all_rows(), title = ggplot2::waiver(), ...) {
-  plot <- check_tidyplot(plot)
+  plot <- check_tidyplot(plot, log = FALSE)
   input <- plot
   if (inherits(data, "function")) {
     my_fun <- data
@@ -478,18 +550,18 @@ save_plot <- function(
   ...
 ) {
   if (
-    !ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot))
+    !ggplot2::is_ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is_ggplot))
   ) {
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
   }
 
   input <- plot
-  if (ggplot2::is.ggplot(plot)) {
+  if (ggplot2::is_ggplot(plot)) {
     plot <- list(plot)
   }
   units <- match.arg(units)
 
-  if (check_input(plot) %in% c("pw_list", "tp_list", "gg_list")) {
+  if (check_input(plot) %in% c("tp_list", "gg_list")) {
     dimensions <- get_layout_size(plot, units)$max
   } else {
     dimensions <- list(width = NA, height = NA)

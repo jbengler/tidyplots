@@ -21,6 +21,7 @@ add_test_pvalue_manual(
   tip.length = 0.03,
   hide.ns = FALSE,
   remove.bracket = FALSE,
+  orientation = NA,
   color = plot$tidyplot$ink,
   ...
 )
@@ -41,6 +42,7 @@ add_test_asterisks_manual(
   tip.length = 0.03,
   hide.ns = TRUE,
   remove.bracket = FALSE,
+  orientation = NA,
   color = plot$tidyplot$ink,
   ...
 )
@@ -48,78 +50,70 @@ add_test_asterisks_manual(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{data}{a data frame containing statitistical test results. The expected
-default format should contain the following columns: \code{group1 | group2 |
-p | y.position | etc}. \code{group1} and \code{group2} are the groups that
-have been compared. \code{p} is the resulting p-value. \code{y.position} is
-the y coordinates of the p-values in the plot.}
+\item{data}{A data frame with the pre-computed statistics, one row per
+comparison. It needs columns with the two groups (see \code{xmin} and \code{xmax}),
+the y position of the bracket (see \code{y.position}), and the values used in
+\code{label}, e.g. \code{p} or \code{p.signif}.}
 
 \item{padding_top}{Extra padding above the data points to accommodate the statistical comparisons.}
 
-\item{label}{the column containing the label (e.g.: label = "p" or label =
-"p.adj"), where \code{p} is the p-value. Can be also an expression that can
-be formatted by the \code{\link[glue]{glue}()} package. For example, when
-specifying label = "t-test, p = \{p\}", the expression \{p\} will be
-replaced by its value.}
+\item{label}{The label to show. Either the name of a column in \code{data},
+e.g. \code{"p.signif"}, or a glue template using the columns of \code{data}, e.g.
+\code{"{tidyplots::format_p_value(p, 0.0001)}"}.}
 
 \item{label.size}{Font size of label text.}
 
-\item{y.position}{column containing the coordinates (in data units) to be used
-for absolute positioning of the label. Default value is "y.position". Can be
-also a numeric vector.}
+\item{y.position}{Name of the column in \code{data} with the positions of the
+brackets on the continuous axis, i.e. the y axis, or the x axis in
+horizontal plots.}
 
-\item{xmin}{column containing the position of the left sides of the brackets.
-Default value is "group1".}
+\item{xmin, xmax}{Names of the columns in \code{data} with the two groups to
+compare.}
 
-\item{xmax}{(optional) column containing the position of the right sides of
-the brackets. Default value is "group2". If NULL, the p-values are plotted
-as a simple text.}
+\item{step.increase}{Vertical distance between stacked brackets, as a
+fraction of the y axis range.}
 
-\item{step.increase}{numeric vector with the increase in fraction of total
-height for every additional comparison to minimize overlap.}
+\item{vjust}{Vertical justification of the label.}
 
-\item{vjust}{move the text up or down relative to the bracket. Can be also a
-column name available in the data.}
+\item{bracket.nudge.y}{Vertical shift of all brackets, as a fraction of
+the y axis range.}
 
-\item{bracket.nudge.y}{Vertical adjustment to nudge brackets by. Useful to
-move up or move down the bracket. If positive value, brackets will be moved
-up; if negative value, brackets are moved down.}
+\item{bracket.size}{Line width of the brackets.}
 
-\item{bracket.size}{Width of the lines of the bracket.}
+\item{tip.length}{Length of the bracket tips, as a fraction of the y axis
+range.}
 
-\item{tip.length}{numeric vector with the fraction of total height that the
-bar goes down to indicate the precise column. Default is 0.03.}
+\item{hide.ns}{Whether to hide non-significant comparisons, i.e. rows where
+the column \code{p.signif} (or, if missing, the label) is \code{"ns"}.}
 
-\item{hide.ns}{can be logical value or a character vector.
-\itemize{
-\item Case when logical value. If TRUE, hide ns symbol when displaying
- significance levels. Filter is done by checking the column
- \code{p.adj.signif}, \code{p.signif}, \code{p.adj} and \code{p}.
- \item Case when character value. Possible values are "p" or "p.adj", for filtering out non significant.
- }}
+\item{remove.bracket}{Whether to show only the labels without brackets.}
 
-\item{remove.bracket}{logical, if \code{TRUE}, brackets are removed from the
-plot. Considered only in the situation, where comparisons are performed
-against reference group or against "all".}
+\item{orientation}{\code{NA} (default) detects the orientation from the plot:
+horizontal brackets for a discrete y axis and a continuous x axis,
+vertical brackets otherwise. Use \code{"x"} for vertical brackets that compare
+groups on the x axis, or \code{"y"} for horizontal brackets that compare
+groups on the y axis.}
 
-\item{color}{text and line color. Can be variable name in the data for coloring by groups.}
+\item{color}{Color of the brackets and labels.}
 
-\item{...}{Arguments passed on to \code{ggpubr::stat_pvalue_manual()}.}
+\item{...}{Additional drawing arguments: \code{linetype}, \code{alpha}, \code{family}, and
+\code{fontface}. Other arguments are ignored with a warning.}
 }
 \value{
 A \code{tidyplot} object.
 }
 \description{
-Add pre-computed statistics
+Add brackets with p values or asterisks from statistics computed elsewhere.
 }
 \details{
 \itemize{
-\item \code{add_test_pvalue_manual()} and \code{add_test_asterisks_manual()} use
-\code{ggpubr::stat_pvalue_manual()}. Check there for additional arguments.
-These functions take pre-computed statistics as input via the \code{data} parameter.
-\item Known limitation: \code{add_test_pvalue_manual()} and \code{add_test_asterisks_manual()} expect a
-discrete variable on the x-axis and a continuous variable on the y-axis.
-To produce horizontal plots, use \code{flip_plot()}.
+\item These functions take pre-computed statistics as input via the \code{data}
+parameter. tidyplots does not verify these statistics. In the log, they
+are recorded as pre-computed by the user.
+\item Facets: if \code{data} contains a column with the same name as the variable
+used in \code{split_plot()}, each row is shown in the matching panel only.
+\item In horizontal plots, the brackets are placed to the right of the data
+and the labels are rotated, see \code{orientation}.
 }
 }
 \examples{
@@ -143,5 +137,13 @@ study |>
   add_sem_errorbar() |>
   add_data_points() |>
   add_test_asterisks_manual(data = stat_df)
+
+# Horizontal plot
+study |>
+  tidyplot(x = score, y = treatment, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_pvalue_manual(data = stat_df)
 
 }

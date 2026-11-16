@@ -68,7 +68,12 @@ NULL
 
 
 ## Error bar function factory
-ff_errorbar <- function(.fun.data) {
+ff_errorbar <- function(
+  .fun.data,
+  .statistic = NULL,
+  .dispersion = NULL,
+  .random = NULL
+) {
   function(
     plot,
     dodge_width = NULL,
@@ -78,6 +83,14 @@ ff_errorbar <- function(.fun.data) {
     ...
   ) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = .statistic,
+      dispersion = .dispersion,
+      geom = "errorbar",
+      random = .random
+    )
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(
       width = dodge_width,
@@ -142,22 +155,51 @@ ff_errorbar <- function(.fun.data) {
 #'   add_sem_errorbar(linewidth = 1)
 #'
 #' @export
-add_sem_errorbar <- ff_errorbar(.fun.data = mean_se)
+add_sem_errorbar <- ff_errorbar(
+  .fun.data = mean_se,
+  .statistic = "mean",
+  .dispersion = "standard error of the mean"
+)
 #' @rdname add_sem_errorbar
 #' @export
-add_range_errorbar <- ff_errorbar(.fun.data = min_max)
+add_range_errorbar <- ff_errorbar(
+  .fun.data = min_max,
+  .dispersion = "range (minimum to maximum)"
+)
 #' @rdname add_sem_errorbar
 #' @export
-add_sd_errorbar <- ff_errorbar(.fun.data = mean_sd)
+add_sd_errorbar <- ff_errorbar(
+  .fun.data = mean_sd,
+  .statistic = "mean",
+  .dispersion = "standard deviation"
+)
 #' @rdname add_sem_errorbar
 #' @export
-add_ci95_errorbar <- ff_errorbar(.fun.data = mean_cl_boot)
+add_ci95_errorbar <- ff_errorbar(
+  .fun.data = mean_cl_boot,
+  .statistic = "mean",
+  .dispersion = "95% confidence interval (bootstrap)",
+  .random = "bootstrap resampling without fixed seed"
+)
 
 
 ## Ribbon function factory
-ff_ribbon <- function(.fun.data) {
+ff_ribbon <- function(
+  .fun.data,
+  .statistic = NULL,
+  .dispersion = NULL,
+  .random = NULL
+) {
   function(plot, dodge_width = NULL, alpha = 0.4, color = NA, ...) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = .statistic,
+      dispersion = .dispersion,
+      geom = "ribbon",
+      random = .random
+    )
     mapping <- ggplot2::aes()
     mapping$group <- plot$mapping$colour
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
@@ -215,20 +257,36 @@ ff_ribbon <- function(.fun.data) {
 #'   add_sem_ribbon(alpha = 0.7)
 #'
 #' @export
-add_sem_ribbon <- ff_ribbon(.fun.data = mean_se)
+add_sem_ribbon <- ff_ribbon(
+  .fun.data = mean_se,
+  .statistic = "mean",
+  .dispersion = "standard error of the mean"
+)
 #' @rdname add_sem_ribbon
 #' @export
-add_range_ribbon <- ff_ribbon(.fun.data = min_max)
+add_range_ribbon <- ff_ribbon(
+  .fun.data = min_max,
+  .dispersion = "range (minimum to maximum)"
+)
 #' @rdname add_sem_ribbon
 #' @export
-add_sd_ribbon <- ff_ribbon(.fun.data = mean_sd)
+add_sd_ribbon <- ff_ribbon(
+  .fun.data = mean_sd,
+  .statistic = "mean",
+  .dispersion = "standard deviation"
+)
 #' @rdname add_sem_ribbon
 #' @export
-add_ci95_ribbon <- ff_ribbon(.fun.data = mean_cl_boot)
+add_ci95_ribbon <- ff_ribbon(
+  .fun.data = mean_cl_boot,
+  .statistic = "mean",
+  .dispersion = "95% confidence interval (bootstrap)",
+  .random = "bootstrap resampling without fixed seed"
+)
 
 
 ## Bar function factory
-ff_bar <- function(.fun, .count = FALSE) {
+ff_bar <- function(.fun, .count = FALSE, .statistic) {
   function(
     plot,
     dodge_width = NULL,
@@ -238,6 +296,12 @@ ff_bar <- function(.fun, .count = FALSE) {
     ...
   ) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = .statistic,
+      geom = "bar"
+    )
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(
       width = dodge_width,
@@ -277,7 +341,7 @@ ff_bar <- function(.fun, .count = FALSE) {
   }
 }
 ## Dash function factory
-ff_dash <- function(.fun, .count = FALSE) {
+ff_dash <- function(.fun, .count = FALSE, .statistic) {
   function(
     plot,
     dodge_width = NULL,
@@ -287,6 +351,12 @@ ff_dash <- function(.fun, .count = FALSE) {
     ...
   ) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = .statistic,
+      geom = "dash"
+    )
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(
       width = dodge_width,
@@ -320,9 +390,15 @@ ff_dash <- function(.fun, .count = FALSE) {
   }
 }
 ## Dot function factory
-ff_dot <- function(.fun, .count = FALSE) {
+ff_dot <- function(.fun, .count = FALSE, .statistic) {
   function(plot, dodge_width = NULL, size = 2, preserve = "total", ...) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = .statistic,
+      geom = "dot"
+    )
     dodge_width <- dodge_width %||% plot$tidyplot$dodge_width
     position <- ggplot2::position_dodge(
       width = dodge_width,
@@ -349,7 +425,7 @@ ff_dot <- function(.fun, .count = FALSE) {
   }
 }
 ## Value function factory
-ff_value <- function(.fun, .count = FALSE) {
+ff_value <- function(.fun, .count = FALSE, .statistic) {
   function(
     plot,
     dodge_width = NULL,
@@ -363,6 +439,12 @@ ff_value <- function(.fun, .count = FALSE) {
     ...
   ) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = .statistic,
+      geom = "value label"
+    )
     ptype <- get_plottype(plot)
 
     if ((stringr::str_sub(ptype, 2, 2) == "c" || .count)) {
@@ -450,7 +532,7 @@ ff_value <- function(.fun, .count = FALSE) {
   }
 }
 ## Line function factory
-ff_line <- function(.fun, .count = FALSE, .geom) {
+ff_line <- function(.fun, .count = FALSE, .geom, .statistic) {
   function(
     plot,
     group,
@@ -460,6 +542,7 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
     ...
   ) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(plot, "summary", statistic = .statistic, geom = .geom)
     if (.geom == "area") {
       linewidth <- 0
     }
@@ -583,22 +666,22 @@ ff_line <- function(.fun, .count = FALSE, .geom) {
 #'   add_mean_value(color = "black")
 #'
 #' @export
-add_mean_bar <- ff_bar(.fun = mean)
+add_mean_bar <- ff_bar(.fun = mean, .statistic = "mean")
 #' @rdname add_mean_bar
 #' @export
-add_mean_dash <- ff_dash(.fun = mean)
+add_mean_dash <- ff_dash(.fun = mean, .statistic = "mean")
 #' @rdname add_mean_bar
 #' @export
-add_mean_dot <- ff_dot(.fun = mean)
+add_mean_dot <- ff_dot(.fun = mean, .statistic = "mean")
 #' @rdname add_mean_bar
 #' @export
-add_mean_value <- ff_value(.fun = mean)
+add_mean_value <- ff_value(.fun = mean, .statistic = "mean")
 #' @rdname add_mean_bar
 #' @export
-add_mean_line <- ff_line(.fun = mean, .geom = "line")
+add_mean_line <- ff_line(.fun = mean, .statistic = "mean", .geom = "line")
 #' @rdname add_mean_bar
 #' @export
-add_mean_area <- ff_line(.fun = mean, .geom = "area")
+add_mean_area <- ff_line(.fun = mean, .statistic = "mean", .geom = "area")
 
 #' Add median
 #'
@@ -669,22 +752,22 @@ add_mean_area <- ff_line(.fun = mean, .geom = "area")
 #'   add_median_value(color = "black")
 #'
 #' @export
-add_median_bar <- ff_bar(.fun = median)
+add_median_bar <- ff_bar(.fun = median, .statistic = "median")
 #' @rdname add_median_bar
 #' @export
-add_median_dash <- ff_dash(.fun = median)
+add_median_dash <- ff_dash(.fun = median, .statistic = "median")
 #' @rdname add_median_bar
 #' @export
-add_median_dot <- ff_dot(.fun = median)
+add_median_dot <- ff_dot(.fun = median, .statistic = "median")
 #' @rdname add_median_bar
 #' @export
-add_median_value <- ff_value(.fun = median)
+add_median_value <- ff_value(.fun = median, .statistic = "median")
 #' @rdname add_median_bar
 #' @export
-add_median_line <- ff_line(.fun = median, .geom = "line")
+add_median_line <- ff_line(.fun = median, .statistic = "median", .geom = "line")
 #' @rdname add_median_bar
 #' @export
-add_median_area <- ff_line(.fun = median, .geom = "area")
+add_median_area <- ff_line(.fun = median, .statistic = "median", .geom = "area")
 
 
 #' Add sum
@@ -774,22 +857,22 @@ add_median_area <- ff_line(.fun = median, .geom = "area")
 #'   add_sum_value(extra_padding = 0.5)
 #'
 #' @export
-add_sum_bar <- ff_bar(.fun = sum)
+add_sum_bar <- ff_bar(.fun = sum, .statistic = "sum")
 #' @rdname add_sum_bar
 #' @export
-add_sum_dash <- ff_dash(.fun = sum)
+add_sum_dash <- ff_dash(.fun = sum, .statistic = "sum")
 #' @rdname add_sum_bar
 #' @export
-add_sum_dot <- ff_dot(.fun = sum)
+add_sum_dot <- ff_dot(.fun = sum, .statistic = "sum")
 #' @rdname add_sum_bar
 #' @export
-add_sum_value <- ff_value(.fun = sum)
+add_sum_value <- ff_value(.fun = sum, .statistic = "sum")
 #' @rdname add_sum_bar
 #' @export
-add_sum_line <- ff_line(.fun = sum, .geom = "line")
+add_sum_line <- ff_line(.fun = sum, .statistic = "sum", .geom = "line")
 #' @rdname add_sum_bar
 #' @export
-add_sum_area <- ff_line(.fun = sum, .geom = "area")
+add_sum_area <- ff_line(.fun = sum, .statistic = "sum", .geom = "area")
 
 
 #' Add count
@@ -873,19 +956,19 @@ add_sum_area <- ff_line(.fun = sum, .geom = "area")
 #'   add_count_value(color = "black")
 #'
 #' @export
-add_count_bar <- ff_bar(.count = TRUE)
+add_count_bar <- ff_bar(.count = TRUE, .statistic = "count")
 #' @rdname add_count_bar
 #' @export
-add_count_dash <- ff_dash(.count = TRUE)
+add_count_dash <- ff_dash(.count = TRUE, .statistic = "count")
 #' @rdname add_count_bar
 #' @export
-add_count_dot <- ff_dot(.count = TRUE)
+add_count_dot <- ff_dot(.count = TRUE, .statistic = "count")
 #' @rdname add_count_bar
 #' @export
-add_count_value <- ff_value(.count = TRUE)
+add_count_value <- ff_value(.count = TRUE, .statistic = "count")
 #' @rdname add_count_bar
 #' @export
-add_count_line <- ff_line(.count = TRUE, .geom = "line")
+add_count_line <- ff_line(.count = TRUE, .statistic = "count", .geom = "line")
 #' @rdname add_count_bar
 #' @export
-add_count_area <- ff_line(.count = TRUE, .geom = "area")
+add_count_area <- ff_line(.count = TRUE, .statistic = "count", .geom = "area")

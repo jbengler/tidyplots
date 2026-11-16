@@ -33,7 +33,14 @@ ff_rename_axis_levels <- function(axis) {
       plot$tidyplot$named_colors <- new_named_colors
       plot <- plot |> adjust_colors(new_named_colors)
     }
-    update_data(plot, new_data)
+    plot <- update_data(plot, new_data)
+    log_record(
+      plot,
+      "transform",
+      operation = "rename levels",
+      variable = var,
+      renamed = paste0(names(new_names), " -> ", new_names)
+    )
   }
 }
 #' Rename axis or color levels
@@ -134,7 +141,14 @@ ff_reorder_axis_levels <- function(axis) {
     new_data <-
       plot$data |>
       dplyr::mutate("{var}" := forcats::fct_relevel(.data[[var]], ...))
-    update_data(plot, new_data)
+    plot <- update_data(plot, new_data)
+    log_record(
+      plot,
+      "transform",
+      operation = "reorder levels",
+      variable = var,
+      levels = levels(new_data[[var]])
+    )
   }
 }
 #' Reorder axis or color levels
@@ -224,6 +238,10 @@ ff_sort_levels <- function(axis) {
     var_a <- get_variable(plot, axis)
 
     if (!missing(..1)) {
+      sorted_by <- paste(
+        vapply(rlang::enexprs(...), rlang::expr_text, character(1)),
+        collapse = ", "
+      )
       # sort by variables passed into '...'
       new_data <-
         plot$data |>
@@ -237,16 +255,19 @@ ff_sort_levels <- function(axis) {
         )
     } else {
       # sort by statistic entity (mean, median, sum, count) used in plot
-      if (any(stringr::str_detect(plot$tidyplot$call_history, "count"))) {
-        auto_fun <- length
-      } else if (any(stringr::str_detect(plot$tidyplot$call_history, "mean"))) {
-        auto_fun <- mean
-      } else if (any(stringr::str_detect(plot$tidyplot$call_history, "sum"))) {
-        auto_fun <- sum
-      } else {
-        auto_fun <- median
-      }
+      auto_fun <- switch(
+        get_displayed_stat(plot) %||% "median",
+        count = length,
+        mean = mean,
+        sum = sum,
+        median = median
+      )
 
+      fun_label <- if (is.null(.fun)) {
+        get_displayed_stat(plot) %||% "median"
+      } else {
+        rlang::expr_text(substitute(.fun))
+      }
       .fun <- .fun %||% auto_fun
 
       if (is_continuous(plot, "y")) {
@@ -259,6 +280,7 @@ ff_sort_levels <- function(axis) {
         var_b <- get_variable(plot, axis)
       }
 
+      sorted_by <- paste0(fun_label, " of ", var_b)
       new_data <-
         plot$data |>
         dplyr::mutate(
@@ -270,7 +292,18 @@ ff_sort_levels <- function(axis) {
           )
         )
     }
-    update_data(plot, new_data)
+    if (.reverse) {
+      sorted_by <- paste(sorted_by, "(descending)")
+    }
+    plot <- update_data(plot, new_data)
+    log_record(
+      plot,
+      "transform",
+      operation = "sort levels",
+      variable = var_a,
+      sorted_by = sorted_by,
+      levels = levels(new_data[[var_a]])
+    )
   }
 }
 #' Sort axis or color levels
@@ -360,7 +393,14 @@ ff_reverse_axis_levels <- function(axis) {
     new_data <-
       plot$data |>
       dplyr::mutate("{var}" := forcats::fct_rev(.data[[var]]))
-    update_data(plot, new_data)
+    plot <- update_data(plot, new_data)
+    log_record(
+      plot,
+      "transform",
+      operation = "reverse levels",
+      variable = var,
+      levels = levels(new_data[[var]])
+    )
   }
 }
 #' Reverse axis or color levels

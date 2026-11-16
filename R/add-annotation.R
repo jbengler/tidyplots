@@ -170,6 +170,18 @@ add_data_labels <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "layer",
+    shows = "labels of individual values",
+    label = rlang::as_label(rlang::enquo(label)),
+    rows = log_rows_text(substitute(data)),
+    geom = "labels",
+    jitter = if (jitter_width != 0 || jitter_height != 0) {
+      paste0("width ", jitter_width, ", height ", jitter_height)
+    },
+    seed = seed
+  )
   size <- fontsize / ggplot2::.pt
   background_color <- background_color %||% plot$tidyplot$paper
   if (!background) {
@@ -260,6 +272,15 @@ add_data_labels_repel <- function(
   ...
 ) {
   plot <- check_tidyplot(plot)
+  plot <- log_record(
+    plot,
+    "layer",
+    shows = "labels of individual values",
+    label = rlang::as_label(rlang::enquo(label)),
+    rows = log_rows_text(substitute(data)),
+    geom = "repelled labels",
+    seed = seed
+  )
   size <- fontsize / ggplot2::.pt
   background_color <- background_color %||% plot$tidyplot$paper
   if (!background) {
@@ -285,12 +306,19 @@ add_data_labels_repel <- function(
     box.padding = box.padding,
     max.overlaps = max.overlaps,
     fill = scales::alpha(background_color, background_alpha),
-    label.size = NA,
     label.padding = label.padding,
     position = position,
     seed = seed,
     ...
   )
+
+  # No border around labels. Since ggrepel 0.9.8, the border is controlled by
+  # the `linewidth` aesthetic, before by `label.size`.
+  if ("linewidth" %in% names(ggrepel::GeomLabelRepel$default_aes)) {
+    args$linewidth <- args$linewidth %||% 0
+  } else {
+    args$label.size <- args$label.size %||% NA
+  }
 
   # Specify either `position` or `nudge_x`/`nudge_y`
   if (!is.null(args$nudge_x) || !is.null(args$nudge_y)) {

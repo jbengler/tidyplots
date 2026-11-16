@@ -82,9 +82,10 @@ reference:
   - starts_with("reorder")
   - starts_with("sort")
   - starts_with("reverse")
-- subtitle: Normalization
+- title: Data
+  desc: Change the plot data, e.g. exclude rows or normalize values. Changes are recorded in the log.
 - contents:
-  - starts_with("normalize")
+  - starts_with("data_")
 - title: Themes
   desc: Finetune the look of the plot.
 - contents:
@@ -102,6 +103,13 @@ reference:
   desc: Split the plot into a multi plot layout, eventually across multiple pages.
 - contents:
   - split_plot
+- title: Log
+  desc: Record and view what a plot shows and how it was made.
+- contents:
+  - view_log
+  - add_note
+  - add_metadata
+  - save_bundle
 - title: Output
   desc: Output the final plot or intermediate stages to the screen or to a file.
 - contents:

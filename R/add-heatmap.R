@@ -38,6 +38,18 @@ add_heatmap <- function(
   plot <- check_tidyplot(plot)
   mapping <- NULL
   scale <- match.arg(scale)
+  plot <- log_record(
+    plot,
+    "layer",
+    shows = "individual values as color",
+    values = switch(
+      scale,
+      none = NULL,
+      row = "z-score per row",
+      column = "z-score per column"
+    ),
+    geom = "heatmap"
+  )
 
   if (scale %in% c("row", "column")) {
     color <- get_variable(plot, "colour")

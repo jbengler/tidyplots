@@ -121,3 +121,32 @@ test_that("manual stats work", {
     add_test_asterisks_manual(data = stat_df) |>
     vdiffr::expect_doppelganger("add manual stats asterisks", fig = _)
 })
+
+test_that("stats in horizontal plots work", {
+  study |>
+    tidyplot(x = score, y = treatment, color = treatment) |>
+    add_mean_dash() |>
+    add_sem_errorbar() |>
+    add_data_points() |>
+    add_test_pvalue(ref.group = 1) |>
+    vdiffr::expect_doppelganger("add stats pvalue horizontal", fig = _)
+  study |>
+    tidyplot(x = score, y = dose, color = group) |>
+    add_mean_dash() |>
+    add_data_points() |>
+    add_test_asterisks(hide.ns = FALSE) |>
+    vdiffr::expect_doppelganger("add grouped stats asterisks horizontal", fig = _)
+})
+
+test_that("manual stats in horizontal plots work", {
+  stat_df <- data.frame(
+    group1 = c("A", "A"), group2 = c("B", "C"),
+    p = c(0.025, 0.001), p.signif = c("*", "**"), y.position = 50
+  )
+  study |>
+    tidyplot(x = score, y = treatment, color = treatment) |>
+    add_mean_dash() |>
+    add_data_points() |>
+    add_test_asterisks_manual(data = stat_df) |>
+    vdiffr::expect_doppelganger("add manual stats asterisks horizontal", fig = _)
+})

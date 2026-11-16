@@ -52,106 +52,115 @@ add_test_asterisks(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{padding_top}{Extra padding above the data points to accommodate the statistical comparisons.}
+\item{padding_top}{Extra padding above the data points to accommodate the
+statistical comparisons. In horizontal plots, the padding is added to the
+right of the data points.}
 
-\item{method}{a character string indicating which method to be used for
-pairwise comparisons. Default is \code{"t_test"}. Allowed methods
-include pairwise comparisons methods implemented in the \code{rstatix} R
-package. These methods are: \code{"wilcox_test", "t_test", "sign_test",
- "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.}
+\item{method}{The test to use:
+\itemize{
+\item \code{"t_test"} (default): Welch's t-test, or Student's t-test with
+\code{method.args = list(var.equal = TRUE)}. With \code{paired_by}, the paired
+t-test. Computed with \code{stats::t.test()}.
+\item \code{"wilcox_test"}: Wilcoxon rank-sum test (Mann-Whitney U test). With
+\code{paired_by}, the Wilcoxon signed-rank test. Computed with
+\code{stats::wilcox.test()}.
+\item \code{"tukey_hsd"}: Tukey's HSD test, the usual post-hoc test after a
+one-way ANOVA. Uses the variance pooled over all groups, with the
+Tukey-Kramer correction for unequal group sizes, as \code{stats::TukeyHSD()}.
+\item \code{"games_howell_test"}: Games-Howell test, like Tukey's HSD but without
+assuming equal variances.
+\item \code{"dunn_test"}: Dunn's test, the usual post-hoc test after a
+Kruskal-Wallis test. Uses the ranks across all groups, with correction
+for ties.
+}
 
-\item{p.adjust.method}{method for adjusting p values (see
-\code{\link[stats]{p.adjust}}).  Has impact only in a situation, where
-multiple pairwise tests are performed; or when there are multiple grouping
-variables. Ignored when the specified method is \code{"tukey_hsd"} or
-\code{"games_howell_test"} because they come with internal p adjustment
-method. Allowed values include "holm", "hochberg", "hommel", "bonferroni",
-"BH", "BY", "fdr", "none". If you don't want to adjust the p value (not
-recommended), use p.adjust.method = "none".}
+\code{"tukey_hsd"}, \code{"games_howell_test"}, and \code{"dunn_test"} use all groups
+that are compared together, i.e. all groups in a panel, or all color
+groups within a group of the discrete axis, also when only some
+comparisons are shown with \code{ref.group} or \code{comparisons}. They do not
+support \code{paired_by} or \code{method.args}.}
 
-\item{ref.group}{a character string or a numeric value specifying the
- reference group. If specified, for a given grouping variable, each of the
- group levels will be compared to the reference group (i.e. control group).
+\item{p.adjust.method}{Method for adjusting p values for multiple
+comparisons, see \code{stats::p.adjust()}. One of \code{"none"} (default), \code{"holm"},
+\code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, or \code{"fdr"}.
+The p values of \code{"tukey_hsd"} and \code{"games_howell_test"} are already
+adjusted for all pairwise comparisons of the groups compared together,
+so \code{p.adjust.method} must be \code{"none"} for them.}
 
- \code{ref.group} can be also \code{"all"}. In this case, each of the
- grouping variable levels is compared to all (i.e. basemean).
+\item{ref.group}{A reference group to compare all other groups against.
+Either the name of the group or its position, e.g. \code{ref.group = 1}.
+If \code{NULL} (default), all pairs of groups are compared.}
 
- Allowed values can be: \itemize{ \item \strong{numeric value}: specifying
- the rank of the reference group. For example, use \code{ref.group = 1} when
- the first group is the reference; use \code{ref.group = 2} when the second
- group is the reference, and so on. This works for all situations, including
- i) when comparisons are performed between x-axis groups and ii) when
- comparisons are performed between legend groups. \item \strong{character
- value}: For example, you can use \code{ref.group = "ctrl"} instead of using
- the numeric rank value of the "ctrl" group. \item \strong{"all"}: In this
- case, each of the grouping variable levels is compared to all (i.e.
- basemean). }}
+\item{comparisons}{A list of length-2 vectors with the groups to compare,
+either as names, e.g. \code{list(c("A", "B"), c("A", "C"))}, or as positions,
+e.g. \code{list(c(1, 2), c(1, 3))}.}
 
-\item{comparisons}{A list of length-2 vectors. The entries in the vector are
-2 integers that correspond to the index of the groups of interest, to be compared.}
+\item{paired_by}{Variable that identifies the pairs for a paired analysis,
+e.g. a subject or batch id. Values are paired by this variable, not by
+their order in the data.}
 
-\item{paired_by}{Variable to be used for paired analysis.}
+\item{label}{The label to show. Either the name of a result column, e.g.
+\code{"p.adj.signif"}, or a glue template using the result columns, e.g.
+\code{"{tidyplots::format_p_value(p.adj, 0.0001)}"}. Available columns are
+\code{p}, \code{p.adj}, \code{p.signif}, \code{p.adj.signif}, \code{n1}, \code{n2}, \code{statistic}, \code{df},
+\code{group1}, and \code{group2}.}
 
-\item{label}{character string specifying label. Can be: \itemize{ \item the
-column containing the label (e.g.: \code{label = "p"} or \code{label =
-"p.adj"}), where \code{p} is the p-value. Other possible values are
-\code{"p.signif", "p.adj.signif", "p.format", "p.adj.format"}. \item an
-expression that can be formatted by the \code{\link[glue]{glue}()} package.
-For example, when specifying \code{label = "Wilcoxon, p = \{p\}"}, the
-expression \{p\} will be replaced by its value. \item a combination of
-plotmath expressions and glue expressions. You may want some of the
-statistical parameter in italic; for example:\code{label = "Wilcoxon,
-italic(p)= {p}"}}.}
+\item{label.size}{Font size of the label.}
 
-\item{label.size}{change the size of the label text}
+\item{step.increase}{Distance between stacked brackets, as a fraction of
+the data range. Vertical, or horizontal in horizontal plots.}
 
-\item{step.increase}{numeric vector with the increase in fraction of total
-height for every additional comparison to minimize overlap.}
+\item{vjust}{Justification of the label towards or away from the bracket.}
 
-\item{vjust}{move the text up or down relative to the bracket.}
+\item{bracket.nudge.y}{Distance between the data and the first bracket, as
+a fraction of the data range. Vertical, or horizontal in horizontal plots.}
 
-\item{bracket.nudge.y}{Vertical adjustment to nudge brackets by (in fraction
-of the total height). Useful to move up or move down the bracket. If
-positive value, brackets will be moved up; if negative value, brackets are
-moved down.}
+\item{hide.ns}{Whether to hide non-significant comparisons. \code{TRUE} or
+\code{"p.adj"} hides them based on the adjusted p value, \code{"p"} based on the
+unadjusted p value. Hidden comparisons are still computed and reported
+by \code{view_log()}.}
 
-\item{hide.ns}{can be logical value (\code{TRUE} or \code{FALSE}) or a character vector (\code{"p.adj"} or \code{"p"}).}
+\item{p.adjust.by}{For comparisons within color groups, whether p values
+are adjusted across all comparisons in the panel (\code{"panel"}, default) or
+separately within each x axis group (\code{"group"}).}
 
-\item{p.adjust.by}{possible value is one of \code{c("group", "panel")}.
-Default is \code{"group"}: for a grouped data, if pairwise test is
-performed, then the p-values are adjusted for each group level
-independently. P-values are adjusted by panel when \code{p.adjust.by =
-"panel"}.}
+\item{symnum.args}{A list with \code{cutpoints} and \code{symbols} defining the
+significance symbols.}
 
-\item{symnum.args}{a list of arguments to pass to the function
- \code{\link[stats]{symnum}} for symbolic number coding of p-values. For
- example, \code{symnum.args = list(cutpoints = c(0, 0.0001, 0.001, 0.01,
- 0.05, Inf), symbols = c("****", "***", "**", "*",  "ns"))}.
-
- In other words, we use the following convention for symbols indicating
- statistical significance: \itemize{ \item \code{ns}: p > 0.05 \item
- \code{*}: p <= 0.05 \item \code{**}: p <= 0.01 \item \code{***}: p <= 0.001
- \item \code{****}:  p <= 0.0001 }}
-
-\item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
+\item{color}{Color of the brackets and labels.}
 
 \item{hide_info}{Whether to hide details about the statistical testing as caption. Defaults to \code{FALSE}.}
 
-\item{...}{Arguments passed on to \code{ggpubr::geom_pwc()}.}
+\item{...}{Additional arguments: \code{method.args}, a list of arguments passed
+on to the test function, e.g. \code{list(var.equal = TRUE)} or
+\code{list(alternative = "less")}, and the drawing arguments \code{tip.length},
+\code{linewidth} (or \code{size}), \code{linetype}, \code{alpha}, \code{family}, and \code{fontface}.
+Other arguments are ignored with a warning.}
 }
 \value{
 A \code{tidyplot} object.
 }
 \description{
-Add statistical test
+Add pairwise statistical comparisons with brackets and p values or
+asterisks. The tests are computed with base R when the plot is built,
+separately for each panel, so they always reflect the final plot data.
 }
 \details{
 \itemize{
-\item \code{add_test_pvalue()} and \code{add_test_asterisks()} use \code{ggpubr::geom_pwc()}.
-Check there for additional arguments.
-\item Known limitation: \code{add_test_pvalue()} and \code{add_test_asterisks()} expect a
-discrete variable on the x-axis and a continuous variable on the y-axis.
-To produce horizontal plots, use \code{flip_plot()}.
+\item Comparisons are made between the groups on the discrete axis. If a
+different variable is mapped to color, comparisons are made between the
+color groups within each group of the discrete axis.
+\item Works with a discrete x axis and a continuous y axis, or, for horizontal
+plots, with a discrete y axis and a continuous x axis. In horizontal plots,
+the brackets are placed to the right of the data and the labels are
+rotated.
+\item Tests use the values in the data. Axis transformations (e.g. \code{log10})
+and axis limits change only what is shown, not what is tested. Values
+that are tested but not shown in the plot are reported in a warning and
+in \code{view_log()}.
+\item If a comparison cannot be computed, e.g. because a group has too few
+values, a warning is shown and no bracket is drawn. The reason is
+recorded in the log, see \code{view_log()}.
 }
 }
 \examples{
@@ -178,6 +187,22 @@ study |>
   add_sem_errorbar() |>
   add_data_points() |>
   add_test_pvalue(method = "wilcoxon")
+
+# Tukey's HSD test, p values are adjusted by the test
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_asterisks(method = "tukey_hsd", hide.ns = FALSE)
+
+# Dunn's test with Holm adjustment
+study |>
+  tidyplot(x = treatment, y = score, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_pvalue(method = "dunn_test", p.adjust.method = "holm")
 
 # Change p.adjust method
 study |>
@@ -252,5 +277,13 @@ study |>
   add_sem_errorbar() |>
   add_data_points() |>
   add_test_pvalue(hide_info = TRUE)
+
+# Horizontal plot
+study |>
+  tidyplot(x = score, y = treatment, color = treatment) |>
+  add_mean_dash() |>
+  add_sem_errorbar() |>
+  add_data_points() |>
+  add_test_pvalue(ref.group = 1)
 
 }

@@ -4,13 +4,20 @@
 \alias{add}
 \title{Add ggplot2 code to a tidyplot}
 \usage{
-add()
+add(plot, object)
+}
+\arguments{
+\item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
+
+\item{object}{A ggplot2 component, for example \code{ggplot2::geom_point()}.}
 }
 \value{
 A \code{tidyplot} object.
 }
 \description{
-Add ggplot2 code to a tidyplot
+Adds ggplot2 components such as geoms, stats, scales or theme elements to a
+tidyplot. \code{add(plot, object)} is equivalent to \code{plot + object}, except that
+the addition is recorded in the log as an external step, see \code{\link[=view_log]{view_log()}}.
 }
 \examples{
 study |>

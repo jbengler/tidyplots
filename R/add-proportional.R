@@ -2,6 +2,13 @@
 ff_pie <- function(.type = "pie") {
   function(plot, width = 1, reverse = FALSE, ...) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = if (is_missing(plot, "y")) "count" else "sum",
+      values = "relative (proportion of total)",
+      geom = .type
+    )
     plot <-
       plot |>
       remove_padding() |>
@@ -101,9 +108,20 @@ add_donut <- ff_pie(.type = "donut")
 
 
 ## Barstack function factory
-ff_barstack <- function(.position_fun) {
+ff_barstack <- function(.position_fun, .relative) {
   function(plot, width = 0.8, reverse = FALSE, ...) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = if (stringr::str_detect(get_plottype(plot), "c")) {
+        "sum"
+      } else {
+        "count"
+      },
+      values = if (.relative) "relative (proportion of total)" else "absolute",
+      geom = "stacked bar"
+    )
     ptype <- get_plottype(plot)
 
     if (is_missing(plot, "colour")) {
@@ -206,14 +224,20 @@ ff_barstack <- function(.position_fun) {
 #'   add_barstack_relative(orientation = "y")
 #'
 #' @export
-add_barstack_absolute <- ff_barstack(.position_fun = ggplot2::position_stack)
+add_barstack_absolute <- ff_barstack(
+  .position_fun = ggplot2::position_stack,
+  .relative = FALSE
+)
 #' @rdname add_barstack_absolute
 #' @export
-add_barstack_relative <- ff_barstack(.position_fun = ggplot2::position_fill)
+add_barstack_relative <- ff_barstack(
+  .position_fun = ggplot2::position_fill,
+  .relative = TRUE
+)
 
 
 ## Areastack function factory
-ff_areastack <- function(.position_fun) {
+ff_areastack <- function(.position_fun, .relative) {
   function(
     plot,
     linewidth = 0.25,
@@ -223,6 +247,17 @@ ff_areastack <- function(.position_fun) {
     ...
   ) {
     plot <- check_tidyplot(plot)
+    plot <- log_record(
+      plot,
+      "summary",
+      statistic = if (!is_missing(plot, "x") && !is_missing(plot, "y")) {
+        "sum"
+      } else {
+        "count"
+      },
+      values = if (.relative) "relative (proportion of total)" else "absolute",
+      geom = "stacked area"
+    )
     ptype <- get_plottype(plot)
 
     # overwrite group aesthetic
@@ -404,7 +439,13 @@ ff_areastack <- function(.position_fun) {
 #'   add_areastack_relative(orientation = "y")
 #'
 #' @export
-add_areastack_absolute <- ff_areastack(.position_fun = ggplot2::position_stack)
+add_areastack_absolute <- ff_areastack(
+  .position_fun = ggplot2::position_stack,
+  .relative = FALSE
+)
 #' @rdname add_areastack_absolute
 #' @export
-add_areastack_relative <- ff_areastack(.position_fun = ggplot2::position_fill)
+add_areastack_relative <- ff_areastack(
+  .position_fun = ggplot2::position_fill,
+  .relative = TRUE
+)

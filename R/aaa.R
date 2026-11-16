@@ -7,6 +7,8 @@ NULL
 utils::globalVariables(c(
   ".",
   ".single_color",
+  ".is_one",
+  ".is_zero",
   "Lower",
   "Mean",
   "Upper",
