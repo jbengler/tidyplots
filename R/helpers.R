@@ -512,7 +512,7 @@ burst_filename <- function(filename, n) {
 }
 
 get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
-  if (ggplot2::is.ggplot(plot)) {
+  if (ggplot2::is_ggplot(plot)) {
     plot <- list(plot)
   }
   units <- match.arg(units)
@@ -527,7 +527,7 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
 
   pages <-
     purrr::map(plot, function(x) {
-      if (!ggplot2::is.ggplot(x)) {
+      if (!ggplot2::is_ggplot(x)) {
         cli::cli_abort(
           "Argument {.arg plot} must be a {.pkg ggplot} or list of {.pkg ggplots}"
         )

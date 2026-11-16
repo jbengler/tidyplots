@@ -478,13 +478,13 @@ save_plot <- function(
   ...
 ) {
   if (
-    !ggplot2::is.ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is.ggplot))
+    !ggplot2::is_ggplot(plot) && !all(purrr::map_lgl(plot, ggplot2::is_ggplot))
   ) {
     cli::cli_abort("{.arg plot} must be a single plot or a list of plots.")
   }
 
   input <- plot
-  if (ggplot2::is.ggplot(plot)) {
+  if (ggplot2::is_ggplot(plot)) {
     plot <- list(plot)
   }
   units <- match.arg(units)
