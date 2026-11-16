@@ -22,6 +22,7 @@ add_test_pvalue(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  method.args = list(),
   color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
@@ -44,6 +45,7 @@ add_test_asterisks(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  method.args = list(),
   color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
@@ -54,20 +56,16 @@ add_test_asterisks(
 
 \item{padding_top}{Extra padding above the data points to accommodate the statistical comparisons.}
 
-\item{method}{a character string indicating which method to be used for
-pairwise comparisons. Default is \code{"t_test"}. Allowed methods
-include pairwise comparisons methods implemented in the \code{rstatix} R
-package. These methods are: \code{"wilcox_test", "t_test", "sign_test",
- "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.}
+\item{method}{Method for pairwise comparisons, as implemented in the rstatix
+package. Allowed values include \code{"wilcox_test"}, \code{"t_test"}, \code{"sign_test"},
+\code{"dunn_test"}, \code{"emmeans_test"}, \code{"tukey_hsd"}, and \code{"games_howell_test"}.
+Defaults to \code{"t_test"}, an unpaired Welch's t test (unequal variances).
+For Student's t test, use \code{method.args = list(var.equal = TRUE)}.}
 
-\item{p.adjust.method}{method for adjusting p values (see
-\code{\link[stats]{p.adjust}}).  Has impact only in a situation, where
-multiple pairwise tests are performed; or when there are multiple grouping
-variables. Ignored when the specified method is \code{"tukey_hsd"} or
-\code{"games_howell_test"} because they come with internal p adjustment
-method. Allowed values include "holm", "hochberg", "hommel", "bonferroni",
-"BH", "BY", "fdr", "none". If you don't want to adjust the p value (not
-recommended), use p.adjust.method = "none".}
+\item{p.adjust.method}{Method for adjusting p values for multiple
+comparisons, see \code{stats::p.adjust()}. Allowed values include \code{"holm"},
+\code{"hochberg"}, \code{"hommel"}, \code{"bonferroni"}, \code{"BH"}, \code{"BY"}, \code{"fdr"}, and
+\code{"none"}. Defaults to \code{"none"}.}
 
 \item{ref.group}{a character string or a numeric value specifying the
  reference group. If specified, for a given grouping variable, each of the
@@ -118,11 +116,9 @@ moved down.}
 
 \item{hide.ns}{can be logical value (\code{TRUE} or \code{FALSE}) or a character vector (\code{"p.adj"} or \code{"p"}).}
 
-\item{p.adjust.by}{possible value is one of \code{c("group", "panel")}.
-Default is \code{"group"}: for a grouped data, if pairwise test is
-performed, then the p-values are adjusted for each group level
-independently. P-values are adjusted by panel when \code{p.adjust.by =
-"panel"}.}
+\item{p.adjust.by}{Whether p values are adjusted across all comparisons
+in a panel (\code{"panel"}) or separately within each group level
+(\code{"group"}). Defaults to \code{"panel"}.}
 
 \item{symnum.args}{a list of arguments to pass to the function
  \code{\link[stats]{symnum}} for symbolic number coding of p-values. For
@@ -136,6 +132,9 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
 
  Note: If \code{symnum.args} is provided, it takes precedence over
  \code{signif.cutoffs}.}
+
+\item{method.args}{A list of additional arguments passed on to the test
+function, for example \code{list(var.equal = TRUE)}.}
 
 \item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 

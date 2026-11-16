@@ -121,3 +121,27 @@ test_that("manual stats work", {
     add_test_asterisks_manual(data = stat_df) |>
     vdiffr::expect_doppelganger("add manual stats asterisks", fig = _)
 })
+
+test_that("method.args are passed on to the test", {
+  first_p <- function(p) {
+    d <- ggplot2::layer_data(p, 2)
+    d$p[1]
+  }
+  ab <- study[study$treatment %in% c("A", "B"), ]
+  welch <- stats::t.test(score ~ treatment, data = ab)$p.value
+  student <- stats::t.test(score ~ treatment, data = ab, var.equal = TRUE)$p.value
+
+  p <- study |>
+    tidyplot(x = treatment, y = score) |>
+    add_data_points()
+
+  expect_equal(first_p(p |> add_test_pvalue()), welch)
+  expect_equal(
+    first_p(p |> add_test_pvalue(method.args = list(var.equal = TRUE))),
+    student
+  )
+  expect_equal(
+    first_p(p |> add_test_asterisks(method.args = list(var.equal = TRUE))),
+    student
+  )
+})

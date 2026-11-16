@@ -464,11 +464,11 @@ study |>
   add_test_pvalue()
 ```
 
-As you might have noted, when using these functions, a caption is automatically included that provides details about the statistical testing performed. The default is a Student's _t_ test without multiple comparison adjustment.
+As you might have noted, when using these functions, a caption is automatically included that provides details about the statistical testing performed. The default is Welch's _t_ test without multiple comparison adjustment.
 
 Both can be changed by providing the `method` and `p.adjust.method` arguments.
 
-For example, let's perform a Wilcoxon signed-rank test with Benjamini--Hochberg adjustment.
+For example, let's perform a Wilcoxon rank-sum test with Benjamini--Hochberg adjustment.
 
 ```{r}
 study |> 

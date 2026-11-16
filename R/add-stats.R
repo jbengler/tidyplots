@@ -1,12 +1,21 @@
 #' Add statistical test
-#' @param method a character string indicating which method to be used for
-#'  pairwise comparisons. Default is \code{"t_test"}. Allowed methods
-#'  include pairwise comparisons methods implemented in the \code{rstatix} R
-#'  package. These methods are: \code{"wilcox_test", "t_test", "sign_test",
-#'  "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"}.
+#' @param method Method for pairwise comparisons, as implemented in the rstatix
+#'  package. Allowed values include `"wilcox_test"`, `"t_test"`, `"sign_test"`,
+#'  `"dunn_test"`, `"emmeans_test"`, `"tukey_hsd"`, and `"games_howell_test"`.
+#'  Defaults to `"t_test"`, an unpaired Welch's t test (unequal variances).
+#'  For Student's t test, use `method.args = list(var.equal = TRUE)`.
+#' @param p.adjust.method Method for adjusting p values for multiple
+#'  comparisons, see `stats::p.adjust()`. Allowed values include `"holm"`,
+#'  `"hochberg"`, `"hommel"`, `"bonferroni"`, `"BH"`, `"BY"`, `"fdr"`, and
+#'  `"none"`. Defaults to `"none"`.
+#' @param p.adjust.by Whether p values are adjusted across all comparisons
+#'  in a panel (`"panel"`) or separately within each group level
+#'  (`"group"`). Defaults to `"panel"`.
 #' @param comparisons A list of length-2 vectors. The entries in the vector are
 #'  2 integers that correspond to the index of the groups of interest, to be compared.
 #' @param paired_by Variable to be used for paired analysis.
+#' @param method.args A list of additional arguments passed on to the test
+#'  function, for example `list(var.equal = TRUE)`.
 #' @param padding_top Extra padding above the data points to accommodate the statistical comparisons.
 #' @param hide_info Whether to hide details about the statistical testing as caption. Defaults to `FALSE`.
 #' @param ... Arguments passed on to `ggpubr::geom_pwc()`.
@@ -139,16 +148,13 @@ add_test_pvalue <- function(
     cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
     symbols = c("***", "**", "*", "ns")
   ),
+  method.args = list(),
   color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
 ) {
   plot <- check_tidyplot(plot)
 
-  # method.args are not supplied in ellipses
-  if (!"method.args" %in% names(list(...))) {
-    method.args <- list()
-  }
   # comparisons are supplied
   if (!is.null(comparisons)) {
     method.args$comparisons <- comparisons
@@ -230,6 +236,7 @@ add_test_asterisks <- function(
     cutpoints = c(0, 0.001, 0.01, 0.05, Inf),
     symbols = c("***", "**", "*", "ns")
   ),
+  method.args = list(),
   color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
@@ -251,6 +258,7 @@ add_test_asterisks <- function(
     hide.ns = hide.ns,
     p.adjust.by = p.adjust.by,
     symnum.args = symnum.args,
+    method.args = method.args,
     color = color,
     hide_info = hide_info,
     ...

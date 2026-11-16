@@ -13,6 +13,7 @@
 * `adjust_legend_title()` now works across all mapped aesthetics (#163).
 * Axis transformations set via `adjust_x_axis()` and `adjust_y_axis()` now persist when layers are added or axes are adjusted again.
 * `save_plot()` no longer opens a stray graphics device (or writes `Rplots.pdf`) when measuring the plot size.
+* `add_test_pvalue()` and `add_test_asterisks()` now accept `method.args`, e.g. `method.args = list(var.equal = TRUE)` for Student's t test. The docs now state that the default is Welch's t test without p value adjustment.
 
 # tidyplots 0.4.0
 
