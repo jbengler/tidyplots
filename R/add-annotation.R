@@ -285,12 +285,18 @@ add_data_labels_repel <- function(
     box.padding = box.padding,
     max.overlaps = max.overlaps,
     fill = scales::alpha(background_color, background_alpha),
-    label.size = NA,
     label.padding = label.padding,
     position = position,
     seed = seed,
     ...
   )
+
+  # ggrepel >= 0.9.7 draws the label border from `linewidth` and ignores `label.size`
+  if (utils::packageVersion("ggrepel") >= "0.9.7") {
+    args$linewidth <- args$linewidth %||% 0
+  } else {
+    args$label.size <- args$label.size %||% NA
+  }
 
   # Specify either `position` or `nudge_x`/`nudge_y`
   if (!is.null(args$nudge_x) || !is.null(args$nudge_y)) {
