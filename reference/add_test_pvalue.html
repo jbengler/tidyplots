@@ -155,7 +155,7 @@ recommended), use p.adjust.method = "none".</p></dd>
 <dd><p>character string specifying label. Can be:</p><ul><li><p>the
 column containing the label (e.g.: <code>label = "p"</code> or <code>label =
 "p.adj"</code>), where <code>p</code> is the p-value. Other possible values are
-<code>"p.signif", "p.adj.signif", "p.format", "p.adj.format"</code>.</p></li>
+<code>"p.signif", "p.adj.signif", "p.format", "p.format.signif", "p.adj.format"</code>.</p></li>
 <li><p>an
 expression that can be formatted by the <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue()</a></code> package.
 For example, when specifying <code>label = "Wilcoxon, p = \{p\}"</code>, the
@@ -210,7 +210,8 @@ independently. P-values are adjusted by panel when <code>p.adjust.by =
 <li><p><code>**</code>: p &lt;= 0.01</p></li>
 <li><p><code>***</code>: p &lt;= 0.001</p></li>
 <li><p><code>****</code>:  p &lt;= 0.0001</p></li>
-</ul></dd>
+</ul><p>Note: If <code>symnum.args</code> is provided, it takes precedence over
+ <code>signif.cutoffs</code>.</p></dd>
 
 
 <dt id="arg-color">color<a class="anchor" aria-label="anchor" href="#arg-color"></a></dt>

@@ -34,6 +34,11 @@
 - [`adjust_legend_title()`](https://jbengler.github.io/tidyplots/reference/adjust_legend_title.md)
   now works across all mapped aesthetics
   ([\#163](https://github.com/jbengler/tidyplots/issues/163)).
+- Axis transformations set via
+  [`adjust_x_axis()`](https://jbengler.github.io/tidyplots/reference/adjust_x_axis.md)
+  and
+  [`adjust_y_axis()`](https://jbengler.github.io/tidyplots/reference/adjust_x_axis.md)
+  now persist when layers are added or axes are adjusted again.
 
 ## tidyplots 0.4.0
 

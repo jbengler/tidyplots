@@ -122,7 +122,8 @@ add_test_asterisks(
 
   - the column containing the label (e.g.: `label = "p"` or
     `label = "p.adj"`), where `p` is the p-value. Other possible values
-    are `"p.signif", "p.adj.signif", "p.format", "p.adj.format"`.
+    are
+    `"p.signif", "p.adj.signif", "p.format", "p.format.signif", "p.adj.format"`.
 
   - an expression that can be formatted by the
     [`glue()`](https://glue.tidyverse.org/reference/glue.html) package.
@@ -186,6 +187,9 @@ add_test_asterisks(
   - `***`: p \<= 0.001
 
   - `****`: p \<= 0.0001
+
+  Note: If `symnum.args` is provided, it takes precedence over
+  `signif.cutoffs`.
 
 - color:
 

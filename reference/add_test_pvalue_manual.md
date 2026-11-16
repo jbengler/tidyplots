@@ -55,8 +55,8 @@ add_test_asterisks_manual(
 
 - data:
 
-  a data frame containing statitistical test results. The expected
-  default format should contain the following columns:
+  a data frame containing statistical test results. The expected default
+  format should contain the following columns:
   `group1 | group2 | p | y.position | etc`. `group1` and `group2` are
   the groups that have been compared. `p` is the resulting p-value.
   `y.position` is the y coordinates of the p-values in the plot.
@@ -73,7 +73,11 @@ add_test_asterisks_manual(
   be formatted by the
   [`glue()`](https://glue.tidyverse.org/reference/glue.html) package.
   For example, when specifying label = "t-test, p = {p}", the expression
-  {p} will be replaced by its value.
+  {p} will be replaced by its value. Values inserted through a glue
+  expression are taken from the raw data column and are **not** rounded
+  by `p.digits`; to round within a glue expression, wrap the value, e.g.
+  `label = "p = \{signif(p, 3)\}"` (or `{format_p_value(p)}` for the
+  p-value house style).
 
 - label.size:
 
@@ -118,8 +122,9 @@ add_test_asterisks_manual(
 
 - tip.length:
 
-  numeric vector with the fraction of total height that the bar goes
-  down to indicate the precise column. Default is 0.03.
+  numeric vector with the fraction that the bracket tips go down to
+  indicate the precise column. Interpreted relative to the reference set
+  by `tip.length.ref`. Default is 0.03.
 
 - hide.ns:
 
