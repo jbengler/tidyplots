@@ -7,12 +7,18 @@ ff_adjust_axis <- function(axis) {
     limits = NULL,
     padding = c(NA, NA),
     rotate_labels = FALSE,
-    transform = "identity",
+    transform = NULL,
     cut_short_scale = FALSE,
     force_continuous = FALSE,
     ...
   ) {
     plot <- check_tidyplot(plot)
+    # Adjust transformation. Keep the current one unless a new one is given.
+    transform_field <- paste0("transform_", axis)
+    if (!is.null(transform)) {
+      plot$tidyplot[[transform_field]] <- transform
+    }
+    transform <- plot$tidyplot[[transform_field]] %||% "identity"
     # Parse title
     if (!is_waiver(title)) {
       title <- tidyplot_parser(as.character(title))

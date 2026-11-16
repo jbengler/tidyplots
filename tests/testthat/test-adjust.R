@@ -294,3 +294,16 @@ test_that("adjust title font works", {
     ) |>
     vdiffr::expect_doppelganger("legend title font", fig = _)
 })
+
+test_that("axis transformations persist when layers are added or axes adjusted", {
+  y_transform <- function(p) p$scales$get_scales("y")$get_transformation()$name
+  p <- study |>
+    tidyplot(x = treatment, y = score) |>
+    adjust_y_axis(transform = "log10")
+  expect_equal(y_transform(p), "log-10")
+  expect_equal(y_transform(p |> add_mean_bar()), "log-10")
+  expect_equal(y_transform(p |> adjust_y_axis(title = "Score")), "log-10")
+  expect_equal(y_transform(p |> remove_padding()), "log-10")
+  # explicitly resetting works
+  expect_equal(y_transform(p |> adjust_y_axis(transform = "identity")), "identity")
+})

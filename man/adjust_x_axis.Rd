@@ -13,7 +13,7 @@ adjust_x_axis(
   limits = NULL,
   padding = c(NA, NA),
   rotate_labels = FALSE,
-  transform = "identity",
+  transform = NULL,
   cut_short_scale = FALSE,
   force_continuous = FALSE,
   ...
@@ -27,7 +27,7 @@ adjust_y_axis(
   limits = NULL,
   padding = c(NA, NA),
   rotate_labels = FALSE,
-  transform = "identity",
+  transform = NULL,
   cut_short_scale = FALSE,
   force_continuous = FALSE,
   ...
