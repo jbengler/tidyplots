@@ -517,6 +517,14 @@ get_layout_size <- function(plot, units = c("mm", "cm", "in")) {
   }
   units <- match.arg(units)
 
+  # Measure on a temporary null device to avoid opening a stray device
+  old_dev <- grDevices::dev.cur()
+  grDevices::pdf(NULL)
+  on.exit({
+    grDevices::dev.off()
+    if (old_dev > 1) grDevices::dev.set(old_dev)
+  }, add = TRUE)
+
   pages <-
     purrr::map(plot, function(x) {
       if (!ggplot2::is.ggplot(x)) {
