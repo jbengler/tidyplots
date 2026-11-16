@@ -19,5 +19,7 @@ utils::globalVariables(c(
   "y",
   "data",
   "name",
-  "l"
+  "l",
+  ".is_one",
+  ".is_zero"
 ))
