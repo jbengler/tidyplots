@@ -64,7 +64,8 @@ as output. Also accepts rlang \link[rlang:as_function]{lambda} function
 notation.
 }}
 
-\item{limits}{Axis limits. For example, with \code{limits = c(20, 90)} the axis starts at 20 and ends at 90.}
+\item{limits}{Axis limits. For example, with \code{limits = c(20, 90)} the axis starts at 20 and ends at 90.
+The limits zoom into the plot and do not remove data points, see Details.}
 
 \item{padding}{Extra space between the data points and the axes. Defaults to \code{c(NA, NA)}, which does not change the padding.}
 
@@ -99,6 +100,10 @@ Adjust axes
 \itemize{
 \item The \code{title} argument of \code{adjust_x_axis()} and \code{adjust_y_axis()} supports \href{https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath}{plotmath expressions} to include special characters.
 See examples and \href{https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters}{Advanced plotting}.
+\item \code{limits} zoom into the plot, like \code{ggplot2::coord_cartesian()}. Data points
+outside the limits are cut off at the edge of the plot, but they are not removed
+from the data. Summaries such as means, error bars, and boxplots, as well as
+statistical tests, still use all data points.
 }
 }
 \examples{

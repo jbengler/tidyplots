@@ -274,6 +274,7 @@ ff_adjust_axis <- function(axis) {
 #' Adjust axes
 #' @param title Axis title.
 #' @param limits Axis limits. For example, with `limits = c(20, 90)` the axis starts at 20 and ends at 90.
+#'  The limits zoom into the plot and do not remove data points, see Details.
 #' @param rotate_labels Whether to rotate axis labels. If `TRUE` is set to 45 degrees. You can also provide custom degree values, for example, `rotate_labels = 90`. Defaults to `FALSE`.
 #' @param cut_short_scale Whether to shorten axis labels using `K` for thousand, `M` for million, and so on. Defaults to `FALSE`.
 #' @param padding Extra space between the data points and the axes. Defaults to `c(NA, NA)`, which does not change the padding.
@@ -284,6 +285,10 @@ ff_adjust_axis <- function(axis) {
 #' @details
 #' * The `title` argument of `adjust_x_axis()` and `adjust_y_axis()` supports [plotmath expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath) to include special characters.
 #' See examples and [Advanced plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
+#' * `limits` zoom into the plot, like `ggplot2::coord_cartesian()`. Data points
+#' outside the limits are cut off at the edge of the plot, but they are not removed
+#' from the data. Summaries such as means, error bars, and boxplots, as well as
+#' statistical tests, still use all data points.
 #'
 #' @examples
 #' # Plot without adjustments
