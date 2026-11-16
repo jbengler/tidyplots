@@ -95,7 +95,8 @@ recommended), use p.adjust.method = "none".}
 \item{label}{character string specifying label. Can be: \itemize{ \item the
 column containing the label (e.g.: \code{label = "p"} or \code{label =
 "p.adj"}), where \code{p} is the p-value. Other possible values are
-\code{"p.signif", "p.adj.signif", "p.format", "p.adj.format"}. \item an
+\code{"p.signif", "p.adj.signif", "p.format", "p.format.signif", "p.adj.format"}.
+\item an
 expression that can be formatted by the \code{\link[glue]{glue}()} package.
 For example, when specifying \code{label = "Wilcoxon, p = \{p\}"}, the
 expression \{p\} will be replaced by its value. \item a combination of
@@ -131,7 +132,10 @@ independently. P-values are adjusted by panel when \code{p.adjust.by =
  In other words, we use the following convention for symbols indicating
  statistical significance: \itemize{ \item \code{ns}: p > 0.05 \item
  \code{*}: p <= 0.05 \item \code{**}: p <= 0.01 \item \code{***}: p <= 0.001
- \item \code{****}:  p <= 0.0001 }}
+ \item \code{****}:  p <= 0.0001 }
+
+ Note: If \code{symnum.args} is provided, it takes precedence over
+ \code{signif.cutoffs}.}
 
 \item{color}{A hex color for the stroke color. For example, \code{"#FFFFFF"} for white.}
 

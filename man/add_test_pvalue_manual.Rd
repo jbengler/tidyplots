@@ -48,7 +48,7 @@ add_test_asterisks_manual(
 \arguments{
 \item{plot}{A \code{tidyplot} generated with the function \code{tidyplot()}.}
 
-\item{data}{a data frame containing statitistical test results. The expected
+\item{data}{a data frame containing statistical test results. The expected
 default format should contain the following columns: \code{group1 | group2 |
 p | y.position | etc}. \code{group1} and \code{group2} are the groups that
 have been compared. \code{p} is the resulting p-value. \code{y.position} is
@@ -60,7 +60,11 @@ the y coordinates of the p-values in the plot.}
 "p.adj"), where \code{p} is the p-value. Can be also an expression that can
 be formatted by the \code{\link[glue]{glue}()} package. For example, when
 specifying label = "t-test, p = \{p\}", the expression \{p\} will be
-replaced by its value.}
+replaced by its value. Values inserted through a glue expression are taken
+from the raw data column and are \strong{not} rounded by \code{p.digits}; to
+round within a glue expression, wrap the value, e.g.
+\code{label = "p = \{signif(p, 3)\}"} (or \code{{format_p_value(p)}} for the
+p-value house style).}
 
 \item{label.size}{Font size of label text.}
 
@@ -87,8 +91,9 @@ up; if negative value, brackets are moved down.}
 
 \item{bracket.size}{Width of the lines of the bracket.}
 
-\item{tip.length}{numeric vector with the fraction of total height that the
-bar goes down to indicate the precise column. Default is 0.03.}
+\item{tip.length}{numeric vector with the fraction that the bracket tips go
+down to indicate the precise column. Interpreted relative to the reference set
+by \code{tip.length.ref}. Default is 0.03.}
 
 \item{hide.ns}{can be logical value or a character vector.
 \itemize{
