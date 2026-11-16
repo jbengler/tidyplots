@@ -309,9 +309,6 @@ check_input <- function(input) {
   if (any(inherits(input, "tidyplot"))) {
     return("tp")
   }
-  if (any(inherits(input, "patchwork"))) {
-    return("pw")
-  }
   if (any(inherits(input, "gg"))) {
     return("gg")
   }
@@ -319,9 +316,6 @@ check_input <- function(input) {
   if (is.list(input)) {
     if (any(purrr::map_lgl(input, inherits, "tidyplot"))) {
       return("tp_list")
-    }
-    if (any(purrr::map_lgl(input, inherits, "patchwork"))) {
-      return("pw_list")
     }
     if (any(purrr::map_lgl(input, inherits, "gg"))) return("gg_list")
   }
@@ -461,10 +455,10 @@ check_tidyplot <- function(
 ) {
   if (!inherits(plot, "tidyplot")) {
     msg <- c("{.arg {arg}} must be a tidyplot.")
-    if (inherits(plot, "list") || inherits(plot, "patchwork")) {
+    if (inherits(plot, "list")) {
       msg <- c(
         msg,
-        "i" = "After using `split_plot()`, only `save_plot()` is allowed."
+        "i" = "After splitting a plot across multiple pages with `split_plot()`, only `save_plot()` is allowed."
       )
     } else {
       msg <- c(msg, "i" = "Use `tidyplot()` to create a tidyplot.")

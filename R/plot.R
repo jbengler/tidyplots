@@ -489,7 +489,7 @@ save_plot <- function(
   }
   units <- match.arg(units)
 
-  if (check_input(plot) %in% c("pw_list", "tp_list", "gg_list")) {
+  if (check_input(plot) %in% c("tp_list", "gg_list")) {
     dimensions <- get_layout_size(plot, units)$max
   } else {
     dimensions <- list(width = NA, height = NA)
