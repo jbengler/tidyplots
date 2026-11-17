@@ -722,13 +722,13 @@ study |>
 
 As you might have noted, when using these functions, a caption is
 automatically included that provides details about the statistical
-testing performed. The default is a Student’s *t* test without multiple
+testing performed. The default is Welch’s *t* test without multiple
 comparison adjustment.
 
 Both can be changed by providing the `method` and `p.adjust.method`
 arguments.
 
-For example, let’s perform a Wilcoxon signed-rank test with
+For example, let’s perform a Wilcoxon rank-sum test with
 Benjamini–Hochberg adjustment.
 
 ``` r

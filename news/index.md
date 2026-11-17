@@ -39,6 +39,23 @@
   and
   [`adjust_y_axis()`](https://jbengler.github.io/tidyplots/reference/adjust_x_axis.md)
   now persist when layers are added or axes are adjusted again.
+- [`save_plot()`](https://jbengler.github.io/tidyplots/reference/save_plot.md)
+  no longer opens a stray graphics device (or writes `Rplots.pdf`) when
+  measuring the plot size.
+- [`add_test_pvalue()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
+  and
+  [`add_test_asterisks()`](https://jbengler.github.io/tidyplots/reference/add_test_pvalue.md)
+  now accept `method.args`, e.g. `method.args = list(var.equal = TRUE)`
+  for Student’s t test. The docs now state that the default is Welch’s t
+  test without p value adjustment.
+- [`sort_x_axis_levels()`](https://jbengler.github.io/tidyplots/reference/sort_x_axis_levels.md)
+  and friends now sort by the statistic of the most recent summary
+  layer, e.g. by mean after
+  [`add_sem_errorbar()`](https://jbengler.github.io/tidyplots/reference/add_sem_errorbar.md)
+  and by sum for stacked bars and areas. Before, the statistic was
+  guessed from function names and often fell back to the median.
+- tidyplots functions can now be called via
+  [`do.call()`](https://rdrr.io/r/base/do.call.html).
 
 ## tidyplots 0.4.0
 

@@ -113,7 +113,8 @@ notation.</p></li>
 
 
 <dt id="arg-limits">limits<a class="anchor" aria-label="anchor" href="#arg-limits"></a></dt>
-<dd><p>Axis limits. For example, with <code>limits = c(20, 90)</code> the axis starts at 20 and ends at 90.</p></dd>
+<dd><p>Axis limits. For example, with <code>limits = c(20, 90)</code> the axis starts at 20 and ends at 90.
+The limits zoom into the plot and do not remove data points, see Details.</p></dd>
 
 
 <dt id="arg-padding">padding<a class="anchor" aria-label="anchor" href="#arg-padding"></a></dt>
@@ -159,6 +160,10 @@ You can create your own transformation with <code><a href="https://scales.r-lib.
 
 <ul><li><p>The <code>title</code> argument of <code>adjust_x_axis()</code> and <code>adjust_y_axis()</code> supports <a href="https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath" class="external-link">plotmath expressions</a> to include special characters.
 See examples and <a href="https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters">Advanced plotting</a>.</p></li>
+<li><p><code>limits</code> zoom into the plot, like <code><a href="https://ggplot2.tidyverse.org/reference/coord_cartesian.html" class="external-link">ggplot2::coord_cartesian()</a></code>. Data points
+outside the limits are cut off at the edge of the plot, but they are not removed
+from the data. Summaries such as means, error bars, and boxplots, as well as
+statistical tests, still use all data points.</p></li>
 </ul></div>
 
     <div class="section level2">

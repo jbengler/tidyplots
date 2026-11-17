@@ -62,6 +62,7 @@
 <span>  p.adjust.by <span class="op">=</span> <span class="st">"panel"</span>,</span>
 <span>  symnum.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cutpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="cn">Inf</span><span class="op">)</span>, symbols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"***"</span>, <span class="st">"**"</span>,</span>
 <span>    <span class="st">"*"</span>, <span class="st">"ns"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  method.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  color <span class="op">=</span> <span class="va">plot</span><span class="op">$</span><span class="va">tidyplot</span><span class="op">$</span><span class="va">ink</span>,</span>
 <span>  hide_info <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -84,6 +85,7 @@
 <span>  p.adjust.by <span class="op">=</span> <span class="st">"panel"</span>,</span>
 <span>  symnum.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>cutpoints <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="cn">Inf</span><span class="op">)</span>, symbols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"***"</span>, <span class="st">"**"</span>,</span>
 <span>    <span class="st">"*"</span>, <span class="st">"ns"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  method.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  color <span class="op">=</span> <span class="va">plot</span><span class="op">$</span><span class="va">tidyplot</span><span class="op">$</span><span class="va">ink</span>,</span>
 <span>  hide_info <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
@@ -103,22 +105,18 @@
 
 
 <dt id="arg-method">method<a class="anchor" aria-label="anchor" href="#arg-method"></a></dt>
-<dd><p>a character string indicating which method to be used for
-pairwise comparisons. Default is <code>"t_test"</code>. Allowed methods
-include pairwise comparisons methods implemented in the <code>rstatix</code> R
-package. These methods are: <code>"wilcox_test", "t_test", "sign_test",
- "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"</code>.</p></dd>
+<dd><p>Method for pairwise comparisons, as implemented in the rstatix
+package. Allowed values include <code>"wilcox_test"</code>, <code>"t_test"</code>, <code>"sign_test"</code>,
+<code>"dunn_test"</code>, <code>"emmeans_test"</code>, <code>"tukey_hsd"</code>, and <code>"games_howell_test"</code>.
+Defaults to <code>"t_test"</code>, an unpaired Welch's t test (unequal variances).
+For Student's t test, use <code>method.args = list(var.equal = TRUE)</code>.</p></dd>
 
 
 <dt id="arg-p-adjust-method">p.adjust.method<a class="anchor" aria-label="anchor" href="#arg-p-adjust-method"></a></dt>
-<dd><p>method for adjusting p values (see
-<code><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">p.adjust</a></code>).  Has impact only in a situation, where
-multiple pairwise tests are performed; or when there are multiple grouping
-variables. Ignored when the specified method is <code>"tukey_hsd"</code> or
-<code>"games_howell_test"</code> because they come with internal p adjustment
-method. Allowed values include "holm", "hochberg", "hommel", "bonferroni",
-"BH", "BY", "fdr", "none". If you don't want to adjust the p value (not
-recommended), use p.adjust.method = "none".</p></dd>
+<dd><p>Method for adjusting p values for multiple
+comparisons, see <code><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-link">stats::p.adjust()</a></code>. Allowed values include <code>"holm"</code>,
+<code>"hochberg"</code>, <code>"hommel"</code>, <code>"bonferroni"</code>, <code>"BH"</code>, <code>"BY"</code>, <code>"fdr"</code>, and
+<code>"none"</code>. Defaults to <code>"none"</code>.</p></dd>
 
 
 <dt id="arg-ref-group">ref.group<a class="anchor" aria-label="anchor" href="#arg-ref-group"></a></dt>
@@ -192,11 +190,9 @@ moved down.</p></dd>
 
 
 <dt id="arg-p-adjust-by">p.adjust.by<a class="anchor" aria-label="anchor" href="#arg-p-adjust-by"></a></dt>
-<dd><p>possible value is one of <code>c("group", "panel")</code>.
-Default is <code>"group"</code>: for a grouped data, if pairwise test is
-performed, then the p-values are adjusted for each group level
-independently. P-values are adjusted by panel when <code>p.adjust.by =
-"panel"</code>.</p></dd>
+<dd><p>Whether p values are adjusted across all comparisons
+in a panel (<code>"panel"</code>) or separately within each group level
+(<code>"group"</code>). Defaults to <code>"panel"</code>.</p></dd>
 
 
 <dt id="arg-symnum-args">symnum.args<a class="anchor" aria-label="anchor" href="#arg-symnum-args"></a></dt>
@@ -212,6 +208,11 @@ independently. P-values are adjusted by panel when <code>p.adjust.by =
 <li><p><code>****</code>:  p &lt;= 0.0001</p></li>
 </ul><p>Note: If <code>symnum.args</code> is provided, it takes precedence over
  <code>signif.cutoffs</code>.</p></dd>
+
+
+<dt id="arg-method-args">method.args<a class="anchor" aria-label="anchor" href="#arg-method-args"></a></dt>
+<dd><p>A list of additional arguments passed on to the test
+function, for example <code>list(var.equal = TRUE)</code>.</p></dd>
 
 
 <dt id="arg-color">color<a class="anchor" aria-label="anchor" href="#arg-color"></a></dt>

@@ -88,7 +88,8 @@ adjust_y_axis(
 - limits:
 
   Axis limits. For example, with `limits = c(20, 90)` the axis starts at
-  20 and ends at 90.
+  20 and ends at 90. The limits zoom into the plot and do not remove
+  data points, see Details.
 
 - padding:
 
@@ -142,6 +143,13 @@ A `tidyplot` object.
   expressions](https://www.rdocumentation.org/packages/grDevices/versions/3.6.2/topics/plotmath)
   to include special characters. See examples and [Advanced
   plotting](https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html#special-characters).
+
+- `limits` zoom into the plot, like
+  [`ggplot2::coord_cartesian()`](https://ggplot2.tidyverse.org/reference/coord_cartesian.html).
+  Data points outside the limits are cut off at the edge of the plot,
+  but they are not removed from the data. Summaries such as means, error
+  bars, and boxplots, as well as statistical tests, still use all data
+  points.
 
 ## Examples
 

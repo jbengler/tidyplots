@@ -22,6 +22,7 @@ add_test_pvalue(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  method.args = list(),
   color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
@@ -44,6 +45,7 @@ add_test_asterisks(
   p.adjust.by = "panel",
   symnum.args = list(cutpoints = c(0, 0.001, 0.01, 0.05, Inf), symbols = c("***", "**",
     "*", "ns")),
+  method.args = list(),
   color = plot$tidyplot$ink,
   hide_info = FALSE,
   ...
@@ -64,23 +66,19 @@ add_test_asterisks(
 
 - method:
 
-  a character string indicating which method to be used for pairwise
-  comparisons. Default is `"t_test"`. Allowed methods include pairwise
-  comparisons methods implemented in the `rstatix` R package. These
-  methods are:
-  `"wilcox_test", "t_test", "sign_test", "dunn_test", "emmeans_test", "tukey_hsd", "games_howell_test"`.
+  Method for pairwise comparisons, as implemented in the rstatix
+  package. Allowed values include `"wilcox_test"`, `"t_test"`,
+  `"sign_test"`, `"dunn_test"`, `"emmeans_test"`, `"tukey_hsd"`, and
+  `"games_howell_test"`. Defaults to `"t_test"`, an unpaired Welch's t
+  test (unequal variances). For Student's t test, use
+  `method.args = list(var.equal = TRUE)`.
 
 - p.adjust.method:
 
-  method for adjusting p values (see
-  [`p.adjust`](https://rdrr.io/r/stats/p.adjust.html)). Has impact only
-  in a situation, where multiple pairwise tests are performed; or when
-  there are multiple grouping variables. Ignored when the specified
-  method is `"tukey_hsd"` or `"games_howell_test"` because they come
-  with internal p adjustment method. Allowed values include "holm",
-  "hochberg", "hommel", "bonferroni", "BH", "BY", "fdr", "none". If you
-  don't want to adjust the p value (not recommended), use
-  p.adjust.method = "none".
+  Method for adjusting p values for multiple comparisons, see
+  [`stats::p.adjust()`](https://rdrr.io/r/stats/p.adjust.html). Allowed
+  values include `"holm"`, `"hochberg"`, `"hommel"`, `"bonferroni"`,
+  `"BH"`, `"BY"`, `"fdr"`, and `"none"`. Defaults to `"none"`.
 
 - ref.group:
 
@@ -163,10 +161,9 @@ add_test_asterisks(
 
 - p.adjust.by:
 
-  possible value is one of `c("group", "panel")`. Default is `"group"`:
-  for a grouped data, if pairwise test is performed, then the p-values
-  are adjusted for each group level independently. P-values are adjusted
-  by panel when `p.adjust.by = "panel"`.
+  Whether p values are adjusted across all comparisons in a panel
+  (`"panel"`) or separately within each group level (`"group"`).
+  Defaults to `"panel"`.
 
 - symnum.args:
 
@@ -190,6 +187,11 @@ add_test_asterisks(
 
   Note: If `symnum.args` is provided, it takes precedence over
   `signif.cutoffs`.
+
+- method.args:
+
+  A list of additional arguments passed on to the test function, for
+  example `list(var.equal = TRUE)`.
 
 - color:
 

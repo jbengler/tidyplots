@@ -583,11 +583,11 @@ value.</p>
 <p><img src="Visualizing-data_files/figure-html/unnamed-chunk-46-1.png" class="r-plt" alt="" width="1500" style="display: block; margin: auto;"></p>
 <p>As you might have noted, when using these functions, a caption is
 automatically included that provides details about the statistical
-testing performed. The default is a Student’s <em>t</em> test without
+testing performed. The default is Welch’s <em>t</em> test without
 multiple comparison adjustment.</p>
 <p>Both can be changed by providing the <code>method</code> and
 <code>p.adjust.method</code> arguments.</p>
-<p>For example, let’s perform a Wilcoxon signed-rank test with
+<p>For example, let’s perform a Wilcoxon rank-sum test with
 Benjamini–Hochberg adjustment.</p>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">study</span> <span class="op">|&gt;</span> </span>

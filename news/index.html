@@ -54,6 +54,13 @@
 <li>
 <code><a href="../reference/adjust_legend_title.html">adjust_legend_title()</a></code> now works across all mapped aesthetics (<a href="https://github.com/jbengler/tidyplots/issues/163" class="external-link">#163</a>).</li>
 <li>Axis transformations set via <code><a href="../reference/adjust_x_axis.html">adjust_x_axis()</a></code> and <code><a href="../reference/adjust_x_axis.html">adjust_y_axis()</a></code> now persist when layers are added or axes are adjusted again.</li>
+<li>
+<code><a href="../reference/save_plot.html">save_plot()</a></code> no longer opens a stray graphics device (or writes <code>Rplots.pdf</code>) when measuring the plot size.</li>
+<li>
+<code><a href="../reference/add_test_pvalue.html">add_test_pvalue()</a></code> and <code><a href="../reference/add_test_pvalue.html">add_test_asterisks()</a></code> now accept <code>method.args</code>, e.g. <code>method.args = list(var.equal = TRUE)</code> for Student’s t test. The docs now state that the default is Welch’s t test without p value adjustment.</li>
+<li>
+<code><a href="../reference/sort_x_axis_levels.html">sort_x_axis_levels()</a></code> and friends now sort by the statistic of the most recent summary layer, e.g. by mean after <code><a href="../reference/add_sem_errorbar.html">add_sem_errorbar()</a></code> and by sum for stacked bars and areas. Before, the statistic was guessed from function names and often fell back to the median.</li>
+<li>tidyplots functions can now be called via <code><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call()</a></code>.</li>
 </ul></div>
 </div>
     <div class="section level2">
