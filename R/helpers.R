@@ -466,18 +466,6 @@ check_tidyplot <- function(
     cli::cli_abort(msg, call = call)
   }
 
-  call_stack <- sys.call(sys.parent())
-  last_call <- as.character(call_stack[[1]])
-
-  if (is.null(plot$tidyplot$call_history)) {
-    call_history <- last_call
-  } else {
-    call_history <- c(plot$tidyplot$call_history, last_call)
-  }
-
-  plot$tidyplot$call_stack <- call_stack
-  plot$tidyplot$call_history <- call_history
-
   plot
 }
 

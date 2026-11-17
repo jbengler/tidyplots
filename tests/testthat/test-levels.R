@@ -160,3 +160,36 @@ test_that("color levels work", {
     rename_color_levels(c("A" = "Hallo")) |>
     vdiffr::expect_doppelganger("combined color", fig = _)
 })
+
+test_that("sorting uses the statistic of the most recent summary layer", {
+  # mean sorts b before a, median sorts a before b
+  df <- data.frame(
+    group = rep(c("a", "b"), each = 3),
+    value = c(1, 1, 10, 2, 2, 2)
+  )
+  sorted <- function(p) levels(sort_x_axis_levels(p)$data$group)
+  p <- tidyplot(df, x = group, y = value)
+
+  expect_equal(sorted(p), c("a", "b"))
+  expect_equal(sorted(p |> add_sem_errorbar()), c("b", "a"))
+  expect_equal(sorted(p |> add_mean_bar()), c("b", "a"))
+  expect_equal(sorted(p |> add_median_bar()), c("a", "b"))
+  expect_equal(sorted(p |> add_mean_bar() |> add_boxplot()), c("a", "b"))
+  expect_equal(sorted(p |> add_boxplot() |> add_mean_dash()), c("b", "a"))
+  expect_equal(sorted(p |> add_mean_bar() |> add_range_errorbar()), c("b", "a"))
+  expect_equal(
+    sorted(p |> add(ggplot2::stat_summary(fun = mean, geom = "point"))),
+    c("b", "a")
+  )
+
+  # stacked bars sort by sum, i.e. the bar height
+  df$stack <- rep(c("x", "y", "z"), 2)
+  stacked <- tidyplot(df, x = group, y = value, color = stack) |>
+    add_barstack_absolute()
+  expect_equal(sorted(stacked), c("b", "a"))
+
+  # unreadable layers fall back to the median
+  broken <- p
+  broken$layers <- list(function() NULL)
+  expect_null(get_layer_statistic(broken))
+})

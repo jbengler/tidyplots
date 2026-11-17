@@ -110,3 +110,11 @@ test_that("*_rows() functions work", {
     ) |>
     vdiffr::expect_doppelganger("Highlight 3 random animals", fig = _)
 })
+
+test_that("tidyplots functions can be called via do.call()", {
+  p <- do.call(tidyplot, list(study, x = quote(treatment), y = quote(score)))
+  p <- do.call(add_mean_bar, list(p))
+  p <- do.call(add_sem_errorbar, list(p))
+  p <- do.call(sort_x_axis_levels, list(p))
+  expect_s3_class(p, "tidyplot")
+})

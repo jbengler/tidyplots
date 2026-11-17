@@ -213,6 +213,35 @@ reorder_y_axis_labels <- reorder_y_axis_levels
 reorder_color_labels <- reorder_color_levels
 
 
+# Statistic (mean, median, sum, count) shown by the most recent summary layer,
+# or NULL if no layer shows one of these. Reads ggplot2 layer internals, so
+# any error falls back to NULL instead of breaking the sorting.
+get_layer_statistic <- function(plot) {
+  tryCatch(find_layer_statistic(plot), error = function(e) NULL)
+}
+
+find_layer_statistic <- function(plot) {
+  for (layer in rev(plot$layers)) {
+    if (inherits(layer$stat, "StatCount")) {
+      return("count")
+    }
+    if (inherits(layer$stat, "StatBoxplot")) {
+      return("median")
+    }
+    if (inherits(layer$stat, "StatSummary")) {
+      params <- layer$stat_params
+      f <- params$fun %||% params$fun.data %||% params$fun.max
+      if (identical(f, mean)) return("mean")
+      if (identical(f, median)) return("median")
+      if (identical(f, sum)) return("sum")
+      for (g in list(mean_se, mean_sd, mean_cl_boot)) {
+        if (identical(f, g)) return("mean")
+      }
+    }
+  }
+  NULL
+}
+
 ff_sort_levels <- function(axis) {
   function(plot, ..., .fun = NULL, .reverse = FALSE) {
     plot <- check_tidyplot(plot)
@@ -236,16 +265,14 @@ ff_sort_levels <- function(axis) {
           )
         )
     } else {
-      # sort by statistic entity (mean, median, sum, count) used in plot
-      if (any(stringr::str_detect(plot$tidyplot$call_history, "count"))) {
-        auto_fun <- length
-      } else if (any(stringr::str_detect(plot$tidyplot$call_history, "mean"))) {
-        auto_fun <- mean
-      } else if (any(stringr::str_detect(plot$tidyplot$call_history, "sum"))) {
-        auto_fun <- sum
-      } else {
-        auto_fun <- median
-      }
+      # sort by the statistic of the most recent summary layer
+      auto_fun <- switch(
+        get_layer_statistic(plot) %||% "median",
+        count = length,
+        mean = mean,
+        sum = sum,
+        median = median
+      )
 
       .fun <- .fun %||% auto_fun
 

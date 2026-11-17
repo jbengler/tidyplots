@@ -14,6 +14,8 @@
 * Axis transformations set via `adjust_x_axis()` and `adjust_y_axis()` now persist when layers are added or axes are adjusted again.
 * `save_plot()` no longer opens a stray graphics device (or writes `Rplots.pdf`) when measuring the plot size.
 * `add_test_pvalue()` and `add_test_asterisks()` now accept `method.args`, e.g. `method.args = list(var.equal = TRUE)` for Student's t test. The docs now state that the default is Welch's t test without p value adjustment.
+* `sort_x_axis_levels()` and friends now sort by the statistic of the most recent summary layer, e.g. by mean after `add_sem_errorbar()` and by sum for stacked bars and areas. Before, the statistic was guessed from function names and often fell back to the median.
+* tidyplots functions can now be called via `do.call()`.
 
 # tidyplots 0.4.0
 
