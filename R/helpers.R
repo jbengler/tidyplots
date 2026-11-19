@@ -254,6 +254,7 @@ mean_sd <- function(x) {
 }
 
 mean_cl_boot <- function(x) {
+  rlang::check_installed("Hmisc")
   dplyr::rename(
     data.frame(as.list(Hmisc::smean.cl.boot(x))),
     y = Mean,

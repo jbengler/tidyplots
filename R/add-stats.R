@@ -153,6 +153,7 @@ add_test_pvalue <- function(
   hide_info = FALSE,
   ...
 ) {
+  rlang::check_installed("ggpubr")
   plot <- check_tidyplot(plot)
 
   # comparisons are supplied
